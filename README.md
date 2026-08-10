@@ -40,10 +40,11 @@ official SRBench gplearn image with:
 ./scripts/run_cantilever_docker.sh
 ```
 
-The script pulls `srbench/gplearn:latest`, resolves and records its immutable
-digest, mounts this repository, and writes results under `results/cantilever/`.
-Set `SRBENCH_IMAGE` to override the image reference. A local control run is
-available as `./scripts/run_cantilever_local.sh`.
+The script pulls the immutable official image recorded in
+`containers/images.lock`, records the resolved digest with the result, mounts
+this repository, and writes results under `results/cantilever/`. Set
+`SRBENCH_IMAGE` to deliberately override the locked image. A local control run
+is available as `./scripts/run_cantilever_local.sh`.
 
 On a supported Ubuntu system without Docker, install Docker Engine from its
 official apt repository with:

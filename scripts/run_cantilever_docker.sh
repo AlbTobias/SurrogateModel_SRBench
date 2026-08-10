@@ -2,7 +2,14 @@
 set -euo pipefail
 
 project_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-image_ref="${SRBENCH_IMAGE:-srbench/gplearn:latest}"
+locked_image="$(awk -F= '$1 == "gplearn" {print substr($0, index($0, "=") + 1)}' \
+  "$project_dir/containers/images.lock")"
+image_ref="${SRBENCH_IMAGE:-$locked_image}"
+
+if [[ -z "$image_ref" ]]; then
+  echo "No gplearn image was found in containers/images.lock." >&2
+  exit 1
+fi
 
 command -v docker >/dev/null 2>&1 || {
   echo "Docker is required but was not found on PATH." >&2
