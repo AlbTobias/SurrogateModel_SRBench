@@ -45,6 +45,16 @@ digest, mounts this repository, and writes results under `results/cantilever/`.
 Set `SRBENCH_IMAGE` to override the image reference. A local control run is
 available as `./scripts/run_cantilever_local.sh`.
 
+On a supported Ubuntu system without Docker, install Docker Engine from its
+official apt repository with:
+
+```bash
+./scripts/install_docker_ubuntu.sh
+```
+
+The command requires interactive administrator authentication. Log out and back
+in afterward so membership in the `docker` group takes effect.
+
 To test an individual adapter from the `experiment` directory:
 
 ```bash
