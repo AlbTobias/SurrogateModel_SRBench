@@ -112,5 +112,7 @@ ENV/
 
 # Local surrogate benchmark artifacts
 .pytest_cache/
-results/
+results/*
+!results/.gitkeep
 data/generated/
+data/cantilever/

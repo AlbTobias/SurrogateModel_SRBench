@@ -26,6 +26,25 @@ The smoke test verifies the common estimator interface and performs a short fit,
 prediction, metric, and symbolic-expression round trip with `gplearn`. It also
 tests a linear-regression baseline through the same evaluator.
 
+## First surrogate problem
+
+The first end-to-end problem approximates the dimensionless tip deflection of a
+cantilever beam:
+
+`deflection = 4 * force * length^3 / (modulus * width * height^3)`
+
+Training and test samples are generated independently with a fixed seed. Run the
+official SRBench gplearn image with:
+
+```bash
+./scripts/run_cantilever_docker.sh
+```
+
+The script pulls `srbench/gplearn:latest`, resolves and records its immutable
+digest, mounts this repository, and writes results under `results/cantilever/`.
+Set `SRBENCH_IMAGE` to override the image reference. A local control run is
+available as `./scripts/run_cantilever_local.sh`.
+
 To test an individual adapter from the `experiment` directory:
 
 ```bash
@@ -59,4 +78,3 @@ test set.
 This project is derived from SRBench and is licensed under GPL-3.0. The original
 license and contributor notices are retained. Individual integrated algorithms
 may have their own licenses and must be checked before redistribution.
-
