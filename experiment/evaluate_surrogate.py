@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import argparse
 import importlib
+import inspect
 import json
 import platform
 import sys
@@ -24,6 +25,12 @@ def load_dataset(path: Path) -> tuple[pd.DataFrame, np.ndarray]:
     return frame.drop(columns="target"), frame["target"].to_numpy()
 
 
+def json_default(value: object) -> object:
+    if isinstance(value, np.generic):
+        return value.item()
+    raise TypeError(f"Object of type {type(value).__name__} is not JSON serializable")
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--algorithm", default="gplearn")
@@ -32,17 +39,31 @@ def main() -> None:
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--seed", type=int, default=42)
     parser.add_argument("--population-size", type=int, default=500)
-    parser.add_argument("--generations", type=int, default=30)
+    parser.add_argument("--iterations", type=int, default=30)
+    parser.add_argument("--time-limit", type=int, default=60)
+    parser.add_argument("--profile", choices=("smoke", "benchmark"), default="smoke")
     args = parser.parse_args()
 
     algorithm = importlib.import_module(f"experiment.methods.{args.algorithm}.regressor")
     estimator = clone(algorithm.est)
     supported = estimator.get_params(deep=True)
-    overrides = {
-        "random_state": args.seed,
-        "population_size": args.population_size,
-        "generations": args.generations,
-    }
+    overrides: dict[str, object] = {}
+    for key in ("random_state", "seed"):
+        if key in supported:
+            overrides[key] = args.seed
+    if args.profile == "smoke":
+        overrides.update(getattr(algorithm, "eval_kwargs", {}).get("test_params", {}))
+        for key in ("population_size", "npop"):
+            if key in supported:
+                overrides[key] = args.population_size
+        for key in ("generations", "ngens", "niterations", "number_of_generations"):
+            if key in supported:
+                overrides[key] = args.iterations
+        for key in ("max_time", "timeout_in_seconds", "timer_limit"):
+            if key in supported:
+                overrides[key] = args.time_limit
+        if "n_trials" in supported:
+            overrides["n_trials"] = 2
     estimator.set_params(**{key: value for key, value in overrides.items() if key in supported})
 
     x_train, y_train = load_dataset(args.train)
@@ -62,17 +83,33 @@ def main() -> None:
 
     rmse = float(np.sqrt(mean_squared_error(y_test, prediction)))
     target_range = float(np.max(y_test) - np.min(y_test))
-    expression = algorithm.model(estimator, x_train) if algorithm.model else None
-    model_size = algorithm.complexity(estimator) if getattr(algorithm, "complexity", None) else None
+    model_function = getattr(algorithm, "model", None)
+    if model_function is None:
+        expression = None
+    elif len(inspect.signature(model_function).parameters) >= 2:
+        expression = model_function(estimator, x_train)
+    else:
+        expression = model_function(estimator)
+    complexity_function = getattr(algorithm, "complexity", None)
+    model_size = complexity_function(estimator) if complexity_function else None
 
     result = {
         "problem": "cantilever_tip_deflection",
         "algorithm": args.algorithm,
         "seed": args.seed,
+        "seed_parameter": next(
+            (key for key in ("random_state", "seed") if key in supported),
+            None,
+        ),
         "train_samples": len(y_train),
         "test_samples": len(y_test),
-        "population_size": args.population_size,
-        "generations": args.generations,
+        "requested_population_size": args.population_size,
+        "requested_iterations": args.iterations,
+        "time_limit": args.time_limit,
+        "profile": args.profile,
+        "applied_parameters": {
+            key: value for key, value in overrides.items() if key in supported
+        },
         "rmse": rmse,
         "nrmse_range": rmse / target_range,
         "mae": float(mean_absolute_error(y_test, prediction)),
@@ -86,8 +123,11 @@ def main() -> None:
         "platform": platform.platform(),
     }
     args.output.parent.mkdir(parents=True, exist_ok=True)
-    args.output.write_text(json.dumps(result, indent=2) + "\n", encoding="utf-8")
-    json.dump(result, sys.stdout, indent=2)
+    args.output.write_text(
+        json.dumps(result, indent=2, default=json_default) + "\n",
+        encoding="utf-8",
+    )
+    json.dump(result, sys.stdout, indent=2, default=json_default)
     print()
 
 

@@ -9,4 +9,5 @@ cd "$project_dir"
   --algorithm gplearn \
   --train data/cantilever/train.tsv.gz \
   --test data/cantilever/test.tsv.gz \
-  --output results/cantilever/gplearn-local.json
+  --output results/cantilever/gplearn-local.json \
+  --profile smoke

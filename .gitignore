@@ -116,3 +116,4 @@ results/*
 !results/.gitkeep
 data/generated/
 data/cantilever/
+hall_of_fame_*

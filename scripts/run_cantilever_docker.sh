@@ -34,4 +34,6 @@ docker run --rm \
     --algorithm gplearn \
     --train data/cantilever/train.tsv.gz \
     --test data/cantilever/test.tsv.gz \
-    --output results/cantilever/gplearn-docker.json
+    --output results/cantilever/gplearn-docker.json \
+    --iterations 30 \
+    --profile smoke

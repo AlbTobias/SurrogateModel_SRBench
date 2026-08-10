@@ -46,6 +46,22 @@ this repository, and writes results under `results/cantilever/`. Set
 `SRBENCH_IMAGE` to deliberately override the locked image. A local control run
 is available as `./scripts/run_cantilever_local.sh`.
 
+Run the initial diverse algorithm group (`gplearn`, Operon, PySR,
+GeneticEngine, and ITEA) with reduced smoke-test budgets using:
+
+```bash
+./scripts/run_algorithm_group.sh
+```
+
+An individual pinned image can be run with
+`./scripts/run_algorithm_docker.sh ALGORITHM`. These smoke settings establish
+compatibility; they are not the final thesis benchmark budgets.
+
+The published Operon and GeneticEngine images contain older package APIs than
+the current SRBench adapters. Their adapters include narrowly scoped fallback
+paths for those pinned images. ITEA's published estimator exposes no random-seed
+parameter; result JSON records this explicitly as `"seed_parameter": null`.
+
 On a supported Ubuntu system without Docker, install Docker Engine from its
 official apt repository with:
 
