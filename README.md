@@ -26,7 +26,7 @@ The smoke test verifies the common estimator interface and performs a short fit,
 prediction, metric, and symbolic-expression round trip with `gplearn`. It also
 tests a linear-regression baseline through the same evaluator.
 
-## First surrogate problem
+## Surrogate problems
 
 The first end-to-end problem approximates the dimensionless tip deflection of a
 cantilever beam:
@@ -63,11 +63,23 @@ Run the versioned three-seed pilot benchmark with:
 ./scripts/run_benchmark_group.sh
 ```
 
-The budgets and seeds are defined in `configs/benchmark_pilot_v1.json`.
+The original Cantilever-only pilot remains defined in
+`configs/benchmark_pilot_v1.json`; the three-problem suite is defined in
+`configs/benchmark_suite_v1.json`.
 Individual trials use `./scripts/run_benchmark_trial.sh ALGORITHM SEED`, and
 aggregate mean/standard-deviation metrics are written to
 `results/cantilever/benchmark/summary.csv`. The summary also reports expected,
 successful, and missing trials so incomplete experiment matrices are visible.
+
+The full suite adds the established Borehole water-flow and Piston cycle-time
+computer-experiment problems. Their selection rationale, equations, domains,
+and sources are documented in [docs/surrogate-problems.md](docs/surrogate-problems.md).
+By default, `run_benchmark_group.sh` runs all three problems. Restrict a run with,
+for example, `BENCHMARK_PROBLEMS="borehole piston"`. Run one trial with:
+
+```bash
+./scripts/run_benchmark_trial.sh gplearn 42 borehole
+```
 
 The published Operon and GeneticEngine images contain older package APIs than
 the current SRBench adapters. Their adapters include narrowly scoped fallback

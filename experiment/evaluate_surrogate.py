@@ -34,6 +34,7 @@ def json_default(value: object) -> object:
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--algorithm", default="gplearn")
+    parser.add_argument("--problem", default="cantilever")
     parser.add_argument("--train", type=Path, required=True)
     parser.add_argument("--test", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
@@ -120,7 +121,7 @@ def main() -> None:
     model_size = complexity_function(estimator) if complexity_function else None
 
     result = {
-        "problem": "cantilever_tip_deflection",
+        "problem": args.problem,
         "algorithm": args.algorithm,
         "seed": args.seed,
         "seed_parameter": next(

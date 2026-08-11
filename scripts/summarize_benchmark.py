@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import argparse
 import csv
 import json
 from pathlib import Path
@@ -10,17 +11,25 @@ from pathlib import Path
 import numpy as np
 
 
-RESULT_ROOT = Path("results/cantilever/benchmark")
-CONFIG_PATH = Path("configs/benchmark_pilot_v1.json")
 METRICS = ("r2", "rmse", "nrmse_range", "mae", "fit_seconds", "model_size")
 
 
 def main() -> None:
-    configuration = json.loads(CONFIG_PATH.read_text(encoding="utf-8"))
+    project_dir = Path(__file__).resolve().parents[1]
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--problem", default="cantilever")
+    parser.add_argument(
+        "--config",
+        type=Path,
+        default=project_dir / "configs/benchmark_suite_v1.json",
+    )
+    args = parser.parse_args()
+    result_root = project_dir / "results" / args.problem / "benchmark"
+    configuration = json.loads(args.config.read_text(encoding="utf-8"))
     expected_seeds = [int(seed) for seed in configuration["seeds"]]
     expected_algorithms = list(configuration["algorithms"])
     grouped: dict[str, list[dict[str, object]]] = {}
-    for path in sorted(RESULT_ROOT.glob("*/seed-*.json")):
+    for path in sorted(result_root.glob("*/seed-*.json")):
         result = json.loads(path.read_text(encoding="utf-8"))
         grouped.setdefault(str(result["algorithm"]), []).append(result)
 
@@ -43,8 +52,8 @@ def main() -> None:
             row[f"{metric}_std"] = float(np.std(values, ddof=1)) if len(values) > 1 else None
         rows.append(row)
 
-    RESULT_ROOT.mkdir(parents=True, exist_ok=True)
-    output = RESULT_ROOT / "summary.csv"
+    result_root.mkdir(parents=True, exist_ok=True)
+    output = result_root / "summary.csv"
     if rows:
         with output.open("w", newline="", encoding="utf-8") as handle:
             writer = csv.DictWriter(handle, fieldnames=list(rows[0]))

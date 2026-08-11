@@ -117,4 +117,6 @@ results/*
 !results/.gitkeep
 data/generated/
 data/cantilever/
+data/borehole/
+data/piston/
 hall_of_fame_*
