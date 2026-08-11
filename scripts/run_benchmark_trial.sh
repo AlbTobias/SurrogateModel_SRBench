@@ -2,10 +2,11 @@
 set -euo pipefail
 
 project_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-algorithm="${1:?Usage: scripts/run_benchmark_trial.sh ALGORITHM SEED}"
-seed="${2:?Usage: scripts/run_benchmark_trial.sh ALGORITHM SEED}"
+algorithm="${1:?Usage: scripts/run_benchmark_trial.sh ALGORITHM SEED [PROBLEM] [INPUT_SCALING]}"
+seed="${2:?Usage: scripts/run_benchmark_trial.sh ALGORITHM SEED [PROBLEM] [INPUT_SCALING]}"
 problem="${3:-cantilever}"
-config_file="${BENCHMARK_CONFIG:-configs/benchmark_suite_v2.json}"
+input_scaling="${4:-raw}"
+config_file="${BENCHMARK_CONFIG:-configs/benchmark_suite_v3.json}"
 config_path="$project_dir/$config_file"
 if [[ ! -f "$config_path" ]]; then
   echo "Benchmark configuration not found: $config_path" >&2
@@ -20,6 +21,13 @@ case "$problem" in
     exit 2
     ;;
 esac
+case "$input_scaling" in
+  raw|domain_minmax) ;;
+  *)
+    echo "Unknown input scaling: $input_scaling (expected raw or domain_minmax)" >&2
+    exit 2
+    ;;
+esac
 locked_image="$(awk -F= -v algorithm="$algorithm" \
   '$1 == algorithm {print substr($0, index($0, "=") + 1)}' \
   "$project_dir/containers/images.lock")"
@@ -31,15 +39,15 @@ fi
 
 mkdir -p \
   "$project_dir/data/$problem" \
-  "$project_dir/results/$problem/$benchmark_name/$algorithm" \
-  "$project_dir/results/runtime/$benchmark_name/$problem/$algorithm/seed-$seed"
+  "$project_dir/results/$problem/$benchmark_name/$input_scaling/$algorithm" \
+  "$project_dir/results/runtime/$benchmark_name/$problem/$input_scaling/$algorithm/seed-$seed"
 
 "$project_dir/.venv/bin/python" "$project_dir/surrogate/generate_$problem.py" \
   --output-dir "$project_dir/data/$problem"
 
 docker run --rm \
   --volume "$project_dir:/workspace" \
-  --workdir "/workspace/results/runtime/$benchmark_name/$problem/$algorithm/seed-$seed" \
+  --workdir "/workspace/results/runtime/$benchmark_name/$problem/$input_scaling/$algorithm/seed-$seed" \
   --env PYTHONPATH=/workspace \
   --env OMP_NUM_THREADS=1 \
   --env OPENBLAS_NUM_THREADS=1 \
@@ -51,7 +59,8 @@ docker run --rm \
     --problem "$problem" \
     --train "/workspace/data/$problem/train.tsv.gz" \
     --test "/workspace/data/$problem/test.tsv.gz" \
-    --output "/workspace/results/$problem/$benchmark_name/$algorithm/seed-$seed.json" \
+    --output "/workspace/results/$problem/$benchmark_name/$input_scaling/$algorithm/seed-$seed.json" \
     --seed "$seed" \
+    --input-scaling "$input_scaling" \
     --profile benchmark \
     --config "/workspace/$config_file"

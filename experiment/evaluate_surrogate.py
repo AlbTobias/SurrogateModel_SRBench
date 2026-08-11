@@ -18,6 +18,13 @@ from sklearn.base import clone
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 
 from experiment.metrics.expression_analysis import analyze_expression
+from experiment.metrics.input_scaling import (
+    SCALING_DOMAIN_MINMAX,
+    SUPPORTED_SCALINGS,
+    expression_to_raw_scale,
+    scale_frame_to_unit_interval,
+    scaling_metadata,
+)
 
 
 def load_dataset(path: Path) -> tuple[pd.DataFrame, np.ndarray]:
@@ -48,6 +55,7 @@ def main() -> None:
     parser.add_argument("--config", type=Path)
     parser.add_argument("--prediction-repeats", type=int)
     parser.add_argument("--expression-timeout", type=int, default=5)
+    parser.add_argument("--input-scaling", choices=SUPPORTED_SCALINGS, default="raw")
     args = parser.parse_args()
 
     algorithm = importlib.import_module(f"experiment.methods.{args.algorithm}.regressor")
@@ -103,12 +111,20 @@ def main() -> None:
     x_test, y_test = load_dataset(args.test)
     if list(x_train.columns) != list(x_test.columns):
         raise ValueError("Train and test feature columns differ")
+    feature_names = list(x_train.columns)
+    domain_metadata = scaling_metadata(args.problem, feature_names)
+    if args.input_scaling == SCALING_DOMAIN_MINMAX:
+        x_train_model = scale_frame_to_unit_interval(x_train, domain_metadata)
+        x_test_model = scale_frame_to_unit_interval(x_test, domain_metadata)
+    else:
+        x_train_model = x_train
+        x_test_model = x_test
     if "feature_names" in supported:
-        estimator.set_params(feature_names=list(x_train.columns))
+        estimator.set_params(feature_names=feature_names)
 
     use_dataframe = getattr(algorithm, "eval_kwargs", {}).get("use_dataframe", True)
-    x_train_fit = x_train if use_dataframe else x_train.to_numpy()
-    x_test_fit = x_test if use_dataframe else x_test.to_numpy()
+    x_train_fit = x_train_model if use_dataframe else x_train_model.to_numpy()
+    x_test_fit = x_test_model if use_dataframe else x_test_model.to_numpy()
 
     evaluation_started = time.perf_counter()
     fit_started = time.perf_counter()
@@ -140,9 +156,26 @@ def main() -> None:
     expression_extraction_seconds = time.perf_counter() - extraction_started
 
     analysis_started = time.perf_counter()
-    expression_analysis = analyze_expression(
+    training_scale_analysis = analyze_expression(
         expression,
-        list(x_train.columns),
+        feature_names,
+        "training_scale_without_ground_truth",
+        timeout_seconds=args.expression_timeout,
+    )
+    back_transform_error = None
+    if expression and args.input_scaling == SCALING_DOMAIN_MINMAX:
+        try:
+            raw_scale_expression = expression_to_raw_scale(
+                expression, feature_names, domain_metadata
+            )
+        except Exception as error:
+            raw_scale_expression = None
+            back_transform_error = f"{type(error).__name__}: {error}"
+    else:
+        raw_scale_expression = expression
+    expression_analysis = analyze_expression(
+        raw_scale_expression,
+        feature_names,
         args.problem,
         timeout_seconds=args.expression_timeout,
     )
@@ -168,6 +201,16 @@ def main() -> None:
         "benchmark_name": benchmark_name,
         "config_file": str(args.config) if args.config else None,
         "use_dataframe": use_dataframe,
+        "input_scaling": args.input_scaling,
+        "input_scaling_applied": args.input_scaling == SCALING_DOMAIN_MINMAX,
+        "input_scaling_source": "fixed published problem domain",
+        "input_scaling_formula": (
+            "z = 2 * (x - lower) / (upper - lower) - 1"
+            if args.input_scaling == SCALING_DOMAIN_MINMAX
+            else "x unchanged"
+        ),
+        "input_scaling_parameters": domain_metadata,
+        "target_scaling": "none; target remains in original units",
         "applied_parameters": {
             key: value for key, value in overrides.items() if key in supported
         },
@@ -198,6 +241,13 @@ def main() -> None:
         ),
         "model_size": model_size,
         "symbolic_model": expression,
+        "symbolic_model_coordinate_system": args.input_scaling,
+        "raw_scale_symbolic_model": raw_scale_expression,
+        "raw_scale_back_transform_error": back_transform_error,
+        **{
+            f"training_scale_{key}": value
+            for key, value in training_scale_analysis.items()
+        },
         **expression_analysis,
         "python": platform.python_version(),
         "platform": platform.platform(),

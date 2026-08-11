@@ -17,6 +17,11 @@ is algebraically equivalent or physically close to the generating equation.
 Generated datasets are intentionally excluded from Git because they can be
 reproduced from the scripts in `surrogate/`.
 
+All stored tables contain raw inputs in the physical units and ranges documented
+below. Scaling is performed only inside the evaluator. The normalized benchmark
+condition uses the fixed documented bounds to map every feature to $[-1,1]$;
+it does not rewrite these files or scale the target.
+
 ## Common dataset layout
 
 | File | Samples | Purpose |

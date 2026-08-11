@@ -4,6 +4,29 @@ This document defines how the benchmark evaluates symbolic expressions and
 execution time. Predictive accuracy remains necessary, but it is not used as a
 substitute for interpretability or symbolic recovery.
 
+## Input-scaling conditions
+
+The `benchmark_suite_v3` experiment runs every problem, algorithm, and seed in
+two separate conditions:
+
+- `raw`: the stored physical inputs are passed to the estimator unchanged;
+- `domain_minmax`: each input is mapped from its published problem-domain
+  bounds $[l,u]$ to $[-1,1]$ using $z=2(x-l)/(u-l)-1$.
+
+The fixed published bounds are used instead of training-sample minima and
+maxima. This avoids data-dependent transformations, prevents test leakage, and
+makes the coordinate system identical across seeds. Targets remain in their
+original units in both conditions. Result JSON files record the condition,
+formula, bounds, and the fact that no target scaling was applied.
+
+For a normalized run, `symbolic_model` is the expression returned in normalized
+coordinates. If it can be parsed, the evaluator substitutes the coordinate
+definitions to produce `raw_scale_symbolic_model`. Ground-truth matching and
+the unprefixed complexity fields are computed from this physical-coordinate
+expression. Fields prefixed with `training_scale_` describe the expression as
+seen by the algorithm. A failed back-transformation is recorded explicitly and
+does not silently substitute the normalized expression for a physical one.
+
 ## Expression representations
 
 Each result retains the adapter's original `symbolic_model`. The common
@@ -81,9 +104,10 @@ environment settings, but training times still describe algorithm-specific
 configured budgets rather than equal-compute performance. They must not be
 presented as a hardware-normalized speed ranking.
 
-Results are isolated under `results/<problem>/<benchmark-name>/`, so changing a
-versioned evaluation protocol cannot silently overwrite results produced by an
-older configuration.
+Results are isolated under
+`results/<problem>/<benchmark-name>/<input-scaling>/`, so conditions cannot
+overwrite one another and changing a versioned evaluation protocol cannot
+silently overwrite older results.
 
 ## Recommended reporting
 

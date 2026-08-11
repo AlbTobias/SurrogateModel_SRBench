@@ -24,6 +24,8 @@ METRICS = (
     "simplified_depth",
     "simplified_to_ground_truth_size_ratio",
     "ground_truth_variable_recall",
+    "training_scale_simplified_node_count",
+    "training_scale_simplified_depth",
 )
 
 
@@ -31,18 +33,22 @@ def main() -> None:
     project_dir = Path(__file__).resolve().parents[1]
     parser = argparse.ArgumentParser()
     parser.add_argument("--problem", default="cantilever")
+    parser.add_argument("--input-scaling", default="raw")
     parser.add_argument(
         "--config",
         type=Path,
-        default=project_dir / "configs/benchmark_suite_v2.json",
+        default=project_dir / "configs/benchmark_suite_v3.json",
     )
     args = parser.parse_args()
     configuration = json.loads(args.config.read_text(encoding="utf-8"))
-    result_root = (
-        project_dir / "results" / args.problem / str(configuration["name"])
-    )
+    result_root = project_dir / "results" / args.problem / str(configuration["name"])
+    if "input_scalings" in configuration:
+        result_root = result_root / args.input_scaling
     legacy_root = project_dir / "results" / args.problem / "benchmark"
-    if not result_root.exists() and configuration["name"] != "benchmark_suite_v2":
+    if not result_root.exists() and configuration["name"] in {
+        "benchmark_pilot_v1",
+        "benchmark_suite_v1",
+    }:
         result_root = legacy_root
     expected_seeds = [int(seed) for seed in configuration["seeds"]]
     expected_algorithms = list(configuration["algorithms"])
@@ -67,6 +73,7 @@ def main() -> None:
         )
         row: dict[str, object] = {
             "algorithm": algorithm,
+            "input_scaling": args.input_scaling,
             "expected_trials": len(expected_seeds),
             "successful_trials": len(trials),
             "failed_or_missing_trials": len(missing_seeds),

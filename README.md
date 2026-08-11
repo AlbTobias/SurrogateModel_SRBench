@@ -66,12 +66,14 @@ Run the versioned three-seed pilot benchmark with:
 The original Cantilever-only pilot remains defined in
 `configs/benchmark_pilot_v1.json`; the three-problem suite is defined in
 `configs/benchmark_suite_v1.json`. The current evaluation protocol, including
-repeated prediction timing and expression analysis, is versioned as
-`configs/benchmark_suite_v2.json` and is the runner default.
-Individual trials use `./scripts/run_benchmark_trial.sh ALGORITHM SEED`, and
-aggregate mean/standard-deviation metrics are written to
-`results/<problem>/<benchmark-name>/summary.csv`. The summary also reports expected,
-successful, and missing trials so incomplete experiment matrices are visible.
+repeated prediction timing, expression analysis, and explicitly separated
+raw/normalized input conditions, is versioned as
+`configs/benchmark_suite_v3.json` and is the runner default. Individual trials
+use `./scripts/run_benchmark_trial.sh ALGORITHM SEED [PROBLEM] [INPUT_SCALING]`,
+and aggregate metrics are written to
+`results/<problem>/<benchmark-name>/<input-scaling>/summary.csv`. The summary
+also reports expected, successful, and missing trials so incomplete experiment
+matrices are visible.
 
 The full suite adds the established Borehole water-flow and Piston cycle-time
 computer-experiment problems. Their selection rationale, equations, domains,
@@ -81,12 +83,21 @@ are summarized in [data/README.md](data/README.md).
 Framework-independent expression complexity, symbolic ground-truth comparison,
 and runtime measurement are defined in
 [docs/evaluation-protocol.md](docs/evaluation-protocol.md).
-By default, `run_benchmark_group.sh` runs all three problems. Restrict a run with,
-for example, `BENCHMARK_PROBLEMS="borehole piston"`. Run one trial with:
+By default, `run_benchmark_group.sh` runs all three problems in both `raw` and
+`domain_minmax` conditions. Restrict a run with, for example,
+`BENCHMARK_PROBLEMS="borehole piston"` or `BENCHMARK_SCALINGS=domain_minmax`.
+Run one normalized trial with:
 
 ```bash
-./scripts/run_benchmark_trial.sh gplearn 42 borehole
+./scripts/run_benchmark_trial.sh gplearn 42 borehole domain_minmax
 ```
+
+Normalization maps each published physical domain to $[-1,1]$ using fixed
+bounds; it is never fitted from the sampled data, and the target is not scaled.
+Every result JSON records the condition, formula, and bounds. When expression
+parsing succeeds, a model learned in normalized coordinates is also transformed
+back to the original physical variables for interpretation and comparison with
+the generating equation.
 
 The published Operon and GeneticEngine images contain older package APIs than
 the current SRBench adapters. Their adapters include narrowly scoped fallback
