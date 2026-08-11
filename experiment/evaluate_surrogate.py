@@ -42,11 +42,20 @@ def main() -> None:
     parser.add_argument("--iterations", type=int, default=30)
     parser.add_argument("--time-limit", type=int, default=60)
     parser.add_argument("--profile", choices=("smoke", "benchmark"), default="smoke")
+    parser.add_argument("--config", type=Path)
     args = parser.parse_args()
 
     algorithm = importlib.import_module(f"experiment.methods.{args.algorithm}.regressor")
     estimator = clone(algorithm.est)
     supported = estimator.get_params(deep=True)
+    benchmark_name = None
+    configured_parameters: dict[str, object] = {}
+    if args.config:
+        configuration = json.loads(args.config.read_text(encoding="utf-8"))
+        benchmark_name = configuration.get("name")
+        configured_parameters = configuration.get("algorithms", {}).get(args.algorithm, {})
+        if args.profile == "benchmark" and not configured_parameters:
+            raise ValueError(f"No benchmark parameters configured for {args.algorithm}")
     overrides: dict[str, object] = {}
     for key in ("random_state", "seed"):
         if key in supported:
@@ -70,6 +79,13 @@ def main() -> None:
                 overrides[key] = args.time_limit
         if "n_trials" in supported:
             overrides["n_trials"] = 2
+    elif args.profile == "benchmark":
+        unknown = sorted(set(configured_parameters) - set(supported))
+        if unknown:
+            raise ValueError(
+                f"Unsupported configured parameters for {args.algorithm}: {unknown}"
+            )
+        overrides.update(configured_parameters)
     estimator.set_params(**{key: value for key, value in overrides.items() if key in supported})
 
     x_train, y_train = load_dataset(args.train)
@@ -113,10 +129,14 @@ def main() -> None:
         ),
         "train_samples": len(y_train),
         "test_samples": len(y_test),
-        "requested_population_size": args.population_size,
-        "requested_iterations": args.iterations,
-        "time_limit": args.time_limit,
+        "requested_population_size": (
+            args.population_size if args.profile == "smoke" else None
+        ),
+        "requested_iterations": args.iterations if args.profile == "smoke" else None,
+        "time_limit": args.time_limit if args.profile == "smoke" else None,
         "profile": args.profile,
+        "benchmark_name": benchmark_name,
+        "config_file": str(args.config) if args.config else None,
         "use_dataframe": use_dataframe,
         "applied_parameters": {
             key: value for key, value in overrides.items() if key in supported

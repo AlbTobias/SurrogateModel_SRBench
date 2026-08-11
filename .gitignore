@@ -14,6 +14,7 @@ __pycache__/
 
 # json
 *.json
+!configs/*.json
 
 # Distribution / packaging
 .Python

@@ -57,6 +57,18 @@ An individual pinned image can be run with
 `./scripts/run_algorithm_docker.sh ALGORITHM`. These smoke settings establish
 compatibility; they are not the final thesis benchmark budgets.
 
+Run the versioned three-seed pilot benchmark with:
+
+```bash
+./scripts/run_benchmark_group.sh
+```
+
+The budgets and seeds are defined in `configs/benchmark_pilot_v1.json`.
+Individual trials use `./scripts/run_benchmark_trial.sh ALGORITHM SEED`, and
+aggregate mean/standard-deviation metrics are written to
+`results/cantilever/benchmark/summary.csv`. The summary also reports expected,
+successful, and missing trials so incomplete experiment matrices are visible.
+
 The published Operon and GeneticEngine images contain older package APIs than
 the current SRBench adapters. Their adapters include narrowly scoped fallback
 paths for those pinned images. ITEA's published estimator exposes no random-seed
