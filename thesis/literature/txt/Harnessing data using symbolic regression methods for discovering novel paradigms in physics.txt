@@ -1,0 +1,808 @@
+•Review• June 2024 Vol. 67 No. 6: 267301
+https://doi.org/10.1007/s11433-023-2346-2
+Harnessing data using symbolic regression methods for discovering
+novel paradigms in physics
+Jianyang Guo1
+, and Wan-Jian Yin1,2,3*
+1 College of Energy, Soochow Institute for Energy and Materials Innovations (SIEMIS), Jiangsu Provincial Key Laboratory for Advanced
+Carbon Materials and Wearable Energy Technologies, Soochow University, Suzhou 215006, China; 2 Shanghai Qi Zhi Institute, Shanghai 200232, China; 3 Light Industry Institute of Electrochemical Power Sources, Soochow University, Suzhou 215006, China
+Received September 21, 2023; accepted February 7, 2024; published online April 30, 2024
+In recent years, machine-learning methods have profoundly impacted research in the interdisciplinary fields of physics. However, most machine-learning models lack interpretability, and physicists doubt the credibility of their conclusions because they
+cannot be combined with prior physical knowledge. Therefore, this review focuses on symbolic regression, which is an
+interpretable machine-learning method. First, the relevant concepts of machine learning are introduced in conjunction with
+induction. Next, we provide an overview of symbolic regression methods. Subsequently, the recent directions for the application
+of symbolic regression methods in different subfields of physics are outlined, and an overview of the ways in which the
+applications of symbolic regression have evolved in the realm of physics is provided. The major aim of this review is to introduce
+the basic principles of symbolic regression and explain its applications in the field of physics.
+machine learning, genetic programming, symbolic regression
+PACS number(s): 07.05.Mh, 01.30.Rr, 01.30.-y
+Citation: J. Guo, and W.-J. Yin, Harnessing data using symbolic regression methods for discovering novel paradigms in physics, Sci. China-Phys. Mech. Astron.
+67, 267301 (2024), https://doi.org/10.1007/s11433-023-2346-2
+1 Introduction
+Machine learning is a branch of artificial intelligence (AI)
+and computer science capable of providing solutions to
+problems such as large-dataset analysis and identifying
+paradigms within quantities of data beyond human-processing capabilities. In recent years, machine learning methods
+have been used across various research fields and have made
+significant contributions to physics research. The machinelearning process includes data collection, algorithm selection, feature engineering, model training, and results analysis.
+Induction is essential to build a ration-based perception of
+the world and plays a crucial role in physical research. For
+example, in the history of physics research, the discovery of
+the law of gravity marked the origin of classical physics and
+Planck’s fit to blackbody radiation was the doorway into
+quantum mechanics; both of these were applications of induction. Taking the discovery of the law of gravitation, the
+induction process can be summarized as follows: observing
+phenomena (Brahe) → recording data (Brahe) → processing
+data (Kepler) → inductive analysis (Kepler). A comparison
+shows that the induction and machine learning processes
+have some similarities. By thinking of data as a description
+of phenomena and models as a representation of conclusions,
+we can say that induction (or machine learning) is the pro-
+© Science China Press 2024 phys.scichina.com link.springer.com
+SCIENCE CHINA
+Physics, Mechanics & Astronomy
+*Corresponding author (email: wjyin@suda.edu.cn)
+cess of obtaining a general conclusion (model) from a large
+number of phenomena (data), as shown in Figure 1.
+Machine learning covers several types of algorithms.
+Different machine learning algorithms have different principles and operation modes that perform well on different
+problems and return models of different forms. Unfortunately, most major machine learning methods, such as
+random forests (RF), support vector machines (SVM), and
+powerful artificial neural networks (ANN), are all black-box
+models.
+Black-box models pay the price of interpretability to ensure model performance because of their complexity. The
+lack of interpretability raises questions about whether the
+model is limited in generalizations. Therefore, an abundance
+of high-quality training data is frequently necessitated to
+enhance the performance of the model to alleviate overfitting
+and improve the scope of the application. We believe that a
+balance exists among the amount of data required for model
+training, complexity, and interpretability. There is no best
+machine learning model for all situations, and choosing the
+most suitable model according to the unique problem is the
+key to using machine learning methods for research.
+Physicists often prioritize interpretable physical logic over
+obtaining a model that can only provide an answer to a single
+problem. Therefore, we recommend that physicists use
+symbolic regression (SR) methods, which are interpretable
+machine-learning methods that are suitable for small datasets. Sect. 2 of this review provides a basic overview of
+symbolic regression methods, emphasizing the similarities
+between SR methods and the data-processing induction step,
+both of which provide a result that is sufficiently simple for
+human analysis. In some studies, researchers have used their
+own SR method to re-implement Newton’s workflow. For
+example, Austel et al. [1] rediscovered Kepler’s law and
+Lemos et al. [2] found an analytical expression equivalent to
+Newton’s law of gravitation.
+2 Symbolic regression
+2.1 Algorithm overview
+The symbolic regression (SR) [3] algorithm is a machine
+learning technique that can search the space of mathematical
+expressions based on a given dataset. During the search, SR
+identifies optimal mathematical expressions by minimizing
+the error metrics. Unlike most machine learning algorithms,
+SR can train a model using even very small training datasets
+[4], and it outperforms other models for small datasets [5]. In
+contrast to regression methods built on the known form (such
+as linear regression [6,7] and kernel-based regression [8])
+that can only find the formulas corresponding to the basic
+form to solve a specific kind of problem, SR searches for the
+parameters and form of equations simultaneously [9], which
+provides a more varied searching space and can solve general
+problems without a priori assumptions [9,10]. This property
+allows SR to provide interpretable results for physical problems without knowing the equation forms. The free generation of formulas without prior assumptions exponentially
+increases the complexity of the model, making SR an NPhard (nondeterministic polynomial-time hard) [11] problem
+in principle [12]. Considering the limitations of computing
+power, large instances of such problems cannot be solved
+using accurate algorithms. In general, researchers adopt effective approximation algorithms to solve these problems
+and replace the brute-force search with other strategies.
+The concept of SR can be traced back to the BACON
+program [13]. Since then, several strategies have been applied in SR, genetic programming (GP) [14-20], deep
+learning [21,22], fast function extraction [23], improved
+programming [24], Bayesian methods [25], MINLP methods
+[26-29], compressed sensing methods [30-32], etc. [33-38].
+Recently, La Cava et al. [39] established a reliable standard
+to measure the performance of different strategies applied in
+SR methods.
+In the field of physics, GPSR is currently the most widely
+used SR method with the widest range of applications. In
+addition to GPSR, the following strategies to achieve SR are
+also worthy of attention. Symbolic regression based on
+compressive sensing strategy (CSSR) methods [30,31,40,41]
+can handle larger feature spaces without additional processing of highly correlated features. This feature makes CSSR
+methods perform well in mining descriptors of material
+properties and have been widely applied [32,42-52]. Equation learner (EQL) is based on fully differentiable neural
+networks, which allow end-to-end training using backpropagation, and implement symbolic regression [53]. Many
+symbolic regression algorithms have been developed based
+on EQL in recent years [54-57]. Cozad and Sahinidis [26]
+proposed the strictly deterministic mixed-integer nonlinear
+programming (MINLP) [58] formulation for solving the SR
+problem to global optimality. Optimal solutions have important implications for some physical problems. As a result,
+MINLP-SR has gained many developments and applications
+[27,29,59]. Another algorithm worth paying attention to is
+AI-Feynman [60], which is a specialized SR algorithm for
+Figure 1 (Color online) The process of discovering the law of gravity is
+used as an example to juxtapose and compare the general workflow of
+machine learning and induction.
+J. Guo, et al. Sci. China-Phys. Mech. Astron. June (2024) Vol. 67 No. 6 267301-2
+finding physical formulas. Based on the characteristics of
+physical formulas, it achieves separation and reduction of
+features by recursively applying a neural network to simplify
+the problem so that it can be solved by brute force search.
+Although SR methods are diverse, GPSR is the mainstream method, either from the perspective of the development process and performance or from the practical
+application range. Therefore, we discuss GPSR in detail in
+sect. 2.2 and most of the applications we introduced in detail
+in sect. 3 are based on GPSR.
+2.2 Genetic programming-based symbolic regression
+Inspired by the natural law of “survival of the fittest” and
+genetics represented by Mendel’s laws, genetic algorithms
+(GAs) [61,62] were designed. By using genetic algorithms,
+computational requirements can be significantly reduced
+compared with exhaustive methods. Koza [14] developed
+GP, a method that converts mathematical expressions into
+formula trees. The GP algorithm has been widely used in the
+computer field, and GPSR is an application of GP in the
+direction of SR. GPSR relies on randomly generated and
+“mutated” function expressions to find higher-scoring
+function expressions. This method reduces computing costs
+and can obtain satisfactory results in most cases (though it
+does not guarantee that the final solution will be optimal).
+Recently, researchers created a widely used machinelearning library called scikit-learn [63] using Python. During
+system compilation, developers added GPSR to scikit-learn
+as an extension in the form of a gplearn module (https://
+gplearn.readthedocs.io/en/stable/index.html). To date,
+gplearn has become a popular and mature implementation
+scheme of the SR algorithm in Python, and this method has
+been widely applied in the fields of physics [64-66]. Various
+GPSR algorithms have different architectures and implementations. This review will introduce the basic principles of GPSR, using gplearn as an example.
+2.2.1 Randomly generating formulas to build a search
+space
+First, researchers define the function set, the terminal set, the
+algorithm control parameter, the fitness function, and the
+termination criterion of SR according to the needs of the
+actual problem. The function set includes mathematical operators, mathematical functions, and conditional operators.
+The terminal set includes the independent variables and
+constants that build the equations. The algorithm control
+parameters include the probability of occurrence of different
+genetic operations and population size. A fitness function is
+used to assess the appropriateness of the model. The termination criterion was set as the aborted condition of the loop.
+Next, the elements in the function and terminal sets are
+combined to generate unselected random formulas that can
+be represented by trees. In these formula trees, the elements
+in the function are set as internal nodes, and the elements in
+the terminal function are set as terminal nodes. Each tree
+corresponds to an independent solution to the problem.
+2.2.2 Narrowing the problem space to find a better solution by filtering formulas
+After the initial formula is generated, GPSR enters the
+generation loop. In this step, the genetic SR method evaluates all formulas to select the “fitter” formulas from the
+current generation formulas. In general, MSE, RMSE, MAE,
+and other common error metrics used in machine learning
+can be effectively implemented in general SR problems.
+Most GPSR methods control the formula complexity by
+adding a penalty term to the fitness evaluation criterion to
+avoid overfitting. By adding the penalty term, the formulas
+that have higher complexity have lower evaluation scores;
+therefore, they are more likely to be eliminated in the elimination step. Gplearn has a built-in covariant thrift method
+that considers both the original fitness and complexity of the
+formula and can dynamically adjust the size of the complexity penalty automatically.
+After distinguishing the “fitters” and outputting them to
+the pool, the algorithm enters the reproduction loop, which
+performs genetic operations on the “fitters” to generate the
+next generation. In this study, we use the genetic operations
+contained in gplearn as an example. A schematic of the genetic operation is shown in Figure 2.
+Not limited to the gplearn method, these genetic operations
+are commonly used in other types of GP. Koza [14] provides
+a more in-depth understanding of these concepts and their
+origins. The GPSR loops through the reproduction loop until
+it reaches the termination criterion set, returns to the beginning of the generation loop, and the generation process is
+repeated until a generation reaches a preset termination
+condition. A flowchart of GPSR is shown in Figure 3.
+2.3 Related work
+Symbolic regression methods have gained increasing attention in recent years. Except for our review, there are numerous other reviews available for readers to reference.
+Wang et al. [67] mainly explored the application of SR
+methods in materials science. Angelis et al. [68] provided a
+comprehensive survey of various SR methods and their applications in diverse domains, such as materials, finance,
+medicine, engineering, and some non-physical disciplines.
+Makke and Chawla [69] presented a comprehensive and
+structured review of SR methods, discussing the advantages
+and limitations of different SR methods. Liu and Senftle [45]
+focus on the application of SR (GPSR and CSSR) in the
+catalysis literature and provide related examples. Distinct
+from other reviews, our review focused specifically on the
+J. Guo, et al. Sci. China-Phys. Mech. Astron. June (2024) Vol. 67 No. 6 267301-3
+application of Symbolic Regression methods within several
+hot topics in physics, and we selected examples that were not
+only easy to understand but also effectively showcased the
+practicality of symbolic regression.
+3 Application of symbolic regression in the field
+of physics
+As a supervised model, SR can discover hidden mathematical formulas from data to predict target variables. By using
+SR, potential formulas can be searched from data for physicists to analyze, thereby reducing human workload. Furthermore, SR methods can provide a new cognitive path
+away from human inertia, leading to conclusions that are
+easily overlooked or difficult to derive from the human brain.
+The purpose of this review is to demonstrate the application
+of SR in physics fields and provide readers with a basic
+understanding of its application methods and potential future
+development directions. In each subsection of sect. 3, we
+present practical examples to demonstrate the application of
+SR.
+3.1 Symbolic regression applied in classical mechanics
+Askari and Crevecoeur [70] developed an evolutionary
+symbolic sparse regression module suitable for multibody
+system dynamics. They tested their method on a two-DoF
+spring-mass system, a crank-slider mechanism, and a sliding
+mass subjected to friction. Liu and Tegmark [71] presented
+AI Poincaré, a machine learning method that can find conserved quantities from gravitational three-body and other
+dynamical system trajectory data. They apply their method to
+five Hamiltonian systems and it discover all exactly conserved quantities. Udrescu and Tegmark [72] built a workflow capable of discovering equations of motion from
+synthetic video. They used Auto-Encoder as “symbolic
+progression” to learn trajectories from “video frame” and
+used SR to discover formulas based on selected features.
+In this section, we choose the study of Schmidt and Lipson
+[9] as a representative example and provide a detailed introduction. This study is considered representative, and the
+genetic algorithm, Eureqa, designed in this study is regarded
+as the gold standard for SR and has been widely applied.
+Schmidt and Lipson [9] used a motion tracking system to
+record the positions of objects in a single pendulum, double
+pendulum, and simple harmonic vibration systems over time
+as datasets and then used partial derivative pairs to create a
+criterion that can examine the ability of a formula to reflect
+the intrinsic correlations of a system. Their SR method not
+only identifies physically significant constant laws but also
+identifies physically significant equations that are nontrivial
+conservation laws. They used their method to rediscover the
+expressions for Hamilton’s equation, Lagrange’s equation,
+and other geometric and momentum conservation law forms
+without prior knowledge in the fields of physics, kinematics,
+or geometry. Depending on the physical quantities provided,
+the algorithm determines interpretable laws of mechanics or
+geometry. For instance, in the study of a single pendulum
+Figure 2 (Color online) Schematic of genetic operations in gplearn.
+Crossover: Two formula trees are selected from the “fitters”, called formula
+tree A and formula tree B. From the two formula trees, subtree A1 and
+subtree B1 are intercepted, subtree A1 is cut and subtree B1 is inserted into
+A1’s original position. Crossover is the genetic operation which is corresponding to the concept of hybridization in genetics. Subtree Mutation: Cut
+a subtree of a formula tree and, create a new subtree completely randomly
+and insert the new subtree into the node where the formula tree was sliced,
+corresponding to mutation in genetics. Hoist Mutation: Select a subtree of
+the formula tree, then select part of the subtree, cut the subtree from the
+formula tree, and graft the part of the subtree to the original position of the
+subtree. Point Mutation: Point mutation is a more conservative approach
+than subtree mutation. Point mutation is achieved by randomly replacing a
+single internal or terminal node within the formula tree accordingly.
+Figure 3 (Color online) Basic flowchart of genetic programming-based
+symbolic regression.
+J. Guo, et al. Sci. China-Phys. Mech. Astron. June (2024) Vol. 67 No. 6 267301-4
+(Figure 4), the SR method gives the equation of a circle
+(where c is a constant):
+(x 77.72) + (y 106.48) = , c (1) 2 2
+when given the (x, y) position data over time. This equation
+describes geometrical circles but does not provide physical
+insights. When angular velocity ω is added to the given information, the algorithm returns
+1.37 + 3.29 cos( ), (2) 2
+which has the form of the Lagrangian equation for the single
+pendulum:
+ml mgl 1
+2 + cos( ). (3) 2 2
+When acceleration (a) is added to the given information,
+the algorithm returns
+2.17 + 0.054 a 3.54sin( ), (4)
+which has the form of a Newton equation for a single pendulum with damping μ along tangential acceleration:
+µ l ¨ + + g
+sin( ). (5)
+3.2 Symbolic regression applied in astrophysics
+Matchev et al. [73] used SR on synthetic data for the transit
+radii of hot Jupiter exoplanets to derive an analytical formula. Wadekar et al. [74] used SR to search for augmentations of the widely used YSZ-M scaling relation. They found
+that a new mass proxy combined Y200c and gas concentration. In their other work, they modeled the halo environment and used PySR to find expressions that included
+the effect of the halo environment on its Hi mass [75].
+Barsotti et al. [76] used AutoML techniques and the RBEIM
+framework to predict gravitational waveform surrogates
+from compact binaries and found that Eureqa (GPSR) demonstrated superior performance among 87 methods. Wong
+and Cranmer [77] demonstrated a strategy to automatically
+discover interpretable gravitational wave population models
+and find a new model as proof. Cranmer et al. [78] combined
+graph neural networks and SR to develop a formula for
+predicting dark matter density.
+We chose Lemos et al.’s study [2] to demonstrate the application of the SR in astrophysics. This study not only demonstrates the ability of SR to obtain comprehensible
+symbolic formulas by mining astronomical data but also illustrates the application directions of SR in combining
+physical prior knowledge and integrating it with other machine learning algorithms. This study harmoniously combined prior physical knowledge, SR, and neural networks,
+demonstrating the potential of neural networks to simplify
+complex problems and the influential role of prior physical
+knowledge in guiding machine learning.
+This study comprises two steps, as depicted in Figure 5.
+(1) Based on the spatial displacement vector between the two
+corresponding bodies and each body’s true observed acceleration vector, using graph networks (GN) [79] to fit the
+interaction (“force”) vector along each edge and the trainable
+scalar quantity (“mass”). (2) Based on the displacement
+vectors, with the “mass” and “force” that were fitted in the
+previous step, PySR was used to rediscover the law of universal gravitation.
+GNs, which are based on “graph” woven from nodes and
+edges, have a natural advantage in describing interparticle
+interactions due to their architecture [79]. Based on this
+advantage, GN-based simulators perform well in predicting
+the dynamics of physical systems [80,81]. In this work, the
+authors used a graph network to depict the state of the celestial system, with each celestial object serving as a node
+and the relationships between celestial objects (relative position and gravity) serving as the edges. This research is
+based on solar system data from NASA’s HORIZONS OnFigure 4 (Color online) Diagrams of the single pendulum and the variations in θ, ω over time (protract based on the supporting material provided by Schmidt and Lipson [9]).
+Figure 5 (Color online) Diagrams of the GN step and PySR step. The left
+side represents the known data, and the right side represents the data fitted
+by the corresponding machine-learning method. We use a red background
+to identify the real world observed data, a purple background to identify the
+“physical quantity” data simulated by the algorithm, and a blue background
+to identify the physical laws.
+J. Guo, et al. Sci. China-Phys. Mech. Astron. June (2024) Vol. 67 No. 6 267301-5
+Line Ephemerys System from January 1980 to January 2013
+with a time step of 30 min. The known physical quantities in
+the training process of the graph network are displacement
+vector and acceleration, and the “physical quantities” fitted
+by GN are “mass” and “force”, “force” is given by the edge
+function of each edge, the edge function consists the “mass”
+of sender and receiver node, displacement vector trainable
+parameter
+(f v v e GN( rk sk k , , ; ))
+. The calculation is reduced by
+introducing Newton’s third law, such that the forces between
+a pair of celestial bodies are expressed as positive and negative values of the same value. By introducing Newton’s
+second law, the “equation” can be constructed as “acceleration” = “net force”/“mass”, and by minimizing the error
+between the “acceleration” with the acceleration, GN fits
+“mass” and “force” towards the true mass and gravitation.
+PySR is a type of GPSR designed to discover empirical
+equations for science, and the creators of PySR built a
+benchmark (EmpiricalBench) to quantitatively evaluate the
+performance of SR algorithms in scientific applications [20].
+In the second step, the authors put the “mass” and “force”,
+which are fitted by GN, and the displacement vector into
+PySR to find the gravitational formula. The most accurate
+formula determined by PySR is
+G M M
+r F = r, (6) learned 1 2
+3
+which is equivalent to the universal gravitational law. When
+the bodies’ orbits are constructed using this formula, they
+deviate less from the real orbits than the orbits constructed by
+“force” trained by GN. Furthermore, the authors use the
+formula found by PySR to replace the edge function in GN
+and rerun GN to update the value of “mass”. Compared with
+the “mass” fitted in the first step, the updated “mass” has a
+lower deviation from the true mass. Finally, the updated
+“mass” and symbolic formulas were used to redraw bodies’
+orbits, which was more in line with the real orbits.
+Under the guidance of prior knowledge, this study uses the
+GN to achieve efficient physical discovery. Subsequently,
+SR is used to explain the discovery made by GN. The final
+step replaces the edge function fitted by the GN with the
+optimal formula derived from SR. Compared with using GN
+alone, their method, which combines GN and SR, performs
+more accurately and can provide a more concise and precise
+description of the physical phenomena. Compared with using
+SR alone, their method significantly reduced the cost of the
+equation discovery.
+3.3 Symbolic regression applied in fluid mechanics
+Computing the exact solutions for complex fluid dynamics is
+difficult. Consequently, researchers often resort to simpler
+approximate functions as substitutes for the true function,
+thereby reducing the problem’s complexity. Manually finding a reliable approximate function is time-consuming;
+however, as a machine learning method that returns functions, SR has great potential for finding approximate functions. El Hasadi and Padding [82] used semi-supervised
+GPSR to study the fluid drag experienced by ellipsoidal and
+spherocylindrical particles with arbitrary aspect ratios and
+provided new drag correlations. Ansari et al. [83] combined
+active learning and SISSO to create a framework to obtain
+symbolic equations between system variables from computational fluid dynamics (CFD) simulations. They proved the
+effectiveness of their method by recovering an empirical
+equation for the pressure drop in a bent pipe and finding a
+new equation for predicting the backflow in a heart valve
+under aortic insufficiency. Miloševic et al. [84] overview
+existing models that unified the laminar and turbulent formulations of flow friction and used the Eureqa mine with two
+new formulations. Sofos et al. [85] used GPSR to present a
+Lennard-Jones fluid descriptor based on density and temperature values.
+In this section, we present two examples in detail. In the
+first example, Praks et al. [86] utilized SR to find the explicit
+approximations of the Colebrook equation. In the second
+example, Reinbold et al. [87] utilized SR to summarize a
+model exhibiting a thin-layer fluid with complex spatiotemporal behavior.
+The Colebrook equation [88] is widely used for calculating
+the flow friction factor λ of turbulent flow pipeline transportation problems. However, λ is implicitly given by the
+Colebrook equation. Therefore, it is worthwhile to find a
+formula in the form of λ ≈ f(Re, ε/D) to process realistic
+problems. Brkić [89] introduced the existing explicit approximation of the implicit Colebrook equation in their review. The primary objective of this study was to find
+approximate equations with explicit structures and low
+computational costs. The SR method, which constrains the
+model complexity and returns function expressions, is highly
+adaptive to this research goal.
+Praks and Brkić [86] generated 90000 evenly uniformly
+distributed {Re, ε/D} and calculated their corresponding
+flow friction factors λ with the Colebrook equation. These
+data pairs cover turbulent flow in pipes from practically
+smooth to very rough for Reynolds numbers ranging from
+4000 to 108
+. Initially, they employed Eureqa to fit a function
+that, while not particularly precise, serves as a framework.
+Subsequently, the fixed-point iteration procedure was used
+on the imprecise function, and the accuracy continually improved as the number of iterations increased. Finally, the
+Padé approximation can be used as an inexpensive and accurate approximation of a logarithm.
+The best approximation function found by the SR can
+explicitly represent the flow friction coefficient with only
+two logarithmic forms, and the relative error between λ
+calculated by this function and that calculated by the CoJ. Guo, et al. Sci. China-Phys. Mech. Astron. June (2024) Vol. 67 No. 6 267301-6
+lebrook equation is as low as 0.13%. Compared with other
+approximations that can explicitly represent λ [89], this
+formula can be considered precise. In this study, SR achieved
+a significant reduction in computational effort with a small
+loss of accuracy. Figure 6 shows the procedure for searching
+for mathematical formulas.
+Reinbold et al. [87] successfully developed a quantitatively accurate model of a non-equilibrium spatially extended system using high-dimensional, incomplete, and
+noisy data by combining physical knowledge and SR
+methods. Prior to this research, there were no reported instances of successfully discovering models based on incomplete data using SR methods. The authors constructed a
+thin-layer fluidic experimental apparatus that drives fluid
+flow using the Lorentz force, and the thin-layer fluid flow
+exhibited complex spatiotemporal behavior. This apparatus
+was utilized to generate diverse fluid flow states, with the
+horizontal component of the fluid-layer velocity field recorded as training data (Figure 7 shows a schematic diagram
+of the experimental setup and workflow).
+The machine learning process designed in this study is
+illustrated as follows. Initially, physical knowledge is used to
+constrain the model search space and identify the variables
+and candidate models. Subsequently, a weak formulation of
+differential equations was used to reduce the effect of noise
+and dependence on inaccessible features during model
+training, resulting in a library of candidate models. Finally,
+the ensemble SR method was applied to select models which
+balanced accuracy and complexity.
+The results show that when the Reynolds number is between 17.8 and 36, the SR method consistently yields the
+same parsimonious model across different data sets:
+u u u u u = ( ) + + c c c p + , (7) f t 1 2
+2
+3
+1 1
+where u is the velocity field, p is pressure, f is body force,
+and ρ is fluid density. Here, we give the classic NavierStokes equations for readers to compare; the Navier-Stokes
+equations for incompressible fluids can be written as:
+u u u + ( ) = p + + µ u f u = 0, t
+1 1 2 1
+(8)
+where μ is the dynamic viscosity. The Navier-Stokes equations for compressible fluids can be written as:
+p µ ( )
+u u u
+u u u I f
++ ( )
+= + + 2
+3( ) + ,
+t
+1 1 T 1
+(9)
+where T is temperature, t is time, and I is the identity tensor.
+The authors consider that the first term on the right-hand side
+of the equation describes the advection of momentum, the
+second term describes the horizontal momentum flux due to
+viscosity, the third term describes the vertical momentum
+Figure 6 (Color online) Eureqa creates the framework equation, and the
+relative error of the equation decreases with using one fixed-point iteration
+increases. D is the hydraulic diameter of the pipe, μ is the dynamic viscosity
+of the fluid, ρ is the density of the fluid, ε is absolute pipe roughness, u is
+the mean velocity of the fluid.
+Figure 7 (Color online) (a) shows the rectangular container experimental
+setup, where ((a)(1)) is the side view and ((a)(2)) is the top view. The dotted
+lines in ((a)(2)) show an array of 14 permanent magnets and ((a)(1)) show
+thin electrolyte-dielectric bilayers that are immiscible with each other.
+When a direct current (J) passes through the electrolyte, the Lorentz force
+(f) drives the fluid to flow. Panel (b) shows the heatmaps of measured
+velocity fields in the x- ((b)(1)) and y- ((b)(2)) directions. ((c)(1)) shows the
+x-component of the depth-averaged Lorentz force computed using experimental measurement of the magnetic field and ((c)(2)) shows the Lorentz
+force field reconstructed by eq. (1), wherein the Reynolds number corresponding to (b) and (c) is 22.17. (a) is reproduced from Figure 1 in the
+article by Reinbold et al. [87], and (b) and (c) are original figures sourced
+from Figure 1 in the article by Reinbold et al. [87].
+J. Guo, et al. Sci. China-Phys. Mech. Astron. June (2024) Vol. 67 No. 6 267301-7
+flux due to viscosity, and the fourth and fifth terms describe
+(isotropic) internal stresses and external stresses, respectively. In general, the overall structure of the model determined by SR approximates the Navier-Stokes equation, an
+important equation in the field of fluid mechanics research.
+A noteworthy aspect of this study is that the model constructed using SR can almost perfectly reconstruct the external force field driving the fluid flow, whereas the force
+field data are not included in the training dataset. This demonstrates that the introduction of prior knowledge not only
+improves the efficiency and success rate of SR methods but
+also extends the input data, allowing researchers to use incomplete data to train models that can fully describe the
+physical problem. Furthermore, based on the generated
+model, researchers can reconstruct information not contained
+in the training set.
+In the first example, we demonstrated the ability of SR to
+mine simple formulas from datasets to reduce the computational cost of solving physical problems. This example
+shows that relying on the high computing power of computers, the SR method can quickly and automatically discover
+approximate equations with varying degrees of precision and
+complexity for researchers to choose from. In the second
+example, we focused on how SR can discover complete
+physical models based on incomplete experimental data by
+introducing domain knowledge from physics. This example
+shows that SR, as a white-box model, can be closely integrated with prior knowledge and, therefore, has the unique
+advantage that black-box machine learning models do not
+possess.
+3.4 Symbolic regression applied in molecular dynamics
+The interatomic potential is fundamental to molecular dynamics research, directly related to the success of calculations and the reliability of the conclusions. The calculation of
+the potential energy surface with first-principles methods can
+be computationally expensive. To solve this problem, researchers have used machine learning techniques to enhance
+the efficacy [90].
+In the molecular dynamics field, symbolic regression is
+typically implemented using GP and its variants. Makarov
+and Metiu [91] created a GPSR method named directed genetic search and used it to rewrite the Morse potential as an
+example, demonstrating that the method can fit the potential
+of a diatomic or a triatomic molecule. Brown et al. [92] used
+a new parallel GP approach that employed large-scale
+computations to rediscover the exact potential functional
+forms and parameter values. In their study, the Hierarchical
+fair competition (HFC) strategy performed better than the
+standard generational evolutionary strategy. Bellucci and
+Coker [93] used a parallel multilevel GP to obtain an accurate empirical valence bond model for proton transfer in 3-
+hydroxy-gamma-pyrone in the gas phase and protic solvents.
+Hernandez et al. [94] discovered a multibody potential model
+for copper by using GPSR and comprehensively evaluated
+their model. Their SR potential function has a speed similar
+to that of the EAM-type models and requires less training
+data than neural network potentials. In their recent study,
+they test the transferability of their Cu interatomic potential
+models in other face-centered cubic transition metals. To the
+elements close to Cu on the periodic table, their model performs well in balance of accuracy and complexity [95]. For
+various states of Lennard-Jones (LJ) fluids, Papastamatiou et
+al. [96] used SR to discover analytical expressions that describe the self-diffusion coefficient as a function of other
+physical properties. In this study, the application of methods
+in data subcategories can provide better equations for the
+description of the data.
+This review provides a detailed introduction to the study of
+Slepoy et al. [97] to briefly demonstrate the basic application
+of SR in the field of molecular dynamics and showcase the
+ability of GPSR to mine formulas from datasets. Burlacu et
+al. [98] discussed the application of SR models of interatomic potentials and provided a method that can model
+atomic potentials from snapshots of atomic positions and
+associated potential energy. Slepoy et al. [97] combined
+GPSR and parallel tempering (PT) [99] to build the SR
+method. PT combines local and global sampling, and its introduction can prevent GPSR from falling into local optima.
+They examined whether their methods could discover compact force-field functions that accurately represent the potential energy surface of condensed systems. Therefore, the
+Lennard-Jones potential function, a simple, classic, and
+widely used function in the field of molecular modeling and
+condensed matter systems, was chosen for testing. The
+Lennard-Jones potential is a two-body potential used to simulate the potential energy of interactions between two nonbonding atoms or molecules (such as rare gas elements).
+Details of the Lennard-Jones potential is shown in Figure 8.
+The training set consists of 10 configurations of 10 particles placed in a three-dimensional domain in the field of 3σ*
+3σ* 3σ* and the authors defined the particle distribution
+condition and effective pair distances in the range. By generating atomic configurations and calculating the energy of
+each configuration using the Lennard-Jones potential, four
+independent training sets were constructed. As shown in
+Figure 9, the SR method found algebraically equivalent
+functions to the Lennard-Jones potential function in three of
+them: functions (1)-(3). Function (4) can also be considered
+as a usable approximate function of the Lennard-Jones potential, provided it is in the commonly used interval. The
+relative error was <10%.
+We consider that SR holds the potential to positively impact the fitting of potential energy surfaces by discovering
+symbolic expression formulas. These formulas may be
+J. Guo, et al. Sci. China-Phys. Mech. Astron. June (2024) Vol. 67 No. 6 267301-8
+helpful in reducing the computational requirements for fitting potential energy surfaces or enhancing the accuracy of
+the fitted potential energy surfaces.
+4 Conclusions
+In this review, we delve into the parallels between machine
+learning and induction pipelines, elucidating how symbolic
+regression methods serve as useful tools in physics research.
+To provide a fundamental understanding of symbolic regression, this review introduces the principles and characteristics of genetic programming-based symbolic
+regression. Sect. 3 of the review navigates through the
+practical applications of SR in various physics subdivisions.
+Based on existing research, we examine the combination of
+SR methods with physics and deliberate on potential avenues
+for future research.
+SR provides advantages for small datasets, offering potentially interpretable results in the form of symbolic expressions. Prior to applying SR, researchers need to ensure
+the alignment between the characteristics of the problem and
+the fundamental attributes of the SR method. Given the diverse implementation methods of SR, it becomes imperative
+to understand their distinct characteristics.
+The combinations of SR methods and physical knowledge
+can be multifaceted. Researchers have the option to employ
+existing SR methods for model training and leverage prior
+knowledge in various stages of machine learning as a guide.
+Another approach involves crafting specific SR methods that
+integrate prior physical knowledge. The incorporation of
+prior knowledge often yields positive outcomes, as elucidated in sect. 3. Not only can it impose constraints to drive
+conclusions with enhanced physical meaning, but it can also
+serve to augment training data and mitigate the impact of
+data noise and missing data.
+This review covers the subfields of classical physics that
+which analytical formulas are dominant. SR is also noted to
+be applied in other subfields, such as nuclear physics [100],
+and condensed matter physics [65]. Since SR can be considered as an interpretable machine learning approach, it
+naturally can be applied to black-box problems. For example, the exchange-correlation function is a long-term
+puzzle in the field of density functional theory. Recently, Ma
+et al. [101] created a symbolic functional evolutionary search
+(SyFES), providing interpretable accurate exchange-correlation functionals in the field of quantum physics. We anticipate that the development of new SR methods based on
+the needs of the specific topics would definitely expand the
+application scope of SR in other physics sub-fields.
+In summary, symbolic regression is a machine-learning
+method that has many similarities with induction. It can mine
+symbolic formulas from extensive data. Depending on the
+requirement, researchers have the option to either try to
+provide a physics-based interpretation of the obtained formulas or simply use them as a mathematically convenient
+alternative to solve computationally expensive problems. We
+consider that SR holds vast potential for further development
+and application within the field of physics. However, in
+scientific discovery, scientists usually encounter high-dimensional inputs (e.g., images, observations) for which they
+do not know what collective/macroscopic variables (e.g.,
+entropy, energy, quasi-particles) are important. Thus, combining SR with the discovery of these important variables
+should be a very important direction.
+We appreciate the support of the College of Energy, Soochow Institute for
+Energy and Materials Innovations (SIEMIS), and Jiangsu Provincial Key
+Laboratory for Advanced Carbon Materials and Wearable Energy Technologies of Soochow University, Shanghai Qi Zhi Institute, and Light Industry Institute of Electrochemical Power Sources of Soochow University.
+Conflict of interest The authors declare that they have no conflict of
+interest.
+1 V. Austel, S. Dash, O. Gunluk, L. Horesh, L. Liberti, G. Nannicini,
+Figure 8 (Color online) Diagrams of Lennard-Jones potential. The curve
+is plotted based on the change in Lennard-Jones potential energy between
+argon and argon. Readers of this article should be aware that Lennard-Jones
+potential is a semi-empirical model. ε is the depth of the potential well,
+reflecting the strength of the attraction between two atoms. σ is the distance
+between atoms when the Lennard-Jones potential is equal to 0.
+Figure 9 (Color online) Lennard-Jones potential and the equations searched by symbolic regression result (functions (1)-(4)).
+J. Guo, et al. Sci. China-Phys. Mech. Astron. June (2024) Vol. 67 No. 6 267301-9
+and B. Schieber, arXiv: 1710.10720.
+2 P. Lemos, N. Jeffrey, M. Cranmer, S. Ho, and P. Battaglia, arXiv:
+2202.02306.
+3 D. A. Augusto, and H. J. C. Barbosa, Symbolic Regression via Genetic Programming, in Proceedings of 6th Brazilian Symposium on
+Neural Networks (IEEE, Rio de Janeiro, 2000), pp. 173–178.
+4 J. Kubalík, E. Derner, and R. Babuška, Symbolic regression driven
+by training data and prior knowledge, in Proceedings of the 2020
+Genetic and Evolutionary Computation Conference (ACM, Cancún
+Mexico, 2020), pp. 958–966.
+5 C. Wilstrup, and J. Kasak, arXiv: 2103.15147.
+6 X. Su, X. Yan, and C. Tsai, WIREs Comput. Stats 4, 275 (2012).
+7 A. Schneider, G. Hommel, and M. Blettner, Deutsches Ärzteblatt Int.
+107, 776 (2010).
+8 C. K. Chu, and J. S. Marron, Statist. Sci. 6, 404 (1991).
+9 M. Schmidt, and H. Lipson, Science 324, 81 (2009).
+10 T. Mueller, E. Johlin, and J. C. Grossman, Phys. Rev. B 89, 115202
+(2014).
+11 S. Arora, and B. Barak, Computational Complexity: A Modern Approach, 1st ed (Cambridge University Press, Cambridge, 2009).
+12 M. Virgolin, and S. P. Pissis, arXiv: 2207.01018.
+13 P. Langley, BACON: A production system that discovers empirical
+laws, in IJCAI'77: Proceedings of the 5th International Joint Conference on Artificial Intelligence (Morgan Kaufmann Publishers Inc.,
+San Francisco, 1977).
+14 J. R. Koza, Stat. Comput. 4, 87 (1994).
+15 I. Arnaldo, K. Krawiec, and U.-M. O’Reilly, Multiple regression
+genetic programming, in Proceedings of the 2014 Annual Conference
+on Genetic and Evolutionary Computation (Association for Computing Machinery, New York, 2014), pp. 879-886.
+16 W. La Cava, T. R. Singh, J. Taggart, S. Suri, and J. H. Moore, arXiv:
+1807.00981.
+17 M. Kommenda, B. Burlacu, G. Kronberger, and M. Affenzeller,
+Genet. Program. Evol. Mach. 21, 471 (2020).
+18 M. Virgolin, T. Alderliesten, C. Witteveen, and P. A. N. Bosman,
+Evol. Comput. 29, 211 (2021).
+19 F. O. de Franca, and G. S. I. Aldeia, Evol. Comput. 29, 367 (2021).
+20 M. Cranmer, arXiv: 2305.01582.
+21 B. K. Petersen, M. Landajuela, T. N. Mundhenk, C. P. Santiago, S. K.
+Kim, and J. T. Kim, arXiv: 1912.04871.
+22 Y. LeCun, Y. Bengio, and G. Hinton, Nature 521, 436 (2015).
+23 T. McConaghy, FFX: Fast, scalable, deterministic symbolic regression technology, in Genetic Programming Theory and Practice IX
+(Springer, Heidelberg, 2011), p. 235.
+24 V. Veloso de Melo, and W. Banzhaf, Inf. Sci. 430-431, 287 (2018).
+25 Y. Jin, W. Fu, J. Kang, J. Guo, and J. Guo, arXiv: 1910.08892.
+26 A. Cozad, and N. V. Sahinidis, Math. Program. 170, 97 (2018).
+27 P. Neumann, L. Cao, D. Russo, V. S. Vassiliadis, and A. A. Lapkin,
+Chem. Eng. J. 387, 123412 (2020).
+28 J. Kim, S. Leyffer, and P. Balaprakash, arXiv: 2102.08351.
+29 M. R. Engle, and N. V. Sahinidis, AIChE J. 68, e17457 (2022).
+30 L. M. Ghiringhelli, J. Vybiral, E. Ahmetcik, R. Ouyang, S. V. Levchenko, C. Draxl, and M. Scheffler, New J. Phys. 19, 023017 (2017).
+31 R. Ouyang, S. Curtarolo, E. Ahmetcik, M. Scheffler, and L. M.
+Ghiringhelli, Phys. Rev. Mater. 2, 083802 (2018).
+32 C. J. Bartel, C. Sutton, B. R. Goldsmith, R. Ouyang, C. B. Musgrave,
+L. M. Ghiringhelli, and M. Scheffler, Sci. Adv. 5, eaav0693 (2019).
+33 M. O’Neill, and C. Ryan, IEEE Trans. Evol. Comput. 5, 349 (2001).
+34 B. Gorkemli, and D. Karaboga, Inf. Sci. 502, 346 (2019).
+35 A. M. Alaa, and M. van der Schaar, Demystifying black-box models
+with symbolic metamodels, in Proceedings of the 33rd International
+Conference on Neural Information Processing Systems (Curran Associates Inc., Red Hook, 2019), pp. 11304–11314.
+36 S. Kim, P. Y. Lu, S. Mukherjee, M. Gilbert, L. Jing, V. Ceperic, and
+M. Soljacic, IEEE Trans. Neural Netw. Learn. Syst. 32, 4166 (2021).
+37 L. S. Keren, A. Liberzon, and T. Lazebnik, arXiv: 2209.06257.
+38 P.-A. Kamienny, S. d’Ascoli, G. Lample, and F. Charton, arXiv:
+2204.10532.
+39 W. La Cava, P. Orzechowski, B. Burlacu, F. O. de França, M. Virgolin, Y. Jin, M. Kommenda, and J. H. Moore, arXiv: 2107.14351.
+40 L. M. Ghiringhelli, J. Vybiral, S. V. Levchenko, C. Draxl, and M.
+Scheffler, Phys. Rev. Lett. 114, 105503 (2015).
+41 R. Ouyang, E. Ahmetcik, C. Carbogno, M. Scheffler, and L. M.
+Ghiringhelli, J. Phys. Mater. 2, 024002 (2019).
+42 X. Liu, X. Wang, S. Gao, V. Chang, R. Tom, M. Yu, L. M. Ghiringhelli, and N. Marom, npj Comput. Mater. 8, 70 (2022).
+43 L. Foppa, T. A. R. Purcell, S. V. Levchenko, M. Scheffler, and L. M.
+Ghiringhelli, Phys. Rev. Lett. 129, 055301 (2022).
+44 T. A. R. Purcell, M. Scheffler, L. M. Ghiringhelli, and C. Carbogno,
+arXiv: 2204.12968.
+45 C. Y. Liu, and T. P. Senftle, Curr. Opin. Chem. Eng. 37, 100832
+(2022).
+46 N. He, R. Ouyang, and Q. Qian, AIP Adv. 11, 035018 (2021).
+47 S. R. Xie, G. R. Stewart, J. J. Hamlin, P. J. Hirschfeld, and R. G.
+Hennig, Phys. Rev. B 100, 174513 (2019).
+48 V. Kocevski, G. Pilania, and B. P. Uberuaga, J. Mater. Chem. A 8,
+25756 (2020).
+49 C. J. Bartel, S. L. Millican, A. M. Deml, J. R. Rumptz, W. Tumas, A.
+W. Weimer, S. Lany, V. Stevanović, C. B. Musgrave, and A. M.
+Holder, Nat. Commun. 9, 1 (2018).
+50 Y. Mao, H. Yang, Y. Sheng, J. Wang, R. Ouyang, C. Ye, J. Yang, and
+W. Zhang, ACS Omega 6, 14533 (2021).
+51 P. Singh, T. Del Rose, G. Vazquez, R. Arroyave, and Y. Mudryk,
+Acta Mater. 229, 117759 (2022).
+52 Z. Sun, Z. Song, and W. J. Yin, Adv. Energy Sustain Res. 3, 2100152
+(2022).
+53 G. Martius, and C. H. Lampert, arXiv: 1610.02995.
+54 S. S. Sahoo, C. H. Lampert, and G. Martius, arXiv: 1806.07259.
+55 H. Zhou, and W. Pan, arXiv: 2206.00669.
+56 M. Zhang, S. Kim, P. Y. Lu, and M. Soljačić, arXiv: 2207.00529.
+57 J. Kubalík, E. Derner, and R. Babuška, IEEE Access 11, 61481
+(2023).
+58 P. Belotti, C. Kirches, S. Leyffer, J. Linderoth, J. Luedtke, and A.
+Mahajan, Acta Numer. 22, 1 (2013).
+59 J. Wei, and Z. Yuan, Comput. Chem. Eng. 142, 107051 (2020).
+60 S. M. Udrescu, and M. Tegmark, Sci. Adv. 6, eaay2631 (2020).
+61 S. Forrest, Science 261, 872 (1993).
+62 J. H. Holland. An introductory analysis with applications to biology,
+control, and artificial intelligence, in Adaptation in Natural and
+Artificial Systems (MIT Press, Cambridge, 1992).
+63 F. Pedregosa, G. Varoquaux, A. Gramfort, V. Michel, B. Thirion, O.
+Grisel, M. Blondel, P. Prettenhofer, R. Weiss, V. Dubourg, J. Vanderplas, A. Passos, D. Cournapeau, M. Brucher, M. Perrot, and É.
+Duchesnay, Mach. Learn. Python 12 2825 (2011).
+64 B. Weng, Z. Song, R. Zhu, Q. Yan, Q. Sun, C. G. Grice, Y. Yan, and
+W. J. Yin, Nat. Commun. 11, 3513 (2020).
+65 C. Miles, M. R. Carbone, E. J. Sturm, D. Lu, A. Weichselbaum, K.
+Barros, and R. M. Konik, Phys. Rev. B 104, 235111 (2021).
+66 M. He, and L. Zhang, Comput. Mater. Sci. 196, 110578 (2021).
+67 Y. Wang, N. Wagner, and J. M. Rondinelli, MRS Commun. 9, 793
+(2019).
+68 D. Angelis, F. Sofos, and T. E. Karakasidis, Arch. Comput. Methods
+Eng. 30, 3845 (2023).
+69 N. Makke, and S. Chawla, arXiv: 2211.10873.
+70 E. Askari, and G. Crevecoeur, Multibody Syst. Dyn. 58, 197 (2023).
+71 Z. Liu, and M. Tegmark, Phys. Rev. Lett. 126, 180604 (2021).
+72 S. M. Udrescu, and M. Tegmark, Phys. Rev. E 103, 043307 (2021).
+73 K. T. Matchev, K. Matcheva, and A. Roman, arXiv: 2112.11600.
+74 D. Wadekar, L. Thiele, F. Villaescusa-Navarro, J. C. Hill, M. Cranmer, D. N. Spergel, N. Battaglia, D. Anglés-Alcázar, L. Hernquist,
+and S. Ho, arXiv: 2201.01305.
+75 D. Wadekar, F. Villaescusa-Navarro, S. Ho, and L. Perreault-Levasseur, arXiv: 2012.00111.
+76 D. Barsotti, F. Cerino, M. Tiglio, and A. Villanueva, Class. Quantum
+J. Guo, et al. Sci. China-Phys. Mech. Astron. June (2024) Vol. 67 No. 6 267301-10
+Grav. 39, 085011 (2022).
+77 K. W. K. Wong, and M. Cranmer, arXiv: 2207.12409.
+78 M. Cranmer, A. Sanchez-Gonzalez, P. Battaglia, R. Xu, K. Cranmer,
+D. Spergel, and S. Ho, arXiv: 2006.11287.
+79 P. W. Battaglia, J. B. Hamrick, V. Bapst, A. Sanchez-Gonzalez, V.
+Zambaldi, M. Malinowski, A. Tacchetti, D. Raposo, A. Santoro, R.
+Faulkner, C. Gulcehre, F. Song, A. Ballard, J. Gilmer, G. Dahl, A.
+Vaswani, K. Allen, C. Nash, V. Langston, C. Dyer, N. Heess, D.
+Wierstra, P. Kohli, M. Botvinick, O. Vinyals, Y. Li, and R. Pascanu,
+arXiv: 1806.01261.
+80 A. Sanchez-Gonzalez, J. Godwin, T. Pfaff, R. Ying, J. Leskovec, and
+P. W. Battaglia, arXiv: 2002.09405.
+81 T. Pfaff, M. Fortunato, A. Sanchez-Gonzalez, and P. W. Battaglia,
+arXiv: 2010.03409.
+82 Y. M. F. El Hasadi, and J. T. Padding, AIP Adv. 9, 115218 (2019).
+83 M. Ansari, H. A. Gandhi, D. G. Foster, and A. D. White, AIChE J.
+68, e17695 (2022).
+84 M. Milošević, D. Brkić, P. Praks, D. Litričin, and Z. Stajić, Axioms
+11, 198 (2022).
+85 F. Sofos, A. Charakopoulos, K. Papastamatiou, and T. E. Karakasidis,
+Phys. Fluids 34, 062004 (2022).
+86 P. Praks, and D. Brkić, Water 10, 1175 (2018).
+87 P. A. K. Reinbold, L. M. Kageorge, M. F. Schatz, and R. O. Grigoriev, Nat. Commun. 12, 3219 (2021).
+88 C. F. Colebrook, J. Instit. Civil Eng. 11, 133 (1939).
+89 D. Brkić, J. Pet. Sci. Eng. 77, 34 (2011).
+90 P. Friederich, F. Häse, J. Proppe, and A. Aspuru-Guzik, Nat. Mater.
+20, 750 (2021).
+91 D. E. Makarov, and H. Metiu, J. Chem. Phys. 108, 590 (1998).
+92 W. M. Brown, A. P. Thompson, and P. A. Schultz, J. Chem. Phys.
+132, 024108 (2010).
+93 M. A. Bellucci, and D. F. Coker, J. Chem. Phys. 135, 044115 (2011).
+94 A. Hernandez, A. Balasubramanian, F. Yuan, S. A. M. Mason, and T.
+Mueller, npj Comput. Mater. 5, 1 (2019).
+95 A. Hernandez, and T. Mueller, Phys. Rev. Mater. 7, 053804 (2023).
+96 K. Papastamatiou, F. Sofos, and T. E. Karakasidis, AIP Adv. 12,
+025004 (2022).
+97 A. Slepoy, M. D. Peters, and A. P. Thompson, J. Comput. Chem. 28,
+2465 (2007).
+98 B. Burlacu, M. Kommenda, G. Kronberger, S. M. Winkler, and M.
+Affenzeller, Symbolic regression in materials science: Discovering
+interatomic potentials from data, in Genetic Programming Theory
+and Practice XIX, edited by L. Trujillo, S. M. Winkler, S. Silva, and
+W. Banzhaf (Springer Nature, Singapore, 2023), pp. 1-30.
+99 D. J. Earl, and M. W. Deem, Phys. Chem. Chem. Phys. 7, 3910
+(2005).
+100 A. Murari, E. Peluso, M. Lungaroni, M. Gelfusa, and P. Gaudio,
+Nucl. Fusion 56, 026005 (2016).
+101 H. Ma, A. Narayanaswamy, P. Riley, and L. Li, Sci. Adv. 8,
+eabq0279 (2022).
+J. Guo, et al. Sci. China-Phys. Mech. Astron. June (2024) Vol. 67 No. 6 267301-11

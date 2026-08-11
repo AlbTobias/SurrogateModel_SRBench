@@ -1,0 +1,1607 @@
+Received: 31 December 2023 | Revised: 29 March 2024 | Accepted: 3 May 2024
+DOI: 10.1002/idm2.12180
+REVIEW
+Exploring the mathematic equations behind the
+materials science data using interpretable symbolic
+regression
+Guanjie Wang1,2 | Erpeng Wang1 | Zefeng Li1 | Jian Zhou1 | Zhimei Sun1
+1
+School of Materials Science and
+Engineering, Beihang University,
+Beijing, China
+2
+School of Integrated Circuit Science
+and Engineering, Beihang University,
+Beijing, China
+Correspondence
+Zhimei Sun, School of Materials Science
+and Engineering, Beihang University,
+Beijing 100191, China.
+Email: zmsun@buaa.edu.cn
+Funding information
+National Natural Science Foundation of
+China, Grant/Award Number: 52332005;
+National Key Research and Development
+Program of China, Grant/Award Number:
+2022YFB3807200; China Postdoctoral
+Science Foundation,
+Grant/Award Number: 2022TQ0019
+Abstract
+Symbolic regression (SR), exploring mathematical expressions from a given
+data set to construct an interpretable model, emerges as a powerful
+computational technique with the potential to transform the “black box”
+machining learning methods into physical and chemistry interpretable
+expressions in material science research. In this review, the current
+advancements in SR are investigated, focusing on the underlying theories,
+fundamental flowcharts, various techniques, implemented codes, and
+application fields. More predominantly, the challenging issues and future
+opportunities in SR that should be overcome to unlock the full potential of SR
+in material design and research, including graphics processing unit acceleration and transfer learning algorithms, the trade‐off between expression
+accuracy and complexity, physical or chemistry interpretable SR with
+generative large language models, and multimodal SR methods, are discussed.
+KEYWORDS
+explainable machine learning, material database, materials science, representation learning,
+symbolic regression
+1 | INTRODUCTION
+Materials science, an interdisciplinary field that combines principles from physics, chemistry, and engineering, stands at the forefront of technological innovation,
+supporting advancements in fields ranging from aerospace, automotive, and electronics to biomedicine
+research.[1–8] Traditionally, material development has
+been a time‐consuming and resource‐intensive process,
+often characterized by trial‐and‐error experimentation.[9–14] However, the advent of computational modeling methods, ranging from density functional theory
+(DFT) and molecular dynamics to finite element
+simulations, has revolutionized this landscape, enabling
+the prediction and optimization of material properties
+and behaviors without the need for extensive physical
+trials. Despite their successes, traditional computational
+methods often strive with limitations such as computational cost, the complexity of material systems, and the
+need for extensive domain knowledge to interpret results
+effectively.[15–17]
+With the remarkable evolution of computer hardware
+and advancements in artificial intelligence, the paradigm
+of scientific discovery has shifted from theoretical
+simulations to a data‐driven approach,[18–21] bringing
+the development of groundbreaking technologies in
+Interdisciplinary Materials. 2024;3:637–657. onlinelibrary.wiley.com/r/interdisciplinarymaterials | 637
+This is an open access article under the terms of the Creative Commons Attribution License, which permits use, distribution and reproduction in any medium, provided
+the original work is properly cited.
+© 2024 The Author(s). Interdisciplinary Materials published by Wuhan University of Technology and John Wiley & Sons Australia, Ltd.
+computer vision,[22,23] deep learning,[24–26] and generative models,[27–30] among others. In materials science,
+inspired by the initiatives of the Materials Genome
+Initiative,[31–33] a variety of high‐throughput calculations
+and multi‐scale simulation methods have emerged as
+crucial tools for material design, consisting of Artificial
+Learning and Knowledge Enhanced Materials Informatics Engineering (ALKEMIE),[34] Pymatgen,[35–37] Atomate,[38] Automated Interactive Infrastructure and Database (AiiDA),[39] Automatic Flow (AFLOW‐π),[40,41]
+and Atom simulation environment (ASE)[42] et al. These
+simulation methods generate “Big Data”, which is
+estimated in the order of zettabytes and grows by
+approximately 40% annually.[43–49] To address the
+challenges of data management, characterized by the
+5Vs[50] (volume, velocity, variety, variability, and value),
+multi‐type and multi‐modal databases have been constructed, including Inorganic Experimental Databases,[51]
+Materials Project,[35,36] AFLOW,[52,53] Materials
+Cloud,[54] NOMAD,[55] COD,[56] and ALKEMIE Cloud[57]
+et al. Based on the vast amounts of data sets, machine
+learning (ML), a branch of artificial intelligence, has
+become a predominant role in materials science[58,59] due
+to its ability to learn materials behaviors and trends from
+the “ocean of data,”[60] without relying on underlying
+physical principles, including many key tools, like
+TensorFlow,[61] PyTorch,[62] scikit‐learn, Matminer,[63]
+and ALKEMIE‐PotentialMind,[64,65] et al.
+For material design, the most crucial step is to explore
+the relationship between the input material descriptors
+and the goal properties and to construct accurate and
+extensible models for properties prediction or inverse
+material design.[66,67] These models, typically based on
+statistical and probabilistic principles in mathematics,
+are often considered “black box” models due to their lack
+of direct physical or chemical interpretability. Symbolic
+regression (SR),[68–70] which explores mathematical
+expressions from a given data set, emerges as a powerful
+computational technique with the potential to enhance
+material science research. Unlike traditional ML methods, which fit data to pre‐specified models, SR autonomously searches for both the form and parameters of the
+best‐fitting models, which allows for the discovery of
+underlying patterns and relationships in data that might
+be missed by conventional ML methods, such as
+Bayesian Network, Support Vector Machine, Random
+Forests, and so on.
+This review focuses on the theories, implementations,
+applications, and future prospects of SR. In Section 2, we
+introduce the representation learning and generative
+models related to SR, along with the theories and
+methodologies of SR itself. The third section outlines
+various SR methods based on different ML approaches,
+benchmark data sets, and implemented codes. Section 4
+discusses the application of SR in the selection of
+material features or descriptors, the prediction of
+material properties, and atomic interaction potentials.
+Finally, it looks forward to the current challenges and
+future opportunities of SR as proposed by the authors.
+2 | FROM REPRESENTATION
+LEARNING TO SR
+From 2000 to 2022, there has been a notable increase in
+the number of scientific papers published on the topic of
+SR, as indexed in the Science Citation Index and shown
+in Figure 1. SR is a critical area in ML that focuses on
+discovering interpretable mathematical models from
+data. Its development has been marked by several
+milestones, which are highlighted by contributions from
+various researchers. In the early 1990s, genetic programming (GP) for SR laid the foundation for this field, which
+was one of the first methods used to automatically create
+mathematical models that fit given data sets. Next, the
+ML‐based SR methods, like the Bayesian or random
+forest methods, began to be applied more widely across
+various fields, from physics to finance, demonstrating its
+versatility and power in model discovery without pre‐
+specified model structures. In the 2000s, with deep
+learning architectures marked a significant advancement, the deep learning SR methods enabled end‐to‐end
+training through backpropagation, allowing for the
+extraction of interpretable models from complex data
+sets. In recent years, the creation of a generative
+transformer model and graph model specifically designed
+for SR represents the latest advancement; the development of physics‐inspired algorithms for SR, such as
+artificial intelligence (AI) Feynman, also demonstrated
+the potential of combining domain knowledge with ML
+to uncover complex physics equations from data. This
+growth reflects an extending academic interest and
+expanding research activities in the field of SR, aligning
+with the advancements in computational techniques and
+data‐driven methodologies.
+2.1 | Representation learning
+ML has seen exponential growth in interest and application
+over the past few decades. The evolution of ML is marked
+by the transition from knowledge‐driven approaches,
+where rules were manually encoded into systems, to
+data‐driven approaches, which rely on statistical methods
+to learn patterns from data. The advent of big data and
+advancements in computational power have significantly
+638 | WANG ET AL.
+ 2767441x, 2024, 5, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/idm2.12180 by Readcube (Labtiva Inc.), Wiley Online Library on [04/08/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+fueled the growth of ML, allowing for the analysis of large
+and complex data sets. It can be broadly categorized into
+several types based on the learning approach, including
+supervised learning, unsupervised learning, semi‐
+supervised learning, reinforcement learning, representation
+learning, transfer learning, and ensemble learning.[24] As is
+well known, the success of ML algorithms often depends
+on the quality of the input data representation. Driven by
+feature engineering, hand‐crafted features, although effective in some cases, require domain‐specific knowledge and
+can be time‐consuming and labor‐intensive.[66] In contrast,
+representation learning[71,72] is a process that aims to
+automatically discover meaningful representations from
+raw or unstructured data in an unsupervised or semi‐
+supervised, even generative manner, making it less reliant
+on human expertise and prior knowledge. The goal is to
+transform the initial data into a more informative and
+robust structured format using deep learning models like
+autoencoders,[73,74] Boltzmann machines,[75] neural networks, or SR. By bridging the gap between raw data and
+meaningful representations, representation learning can be
+used to extend new applications and improve the generalizability of ML models.
+2.2 | Generative models
+Generative models represent a sophisticated category
+within ML, characterized by their ability to generate new
+data instances that resemble the training data.[27] In
+contrast to discriminative models, which focus on
+categorizing or predicting labels given certain inputs,
+generative models learn the underlying distribution of
+the data, enabling them to produce novel data points.
+The foundational theory behind generative models
+involves understanding and modeling the probability
+distribution of data. Generative models, such as Generative Pre‐Trained Models (GPTs),[76] Generative Adversarial Networks (GANs),[77–81] Variational Autoencoders
+(VAEs),[82,83] and Bayesian networks,[84] have been used
+in diverse applications like image and text generation,
+style transfer, and protein discovery. Traditional SR
+constructs mathematical expressions utilizing GP, which
+involves crossover and mutation processes with refined
+parameters. In the domain of generative models, this
+generation of symbolic expressions can be substituted
+with advanced generative models, which are capable of
+producing a diverse array of mathematical models and
+iteratively refining them for optimal representation of
+input data sets. The details of the implemented software
+will be presented in Section 3.1.4.
+2.3 | Theories and fundamental
+flowcharts of SR
+The mathematical process of SR can be understood
+through its reliance on GP. This begins with an initial,
+randomly generated population of candidate models,
+often represented as binary tree structures. As shown in
+FIGURE 1 The number of published scientific papers on the topic of SR. The original data are queried by the keyword of SR from Web
+of Science from 2000 to 2022, as indexed in the SCI. SCI, Science Citation Index; SR, symbolic regression.
+WANG ET AL. | 639
+ 2767441x, 2024, 5, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/idm2.12180 by Readcube (Labtiva Inc.), Wiley Online Library on [04/08/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+Figure 2A, the nodes of these trees symbolize mathematical operations (like +, −, ×, ÷, sin, cos, log, etc.), and the
+leaves represent variables (x, y, z) and constants (a, b, c).
+In the evolutionary algorithm of SR, the model
+evolves through a series of steps, as shown in Figure 2B:
+➢ Selection: Models are evaluated for their fitness, typically
+using a metric such as mean squared error. The fitness
+function often includes a complexity penalty to prevent
+overfitting, favoring simpler models.
+➢ Crossover: This genetic operator combines parts of
+two‐parent models to create new models by exchanging their sub‐trees, as shown in Figure 2C.
+➢ Mutation: This introduces variation by altering parts
+of the model, such as changing an operation or a
+variable in the tree structure, as shown in Figure 2D.
+FIGURE 2 (A) The binary tree of SR. (B) The flowchart of general SR. (C) Crossover, and (D) mutation genetic operations in SR.
+SR, symbolic regression.
+640 | WANG ET AL.
+ 2767441x, 2024, 5, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/idm2.12180 by Readcube (Labtiva Inc.), Wiley Online Library on [04/08/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+➢ Reproduction: The fittest models are selected to generate
+offspring, forming the next generation of models.
+This iterative process aims to minimize an objective
+function, often the error between the model predictions
+and actual data, balanced against model complexity.
+Over generations, the algorithm ideally converges to a
+model that accurately represents the underlying patterns
+behind the data.
+3 | VARIOUS APPROACHES,
+BENCHMARKS, AND SOFTWARE
+OF SR
+3.1 | Various approaches of SR
+SR methods can automatically analyze the importance of
+input features and generate appropriate mathematical
+expressions. As shown in Table 1, these methods are
+categorized based on the approaches of exploring the
+underlying expressions, including genetic programming
+(GPSR), traditional machine learning (TMLSR), deep
+learning (DLSR), generative‐based transformer (TSR),
+and graph SR (GraphSR).
+3.1.1 | Genetic programming SR
+Derived from the evolutionary computing method known as
+genetic algorithms (GA), GP[153–155] is generally used to
+evolve the best values for a given set of model parameters
+and allows the basic structure of the model to evolve,
+along with the values of its parameters, as shown in
+Figure 3A.
+[88]
+The common techniques of GP include Linear
+GP, Stack‐based GP, Cartesian GP, and Positional GP, both
+with classic tree‐shaped mathematic representation.[156]
+The first SR method, using object‐oriented GP (in C++),
+was reported by Pyhnen,[85,86] which sought to find the best
+set of parameters for a pre‐specified equation and confirmed
+the feasibility of this method, but the precision and efficiency
+of this method are not mentioned. Subsequently, Douglas[87]
+et al. proposed a more efficient read's linear code to find the
+best equation coefficient after 3060 iterations, which only
+consumed 50 min. Furthermore, a new method named
+Geometric Semantic GP (GSGP)[88] is superior in performance but often results in overly complex, humanly
+unintelligible expressions. To constrain the complexity of
+final expressions, another interesting method, named
+Prioritized Grammar Enumeration (PGE),[95] diverges from
+typical GP techniques by expanding the best results to more
+complex expressions, without the requirement of random
+number generation operators. Additionally, SymTree[100,101]
+represents a different approach, using a tree structure with a
+root node containing a linear regression of its “children.”
+There are also many efficient GPSR methods, like generalized SR,[102] TIPSR,[91,97] model‐based GP,[92,94] operon C+
++,[93]
+Cartesian GP,[90]
+coefficient mutation SR,[96]
+and so on,
+which utilize a greedy heuristic for child node generation,
+focusing on linear combinations of expressions to obtain a
+more interpretable model.
+3.1.2 | Traditional machine learning SR
+GP‐based SR techniques are the most popular methods,
+offering diverse methodologies for mathematical expression
+derivation from data sets. However, the computational
+efficiency and expression complexity need to be further
+enhanced.[99,104,105,107,117,157] Therefore, there are many
+hybrid SR methods to solve the above challenges, such as
+gplearn,[98] nonlinear least squares,[110] policy gradients
+SR,[122,127] Taylor SR,[114] RILS‐ROLS,[113,120] nearest neighbor indexing SR,[103] deterministic/GP SR,[89,158] multi‐
+SISSO,[108] multivariate temporal SR,[159] and dimension
+synchronous computation (SR‐DSC).[119] In particular,
+Rivero et al. introduce a distinctive SR technique, DoME,[118]
+which presents a novel, efficient, and mathematical
+approach with the capability of generating user‐friendly
+and versatile mathematical expressions. A key feature of
+DoME is the ability to limit the complexity of the generated
+expressions, making them more compact, interpretable, and
+analyzable. Furthermore, the expressions generated by
+DoME are standard equations that can be easily utilized in
+various programming languages without the need for
+importing machine learning libraries. They are also adaptable for use in different calculation systems, including
+spreadsheets, offering a versatile advantage over approaches
+like Neural Networks. Besides, another novel method using
+a Bayesian framework[109,112,116] is presented, which leverages a Bayesian framework to effectively incorporate prior
+knowledge, thus addressing the limitations of traditional GP
+in terms of interpretability and computational efficiency, as
+shown in Figure 3B. Additionally, the Symbolic Physics
+Learner (SPL) method[115] employs an efficient Markov
+chain Monte Carlo algorithm to sample symbolic trees from
+the posterior distribution, offering a more memory‐efficient
+solution than GP by eliminating the need to maintain a
+genome pool.
+3.1.3 | Deep learning SR
+Deep Learning SR (DLSR), combining deep learning and
+neural networks with SR, has emerged as a significant area
+of study. The method of Deep SR (DSR)[127] employs a
+WANG ET AL. | 641
+ 2767441x, 2024, 5, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/idm2.12180 by Readcube (Labtiva Inc.), Wiley Online Library on [04/08/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+TABLE 1 List of software and implementation tools for SR.
+Name Type Year Author & Ref
+GP with C++ GPSR 1996 Pyhne[85]
+Rainfall‐Runoff GP GPSR 1999 Savic[86]
+GPSR GPSR 2000 Augusto[87]
+Geometric Semantic GP GPSR 2012 Moraglio[88]
+Deterministic GP GPSR 2013 Icke[89]
+Positional Cartesian GP GPSR 2018 Wilson[90]
+Interaction–Transformation GP GPSR 2019 Franca[91]
+Model‐based GP GPSR 2019 Virgolin[92]
+Operon C++ GPSR 2020 Burlacu[93]
+Improving Model‐based GP GPSR 2021 Virgolin[94]
+Probabilistic Grammars GP GPSR 2021 Brence[95]
+Coefficient Mutation GP GPSR 2022 Virgolin[96]
+Transformation‐Interaction‐Rational (TIR) GPSR 2022 Franca[97]
+Evolving Tree Hybrid GPTree 2018 Cava[98]
+Greedy Tree Hybrid GPTree 2018 Olivetti[99]
+PS‐Tree Hybrid GPTree 2022 Hengzhe[100]
+SymTrees Hybrid GPTree 2023 Baume[101]
+GeneralizedSR Hybrid GPTree 2023 Tohme[102]
+Nearest Neighbor Indexing SR TMLSR 2010 McRee[103]
+Eureqa TMLSR 2011 Dubčáková[104]
+Globally SR TMLSR 2017 Austel[105]
+Exhaustive Search TMLSR 2018 Igarashi[106]
+SISSO TMLSR 2018 Ouyang[107]
+Multi‐task SISSO TMLSR 2019 Ouyang[108]
+Bayesian SR TMLSR 2019 Jin[109]
+Nonlinear Least Squares TMLSR 2019 Kommenda[110]
+Policy Gradients SR TMLSR 2019 Peter[111]
+Bayesian Neural Network TMLSR 2021 Cranmer[112]
+Informed Equation Learning TMLSR 2021 Werner[113]
+Taylor SR TMLSR 2022 HeBaihe[114]
+Symbolic Physics Learner TMLSR 2022 SunFangzheng[115]
+Automatic Bayesian SR TMLSR 2022 Vázquez[116]
+Shape‐Constrained SR TMLSR 2022 Kronberger[117]
+DoME TMLSR 2022 Rivero[118]
+Dimension Synchronous Computation TMLSR 2022 Wang[119]
+RILS‐ROLS TMLSR 2023 Kartelj[120]
+Continued Fraction Regression TMLSR 2023 Moscato[121]
+Deep SR DLSR 2019 Petersen[122]
+642 | WANG ET AL.
+ 2767441x, 2024, 5, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/idm2.12180 by Readcube (Labtiva Inc.), Wiley Online Library on [04/08/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+neural network to search for symbolic expressions. As
+shown in Figure 3C, they use risk‐aware reinforcement
+learning where a recurrent neural network outputs a
+distribution over mathematical expression. In addition,
+another algorithm of AI Feynman's[124,125,128] two‐step
+approach starts with problem simplification, employing
+techniques like dimensional analysis and translational
+symmetry, followed by a polynomial fit and brute‐force
+search for complex expressions using a six‐layer feed‐
+forward neural network. Furthermore, Igarashi et al. also
+developed the Exhaustive Search Method[106] and defined a
+semantically unique expression search space to perform an
+exhaustive search for the best‐fitting expression. Moreover,
+continued fraction regression (CFR)[121]
+presented a method
+using a memetic algorithm with continued fractions,
+focusing the search on the coefficient space of the
+CFR. Besides, integrated with controllable neural networks,[123,126,129–134] Kim et al. have shown the Equation
+TABLE 1 (Continued)
+Name Type Year Author & Ref
+Scaled Fast NN DLSR 2020 Costa[123]
+AI Feynman DLSR 2020 Udrescu[124]
+AI Feynman 2.0 DLSR 2020 Udrescu[125]
+Neura SR DLSR 2021 Biggio[126]
+RNN‐DSR DLSR 2021 Petersen[127]
+Hierarchical Reinforcement Learning DLSR 2021 XuDuo[128]
+DeepNN SR DLSR 2021 Kim[129]
+Neural‐Guided GPSR DLSR 2021 Mundhenk[130]
+Recurrent Sequences DSR DLSR 2022 Ascoli[131]
+Singlet Fission SR DLSR 2022 LiuXingyu[132]
+Controllable NN SR DLSR 2023 Bendinelli[133]
+Control Variables NN SR DLSR 2023 ChuXieting[134]
+Physically Plausible NN SR DLSR 2023 Kubalík[135]
+Smooth TSR TSR 2015 Pitzer[136]
+Grammar Variational Autoencoder TSR 2017 Kusner[137]
+Distorted Video TSR TSR 2021 Udrescu[138]
+SymbolicGPT TSR 2021 Valipour[139]
+Multi‐Objective SR TSR 2021 Kubalík[140]
+Symformer TSR 2022 Vasti[141]
+NP‐hard SR TSR 2022 Virgolin[142]
+Automated Adaptive TSR 2022 Narayanan[143]
+End‐to‐end TSR TSR 2022 Kamienny[144]
+Symbolic Expression Transformer TSR 2022 LiJiachen[145]
+TSR for Differential Equations TSR 2023 Becker[146]
+Deep Generative SR TSR 2023 Holt[147]
+Online SR TSR 2023 Jin[148]
+Monte Carlo Tree DGSR TSR 2023 Kamienny[147]
+Joint Supervised Learning TSR TSR 2023 LiWenqiang[149]
+Variational Auto‐encoder SR TSR 2023 Popov[150]
+Transformer‐based Planning SR TSR 2023 Shojaee[151]
+Deep GNNSR GraphSR 2020 Cranmer[152]
+WANG ET AL. | 643
+ 2767441x, 2024, 5, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/idm2.12180 by Readcube (Labtiva Inc.), Wiley Online Library on [04/08/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+Learner network,[135]
+which enhances the extrapolation and
+prediction of unfamiliar data. In summary, DLSR represents
+a powerful integration of deep learning and SR, with
+methodologies ranging from reinforcement learning to
+exhaustive search with neural networks. These approaches
+enhance the ability to discover and interpret complex
+mathematical expressions, paving the way for advances in
+data analysis and scientific discovery.
+3.1.4 | Generative SR
+With the aim of discovering interpretable mathematical
+expressions from data, Generative SR, an advancing
+area within machine learning, combines GPSR with
+generative modeling techniques.[146–148,160] Kusner
+et al. first reported a variant autoencoder, GrammarVAE,[137] used for generating expressions based on
+predefined grammar. The characteristics of this model
+are the integration of neural networks and symbolic
+operators as activation functions. In 2022, with the
+explosive popularity of ChatGPT, the Transformer[161]
+technology behind it became a hot research topic in
+various fields. Subsequently, SymbolicGPT,[139] a transformative language model that takes advantage of the
+strengths of GPT‐like models, is reported, demonstrating superior accuracy, speed, and data efficiency. The
+approach innovatively combines language models with
+symbolic mathematics, offering a scalable, cost‐
+effective solution with fewer input restrictions and
+enhanced performance in various SR tasks. Consequently, as shown in Figure 3D, Meta AI presents a
+novel approach using a Transformer model that directly
+predicts full mathematical expressions,[144] including
+variables and constants. This method outperforms
+traditional GP and other deep learning models in speed
+and accuracy, showing promise for real‐time inference
+applications and setting a foundation for future
+transformer‐based symbolic tasks. Meanwhile, another
+method named SymFormer is reported by Martin
+et al.,[141] which employs a transformer‐based approach
+to efficiently predict both the symbolic representation
+and the values of all constants in a single neural
+network pass. This novel method surpasses current
+state‐of‐the‐art approaches in speed, demonstrating
+rapid inference capabilities ideal for real‐time
+FIGURE 3 The illustration of (A) genetic programming SR (GPSR). (B) Traditional machine learning (TMLSR). Reproduced under
+terms of the CC‐BY license.[109] Copyright 2019, the authors, published by ArXiv. (C) Deep Learning SR (DLSR). Reproduced under terms of
+the CC‐BY license.[127] Copyright 2021, the authors, published by ArXiv. (D) Transformer SR (TSR). Reproduced under terms of the CC‐BY
+license.[144] Copyright 2022, the authors, published by ArXiv. (E) Graph SR. Reproduced under terms of the CC‐BY license.[152] Copyright
+2020, the authors, published by ArXiv.
+644 | WANG ET AL.
+ 2767441x, 2024, 5, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/idm2.12180 by Readcube (Labtiva Inc.), Wiley Online Library on [04/08/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+applications. Furthermore, SymFormer's initial constant predictions for gradient descent optimization
+enhance its overall performance and effectiveness in
+uncovering complex mathematical relationships from
+extensive formula collections. In addition, various
+automated adaptive SR methods, like smooth SR,[136]
+automatic video discover SR,[138] multi‐objective
+SR,[140] deep learning SR,[142] automated adaptive
+SR,[143] joint ML SR,[149] auto‐encoder SR,[150] and
+transformer‐based planning SR,[151] are developed.
+However, the model's adaptability is currently limited
+by the fixed number of dimensions and sampling range
+set during training, a constraint that future iterations
+could address by varying the sampling distribution of
+input points to increase flexibility across different
+data sets.
+3.1.5 | Graph SR
+Graph SR (GraphSR)[152] represents a pioneering
+approach in machine learning, particularly in distilling
+symbolic representations from deep models with a
+focus on Graph Neural Networks (GNN), as shown in
+Figure 3E. This method starts by training a GNN to
+encourage sparse latent representations in a supervised
+setting. SR is then applied to components of the
+learned model, extracting explicit physical relations
+such as force laws and Hamiltonians. Further advancements in GraphSR involve imposing physically motivated inductive biases on both general and Hamiltonian Graph Networks, enhancing their ability to learn
+interpretable representations and potentially improving zero‐shot generalization. Remarkably, this technique has been successful in extracting correct known
+equations from neural networks and even discovering
+new analytic formulas, as demonstrated in a complex
+cosmology example involving dark matter simulation.
+The symbolic expressions derived from the GNN show
+superior generalization to out‐of‐distribution data
+compared to the traditional GNN methods, showcasing
+the potential of GraphSR in uncovering novel physical
+principles.
+3.2 | Benchmark data sets of SR
+Benchmark data sets for SR are crucial in evaluating
+the performance of various algorithms and methods.
+These data sets encompass a range of problems, from
+real‐world data sets to ground‐truth benchmark
+problems.[162–165] One notable data set is named AI
+Feynman,[124] which consists of 100 equations from the
+Feynman Lectures on Physics. Another data set
+includes 131 known chaotic dynamical systems,[166]
+spanning fields such as astrophysics, climatology, and
+biochemistry, providing a challenging and interpretable benchmark for forecasting models and SR algorithms. Additionally, various methods have been
+evaluated on these data sets, including Hybrid
+approaches combining GAs with reinforcement learning and other techniques, which have demonstrated
+competitive performance compared to standard SR
+methods.[167] Furthermore, recent advancements like
+the Symbolic Expression Transformer (SET)[145] use an
+image caption model to translate images to symbolic
+expressions, as shown in Figure 4A. Additionally, a
+large SR benchmark repository called SRBench
+includes metadata describing the underlying equations, units, and various summary statistics. The
+average test performance and inference time of
+different SR models with baselines provided by the
+SRbench benchmark, both on black‐box regression
+problems and Feynman SR problems, are shown in
+Figure 4B,C. The average test performance and
+formula complexity of different SR models with baselines provided by the SRbench benchmark, both on
+black‐box regression problems and Feynman SR
+problems, are shown in Figure 4D,E.
+4 | APPLICATION OF SR
+IN MATERIALS SCIENCE
+4.1 | Selection of material features
+or descriptors
+The selection of material features or descriptors is
+crucial in materials science as it fundamentally
+determines the accuracy and effectiveness of predictive
+models in understanding and optimizing material
+properties and behaviors. Using gplearn methods of
+SR, a new descriptor (μ/t) was identified,[168] leading to
+the discovery and synthesis of five new oxide perovskites, four of which exhibit among the highest
+intrinsic oxygen evolution reaction activities recorded
+for this catalyst type. Another study integrates an
+interpretable SR with ML to formulate new hybrid
+descriptors that are relevant for the target stability and
+photovoltage of perovskite films in aqueous conditions.[169] Their approach, combining the random
+forest algorithm and experimental validation, notably
+improves the performance of CH3NH3PbI3 films with
+molecular interlayers. Additionally, they develop a
+t‐SR method for designing molecular descriptors,
+demonstrating its potential in advancing the design
+WANG ET AL. | 645
+ 2767441x, 2024, 5, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/idm2.12180 by Readcube (Labtiva Inc.), Wiley Online Library on [04/08/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+FIGURE 4 (A) The overview of SET. The collected data and the corresponding mathematical expressions are represented as input
+images and output symbolic sequences, respectively, so that SR is modeled as an image caption task in SET. Reproduced under terms of the
+CC‐BY license.[145] Copyright 2022, the authors, published by ArXiv. (B, C) Pareto plot comparing the average test performance and
+inference time of different models with baselines provided by the SRbench benchmark, both on black‐box regression problems and
+Feynman SR problems. (D, E) Complexity‐accuracy Pareto plot. Pareto plot comparing the average test performance and formula complexity
+of different models with baselines provided by the SRbench benchmark, both on black‐box regression problems and Feynman SR problems.
+(B–E) are reproduced under the terms of the CC‐BY license.[144] Copyright 2020, the authors, published by ArXiv. SET, Symbolic Expression
+Transformer; SR, symbolic regression.
+of robust, high‐performing perovskite films for industrial applications. Moreover, Wenguang et al.[170] also
+highlight the efficacy of the random forest SR
+algorithm in achieving high accuracy and identifying
+key descriptors like polarizability and bond type for
+adsorption energy.
+646 | WANG ET AL.
+ 2767441x, 2024, 5, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/idm2.12180 by Readcube (Labtiva Inc.), Wiley Online Library on [04/08/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+4.2 | Prediction of material properties
+4.2.1 | Structure stability
+SR is a powerful tool in the prediction of structural
+stability. This study[171] demonstrates that the interfacial binding strength between single metal atoms and
+oxide supports in single‐atom catalysts (SACs), essential
+for preventing sintering, can be predicted using a
+statistical learning approach based on least absolute
+shrinkage and selection operator regression, enabling
+the empirical screening and design of robust catalysts
+against sintering. Additionally, SR also has been
+effectively applied to the stability analysis of single‐
+atom alloy catalysts (SAAC). By integrating SR with an
+iterative variable selection (VS‐SISSO) method, the
+study[168] successfully reduced model complexity while
+maintaining accuracy. This approach was particularly
+applied to analyze the segregation energy (SE), a key
+indicator of SAAC stability, leading to the development
+of more compact yet accurate models compared to
+previous high‐dimensional ones. Moreover, SR with
+neural networks is used to discover a new criterion
+for predicting glass‐forming ability.[172] By combining
+with the “white‐box” sure independence screening and
+sparsifying operator (SISSO) approach, an interpretable
+and accurate formation energy model[173] used for the
+prediction and classification of formation energies of
+binary compounds is constructed. These advancements
+demonstrate SR's potential in simplifying complex
+models in materials science without decreasing predictive performance.
+FIGURE 5 Computational approach for detecting conservation laws from experimentally collected data. (A) First, calculate partial
+derivatives between variables from the data, then search for equations that may describe a physical invariance. To measure how well an
+equation describes an invariance, derive the same partial derivatives symbolically to compare with the data. (B) The representation of a
+symbolic equation in computer memory is a list of successive mathematical operations. (C) This list representation corresponds to a graph,
+where nodes represent mathematical building blocks, and leaves represent parameters and system variables. Reproduced with
+permission.[175] Copyright 2009, Science.
+WANG ET AL. | 647
+ 2767441x, 2024, 5, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/idm2.12180 by Readcube (Labtiva Inc.), Wiley Online Library on [04/08/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+4.2.2 | Mechanical properties
+For mechanical properties of metal, GPSR is utilized to
+develop material models with fewer assumptions and
+high interpretability. Generally, although SR is typically
+used to find explicit and differential equations for
+mechanical properties, this method cannot readily find
+physical laws or equations. Rather than trying to find a
+certain equation format, this study[174] is trying to detect
+any underlying physical law that the system obeys, as
+shown in Figure 5A. First, they collected experimental
+data from the physical system, and numerically calculated partial derivatives for every pair of variables. Then,
+they generated random candidate equations by GPSR,
+like Equation 1.
+()
+fx x
+f
+fy x
+=( − 1.2) · cos( )
+= 0.91 · exp
+= 0.5 − 9.8 · cos( ).
+y
+x
+2
+(1)
+The representations of SR in programming and graphs
+are shown in Figure 5B,C. To measure how well an
+equation describes an invariance, they derive the symbolic partial derivatives of pairs of variables for each
+candidate function ( =/ ) y
+x
+f
+x
+f
+y
+
+
+
+
+
+ to compare with the data
+()y
+x
+Δ
+Δ . Next, they compared predicted partial derivatives
+with numerical partial derivatives and selected the best
+equations. Finally, when predictive ability reaches sufficient accuracy, the most parsimonious Equation 2 with
+physical laws can be generated.
+f = 0.5yx − 9.8 · cos( ). 2 (2)
+For porous ductile metals, this study[174,175] focuses
+on the Gurson model, methodically relaxing its assumptions to evaluate their impact on GPSR model forms.
+By incorporating transfer learning (TL) methods and
+regularizing the GPSR fitness function, the research
+demonstrates that GPSR can generate physically valid,
+interpretable models, which allows the generation of
+material models addressing limitations in the Gurson
+model and conjectures material strength reduction due to
+voids. The resulting models, more interpretable and
+applicable than traditional methods, highlight the
+potential of GPSR combined with TL techniques in
+materials science. Furthermore, for strain rates ranging
+from 10−4 to 1012 (quasi‐static to highly dynamic) and
+temperatures ranging from room temperature to over
+1000 K, the flow stress models[176] derived from SR are
+assessed by comparison to Taylor anvil impact data,
+showing candidate free‐form models comparing well
+with data in regions of stress‐strain space with sufficient
+experimental data, pointing to a potential means for both
+rapid prototyping in future model development. In
+addition, SR methods also are used for the prediction
+of four mechanical properties[177] of steels—fatigue
+strength, tensile strength, fracture strength, and hardness, stress–strain curves,[178–180] yield strength of
+amorphous alloys,[181] the plasticity of single crystal Ni‐
+based superalloys,[182] the heat treatment process of dual‐
+phase steel,[183] the relation between flow stress and
+temperature‐compensated strain rate for an aluminum
+alloy AA7055,[184] creep formulation,[185] hardness of
+transition metal compounds,[186] and bulk properties of
+perovskites.[187]
+4.2.3 | Physical properties
+The band gap is a crucial topic in materials physics,
+especially for the performance of perovskite solar cells,
+as it directly influences their light absorption characteristics. Traditional methods of band gap engineering, such as experimental trial‐and‐error or high‐
+throughput DFT calculations, tend to be inefficient
+and costly. In a recent study,[188] SR was combined with
+feature engineering and the Gradient‐Boosted Regression Tree (GBRT) algorithm to develop an interpretable
+ML strategy for predicting the band gap accurately.
+Consequently, based on the band gap's affecting
+factors of the electronegativity difference between the
+B‐site and the X‐site (χB−X), a mathematical formula
+(Eg = χB−X
+2 + 0.881χB−X) was constructed with GASR
+for a quantitative interpretation of the band gap
+influence patterns. Additionally, another research[189]
+employed feature augmentation with SR to rapidly
+estimate and screen inorganic double perovskites with
+an accurate correlation coefficient of 92.4%. Furthermore, an interpretable Δ‐machine learning (Δ‐ML)
+model with SR[190] is constructed to predict the hybrid
+functional HSE bandgap based on the PBE functional
+bandgap, which delivers a practical and understandable
+model for identifying the best physical descriptors for
+machine learning‐based band gap predictions in the
+extensive exploration of new 2D materials.
+For other physical properties, the researchers
+successfully showcased the framework's effectiveness
+by creating an accurate analytic model for lattice
+thermal conductivity[191] with only 75 experimental
+measurements,[192] which further enabled them to
+screen 732 materials and identify 80 ultra‐insulating
+materials through hierarchical analysis. Moreover,
+using high‐throughput experiments and machine learning, researchers have discovered a generalizable and
+648 | WANG ET AL.
+ 2767441x, 2024, 5, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/idm2.12180 by Readcube (Labtiva Inc.), Wiley Online Library on [04/08/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+accurate expression for ionic transport in battery
+electrolytes,[193] reflecting fundamental physical
+mechanisms and aiding in the optimization of electrolyte properties. Besides, other researchers have successfully employed SR to identify and synthesize high‐
+efficiency thermoelectric materials,[194] notably
+Cu0.45Ag0.55GaTe2, demonstrating a significant figure of
+merit and highlighting the potential of AI in advancing
+material science.
+4.2.4 | Catalyst properties
+Energy and catalytic materials play a pivotal role in
+advancing technologies like electrocatalysis, crucial for
+reactions such as the oxygen reduction reaction
+(ORR) and oxygen evolution reaction (OER). Based on
+GPSR, we have established the models containing 10
+intrinsic element features of SACs.[195] The generated
+symbolic expressions describing the catalytic activity
+were provided to quickly and accurately identify catalysts
+with excellent ORR and OER catalytic activity. First, we
+gathered a total of 117 initial data for SAC systems and
+divided them into 52.5% for training, 21% for testing, and
+25% for validation. Next, 37 features (descriptors) were
+assigned for each given data point, which can be directly
+extracted from element characteristics. Through feature
+engineering, 10 independent features, which include the
+number of d‐orbital electrons (Ne) in transition metal
+atoms (TM), the covalent bond of the TM element
+(rcovTM), the atomic number of TM (ZTM), and the
+number of valence electrons in A and B atoms (VA and
+VB), and so on, are chosen. Subsequently, we have
+integrated the Random Forest method with GP algorithms to construct a SR approach, the detailed architecture and usage step of the SR model are shown on
+GitHub (https://github.com/ALKEMIE-Lab/sraes). The
+final equations for predicting ORR and OER properties
+are shown in Equations 3 and 4. The mean square errors
+for the aforementioned equations were 0.095 and 0.094,
+respectively, corresponding to the prediction accuracy of
+79.91% and 75.36% for ORR and OER, respectively. Our
+work provides several novel and promising ORR and
+OER electrocatalysts and develops efficient models to
+reasonably guide and design new catalysts. Additionally,
+other studies[196] selected the electrochemical step
+symmetry index method to assess OER intermediates to
+optimize activity and identify the best SACs.
+η Z IN
+X
+N
+N
+= 0.825 + −−
++ − ,
+predicted
+OER
+TM TM e
+TM
+B
+e
+(3)
+η
+rcov
+N
+N N
+N = − + . predicted
+ORR TM
+e
+e TM
+B
+(4)
+4.3 | Atomic interaction potential
+The main scope of this section is to apply SR to data
+obtained from experiments or ab initio simulations to
+find interatomic potentials, which can be used to transfer
+information from one space‐time scale to a higher one.
+Abdel et al.[197] have demonstrated the efficacy of GPSR
+in efficiently computing empirical interatomic potentials,
+such as Lennard‐Jones and Born‐Mayer potentials, using
+minimal computational resources. The algorithm efficiently converges to accurate results, as validated
+through examples of well‐defined potentials. Additionally, the authors extend its application to ab initio
+interatomic potentials, exemplified by modeling the
+potential energy of an Ar2 molecule using DFT calculations, as shown in Equation 5.
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+Vr r ( ) = 1906.22 5.71 (1 + e )
++ 0.885215174960045
+− 1141.370159.
+0.171021878791222
+−12
+
+(5)
+They adapt GPSR to handle complex data, achieving
+significant accuracy in a remarkably short computation time. Notably, GPSR successfully identifies specific mathematical forms, such as power −12 for short‐
+range repulsive interactions, demonstrating its potential in accurately characterizing physical interactions
+from a diverse range of data sources. In addition,
+Alberto et al.[198] have developed a machine‐learning
+algorithm based on GPSR to create efficient and
+accurate Lennard‐Jones potential, a Sutton‐Chen
+embedded‐atom method potential, and many‐body
+potential models for atomistic simulations. This
+approach, focusing on simplicity and fundamental
+physical principles, effectively reduces overfitting and
+enhances model generalizability. It has been validated
+by rediscovering established potentials and successfully predicting properties of elemental copper beyond
+the training data. Recently, Burlacu et al.[68] and
+Alberto et al.[199] have also developed an efficient SR
+method for discovering physics‐derived functional
+forms of interatomic potentials and validated it for
+copper. Future development directions include expanding the capabilities of the framework to include
+three‐ or many‐body interactions, to consider model
+derivatives to model atomic forces as well.
+WANG ET AL. | 649
+ 2767441x, 2024, 5, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/idm2.12180 by Readcube (Labtiva Inc.), Wiley Online Library on [04/08/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+5 | CHALLENGES AND
+OPPORTUNITIES AHEAD
+5.1 | GPU acceleration
+Graphics processing unit (GPU) acceleration significantly
+enhances the performance of SR algorithms. For
+instance, grammatical evolution in SR can achieve up
+to 39 times faster processing when properly utilizing
+GPU acceleration.[200] Similarly, using an ensemble
+of extreme learning machines accelerated by GPUs,
+regression on large data sets can be executed in a
+reasonable time, enhancing training and model structure
+selection.[201] To address the challenges posed by
+increasingly large material data sets and more complex
+generative models in the future, it is crucial to develop
+efficient GPU‐accelerated algorithms, which are key to
+expediting the design of new materials, allowing for
+faster processing and analysis of complex data. Their
+implementation will significantly enhance the speed
+and efficiency of material design in an era where data
+complexity and volume are rapidly escalating.
+5.2 | Transfer learning
+In terms of transfer learning, it offers a framework for
+evolving simpler models with better cross‐domain
+generalization performance in GP‐based SR, thereby
+reducing overfitting.[202] Transfer learning in GP also
+facilitates the extraction of potentially good and unique
+building blocks from a source problem, improving the
+solution of SR problems.[203] This method not only
+speeds up convergence but also helps in obtaining better
+final solutions across various scenarios, indicating its
+potential to enhance the efficiency and effectiveness of
+SR techniques.[204]
+5.3 | The trade‐off between expression
+accuracy and complexity
+GA‐based SR models can provide interpretability but
+may have limitations in accuracy. As mathematical
+expressions become more intricate, balancing a model's
+interpretability and accuracy becomes increasingly
+difficult. SR inherently grapples with the richness of
+mathematical expressions,[139,205] necessitating models
+that strike a balance between interpretability and
+precision. Multi‐objective SR approaches allow for an
+automatic adaptation of complexity, thereby enabling a
+balance between accuracy and complexity.[206] Additionally, methods like the Bayesian SR technique improve
+interpretability and efficiency by incorporating prior
+knowledge and employing symbolic trees for more
+concise expressions.[109] This delicate balance between
+interpretability and accuracy remains a crucial consideration in the advancement of SR methodologies.
+5.4 | Physical or chemistry
+interpretable SR boosted by large
+language models (LLMs)
+SR in the context of LLMs presents both challenges and
+opportunities for automatic learning of the physical and
+chemical significance of symbols. SR methods like fast
+function extraction, GP, and physics‐inspired algorithms
+have demonstrated the ability to learn analytically
+tractable models from data, effectively predicting the
+temporal evolution of dynamical systems and discovering
+complex physics equations from numerical data.
+5.5 | Multimodal SR
+Material data, with its diverse range encompassing
+numerical values, 3D configurations, experimental spectra, images, and texts, present a complex array of data
+types. The task of constructing a SR method that is adept
+at handling such multimodal data poses both significant
+challenges and opportunities. This endeavor requires
+innovative approaches to integrate and interpret these
+varied data formats effectively. The development of such
+a method holds the potential to significantly advance the
+field of materials science, offering more comprehensive
+insights into material innovations.
+6 | CONCLUSIONS
+In conclusion, this paper explores the theoretical
+underpinnings of SR, contrasts it with traditional
+regression models, and highlights its unique advantages and challenges. We also delve into recent
+methodological advancements, consisting of computational software and benchmark data sets. Furthermore,
+a comprehensive overview of how SR can be applied to
+various aspects of materials research is provided from
+the selection of significant features to the prediction of
+material properties and atomic interaction potential.
+Finally, a critical analysis is carried out to identify
+current limitations and propose future research directions. This paper underscores the application potential
+of SR in materials science. By offering a novel
+computational approach that combines predictive
+650 | WANG ET AL.
+ 2767441x, 2024, 5, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/idm2.12180 by Readcube (Labtiva Inc.), Wiley Online Library on [04/08/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+power with interpretability, SR stands to significantly
+accelerate materials discovery and innovation, paving
+the way for new technologies and applications.
+ACKNOWLEDGMENTS
+This work is financially supported by the National Natural
+Science Foundation of China (Grant No. 52332005),
+the National Key Research and Development Program
+of China (Grant No. 2022YFB3807200), and the China
+Postdoctoral Science Foundation (Grant No. 2022TQ0019).
+CONFLICT OF INTEREST STATEMENT
+The authors declare no conflict of interest.
+ORCID
+Guanjie Wang http://orcid.org/0000-0001-8729-626X
+Zhimei Sun http://orcid.org/0000-0002-4438-5032
+REFERENCES
+[1] Anasori B, Lukatskaya MR, Gogotsi Y. 2D metal carbides
+and nitrides (MXenes) for energy storage. Nat Rev Mater.
+2017;2(2):16098.
+[2] Manzeli S, Ovchinnikov D, Pasquier D, Yazyev OV, Kis A.
+2D transition metal dichalcogenides. Nat Rev Mater.
+2017;2(8):17033.
+[3] Zhu Z, Ng DWH, Park HS, McAlpine MC. 3D‐printed
+multifunctional materials enabled by artificial‐intelligence‐
+assisted fabrication technologies. Nat Rev Mater. 2021;6(1):
+27–47.
+[4] Xiang XD, Sun X, Briceño G, et al. A combinatorial
+approach to materials discovery. Science. 1995;268(5218):
+1738–1740.
+[5] Lencer D, Salinga M, Grabowski B, Hickel T, Neugebauer J,
+Wuttig M. A map for phase‐change materials. Nat Mater.
+2008;7(12):972–977.
+[6] Xu D, Zhang Q, Huo X, Wang Y, Yang M. Advances in data‐
+assisted high‐throughput computations for material design.
+Mater Genome Eng Adv. 2023;1(1):e11.
+[7] Szymanski NJ, Rendy B, Fei Y, et al. An autonomous
+laboratory for the accelerated synthesis of novel materials.
+Nature. 2023;624(7990):86–91.
+[8] Kalinin SV, Sumpter BG, Archibald RK. Big‐deep‐smart
+data in imaging for guiding materials design. Nat Mater.
+2015;14(10):973–980.
+[9] Zhao JC. A combinatorial approach for structural materials.
+Adv Eng Mater. 2001;3(3):143–147.
+[10] Maier WF, Stöwe K, Sieg S. Combinatorial and high‐
+throughput materials science. Angew Chem, Int Ed. 2007;
+46(32):6016–6067.
+[11] Zhao JC. High‐throughput experimental tools for the materials
+genome initiative. Chin Sci Bull. 2014;59(15):1652–1661.
+[12] Zhao JC, Zheng X, Cahill DG. High‐throughput measurements of materials properties. JOM. 2011;63(3):40–44.
+[13] Huxtable S, Cahill DG, Fauconnier V, White JO, Zhao JC.
+Thermal conductivity imaging at micrometre‐scale resolution for combinatorial studies of materials. Nat Mater.
+2004;3(5):298–301.
+[14] Kusne AG, Gao T, Mehta A, et al. On‐the‐fly machine‐
+learning for high‐throughput experiments: search for rare‐
+earth‐free permanent magnets. Sci Rep. 2014;4:6367.
+[15] Cohen AJ, Mori‐Sánchez P, Yang W. Challenges for density
+functional theory. Chem Rev. 2012;112(1):289–320.
+[16] Olson GB. Computational design of hierarchically structured materials. Science. 1997;277(5330):1237–1242.
+[17] Vergniory MG, Wieder BJ, Elcoro L, et al. All topological
+bands of all nonmagnetic stoichiometric materials. Science.
+2022;376(6595):eabg9094.
+[18] Marzari N, Ferretti A, Wolverton C. Electronic‐structure
+methods for materials design. Nat Mater. 2021;20(6):736–749.
+[19] Louie SG, Chan YH, da Jornada FH, Li Z, Qiu DY.
+Discovering and understanding materials through computation. Nat Mater. 2021;20(6):728–735.
+[20] Curtarolo S, Hart GLW, Nardelli MB, Mingo N, Sanvito S,
+Levy O. The high‐throughput highway to computational
+materials design. Nat Mater. 2013;12(3):191–201.
+[21] Snyder JC, Rupp M, Hansen K, Müller KR, Burke K.
+Finding density functionals with machine learning. Phys
+Rev Lett. 2012;108(25):253002.
+[22] Granlund GH, Knutsson H. Signal Processing for Computer
+Vision. Springer Science & Business Media; 2013.
+[23] Voulodimos A, Doulamis N, Doulamis A, Protopapadakis E,
+et al. Deep learning for computer vision: a brief review.
+Comput Intell Neurosci. 2018;2018:1–13.
+[24] Guo Y, Liu Y, Oerlemans A, Lao S, Wu S, Lew MS. Deep
+learning for visual understanding: a review. Neurocomputing.
+2016;187:27–48.
+[25] LeCun Y, Bengio Y, Hinton G. Deep learning. Nature.
+2015;521(7553):436–444.
+[26] Kamilaris A, Prenafeta‐Boldú FX. Deep learning in agriculture: a survey. Comput Electron Agric. 2018;147:70–90.
+[27] GM H, Gourisaria MK, Pandey M, Rautaray SS. A
+comprehensive survey and analysis of generative models
+in machine learning. Comput Sci Rev. 2020;38:100285.
+[28] Theis L, Oord A, van den Bethge M. A note on the evaluation of
+generative models. arXiv. 2015; https://arxiv.org/abs/1511.01844
+[29] Kingma DP, Mohamed S, Jimenez Rezende D, Welling M.
+Semi‐supervised learning with deep generative models. Adv
+Neural Inf Process Syst. 2014;27:3581–3589.
+[30] Salakhutdinov R. Learning deep generative models.
+Annu Rev Stat Appl. 2015;2:361–385.
+[31] White A. The materials genome initiative: one year on. MRS
+Bull. 2012;37(8):715–716.
+[32] Ad‐hoc Interagency Group on Advanced Materials. Materials genome initiative for global competitiveness. National
+Science and Technology Council, Committee on Technology; 2011. https://www.mgi.gov/sites/default/files/
+documents/materials_genome_initiative-final.pdf
+[33] Agrawal A, Choudhary A. Perspective: materials informatics and big data: realization of the “fourth paradigm” of
+science in materials science. APL Mater. 2016;4(5):053208.
+[34] Wang G, Peng L, Li K, et al. ALKEMIE: an intelligent
+computational platform for accelerating materials discovery
+and design. Comput Mater Sci. 2021;186:110064.
+[35] Ong SP, Richards WD, Jain A, et al. Python Materials
+Genomics (pymatgen): a robust, open‐source Python library
+for materials analysis. Comput Mater Sci. 2013;68:314–319.
+WANG ET AL. | 651
+ 2767441x, 2024, 5, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/idm2.12180 by Readcube (Labtiva Inc.), Wiley Online Library on [04/08/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+[36] Jain A, Ong SP, Hautier G, et al. Commentary: The
+Materials Project: a materials genome approach to
+accelerating materials innovation. APL Mater. 2013;1(1):
+011002.
+[37] Jain A, Persson KA, Ceder G. Research Update: the
+materials genome initiative: data sharing and the impact
+of collaborative ab initio databases. APL Mater. 2016;4(5):
+053102.
+[38] Mathew K, Montoya JH, Faghaninia A, et al. Atomate: a
+high‐level interface to generate, execute, and analyze
+computational materials science workflows. Comput Mater
+Sci. 2017;139:140–152.
+[39] Pizzi G, Cepellotti A, Sabatini R, Marzari N, Kozinsky B.
+AiiDA: automated interactive infrastructure and database
+for computational science. Comput Mater Sci. 2016;111:
+218–230.
+[40] Curtarolo S, Setyawan W, Wang S, et al. AFLOWLIB. ORG:
+a distributed materials properties repository from high‐
+throughput ab initio calculations. Comput Mater Sci. 2012;
+58:227–235.
+[41] Hicks D, Toher C, Ford DC, et al. AFLOW‐XtalFinder: a
+reliable choice to identify crystalline prototypes. npj
+Comput Mater. 2021;7(1):30.
+[42] Hjorth Larsen A, Jørgen Mortensen J, Blomqvist J, et al. The
+atomic simulation environment—a Python library for
+working with atoms. J Phys Condens Matter. 2017;29(27):
+273002.
+[43] Glick J. Ontologies and databases knowledge engineering
+for materials informatics. Informatics for Materials
+Science and Engineering. Butterworth‐Heinemann; 2013:
+147–187.
+[44] Himanen L, Geurts A, Foster AS, Rinke P. Data‐driven
+materials science: status, challenges, and perspectives. Adv
+Sci. 2019;6(21):1900808.
+[45] Zhu L, Zhou J, Sun Z. Materials data toward machine
+learning: advances and challenges. J Phys Chem Lett.
+2022;13(18):3965–3977.
+[46] O'Mara J, Meredig B, Michel K. Materials data infrastructure: a case study of the citrination platform to
+examine data import, storage, and access. JOM. 2016;68(8):
+2031–2034.
+[47] Blaiszik B, Chard K, Pruyne J, Ananthakrishnan R,
+Tuecke S, Foster I. The materials data facility: data services
+to advance materials science research. JOM. 2016;68(8):
+2045–2052.
+[48] Zhou T, Song Z, Sundmacher K. Big data creates new
+opportunities for materials research: a review on methods
+and applications of machine learning for materials design.
+Engineering. 2019;5(6):1017–1026.
+[49] Rodrigues JF, Florea L, de Oliveira MCF, Diamond D,
+Oliveira ON. Big data and machine learning for materials
+science. Discover Mater. 2021;1(1):12.
+[50] Mayer‐Schönberger V, Cukier K. Big Data: A Revolution
+That Will Transform How We Live, Work, and Think.
+Houghton Mifflin Harcourt; 2013.
+[51] Belsky A, Hellenbrandt M, Karen VL, Luksch P. New
+developments in the inorganic crystal structure database
+(ICSD): accessibility in support of materials research and
+design. Acta Crystallogr B. 2002;58(3):364–369.
+[52] Curtarolo S, Setyawan W, Hart GLW, et al. AFLOW: an
+automatic framework for high‐throughput materials discovery. Comput Mater Sci. 2012;58:218–226.
+[53] Gossett E, Toher C, Oses C, et al. AFLOW‐ML: a RESTful
+API for machine‐learning predictions of materials properties. Comput Mater Sci. 2018;152:134–145.
+[54] Yang X, Wang Z, Zhao X, Song J, Zhang M, Liu H.
+MatCloud: a high‐throughput computational infrastructure
+for integrated management of materials simulation, data
+and resources. Comput Mater Sci. 2018;146:319–333.
+[55] Draxl C, Scheffler M. The NOMAD laboratory: from data
+sharing to artificial intelligence. J Phys: Mater. 2019;2(3):
+036001.
+[56] Quirós M, Gražulis S, Girdzijauskaitė S, Merkys A,
+Vaitkus A. Using SMILES strings for the description of
+chemical connectivity in the crystallography open database.
+J Cheminf. 2018;10(1):23.
+[57] Wang G, Li K, Peng L, Zhang Y, Zhou J, Sun Z. High‐
+throughput automatic integrated material calculations and
+data management intelligent platform and the application
+in novel alloys. Acta Metall Sin. 2021;58(1):75–88.
+[58] Jordan MI, Mitchell TM. Machine learning: trends, perspectives, and prospects. Science. 2015;349(6245):255–260.
+[59] Pederson R, Kalita B, Burke K. Machine learning
+and density functional theory. Nat Rev Phys. 2022;4(6):
+357–358.
+[60] Liu ZK. Ocean of data: integrating first‐principles calculations and CALPHAD modeling with machine learning.
+J Phase Equilib Diff. 2018;39(5):635–649.
+[61] Abadi M, Agarwal A, Barham P, et al. Tensorflow: large‐
+scale machine learning on heterogeneous distributed
+systems. arXiv. 2016. https://arxiv.org/abs/1603.04467
+[62] Paszke A, Gross S, Massa F, et al. Pytorch: an imperative
+style, high‐performance deep learning library. Adv Neu Inf
+Pro Sys. 2019;721:8026–8037.
+[63] Ward L, Dunn A, Faghaninia A, et al. Matminer: an open
+source toolkit for materials data mining. Comput Mater Sci.
+2018;152:60–69.
+[64] Wang G, Sun Z. Atomic insights into device‐scale phase‐
+change memory materials using machine learning potential.
+Sci Bull. 2023;68(24):3105–3107.
+[65] Wang G, Sun Y, Zhou J, Sun Z. PotentialMind: graph
+convolutional machine learning potential for Sb–Te binary
+compounds of multiple stoichiometries. J Phys Chem. 2023;
+127(51):24724–24733.
+[66] Cai J, Luo J, Wang S, Yang S. Feature selection in machine
+learning: a new perspective. Neurocomputing. 2018;300:
+70–79.
+[67] Khalid S, Khalil T, Nasreen S. A survey of feature selection
+and feature extraction techniques in machine learning. In:
+2014 Science and Information Conference. Vol 1. 2014;
+372–378. doi:10.1109/SAI.2014.6918213
+[68] Burlacu B, Kommenda M, Kronberger G, Winkler S,
+Affenzeller M. Symbolic regression in materials science:
+discovering interatomic potentials from data. Genetic Programming Theory and Practice XIX. Springer; 2023:1–30.
+[69] Angelis D, Sofos F, Karakasidis TE. Artificial intelligence in
+physical sciences: symbolic regression trends and perspectives. Arch Comput Methods Eng. 2023;30(6):3845–3865.
+652 | WANG ET AL.
+ 2767441x, 2024, 5, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/idm2.12180 by Readcube (Labtiva Inc.), Wiley Online Library on [04/08/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+[70] Wang H, Fu T, Du Y, et al. Scientific discovery in the age of
+artificial intelligence. Nature. 2023;620(7972):47–60.
+[71] Hamilton WL, Ying R, Leskovec J. Representation learning
+on graphs: methods and applications. arXiv. 2018. https://
+arxiv.org/abs/1709.05584
+[72] Bengio Y, Courville A, Vincent P. Representation learning: a
+review and new perspectives. IEEE Trans Pattern Anal
+Mach Intell. 2013;35(8):1798–1828.
+[73] Baldi P. Autoencoders, unsupervised learning, and deep
+architectures. Proceedings of ICML Workshop on Unsupervised
+and Transfer Learning. JMLR Workshop and Conference
+Proceedings, 37–49; 2012.
+[74] Makhzani A, Shlens J, Jaitly N, Goodfellow I, Frey B.
+Adversarial autoencoders. arXiv. 2015. https://arxiv.org/
+abs/1511.05644
+[75] Ackley DH, Hinton GE, Sejnowski TJ, Ackley D, Hinton G,
+Sejnowski T. A learning algorithm for Boltzmann machines.
+Cogn Sci. 1985;9(1):147–169.
+[76] Chen M, Radford A, Child R, et al. Generative pretraining
+from pixels. International Conference on Machine Learning,
+PMLR, 1691–1703; 2020.
+[77] Creswell A, White T, Dumoulin V, Arulkumaran K,
+Sengupta B, Bharath AA. Generative adversarial networks: an overview. IEEE Signal Process Mag. 2018;35(1):
+53–65.
+[78] Goodfellow I, Pouget‐Abadie J, Mirza M, et al. Generative
+adversarial networks. Commun ACM. 2020;63(11):139–144.
+[79] Karras T, Laine S, Aila T. A style‐based generator architecture
+for generative adversarial networks. Proceedings of the
+IEEE/CVF Conference On Computer Vision And Pattern
+Recognition, Vol 1, 4401–4410; 2019.
+[80] Mao X, Li Q, Xie H, Lau RY, Wang Z, Paul Smolley S. Least
+squares generative adversarial networks. Proceedings of the
+IEEE International Conference on Computer Vision. Vol 1,
+2794–2802; 2017.
+[81] Goodfellow I, Pouget‐Abadie J, Mirza M, et al. Generative
+adversarial nets. Adv Neural Inf Process Syst. 2014;27:2672–2680.
+[82] Kingma DP, Welling M, et al. An introduction to variational
+autoencoders. Found Trends Mach Learn. 2019;12(4):307–392.
+[83] Doersch C. Tutorial on variational autoencoders. arXiv.
+2016. https://arxiv.org/abs/1606.05908
+[84] Salakhutdinov R, Hinton G. Deep Boltzmann machines. In:
+Proceedings of the Twelth International Conference on
+Artificial Intelligence and Statistics. Vol 5. Proceedings of
+Machine Learning Research; 2009:448–455. https://
+proceedings.mlr.press/v5/salakhutdinov09a
+[85] Pyhne HO, Savic DA. Symbolic regression using object‐oriented
+genetic programming (in C++). Centre For Systems And
+Control Engineering (Report No. 96/04). School of Engineering,
+University of Exeter, Exeter, United Kingdom; 1996:72.
+[86] Savic DA, Walters GA, Davidson JW. A genetic programming approach to rainfall‐runoff modelling. Water
+Resour Manag. 1999;13:219–231.
+[87] Augusto DA, Barbosa HJC. Symbolic regression via genetic
+programming. Proceedings. Vol.1. Sixth Brazilian Symposium on Neural Networks, 173–178. IEEE; 2000.
+[88] Moraglio A, Krawiec K, Johnson CG. Geometric Semantic
+Genetic Programming. Parallel Problem Solving from
+Nature ‐ PPSN XII. Vol 7491. Lecture Notes in Computer
+Science. Vol 7491. Springer; 2012:21–31.
+[89] Icke I, Bongard JC. Improving genetic programming based
+symbolic regression using deterministic machine learning.
+IEEE Congress on Evolutionary Computation, 1763–1770.
+IEEE; 2013.
+[90] Wilson DG, Miller JF, Cussat‐Blanc S, Luga H. Positional
+Cartesian genetic programming. arXiv. 2018. https://arxiv.
+org/abs/1810.04119
+[91] de Franca FO, Aldeia GSI. Interaction–transformation
+evolutionary algorithm for symbolic regression. Evol
+Comput. 2021;29(3):367–390.
+[92] Virgolin M, Alderliesten T, Witteveen C, Bosman P. A
+model‐based genetic programming approach for symbolic
+regression of small expressions. arXiv. 2019. https://arxiv.
+org/abs/1904.02050.
+[93] Burlacu B, Kronberger G, Kommenda M. Operon C++: an
+efficient genetic programming framework for symbolic
+regression. Proceedings of the Genetic and Evolutionary
+Computation Conference Companion, 1562–1570. Association for Computing Machinery; 2020.
+[94] Virgolin M, Alderliesten T, Witteveen C, Bosman PAN.
+Improving model‐based genetic programming for symbolic
+regression of small expressions. Evol Comput. 2021;29(2):
+211–237.
+[95] Brence J, Todorovski L, Džeroski S. Probabilistic grammars
+for equation discovery. Knowledge‐Based Syst. 2021;224:
+107077.
+[96] Virgolin M, Bosman P. Coefficient mutation in the gene‐pool
+optimal mixing evolutionary algorithm for symbolic regression.
+Proceedings of the Genetic and Evolutionary Computation
+Conference Companion, 2289–2297, Association for Computing
+Machinery; 2022.
+[97] Franca FO. Transformation‐interaction‐rational representation for symbolic regression. Proceedings of the Genetic and
+Evolutionary Computation Conference, Vol 1, 920–928.
+Association for Computing Machinery; 2022.
+[98] Cava WL, Singh T, Taggart J, Suri S, Moore J. Learning
+concise representations for regression by evolving networks of trees. arXiv. 2018. https://arxiv.org/abs/1807.
+00981
+[99] Olivetti De França F. A greedy search tree heuristic for
+symbolic regression. Inf Sci. 2018;442‐443:18–32.
+[100] Zhang H, Zhou A, Qian H, Zhang H. PS‐Tree: a piecewise
+symbolic regression tree. Swarm Evol Comput. 2022;71:
+101061.
+[101] Baume F, Heckman JJ, Hübner M, Torres E, Turner AP,
+Yu X. SymTrees and multi‐sector QFTs. arXiv. 2023. https://
+arxiv.org/abs/2310.12980.
+[102] Tohme T, Liu D, Youcef‐Toumi K. GSR: a generalized
+symbolic regression approach. arXiv. 2023. https://arxiv.
+org/abs/2205.15569
+[103] McRee RK. Symbolic regression using nearest neighbor
+indexing. Proceedings of the 12th Annual Conference Companion on Genetic and Evolutionary Computation, 1983–1990.
+Association for Computing Machinery; 2010.
+[104] Dubčáková R. Eureqa: software review. Genet Program
+Evolvable Mach. 2011;12(2):173–178.
+WANG ET AL. | 653
+ 2767441x, 2024, 5, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/idm2.12180 by Readcube (Labtiva Inc.), Wiley Online Library on [04/08/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+[105] Austel V, Dash S, Gunluk O, et al. Globally optimal
+symbolic regression. arXiv. 2017. https://arxiv.org/abs/
+1710.10720
+[106] Igarashi Y, Takenaka H, Nakanishi‐Ohno Y, Uemura M,
+Ikeda S, Okada M. Exhaustive search for sparse variable
+selection in linear regression. J Phys Soc Jpn. 2018;
+87(4):044802.
+[107] Ouyang R, Curtarolo S, Ahmetcik E, Scheffler M,
+Ghiringhelli LM. SISSO: a compressed‐sensing method for
+identifying the best low‐dimensional descriptor in an
+immensity of offered candidates. Phys Rev Mater. 2018;
+2(8):083802.
+[108] Ouyang R, Ahmetcik E, Carbogno C, Scheffler M,
+Ghiringhelli LM. Simultaneous learning of several materials
+properties from incomplete databases with multi‐task
+SISSO. J Phys: Mater. 2019;2(2):024002.
+[109] Jin Y, Fu W, Kang J, Guo J, Guo J. Bayesian symbolic
+regression. arXiv. 2019. https://arxiv.org/abs/1910.08892
+[110] Kommenda M, Burlacu B, Kronberger G, Affenzeller M.
+Parameter identification for symbolic regression using
+nonlinear least squares. Genet Program Evolvable Mach.
+2019;21(3):471–501.
+[111] Peters J, Schaal S. Reinforcement learning of motor skills
+with policy gradients. Neural Net. 2008;21(4):682–697.
+[112] Cranmer M, Tamayo D, Rein H, et al. A Bayesian neural
+network predicts the dissolution of compact planetary
+systems. Proc Natl Acad Sci. 2021;118(40):e2026053118.
+[113] Werner M, Junginger A, Hennig P, Martius G. Informed
+equation learning. arXiv. 2021. https://arxiv.org/abs/2105.
+06331
+[114] He B, Lu Q, Yang Q, Luo J, Wang Z. Taylor genetic
+programming for symbolic regression. Proceedings of
+the Genetic and Evolutionary Computation Conference,
+946–954. Association for Computing Machinery; 2022.
+[115] Sun F, Liu Y, Wang JX, Sun H. Symbolic physics learner:
+Discovering governing equations via monte carlo tree
+search. arXiv. 2022. https://arxiv.org/abs/2205.13134
+[116] Vázquez D, Guimerà R, Sales‐Pardo M, Guillén‐Gosálbez G.
+Automatic modeling of socioeconomic drivers of energy
+consumption and pollution using Bayesian symbolic regression. Sustain Prod Consum. 2022;30:596–607.
+[117] Kronberger G, De Franca FO, Burlacu B, Haider C,
+Kommenda M. Shape‐constrained symbolic regression—
+improving extrapolation with prior knowledge. Evol
+Comput. 2022;30(1):75–98.
+[118] Rivero D, Fernandez‐Blanco E, Pazos A. DoME: a deterministic technique for equation development and Symbolic
+Regression. Expert Syst Appl. 2022;198:116712.
+[119] Wang C, Zhang Y, Wen C, et al. Symbolic regression in
+materials science via dimension‐synchronous‐computation.
+J Mater Sci Technol. 2022;122:77–83.
+[120] Kartelj A, Djukanović M. RILS‐ROLS: robust symbolic
+regression via iterated local search and ordinary least
+squares. J Big Data. 2023;10(1):71.
+[121] Moscato P, Ciezak A, Noman N. Dynamic depth for better
+generalization in continued fraction regression. Proceedings
+of the Genetic and Evolutionary Computation Conference,
+520–528. Association for Computing Machinery; 2023.
+[122] Petersen BK. Deep symbolic regression: recovering mathematical expressions from data via policy gradients. arXiv.
+2019. https://arxiv.org/abs/1912.04871
+[123] Costa A, Dangovski R, Dugan O, et al. Fast neural models
+for symbolic regression at scale. arXiv. 2020. https://arxiv.
+org/abs/2007.10784
+[124] Udrescu SM, Tegmark M. AI Feynman: a physics‐inspired
+method for symbolic regression. Sci Adv. 2020;6(16):eaay2631.
+[125] Udrescu S, Tan A, Feng J, Neto O, Wu T, Tegmark MAI.
+Feynman 2.0: pareto‐optimal symbolic regression exploiting
+graph modularity. arXiv. 2020. https://arxiv.org/abs/2006.10782
+[126] Biggio L, Bendinelli T, Neitz A, Lucchi A, Parascandolo G.
+Neural symbolic regression that scales. arXiv. 2021. https://
+arxiv.org/abs/2106.06427
+[127] Petersen BK, Larma ML, Mundhenk TN, Santiago CP,
+Kim SK, Kim JT. Deep symbolic regression: recovering
+mathematical expressions from data via risk‐seeking policy
+gradients. arXiv. 2021. https://arxiv.org/abs/1912.04871
+[128] Xu D, Fekri F. Interpretable model‐based hierarchical
+reinforcement learning using inductive logic programming.
+arXiv. 2021. https://arxiv.org/abs/2106.11417
+[129] Kim S, Lu PY, Mukherjee S, et al. Integration of neural
+network‐based symbolic regression in deep learning for
+scientific discovery. IEEE Trans Neural Netw Learn Syst.
+2021;32(9):4166–4177.
+[130] Mundhenk TN, Landajuela M, Glatt R, Santiago CP,
+Faissol DM, Petersen BK. Symbolic regression via neural‐
+guided genetic programming population seeding. arXiv.
+2021. https://arxiv.org/abs/2111.00053
+[131] Ascoli S, Kamienny PA, Lample G, Charton F. Deep
+symbolic regression for recurrent sequences. arXiv. 2022.
+https://arxiv.org/abs/2201.04600
+[132] Liu X, Wang X, Gao S, et al. Finding predictive models for
+singlet fission by machine learning. npj Comput Mater.
+2022;8(1):70–79.
+[133] Bendinelli T, Biggio L, Kamienny PA. Controllable neural
+symbolic regression. arXiv. 2023. https://arxiv.org/abs/2304.
+10336
+[134] Chu X, Zhao H, Xu E, Qi H, Chen M, Shao H. Neural
+symbolic regression using control variables. arXiv. 2023.
+https://arxiv.org/abs/2306.04718
+[135] Kubalík J, Derner E, Babuška R. Toward physically
+plausible data‐driven models: a novel neural network
+approach to symbolic regression. IEEE Access. 2023;11:
+61481–61501.
+[136] Pitzer E, Kronberger G. Smooth symbolic regression: transformation of symbolic regression into a real‐valued optimization
+problem. Computer Aided Systems Theory–EUROCAST 2015,
+375–38. Springer, 2015.
+[137] Kusner MJ, Paige B, Hernández‐Lobato JM. Grammar
+variational autoencoder. International Conference on
+Machine Learning, 1945–1954. PMLR; 2017.
+[138] Udrescu SM, Tegmark M. Symbolic pregression: discovering
+physical laws from distorted video. Phys Rev E. 2021;
+103(4):043307.
+[139] Valipour M, You B, Panju M, Ghodsi A. SymbolicGPT: a
+generative transformer model for symbolic regression.
+arXiv. 2021. https://arxiv.org/abs/2106.14131
+654 | WANG ET AL.
+ 2767441x, 2024, 5, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/idm2.12180 by Readcube (Labtiva Inc.), Wiley Online Library on [04/08/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+[140] Kubalík J, Derner E, Babuška R. Multi‐objective symbolic
+regression for physics‐aware dynamic modeling. Expert
+Syst Appl. 2021;182:115210.
+[141] Vastl M, Kulhánek J, Kubalík J, Derner E, Babuška R.
+SymFormer: end‐to‐end symbolic regression using transformer‐
+based architecture. arXiv. 2022. https://arxiv.org/abs/2205.
+15764
+[142] Virgolin M, Pissis S. Symbolic regression is NP‐hard. arXiv.
+2022. https://arxiv.org/abs/2207.01018
+[143] Narayanan H, Cruz Bournazou MN, Guillén Gosálbez G,
+Butté A. Functional‐Hybrid modeling through automated
+adaptive symbolic regression for interpretable mathematical
+expressions. Chem Eng J. 2022;430:133032.
+[144] Kamienny PA, d'Ascoli S, Lample G, Charton F. End‐to‐end
+symbolic regression with transformers. arXiv. 2022. https://
+arxiv.org/abs/2204.10532
+[145] Li J, Yuan Y, Shen H. Symbolic expression transformer: a
+computer vision approach for symbolic regression. arXiv.
+2022. https://arxiv.org/abs/2205.11798
+[146] Becker S, Klein M, Neitz A, Parascandolo G, Kilbertus N.
+Predicting ordinary differential equations with transformers. arXiv. 2023. https://arxiv.org/abs/2307.12617
+[147] Kamienny PA, Lample G, Lamprier S, Virgolin M. Deep
+generative symbolic regression with monte‐carlo‐tree‐
+search. arXiv. 2023. https://arxiv.org/abs/2302.11223
+[148] Jin P, Huang D, Zhang R, et al. Online symbolic regression
+with informative query. ArXiv. 2023. https://arxiv.org/abs/
+2302.10539.
+[149] Li W, Li W, Sun L, et al. Transformer‐based model for symbolic
+regression via joint supervised learning. The Eleventh International Conference on Learning Representations; 2023.
+[150] Popov S, Lazarev M, Belavin V, Derkach D, Ustyuzhanin A.
+Symbolic expression generation via variational auto‐
+encoder. PeerJ Comp Sci. 2023;9:e1241.
+[151] Shojaee P, Meidani K, Farimani A, Reddy C. Transformer‐
+based planning for symbolic regression. arXiv. 2023. https://
+arxiv.org/abs/2303.06833
+[152] Cranmer M, Sanchez‐Gonzalez A, Battaglia P, et al. Discovering
+symbolic models from deep learning with inductive biases.
+arXiv. 2020. https://arxiv.org/abs/2006.11287
+[153] Forrest S. Genetic algorithms: principles of natural selection
+applied to computation. Science. 1993;261(5123):872–878.
+[154] Koza J. Genetic programming as a means for programming
+computers by natural selection. Stat Comput. 1994;4:87–112.
+[155] Gong C, Bryan J, Furcoiu A, Su Q, Grobe R. Evolutionary
+symbolic regression from a probabilistic perspective. SN
+Comput Sci. 2022;3(3):209.
+[156] Makke N, Chawla S. Interpretable scientific discovery with
+symbolic regression: a review. arXiv. 2022. https://arxiv.org/
+abs/2211.10873
+[157] Wagner S, Kronberger G, Beham A, et al. Architecture and
+design of the heuristiclab optimization environment.
+Advanced Methods And Applications In Computational
+Intelligence. Topics in Intelligent Engineering and Informatics. Springer; 2014:197–261.
+[158] Engle MR, Sahinidis NV. Deterministic symbolic regression
+with derivative information: general methodology and
+application to equations of state. AIChE J. 2022;68(6):
+e17457.
+[159] Lucena‐Sánchez E, Sciavicco G, Stan IE. Feature and language
+selection in temporal symbolic regression for interpretable air
+quality modelling. Algorithms. 2021;14(3):76.
+[160] Holt S, Qian Z, van der Schaar M. Deep generative symbolic
+regression. International Conference on Learning Representations; 2023.
+[161] Vaswani A, Shazeer N, Parmar N, et al. Attention is all you
+need. arXiv. 2023. https://arxiv.org/abs/1706.03762
+[162] Orzechowski P, Cava WL, Moore J. Where are we now: a
+large benchmark study of recent symbolic regression
+methods. Proceedings of the Genetic and Evolutionary
+Computation Conference, 1183–1190. Association for Computing Machinery; 2018.
+[163] Žegklitz J, Pošík P. Benchmarking state‐of‐the‐art symbolic
+regression algorithms. Genet Program Evolvable Mach. 2021;
+22(1):5–33.
+[164] La Cava W, Orzechowski P, Burlacu B, et al. Contemporary
+symbolic regression methods and their relative performance. arXiv. 2021. https://arxiv.org/abs/2107.14351
+[165] Matsubara Y, Chiba N, Igarashi R, Taniai T, Ushiku Y.
+Rethinking symbolic regression datasets and benchmarks
+for scientific discovery. arXiv. 2022. https://arxiv.org/abs/
+2206.10540
+[166] Gilpin WChaos as an interpretable benchmark for forecasting and data‐driven modelling. arXiv. 2023. https://arxiv.
+org/abs/2110.05266
+[167] Zhang H, Zhou A. RL‐GEP: Symbolic regression via gene
+expression programming and reinforcement learning. International Joint Conference on Neural Networks (IJCNN),
+Vol 1, 1–8; 2021.
+[168] Guo Z, Hu S, Han ZK, Ouyang R. Improving symbolic
+regression for predicting materials properties with iterative
+variable selection. J Chem Theory Comput. 2022;18(8):
+4945–4951.
+[169] Zhang L, Hu W, He M, Li S. Optimizing photoelectrochemical photovoltage and stability of molecular interlayer‐
+modified halide perovskite in water: insights from interpretable machine learning and symbolic regression. ACS
+Appl Energy Mater. 2023;6(10):5177–5187.
+[170] Hu W, Zhang L. First‐principles, machine learning and
+symbolic regression modelling for organic molecule adsorption on two‐dimensional CaO surface. J Mol Graph Modell.
+2023;124:108530.
+[171] O'Connor NJ, Jonayat ASM, Janik MJ, Senftle TP. Interaction trends between single metal atoms and oxide supports
+identified with density functional theory and statistical
+learning. Nat Catalysis. 2018;1(7):531–539.
+[172] Tan B, Liang YC, Chen Q, Zhang L, Ma JJ. Discovery of a
+new criterion for predicting glass‐forming ability based on
+symbolic regression and artificial neural network. J Appl
+Phys. 2022;132(12):125104.
+[173] Mao Y, Yang H, Sheng Y, et al. Prediction and classification
+of formation energies of binary compounds by machine
+learning: an approach without crystal structure information.
+ACS Omega. 2021;6(22):14533–14541.
+[174] Birky D, Garbrecht K, Emery J, Alleman C, Bomarito G,
+Hochhalter J. Generalizing the Gurson model using symbolic
+regression and transfer learning to relax inherent assumptions.
+Modell Simul Mater Sci Eng. 2023;31(8):085005.
+WANG ET AL. | 655
+ 2767441x, 2024, 5, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/idm2.12180 by Readcube (Labtiva Inc.), Wiley Online Library on [04/08/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+[175] Schmidt M, Lipson H. Distilling free‐form natural laws from
+experimental data. Science. 2009;324(5923):81–85.
+[176] Versino D, Tonda A, Bronkhorst CA. Data driven modeling
+of plastic deformation. Comput Methods Appl Mech Eng.
+2017;318:981–1004.
+[177] Xiong J, Zhang T, Shi S. Machine learning of mechanical
+properties of steels. Sci China: Technol Sci. 2020;63(7):
+1247–1255.
+[178] Kabliman E, Kolody AH, Kronsteiner J, Kommenda M,
+Kronberger G. Application of symbolic regression for
+constitutive modeling of plastic deformation. Appl Eng Sci.
+2021;6:100052.
+[179] Kabliman E, Kolody AH, Kommenda M, Kronberger G.
+Prediction of stress‐strain curves for aluminium alloys using
+symbolic regression. Proceedings of the 22nd International
+ESAFORM Conference on Material Forming. Vol 2113,
+180009. AIP Publishing LLC; 2019.
+[180] Montes de Oca Zapiain D, Lane JMD, Carroll JD, et al.
+Establishing a data‐driven strength model for β‐tin by
+performing symbolic regression using genetic programming.
+Comput Mater Sci. 2023;218:111967.
+[181] Li Z, Long Z, Lei S, Tang Y. A simple, quantitative
+expression for understanding and evaluating the yield
+strength of amorphous alloys based on symbolic regression
+and dimensional calculation. J Non‐Cryst Solids. 2023;
+614:122409.
+[182] Weber G, Pinz M, Ghosh S. Machine learning‐aided parametrically homogenized crystal plasticity model (PHCPM) for single
+crystal Ni‐based superalloys. JOM. 2020;72:4404–4419.
+[183] Halder C, Madej L, Pietrzyk M, Chakraborti N. Optimization of cellular automata model for the heating of dual‐
+phase steel by genetic algorithm and genetic programming.
+Mater Manuf Process. 2015;30(4):552–562.
+[184] Sastry K, Johnson DD, Goldberg DE, Bellon P. Genetic
+programming for multiscale modeling. Int J Multiscale
+Comput Eng. 2004;2(2):239–256.
+[185] Gandomi AH, Sajedi S, Kiani B, Huang Q. Genetic
+programming for experimental big data mining: a case
+study on concrete creep formulation. Autom Constr. 2016;
+70:89–97.
+[186] Tantardini C, Zakaryan HA, Han ZK, Levchenko SV,
+Kvashnin AG. Hardness descriptor derived from symbolic
+regression. arXiv. 2023. https://arxiv.org/abs/2304.12880
+[187] Foppa L, Purcell TAR, Levchenko SV, Scheffler M,
+Ghiringhelli LM. Hierarchical symbolic regression for
+identifying key physical parameters correlated with bulk
+properties of perovskites. Phys Rev Lett. 2022;129(5):
+055301.
+[188] Yang C, Chong X, Hu M, et al. Accelerating the discovery of
+hybrid perovskites with targeted band gaps via interpretable
+machine learning. ACS Appl Mater Interfaces. 2023;15(34):
+40419–40427.
+[189] Baloch AAB, Albadwawi O, AlShehhi B, Alberts V.
+Bandgap model using symbolic regression for environmentally compatible lead‐free inorganic double perovskites.
+IEEE 49th Photovoltaics Specialists Conference (PVSC),
+0452–0455. IEEE; 2022.
+[190] Zhang L, Su T, Li M, et al. Accurate band gap prediction
+based on an interpretable Δ‐machine learning. Mater Today
+Commun. 2022;33:104630.
+[191] Loftis C, Yuan K, Zhao Y, Hu M, Hu J. Lattice thermal
+conductivity prediction using symbolic regression and
+machine learning. J Phys Chem A. 2021;125(1):435–450.
+[192] Purcell TAR, Scheffler M, Ghiringhelli LM, Carbogno C.
+Accelerating materials‐space exploration for thermal insulators
+by mapping materials properties via artificial intelligence. npj
+Comput Mater. 2023;9(1):112.
+[193] Flores E, Wölke C, Yan P, et al. Learning the laws of
+lithium‐ion transport in electrolytes using symbolic regression. Digit Discov. 2022;1(4):440–447.
+[194] Zhong Y, Hu X, Sarker D, et al. Data analytics accelerates
+the experimental discovery of Cu1−xAgxGaTe2 based thermoelectric chalcogenides with high figure of merit. J Mater
+Chem A. 2023;11(35):18651–18659.
+[195] Wang E, Wang G, Zhou J, Sun Z. MBenes‐supported single
+atom catalysts for oxygen reduction and oxygen evolution
+reaction by first‐principles study and machine learning. Natl
+Sci Open. 2024;3:20230043.
+[196] Ram S, Choi GH, Lee AS, Lee SC, Bhattacharjee S.
+Combining first‐principles modeling and symbolic regression for designing efficient single‐atom catalysts in the
+oxygen evolution reaction on Mo2CO2 MXenes. ACS Appl
+Mater Interfaces. 2023;15(37):43702–43711.
+[197] Kenoufi A, Kholmurodov K. Symbolic regression of inter‐
+atomic potentials via genetic programming. Biol Chem Res.
+2015;2:1–10.
+[198] Hernandez A, Balasubramanian A, Yuan F, Mason SAM,
+Mueller T. Fast, accurate, and transferable many‐body interatomic potentials by symbolic regression. npj Comput Mater.
+2019;5:112.
+[199] Hernandez A, Mueller T. Generalizability of functional
+forms for interatomic potential models discovered by
+symbolic regression. Phys Rev Mater. 2023;7(5):053804.
+[200] Pospichal P, Murphy E, O'Neill M, Schwarz J, Jaros J.
+Acceleration of grammatical evolution using graphics processing units: computational intelligence on consumer games and
+graphics hardware. Proceedings of the 13th Annual Conference
+Companion on Genetic and Evolutionary Computation,
+431–438. Association for Computing Machinery; 2011.
+[201] Van Heeswijk M, Miche Y, Oja E, Lendasse A. GPU‐
+accelerated and parallelized ELM ensembles for large‐scale
+regression. Neurocomputing. 2011;74(16):2430–2437.
+[202] Chen Q, Xue B, Zhang M. Genetic programming for
+instance transfer learning in symbolic regression. IEEE
+Trans. Cybernet. 2022;52(1):25–38.
+[203] Muller B, Al‐Sahaf H, Xue B, Zhang M. Transfer learning: a
+building block selection mechanism in genetic programming for symbolic regression. Proceedings of the Genetic
+and Evolutionary Computation Conference Companion,
+350–351. Association for Computing Machinery; 2019.
+[204] Haslam E, Xue B, Zhang M. Further investigation on
+genetic programming with transfer learning for symbolic
+regression. IEEE Congress on Evolutionary Computation
+(CEC), 3598–3605. IEEE; 2016.
+656 | WANG ET AL.
+ 2767441x, 2024, 5, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/idm2.12180 by Readcube (Labtiva Inc.), Wiley Online Library on [04/08/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+[205] Otte C. Safe and interpretable machine learning: a
+methodological review. Computational Intelligence in Intelligent Data Analysis. Vol 445. Springer; 2013:111–122.
+[206] Smits GF, Kotanchek M. Pareto‐front exploitation in
+symbolic regression. Genetic Programming Theory and
+Practice II. Vol 8. Springer; 2005:283–299.
+AUTHOR BIOGRAPHIES
+Dr. Guanjie Wang is an assistant
+professor of the School of Integrated
+Circuit Science and Engineering at Beihang University, China. His current
+research interests focus on machine‐
+learning algorithms, high‐throughput
+calculations, materials databases, and the properties
+of phase‐change materials for random access memory
+for neuro‐inspired computing devices.
+Prof. Zhimei Sun is the Cheung Kong
+Scholar Chair Professor of the School of
+Materials Science and Engineering at
+Beihang University, China. Her research
+interests include materials genome engineering, low‐dimensional magnetic
+materials, phase‐change materials for random access
+memory, and properties of two‐dimensional materials
+by both experiments and computational simulations.
+How to cite this article: Wang G, Wang E, Li Z,
+Zhou J, Sun Z. Exploring the mathematic
+equations behind the materials science data using
+interpretable symbolic regression. Interdiscip
+Mater. 2024;3:637–657. doi:10.1002/idm2.12180
+WANG ET AL. | 657
+ 2767441x, 2024, 5, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/idm2.12180 by Readcube (Labtiva Inc.), Wiley Online Library on [04/08/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License

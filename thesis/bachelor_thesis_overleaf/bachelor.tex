@@ -1,0 +1,791 @@
+\documentclass[12pt,oneside,bibtotoc,liststotoc]{scrbook}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage[ngerman,english]{babel}
+\usepackage{a4wide}
+\usepackage{parskip}
+\usepackage[bookmarks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[right]{eurosym}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage[toc,page]{appendix}
+
+\usepackage[numbers]{natbib}
+\DeclareUnicodeCharacter{2192}{ to}
+
+\usepackage{lstautogobble}
+
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{listings}
+\usepackage{color}
+\usepackage[usenames,dvipsnames]{xcolor}
+\colorlet{punct}{red!60!black}
+\definecolor{background}{HTML}{EEEEEE}
+\definecolor{delim}{RGB}{20,105,176}
+\colorlet{numb}{magenta!60!black}
+\lstdefinelanguage{json}{
+    basicstyle=\footnotesize\ttfamily,
+    numbers=left,
+    tabsize=2,
+    lineskip={-1.0pt},
+    numberstyle=\scriptsize,
+    stepnumber=1,
+    numbersep=8pt,
+    showstringspaces=false,
+    breaklines=true,
+    frame=lines,
+    backgroundcolor=\color{background},
+    literate=
+      *{:}{{{\color{punct}{:}}}}{1}
+      {,}{{{\color{punct}{,}}}}{1}
+      {\{}{{{\color{delim}{\{}}}}{1}
+      {\}}{{{\color{delim}{\}}}}}{1}
+      {[}{{{\color{delim}{[}}}}{1}
+      {]}{{{\color{delim}{]}}}}{1},
+}
+\lstdefinelanguage{rdf}{
+    basicstyle={\footnotesize\ttfamily},
+    lineskip={-1.0pt},
+    numbers=left,
+    numberstyle=\scriptsize,
+    stepnumber=1,
+    numbersep=8pt,
+    showstringspaces=false,
+    breaklines=true,
+    frame=lines,
+    tabsize=2,
+    backgroundcolor=\color{background},
+    keywordstyle={\bfseries\color{Blue}},
+    commentstyle={\color{Red}\textit},
+    stringstyle=\color{Magenta},
+    morekeywords={ql,rml,rr,schema},
+    moredelim=*[s][\ttfamily]{:}{:} %Newly added line
+}
+\lstdefinelanguage{xml}{
+    basicstyle={\footnotesize\ttfamily},
+    lineskip={-1.0pt},
+    numbers=left,
+    tabsize=2,
+    numberstyle=\scriptsize,
+    stepnumber=1,
+    numbersep=8pt,
+    showstringspaces=false,
+    breaklines=true,
+    frame=lines,
+    backgroundcolor=\color{background},
+    keywordstyle={\bfseries\color{Blue}},
+    commentstyle={\color{Red}\textit},
+    stringstyle=\color{Magenta},
+    morekeywords={ServiceProvider,Document,Address,Service,Product,Occupancy,Price},
+    moredelim=*[s][\ttfamily]{:}{:} %Newly added line
+}
+\newcommand\tab[1][1cm]{\hspace*{#1}}
+\lstset{
+	basicstyle=\ttfamily\small,
+	showspaces=false,
+	numbers=left,
+	breaklines = true,
+	showstringspaces=false
+}
+
+\pagestyle{headings}
+\setlength{\textwidth}{15cm}
+\setlength{\textheight}{22.5cm}
+\setlength{\oddsidemargin}{1cm}
+\setlength{\evensidemargin}{0cm}
+\begin{document}
+
+\thispagestyle{empty}
+\begin{center}
+\LARGE{Leopold-Franzens Universität Innsbruck\\ Faculty of Mathematics, Computer Science and Physics}\\[3ex] \large{Department of Computer Science}\\[2ex]
+\end{center}
+\medskip
+
+\begin{center}
+\includegraphics[width=3cm]{Logo}
+\vspace{1cm}
+
+\textbf{\LARGE{Bachelor’s Thesis}} \medskip\par \textbf{\normalsize{submitted for the degree of}} \\[3ex] \textbf{\Large{Bachelor of Science}}
+\vspace{1.5cm}
+
+\textbf{\Large{Symbolic Regression for Surrogate Modeling - A Systematic Study}} \bigskip\par von \par \large{Tobias Albrecht}\\ (Matr.-Nr.: 12206456)
+\end{center}
+\vspace{1cm}
+
+\begin{tabular}{ll}
+  Submission Date:  & \textcolor{red}{TODO: Add Submission Date} \\
+  Supervisor: & Prof. Philipp Zech, PhD \\
+\end{tabular}
+
+\newpage
+
+\vspace*{5cm}
+
+\begin{center}
+\LARGE{Eidesstattliche Erklärung}\\
+\end{center}
+\vspace{1cm}
+
+
+\begin{quote}
+\emph{Ich erkläre hiermit an Eides statt durch meine eigenhändige Unterschrift, dass ich die vorliegende Arbeit selbstständig verfasst und keine anderen als die angegebenen Quellen und Hilfsmittel verwendet habe. Alle Stellen, die wörtlich oder inhaltlich den angegebenen Quellen entnommen wurden, sind als solche kenntlich gemacht. \\Ich erkläre mich mit der Archivierung der vorliegenden Bachelorarbeit einverstanden. }
+\end{quote}
+\vspace{2.5cm}
+
+\begin{flushleft}
+\begin{tabular}{lll}
+Ort und Datum: & & \rule{7cm}{0.4pt}\\[7ex]
+Unterschrift: & & \rule{7cm}{0.4pt}
+\end{tabular}
+\end{flushleft}
+
+\thispagestyle{empty}
+
+\newpage
+
+\vspace*{5cm}
+
+\begin{center}
+\LARGE{Disclaimer on the Use of AI}\\
+\end{center}
+\vspace{1cm}
+
+
+\begin{quote}
+\emph{\textcolor{red}{TODO: Add Disclaimer on the Use of AI}}
+\end{quote}
+\vspace{2.5cm}
+
+\thispagestyle{empty}
+
+\renewcommand{\baselinestretch}{1.00}\normalsize
+
+\setcounter{page}{1}
+\pagenumbering{Roman}
+
+\chapter*{Abstract}
+\addcontentsline{toc}{chapter}{Abstract}
+
+Surrogate models are often used in scientific and engineering applications to approximate computationally expensive simulations. However, many of the currently used surrogate models are black box models which provide almost no insight into the process of their actual learning. Symbolic Regression (SR) addresses this limitation by discovering explicit mathematical expressions directly from the input data, therefore enabling better model interpretability while maintaining predictive performance.
+
+This thesis provides a systematic study of Symbolic Regression methods for surrogate modeling. The main goal is to compare open-source SR frameworks that employ different algorithmic approaches such as evolutionary, genetic programming and neural methods, with representative frameworks such as PySR, Operon, and Deep Symbolic Regression (DSR).
+
+To evaluate these frameworks, a benchmark is developed using datasets from different domains, including engineering, physics, material science and energy systems. The selected SR models are evaluated under the same conditions with respect to predictive accuracy, computational efficiency, model complexity and robustness to noise. The thesis investigates the trade-offs between accuracy and interpretability, as well as the current challenges and research gaps in Symbolic Regression for surrogate modeling.
+
+\textcolor{red}{TODO: Add Results and Conclusion to Abstract.}
+
+\tableofcontents
+\listoffigures
+\listoftables
+% \renewcommand{\baselinestretch}{1.5}\normalsize
+\newpage
+\setcounter{page}{1}
+\pagenumbering{arabic}
+
+\chapter{Introduction}
+
+\section{Motivation}
+
+Scientific and engineering research increasingly relies on computational models. Such models are used to simulate physical processes, optimize technical designs, evaluate control strategies, and explore systems that would be too expensive, too slow, or too risky to study only through physical experiments. However, high-fidelity simulations often require substantial computational resources. A single model evaluation may involve numerical solvers, large parameter studies, or repeated calls inside an optimization loop. This creates a practical bottleneck when thousands of evaluations are needed \cite{alizadeh2020managing}.
+
+Surrogate modeling addresses this bottleneck by replacing an expensive simulation or experimental process with a cheaper approximation. A surrogate model is trained on data generated by measurements, simulations, or both, and is then used to provide fast predictions for new inputs. This strategy is widely used to manage computational complexity in engineering design and simulation-based analysis, where the relevant trade-offs include problem size, accuracy, and computational time \cite{alizadeh2020managing}. Surrogate models are particularly useful in domains such as physics, mechanical engineering, materials science, and energy systems, where direct model evaluations can be costly.
+
+Modern machine learning methods are common choices for surrogate modeling because they can approximate complex nonlinear relationships. Neural networks, ensemble models, Gaussian processes, and other flexible methods often achieve strong predictive performance. However, this flexibility can make the resulting surrogate difficult to inspect, explain, or compare with known scientific structure. For applications where the model is only used as a prediction tool, this may be acceptable. For scientific modeling, design decisions, or safety-relevant applications, prediction alone is often not enough.
+
+\section{The Need for Interpretable Models}
+
+Interpretability becomes important when a model is expected to support understanding rather than only prediction. In scientific and engineering applications, a surrogate model may be used to identify influential variables, expose nonlinear relationships, and support comparison with existing domain knowledge. If the model is a black box, these tasks become difficult. Even if the prediction error is low, it may remain unclear whether the model has learned a meaningful relation or whether it only interpolates well on the available data.
+
+This issue is especially relevant when surrogate models are used outside the exact setting in which they were trained. A model can perform well on a test set but still produce unrealistic predictions on unseen input ranges, react poorly to noisy input, or accumulate prediction errors when used iteratively. Interpretable models provide additional ways to evaluate this behavior. Their structure can be inspected, simplified, checked against domain knowledge, and analyzed for physical plausibility.
+
+The distinction between interpretable models and post-hoc explanations is important. Rudin argues that in high-stakes settings, one should prefer models that are interpretable by design instead of first training a black-box model and then trying to explain it afterward \cite{rudin2019stop}. This argument is also relevant for scientific surrogate modeling: if the learned model is meant to support reasoning about a physical or engineering system, the transparency of the model itself is important.
+
+Interpretability is not a single property. A model may be considered interpretable because it is simple, because it uses familiar mathematical operations, because its variables have clear roles, or because the complete model can be written down and evaluated by a human. In surrogate modeling, interpretability must also be balanced against accuracy. A very simple model may be easy to understand but too inaccurate to be useful, while a highly accurate model may be too complex to provide valuable insight. This trade-off motivates the benchmarking of methods according to both predictive accuracy and model complexity \cite{lacava2021contemporary,defranca2025srbench}.
+
+\section{Symbolic Regression as a Candidate Approach}
+
+Symbolic Regression (SR) is a machine learning approach that searches for explicit mathematical expressions fitting a given dataset. Instead of assuming a fixed model form, such as a linear model or a predefined polynomial basis, SR explores combinations of variables, constants, and mathematical operators. The result is not only a predictor but also an equation that can be read, evaluated, simplified, and compared with domain knowledge \cite{makke2024interpretable,dong2025recent}.
+
+This makes SR a promising candidate for interpretable surrogate modeling. A symbolic expression can often be much cheaper to evaluate than the original simulation and more transparent than the black-box models. Because SR produces explicit mathematical expressions, the influence of individual variables and their nonlinear interactions can be inspected directly. If the resulting expression is sufficiently simple, it can also be compared with known scientific relationships and domain knowledge. SR has therefore received considerable attention in scientific discovery, including physics, materials science, and dynamical systems \cite{angelis2023artificial,guo2024harnessing,wang2024exploring,brum2026discovering}.
+
+Several well-known examples illustrate the scientific motivation for SR. AI Feynman uses physics-inspired strategies to recover equations from the Feynman Lectures on Physics, showing how prior structural ideas such as symmetry and separability can support symbolic equation discovery \cite{udrescu2020ai}. Sparse Identification of Nonlinear Dynamics (SINDy) similarly pursues interpretable governing equations from data, although it uses sparse regression over a predefined library of candidate terms rather than general symbolic search \cite{brunton2016discovering}. These works show the broader appeal of data-driven equation discovery for scientific modeling.
+
+At the same time, SR is not automatically superior to other surrogate modeling approaches. The search space of possible expressions is large, and different frameworks use different strategies to explore it. Evolutionary algorithms, genetic programming variants, and neural or reinforcement-learning-based approaches differ in their assumptions, computational cost, ease of use, and ability to discover compact expressions \cite{dong2025recent,petersen2021deep}. The quality of the final model also depends on operator choices, complexity penalties, noise levels, training budgets, and implementation details. Therefore, a systematic comparison is important, before SR can be recommended as a practical surrogate modeling tool.
+
+\section{Research Question and Contributions}
+
+The central research question of this thesis is:
+
+\begin{quote}
+\emph{How suitable are Symbolic Regression frameworks for interpretable surrogate modeling, and how do they compare with respect to predictive performance, computational cost, equation complexity, robustness, and practical usability?}
+\end{quote}
+
+To answer this question, this thesis conducts a systematic study of representative SR frameworks. The selected frameworks are PySR, Operon, and Deep Symbolic Regression. PySR is a practical scientific SR framework built around SymbolicRegression.jl \cite{cranmer2023interpretable}. Operon is an efficient C++ genetic programming framework for SR \cite{burlacu2020operon}. Deep Symbolic Regression represents a neural, reinforcement-learning-based approach to expression search \cite{petersen2021deep}. These frameworks are chosen because they represent different methodological families and are available as practical open-source tools. The comparison evaluates predictive accuracy, equation complexity, computational efficiency, robustness to noisy training data, stability across random seeds, and practical setup effort.
+
+The main contributions of this thesis are:
+
+\begin{itemize}
+    \item a structured overview of Symbolic Regression as an approach for interpretable surrogate modeling;
+    \item a benchmark setup for comparing selected SR frameworks on datasets from different application domains;
+    \item an evaluation protocol covering predictive accuracy, runtime, setup effort, equation complexity, robustness to noise, and stability in repeated prediction settings;
+    \item an interpretability-oriented comparison of the discovered symbolic expressions;
+    \item practical guidance on strengths, limitations, and challenges of the current SR frameworks for surrogate modeling.
+\end{itemize}
+
+The remainder of this thesis is organized as follows. Chapter 2 introduces the background on surrogate modeling, Symbolic Regression, method families, and interpretability. Chapter 3 discusses related work, including existing reviews, benchmark studies, and applications. Chapter 4 describes the methodology, including framework and dataset selection, evaluation metrics, reproducibility setup, and the interpretability rubric. Chapter 5 presents the experimental setup. Chapter 6 reports the results. Chapter 7 discusses the findings and their limitations. Chapter 8 concludes the thesis and outlines directions for future work.
+
+
+\chapter{Background}
+
+\section{Surrogate Modeling}
+
+Many scientific and engineering workflows rely on models that are accurate but expensive to evaluate. Examples include finite element simulations, computational fluid dynamics, molecular dynamics, density-functional theory, climate models, and other numerical solvers. These models can encode detailed physical assumptions, but their computational cost becomes a limitation when they must be evaluated repeatedly, for example during optimization, uncertainty quantification, sensitivity analysis, control, or parameter exploration.
+
+A surrogate model is a cheaper approximation of such an expensive model. Given input-output observations from a simulation or measurement process, the surrogate learns a mapping from input variables to a target quantity. If the original model is denoted by
+
+\begin{equation}
+    y = f(x),
+\end{equation}
+
+where $x \in \mathbb{R}^{d}$ is an input vector and $y$ is the corresponding output, a surrogate model tries to approximate this relation by a function $\hat{f}$ such that
+
+\begin{equation}
+    \hat{y} = \hat{f}(x) \approx f(x).
+\end{equation}
+
+The main practical advantage is that $\hat{f}$ is usually much faster to evaluate than the original model. This makes surrogate modeling useful when the original model is too slow for repeated use. However, the usefulness of a surrogate does not depend only on speed. A surrogate should also generalize to relevant unseen inputs, remain stable under realistic noise, and preserve the important system properties, such as expected trends, valid output ranges, and stable behavior during iterative use.
+
+Machine learning methods are frequently used as surrogate models because they can approximate nonlinear relationships from data. Neural networks, random forests, gradient boosting methods, support vector regression, Gaussian processes, and related techniques are common choices. Their main strength is flexibility, they can often fit complex functions without requiring a manually specified equation form. In scientific applications, however, this flexibility can also be a weakness. A highly accurate surrogate may still provide little insight into which variables matter, how they interact, or whether the learned relation is physically plausible.
+
+This thesis focuses on surrogate modeling in settings where interpretability is a central requirement. The goal is therefore not only to minimize prediction error, but also to obtain models whose structure can be inspected and discussed. Symbolic Regression is particularly relevant in this context because it produces explicit mathematical expressions instead of opaque prediction functions.
+
+\section{Symbolic Regression}
+
+Symbolic Regression (SR) is a supervised learning approach that searches for mathematical expressions fitting a given dataset. In contrast to ordinary regression methods, SR does not assume a fixed functional form in advance. For example, a linear regression model assumes that the target can be represented as a weighted sum of input variables. A polynomial regression model assumes a predefined set of polynomial terms. SR instead searches over both the structure of the expression and its numerical parameters \cite{angelis2023artificial,lacava2021contemporary}.
+
+Symbolic regression (SR) searches for a mathematical expression that describes the relationship between input variables and a target variable directly from data \cite{makke2024interpretable}. Consider a supervised dataset
+
+\begin{equation}
+    D = \{(\mathbf{x}_i, y_i)\}_{i=1}^{N},
+\end{equation}
+
+where $D$ denotes the complete dataset, $N$ is the number of observations, and $i \in \{1,\ldots,N\}$ indexes an individual observation. The vector $\mathbf{x}_i \in \mathbb{R}^{d}$ contains the values of the $d$ input variables for the $i$-th observation, while $y_i \in \mathbb{R}$ is its corresponding target value.
+
+The objective of SR is to find both a symbolic expression structure $\phi$ and numerical constants $\boldsymbol{\theta}$ such that the prediction $\phi(\mathbf{x}_i;\boldsymbol{\theta})$ approximates $y_i$. For example, one possible measure of prediction error is the mean squared error (MSE),
+
+\begin{equation}
+    \mathcal{L}_{\mathrm{MSE}}(\phi,\boldsymbol{\theta})
+    =
+    \frac{1}{N}
+    \sum_{i=1}^{N}
+    \left(
+        y_i - \phi(\mathbf{x}_i;\boldsymbol{\theta})
+    \right)^2.
+\end{equation}
+
+where $y_i - \phi(\mathbf{x}_i;\boldsymbol{\theta})$ denotes the prediction error for the $i$-th observation.
+
+However, minimizing prediction error alone can produce unnecessarily large expressions. Because the result of SR is intended to remain interpretable, expression complexity must also be considered. Complexity may, for example, be measured by the number of nodes or operators in the expression tree. SR is therefore commonly treated as a multi-objective problem involving a trade-off between predictive accuracy and expression complexity \cite{cranmer2023interpretable,lacava2021contemporary}.
+
+Candidate expressions are commonly represented as syntax trees. In such a tree, internal nodes are mathematical operators such as $+$, $-$, $\times$, division, $\sin$, $\cos$, $\log$, or $\exp$, while leaf nodes are variables or constants. For example, the expression
+
+\begin{equation}
+    \phi(x_1,x_2) = 3 x_1 + \sin(x_2 / 5)
+\end{equation}
+
+can be represented as a tree combining multiplication, division, addition, two constants, two variables, and a sine operator.
+
+\textcolor{red}{TODO: Add an actual tree diagram.}
+
+This representation makes it possible to modify expressions by changing subtrees, replacing operators, or adjusting constants.
+
+The search space of SR is very large. Even a small set of variables and operators can generate many possible expressions, and the number of possible expressions grows quickly with expression size. This is one reason why SR is computationally difficult and why many frameworks use different search strategies \cite{dong2025recent}. Another challenge is the treatment of constants. In scientific equations, real-valued constants are often essential, but searching jointly over expression structure and continuous constants is much harder than fitting coefficients in a fixed model form \cite{cranmer2023interpretable}.
+
+Despite these challenges, SR is attractive for scientific modeling because its outputs can be interpreted directly. A discovered equation can be evaluated cheaply, simplified symbolically, compared with existing theory, inspected for asymptotic behavior, and checked for physically implausible terms. This distinguishes SR from many black-box methods, where interpretability is usually added after training through explanation methods rather than being part of the model itself \cite{makke2024interpretable}.
+
+\section{Main Symbolic Regression Method Families}
+
+Recent surveys group SR methods into several broad families. The most relevant distinction for this thesis is between deterministic methods, genetic programming methods, and neural methods \cite{dong2025recent}. These families differ in how they explore the expression space and handle constants.
+
+Deterministic methods use systematic search, enumeration, sparse regression, mixed-integer optimization, or related strategies to explore candidate expressions. Their main advantage is that they can be more stable and reproducible than purely stochastic methods, because the search process is less dependent on random initialization. Some deterministic approaches can also provide stronger guarantees within a restricted search space. The limitation is that the number of possible expressions grows rapidly with the number of variables, operators, and expression depth. As a result, deterministic methods may become computationally expensive for high-dimensional or complex problems \cite{dong2025recent}.
+
+Genetic Programming (GP) methods are historically the most established family of SR algorithms. GP treats expressions as individuals in a population and evolves them over many generations. Candidate expressions are evaluated according to a fitness function, selected, recombined, mutated, and simplified. This family is flexible because it can search over many different expression structures without requiring a fixed basis. It also naturally supports multi-objective optimization, where accuracy and complexity are optimized together \cite{angelis2023artificial,lacava2021contemporary}.
+
+Neural-network-based SR methods use neural networks to guide or perform the expression search. Instead of evolving expressions only through classical GP operators, these methods may train a recurrent neural network, transformer, or other neural architecture to generate candidate formulas. Deep Symbolic Regression (DSR), for example, uses reinforcement learning and a generative recurrent neural network to search for expressions \cite{makke2024interpretable,lacava2021contemporary}. Neural approaches are motivated by the ability of deep learning systems to learn search heuristics from data or from many generated examples. Their limitations include training complexity, sensitivity to the distribution of training problems, and the risk that strong performance on synthetic benchmarks does not directly transfer to scientific data.
+
+The variety of method families is important for this thesis because there is no single best SR approach. A framework that performs well on one type of problem may behave differently on datasets with noisy data or high-dimensional data. Therefore, the comparison in this thesis treats SR frameworks not only as implementations of one idea, but as tools with different algorithmic assumptions.
+
+\section{The Accuracy--Complexity Trade-Off}
+
+The central evaluation problem in SR is the trade-off between predictive accuracy and expression complexity. If only accuracy is optimized, SR can produce long expressions that fit the training data well but are difficult to interpret and prone to overfitting. If only simplicity is optimized, the resulting expression may be readable but too inaccurate to serve as a useful surrogate. A meaningful SR model should therefore achieve an appropriate balance between these objectives.
+
+Complexity can be measured in different ways. A common syntactic measure is the number of nodes, operators, variables, and constants in an expression. Other measures consider expression depth, operator types, semantic behavior, nonlinearity, or the effective difficulty of understanding the formula \cite{lacava2021contemporary,dong2025recent}. There is no perfect complexity metric. A short equation can still be difficult to interpret if it contains unfamiliar or unstable operations, while a slightly longer equation may be more meaningful if it matches known domain structure.
+
+Many SR frameworks return not only one expression but a set of candidate expressions along a Pareto front. A Pareto front contains models for which no other model is both more accurate and less complex. This is useful because the final choice of model depends on the application. For a deployment-focused surrogate, a slightly more complex expression may be acceptable if it improves predictions significantly. For scientific insight, a simpler expression may be preferable if it captures the dominant relation and remains physically plausible.
+
+In this thesis, the accuracy--complexity trade-off is treated as a core evaluation dimension. Predictive metrics such as mean squared error or coefficient of determination describe how well a model fits the data, while complexity metrics describe how large or difficult the resulting expression is. Considering both dimensions is essential because a symbolic surrogate is only useful if it is accurate enough to approximate the underlying process and simple enough to support interpretation.
+
+Robustness is closely connected to this trade-off. On noisy datasets, highly flexible symbolic expressions may fit noise instead of the underlying relation. This can lead to poor generalization and unstable extrapolation. The SRBench study explicitly evaluates both real-world datasets and synthetic datasets with known ground-truth equations under noise, showing why benchmark design must consider more than one performance metric \cite{lacava2021contemporary}. For surrogate modeling, robustness is especially important because the model may be used repeatedly or outside the original training distribution.
+
+\section{Interpretability in Scientific Modeling}
+
+Interpretability is a major motivation for applying SR to surrogate modeling. In scientific contexts, models are often expected to do more than predict. They should help explain a underlying system, reveal relationships between variables, and support reasoning about behavior in new regimes. A symbolic expression is attractive because the full mapping from inputs to outputs is visible in mathematical form.
+
+The distinction between interpretability and post-hoc explainability is important. A black-box model may be explained after training using feature importance scores, saliency methods, local approximations, or other explanation techniques. These methods can be useful, but they do not make the original model transparent. An interpretable model, by contrast, exposes its structure directly. SR belongs to this second category, as it can produce sufficiently compact and meaningful expressions \cite{makke2024interpretable}.
+
+For scientific surrogate modeling, interpretability depends on several properties. The expression should be sufficiently concise to be read and communicated, use variables and operators that are meaningful within the application domain, and exhibit plausible behavior under extrapolation. Its interpretability is further strengthened when it can be simplified or related to known physical laws, empirical correlations, or dimensional structure. Interpretability therefore cannot be assessed through expression length alone.
+
+SR can support scientific discovery when the resulting expression reveals a relation that was not explicitly provided to the model. Reviews of SR in physical sciences emphasize this potential. SR can generate analytical equations from data and thereby connect data-driven modeling with the traditional scientific practice of formulating laws and empirical relations \cite{angelis2023artificial,makke2024interpretable}. At the same time, interpretability should not be assumed automatically. A symbolic expression may be mathematically explicit but still too complex, unstable, or domain-inconsistent to be useful.
+
+This thesis treats interpretability as an evaluation criterion rather than as a guaranteed outcome. The discovered expressions will be compared in terms of their size, structure, operator usage, and practical readability. This allows SR frameworks to be evaluated not only by whether they predict accurately, but also by whether they produce surrogate models that can plausibly support scientific understanding.
+
+
+\chapter{Related Work}
+
+\section{Symbolic Regression Reviews}
+
+The recent growth of Symbolic Regression (SR) has led to several survey papers that organize the field and summarize its main technical directions. Makke and Chawla provide a broad review of SR as a method for interpretable scientific discovery, emphasizing the ability of SR to infer compact mathematical expressions directly from data \cite{makke2024interpretable}. Their review discusses the historical development of SR, its relation to genetic programming, the emergence of deep-learning-based approaches, and applications in scientific domains. This perspective is closely aligned with the motivation of this thesis, because surrogate modeling in science and engineering often requires models that are not only accurate but also interpretable.
+
+Angelis et al. focus specifically on SR in the physical sciences \cite{angelis2023artificial}. Their review positions SR as a response to the limitations of black-box machine learning models in physics-based computation. They discuss SR as a data-driven method that can generate analytical equations and thereby support interpretation, generalization, and the discovery or verification of physical relations. This work is particularly relevant for this thesis because it connects SR to scientific modeling tasks where explicit equations are valuable.
+
+Dong and Zhong provide a more recent and comprehensive survey of advances in SR \cite{dong2025recent}. They organize SR methods into deterministic, genetic-programming-based, and neural-network-based families, and they also summarize benchmark datasets, evaluation metrics, software tools, and open research challenges. Their survey is useful for understanding the current methodological landscape and for motivating the framework selection in this thesis. In particular, the distinction between GP-based and neural SR approaches is relevant because the evaluated frameworks represent different search and implementation strategies.
+
+These reviews show that SR is no longer limited to genetic programming. Current SR research includes evolutionary algorithms, deterministic search, sparse regression, reinforcement learning, transformer-based approaches, and hybrid methods. At the same time, the reviews also point to persistent challenges. For example, high computational cost, sensitivity to benchmark design, difficulty in evaluating interpretability, and inconsistent behavior across datasets.
+
+\section{Benchmark Studies}
+
+Benchmarking is a central issue in SR research because methods are often evaluated on different datasets, with different computational budgets, and with different definitions of success. Early SR papers frequently used small synthetic benchmarks, which made results difficult to compare across studies. Orzechowski, La Cava, and Moore addressed this issue by evaluating recent SR methods against standard machine learning regressors on a large set of regression problems \cite{orzechowski2018where}. Their study compared four GP-based SR methods with several scikit-learn regression methods on 94 real-world datasets. The results showed that SR methods can be competitive with strong machine learning baselines, but also that runtime remains a practical limitation.
+
+La Cava et al. extended this line of work with SRBench, a larger and more systematic benchmark for symbolic regression \cite{lacava2021contemporary}. SRBench compares 14 SR methods and 7 machine learning methods across 252 regression problems, including real-world datasets, ground-truth symbolic equations, physics equations, and systems of ordinary differential equations. Importantly, SRBench evaluates not only predictive accuracy but also expression complexity and symbolic solution recovery. The benchmark therefore provides a basis for comparing SR methods in terms of both predictive performance and expression complexity.
+
+The SRBench results also highlight that no single method is universally optimal. Some frameworks perform strongly on black-box regression tasks, while others are better at recovering exact equations under controlled conditions. Operon, for example, is reported as one of the strongest methods on real-world black-box regression problems and as part of the best accuracy-simplicity trade-offs \cite{lacava2021contemporary}. These findings motivate a more focused comparison of selected frameworks in the surrogate modeling context, where practical usability, robustness, and interpretability are important.
+
+More recent work has extended and criticized existing benchmark practices. SRBench++ argues that expression size alone is an insufficient proxy for interpretability and introduces domain-expert interpretation into the benchmarking process \cite{defranca2025srbench}. It also evaluates SR algorithms on more specific task properties, such as feature selection, robustness, extrapolation, and local minima. This is important because a symbolic expression can be short but still scientifically unhelpful, or slightly longer but more meaningful to a domain expert.
+
+Aldeia et al. present a call for the next generation of SR benchmarks, arguing that SRBench should evolve as a living benchmark \cite{aldeia2025call}. Their work expands the set of evaluated methods, refines evaluation metrics, and considers trade-offs between accuracy, complexity, and energy consumption. The study emphasizes standardization of hyperparameter tuning, execution constraints, computational resources, and benchmark maintenance. These issues are directly relevant for this thesis because a fair comparison of SR frameworks requires a reproducible protocol and equal treatment of computational budgets.
+
+Overall, benchmark studies show that SR evaluation is more complex than ordinary regression benchmarking. Accuracy, model complexity, solution recovery, runtime, robustness, and interpretability all matter. The present thesis builds on these insights but uses a narrower experimental scope: instead of ranking many SR methods across hundreds of datasets, it compares a selected set of open-source frameworks under a reproducible surrogate modeling protocol.
+
+\section{Applications in Science and Engineering}
+
+\textcolor{red}{TODO: Maybe think about removing this section.}
+
+SR has a long connection to scientific discovery because many scientific explanations are expressed as mathematical equations. Reviews of SR applications show examples in physics, chemistry, materials science, engineering, medicine, climate science, and other domains \cite{makke2024interpretable,angelis2023artificial}. In these settings, the value of SR is not limited to prediction. A discovered expression may reveal variable interactions, suggest scaling relations, support extrapolation, or provide a compact surrogate for a costly simulation.
+
+One closely related research direction is the discovery of governing equations from data. Brunton, Proctor, and Kutz introduced Sparse Identification of Nonlinear Dynamics (SINDy), which uses sparse regression to identify parsimonious dynamical systems from data \cite{brunton2016discovering}. SINDy differs from general SR because it assumes a library of candidate functions and searches for a sparse combination of terms. Nevertheless, it shares the same scientific goal: obtaining interpretable equations that balance accuracy and model complexity. For this thesis, SINDy is relevant as a neighboring approach to symbolic surrogate modeling and equation discovery.
+
+The application literature also demonstrates why interpretability must be treated carefully. In scientific modeling, a model is not useful merely because it is explicit. It should also be consistent with domain knowledge, behave reasonably outside the training data, and avoid unnecessary complexity. This concern appears repeatedly in SR reviews and benchmark papers \cite{makke2024interpretable,defranca2025srbench}. It is especially important for surrogate modeling, where the learned model may be used for optimization or repeated prediction in regions not densely covered by training data.
+
+PySR was developed explicitly with scientific equation discovery in mind \cite{cranmer2023interpretable}. Its design emphasizes practical requirements that often arise in scientific applications, such as real-valued constants, custom operators, custom losses, and the ability to inspect a Pareto front of candidate equations. This practical focus makes PySR particularly relevant for surrogate modeling, where the final expression should be both predictive and usable by researchers.
+
+The broader scientific application literature therefore supports the central premise of this thesis: SR is promising for surrogate modeling because it can produce compact analytical approximations, but its usefulness depends on the quality of the discovered expressions, the stability of the framework, and the trade-off between accuracy and interpretability.
+
+\section{Selected Framework Publications}
+
+\textcolor{red}{TODO: Update this section depending on the final framework selection.}
+
+This thesis focuses on selected open-source SR frameworks. The framework literature is important because different implementations embody different algorithmic choices, optimization strategies, and usability trade-offs.
+
+\subsubsection{PySR}
+
+PySR is described by Cranmer as an open-source library for practical symbolic regression in science \cite{cranmer2023interpretable}. It provides a Python interface to the Julia backend SymbolicRegression.jl. Its search strategy is a multi-population evolutionary algorithm with an evolve-simplify-optimize loop, and it supports constant optimization, custom operators, custom losses, and export to common scientific computing tools. These features make PySR a strong candidate for interpretable surrogate modeling, especially when domain-specific operators or loss functions are needed.
+
+\subsubsection{Operon}
+
+Operon is presented by Burlacu, Kronberger, and Kommenda as an efficient C++ genetic programming framework for symbolic regression \cite{burlacu2020operon}. It uses a linear tree representation, emphasizes performance and modularity, and supports automatic differentiation for model derivatives. The framework is designed to make GP-based SR computationally efficient and extensible. Its strong performance in SRBench further motivates its inclusion in comparative studies \cite{lacava2021contemporary}.
+
+\subsubsection{Deep Symbolic Regression}
+
+Deep Symbolic Regression (DSR), introduced by Petersen et al., represents a different class of methods \cite{petersen2021deep}. Instead of relying only on classical evolutionary search, DSR trains a recurrent neural network to generate symbolic expressions and uses a risk-seeking policy gradient objective to bias the search toward high-reward expressions. This makes DSR representative of neural or reinforcement-learning-based SR. Its inclusion in the literature is important because it shows how deep learning can be used to search for interpretable symbolic models rather than acting as the final black-box model itself.
+
+The selected frameworks therefore cover distinct parts of the SR landscape: PySR and Operon represent modern evolutionary SR systems with practical open-source implementations, while DSR represents a neural search strategy for symbolic expressions. Existing benchmark studies compare many SR methods at a broad level, but they do not replace a focused evaluation of how these tools behave in a specific surrogate modeling workflow. This thesis contributes such a focused comparison by evaluating selected frameworks with respect to accuracy, runtime, complexity, robustness, and interpretability.
+
+
+\chapter{Methodology}
+
+\section{Framework Selection Criteria}
+
+The purpose of the benchmark is not to identify a universally best symbolic regression (SR) algorithm, but to compare methods that represent different search strategies under conditions relevant to surrogate modelling.  The framework selection was therefore guided by five criteria: (i) the method has an identifiable scientific publication, (ii) an implementation is publicly available, (iii) the implementation can return an explicit equation rather than only predictions, (iv) it can be connected to a common Python-based evaluation pipeline, and (v) it represents a different approach to symbolic regression. Practical installability and the ability to reproduce a run were treated as evaluation evidence in their own right, rather than hiding failed or difficult integrations.  This follows the broader recommendation that SR benchmarks should evaluate more than predictive accuracy alone \cite{defranca2025srbench,aldeia2025call}.
+
+Based on these criteria, six frameworks were included: PySR, Operon, GPLearn, PySINDy, Deep Symbolic Regression (DSR), and NeSymRe. Together, they represent evolutionary search, conventional genetic programming, sparse regression, reinforcement-learning-based search, and pretrained neural inference. This selection enables a comparison of distinct approaches while keeping all methods within the same practical benchmark. Their implementation details, search spaces, and experimental configurations are described in Chapter~5.
+
+\section{Dataset Selection Criteria}
+
+Datasets were selected to represent surrogate-modelling tasks while remaining small enough for repeated SR searches. Each dataset required numerical inputs, a continuous target, a reproducible source, and enough observations for separate training and test sets. The selection covers several scientific and engineering domains as well as different input dimensions and levels of difficulty. Synthetic tasks with known equations were included to evaluate structural recovery, while empirical datasets were used to assess how well the frameworks approximate relationships for which no ground-truth expression is available.
+
+The primary benchmark contains two synthetic tasks and seven public datasets, as shown in Table~\ref{tab:method-datasets}. The product task, $y=ab$, serves as a basic check of the framework adapters. The logistic map,
+\begin{equation}
+    x_{t+1}=r x_t(1-x_t),
+    \label{eq:logistic-map-method}
+\end{equation}
+tests equation recovery and the repeated use of a discovered expression for prediction. The seven empirical datasets cover aeroacoustics, hydrodynamics, building simulation, power generation, materials science, naval propulsion, and turbine emissions. All public datasets are obtained from the UCI Machine Learning Repository and cached locally by the benchmark.
+
+\begin{longtable}{p{3.7cm}p{3.6cm}rrr}
+\caption{Datasets used in the primary benchmark. The reported noise level is the standard deviation of Gaussian noise added to the training target in the robustness experiment.}
+\label{tab:method-datasets}\\
+\hline
+Dataset & Role/domain & Inputs & Train/test & Noise $\sigma$ \\
+\hline
+\endfirsthead
+\hline
+Dataset & Role/domain & Inputs & Train/test & Noise $\sigma$ \\
+\hline
+\endhead
+Product & Synthetic sanity check & 2 & 128/512 & 0.01 \\
+Logistic map & Synthetic dynamics & 2 & 512/2048 & 0.02 \\
+Airfoil Self-Noise & Aeroacoustics & 5 & 200/300 & 0.5 \\
+Yacht Hydrodynamics & Fluid dynamics & 6 & 150/100 & 0.5 \\
+Energy Efficiency & Building simulation & 8 & 250/300 & 0.5 \\
+Combined Cycle Power Plant & Industrial energy & 4 & 300/600 & 1.0 \\
+Superconductivity & Material science & 8 & 250/500 & 2.0 \\
+Naval Propulsion & Propulsion systems & 16 & 300/600 & 0.005 \\
+Gas Turbine Emissions & Industrial emissions & 10 & 300/600 & 5.0 \\
+\hline
+\end{longtable}
+
+For datasets with many variables, documented feature subsets were used to keep the searches computationally feasible. The Superconductivity task uses eight aggregate composition statistics, while the Gas Turbine Emissions task uses ten ambient and process variables to predict nitrogen-oxide emissions. The Energy Efficiency task predicts heating load, and the Naval Propulsion task predicts the gas-turbine compressor decay coefficient. Appliances Energy was initially implemented but excluded from the primary matrix because diagnostic models showed that the selected features and sample split provided little improvement over mean prediction. It remains available as a legacy diagnostic dataset but is not used to rank the frameworks.
+
+\section{Benchmark Protocol}
+
+All experiments use the same pipeline.  For a given dataset and seed, a NumPy random generator first permutes the available observations.  The first $n_{\mathrm{train}}$ observations form the training set and the following $n_{\mathrm{test}}$ observations form a disjoint test set.  Synthetic samples are drawn independently from fixed ranges.  For the logistic map, $x\in[0.05,0.95]$ and $r\in[2.5,3.8]$; the product inputs are drawn uniformly from $[-2,2]$.  A framework therefore receives exactly the same observations as every other framework for a given dataset and seed.
+
+For public tabular data, every feature is standardised using only the training mean $\mu_j$ and standard deviation $s_j$,
+\begin{equation}
+    z_{ij}=\frac{x_{ij}-\mu_j}{s_j}.
+\end{equation}
+The same transformation is then applied to the test set.  A zero standard deviation is replaced by one.  Targets remain in their original physical units, making RMSE and MAE directly interpretable for each dataset.  The synthetic tasks are not standardised.
+
+Each configured run consists of two independently fitted models.  The clean run uses an unmodified training target.  In the robustness run, independent Gaussian noise $\epsilon\sim\mathcal{N}(0,\sigma^2)$ is added to the training target, while the inputs and the noise-free test set remain unchanged.  Thus, the robustness result measures sensitivity to corrupted observations rather than performance on a noisier test distribution.  The dataset-specific values of $\sigma$ are listed in Table~\ref{tab:method-datasets}.
+
+Seeds 7, 21, and 42 were used for repeated runs of the four maintainable frameworks on the established dataset matrix.  The two replacement energy datasets currently have one completed run at seed 42.  DSR and NeSymRe were also evaluated primarily at seed 42 because their legacy or checkpoint-based environments make a full repeated matrix disproportionately expensive.  The aggregation scripts report the number and identity of available seeds, and compute a standard deviation only when at least two runs exist.  Missing or failed runs are not silently imputed.
+
+Search effort is configured explicitly in per-framework JSON files.  Examples include population size and generations for GPLearn and Operon, iterations and populations for PySR, library degree and sparsity threshold for PySINDy, and sample count and expression length for DSR.  Operon and GPLearn are restricted to one worker, while deterministic PySR runs serially.  The budgets were chosen to be feasible on the available hardware and are recorded in every result, but they are not equal wall-clock budgets.  Consequently, training-time results describe the evaluated configurations and should not be interpreted as a hardware-normalised speed competition.
+
+For the logistic-map task, one-step prediction is supplemented by a rollout test.  For 64 independently sampled initial conditions and parameter values, the learned model predicts the next state and its own prediction is fed back as the next input for 50 steps.  Predicted states are clipped to the physically defined interval $[0,1]$.  This test distinguishes an equation with low one-step error from one that remains useful when recursively employed as a dynamic surrogate.
+
+\section{Evaluation Metrics}
+
+Predictive performance is calculated exclusively on the held-out, noise-free test set.  For observations $y_i$, predictions $\hat{y}_i$, and test-set mean $\bar{y}$, the benchmark reports
+\begin{align}
+    \mathrm{MAE} &= \frac{1}{n}\sum_{i=1}^{n}|y_i-\hat{y}_i|,\\
+    \mathrm{RMSE} &= \sqrt{\frac{1}{n}\sum_{i=1}^{n}(y_i-\hat{y}_i)^2},\\
+    R^2 &= 1-\frac{\sum_{i=1}^{n}(y_i-\hat{y}_i)^2}
+                       {\sum_{i=1}^{n}(y_i-\bar{y})^2}.
+\end{align}
+RMSE emphasises large errors, MAE gives a more robust measure in the target's original unit, and $R^2$ allows a dimensionless comparison of fit quality within each dataset.  Because target scales differ, raw RMSE and MAE are not ranked across datasets.
+
+Computational effort is measured with a monotonic wall clock.  Training time covers the adapter's model-fitting call.  Prediction time covers prediction of the complete test set and is additionally divided by the number of test samples.  Data download, parsing, and metric computation are excluded.  Memory consumption was considered during benchmark design but is not collected by the implemented pipeline and is therefore not used in the comparison.
+
+Every returned equation is parsed with SymPy to obtain framework-independent structural measures.  Equation size is the total number of nodes in the SymPy expression tree, depth is the longest root-to-leaf path, and the used operator set is collected from the parsed and textual expression.  A parse failure is stored explicitly instead of assigning a misleading complexity value.  These measures provide approximations of syntactic complexity; they do not by themselves establish whether an equation is scientifically meaningful.
+
+Noise robustness is summarised by the absolute RMSE increase, the ratio of noisy-run to clean-run RMSE, and the decrease in $R^2$:
+\begin{align}
+    \Delta\mathrm{RMSE} &= \mathrm{RMSE}_{\mathrm{noisy}}-
+                            \mathrm{RMSE}_{\mathrm{clean}},\\
+    \Delta R^2 &= R^2_{\mathrm{clean}}-R^2_{\mathrm{noisy}}.
+\end{align}
+For repeated experiments, the analysis reports mean, sample standard deviation, minimum, and maximum for predictive, timing, complexity, robustness, and rollout measures.
+
+For logistic-map rollouts, RMSE and MAE are retained at every time step.  Three summary quantities are reported: mean rollout RMSE over steps 1--50, RMSE at the final step, and the maximum absolute error over all cases and rollout steps.  These metrics assess accumulated simulation error and complement the ordinary one-step test metrics.
+
+\section{Reproducibility Setup}
+
+The benchmark is organised as a Python package under \texttt{src/srbench}. Dataset loaders, framework adapters, experiment orchestration, and metric implementations are separated modules.  Human-readable JSON files under \texttt{configs} specify the dataset, seed, noise level, operator set, search parameters, and output directory for each framework--dataset combination. Dedicated runner scripts execute individual experiments, while another script materialises seed-specific configurations for repeated runs.
+
+Each completed run writes three artefacts below the framework-specific run directory, \path{experiments/framework_runs/}, grouped by dataset and seed: the resolved configuration, a file containing the clean and noisy equations, and a metrics file.  The metrics file also records the split and preprocessing conditions, framework metadata, the Python version, operating-system platform, and installed versions of relevant packages.  Raw public data are cached under \texttt{data/raw}; their UCI source URL, DOI, domain, and licence are encoded in the dataset specification and copied to the result record.  Aggregation and plotting are performed from these recorded run artefacts rather than from manually transcribed values.
+
+Most experiments run in the project's main virtual environment, whose direct dependencies are declared in \texttt{pyproject.toml}.  The incompatible DSR and NeSymRe stacks are isolated in separate micromamba environments.  Setup notes document the Python~3.7/TensorFlow~1 requirement for DSR and the PyTorch, checkpoint, and maximum-input limitations encountered for NeSymRe.  Automated tests cover predictive, structure, robustness, and rollout calculations.  This arrangement makes successful runs reproducible while also preserving negative evidence such as dependency failures, numerical warnings, or unavailable framework combinations.
+
+\section{Interpretability Rubric}
+
+Interpretability is treated as a multi-part assessment rather than equated with accuracy.  First, equation size, tree depth, and operator set provide reproducible syntactic evidence.  Second, equations are converted, where possible, from standardised variables back to the raw feature scale and simplified with SymPy.  For qualitative review, representative clean-run equations are selected per dataset by sorting first by higher test $R^2$, then lower RMSE, and finally shorter textual length.  This prevents interpretability discussion from focusing only on unusually simple but inaccurate expressions.
+
+The following five-point rubric guides manual inspection:
+\begin{longtable}{cp{11.5cm}}
+\hline
+Score & Interpretation \\
+\hline
+1 & The expression is too large, numerically unstable, or opaque to inspect meaningfully. \\
+2 & Individual parts are readable, but the complete expression has no clear interpretation. \\
+3 & The expression can be understood with effort and moderate algebraic simplification. \\
+4 & The expression is compact, readable, and mostly plausible in the dataset's domain. \\
+5 & The expression is simple, stable, and has a clear domain-plausible interpretation. \\
+\hline
+\end{longtable}
+
+The rubric deliberately distinguishes readability from physical validity.  A small equation may earn a high readability score but still omit important variables or violate domain expectations; conversely, an accurate expression may be too deep or fragile to serve as an explanatory model.  Domain plausibility is therefore discussed cautiously for empirical datasets without a known law.  Exact algebraic agreement can be assessed for the product and logistic-map controls, but for public data the analysis is limited to structural simplicity, stability across seeds, sensible variable use, and the predictive evidence.  The rubric remains a qualitative review instrument; the current result schema records the underlying structural measures and equations but does not generate an automatic interpretability score.
+
+
+\chapter{Experiments}
+
+This chapter describes the concrete experiments that were executed using the protocol from Chapter~4.  The emphasis is on the composition of the experiment matrix, the configurations supplied to each framework, and the extent to which the intended comparisons were completed.  Numerical outcomes are reserved for Chapter~6.
+
+\section{Experimental Matrix and Task Roles}
+
+The final primary matrix combines six frameworks with nine datasets.  The matrix was not designed as a collection of interchangeable regression tasks; each dataset has a specific diagnostic role.  The product task checks whether an adapter can receive named variables, learn multiplication, return a valid expression, and reproduce predictions through the shared interface.  The logistic map is the principal known-equation experiment.  In addition to recovering an algebraic relation, it tests recursive use of the learned model. These two tasks expose implementation failures that would otherwise be difficult to distinguish from genuine difficulty on empirical data.
+
+The seven public tasks form the surrogate-modelling part of the matrix. Airfoil Self-Noise and Yacht Hydrodynamics provide moderately sized engineering relations with five and six inputs.  Energy Efficiency and Combined Cycle Power Plant provide comparatively clean, low-dimensional energy and simulation tasks.  Superconductivity is a harder material-science problem in which a compact expression must approximate a relationship derived from composition statistics.  Naval Propulsion tests a wider, 16-variable sensor state with a target that is highly amenable to polynomial modelling.  Gas Turbine Emissions provides a ten-variable industrial-process task.  Together, these tasks vary domain, input dimension, target scale, and expected equation complexity while remaining computationally feasible.
+
+The experiment matrix uses the feature subsets and sample counts given in Table~\ref{tab:method-datasets}.  Public data are randomly sampled rather than using the complete source datasets.  This choice makes repeated evolutionary searches feasible and keeps the same fixed sample count across frameworks. It also means that the experiments evaluate data-efficient symbolic surrogates, not the best accuracy obtainable by training each method on every available row.
+
+\section{Framework Configurations}
+
+Table~\ref{tab:experiment-framework-configs} summarises the configurations used in the experiment files.  Exact values vary by dataset because a configuration that is sufficient for the product task is not a sensible budget for a 16-variable empirical task.  No broad hyperparameter optimisation was performed.  Instead, small feasibility runs were used to select settings that produced valid equations within the available thesis compute budget.
+
+\begin{longtable}{p{2.2cm}p{4.4cm}p{7.0cm}}
+\caption{Main framework configurations used in the experiments.}
+\label{tab:experiment-framework-configs}\\
+\hline
+Framework & Search representation & Principal settings \\
+\hline
+\endfirsthead
+\hline
+Framework & Search representation & Principal settings \\
+\hline
+\endhead
+PySR & Evolutionary expression trees & 20--80 iterations, 6--12 populations of 25--30 expressions, maximum size 8--20; deterministic serial execution and best-model selection \\
+Operon & Multi-objective genetic programming & Population 300--1000, 60--200 generations, 30,000--200,000 evaluations, maximum length 12--34 and depth 4--9; one thread \\
+GPLearn & Tree-based genetic programming & Population 1,000--5,000, 20--50 generations, tournament size 20, initial depth 2--6, crossover probability 0.9 and parsimony penalty \\
+PySINDy & Sparse polynomial library & Polynomial degree 2 for public tasks and degree 3 for the logistic map, interaction and bias terms, STLSQ with dataset-specific threshold and ridge penalty \\
+DSR & Recurrent neural expression generator & 2,000 samples for empirical tasks and 10,000 for synthetic tasks, batch size 500, expression length 4--20, one layer with 32 hidden units \\
+NeSymRe & Pretrained neural generator & Public 10M checkpoint on CPU, beam size 8 for synthetic tasks and 2 for public tasks, followed by ten BFGS constant-optimisation restarts \\
+\hline
+\end{longtable}
+
+All PySR configurations use the binary operators $+$, $-$, $\times$, and protected division, without unary functions.  The population and expression limits are largest for the logistic map, where exact recovery is the objective, and slightly smaller for the public tasks.  PySR's deterministic option is enabled, parallelism is set to serial, and no extra worker process is requested.
+
+Operon uses the corresponding symbols for addition, subtraction, multiplication, division, constants, and variables.  Its optimisation is multi-objective with $R^2$ and expression length as objectives.  From the resulting Pareto front, the adapter selects the expression with the lowest training mean squared error.  Constants are locally optimised for 20 iterations on most tasks and 30 iterations on the logistic map.  The maximum number of evaluations, rather than generation count alone, acts as its principal search cap.
+
+GPLearn uses half-and-half tree initialisation, tournament selection, and the same four arithmetic functions.  Across configurations, 90\% of genetic operations are crossover; subtree, hoist, and point mutation each have probability 1\%.  Most tasks optimise mean squared error.  Naval Propulsion is the exception and uses mean absolute error because of its small target range. Dataset-specific constant ranges and parsimony coefficients are retained in the resolved configuration files.
+
+PySINDy serves as a sparse polynomial baseline rather than a derivative estimator for dynamical systems.  The adapter expands the supervised features into a polynomial library and uses sequentially thresholded least squares (STLSQ).  The known product uses degree two and the logistic map degree three, which contains the necessary $rx$ and $rx^2$ terms.  Public tasks use a quadratic library with pairwise interactions.  Thresholds and ridge penalties are smaller on the synthetic tasks and stronger on the wider material-science and Naval Propulsion tasks.
+
+DSR uses a one-layer recurrent policy with 32 hidden units, learning rate $5\times10^{-4}$, entropy weight 0.005, risk parameter $\epsilon=0.05$, protected operators, and early stopping.  Adding an explicit constant token to its function set was necessary for reliable recovery of the synthetic equations. NeSymRe does not train a new symbolic generator in these experiments.  It loads the public pretrained checkpoint, generates candidate structures, and refines constants using BFGS.  The integrated checkpoint supports at most three input variables.  Therefore, on public datasets with more than three features, NeSymRe receives only the first three configured variables and the omitted variables are recorded in run metadata.  Its empirical results are consequently diagnostic and not a full-feature comparison with the other frameworks.
+
+\section{Execution Procedure and Environments}
+
+The main experiment environment contains PySR 1.5.10, PyOperon 0.6.1, GPLearn 0.4.3, and PySINDy 2.1.0.  The command-line runner reads one JSON configuration, constructs the requested clean and noisy datasets, instantiates the matching adapter, and executes both fits.  After each fit, predictions, metrics, the equation, and framework metadata are collected.  The resolved configuration, equations, and complete metrics record are then written below \path{experiments/framework_runs/}.  Keeping the clean and noisy fit in one experiment record ensures that the robustness comparison uses the same split and seed.
+
+The neural frameworks could not be installed in the main environment without dependency conflicts.  DSR was executed through a dedicated micromamba environment containing Python 3.7, DSR 1.0.dev0, and TensorFlow 1.15.5. NeSymRe was executed in a second environment containing NeSymRe 0.1.0 and PyTorch 1.13.1 on the CPU.  Both environments use the same project source tree and runner scripts.  The public tabular loader was kept compatible with Python 3.7, and \texttt{openpyxl} was installed in both neural environments for the Excel-backed energy datasets.
+
+For each run, fitting is performed first on the clean training target and then on its noisy counterpart.  Each call returns a separate fitted estimator, so the clean estimator is not reused for the noisy prediction.  Test prediction is timed separately after training.  In the logistic-map experiment, both fitted models additionally perform the same 50-step rollout.  The common aggregation scripts subsequently read the JSON artefacts, rather than re-running models, to create per-dataset tables, repeated-seed summaries, plots, and equation reports.
+
+\section{Repeated Runs and Matrix Coverage}
+
+Stochastic search makes a single seed insufficient for estimating the typical behaviour of evolutionary SR.  Repeated runs were therefore generated with seeds 7, 21, and 42.  Table~\ref{tab:experiment-coverage} reports the completed coverage used by the analysis.  A ``three-seed'' entry means that all three seeds are present for most established tasks; exceptions are stated explicitly.
+
+\begin{longtable}{p{2.4cm}p{4.5cm}p{6.8cm}}
+\caption{Completed run coverage in the primary experiment matrix.}
+\label{tab:experiment-coverage}\\
+\hline
+Framework & Seed coverage & Qualification \\
+\hline
+\endfirsthead
+\hline
+Framework & Seed coverage & Qualification \\
+\hline
+\endhead
+PySR & 7, 21, 42 & Three seeds for all established tasks; seed 42 only for the two replacement energy datasets \\
+Operon & 7, 21, 42 & Three seeds for all established tasks; seed 42 only for the two replacement energy datasets \\
+GPLearn & 7, 21, 42 & Three seeds for established public tasks and the product task; logistic map and replacement energy datasets have seed 42 only \\
+PySINDy & 7, 21, 42 & Three seeds for all established tasks; seed 42 only for the two replacement energy datasets \\
+DSR & 42 & One run per primary dataset in the dedicated legacy environment \\
+NeSymRe & 42 & One checkpoint-inference run per primary dataset; wider tasks use only three features \\
+\hline
+\end{longtable}
+
+The established public tasks in this table are Airfoil Self-Noise, Yacht Hydrodynamics, Superconductivity, Naval Propulsion, and Gas Turbine Emissions. Energy Efficiency and Combined Cycle Power Plant were introduced after the initial matrix as replacements for Appliances Energy and currently have only seed-42 runs.  Summary tables always include \texttt{n\_seeds}; means over three runs are therefore not conflated with single-run values.  The asymmetry also prevents strong statistical claims about DSR, NeSymRe, or the replacement tasks.
+
+\section{Target-Noise Experiments}
+
+Robustness experiments were executed for every configured framework--dataset run.  The perturbed model receives the same training inputs as the clean model, but its target is changed to $y+\epsilon$ using the dataset-specific Gaussian noise level from Table~\ref{tab:method-datasets}.  The random generator is initialised with the experiment seed, so the perturbed target can be recreated. Both models are evaluated on the identical clean test target.
+
+The chosen noise levels reflect the different target units and scales.  They range from 0.005 for the naval compressor decay coefficient to 5.0 for gas turbine nitrogen-oxide emissions.  They are not intended to represent an equal percentage signal-to-noise ratio across all datasets.  Accordingly, the robustness analysis is primarily within a dataset: it asks how much a given framework's test RMSE and $R^2$ change when the training observations are perturbed.  A lower error in a noisy run is possible because SR is stochastic and the perturbation can alter the search trajectory; such cases are retained rather than forced to a non-negative degradation.
+
+\section{Logistic-Map Rollout Experiment}
+
+Only the logistic map supplies a justified iterative stability experiment. For each seed, 64 new cases are sampled from the same $x$ and $r$ ranges as the one-step data.  The true trajectory is generated from Equation~\ref{eq:logistic-map-method} for 50 steps.  Starting from the same initial value, each learned expression predicts $x_{t+1}$ from $(x_t,r)$, and the prediction becomes the next input.  Values are clipped to $[0,1]$ after each step to keep the rollout within the defined state range.
+
+Rollouts are produced for both the clean-trained and noise-trained equations. The experiment stores RMSE and MAE at every horizon step as well as the final RMSE, mean RMSE over all predicted steps, and maximum absolute error.  No rollout is attempted for the public tabular datasets because their rows are independent observations rather than ordered states of a known dynamical system.  The original outline's generic ``rollout stability experiments'' is therefore narrowed to this single defensible experiment.
+
+\section{Diagnostic and Excluded Experiments}
+
+Several experiments informed the final design without entering the primary framework ranking.  Appliances Energy was initially run with eight temperature, humidity, wind, and pressure variables.  Its poor results were investigated with a mean predictor, linear regression, quadratic ridge regression, random forest, and histogram gradient boosting.  Since none produced a substantial improvement over the mean predictor on the chosen split, the SR results could not be interpreted as a clean comparison of framework capability.  The task was retained as a legacy diagnostic and replaced by Energy Efficiency and Combined Cycle Power Plant in the primary matrix.
+
+The same non-SR diagnostics were run for the remaining datasets to separate framework failure from a generally unpredictable target.  These models are not black-box competitors in the primary benchmark; they are a dataset-quality check.  Their role is to show whether poor SR performance occurs even though a simple polynomial or flexible tree ensemble can learn the selected feature--target relation.
+
+An experimental NeSymRe 100M checkpoint was also tested on the logistic map and the two replacement energy datasets.  It did not improve on the 10M checkpoint and produced numerical warnings during BFGS refinement.  These runs are stored under a separate framework variant and excluded by default from aggregation. AI-Feynman and Deep Symbolic Optimization were investigated during framework setup, but platform and dependency constraints prevented them from becoming part of the completed matrix.  Documenting these exclusions is necessary for the practical-usability comparison, but no predictive ranking is inferred from an experiment that could not be executed consistently.
+
+
+\chapter{Results}
+
+This chapter reports the outcomes of the experiments described in Chapter~5. Unless stated otherwise, results for PySR, Operon, GPLearn, and PySINDy on the five established public datasets are means over seeds 7, 21, and 42.  Results for Energy Efficiency and Combined Cycle Power Plant are seed-42 results only. DSR and NeSymRe values are also single seed-42 runs.  Standard deviations are therefore shown only where repeated evidence exists.  The product task is used as an implementation check and is not included in framework rankings.
+
+\section{Known-Equation Recovery}
+
+All six adapters recovered the product $y=ab$ to numerical precision.  PySR, GPLearn, and DSR returned the direct product, PySINDy retained only the $ab$ term from its quadratic library, Operon returned a numerically equivalent scaled product, and NeSymRe returned $1.000000005ab$.  Clean-test $R^2$ was 1.0 for every framework and the largest clean RMSE was below $10^{-7}$.  The sanity check therefore confirmed that every adapter could fit, export, parse, and evaluate at least a simple multiplicative expression.
+
+The logistic map produced a clearer separation.  Table~\ref{tab:result-logistic} reports the clean one-step and recursive rollout results.  PySR, GPLearn, and PySINDy recovered
+\begin{equation}
+    r x(1-x)
+\end{equation}
+exactly or in an algebraically equivalent form.  Their one-step test RMSE was at machine precision, and their mean 50-step rollout error was at most $5.4\times10^{-9}$.  DSR recovered $xr(0.99999994-0.99999990x)$; its one-step RMSE was $3.6\times10^{-8}$, but repeated use amplified the small coefficient errors to a mean rollout RMSE of 0.0217.  Operon also achieved essentially perfect one-step prediction, while its mean rollout RMSE was 0.0266 across three seeds.
+
+NeSymRe was the only framework that did not recover the logistic relation.  Its seed-42 expression contained a sine term, achieved only $R^2=0.063$, and had a mean rollout RMSE of 0.507.  This failure occurred even though the task has only two variables and is within the checkpoint's input limit.
+
+\begin{longtable}{p{2.3cm}r r r r}
+\caption{Clean logistic-map results. Repeated values are means; $n$ is the
+number of completed seeds.}
+\label{tab:result-logistic}\\
+\hline
+Framework & $n$ & RMSE & $R^2$ & Rollout RMSE \\
+\hline
+\endfirsthead
+\hline
+Framework & $n$ & RMSE & $R^2$ & Rollout RMSE \\
+\hline
+\endhead
+PySR & 3 & $2.78\times10^{-17}$ & 1.000 & $1.33\times10^{-9}$ \\
+Operon & 3 & $7.25\times10^{-8}$ & 1.000 & 0.0266 \\
+GPLearn & 1 & $8.04\times10^{-17}$ & 1.000 & $1.96\times10^{-10}$ \\
+PySINDy & 3 & $4.58\times10^{-16}$ & 1.000 & $5.38\times10^{-9}$ \\
+DSR & 1 & $3.60\times10^{-8}$ & 1.000 & 0.0217 \\
+NeSymRe & 1 & 0.196 & 0.063 & 0.507 \\
+\hline
+\end{longtable}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.88\textwidth]{../../results/figures/logistic_map/rollout_errors.png}
+    \caption{Seed-42 logistic-map rollout errors on a logarithmic scale.  The
+    plot contains single-seed framework values and complements the repeated
+    summary in Table~\ref{tab:result-logistic}.}
+    \label{fig:result-logistic-rollout}
+\end{figure}
+
+\section{Predictive Performance on Empirical Tasks}
+
+Table~\ref{tab:result-empirical-r2} gives clean-test $R^2$ for the seven public tasks.  Operon provided the strongest general-purpose performance.  It had the highest repeated mean on Airfoil Self-Noise ($R^2=0.610$), Yacht Hydrodynamics ($R^2=0.992$), Superconductivity ($R^2=0.451$), and Gas Turbine Emissions ($R^2=0.807$).  On the seed-42 Combined Cycle Power Plant run, Operon also had the highest value, $R^2=0.942$, narrowly ahead of PySINDy at 0.941.
+
+\small
+\begin{longtable}{p{2.7cm}rrrrrr}
+\caption{Clean-test $R^2$ on empirical datasets. Values for DSR and NeSymRe,
+and all values on the two energy replacement tasks, are single seed-42 runs;
+the other values are three-seed means.}
+\label{tab:result-empirical-r2}\\
+\hline
+Dataset & PySR & Operon & GPLearn & PySINDy & DSR & NeSymRe \\
+\hline
+\endfirsthead
+\hline
+Dataset & PySR & Operon & GPLearn & PySINDy & DSR & NeSymRe \\
+\hline
+\endhead
+Airfoil Self-Noise & 0.419 & \textbf{0.610} & 0.491 & 0.607 & $-274.516$ & $-0.005$ \\
+Yacht Hydrodynamics & 0.975 & \textbf{0.992} & 0.990 & 0.910 & $-0.055$ & $-0.083$ \\
+Energy Efficiency & 0.907 & 0.983 & 0.920 & \textbf{0.994} & 0.845 & 0.793 \\
+Combined Cycle Power Plant & 0.902 & \textbf{0.942} & 0.935 & 0.941 & 0.917 & $-4734.276$ \\
+Superconductor data & 0.374 & \textbf{0.451} & 0.422 & 0.265 & $-0.848$ & 0.155 \\
+Naval Propulsion & 0.084 & 0.898 & $-1.009$ & \textbf{0.999} & $-3.002$ & $-0.006$ \\
+Gas Turbine Emissions & 0.500 & \textbf{0.807} & 0.456 & 0.467 & $-33.007$ & $-0.016$ \\
+\hline
+\end{longtable}
+\normalsize
+
+PySINDy was strongest when the target was well represented by its polynomial library.  It obtained $R^2=0.994$ and RMSE 0.761 on Energy Efficiency, and a three-seed mean $R^2=0.999$ with RMSE $5.14\times10^{-4}$ on Naval Propulsion. The latter result agrees with the dataset diagnostic: quadratic ridge regression achieved $R^2=0.99996$ on the same feature--target relation.  Its performance was less competitive on Yacht Hydrodynamics, Superconductivity, and the repeated Gas Turbine runs.
+
+PySR was consistently successful on Yacht Hydrodynamics, with mean $R^2=0.975$, but did not reach Operon on the other established empirical tasks. Its expressions produced mean $R^2$ values of 0.419 for Airfoil, 0.374 for Superconductivity, 0.084 for Naval Propulsion, and 0.500 for Gas Turbine Emissions.  GPLearn closely matched Operon on Yacht Hydrodynamics ($0.990$), but its variability was larger on Airfoil and Gas Turbine Emissions. On Naval Propulsion, all three GPLearn clean runs collapsed to a one-node constant expression, producing mean $R^2=-1.009$.
+
+The two neural frameworks produced mixed results.  DSR exactly solved the synthetic tasks and gave useful single-run fits on Energy Efficiency ($R^2=0.845$) and Combined Cycle Power Plant ($R^2=0.917$).  It failed badly on Airfoil, Superconductivity, Naval Propulsion, and Gas Turbine Emissions.  The public NeSymRe checkpoint obtained $R^2=0.793$ on Energy Efficiency but was near or below mean prediction on most other tasks.  Its Combined Cycle result was numerically extreme ($R^2=-4734.276$).  These empirical values must be read together with its restriction to the first three features.
+
+The dataset baselines help contextualise the SR values.  Airfoil's best diagnostic model reached $R^2=0.762$, above the best SR mean of 0.610.  Yacht's random forest reached 0.991, essentially equal to Operon and GPLearn.  On Superconductivity, histogram gradient boosting reached 0.669, showing that the target was learnable even though compact SR models reached only 0.451.  On Gas Turbine Emissions, Operon's mean 0.807 exceeded the seed-42 diagnostic baselines, whose best value was 0.766.  These checks show that the observed framework gaps cannot all be attributed to intrinsically unpredictable data.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.96\textwidth]{../../results/figures/overview/clean_r2_heatmap.png}
+    \caption{Clean-test $R^2$ for the seed-42 experiment matrix. Values are
+    clipped to $[-1,1]$ for visualisation; Table~\ref{tab:result-empirical-r2}
+    retains extreme negative values and uses repeated means where available.}
+    \label{fig:result-r2-overview}
+\end{figure}
+
+\section{Computational Efficiency and Practical Execution}
+
+Training-time comparisons reflect the configured budgets rather than equal wall-clock limits.  Nevertheless, clear differences appeared.  Across the five repeated public tasks, Operon's mean training times ranged from 0.275 to 0.816 seconds.  PySINDy's corresponding range was 0.005--0.103 seconds.  PySR was much slower but highly consistent, requiring approximately 15.6--16.9 seconds.  GPLLearn was the slowest maintainable framework, ranging from 24.0 seconds on Gas Turbine Emissions to 47.4 seconds on Yacht Hydrodynamics.
+
+The single-run neural times depended strongly on the task.  DSR required about 2.25--3.16 seconds on most established public datasets, 7.19 seconds on Energy Efficiency, and 20.83 seconds on Combined Cycle Power Plant.  NeSymRe required approximately 5.0--21.2 seconds on public tasks and 30.1 seconds on the logistic map.  These times exclude the one-off cost of creating the separate environments and downloading the NeSymRe checkpoint.
+
+Prediction was fast for every exported expression, but adapter overhead was visible.  Operon and the neural adapters generally predicted complete test sets within fractions of a millisecond.  PySINDy prediction was typically a few milliseconds, depending on polynomial-library width.  PySR's prediction calls were commonly around 0.01 seconds.  Since the test sets contain only 100--2048 samples, these timings should be treated as small-batch measurements, not throughput benchmarks.
+
+Practical setup separated the frameworks more strongly than prediction time. PySR, Operon, GPLearn, and PySINDy ran in one maintained environment and completed repeated batches through a shared command.  DSR required an isolated legacy TensorFlow~1 stack on Python~3.7.  NeSymRe required a separate PyTorch environment, a downloaded checkpoint, and compatibility patches, while still being limited to three variables.  AI-Feynman and Deep Symbolic Optimization did not reach the completed result matrix because of platform or dependency constraints.  Thus, successful model execution alone understates the setup cost of the neural and legacy candidates.
+
+\section{Equation Complexity and Interpretability Evidence}
+
+Equation size varied considerably among frameworks.  PySR generally returned the smallest useful expressions: across the repeated public tasks, its mean size ranged from 5 nodes on Superconductivity to 16.3 on Airfoil.  Operon's means ranged from 37.3 to 41.7 nodes.  GPLearn expressions ranged from a one-node constant on the failed Naval task to 87.3 nodes on Airfoil; its Yacht size also varied strongly between seeds.  The fixed quadratic feature library made PySINDy the largest representation on wider problems, reaching 178 nodes on Superconductivity and approximately 240 and 262 nodes on Naval Propulsion and Gas Turbine Emissions.  DSR and NeSymRe returned small trees, but their small size often coincided with poor prediction rather than a favourable accuracy--complexity trade-off.
+
+The representative equations illustrate why node count alone is insufficient. On Yacht Hydrodynamics, the seed-42 PySR equation simplified to
+\begin{equation}
+\widehat{R} = F_n(F_n+0.2730)(5.2268F_n+8.4768),
+\end{equation}
+where $F_n$ is the standardised Froude-number feature.  It used one variable and achieved $R^2=0.976$.  The seed-42 GPLearn expression was also dominated by the Froude number and reached $R^2=0.988$, while Operon's more complex equation used additional hull variables and reached $R^2=0.993$.  This forms a concrete accuracy--simplicity trade-off rather than a single unambiguous winner.
+
+On Superconductivity, PySR produced the five-node linear relation
+\begin{equation}
+    \widehat{T}_c = 20.4171,n_{\mathrm{elements}} + 35.7553,
+\end{equation}
+with seed-42 $R^2=0.404$.  Operon's larger multivariable expression reached 0.507 on the same seed.  The compact PySR form is readily inspectable, but it leaves substantial predictable variation unexplained.  On Naval Propulsion, PySINDy's near-perfect fit required a roughly 240-node quadratic expression, whereas Operon's approximately 41-node mean representation was less accurate. Consequently, the best predictive model was not necessarily the easiest equation to inspect.
+
+Raw-feature substitution further increased textual length because every standardised variable was replaced with $(x-\mu)/s$.  The simplified equation reports preserve both the standardised and raw-scale versions.  No automatic five-point interpretability score was generated, so this chapter reports only observable evidence: equation size, depth, variable use, stability, and representative forms.  Domain plausibility and the practical value of these trade-offs are considered in Chapter~7.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.94\textwidth]{../../results/figures/repeated_seeds/equation_size_ci.png}
+    \caption{Mean equation size with approximate 95\% confidence intervals for
+    available repeated runs. Single-run framework--dataset combinations are
+    not evidence of between-seed stability.}
+    \label{fig:result-equation-size}
+\end{figure}
+
+\section{Noise Robustness and Seed Stability}
+
+The target-noise experiments did not yield a uniform framework ordering. Several noisy runs improved slightly because the stochastic search followed a different trajectory.  For Airfoil, mean $R^2$ changes were small for Operon ($\Delta R^2=-0.035$), GPLLearn ($-0.060$), and PySINDy ($-0.002$), where a negative value denotes an improvement.  PySR decreased by 0.053.  Yacht was stable for all four repeatedly evaluated frameworks, with absolute mean $R^2$ changes below 0.005.  Superconductivity was also stable for PySR, GPLearn, and PySINDy, while Operon's mean decrease was 0.014.
+
+Naval Propulsion showed method-dependent sensitivity.  PySINDy remained highly accurate but lost a mean 0.040 in $R^2$ under target noise.  Operon's noisy fits improved by 0.044 on average.  PySR decreased by 0.022, and GPLLearn remained at its failed constant solution.  The largest instabilities occurred on Gas Turbine Emissions.  Operon's mean $R^2$ decrease was 1.689 and GPLLearn's was 3.389, both with very large standard deviations caused by individual noisy-run collapses.  PySR's mean decrease was 0.102.  PySINDy improved on average, but its clean and noisy values were themselves highly variable across seeds.
+
+Clean-run seed variability reinforces this distinction.  Yacht was stable: the standard deviation of clean $R^2$ was 0.001 for Operon, 0.002 for GPLLearn, PySINDy, and PySR.  Airfoil standard deviations ranged from 0.019 for PySINDy to 0.215 for GPLLearn.  Superconductivity ranged from 0.027 for PySR to 0.099 for PySINDy.  Gas Turbine Emissions was the least stable established task, with standard deviations of 0.056 for Operon, 0.100 for PySR, 0.480 for GPLLearn, and 0.616 for PySINDy.
+
+For the logistic map, exact clean equations did not guarantee equal robustness after noisy fitting.  PySR retained almost exact behaviour across three seeds, with mean $R^2$ decrease $1.36\times10^{-5}$.  PySINDy's mean decrease was $2.05\times10^{-4}$ and Operon's was 0.00127.  At seed 42, GPLearn rediscovered the exact equation from noisy observations, whereas the slightly perturbed DSR equation accumulated rollout error.  NeSymRe degraded from $R^2=0.063$ to $-0.201$.  These results show that one-step noise robustness and recursive stability are related but distinct outcomes.
+
+\chapter{Discussion}
+
+\section{Interpretation of Framework Trade-Offs}
+
+\section{Suitability for Surrogate-Modelling Tasks}
+
+\section{Practical Framework Selection}
+
+\section{Limitations and Threats to Validity}
+
+\section{Research Gaps and Future Benchmarking Needs}
+
+
+\chapter{Conclusion}
+
+\section{Summary of Findings}
+
+\section{Answer to the Research Question}
+
+\section{Future Work}
+
+%
+% agsm in der uibk vorlage
+%
+% ^.
+
+\bibliographystyle{agsm} %apalike
+\bibliography{literatur}
+
+
+\end{document}

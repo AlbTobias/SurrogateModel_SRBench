@@ -1,0 +1,56 @@
+\babel@toc {english}{}\relax 
+\contentsline {chapter}{Abstract}{II}{chapter*.1}%
+\contentsline {chapter}{\nonumberline List of Figures}{V}{chapter*.3}%
+\contentsline {chapter}{\nonumberline List of Tables}{VI}{chapter*.4}%
+\contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Motivation}{1}{section.1.1}%
+\contentsline {section}{\numberline {1.2}The Need for Interpretable Models}{1}{section.1.2}%
+\contentsline {section}{\numberline {1.3}Symbolic Regression as a Candidate Approach}{2}{section.1.3}%
+\contentsline {section}{\numberline {1.4}Research Question and Contributions}{3}{section.1.4}%
+\contentsline {chapter}{\numberline {2}Background}{5}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Surrogate Modeling}{5}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Symbolic Regression}{6}{section.2.2}%
+\contentsline {section}{\numberline {2.3}Main Symbolic Regression Method Families}{7}{section.2.3}%
+\contentsline {section}{\numberline {2.4}The Accuracy--Complexity Trade-Off}{8}{section.2.4}%
+\contentsline {section}{\numberline {2.5}Interpretability in Scientific Modeling}{9}{section.2.5}%
+\contentsline {chapter}{\numberline {3}Related Work}{11}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Symbolic Regression Reviews}{11}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Benchmark Studies}{12}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Applications in Science and Engineering}{13}{section.3.3}%
+\contentsline {section}{\numberline {3.4}Selected Framework Publications}{14}{section.3.4}%
+\contentsline {subsubsection}{\nonumberline PySR}{14}{subsubsection*.5}%
+\contentsline {subsubsection}{\nonumberline Operon}{14}{subsubsection*.6}%
+\contentsline {subsubsection}{\nonumberline Deep Symbolic Regression}{14}{subsubsection*.7}%
+\contentsline {chapter}{\numberline {4}Methodology}{16}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Framework Selection Criteria}{16}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Dataset Selection Criteria}{16}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Benchmark Protocol}{17}{section.4.3}%
+\contentsline {section}{\numberline {4.4}Evaluation Metrics}{19}{section.4.4}%
+\contentsline {section}{\numberline {4.5}Reproducibility Setup}{20}{section.4.5}%
+\contentsline {section}{\numberline {4.6}Interpretability Rubric}{20}{section.4.6}%
+\contentsline {chapter}{\numberline {5}Experiments}{22}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Experimental Matrix and Task Roles}{22}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Framework Configurations}{23}{section.5.2}%
+\contentsline {section}{\numberline {5.3}Execution Procedure and Environments}{24}{section.5.3}%
+\contentsline {section}{\numberline {5.4}Repeated Runs and Matrix Coverage}{25}{section.5.4}%
+\contentsline {section}{\numberline {5.5}Target-Noise Experiments}{26}{section.5.5}%
+\contentsline {section}{\numberline {5.6}Logistic-Map Rollout Experiment}{26}{section.5.6}%
+\contentsline {section}{\numberline {5.7}Diagnostic and Excluded Experiments}{27}{section.5.7}%
+\contentsline {chapter}{\numberline {6}Results}{28}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Known-Equation Recovery}{28}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Predictive Performance on Empirical Tasks}{29}{section.6.2}%
+\contentsline {section}{\numberline {6.3}Computational Efficiency and Practical Execution}{31}{section.6.3}%
+\contentsline {section}{\numberline {6.4}Equation Complexity and Interpretability Evidence}{32}{section.6.4}%
+\contentsline {section}{\numberline {6.5}Noise Robustness and Seed Stability}{33}{section.6.5}%
+\contentsline {chapter}{\numberline {7}Discussion}{35}{chapter.7}%
+\contentsline {section}{\numberline {7.1}Interpretation of Framework Trade-Offs}{35}{section.7.1}%
+\contentsline {section}{\numberline {7.2}Suitability for Surrogate-Modelling Tasks}{35}{section.7.2}%
+\contentsline {section}{\numberline {7.3}Practical Framework Selection}{35}{section.7.3}%
+\contentsline {section}{\numberline {7.4}Limitations and Threats to Validity}{35}{section.7.4}%
+\contentsline {section}{\numberline {7.5}Research Gaps and Future Benchmarking Needs}{35}{section.7.5}%
+\contentsline {chapter}{\numberline {8}Conclusion}{36}{chapter.8}%
+\contentsline {section}{\numberline {8.1}Summary of Findings}{36}{section.8.1}%
+\contentsline {section}{\numberline {8.2}Answer to the Research Question}{36}{section.8.2}%
+\contentsline {section}{\numberline {8.3}Future Work}{36}{section.8.3}%
+\contentsline {chapter}{\nonumberline Bibliography}{37}{chapter*.8}%
+\providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 
