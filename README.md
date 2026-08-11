@@ -74,6 +74,8 @@ successful, and missing trials so incomplete experiment matrices are visible.
 The full suite adds the established Borehole water-flow and Piston cycle-time
 computer-experiment problems. Their selection rationale, equations, domains,
 and sources are documented in [docs/surrogate-problems.md](docs/surrogate-problems.md).
+The generated table layout, every input column, and the exact target equations
+are summarized in [data/README.md](data/README.md).
 By default, `run_benchmark_group.sh` runs all three problems. Restrict a run with,
 for example, `BENCHMARK_PROBLEMS="borehole piston"`. Run one trial with:
 
