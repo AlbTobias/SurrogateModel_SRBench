@@ -17,6 +17,8 @@ import pandas as pd
 from sklearn.base import clone
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 
+from experiment.metrics.expression_analysis import analyze_expression
+
 
 def load_dataset(path: Path) -> tuple[pd.DataFrame, np.ndarray]:
     frame = pd.read_csv(path, sep="\t", compression="infer")
@@ -44,12 +46,15 @@ def main() -> None:
     parser.add_argument("--time-limit", type=int, default=60)
     parser.add_argument("--profile", choices=("smoke", "benchmark"), default="smoke")
     parser.add_argument("--config", type=Path)
+    parser.add_argument("--prediction-repeats", type=int)
+    parser.add_argument("--expression-timeout", type=int, default=5)
     args = parser.parse_args()
 
     algorithm = importlib.import_module(f"experiment.methods.{args.algorithm}.regressor")
     estimator = clone(algorithm.est)
     supported = estimator.get_params(deep=True)
     benchmark_name = None
+    configuration: dict[str, object] = {}
     configured_parameters: dict[str, object] = {}
     if args.config:
         configuration = json.loads(args.config.read_text(encoding="utf-8"))
@@ -57,6 +62,11 @@ def main() -> None:
         configured_parameters = configuration.get("algorithms", {}).get(args.algorithm, {})
         if args.profile == "benchmark" and not configured_parameters:
             raise ValueError(f"No benchmark parameters configured for {args.algorithm}")
+    prediction_repeats = args.prediction_repeats or int(
+        configuration.get("prediction_repeats", 1)
+    )
+    if prediction_repeats < 1:
+        raise ValueError("prediction repeats must be at least one")
     overrides: dict[str, object] = {}
     for key in ("random_state", "seed"):
         if key in supported:
@@ -100,16 +110,24 @@ def main() -> None:
     x_train_fit = x_train if use_dataframe else x_train.to_numpy()
     x_test_fit = x_test if use_dataframe else x_test.to_numpy()
 
+    evaluation_started = time.perf_counter()
     fit_started = time.perf_counter()
     estimator.fit(x_train_fit, y_train)
     fit_seconds = time.perf_counter() - fit_started
 
-    prediction_started = time.perf_counter()
-    prediction = np.asarray(estimator.predict(x_test_fit)).reshape(-1)
-    prediction_seconds = time.perf_counter() - prediction_started
+    prediction_timings: list[float] = []
+    prediction = None
+    for _ in range(prediction_repeats):
+        prediction_started = time.perf_counter()
+        current_prediction = np.asarray(estimator.predict(x_test_fit)).reshape(-1)
+        prediction_timings.append(time.perf_counter() - prediction_started)
+        if prediction is None:
+            prediction = current_prediction
+    assert prediction is not None
 
     rmse = float(np.sqrt(mean_squared_error(y_test, prediction)))
     target_range = float(np.max(y_test) - np.min(y_test))
+    extraction_started = time.perf_counter()
     model_function = getattr(algorithm, "model", None)
     if model_function is None:
         expression = None
@@ -119,6 +137,17 @@ def main() -> None:
         expression = model_function(estimator)
     complexity_function = getattr(algorithm, "complexity", None)
     model_size = complexity_function(estimator) if complexity_function else None
+    expression_extraction_seconds = time.perf_counter() - extraction_started
+
+    analysis_started = time.perf_counter()
+    expression_analysis = analyze_expression(
+        expression,
+        list(x_train.columns),
+        args.problem,
+        timeout_seconds=args.expression_timeout,
+    )
+    expression_analysis_seconds = time.perf_counter() - analysis_started
+    evaluation_seconds = time.perf_counter() - evaluation_started
 
     result = {
         "problem": args.problem,
@@ -148,9 +177,28 @@ def main() -> None:
         "r2": float(r2_score(y_test, prediction)),
         "max_absolute_error": float(np.max(np.abs(y_test - prediction))),
         "fit_seconds": fit_seconds,
-        "prediction_seconds": prediction_seconds,
+        "prediction_seconds": prediction_timings[0],
+        "prediction_repeats": prediction_repeats,
+        "prediction_mean_seconds": float(np.mean(prediction_timings)),
+        "prediction_median_seconds": float(np.median(prediction_timings)),
+        "prediction_std_seconds": (
+            float(np.std(prediction_timings, ddof=1))
+            if len(prediction_timings) > 1
+            else None
+        ),
+        "prediction_microseconds_per_sample": (
+            1e6 * float(np.median(prediction_timings)) / len(y_test)
+        ),
+        "expression_extraction_seconds": expression_extraction_seconds,
+        "expression_analysis_seconds": expression_analysis_seconds,
+        "evaluation_seconds": evaluation_seconds,
+        "timing_scope": (
+            "fit/predict/expression processing inside the running container; "
+            "image pull, container startup, data generation, and metric serialization excluded"
+        ),
         "model_size": model_size,
         "symbolic_model": expression,
+        **expression_analysis,
         "python": platform.python_version(),
         "platform": platform.platform(),
     }

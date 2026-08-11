@@ -1,0 +1,42 @@
+{
+  "name": "benchmark_suite_v2",
+  "description": "Three-problem surrogate benchmark with expression analysis and repeated prediction timing.",
+  "threads": 1,
+  "prediction_repeats": 5,
+  "seeds": [42, 43, 44],
+  "problems": ["cantilever", "borehole", "piston"],
+  "algorithms": {
+    "gplearn": {
+      "population_size": 500,
+      "generations": 100
+    },
+    "operon": {
+      "population_size": 1000,
+      "generations": 1000,
+      "max_evaluations": 1000000
+    },
+    "pysr": {
+      "niterations": 20,
+      "ncyclesperiteration": 500,
+      "population_size": 100,
+      "populations": 3,
+      "timeout_in_seconds": 60,
+      "deterministic": true,
+      "procs": 0,
+      "multithreading": false
+    },
+    "geneticengine": {
+      "population_size": 200,
+      "number_of_generations": 100,
+      "timer_stop_criteria": true,
+      "timer_limit": 60
+    },
+    "itea": {
+      "npop": 1000,
+      "ngens": 500
+    },
+    "eql": {
+      "n_iter": 10000
+    }
+  }
+}

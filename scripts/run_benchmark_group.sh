@@ -19,7 +19,7 @@ for problem in "${problems[@]}"; do
 
   "$project_dir/.venv/bin/python" "$project_dir/scripts/summarize_benchmark.py" \
     --problem "$problem" \
-    --config "$project_dir/${BENCHMARK_CONFIG:-configs/benchmark_suite_v1.json}"
+    --config "$project_dir/${BENCHMARK_CONFIG:-configs/benchmark_suite_v2.json}"
 done
 
 if (( ${#failed[@]} > 0 )); then

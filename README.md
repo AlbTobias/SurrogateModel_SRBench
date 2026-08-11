@@ -65,10 +65,12 @@ Run the versioned three-seed pilot benchmark with:
 
 The original Cantilever-only pilot remains defined in
 `configs/benchmark_pilot_v1.json`; the three-problem suite is defined in
-`configs/benchmark_suite_v1.json`.
+`configs/benchmark_suite_v1.json`. The current evaluation protocol, including
+repeated prediction timing and expression analysis, is versioned as
+`configs/benchmark_suite_v2.json` and is the runner default.
 Individual trials use `./scripts/run_benchmark_trial.sh ALGORITHM SEED`, and
 aggregate mean/standard-deviation metrics are written to
-`results/cantilever/benchmark/summary.csv`. The summary also reports expected,
+`results/<problem>/<benchmark-name>/summary.csv`. The summary also reports expected,
 successful, and missing trials so incomplete experiment matrices are visible.
 
 The full suite adds the established Borehole water-flow and Piston cycle-time
@@ -76,6 +78,9 @@ computer-experiment problems. Their selection rationale, equations, domains,
 and sources are documented in [docs/surrogate-problems.md](docs/surrogate-problems.md).
 The generated table layout, every input column, and the exact target equations
 are summarized in [data/README.md](data/README.md).
+Framework-independent expression complexity, symbolic ground-truth comparison,
+and runtime measurement are defined in
+[docs/evaluation-protocol.md](docs/evaluation-protocol.md).
 By default, `run_benchmark_group.sh` runs all three problems. Restrict a run with,
 for example, `BENCHMARK_PROBLEMS="borehole piston"`. Run one trial with:
 

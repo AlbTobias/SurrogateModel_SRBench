@@ -131,7 +131,8 @@ Generator: `surrogate/generate_piston.py`
 ## How results are judged
 
 The current evaluator reports test-set RMSE, range-normalized RMSE, MAE, maximum
-absolute error, $R^2$, runtime, and model size when the adapter exposes it. A
+absolute error, $R^2$, runtime, and framework-independent SymPy expression
+structure. It also tests exact algebraic agreement with the equations above. A
 high $R^2$ alone does not prove equation recovery: two expressions may predict
 similarly over these ranges while behaving differently elsewhere. Conversely,
 an expression written in a different but algebraically equivalent form should
