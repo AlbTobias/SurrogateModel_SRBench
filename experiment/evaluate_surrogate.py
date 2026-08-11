@@ -56,7 +56,13 @@ def main() -> None:
         for key in ("population_size", "npop"):
             if key in supported:
                 overrides[key] = args.population_size
-        for key in ("generations", "ngens", "niterations", "number_of_generations"):
+        for key in (
+            "generations",
+            "ngens",
+            "n_iter",
+            "niterations",
+            "number_of_generations",
+        ):
             if key in supported:
                 overrides[key] = args.iterations
         for key in ("max_time", "timeout_in_seconds", "timer_limit"):
@@ -73,12 +79,16 @@ def main() -> None:
     if "feature_names" in supported:
         estimator.set_params(feature_names=list(x_train.columns))
 
+    use_dataframe = getattr(algorithm, "eval_kwargs", {}).get("use_dataframe", True)
+    x_train_fit = x_train if use_dataframe else x_train.to_numpy()
+    x_test_fit = x_test if use_dataframe else x_test.to_numpy()
+
     fit_started = time.perf_counter()
-    estimator.fit(x_train, y_train)
+    estimator.fit(x_train_fit, y_train)
     fit_seconds = time.perf_counter() - fit_started
 
     prediction_started = time.perf_counter()
-    prediction = np.asarray(estimator.predict(x_test)).reshape(-1)
+    prediction = np.asarray(estimator.predict(x_test_fit)).reshape(-1)
     prediction_seconds = time.perf_counter() - prediction_started
 
     rmse = float(np.sqrt(mean_squared_error(y_test, prediction)))
@@ -107,6 +117,7 @@ def main() -> None:
         "requested_iterations": args.iterations,
         "time_limit": args.time_limit,
         "profile": args.profile,
+        "use_dataframe": use_dataframe,
         "applied_parameters": {
             key: value for key, value in overrides.items() if key in supported
         },

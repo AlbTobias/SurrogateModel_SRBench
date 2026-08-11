@@ -47,7 +47,7 @@ this repository, and writes results under `results/cantilever/`. Set
 is available as `./scripts/run_cantilever_local.sh`.
 
 Run the initial diverse algorithm group (`gplearn`, Operon, PySR,
-GeneticEngine, and ITEA) with reduced smoke-test budgets using:
+GeneticEngine, ITEA, and EQL) with reduced smoke-test budgets using:
 
 ```bash
 ./scripts/run_algorithm_group.sh

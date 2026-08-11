@@ -2,7 +2,7 @@
 set -uo pipefail
 
 project_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-algorithms=(gplearn operon pysr geneticengine itea)
+algorithms=(gplearn operon pysr geneticengine itea eql)
 failed=()
 
 for algorithm in "${algorithms[@]}"; do
@@ -16,4 +16,3 @@ if (( ${#failed[@]} > 0 )); then
   printf 'Failed algorithms: %s\n' "${failed[*]}" >&2
   exit 1
 fi
-
