@@ -19,11 +19,9 @@ import pandas as pd
 from sklearn.base import clone
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 
-from experiment.metrics.expression_analysis import analyze_expression
 from experiment.metrics.input_scaling import (
     SCALING_DOMAIN_MINMAX,
     SUPPORTED_SCALINGS,
-    expression_to_raw_scale,
     scale_frame_to_unit_interval,
     scaling_metadata,
 )
@@ -67,7 +65,6 @@ def main() -> None:
     parser.add_argument("--profile", choices=("smoke", "benchmark"), default="smoke")
     parser.add_argument("--config", type=Path)
     parser.add_argument("--prediction-repeats", type=int)
-    parser.add_argument("--expression-timeout", type=int, default=5)
     parser.add_argument("--input-scaling", choices=SUPPORTED_SCALINGS, default="raw")
     args = parser.parse_args()
 
@@ -168,31 +165,6 @@ def main() -> None:
     model_size = complexity_function(estimator) if complexity_function else None
     expression_extraction_seconds = time.perf_counter() - extraction_started
 
-    analysis_started = time.perf_counter()
-    training_scale_analysis = analyze_expression(
-        expression,
-        feature_names,
-        "training_scale_without_ground_truth",
-        timeout_seconds=args.expression_timeout,
-    )
-    back_transform_error = None
-    if expression and args.input_scaling == SCALING_DOMAIN_MINMAX:
-        try:
-            raw_scale_expression = expression_to_raw_scale(
-                expression, feature_names, domain_metadata
-            )
-        except Exception as error:
-            raw_scale_expression = None
-            back_transform_error = f"{type(error).__name__}: {error}"
-    else:
-        raw_scale_expression = expression
-    expression_analysis = analyze_expression(
-        raw_scale_expression,
-        feature_names,
-        args.problem,
-        timeout_seconds=args.expression_timeout,
-    )
-    expression_analysis_seconds = time.perf_counter() - analysis_started
     evaluation_seconds = time.perf_counter() - evaluation_started
 
     result = {
@@ -206,6 +178,7 @@ def main() -> None:
         ),
         "train_samples": len(y_train),
         "test_samples": len(y_test),
+        "feature_names": feature_names,
         "dataset_policy": "fixed across algorithm trials",
         "dataset_hash_scope": "SHA-256 of uncompressed table bytes",
         "train_dataset_sha256": sha256_dataset(args.train),
@@ -251,22 +224,16 @@ def main() -> None:
             1e6 * float(np.median(prediction_timings)) / len(y_test)
         ),
         "expression_extraction_seconds": expression_extraction_seconds,
-        "expression_analysis_seconds": expression_analysis_seconds,
         "evaluation_seconds": evaluation_seconds,
         "timing_scope": (
-            "fit/predict/expression processing inside the running container; "
+            "fit/predict/expression extraction inside the running container; "
+            "symbolic analysis, "
             "image pull, container startup, data generation, and metric serialization excluded"
         ),
         "model_size": model_size,
         "symbolic_model": expression,
         "symbolic_model_coordinate_system": args.input_scaling,
-        "raw_scale_symbolic_model": raw_scale_expression,
-        "raw_scale_back_transform_error": back_transform_error,
-        **{
-            f"training_scale_{key}": value
-            for key, value in training_scale_analysis.items()
-        },
-        **expression_analysis,
+        "symbolic_analysis": "separate post-processing sidecar",
         "python": platform.python_version(),
         "platform": platform.platform(),
     }

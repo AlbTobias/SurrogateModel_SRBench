@@ -101,6 +101,15 @@ parsing succeeds, a model learned in normalized coordinates is also transformed
 back to the original physical variables for interpretation and comparison with
 the generating equation.
 
+Symbolic parsing, simplification, physical-coordinate transformation, and
+ground-truth comparison are separate post-processing steps with a 60-second
+per-stage timeout. They write `seed-N.analysis.json` sidecars and do not affect
+algorithm runtime. Reanalyze stored results without retraining using:
+
+```bash
+./scripts/analyze_benchmark_results.py --problem borehole --timeout 60 --jobs 2
+```
+
 The generated train/test tables are fixed across repetitions and their content
 hashes are stored in every result. Supported estimators receive the repetition
 seed; ITEA is explicitly summarized as having uncontrolled repetitions because

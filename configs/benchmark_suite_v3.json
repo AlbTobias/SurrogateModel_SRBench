@@ -9,6 +9,7 @@
     "failure_policy": "failed and missing trials are retained and reported separately"
   },
   "threads": 1,
+  "expression_analysis_timeout_seconds_per_stage": 60,
   "prediction_repeats": 5,
   "seeds": [2, 3, 5, 7, 11, 13, 17, 19, 23, 29],
   "problems": ["cantilever", "borehole", "piston"],

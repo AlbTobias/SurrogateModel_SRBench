@@ -53,14 +53,26 @@ denominator or merged silently with missing runs.
 
 ## Expression representations
 
-Each result retains the adapter's original `symbolic_model`. The common
-evaluator then parses that string with SymPy. Its parser supports the infix
+Each trial result retains the adapter's original `symbolic_model`. Separate,
+versioned post-processing parses that string with SymPy and writes a
+`seed-N.analysis.json` sidecar beside the immutable trial JSON. Its parser supports the infix
 notation returned by PySR, Operon, GeneticEngine, ITEA, and EQL, as well as the
 prefix `add`, `sub`, `mul`, and `div` notation returned by gplearn.
 
-Parsing and simplification have separate success and error fields. A timeout or
-failure therefore remains visible and does not cause the complete model run to
-be discarded. Symbolic processing has a default five-second limit per stage.
+Parsing, back-transformation, simplification, and ground-truth comparison have
+separate success and error fields. A timeout or failure therefore cannot
+invalidate the completed algorithm run. Version 2 post-processing uses a
+60-second limit per symbolic stage. Each sidecar records the analysis version,
+timeout, environment, elapsed analysis time, and SHA-256 hash of its source;
+the summarizer rejects stale sidecars.
+
+Run or resume analysis without fitting models using:
+
+```bash
+./scripts/analyze_benchmark_results.py --problem borehole --timeout 60 --jobs 2
+```
+
+Existing sidecars are skipped unless `--force` is supplied.
 
 ## Structural complexity
 
@@ -78,6 +90,12 @@ candidate among the normalized, cancelled, factored, and generally simplified
 forms. The adapter-specific `model_size` is retained
 for debugging and comparison with upstream reports, but it is not suitable as
 the primary cross-framework measure because adapters use different definitions.
+
+Unsimplified `expression_node_count` and `expression_depth` remain available
+whenever parsing succeeds, even if simplification times out. Summaries report
+`complexity_valid_trials`, `complexity_coverage`,
+`simplified_complexity_trials`, and `unsimplified_fallback_trials`. Simplified
+and fallback counts are not silently pooled into one mean.
 
 SymPy canonicalizes associative operations, so normalized node counts measure
 the mathematical expression tree rather than the framework's internal genome
@@ -115,8 +133,12 @@ already running algorithm container:
 - `prediction_microseconds_per_sample`: median prediction time divided by the
   test-set size;
 - `expression_extraction_seconds`: adapter expression export and native size;
-- `expression_analysis_seconds`: parsing, simplification, and comparison;
-- `evaluation_seconds`: fit through completed expression analysis.
+- `evaluation_seconds`: fit through expression extraction, excluding symbolic
+  post-processing.
+
+The sidecar's `analysis_seconds` measures parsing, coordinate transformation,
+simplification, and comparison in the fixed project environment. It is reported
+separately and is not part of algorithm runtime.
 
 The suite configuration requests five prediction calls. The first-call value
 captures initialization latency; the median is the preferred steady-use

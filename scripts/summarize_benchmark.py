@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import argparse
 import csv
+import hashlib
 import json
 from pathlib import Path
 
@@ -19,7 +20,9 @@ METRICS = (
     "fit_seconds",
     "prediction_median_seconds",
     "prediction_microseconds_per_sample",
-    "expression_analysis_seconds",
+    "analysis_seconds",
+    "expression_node_count",
+    "expression_depth",
     "simplified_node_count",
     "simplified_depth",
     "simplified_to_ground_truth_size_ratio",
@@ -54,9 +57,29 @@ def main() -> None:
     expected_algorithms = list(configuration["algorithms"])
     grouped: dict[str, list[dict[str, object]]] = {}
     for path in sorted(result_root.glob("*/seed-*.json")):
+        if path.name.endswith(".analysis.json"):
+            continue
         result = json.loads(path.read_text(encoding="utf-8"))
         if int(result["seed"]) not in expected_seeds:
             continue
+        analysis_path = path.with_name(f"{path.stem}.analysis.json")
+        result["analysis_available"] = analysis_path.exists()
+        if analysis_path.exists():
+            analysis = json.loads(analysis_path.read_text(encoding="utf-8"))
+            expected_hash = hashlib.sha256(path.read_bytes()).hexdigest()
+            if analysis.get("source_result_sha256") != expected_hash:
+                raise ValueError(f"Stale analysis sidecar for {path}")
+            result.update(analysis)
+        else:
+            # Do not reuse analysis embedded by the older, coupled evaluator.
+            for metric in METRICS:
+                if metric not in {"r2", "rmse", "nrmse_range", "mae", "fit_seconds",
+                                  "prediction_median_seconds",
+                                  "prediction_microseconds_per_sample"}:
+                    result[metric] = None
+            for key in ("expression_parse_success", "expression_simplify_success",
+                        "symbolic_exact_match", "complexity_valid", "complexity_source"):
+                result[key] = None
         grouped.setdefault(str(result["algorithm"]), []).append(result)
     failures: dict[str, list[dict[str, object]]] = {}
     for path in sorted((result_root / "failures").glob("*/seed-*.json")):
@@ -92,6 +115,16 @@ def main() -> None:
         parsed_trials = sum(
             trial.get("expression_parse_success") is True for trial in trials
         )
+        analysis_trials = sum(trial.get("analysis_available") is True for trial in trials)
+        complexity_valid_trials = sum(
+            trial.get("complexity_valid") is True for trial in trials
+        )
+        simplified_complexity_trials = sum(
+            trial.get("complexity_source") == "simplified" for trial in trials
+        )
+        fallback_trials = sum(
+            trial.get("complexity_source") == "unsimplified_fallback" for trial in trials
+        )
         row: dict[str, object] = {
             "algorithm": algorithm,
             "input_scaling": args.input_scaling,
@@ -106,9 +139,23 @@ def main() -> None:
             "seeds": ";".join(str(seed) for seed in completed_seeds),
             "failed_seeds": ";".join(str(seed) for seed in failed_seeds),
             "missing_seeds": ";".join(str(seed) for seed in missing_seeds),
+            "analysis_trials": analysis_trials,
+            "analysis_coverage": analysis_trials / len(trials) if trials else None,
             "parsed_expression_trials": parsed_trials,
             "expression_parse_success_rate": (
                 parsed_trials / len(trials) if trials else None
+            ),
+            "complexity_valid_trials": complexity_valid_trials,
+            "complexity_coverage": (
+                complexity_valid_trials / len(trials) if trials else None
+            ),
+            "simplified_complexity_trials": simplified_complexity_trials,
+            "simplified_complexity_coverage": (
+                simplified_complexity_trials / len(trials) if trials else None
+            ),
+            "unsimplified_fallback_trials": fallback_trials,
+            "unsimplified_fallback_rate": (
+                fallback_trials / len(trials) if trials else None
             ),
             "symbolic_exact_matches": symbolic_matches,
             "symbolic_exact_match_rate": (
