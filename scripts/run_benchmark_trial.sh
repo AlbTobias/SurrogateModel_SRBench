@@ -14,6 +14,8 @@ if [[ ! -f "$config_path" ]]; then
 fi
 benchmark_name="$("$project_dir/.venv/bin/python" -c \
   'import json, sys; print(json.load(open(sys.argv[1]))["name"])' "$config_path")"
+benchmark_threads="$("$project_dir/.venv/bin/python" -c \
+  'import json, sys; c=json.load(open(sys.argv[1])); print(c.get("execution_controls", {}).get("threads", 1))' "$config_path")"
 case "$problem" in
   cantilever|borehole|piston) ;;
   *)
@@ -59,9 +61,9 @@ docker run --rm \
   --volume "$project_dir:/workspace" \
   --workdir "/workspace/results/runtime/$benchmark_name/$problem/$input_scaling/$algorithm/seed-$seed" \
   --env PYTHONPATH=/workspace \
-  --env OMP_NUM_THREADS=1 \
-  --env OPENBLAS_NUM_THREADS=1 \
-  --env MKL_NUM_THREADS=1 \
+  --env OMP_NUM_THREADS="$benchmark_threads" \
+  --env OPENBLAS_NUM_THREADS="$benchmark_threads" \
+  --env MKL_NUM_THREADS="$benchmark_threads" \
   --env JAX_ENABLE_X64=true \
   "$locked_image" \
     python -m experiment.evaluate_surrogate \

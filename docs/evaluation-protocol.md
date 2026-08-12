@@ -51,6 +51,38 @@ coordinates and process exit code. The summary reports successful, failed, and
 missing counts and labels separately; failures are not dropped from the
 denominator or merged silently with missing runs.
 
+## Parameter provenance and computational budgets
+
+The final suite uses one fixed configuration per algorithm and performs no
+hyperparameter search. Its configuration separates three concepts:
+
+- `execution_controls` define shared reproducibility and measurement behavior,
+  including one-thread execution, repeated prediction timing, and the symbolic
+  post-processing timeout. They are not model hyperparameters.
+- `project_budget_override` marks search budgets reduced by this project to
+  make the 360-trial experiment computationally feasible.
+- `documented_adapter_defaults` restates effective settings already selected by
+  the pinned SRBench adapter so they are visible in the experiment manifest.
+
+PySR has the combined role `project_budget_and_execution_override` because its
+entry both limits the search and enforces deterministic single-process behavior.
+Each entry records a plain-language rationale and nests the estimator values
+under `parameters`. Trial JSONs copy the configuration role, rationale, and
+configured parameters, while `applied_parameters` records the subset accepted
+by the estimator together with its controlled seed where supported. New trial
+results also store the configuration schema version and SHA-256 hash of the
+complete manifest.
+
+The project-selected reductions are gplearn's population/generation budget,
+PySR's iteration and 60-second budget, and GeneticEngine's population,
+generation, and 60-second budget. Operon, ITEA, and EQL restate their effective
+adapter budgets. These choices were fixed for practical repeated evaluation and
+were not selected using final test performance. They do not impose equal
+computational effort: some algorithms are time-limited and others use
+evaluation, iteration, or generation limits. Accordingly, conclusions concern
+performance under these fixed representative configurations, not maximum tuned
+performance or an equal-compute ranking.
+
 ## Expression representations
 
 Each trial result retains the adapter's original `symbolic_model`. Separate,

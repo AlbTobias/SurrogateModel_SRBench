@@ -15,7 +15,7 @@ mapfile -t configured_seeds < <("$project_dir/.venv/bin/python" -c \
 benchmark_name="$("$project_dir/.venv/bin/python" -c \
   'import json, sys; print(json.load(open(sys.argv[1]))["name"])' "$config_path")"
 analysis_timeout="$("$project_dir/.venv/bin/python" -c \
-  'import json, sys; print(json.load(open(sys.argv[1])).get("expression_analysis_timeout_seconds_per_stage", 60))' "$config_path")"
+  'import json, sys; c=json.load(open(sys.argv[1])); print(c.get("execution_controls", {}).get("expression_analysis_timeout_seconds_per_stage", c.get("expression_analysis_timeout_seconds_per_stage", 60)))' "$config_path")"
 algorithms=(${BENCHMARK_ALGORITHMS:-${configured_algorithms[*]}})
 seeds=(${BENCHMARK_SEEDS:-${configured_seeds[*]}})
 problems=(${BENCHMARK_PROBLEMS:-cantilever borehole piston})

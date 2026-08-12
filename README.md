@@ -117,6 +117,15 @@ its published estimator exposes no seed parameter. Failed runs receive separate
 failure records, and summaries distinguish successful, failed, and missing
 trials.
 
+The active configuration separates shared `execution_controls` from each
+algorithm's nested `parameters`. Every algorithm entry is labelled either as a
+project-selected practical budget or as a documented SRBench adapter default,
+with a rationale copied into new result JSONs. No hyperparameter optimization
+is performed, and the configured budgets must not be interpreted as equal
+compute or as each method's optimal attainable performance. See
+[docs/evaluation-protocol.md](docs/evaluation-protocol.md) for the complete
+parameter-provenance policy.
+
 The published Operon and GeneticEngine images contain older package APIs than
 the current SRBench adapters. Their adapters include narrowly scoped fallback
 paths for those pinned images. ITEA's published estimator exposes no random-seed

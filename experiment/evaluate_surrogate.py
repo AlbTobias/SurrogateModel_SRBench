@@ -74,14 +74,27 @@ def main() -> None:
     benchmark_name = None
     configuration: dict[str, object] = {}
     configured_parameters: dict[str, object] = {}
+    configuration_role = None
+    configuration_rationale = None
+    configuration_sha256 = None
     if args.config:
         configuration = json.loads(args.config.read_text(encoding="utf-8"))
+        configuration_sha256 = hashlib.sha256(args.config.read_bytes()).hexdigest()
         benchmark_name = configuration.get("name")
-        configured_parameters = configuration.get("algorithms", {}).get(args.algorithm, {})
+        algorithm_configuration = configuration.get("algorithms", {}).get(
+            args.algorithm, {}
+        )
+        configured_parameters = algorithm_configuration.get(
+            "parameters", algorithm_configuration
+        )
+        configuration_role = algorithm_configuration.get("configuration_role")
+        configuration_rationale = algorithm_configuration.get("rationale")
         if args.profile == "benchmark" and not configured_parameters:
             raise ValueError(f"No benchmark parameters configured for {args.algorithm}")
     prediction_repeats = args.prediction_repeats or int(
-        configuration.get("prediction_repeats", 1)
+        configuration.get("execution_controls", {}).get(
+            "prediction_repeats", configuration.get("prediction_repeats", 1)
+        )
     )
     if prediction_repeats < 1:
         raise ValueError("prediction repeats must be at least one")
@@ -191,6 +204,10 @@ def main() -> None:
         "profile": args.profile,
         "benchmark_name": benchmark_name,
         "config_file": str(args.config) if args.config else None,
+        "configuration_schema_version": configuration.get(
+            "configuration_schema_version"
+        ),
+        "configuration_sha256": configuration_sha256,
         "use_dataframe": use_dataframe,
         "input_scaling": args.input_scaling,
         "input_scaling_applied": args.input_scaling == SCALING_DOMAIN_MINMAX,
@@ -202,6 +219,9 @@ def main() -> None:
         ),
         "input_scaling_parameters": domain_metadata,
         "target_scaling": "none; target remains in original units",
+        "algorithm_configuration_role": configuration_role,
+        "algorithm_configuration_rationale": configuration_rationale,
+        "configured_parameters": configured_parameters,
         "applied_parameters": {
             key: value for key, value in overrides.items() if key in supported
         },

@@ -1,5 +1,6 @@
 {
   "name": "benchmark_suite_v3",
+  "configuration_schema_version": 2,
   "description": "Final ten-repetition paired raw and fixed-domain normalized input-scaling experiment.",
   "repetition_protocol": {
     "trials_per_algorithm_problem_condition": 10,
@@ -8,9 +9,12 @@
     "uncontrolled_repetition_algorithms": ["itea"],
     "failure_policy": "failed and missing trials are retained and reported separately"
   },
-  "threads": 1,
-  "expression_analysis_timeout_seconds_per_stage": 60,
-  "prediction_repeats": 5,
+  "execution_controls": {
+    "threads": 1,
+    "prediction_repeats": 5,
+    "expression_analysis_timeout_seconds_per_stage": 60,
+    "purpose": "Reproducible resource control and measurement; these are not tuned model hyperparameters."
+  },
   "seeds": [2, 3, 5, 7, 11, 13, 17, 19, 23, 29],
   "problems": ["cantilever", "borehole", "piston"],
   "dataset_generation": {
@@ -21,36 +25,60 @@
   "input_scalings": ["raw", "domain_minmax"],
   "algorithms": {
     "gplearn": {
-      "population_size": 500,
-      "generations": 100
+      "configuration_role": "project_budget_override",
+      "rationale": "Reduced from the SRBench adapter's 1000 individuals and 500 generations to keep 360 repeated trials computationally feasible; not selected using test performance.",
+      "parameters": {
+        "population_size": 500,
+        "generations": 100
+      }
     },
     "operon": {
-      "population_size": 1000,
-      "generations": 1000,
-      "max_evaluations": 1000000
+      "configuration_role": "documented_adapter_defaults",
+      "rationale": "Restates the effective settings of the legacy Operon estimator in the pinned SRBench image for auditability.",
+      "parameters": {
+        "population_size": 1000,
+        "generations": 1000,
+        "max_evaluations": 1000000
+      }
     },
     "pysr": {
-      "niterations": 20,
-      "ncyclesperiteration": 500,
-      "population_size": 100,
-      "populations": 3,
-      "timeout_in_seconds": 60,
-      "deterministic": true,
-      "procs": 0,
-      "multithreading": false
+      "configuration_role": "project_budget_and_execution_override",
+      "rationale": "Replaces the adapter's very long search with a 60-second practical budget and explicitly enforces deterministic single-process execution; not selected using test performance.",
+      "parameters": {
+        "niterations": 20,
+        "ncyclesperiteration": 500,
+        "population_size": 100,
+        "populations": 3,
+        "timeout_in_seconds": 60,
+        "deterministic": true,
+        "procs": 0,
+        "multithreading": false
+      }
     },
     "geneticengine": {
-      "population_size": 200,
-      "number_of_generations": 100,
-      "timer_stop_criteria": true,
-      "timer_limit": 60
+      "configuration_role": "project_budget_override",
+      "rationale": "Reduces the adapter's one-hour allowance to a 60-second practical budget for repeated evaluation; not selected using test performance.",
+      "parameters": {
+        "population_size": 200,
+        "number_of_generations": 100,
+        "timer_stop_criteria": true,
+        "timer_limit": 60
+      }
     },
     "itea": {
-      "npop": 1000,
-      "ngens": 500
+      "configuration_role": "documented_adapter_defaults",
+      "rationale": "Restates the population and generation settings already defined by the pinned SRBench adapter.",
+      "parameters": {
+        "npop": 1000,
+        "ngens": 500
+      }
     },
     "eql": {
-      "n_iter": 10000
+      "configuration_role": "documented_adapter_defaults",
+      "rationale": "Restates the 10000 optimization iterations already defined by the pinned SRBench adapter; the adapter's inactive candidate grid is not used.",
+      "parameters": {
+        "n_iter": 10000
+      }
     }
   }
 }
