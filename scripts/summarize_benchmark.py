@@ -55,10 +55,14 @@ def main() -> None:
     grouped: dict[str, list[dict[str, object]]] = {}
     for path in sorted(result_root.glob("*/seed-*.json")):
         result = json.loads(path.read_text(encoding="utf-8"))
+        if int(result["seed"]) not in expected_seeds:
+            continue
         grouped.setdefault(str(result["algorithm"]), []).append(result)
     failures: dict[str, list[dict[str, object]]] = {}
     for path in sorted((result_root / "failures").glob("*/seed-*.json")):
         failure = json.loads(path.read_text(encoding="utf-8"))
+        if int(failure["seed"]) not in expected_seeds:
+            continue
         failures.setdefault(str(failure["algorithm"]), []).append(failure)
 
     repetition_protocol = configuration.get("repetition_protocol", {})
