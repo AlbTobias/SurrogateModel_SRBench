@@ -56,12 +56,29 @@ def main() -> None:
     for path in sorted(result_root.glob("*/seed-*.json")):
         result = json.loads(path.read_text(encoding="utf-8"))
         grouped.setdefault(str(result["algorithm"]), []).append(result)
+    failures: dict[str, list[dict[str, object]]] = {}
+    for path in sorted((result_root / "failures").glob("*/seed-*.json")):
+        failure = json.loads(path.read_text(encoding="utf-8"))
+        failures.setdefault(str(failure["algorithm"]), []).append(failure)
+
+    repetition_protocol = configuration.get("repetition_protocol", {})
+    uncontrolled = set(
+        repetition_protocol.get("uncontrolled_repetition_algorithms", [])
+    )
 
     rows: list[dict[str, object]] = []
     for algorithm in expected_algorithms:
         trials = grouped.get(algorithm, [])
+        failed_seeds = sorted(
+            int(failure["seed"]) for failure in failures.get(algorithm, [])
+        )
+        trials = [
+            trial for trial in trials if int(trial["seed"]) not in set(failed_seeds)
+        ]
         completed_seeds = sorted(int(trial["seed"]) for trial in trials)
-        missing_seeds = sorted(set(expected_seeds) - set(completed_seeds))
+        missing_seeds = sorted(
+            set(expected_seeds) - set(completed_seeds) - set(failed_seeds)
+        )
         symbolic_trials = [
             trial for trial in trials if trial.get("symbolic_exact_match") is not None
         ]
@@ -74,10 +91,16 @@ def main() -> None:
         row: dict[str, object] = {
             "algorithm": algorithm,
             "input_scaling": args.input_scaling,
+            "repetition_type": (
+                "uncontrolled" if algorithm in uncontrolled else "seed-controlled"
+            ),
             "expected_trials": len(expected_seeds),
             "successful_trials": len(trials),
-            "failed_or_missing_trials": len(missing_seeds),
+            "failed_trials": len(failed_seeds),
+            "missing_trials": len(missing_seeds),
+            "failed_or_missing_trials": len(failed_seeds) + len(missing_seeds),
             "seeds": ";".join(str(seed) for seed in completed_seeds),
+            "failed_seeds": ";".join(str(seed) for seed in failed_seeds),
             "missing_seeds": ";".join(str(seed) for seed in missing_seeds),
             "parsed_expression_trials": parsed_trials,
             "expression_parse_success_rate": (

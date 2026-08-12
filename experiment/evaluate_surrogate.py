@@ -4,6 +4,8 @@
 from __future__ import annotations
 
 import argparse
+import gzip
+import hashlib
 import importlib
 import inspect
 import json
@@ -38,6 +40,17 @@ def json_default(value: object) -> object:
     if isinstance(value, np.generic):
         return value.item()
     raise TypeError(f"Object of type {type(value).__name__} is not JSON serializable")
+
+
+def sha256_dataset(path: Path) -> str:
+    """Hash uncompressed table content so gzip timestamps do not affect identity."""
+
+    digest = hashlib.sha256()
+    opener = gzip.open if path.suffix == ".gz" else Path.open
+    with opener(path, "rb") as handle:
+        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
 
 
 def main() -> None:
@@ -183,6 +196,7 @@ def main() -> None:
     evaluation_seconds = time.perf_counter() - evaluation_started
 
     result = {
+        "status": "success",
         "problem": args.problem,
         "algorithm": args.algorithm,
         "seed": args.seed,
@@ -192,6 +206,10 @@ def main() -> None:
         ),
         "train_samples": len(y_train),
         "test_samples": len(y_test),
+        "dataset_policy": "fixed across algorithm trials",
+        "dataset_hash_scope": "SHA-256 of uncompressed table bytes",
+        "train_dataset_sha256": sha256_dataset(args.train),
+        "test_dataset_sha256": sha256_dataset(args.test),
         "requested_population_size": (
             args.population_size if args.profile == "smoke" else None
         ),

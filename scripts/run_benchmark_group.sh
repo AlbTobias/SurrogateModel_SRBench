@@ -2,8 +2,18 @@
 set -uo pipefail
 
 project_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-algorithms=(gplearn operon pysr geneticengine itea eql)
-seeds=(${BENCHMARK_SEEDS:-42 43 44})
+config_file="${BENCHMARK_CONFIG:-configs/benchmark_suite_v3.json}"
+config_path="$project_dir/$config_file"
+if [[ ! -f "$config_path" ]]; then
+  echo "Benchmark configuration not found: $config_path" >&2
+  exit 2
+fi
+mapfile -t configured_algorithms < <("$project_dir/.venv/bin/python" -c \
+  'import json, sys; print(*json.load(open(sys.argv[1]))["algorithms"], sep="\n")' "$config_path")
+mapfile -t configured_seeds < <("$project_dir/.venv/bin/python" -c \
+  'import json, sys; print(*json.load(open(sys.argv[1]))["seeds"], sep="\n")' "$config_path")
+algorithms=(${BENCHMARK_ALGORITHMS:-${configured_algorithms[*]}})
+seeds=(${BENCHMARK_SEEDS:-${configured_seeds[*]}})
 problems=(${BENCHMARK_PROBLEMS:-cantilever borehole piston})
 input_scalings=(${BENCHMARK_SCALINGS:-raw domain_minmax})
 failed=()
@@ -13,8 +23,10 @@ for problem in "${problems[@]}"; do
     for seed in "${seeds[@]}"; do
       for algorithm in "${algorithms[@]}"; do
         echo "Running benchmark trial: problem=$problem scaling=$input_scaling algorithm=$algorithm seed=$seed"
-        if ! "$project_dir/scripts/run_benchmark_trial.sh" \
+        if "$project_dir/scripts/run_benchmark_trial.sh" \
           "$algorithm" "$seed" "$problem" "$input_scaling"; then
+          :
+        else
           failed+=("$problem:$input_scaling:$algorithm:$seed")
         fi
       done
@@ -23,7 +35,7 @@ for problem in "${problems[@]}"; do
     "$project_dir/.venv/bin/python" "$project_dir/scripts/summarize_benchmark.py" \
       --problem "$problem" \
       --input-scaling "$input_scaling" \
-      --config "$project_dir/${BENCHMARK_CONFIG:-configs/benchmark_suite_v3.json}"
+      --config "$config_path"
   done
 done
 

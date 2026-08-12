@@ -27,6 +27,27 @@ expression. Fields prefixed with `training_scale_` describe the expression as
 seen by the algorithm. A failed back-transformation is recorded explicitly and
 does not silently substitute the normalized expression for a physical one.
 
+## Final repetition protocol
+
+The final suite uses ten repetition labels, 42 through 51, for every
+algorithm/problem/scaling combination: 6 algorithms × 3 problems × 2 scaling
+conditions × 10 repetitions = 360 expected trials. Train and test datasets are
+regenerated from fixed problem-specific dataset seeds, not from the algorithm
+seed, so every trial receives identical samples. Each result records SHA-256
+hashes of the uncompressed train and test tables to make this invariant
+auditable.
+
+The repetition label is passed into every estimator that exposes a supported
+seed parameter. ITEA's published estimator does not expose one, so its ten runs
+are reported as **uncontrolled repetitions**, never as seeded trials. The
+summary identifies `seed-controlled` and `uncontrolled` repetition types.
+
+A successful result, an explicit failure record, and an absent trial are three
+different states. The group runner writes failure records containing the trial
+coordinates and process exit code. The summary reports successful, failed, and
+missing counts and labels separately; failures are not dropped from the
+denominator or merged silently with missing runs.
+
 ## Expression representations
 
 Each result retains the adapter's original `symbolic_model`. The common

@@ -6,6 +6,7 @@ import numpy as np
 import pandas as pd
 import sympy as sp
 
+from experiment.evaluate_surrogate import sha256_dataset
 from experiment.metrics.expression_analysis import parse_expression
 from experiment.metrics.input_scaling import (
     expression_to_raw_scale,
@@ -51,3 +52,17 @@ def test_feature_domain_mismatch_is_rejected() -> None:
         assert "feature mismatch" in str(error)
     else:
         raise AssertionError("expected domain mismatch to fail")
+
+
+def test_dataset_hash_ignores_gzip_header_timestamp(tmp_path) -> None:
+    import gzip
+
+    first = tmp_path / "first.tsv.gz"
+    second = tmp_path / "second.tsv.gz"
+    payload = b"x\ttarget\n1\t2\n"
+    with gzip.GzipFile(first, "wb", mtime=1) as handle:
+        handle.write(payload)
+    with gzip.GzipFile(second, "wb", mtime=2) as handle:
+        handle.write(payload)
+
+    assert sha256_dataset(first) == sha256_dataset(second)

@@ -1,10 +1,22 @@
 {
   "name": "benchmark_suite_v3",
-  "description": "Paired raw and fixed-domain normalized input-scaling experiment.",
+  "description": "Final ten-repetition paired raw and fixed-domain normalized input-scaling experiment.",
+  "repetition_protocol": {
+    "trials_per_algorithm_problem_condition": 10,
+    "dataset_policy": "fixed train and test datasets across all algorithm trials",
+    "controlled_seed_algorithms": ["gplearn", "operon", "pysr", "geneticengine", "eql"],
+    "uncontrolled_repetition_algorithms": ["itea"],
+    "failure_policy": "failed and missing trials are retained and reported separately"
+  },
   "threads": 1,
   "prediction_repeats": 5,
-  "seeds": [42, 43, 44],
+  "seeds": [42, 43, 44, 45, 46, 47, 48, 49, 50, 51],
   "problems": ["cantilever", "borehole", "piston"],
+  "dataset_generation": {
+    "cantilever": {"train_seed": 20260810, "test_seed": 20260810, "sampling": "sequential draws from one fixed generator"},
+    "borehole": {"train_seed": 20260811, "test_seed": 20260812, "sampling": "independently seeded scrambled Latin hypercubes"},
+    "piston": {"train_seed": 20260813, "test_seed": 20260814, "sampling": "independently seeded scrambled Latin hypercubes"}
+  },
   "input_scalings": ["raw", "domain_minmax"],
   "algorithms": {
     "gplearn": {

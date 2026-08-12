@@ -84,7 +84,8 @@ Framework-independent expression complexity, symbolic ground-truth comparison,
 and runtime measurement are defined in
 [docs/evaluation-protocol.md](docs/evaluation-protocol.md).
 By default, `run_benchmark_group.sh` runs all three problems in both `raw` and
-`domain_minmax` conditions. Restrict a run with, for example,
+`domain_minmax` conditions, with ten repetition labels (42–51): 360 expected
+trials in total. Restrict a run with, for example,
 `BENCHMARK_PROBLEMS="borehole piston"` or `BENCHMARK_SCALINGS=domain_minmax`.
 Run one normalized trial with:
 
@@ -98,6 +99,13 @@ Every result JSON records the condition, formula, and bounds. When expression
 parsing succeeds, a model learned in normalized coordinates is also transformed
 back to the original physical variables for interpretation and comparison with
 the generating equation.
+
+The generated train/test tables are fixed across repetitions and their content
+hashes are stored in every result. Supported estimators receive the repetition
+seed; ITEA is explicitly summarized as having uncontrolled repetitions because
+its published estimator exposes no seed parameter. Failed runs receive separate
+failure records, and summaries distinguish successful, failed, and missing
+trials.
 
 The published Operon and GeneticEngine images contain older package APIs than
 the current SRBench adapters. Their adapters include narrowly scoped fallback

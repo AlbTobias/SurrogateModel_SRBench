@@ -40,7 +40,17 @@ fi
 mkdir -p \
   "$project_dir/data/$problem" \
   "$project_dir/results/$problem/$benchmark_name/$input_scaling/$algorithm" \
+  "$project_dir/results/$problem/$benchmark_name/$input_scaling/failures/$algorithm" \
   "$project_dir/results/runtime/$benchmark_name/$problem/$input_scaling/$algorithm/seed-$seed"
+
+failure_file="$project_dir/results/$problem/$benchmark_name/$input_scaling/failures/$algorithm/seed-$seed.json"
+record_failure() {
+  exit_code=$?
+  "$project_dir/.venv/bin/python" -c \
+    'import json, pathlib, sys; pathlib.Path(sys.argv[1]).write_text(json.dumps({"problem": sys.argv[2], "input_scaling": sys.argv[3], "algorithm": sys.argv[4], "seed": int(sys.argv[5]), "status": "failed", "exit_code": int(sys.argv[6])}, indent=2) + "\n")' \
+    "$failure_file" "$problem" "$input_scaling" "$algorithm" "$seed" "$exit_code"
+}
+trap record_failure ERR
 
 "$project_dir/.venv/bin/python" "$project_dir/surrogate/generate_$problem.py" \
   --output-dir "$project_dir/data/$problem"
@@ -64,3 +74,6 @@ docker run --rm \
     --input-scaling "$input_scaling" \
     --profile benchmark \
     --config "/workspace/$config_file"
+
+trap - ERR
+rm -f "$failure_file"
