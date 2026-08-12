@@ -10,7 +10,7 @@
   },
   "threads": 1,
   "prediction_repeats": 5,
-  "seeds": [42, 43, 44, 45, 46, 47, 48, 49, 50, 51],
+  "seeds": [2, 3, 5, 7, 11, 13, 17, 19, 23, 29],
   "problems": ["cantilever", "borehole", "piston"],
   "dataset_generation": {
     "cantilever": {"train_seed": 20260810, "test_seed": 20260810, "sampling": "sequential draws from one fixed generator"},

@@ -29,12 +29,15 @@ does not silently substitute the normalized expression for a physical one.
 
 ## Final repetition protocol
 
-The final suite uses ten repetition labels, 42 through 51, for every
-algorithm/problem/scaling combination: 6 algorithms × 3 problems × 2 scaling
-conditions × 10 repetitions = 360 expected trials. Train and test datasets are
-regenerated from fixed problem-specific dataset seeds, not from the algorithm
-seed, so every trial receives identical samples. Each result records SHA-256
-hashes of the uncompressed train and test tables to make this invariant
+The final suite uses the first ten prime numbers as its predefined repetition
+seeds: 2, 3, 5, 7, 11, 13, 17, 19, 23, and 29. For every
+algorithm/problem/scaling combination this gives 6 algorithms × 3 problems × 2
+scaling conditions × 10 repetitions = 360 expected trials. The choice of prime
+numbers has no special statistical meaning; it is simply a fixed, distinct,
+documented set selected before the final experiment. Train and test datasets
+are regenerated from fixed problem-specific dataset seeds, not from the
+algorithm seed, so every trial receives identical samples. Each result records
+SHA-256 hashes of the uncompressed train and test tables to make this invariant
 auditable.
 
 The repetition label is passed into every estimator that exposes a supported

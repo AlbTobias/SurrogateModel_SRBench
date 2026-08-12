@@ -84,13 +84,14 @@ Framework-independent expression complexity, symbolic ground-truth comparison,
 and runtime measurement are defined in
 [docs/evaluation-protocol.md](docs/evaluation-protocol.md).
 By default, `run_benchmark_group.sh` runs all three problems in both `raw` and
-`domain_minmax` conditions, with ten repetition labels (42–51): 360 expected
+`domain_minmax` conditions, using the first ten prime numbers as repetition
+seeds (2, 3, 5, 7, 11, 13, 17, 19, 23, 29): 360 expected
 trials in total. Restrict a run with, for example,
 `BENCHMARK_PROBLEMS="borehole piston"` or `BENCHMARK_SCALINGS=domain_minmax`.
 Run one normalized trial with:
 
 ```bash
-./scripts/run_benchmark_trial.sh gplearn 42 borehole domain_minmax
+./scripts/run_benchmark_trial.sh gplearn 2 borehole domain_minmax
 ```
 
 Normalization maps each published physical domain to $[-1,1]$ using fixed
