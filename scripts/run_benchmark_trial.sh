@@ -6,7 +6,7 @@ algorithm="${1:?Usage: scripts/run_benchmark_trial.sh ALGORITHM SEED [PROBLEM] [
 seed="${2:?Usage: scripts/run_benchmark_trial.sh ALGORITHM SEED [PROBLEM] [INPUT_SCALING]}"
 problem="${3:-cantilever}"
 input_scaling="${4:-raw}"
-config_file="${BENCHMARK_CONFIG:-configs/benchmark_suite_v6.json}"
+config_file="${BENCHMARK_CONFIG:-configs/benchmark_suite_v8.json}"
 config_path="$project_dir/$config_file"
 if [[ ! -f "$config_path" ]]; then
   echo "Benchmark configuration not found: $config_path" >&2
@@ -17,9 +17,9 @@ benchmark_name="$("$project_dir/.venv/bin/python" -c \
 benchmark_threads="$("$project_dir/.venv/bin/python" -c \
   'import json, sys; c=json.load(open(sys.argv[1])); print(c.get("execution_controls", {}).get("threads", 1))' "$config_path")"
 case "$problem" in
-  cantilever|borehole|piston|ccpp|naval_propulsion|wing_weight) ;;
+  cantilever|borehole|piston|ccpp|naval_propulsion|wing_weight|gas_turbine_nox|concrete_strength) ;;
   *)
-    echo "Unknown problem: $problem (expected cantilever, borehole, piston, ccpp, naval_propulsion, or wing_weight)" >&2
+    echo "Unknown problem: $problem (expected cantilever, borehole, piston, ccpp, naval_propulsion, wing_weight, gas_turbine_nox, or concrete_strength)" >&2
     exit 2
     ;;
 esac
@@ -54,7 +54,7 @@ record_failure() {
 }
 trap record_failure ERR
 
-if [[ "$problem" == "ccpp" || "$problem" == "naval_propulsion" ]]; then
+if [[ "$problem" == "ccpp" || "$problem" == "naval_propulsion" || "$problem" == "gas_turbine_nox" || "$problem" == "concrete_strength" ]]; then
   dataset_script="$project_dir/surrogate/prepare_$problem.py"
 else
   dataset_script="$project_dir/surrogate/generate_$problem.py"

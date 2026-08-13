@@ -1,4 +1,4 @@
-"""Auditable feature domains for the deterministic surrogate problems."""
+"""Auditable feature domains for the surrogate-model benchmark problems."""
 
 from __future__ import annotations
 
@@ -52,5 +52,26 @@ PROBLEM_DOMAINS: dict[str, dict[str, tuple[float, float]]] = {
         "ultimate_load_factor": (2.5, 6.0),
         "design_gross_weight": (1700.0, 2500.0),
         "paint_weight": (0.025, 0.08),
+    },
+    "gas_turbine_nox": {
+        "ambient_temperature": (-6.2348, 37.103),
+        "ambient_pressure": (985.85, 1036.6),
+        "ambient_humidity": (24.085, 100.2),
+        "air_filter_pressure_difference": (2.0874, 7.6106),
+        "gas_turbine_exhaust_pressure": (17.698, 40.716),
+        "turbine_inlet_temperature": (1000.8, 1100.9),
+        "turbine_after_temperature": (511.04, 550.61),
+        "turbine_energy_yield": (100.02, 179.5),
+        "compressor_discharge_pressure": (9.8518, 15.159),
+    },
+    "concrete_strength": {
+        "cement": (102.0, 540.0),
+        "blast_furnace_slag": (0.0, 359.4),
+        "fly_ash": (0.0, 200.1),
+        "water": (121.8, 247.0),
+        "superplasticizer": (0.0, 32.2),
+        "coarse_aggregate": (801.0, 1145.0),
+        "fine_aggregate": (594.0, 992.6),
+        "age": (1.0, 365.0),
     },
 }

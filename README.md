@@ -71,7 +71,8 @@ raw/normalized input conditions, is versioned as
 `configs/benchmark_suite_v3.json`. Its four-problem extension adding the UCI
 Combined Cycle Power Plant dataset is `configs/benchmark_suite_v4.json`. The v5
 extension adds the naval propulsion simulator. The v6 extension adds Wing
-Weight and is the runner default.
+Weight. The v7 extension adds measured gas-turbine NOx emissions. The v8
+extension adds concrete compressive strength and is the runner default.
 Individual trials
 use `./scripts/run_benchmark_trial.sh ALGORITHM SEED [PROBLEM] [INPUT_SCALING]`,
 and aggregate metrics are written to
@@ -81,7 +82,9 @@ matrices are visible.
 
 The full suite adds the established Borehole water-flow and Piston cycle-time
 computer-experiment problems, the measured CCPP energy problem, and the naval
-propulsion fuel-flow simulator, and the analytical Wing Weight problem. Their
+propulsion fuel-flow simulator, the analytical Wing Weight problem, and the
+measured Gas Turbine NOx Emissions problem, and the experimental Concrete
+Compressive Strength problem. Their
 selection rationale, equations, domains,
 and sources are documented in [docs/surrogate-problems.md](docs/surrogate-problems.md).
 The generated table layout, every input column, and the exact target equations
@@ -89,9 +92,9 @@ are summarized in [data/README.md](data/README.md).
 Framework-independent expression complexity, symbolic ground-truth comparison,
 and runtime measurement are defined in
 [docs/evaluation-protocol.md](docs/evaluation-protocol.md).
-By default, `run_benchmark_group.sh` runs all six problems in both `raw` and
+By default, `run_benchmark_group.sh` runs all eight problems in both `raw` and
 `domain_minmax` conditions, using the first ten prime numbers as repetition
-seeds (2, 3, 5, 7, 11, 13, 17, 19, 23, 29): 720 expected
+seeds (2, 3, 5, 7, 11, 13, 17, 19, 23, 29): 960 expected
 trials in total. Restrict a run with, for example,
 `BENCHMARK_PROBLEMS="borehole piston"` or `BENCHMARK_SCALINGS=domain_minmax`.
 Run one normalized trial with:
@@ -116,6 +119,18 @@ Run only Wing Weight with:
 
 ```bash
 BENCHMARK_PROBLEMS=wing_weight ./scripts/run_benchmark_group.sh
+```
+
+Run only Gas Turbine NOx Emissions with:
+
+```bash
+BENCHMARK_PROBLEMS=gas_turbine_nox ./scripts/run_benchmark_group.sh
+```
+
+Run only Concrete Compressive Strength with:
+
+```bash
+BENCHMARK_PROBLEMS=concrete_strength ./scripts/run_benchmark_group.sh
 ```
 
 Normalization maps each documented physical domain to $[-1,1]$ using fixed

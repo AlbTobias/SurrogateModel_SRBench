@@ -17,6 +17,16 @@ from surrogate.generate_wing_weight import sample_inputs as sample_wing
 from surrogate.generate_wing_weight import wing_weight
 from surrogate.prepare_ccpp import FEATURE_COLUMNS, split_dataset
 from surrogate.prepare_naval_propulsion import split_dataset as split_naval
+from surrogate.prepare_gas_turbine_nox import (
+    FEATURE_COLUMNS as NOX_FEATURE_COLUMNS,
+    SOURCE_COLUMNS as NOX_SOURCE_COLUMNS,
+    split_dataset as split_nox,
+)
+from surrogate.prepare_concrete_strength import (
+    FEATURE_COLUMNS as CONCRETE_FEATURE_COLUMNS,
+    aggregate_replicates as aggregate_concrete,
+    split_dataset as split_concrete,
+)
 
 
 def test_borehole_reference_value() -> None:
@@ -82,3 +92,52 @@ def test_naval_split_is_reproducible_disjoint_and_value_preserving() -> None:
     pd.testing.assert_frame_equal(train, repeated_train)
     pd.testing.assert_frame_equal(test, repeated_test)
     assert set(train["target"]).isdisjoint(test["target"])
+
+
+def test_nox_split_respects_chronology_and_excludes_co_target() -> None:
+    rows = []
+    for year in range(2011, 2016):
+        for sample in range(5):
+            values = {column: float(year * 100 + sample) for column in NOX_SOURCE_COLUMNS}
+            values["NOX"] = float(year * 10 + sample)
+            values["CO"] = -float(year * 10 + sample)
+            values["year"] = year
+            rows.append(values)
+    source = pd.DataFrame(rows)
+    train, test = split_nox(source, seed=789, train_size=6, test_size=6)
+    repeated_train, repeated_test = split_nox(
+        source, seed=789, train_size=6, test_size=6
+    )
+
+    pd.testing.assert_frame_equal(train, repeated_train)
+    pd.testing.assert_frame_equal(test, repeated_test)
+    assert list(train.columns) == [*NOX_FEATURE_COLUMNS, "target"]
+    assert "year" not in train and "CO" not in train
+    assert train["target"].max() < 20140
+    assert test["target"].min() >= 20140
+
+
+def test_concrete_replicates_are_averaged_before_disjoint_split() -> None:
+    rows = []
+    for design in range(12):
+        row = {name: float(design) for name in CONCRETE_FEATURE_COLUMNS}
+        rows.append({**row, "target": float(design)})
+    rows.extend(
+        [
+            {**rows[2], "target": 6.0},
+            {**rows[2], "target": 10.0},
+        ]
+    )
+    designs = aggregate_concrete(pd.DataFrame(rows))
+    train, test = split_concrete(designs, seed=321, train_size=5, test_size=7)
+    repeated_train, repeated_test = split_concrete(
+        designs, seed=321, train_size=5, test_size=7
+    )
+
+    pd.testing.assert_frame_equal(train, repeated_train)
+    pd.testing.assert_frame_equal(test, repeated_test)
+    assert len(designs) == 12
+    assert designs.loc[designs[CONCRETE_FEATURE_COLUMNS[0]] == 2, "target"].item() == 6.0
+    train_designs = set(map(tuple, train.loc[:, CONCRETE_FEATURE_COLUMNS].to_numpy()))
+    test_designs = set(map(tuple, test.loc[:, CONCRETE_FEATURE_COLUMNS].to_numpy()))
+    assert train_designs.isdisjoint(test_designs)

@@ -122,4 +122,6 @@ data/piston/
 data/ccpp/
 data/naval_propulsion/
 data/wing_weight/
+data/gas_turbine_nox/
+data/concrete_strength/
 hall_of_fame_*

@@ -93,6 +93,40 @@ possible for a model to predict well without recovering the complete equation.
 - Reference: Forrester, Sóbester, and Keane (2008), *Engineering Design via
   Surrogate Modelling: A Practical Guide*, DOI 10.1002/9780470770801.
 
+### Gas Turbine NOx Emissions
+
+This empirical energy/engineering problem uses 36,733 hourly observations from
+a gas turbine operated between 2011 and 2015. Nine ambient and process
+measurements predict nitrogen-oxides emissions. NOx is selected because it is a
+regulated pollutant and provides a practically meaningful measured surrogate
+target. The alternative CO response is excluded entirely, avoiding leakage
+between jointly measured emissions quantities. Unlike the analytical problems,
+there is no privileged generating equation; evaluation therefore emphasizes
+held-out prediction, expression complexity, stability, and runtime.
+
+- Dataset: <https://archive.ics.uci.edu/dataset/551/gas+turbine+co+and+nox+emission+data+set>
+- DOI: <https://doi.org/10.24432/C5WC95>
+- License: CC BY 4.0.
+- Reference: Kaya et al. (2019), “A new approach to estimate pollutant
+  emissions from gas turbine engines with a novel data driven model,”
+  *Journal of the Energy Institute*, 92(5), 1388–1400.
+
+### Concrete Compressive Strength
+
+This experimental materials problem predicts the compressive strength of
+concrete from seven mixture quantities and curing age. Compression testing is
+destructive and requires prepared, cured specimens, making an explicit
+data-driven equation a practically meaningful surrogate. The eight numerical
+inputs are directly interpretable and need neither categorical encoding nor
+materials-specific descriptor generation.
+
+- Dataset: <https://archive.ics.uci.edu/dataset/165/concrete+compressive+strength>
+- DOI: <https://doi.org/10.24432/C5PK67>
+- License: CC BY 4.0.
+- Reference: Yeh (1998), “Modeling of strength of high-performance concrete
+  using artificial neural networks,” *Cement and Concrete Research*, 28(12),
+  1797–1808.
+
 ## Experimental design
 
 Borehole and Piston use seeded, scrambled Latin hypercube designs. Each
@@ -122,6 +156,21 @@ member hashes are pinned in the preparation script and v5 configuration.
 Wing Weight uses independently seeded scrambled Latin hypercubes with 400
 training and 4,000 test points. Its equation is implemented directly from the
 published definition; no external dataset or preprocessing is required.
+
+Gas Turbine NOx uses a chronological source split to reduce temporal leakage:
+the training pool contains 2011–2013 and the test pool contains 2014–2015. A
+fixed seed (20260819) selects 400 and 4,000 rows without replacement from those
+respective pools. Raw observations are retained, and the source archive plus
+each annual CSV are checksum-pinned. The separate normalized condition uses
+fixed full-dataset feature bounds, never statistics fitted to either sample.
+
+Concrete Strength first groups the 1,030 source measurements by all eight
+inputs and averages replicate targets, yielding 992 unique material designs.
+This prevents an identical composition-and-age design from appearing in both
+partitions. A fixed permutation with seed 20260820 assigns 400 designs to
+training and the remaining 592 to testing. The direct UCI CSV and its hash are
+pinned. The normalized condition uses fixed full-source bounds, and the target
+remains in MPa.
 
 The SFU reference-code pages carry GPL-2.0 notices. No source code from those
 implementations is copied here: the vectorized Python functions independently

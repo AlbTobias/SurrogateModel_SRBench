@@ -8,6 +8,8 @@ CONFIG = Path(__file__).resolve().parents[2] / "configs/benchmark_suite_v3.json"
 CONFIG_V4 = Path(__file__).resolve().parents[2] / "configs/benchmark_suite_v4.json"
 CONFIG_V5 = Path(__file__).resolve().parents[2] / "configs/benchmark_suite_v5.json"
 CONFIG_V6 = Path(__file__).resolve().parents[2] / "configs/benchmark_suite_v6.json"
+CONFIG_V7 = Path(__file__).resolve().parents[2] / "configs/benchmark_suite_v7.json"
+CONFIG_V8 = Path(__file__).resolve().parents[2] / "configs/benchmark_suite_v8.json"
 
 
 def test_algorithm_parameter_provenance_is_complete() -> None:
@@ -121,4 +123,40 @@ def test_suite_v6_preserves_v5_protocol_and_adds_wing_weight() -> None:
     } == {
         algorithm: entry["parameters"]
         for algorithm, entry in suite_v5["algorithms"].items()
+    }
+
+
+def test_suite_v7_preserves_v6_protocol_and_adds_nox() -> None:
+    suite_v6 = json.loads(CONFIG_V6.read_text(encoding="utf-8"))
+    suite_v7 = json.loads(CONFIG_V7.read_text(encoding="utf-8"))
+
+    assert suite_v7["problems"][-1] == "gas_turbine_nox"
+    assert suite_v7["problems"][:-1] == suite_v6["problems"]
+    assert set(suite_v7["dataset_generation"]) == set(suite_v7["problems"])
+    for key in ("seeds", "input_scalings", "execution_controls"):
+        assert suite_v7[key] == suite_v6[key]
+    assert {
+        algorithm: entry["parameters"]
+        for algorithm, entry in suite_v7["algorithms"].items()
+    } == {
+        algorithm: entry["parameters"]
+        for algorithm, entry in suite_v6["algorithms"].items()
+    }
+
+
+def test_suite_v8_preserves_v7_protocol_and_adds_concrete() -> None:
+    suite_v7 = json.loads(CONFIG_V7.read_text(encoding="utf-8"))
+    suite_v8 = json.loads(CONFIG_V8.read_text(encoding="utf-8"))
+
+    assert suite_v8["problems"][-1] == "concrete_strength"
+    assert suite_v8["problems"][:-1] == suite_v7["problems"]
+    assert set(suite_v8["dataset_generation"]) == set(suite_v8["problems"])
+    for key in ("seeds", "input_scalings", "execution_controls"):
+        assert suite_v8[key] == suite_v7[key]
+    assert {
+        algorithm: entry["parameters"]
+        for algorithm, entry in suite_v8["algorithms"].items()
+    } == {
+        algorithm: entry["parameters"]
+        for algorithm, entry in suite_v7["algorithms"].items()
     }

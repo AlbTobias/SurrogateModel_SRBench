@@ -242,6 +242,81 @@ Surrogate Modelling*, DOI [`10.1002/9780470770801`](https://doi.org/10.1002/9780
 
 Generator: `surrogate/generate_wing_weight.py`
 
+## 7. Gas-turbine nitrogen-oxides emissions
+
+Directory: `data/gas_turbine_nox/`
+
+This measured-data problem searches for a surrogate of the form
+
+$$
+\widehat{NO_x}=f(AT,AP,AH,AFDP,GTEP,TIT,TAT,TEY,CDP).
+$$
+
+| Column | Meaning | Full-data range |
+|---|---|---:|
+| `ambient_temperature` | Ambient temperature (°C) | $[-6.2348,37.103]$ |
+| `ambient_pressure` | Ambient pressure (mbar) | $[985.85,1036.6]$ |
+| `ambient_humidity` | Ambient humidity (%) | $[24.085,100.2]$ |
+| `air_filter_pressure_difference` | Air-filter pressure difference (mbar) | $[2.0874,7.6106]$ |
+| `gas_turbine_exhaust_pressure` | Gas-turbine exhaust pressure (mbar) | $[17.698,40.716]$ |
+| `turbine_inlet_temperature` | Turbine inlet temperature (°C) | $[1000.8,1100.9]$ |
+| `turbine_after_temperature` | Turbine after temperature (°C) | $[511.04,550.61]$ |
+| `turbine_energy_yield` | Turbine energy yield (MWh) | $[100.02,179.5]$ |
+| `compressor_discharge_pressure` | Compressor discharge pressure (mbar) | $[9.8518,15.159]$ |
+| `target` | Nitrogen-oxides emissions, NOx (mg/m³) | $[25.905,119.91]$ |
+
+The target is NOx. The other measured emissions response, CO, is deliberately
+excluded rather than used as an input, preventing target-to-target leakage.
+Following the temporal structure of the source, 400 training rows are sampled
+without replacement from 2011–2013 and 4,000 test rows from the later
+2014–2015 period. Selection uses seed 20260819. This tests generalization across
+operating years rather than interpolation within one random row split. There is
+no known ground-truth equation, so symbolic exact match is not applicable.
+
+Source: UCI Gas Turbine CO and NOx Emission Data Set, DOI
+[`10.24432/C5WC95`](https://doi.org/10.24432/C5WC95), CC BY 4.0. The source
+archive and all five annual files are checksum-pinned; downloaded data are not
+committed.
+
+Preparation script: `surrogate/prepare_gas_turbine_nox.py`
+
+## 8. Concrete compressive strength
+
+Directory: `data/concrete_strength/`
+
+This experimental materials problem searches for a surrogate of the form
+
+$$
+\widehat{f_c}=f(C,S,F,W,P,C_A,F_A,t),
+$$
+
+where $f_c$ is concrete compressive strength.
+
+| Column | Symbol | Meaning | Full-data range |
+|---|---:|---|---:|
+| `cement` | $C$ | Cement (kg/m³) | $[102,540]$ |
+| `blast_furnace_slag` | $S$ | Blast-furnace slag (kg/m³) | $[0,359.4]$ |
+| `fly_ash` | $F$ | Fly ash (kg/m³) | $[0,200.1]$ |
+| `water` | $W$ | Water (kg/m³) | $[121.8,247]$ |
+| `superplasticizer` | $P$ | Superplasticizer (kg/m³) | $[0,32.2]$ |
+| `coarse_aggregate` | $C_A$ | Coarse aggregate (kg/m³) | $[801,1145]$ |
+| `fine_aggregate` | $F_A$ | Fine aggregate (kg/m³) | $[594,992.6]$ |
+| `age` | $t$ | Curing age (days) | $[1,365]$ |
+| `target` | $f_c$ | Compressive strength (MPa) | $[2.33,82.6]$ |
+
+The UCI CSV contains 1,030 measurements but only 992 distinct combinations of
+the eight inputs. Targets are averaged within identical input designs before
+splitting, representing expected measured strength and preventing the same mix
+and age from leaking into both partitions. A permutation with seed 20260820
+selects 400 designs for training and all remaining 592 for testing. There is no
+known ground-truth equation, so symbolic exact match is unavailable.
+
+Source: UCI Concrete Compressive Strength, DOI
+[`10.24432/C5PK67`](https://doi.org/10.24432/C5PK67), CC BY 4.0. The direct
+UCI CSV is checksum-pinned and downloaded data are not committed.
+
+Preparation script: `surrogate/prepare_concrete_strength.py`
+
 ## How results are judged
 
 The current evaluator reports test-set RMSE, range-normalized RMSE, MAE, maximum
@@ -253,4 +328,5 @@ an expression written in a different but algebraically equivalent form should
 count as successful symbolic recovery. Predictive and symbolic-fidelity results
 should therefore be reported separately in the thesis. For CCPP and Naval
 Propulsion, exact-match fields remain unavailable rather than being counted as
-failures.
+failures. The same applies to Gas Turbine NOx Emissions and Concrete
+Compressive Strength.

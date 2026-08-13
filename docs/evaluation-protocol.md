@@ -104,7 +104,9 @@ Run or resume analysis without fitting models using:
 ./scripts/analyze_benchmark_results.py --problem borehole --timeout 60 --jobs 2
 ```
 
-Existing sidecars are skipped unless `--force` is supplied.
+Existing sidecars are skipped only when their recorded source hash matches the
+current result JSON. Stale or unreadable sidecars are regenerated automatically;
+`--force` reanalyzes all matching results.
 
 ## Structural complexity
 

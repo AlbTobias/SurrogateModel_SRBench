@@ -5,19 +5,33 @@ from __future__ import annotations
 
 import argparse
 from concurrent.futures import ThreadPoolExecutor, as_completed
+import hashlib
 import json
 import subprocess
 import sys
 from pathlib import Path
 
 
+def sidecar_matches_result(result_path: Path, output_path: Path) -> bool:
+    """Return whether a sidecar was produced from the current result bytes."""
+
+    if not output_path.exists():
+        return False
+    try:
+        analysis = json.loads(output_path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return False
+    expected_hash = hashlib.sha256(result_path.read_bytes()).hexdigest()
+    return analysis.get("source_result_sha256") == expected_hash
+
+
 def main() -> None:
     project_dir = Path(__file__).resolve().parents[1]
     parser = argparse.ArgumentParser()
     parser.add_argument("--problem", required=True)
-    parser.add_argument("--benchmark", default="benchmark_suite_v3")
+    parser.add_argument("--benchmark", default="benchmark_suite_v8")
     parser.add_argument(
-        "--config", type=Path, default=project_dir / "configs/benchmark_suite_v3.json"
+        "--config", type=Path, default=project_dir / "configs/benchmark_suite_v8.json"
     )
     parser.add_argument("--input-scaling", choices=("raw", "domain_minmax"))
     parser.add_argument("--timeout", type=int, default=60)
@@ -42,7 +56,7 @@ def main() -> None:
                     or str(result["algorithm"]) not in expected_algorithms):
                 continue
             output = result_path.with_name(f"{result_path.stem}.analysis.json")
-            if output.exists() and not args.force:
+            if not args.force and sidecar_matches_result(result_path, output):
                 skipped += 1
                 continue
             tasks.append((result_path, output))
