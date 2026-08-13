@@ -1,19 +1,16 @@
 # Fdb version 4
-["bibtex bachelor"] 1786298450.83253 "bachelor.aux" "bachelor.bbl" "bachelor" 1786298454.86494 0
-  "./literatur.bib" 1785949720.72014 10056 6296da1f9afac7a095392b61fd70e93e ""
+["bibtex bachelor"] 1786643980.52684 "bachelor.aux" "bachelor.bbl" "bachelor" 1786643981.85042 0
+  "./literatur.bib" 1786467577.76717 10056 6296da1f9afac7a095392b61fd70e93e ""
   "/usr/share/texlive/texmf-dist/bibtex/bst/harvard/agsm.bst" 1136766823 25549 e3d0f1ab4ae55e777f7352db30e2c6f7 ""
-  "bachelor.aux" 1786298454.33424 34258 063c9a8cdc41d028cade815b66e5d869 "pdflatex"
+  "bachelor.aux" 1786643981.72435 32526 8631d64aa498f252dcf3a230aa3f8648 "pdflatex"
   (generated)
   "bachelor.bbl"
   "bachelor.blg"
   (rewritten before read)
-["pdflatex"] 1786298450.95971 "/run/media/tobias-albrecht/Volume/Studium/bachelor_thesis/thesis/bachelor_thesis_overleaf/bachelor.tex" "bachelor.pdf" "bachelor" 1786298454.86594 0
-  "../../results/figures/logistic_map/rollout_errors.png" 1782813683.91955 79586 3040967ac3948436704ff627e562c286 ""
-  "../../results/figures/overview/clean_r2_heatmap.png" 1782813694.45033 120793 8acbdeee4b846e29bbeb72058a6cb1f9 ""
-  "../../results/figures/repeated_seeds/equation_size_ci.png" 1782813794.62032 110864 b02d60b0ea551a1eabfd3b678025f874 ""
+["pdflatex"] 1786643980.55712 "/home/tobias-albrecht/Programming/SurrogateModel_SRBench/thesis/bachelor_thesis_overleaf/bachelor.tex" "bachelor.pdf" "bachelor" 1786643981.85064 0
   "/etc/texmf/web2c/texmf.cnf" 1785263456.53489 475 c0e671620eb5563b2130f56340a5fde8 ""
   "/home/tobias-albrecht/.texlive2025/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1200.600pk" 1785678706.60945 14040 9cc40933fd5ca631f26df47fccd4c6c1 ""
-  "/run/media/tobias-albrecht/Volume/Studium/bachelor_thesis/thesis/bachelor_thesis_overleaf/bachelor.tex" 1786298446.02739 86816 07947aae1d5cff6416b4dcb9d029a62e ""
+  "/home/tobias-albrecht/Programming/SurrogateModel_SRBench/thesis/bachelor_thesis_overleaf/bachelor.tex" 1786643977.31727 85791 9af158914119cb07e9d4cf87399c19cb ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/tcrm1200.tfm" 1136768653 1536 74b7293ec3713bb7fdca8dd1bd1f469c ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmbsy6.tfm" 1246382020 1124 14ccf5552bc7f77ca02a8a402bea8bfb ""
@@ -156,13 +153,13 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1769369718 41603 27f93b3067076450172040dcd57ca8b3 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1785263467 128227 ed67923a37f7748d267799454bc1f95b ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1785263685 2701506 09430f13b31b925a55f6706672243b14 ""
-  "Logo.pdf" 1785678741.67894 25925 9edda2e98ef759575aed3c9677327aa4 ""
-  "bachelor.aux" 1786298454.33424 34258 063c9a8cdc41d028cade815b66e5d869 "pdflatex"
-  "bachelor.bbl" 1786298450.9343 7300 12a985ec88f00e915096a9e4351942ce "bibtex bachelor"
-  "bachelor.lof" 1786298454.36324 1068 e4eb8fe52b46b0d54584659b3a916273 "pdflatex"
-  "bachelor.lot" 1786298454.36324 1122 f8bea5ab3335de82116be906b635cc47 "pdflatex"
-  "bachelor.tex" 1786298446.02739 86816 07947aae1d5cff6416b4dcb9d029a62e ""
-  "bachelor.toc" 1786298454.36224 4684 6fb1daff5db28c215fc9244166a8a56b "pdflatex"
+  "Logo.pdf" 1786467577.67518 25925 9edda2e98ef759575aed3c9677327aa4 ""
+  "bachelor.aux" 1786643981.72435 32526 8631d64aa498f252dcf3a230aa3f8648 "pdflatex"
+  "bachelor.bbl" 1786643980.55288 7300 12a985ec88f00e915096a9e4351942ce "bibtex bachelor"
+  "bachelor.lof" 1786643981.73135 275 840ed4249cf2a947226cf27a899525ef "pdflatex"
+  "bachelor.lot" 1786643981.73135 1122 0c9604c687dd9e73bf6b1fb5e9980d23 "pdflatex"
+  "bachelor.tex" 1786643977.31727 85791 9af158914119cb07e9d4cf87399c19cb ""
+  "bachelor.toc" 1786643981.73135 4684 bd74e04aea321eb98202c725f0cd9f6c "pdflatex"
   (generated)
   "bachelor.aux"
   "bachelor.lof"

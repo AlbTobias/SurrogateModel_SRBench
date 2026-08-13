@@ -170,9 +170,9 @@ Unterschrift: & & \rule{7cm}{0.4pt}
 
 Surrogate models are often used in scientific and engineering applications to approximate computationally expensive simulations. However, many of the currently used surrogate models are black box models which provide almost no insight into the process of their actual learning. Symbolic Regression (SR) addresses this limitation by discovering explicit mathematical expressions directly from the input data, therefore enabling better model interpretability while maintaining predictive performance.
 
-This thesis provides a systematic study of Symbolic Regression methods for surrogate modeling. The main goal is to compare open-source SR frameworks that employ different algorithmic approaches such as evolutionary, genetic programming and neural methods, with representative frameworks such as PySR, Operon, and Deep Symbolic Regression (DSR).
+This thesis provides a systematic study of Symbolic Regression methods for surrogate modeling. The main goal is to compare open-source SR frameworks that employ different algorithmic approaches, including evolutionary, genetic programming, transformation-based, and neural methods. The evaluated frameworks are gplearn, Operon, PySR, GeneticEngine, ITEA, and EQL.
 
-To evaluate these frameworks, a benchmark is developed using datasets from different domains, including engineering, physics, material science and energy systems. The selected SR models are evaluated under the same conditions with respect to predictive accuracy, computational efficiency, model complexity and robustness to noise. The thesis investigates the trade-offs between accuracy and interpretability, as well as the current challenges and research gaps in Symbolic Regression for surrogate modeling.
+To evaluate these frameworks, a benchmark is developed using datasets from different domains, including engineering, physics, material science and energy systems. The selected SR models are evaluated using identical training and test data and a common evaluation protocol with documented algorithm-specific search budgets. The evaluation considers predictive accuracy, computational efficiency, model complexity, stability across repeated trials, and sensitivity to input scaling. The thesis investigates the trade-offs between accuracy and interpretability, as well as the current challenges and research gaps in Symbolic Regression for surrogate modeling.
 
 \textcolor{red}{TODO: Add Results and Conclusion to Abstract.}
 
@@ -656,15 +656,6 @@ NeSymRe & 1 & 0.196 & 0.063 & 0.507 \\
 \hline
 \end{longtable}
 
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.88\textwidth]{../../results/figures/logistic_map/rollout_errors.png}
-    \caption{Seed-42 logistic-map rollout errors on a logarithmic scale.  The
-    plot contains single-seed framework values and complements the repeated
-    summary in Table~\ref{tab:result-logistic}.}
-    \label{fig:result-logistic-rollout}
-\end{figure}
-
 \section{Predictive Performance on Empirical Tasks}
 
 Table~\ref{tab:result-empirical-r2} gives clean-test $R^2$ for the seven public tasks.  Operon provided the strongest general-purpose performance.  It had the highest repeated mean on Airfoil Self-Noise ($R^2=0.610$), Yacht Hydrodynamics ($R^2=0.992$), Superconductivity ($R^2=0.451$), and Gas Turbine Emissions ($R^2=0.807$).  On the seed-42 Combined Cycle Power Plant run, Operon also had the highest value, $R^2=0.942$, narrowly ahead of PySINDy at 0.941.
@@ -702,15 +693,6 @@ The two neural frameworks produced mixed results.  DSR exactly solved the synthe
 
 The dataset baselines help contextualise the SR values.  Airfoil's best diagnostic model reached $R^2=0.762$, above the best SR mean of 0.610.  Yacht's random forest reached 0.991, essentially equal to Operon and GPLearn.  On Superconductivity, histogram gradient boosting reached 0.669, showing that the target was learnable even though compact SR models reached only 0.451.  On Gas Turbine Emissions, Operon's mean 0.807 exceeded the seed-42 diagnostic baselines, whose best value was 0.766.  These checks show that the observed framework gaps cannot all be attributed to intrinsically unpredictable data.
 
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.96\textwidth]{../../results/figures/overview/clean_r2_heatmap.png}
-    \caption{Clean-test $R^2$ for the seed-42 experiment matrix. Values are
-    clipped to $[-1,1]$ for visualisation; Table~\ref{tab:result-empirical-r2}
-    retains extreme negative values and uses repeated means where available.}
-    \label{fig:result-r2-overview}
-\end{figure}
-
 \section{Computational Efficiency and Practical Execution}
 
 Training-time comparisons reflect the configured budgets rather than equal wall-clock limits.  Nevertheless, clear differences appeared.  Across the five repeated public tasks, Operon's mean training times ranged from 0.275 to 0.816 seconds.  PySINDy's corresponding range was 0.005--0.103 seconds.  PySR was much slower but highly consistent, requiring approximately 15.6--16.9 seconds.  GPLLearn was the slowest maintainable framework, ranging from 24.0 seconds on Gas Turbine Emissions to 47.4 seconds on Yacht Hydrodynamics.
@@ -738,15 +720,6 @@ On Superconductivity, PySR produced the five-node linear relation
 with seed-42 $R^2=0.404$.  Operon's larger multivariable expression reached 0.507 on the same seed.  The compact PySR form is readily inspectable, but it leaves substantial predictable variation unexplained.  On Naval Propulsion, PySINDy's near-perfect fit required a roughly 240-node quadratic expression, whereas Operon's approximately 41-node mean representation was less accurate. Consequently, the best predictive model was not necessarily the easiest equation to inspect.
 
 Raw-feature substitution further increased textual length because every standardised variable was replaced with $(x-\mu)/s$.  The simplified equation reports preserve both the standardised and raw-scale versions.  No automatic five-point interpretability score was generated, so this chapter reports only observable evidence: equation size, depth, variable use, stability, and representative forms.  Domain plausibility and the practical value of these trade-offs are considered in Chapter~7.
-
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.94\textwidth]{../../results/figures/repeated_seeds/equation_size_ci.png}
-    \caption{Mean equation size with approximate 95\% confidence intervals for
-    available repeated runs. Single-run framework--dataset combinations are
-    not evidence of between-seed stability.}
-    \label{fig:result-equation-size}
-\end{figure}
 
 \section{Noise Robustness and Seed Stability}
 
