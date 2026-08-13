@@ -40,7 +40,7 @@ def main() -> None:
     parser.add_argument(
         "--config",
         type=Path,
-        default=project_dir / "configs/benchmark_suite_v3.json",
+        default=project_dir / "configs/benchmark_suite_v6.json",
     )
     args = parser.parse_args()
     configuration = json.loads(args.config.read_text(encoding="utf-8"))

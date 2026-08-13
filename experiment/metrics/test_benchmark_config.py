@@ -5,6 +5,9 @@ from pathlib import Path
 
 
 CONFIG = Path(__file__).resolve().parents[2] / "configs/benchmark_suite_v3.json"
+CONFIG_V4 = Path(__file__).resolve().parents[2] / "configs/benchmark_suite_v4.json"
+CONFIG_V5 = Path(__file__).resolve().parents[2] / "configs/benchmark_suite_v5.json"
+CONFIG_V6 = Path(__file__).resolve().parents[2] / "configs/benchmark_suite_v6.json"
 
 
 def test_algorithm_parameter_provenance_is_complete() -> None:
@@ -63,3 +66,59 @@ def test_execution_controls_are_not_algorithm_parameters() -> None:
     assert controls["threads"] == 1
     assert controls["prediction_repeats"] == 5
     assert controls["expression_analysis_timeout_seconds_per_stage"] == 60
+
+
+def test_suite_v4_only_extends_problem_and_dataset_configuration() -> None:
+    suite_v3 = json.loads(CONFIG.read_text(encoding="utf-8"))
+    suite_v4 = json.loads(CONFIG_V4.read_text(encoding="utf-8"))
+
+    assert suite_v4["problems"] == ["cantilever", "borehole", "piston", "ccpp"]
+    assert set(suite_v4["dataset_generation"]) == set(suite_v4["problems"])
+    for key in ("seeds", "input_scalings", "execution_controls"):
+        assert suite_v4[key] == suite_v3[key]
+    assert {
+        algorithm: entry["parameters"]
+        for algorithm, entry in suite_v4["algorithms"].items()
+    } == {
+        algorithm: entry["parameters"]
+        for algorithm, entry in suite_v3["algorithms"].items()
+    }
+
+
+def test_suite_v5_preserves_v4_protocol_and_adds_naval_problem() -> None:
+    suite_v4 = json.loads(CONFIG_V4.read_text(encoding="utf-8"))
+    suite_v5 = json.loads(CONFIG_V5.read_text(encoding="utf-8"))
+
+    assert suite_v5["problems"] == [
+        "cantilever", "borehole", "piston", "ccpp", "naval_propulsion"
+    ]
+    assert set(suite_v5["dataset_generation"]) == set(suite_v5["problems"])
+    for key in ("seeds", "input_scalings", "execution_controls"):
+        assert suite_v5[key] == suite_v4[key]
+    assert {
+        algorithm: entry["parameters"]
+        for algorithm, entry in suite_v5["algorithms"].items()
+    } == {
+        algorithm: entry["parameters"]
+        for algorithm, entry in suite_v4["algorithms"].items()
+    }
+
+
+def test_suite_v6_preserves_v5_protocol_and_adds_wing_weight() -> None:
+    suite_v5 = json.loads(CONFIG_V5.read_text(encoding="utf-8"))
+    suite_v6 = json.loads(CONFIG_V6.read_text(encoding="utf-8"))
+
+    assert suite_v6["problems"] == [
+        "cantilever", "borehole", "piston", "ccpp", "naval_propulsion",
+        "wing_weight",
+    ]
+    assert set(suite_v6["dataset_generation"]) == set(suite_v6["problems"])
+    for key in ("seeds", "input_scalings", "execution_controls"):
+        assert suite_v6[key] == suite_v5[key]
+    assert {
+        algorithm: entry["parameters"]
+        for algorithm, entry in suite_v6["algorithms"].items()
+    } == {
+        algorithm: entry["parameters"]
+        for algorithm, entry in suite_v5["algorithms"].items()
+    }

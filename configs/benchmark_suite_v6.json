@@ -1,0 +1,81 @@
+{
+  "name": "benchmark_suite_v6",
+  "configuration_schema_version": 2,
+  "description": "Six-problem suite extending v5 with the analytical Wing Weight surrogate benchmark.",
+  "repetition_protocol": {
+    "trials_per_algorithm_problem_condition": 10,
+    "dataset_policy": "fixed train and test datasets across all algorithm trials",
+    "controlled_seed_algorithms": ["gplearn", "operon", "pysr", "geneticengine", "eql"],
+    "uncontrolled_repetition_algorithms": ["itea"],
+    "failure_policy": "failed and missing trials are retained and reported separately"
+  },
+  "execution_controls": {
+    "threads": 1,
+    "prediction_repeats": 5,
+    "expression_analysis_timeout_seconds_per_stage": 60,
+    "purpose": "Reproducible resource control and measurement; these are not tuned model hyperparameters."
+  },
+  "seeds": [2, 3, 5, 7, 11, 13, 17, 19, 23, 29],
+  "problems": ["cantilever", "borehole", "piston", "ccpp", "naval_propulsion", "wing_weight"],
+  "dataset_generation": {
+    "cantilever": {"train_seed": 20260810, "test_seed": 20260810, "sampling": "sequential draws from one fixed generator"},
+    "borehole": {"train_seed": 20260811, "test_seed": 20260812, "sampling": "independently seeded scrambled Latin hypercubes"},
+    "piston": {"train_seed": 20260813, "test_seed": 20260814, "sampling": "independently seeded scrambled Latin hypercubes"},
+    "ccpp": {
+      "source": "UCI Combined Cycle Power Plant, DOI 10.24432/C5002N",
+      "source_url": "https://archive.ics.uci.edu/static/public/294/data.csv",
+      "source_sha256": "3c1fc11025f8424f8d95802d8b7086dffd3f73a552c6dcab3d973620986194b2",
+      "split_seed": 20260815,
+      "sampling": "one seeded permutation; first 400 rows train and next 4000 rows test; no replacement or value preprocessing"
+    },
+    "naval_propulsion": {
+      "source": "UCI Condition Based Maintenance of Naval Propulsion Plants, DOI 10.24432/C5K31K",
+      "source_url": "https://archive.ics.uci.edu/static/public/316/condition+based+maintenance+of+naval+propulsion+plants.zip",
+      "archive_sha256": "91a3815da80b5ab7e2d5b82ac82f1c2cbf89182c7a65bcdf240db1e014423cb9",
+      "data_member_sha256": "de0ea69da1efaab8b9655ffed828547d10dd68c1fb8c6e0163e6a988def393a6",
+      "split_seed": 20260816,
+      "inputs": ["ship speed", "GT compressor decay state coefficient", "GT turbine decay state coefficient"],
+      "target": "fuel flow (kg/s)",
+      "sampling": "one seeded permutation of the full factorial simulator grid; first 400 rows train and next 4000 rows test; no replacement or value preprocessing"
+    },
+    "wing_weight": {
+      "train_seed": 20260817,
+      "test_seed": 20260818,
+      "sampling": "independently seeded scrambled Latin hypercubes",
+      "source": "Forrester, Sobester, and Keane (2008), Engineering Design via Surrogate Modelling, DOI 10.1002/9780470770801"
+    }
+  },
+  "input_scalings": ["raw", "domain_minmax"],
+  "algorithms": {
+    "gplearn": {
+      "configuration_role": "project_budget_override",
+      "rationale": "Reduced from the SRBench adapter's 1000 individuals and 500 generations to keep repeated trials computationally feasible; not selected using test performance.",
+      "parameters": {"population_size": 500, "generations": 100}
+    },
+    "operon": {
+      "configuration_role": "documented_adapter_defaults",
+      "rationale": "Restates the effective settings of the legacy Operon estimator in the pinned SRBench image for auditability.",
+      "parameters": {"population_size": 1000, "generations": 1000, "max_evaluations": 1000000}
+    },
+    "pysr": {
+      "configuration_role": "project_budget_and_execution_override",
+      "rationale": "Replaces the adapter's very long search with a 60-second practical budget and explicitly enforces deterministic single-process execution; not selected using test performance.",
+      "parameters": {"niterations": 20, "ncyclesperiteration": 500, "population_size": 100, "populations": 3, "timeout_in_seconds": 60, "deterministic": true, "procs": 0, "multithreading": false}
+    },
+    "geneticengine": {
+      "configuration_role": "project_budget_override",
+      "rationale": "Reduces the adapter's one-hour allowance to a 60-second practical budget for repeated evaluation; not selected using test performance.",
+      "parameters": {"population_size": 200, "number_of_generations": 100, "timer_stop_criteria": true, "timer_limit": 60}
+    },
+    "itea": {
+      "configuration_role": "documented_adapter_defaults",
+      "rationale": "Restates the population and generation settings already defined by the pinned SRBench adapter.",
+      "parameters": {"npop": 1000, "ngens": 500}
+    },
+    "eql": {
+      "configuration_role": "documented_adapter_defaults",
+      "rationale": "Restates the 10000 optimization iterations already defined by the pinned SRBench adapter; the adapter's inactive candidate grid is not used.",
+      "parameters": {"n_iter": 10000}
+    }
+  }
+}

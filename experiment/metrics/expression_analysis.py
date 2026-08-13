@@ -36,6 +36,14 @@ GROUND_TRUTH = {
         "(atmospheric_pressure*surface_area + 19.62*piston_mass - "
         "spring_coefficient*initial_volume/surface_area)))**2)))"
     ),
+    "wing_weight": (
+        "0.036*wing_area**0.758*fuel_weight**0.0035*"
+        "(aspect_ratio/cos(pi*sweep_angle_degrees/180)**2)**0.6*"
+        "dynamic_pressure**0.006*taper_ratio**0.04*"
+        "(100*thickness_chord_ratio/cos(pi*sweep_angle_degrees/180))**(-0.3)*"
+        "(ultimate_load_factor*design_gross_weight)**0.49 + "
+        "wing_area*paint_weight"
+    ),
 }
 
 

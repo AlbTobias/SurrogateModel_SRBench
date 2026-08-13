@@ -89,3 +89,16 @@ def test_piston_ground_truth_parses_and_matches_itself() -> None:
     assert result["expression_simplify_success"]
     assert result["symbolic_exact_match"]
     assert result["ground_truth_variable_recall"] == 1.0
+
+
+def test_wing_weight_ground_truth_parses_and_matches_itself() -> None:
+    features = [
+        "wing_area", "fuel_weight", "aspect_ratio", "sweep_angle_degrees",
+        "dynamic_pressure", "taper_ratio", "thickness_chord_ratio",
+        "ultimate_load_factor", "design_gross_weight", "paint_weight",
+    ]
+    result = analyze_expression(GROUND_TRUTH["wing_weight"], features, "wing_weight")
+
+    assert result["expression_parse_success"]
+    assert result["symbolic_exact_match"]
+    assert result["ground_truth_variable_recall"] == 1.0

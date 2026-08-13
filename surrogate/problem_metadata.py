@@ -30,4 +30,27 @@ PROBLEM_DOMAINS: dict[str, dict[str, tuple[float, float]]] = {
         "ambient_temperature": (290.0, 296.0),
         "gas_temperature": (340.0, 360.0),
     },
+    "ccpp": {
+        "ambient_temperature": (1.81, 37.11),
+        "exhaust_vacuum": (25.36, 81.56),
+        "ambient_pressure": (992.89, 1033.30),
+        "relative_humidity": (25.56, 100.16),
+    },
+    "naval_propulsion": {
+        "ship_speed": (3.0, 27.0),
+        "compressor_decay": (0.95, 1.0),
+        "turbine_decay": (0.975, 1.0),
+    },
+    "wing_weight": {
+        "wing_area": (150.0, 200.0),
+        "fuel_weight": (220.0, 300.0),
+        "aspect_ratio": (6.0, 10.0),
+        "sweep_angle_degrees": (-10.0, 10.0),
+        "dynamic_pressure": (16.0, 45.0),
+        "taper_ratio": (0.5, 1.0),
+        "thickness_chord_ratio": (0.08, 0.18),
+        "ultimate_load_factor": (2.5, 6.0),
+        "design_gross_weight": (1700.0, 2500.0),
+        "paint_weight": (0.025, 0.08),
+    },
 }

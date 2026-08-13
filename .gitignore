@@ -119,4 +119,7 @@ data/generated/
 data/cantilever/
 data/borehole/
 data/piston/
+data/ccpp/
+data/naval_propulsion/
+data/wing_weight/
 hall_of_fame_*

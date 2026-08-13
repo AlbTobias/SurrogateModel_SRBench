@@ -211,7 +211,7 @@ def main() -> None:
         "use_dataframe": use_dataframe,
         "input_scaling": args.input_scaling,
         "input_scaling_applied": args.input_scaling == SCALING_DOMAIN_MINMAX,
-        "input_scaling_source": "fixed published problem domain",
+        "input_scaling_source": "fixed documented problem domain",
         "input_scaling_formula": (
             "z = 2 * (x - lower) / (upper - lower) - 1"
             if args.input_scaling == SCALING_DOMAIN_MINMAX
