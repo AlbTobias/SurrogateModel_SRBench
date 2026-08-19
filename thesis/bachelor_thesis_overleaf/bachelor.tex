@@ -197,13 +197,13 @@ Modern machine learning methods are common choices for surrogate modeling becaus
 
 \section{The Need for Interpretable Models}
 
-Interpretability becomes important when a model is expected to support understanding rather than only prediction. In scientific and engineering applications, a surrogate model may be used to identify influential variables, expose nonlinear relationships, and support comparison with existing domain knowledge. If the model is a black box, these tasks become difficult. Even if the prediction error is low, it may remain unclear whether the model has learned a meaningful relation or whether it only interpolates well on the available data.
+Interpretability becomes important when a model is intended to support scientific understanding rather than prediction alone. In scientific and engineering applications, an interpretable surrogate can help researchers inspect which variables appear in the learned relationship, examine their nonlinear interactions, and compare the model structure with established domain knowledge. These forms of inspection are difficult when the surrogate is a black box. A low prediction error on testing data does not by itself demonstrate that a model has learned a scientifically meaningful or domain-consistent relationship.
 
-This issue is especially relevant when surrogate models are used outside the exact setting in which they were trained. A model can perform well on a test set but still produce unrealistic predictions on unseen input ranges, react poorly to noisy input, or accumulate prediction errors when used iteratively. Interpretable models provide additional ways to evaluate this behavior. Their structure can be inspected, simplified, checked against domain knowledge, and analyzed for physical plausibility.
+% This issue is especially relevant when surrogate models are used outside the exact setting in which they were trained. A model can perform well on a test set but still produce unrealistic predictions on unseen input ranges, react poorly to noisy input, or accumulate prediction errors when used iteratively. Interpretable models provide additional ways to evaluate this behavior. Their structure can be inspected, simplified, checked against domain knowledge, and analyzed for physical plausibility.
 
-The distinction between interpretable models and post-hoc explanations is important. Rudin argues that in high-stakes settings, one should prefer models that are interpretable by design instead of first training a black-box model and then trying to explain it afterward \cite{rudin2019stop}. This argument is also relevant for scientific surrogate modeling: if the learned model is meant to support reasoning about a physical or engineering system, the transparency of the model itself is important.
+The distinction between interpretable models and post-hoc explanations is important. Rudin argues that in high-stakes settings, one should prefer models that are interpretable by design instead of first training a black-box model and then trying to explain it afterward \cite{rudin2019stop}. This argument is also relevant for scientific surrogate modeling. If the learned model is meant to support reasoning about a physical or engineering system, the transparency of the model itself is important.
 
-Interpretability is not a single property. A model may be considered interpretable because it is simple, because it uses familiar mathematical operations, because its variables have clear roles, or because the complete model can be written down and evaluated by a human. In surrogate modeling, interpretability must also be balanced against accuracy. A very simple model may be easy to understand but too inaccurate to be useful, while a highly accurate model may be too complex to provide valuable insight. This trade-off motivates the benchmarking of methods according to both predictive accuracy and model complexity \cite{lacava2021contemporary,defranca2025srbench}.
+Interpretability is not a single property. A model may be considered interpretable because it is simple, because it uses familiar mathematical operations, because its variables have clear roles or because the complete model can be written down and evaluated by a human. In surrogate modeling, interpretability must also be balanced against accuracy. A very simple model may be easy to understand but too inaccurate to be useful, while a highly accurate model may be too complex to provide valuable insight. This trade-off motivates the benchmarking of methods according to both predictive accuracy and model complexity \cite{lacava2021contemporary,defranca2025srbench}.
 
 \section{Symbolic Regression as a Candidate Approach}
 
@@ -213,54 +213,56 @@ This makes SR a promising candidate for interpretable surrogate modeling. A symb
 
 Several well-known examples illustrate the scientific motivation for SR. AI Feynman uses physics-inspired strategies to recover equations from the Feynman Lectures on Physics, showing how prior structural ideas such as symmetry and separability can support symbolic equation discovery \cite{udrescu2020ai}. Sparse Identification of Nonlinear Dynamics (SINDy) similarly pursues interpretable governing equations from data, although it uses sparse regression over a predefined library of candidate terms rather than general symbolic search \cite{brunton2016discovering}. These works show the broader appeal of data-driven equation discovery for scientific modeling.
 
-At the same time, SR is not automatically superior to other surrogate modeling approaches. The search space of possible expressions is large, and different frameworks use different strategies to explore it. Evolutionary algorithms, genetic programming variants, and neural or reinforcement-learning-based approaches differ in their assumptions, computational cost, ease of use, and ability to discover compact expressions \cite{dong2025recent,petersen2021deep}. The quality of the final model also depends on operator choices, complexity penalties, noise levels, training budgets, and implementation details. Therefore, a systematic comparison is important, before SR can be recommended as a practical surrogate modeling tool.
+At the same time, SR is not automatically superior to other surrogate modeling approaches. The search space of possible expressions is large, and different frameworks use different strategies to explore it. Evolutionary algorithms, genetic programming variants, and neural or reinforcement-learning-based approaches differ in their assumptions, computational cost, ease of use, and ability to discover compact expressions \cite{dong2025recent,petersen2021deep}. The quality of the final model also depends on operator choices, complexity penalties, training budgets, and implementation details. Therefore, a systematic comparison is important, before SR can be recommended as a practical surrogate modeling tool.
 
 \section{Research Question and Contributions}
 
 The central research question of this thesis is:
 
 \begin{quote}
-\emph{How suitable are Symbolic Regression frameworks for interpretable surrogate modeling, and how do they compare with respect to predictive performance, computational cost, equation complexity, robustness, and practical usability?}
+\emph{How suitable are Symbolic Regression frameworks for interpretable surrogate modeling, and how do they compare with respect to predictive performance, computational cost, equation complexity, and practical usability?}
 \end{quote}
 
-To answer this question, this thesis conducts a systematic study of representative SR frameworks. The selected frameworks are PySR, Operon, and Deep Symbolic Regression. PySR is a practical scientific SR framework built around SymbolicRegression.jl \cite{cranmer2023interpretable}. Operon is an efficient C++ genetic programming framework for SR \cite{burlacu2020operon}. Deep Symbolic Regression represents a neural, reinforcement-learning-based approach to expression search \cite{petersen2021deep}. These frameworks are chosen because they represent different methodological families and are available as practical open-source tools. The comparison evaluates predictive accuracy, equation complexity, computational efficiency, robustness to noisy training data, stability across random seeds, and practical setup effort.
+\textcolor{red}{TODO: Add citations of algorithm papers.}
+
+To answer this question, this thesis conducts a systematic study of six open-source SR frameworks: gplearn, Operon, PySR, GeneticEngine, ITEA, and EQL. The selected frameworks represent different approaches to symbolic model discovery, including tree-based genetic programming, efficient evolutionary search, grammar-guided genetic programming, interaction--transformation-based evolutionary search, and neural equation learning. PySR provides a scientific SR interface built around SymbolicRegression.jl \cite{cranmer2023interpretable}, while Operon implements a computationally efficient genetic programming approach in C++ \cite{burlacu2020operon}. The frameworks are evaluated on eight analytical, simulated, and empirical surrogate-modeling problems using fixed training and test datasets and documented algorithm-specific search budgets. The comparison considers predictive accuracy, computational efficiency, expression complexity, recovery of known equations, stability across repeated trials, sensitivity to input scaling, and practical reproducibility.
 
 The main contributions of this thesis are:
 
 \begin{itemize}
     \item a structured overview of Symbolic Regression as an approach for interpretable surrogate modeling;
     \item a benchmark setup for comparing selected SR frameworks on datasets from different application domains;
-    \item an evaluation protocol covering predictive accuracy, runtime, setup effort, equation complexity, robustness to noise, and stability in repeated prediction settings;
+    \item an evaluation protocol covering predictive accuracy, runtime, setup effort, equation complexity, and stability in repeated prediction settings;
     \item an interpretability-oriented comparison of the discovered symbolic expressions;
     \item practical guidance on strengths, limitations, and challenges of the current SR frameworks for surrogate modeling.
 \end{itemize}
 
-The remainder of this thesis is organized as follows. Chapter 2 introduces the background on surrogate modeling, Symbolic Regression, method families, and interpretability. Chapter 3 discusses related work, including existing reviews, benchmark studies, and applications. Chapter 4 describes the methodology, including framework and dataset selection, evaluation metrics, reproducibility setup, and the interpretability rubric. Chapter 5 presents the experimental setup. Chapter 6 reports the results. Chapter 7 discusses the findings and their limitations. Chapter 8 concludes the thesis and outlines directions for future work.
+The remainder of this thesis is organized as follows. Chapter 2 introduces the background on surrogate modeling, Symbolic Regression, method families, and interpretability. Chapter 3 discusses related work, including existing reviews, benchmark studies, and applications. Chapter 4 describes the methodology, including framework and dataset selection, evaluation metrics, reproducibility setup, and interpretability. Chapter 5 presents the experimental setup. Chapter 6 reports the results. Chapter 7 discusses the findings and their limitations. Chapter 8 concludes the thesis and outlines directions for future work.
 
 
 \chapter{Background}
 
 \section{Surrogate Modeling}
 
-Many scientific and engineering workflows rely on models that are accurate but expensive to evaluate. Examples include finite element simulations, computational fluid dynamics, molecular dynamics, density-functional theory, climate models, and other numerical solvers. These models can encode detailed physical assumptions, but their computational cost becomes a limitation when they must be evaluated repeatedly, for example during optimization, uncertainty quantification, sensitivity analysis, control, or parameter exploration.
+Many scientific and engineering workflows rely on simulation models that provide detailed representations of physical systems but are computationally expensive to evaluate. Finite element analysis and computational fluid dynamics are prominent examples. Their computational cost becomes a practical limitation when numerous evaluations are required for tasks such as design optimization, uncertainty quantification, sensitivity analysis, or exploration of a parameter space \cite{alizadeh2020managing}.
 
-A surrogate model is a cheaper approximation of such an expensive model. Given input-output observations from a simulation or measurement process, the surrogate learns a mapping from input variables to a target quantity. If the original model is denoted by
-
-\begin{equation}
-    y = f(x),
-\end{equation}
-
-where $x \in \mathbb{R}^{d}$ is an input vector and $y$ is the corresponding output, a surrogate model tries to approximate this relation by a function $\hat{f}$ such that
+A surrogate model approximates the input output relationship of a computationally expensive simulation or physical process. It is constructed from a finite set of observations and is intended to provide predictions at a substantially lower evaluation cost than the original process \cite{alizadeh2020managing}. If the original model is denoted by
 
 \begin{equation}
-    \hat{y} = \hat{f}(x) \approx f(x).
+    y = f(\mathbf{x}),
 \end{equation}
 
-The main practical advantage is that $\hat{f}$ is usually much faster to evaluate than the original model. This makes surrogate modeling useful when the original model is too slow for repeated use. However, the usefulness of a surrogate does not depend only on speed. A surrogate should also generalize to relevant unseen inputs, remain stable under realistic noise, and preserve the important system properties, such as expected trends, valid output ranges, and stable behavior during iterative use.
+where $\mathbf{x} \in \mathbb{R}^{d}$ is an input vector and $y \in \mathbb{R}$ is the corresponding output, a surrogate model approximates this relationship with a function $\hat{f}$ such that
 
-Machine learning methods are frequently used as surrogate models because they can approximate nonlinear relationships from data. Neural networks, random forests, gradient boosting methods, support vector regression, Gaussian processes, and related techniques are common choices. Their main strength is flexibility, they can often fit complex functions without requiring a manually specified equation form. In scientific applications, however, this flexibility can also be a weakness. A highly accurate surrogate may still provide little insight into which variables matter, how they interact, or whether the learned relation is physically plausible.
+\begin{equation}
+    \hat{y} = \hat{f}(\mathbf{x}) \approx f(\mathbf{x}).
+\end{equation}
 
-This thesis focuses on surrogate modeling in settings where interpretability is a central requirement. The goal is therefore not only to minimize prediction error, but also to obtain models whose structure can be inspected and discussed. Symbolic Regression is particularly relevant in this context because it produces explicit mathematical expressions instead of opaque prediction functions.
+The main practical advantage of a surrogate is that evaluating $\hat{f}$ is generally less computationally expensive than evaluating the original model $f$. This makes repeated model evaluations feasible, but computational efficiency alone does not determine whether a surrogate is useful. Its predictive accuracy on relevant unseen data, the amount of data required for its construction, and the computational cost of fitting and evaluating it must also be considered \cite{alizadeh2020managing}.
+
+A wide range of statistical and machine-learning methods can be employed as surrogate models, including polynomial response surfaces, Gaussian processes, artificial neural networks, support vector regression, boosted trees, and random forests \cite{alizadeh2020managing}. These methods can approximate complex nonlinear relationships without requiring a complete analytical description of the underlying process. However, flexible predictive models may provide limited insight into the learned input output relationship, even when they achieve low prediction error \cite{makke2024interpretable}.
+
+This thesis focuses on evaluating Symbolic Regression as an approach to surrogate modeling, with interpretability considered alongside predictive performance and computational efficiency. In addition to prediction error, the evaluation therefore examines whether the resulting mathematical expressions can be inspected, simplified, and compared with available domain knowledge. Symbolic Regression is relevant in this context because it searches for explicit mathematical expressions directly from data, providing a model representation that may support such analysis \cite{makke2024interpretable}.
 
 \section{Symbolic Regression}
 
@@ -288,7 +290,7 @@ The objective of SR is to find both a symbolic expression structure $\phi$ and n
 
 where $y_i - \phi(\mathbf{x}_i;\boldsymbol{\theta})$ denotes the prediction error for the $i$-th observation.
 
-However, minimizing prediction error alone can produce unnecessarily large expressions. Because the result of SR is intended to remain interpretable, expression complexity must also be considered. Complexity may, for example, be measured by the number of nodes or operators in the expression tree. SR is therefore commonly treated as a multi-objective problem involving a trade-off between predictive accuracy and expression complexity \cite{cranmer2023interpretable,lacava2021contemporary}.
+However, minimizing prediction error alone can produce unnecessarily large expressions. Because the result of SR is intended to remain interpretable, expression complexity must also be considered. Complexity may, for example, be measured by the number of nodes or operators in the expression tree. SR is therefore commonly treated as a multi objective problem involving a trade-off between predictive accuracy and expression complexity \cite{cranmer2023interpretable,lacava2021contemporary}.
 
 Candidate expressions are commonly represented as syntax trees. In such a tree, internal nodes are mathematical operators such as $+$, $-$, $\times$, division, $\sin$, $\cos$, $\log$, or $\exp$, while leaf nodes are variables or constants. For example, the expression
 
@@ -302,9 +304,9 @@ can be represented as a tree combining multiplication, division, addition, two c
 
 This representation makes it possible to modify expressions by changing subtrees, replacing operators, or adjusting constants.
 
-The search space of SR is very large. Even a small set of variables and operators can generate many possible expressions, and the number of possible expressions grows quickly with expression size. This is one reason why SR is computationally difficult and why many frameworks use different search strategies \cite{dong2025recent}. Another challenge is the treatment of constants. In scientific equations, real-valued constants are often essential, but searching jointly over expression structure and continuous constants is much harder than fitting coefficients in a fixed model form \cite{cranmer2023interpretable}.
+The search space of SR is very large. Even a small set of variables and operators can generate many possible expressions, and the number of possible expressions grows quickly with expression size. This is one reason why SR is computationally difficult and why many frameworks use different search strategies \cite{dong2025recent}. Another challenge is the treatment of constants. In scientific equations, real-valued constants are often essential, but searching simultaneously over expression structure and continuous constants is much harder than fitting coefficients in a fixed model form \cite{cranmer2023interpretable}.
 
-Despite these challenges, SR is attractive for scientific modeling because its outputs can be interpreted directly. A discovered equation can be evaluated cheaply, simplified symbolically, compared with existing theory, inspected for asymptotic behavior, and checked for physically implausible terms. This distinguishes SR from many black-box methods, where interpretability is usually added after training through explanation methods rather than being part of the model itself \cite{makke2024interpretable}.
+Despite these challenges, SR is useful for scientific modeling because its outputs can be interpreted directly. A discovered equation can be evaluated cheaply, simplified symbolically, compared with existing theory, inspected for asymptotic behavior, and checked for physically implausible terms. This distinguishes SR from many black-box methods, where interpretability is usually added after training through explanation methods rather than being part of the model itself \cite{makke2024interpretable}.
 
 \section{Main Symbolic Regression Method Families}
 
@@ -314,11 +316,13 @@ Deterministic methods use systematic search, enumeration, sparse regression, mix
 
 Genetic Programming (GP) methods are historically the most established family of SR algorithms. GP treats expressions as individuals in a population and evolves them over many generations. Candidate expressions are evaluated according to a fitness function, selected, recombined, mutated, and simplified. This family is flexible because it can search over many different expression structures without requiring a fixed basis. It also naturally supports multi-objective optimization, where accuracy and complexity are optimized together \cite{angelis2023artificial,lacava2021contemporary}.
 
+\textcolor{red}{TODO: Maybe swap DSR example for EQL.}
+
 Neural-network-based SR methods use neural networks to guide or perform the expression search. Instead of evolving expressions only through classical GP operators, these methods may train a recurrent neural network, transformer, or other neural architecture to generate candidate formulas. Deep Symbolic Regression (DSR), for example, uses reinforcement learning and a generative recurrent neural network to search for expressions \cite{makke2024interpretable,lacava2021contemporary}. Neural approaches are motivated by the ability of deep learning systems to learn search heuristics from data or from many generated examples. Their limitations include training complexity, sensitivity to the distribution of training problems, and the risk that strong performance on synthetic benchmarks does not directly transfer to scientific data.
 
 The variety of method families is important for this thesis because there is no single best SR approach. A framework that performs well on one type of problem may behave differently on datasets with noisy data or high-dimensional data. Therefore, the comparison in this thesis treats SR frameworks not only as implementations of one idea, but as tools with different algorithmic assumptions.
 
-\section{The Accuracy--Complexity Trade-Off}
+\section{The Accuracy Complexity Trade-Off}
 
 The central evaluation problem in SR is the trade-off between predictive accuracy and expression complexity. If only accuracy is optimized, SR can produce long expressions that fit the training data well but are difficult to interpret and prone to overfitting. If only simplicity is optimized, the resulting expression may be readable but too inaccurate to serve as a useful surrogate. A meaningful SR model should therefore achieve an appropriate balance between these objectives.
 
@@ -326,17 +330,13 @@ Complexity can be measured in different ways. A common syntactic measure is the 
 
 Many SR frameworks return not only one expression but a set of candidate expressions along a Pareto front. A Pareto front contains models for which no other model is both more accurate and less complex. This is useful because the final choice of model depends on the application. For a deployment-focused surrogate, a slightly more complex expression may be acceptable if it improves predictions significantly. For scientific insight, a simpler expression may be preferable if it captures the dominant relation and remains physically plausible.
 
-In this thesis, the accuracy--complexity trade-off is treated as a core evaluation dimension. Predictive metrics such as mean squared error or coefficient of determination describe how well a model fits the data, while complexity metrics describe how large or difficult the resulting expression is. Considering both dimensions is essential because a symbolic surrogate is only useful if it is accurate enough to approximate the underlying process and simple enough to support interpretation.
-
-Robustness is closely connected to this trade-off. On noisy datasets, highly flexible symbolic expressions may fit noise instead of the underlying relation. This can lead to poor generalization and unstable extrapolation. The SRBench study explicitly evaluates both real-world datasets and synthetic datasets with known ground-truth equations under noise, showing why benchmark design must consider more than one performance metric \cite{lacava2021contemporary}. For surrogate modeling, robustness is especially important because the model may be used repeatedly or outside the original training distribution.
+In this thesis, the accuracy complexity trade-off is treated as a core evaluation dimension. Predictive metrics such as mean squared error or coefficient of determination describe how well a model fits the data, while complexity metrics describe how complex the resulting expression is. Considering both dimensions is essential because a symbolic surrogate is only useful if it is accurate enough to approximate the underlying process and simple enough to support interpretation.
 
 \section{Interpretability in Scientific Modeling}
 
 Interpretability is a major motivation for applying SR to surrogate modeling. In scientific contexts, models are often expected to do more than predict. They should help explain a underlying system, reveal relationships between variables, and support reasoning about behavior in new regimes. A symbolic expression is attractive because the full mapping from inputs to outputs is visible in mathematical form.
 
 The distinction between interpretability and post-hoc explainability is important. A black-box model may be explained after training using feature importance scores, saliency methods, local approximations, or other explanation techniques. These methods can be useful, but they do not make the original model transparent. An interpretable model, by contrast, exposes its structure directly. SR belongs to this second category, as it can produce sufficiently compact and meaningful expressions \cite{makke2024interpretable}.
-
-For scientific surrogate modeling, interpretability depends on several properties. The expression should be sufficiently concise to be read and communicated, use variables and operators that are meaningful within the application domain, and exhibit plausible behavior under extrapolation. Its interpretability is further strengthened when it can be simplified or related to known physical laws, empirical correlations, or dimensional structure. Interpretability therefore cannot be assessed through expression length alone.
 
 SR can support scientific discovery when the resulting expression reveals a relation that was not explicitly provided to the model. Reviews of SR in physical sciences emphasize this potential. SR can generate analytical equations from data and thereby connect data-driven modeling with the traditional scientific practice of formulating laws and empirical relations \cite{angelis2023artificial,makke2024interpretable}. At the same time, interpretability should not be assumed automatically. A symbolic expression may be mathematically explicit but still too complex, unstable, or domain-inconsistent to be useful.
 
@@ -367,7 +367,7 @@ More recent work has extended and criticized existing benchmark practices. SRBen
 
 Aldeia et al. present a call for the next generation of SR benchmarks, arguing that SRBench should evolve as a living benchmark \cite{aldeia2025call}. Their work expands the set of evaluated methods, refines evaluation metrics, and considers trade-offs between accuracy, complexity, and energy consumption. The study emphasizes standardization of hyperparameter tuning, execution constraints, computational resources, and benchmark maintenance. These issues are directly relevant for this thesis because a fair comparison of SR frameworks requires a reproducible protocol and equal treatment of computational budgets.
 
-Overall, benchmark studies show that SR evaluation is more complex than ordinary regression benchmarking. Accuracy, model complexity, solution recovery, runtime, robustness, and interpretability all matter. The present thesis builds on these insights but uses a narrower experimental scope: instead of ranking many SR methods across hundreds of datasets, it compares a selected set of open-source frameworks under a reproducible surrogate modeling protocol.
+Overall, benchmark studies show that SR evaluation is more complex than ordinary regression benchmarking. Accuracy, model complexity, solution recovery, runtime, robustness, and interpretability all matter. The present thesis builds on these insights but uses a narrower experimental scope. Instead of ranking many SR methods across hundreds of datasets, it compares a selected set of open-source frameworks under a reproducible surrogate modeling protocol.
 
 \section{Applications in Science and Engineering}
 

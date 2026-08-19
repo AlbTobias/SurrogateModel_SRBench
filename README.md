@@ -57,22 +57,21 @@ An individual pinned image can be run with
 `./scripts/run_algorithm_docker.sh ALGORITHM`. These smoke settings establish
 compatibility; they are not the final thesis benchmark budgets.
 
-Run the versioned three-seed pilot benchmark with:
+Run the current final benchmark suite with:
 
 ```bash
 ./scripts/run_benchmark_group.sh
 ```
 
 The original Cantilever-only pilot remains defined in
-`configs/benchmark_pilot_v1.json`; the three-problem suite is defined in
-`configs/benchmark_suite_v1.json`. The current evaluation protocol, including
-repeated prediction timing, expression analysis, and explicitly separated
-raw/normalized input conditions, is versioned as
-`configs/benchmark_suite_v3.json`. Its four-problem extension adding the UCI
-Combined Cycle Power Plant dataset is `configs/benchmark_suite_v4.json`. The v5
-extension adds the naval propulsion simulator. The v6 extension adds Wing
-Weight. The v7 extension adds measured gas-turbine NOx emissions. The v8
-extension adds concrete compressive strength and is the runner default.
+`configs/benchmark_pilot_v1.json`; the first three-problem suite is defined in
+`configs/benchmark_suite_v1.json`. Version 3 introduced the current evaluation
+protocol, including repeated prediction timing, expression analysis, and
+explicitly separated raw and normalized input conditions. Versions 4 through 8
+successively added the UCI Combined Cycle Power Plant dataset, the naval
+propulsion simulator, Wing Weight, measured gas-turbine NOx emissions, and
+concrete compressive strength. The resulting eight-problem suite is defined in
+`configs/benchmark_suite_v8.json` and is the runner default.
 Individual trials
 use `./scripts/run_benchmark_trial.sh ALGORITHM SEED [PROBLEM] [INPUT_SCALING]`,
 and aggregate metrics are written to
@@ -201,12 +200,15 @@ The exact imported SRBench revision is recorded in
 `SRBENCH_UPSTREAM_COMMIT`. The original repository is configured as the Git
 remote named `upstream`.
 
-## Next project step
+## Current project status
 
-The existing SRBench evaluator uses a random 75/25 split. Before running thesis
-experiments, add a surrogate-specific evaluator that accepts fixed training and
-reference test sets so that design-of-experiments samples cannot leak into the
-test set.
+The surrogate-specific evaluator uses fixed, disjoint training and reference
+test sets instead of the upstream evaluator's random 75/25 split. The final
+eight-problem configuration, datasets, and 960 trial coordinates have been
+materialized under `results/`; explicit failure records are retained alongside
+successful trials. Before thesis tables are generated, rerun symbolic analysis
+and summary generation so every checked-in `summary.csv` reflects the complete
+set of trial artefacts.
 
 ## License and attribution
 

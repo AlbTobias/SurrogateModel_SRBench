@@ -6,8 +6,9 @@ substitute for interpretability or symbolic recovery.
 
 ## Input-scaling conditions
 
-The `benchmark_suite_v3` experiment runs every problem, algorithm, and seed in
-two separate conditions:
+The final `benchmark_suite_v8` experiment runs every problem, algorithm, and
+repetition in two separate conditions. This protocol was introduced in
+`benchmark_suite_v3` and retained by the later problem-set extensions:
 
 - `raw`: the stored physical inputs are passed to the estimator unchanged;
 - `domain_minmax`: each input is mapped from its published problem-domain
@@ -31,8 +32,8 @@ does not silently substitute the normalized expression for a physical one.
 
 The final suite uses the first ten prime numbers as its predefined repetition
 seeds: 2, 3, 5, 7, 11, 13, 17, 19, 23, and 29. For every
-algorithm/problem/scaling combination this gives 6 algorithms × 3 problems × 2
-scaling conditions × 10 repetitions = 360 expected trials. The choice of prime
+algorithm/problem/scaling combination this gives 6 algorithms × 8 problems × 2
+scaling conditions × 10 repetitions = 960 expected trials. The choice of prime
 numbers has no special statistical meaning; it is simply a fixed, distinct,
 documented set selected before the final experiment. Train and test datasets
 are regenerated from fixed problem-specific dataset seeds, not from the
@@ -60,7 +61,7 @@ hyperparameter search. Its configuration separates three concepts:
   including one-thread execution, repeated prediction timing, and the symbolic
   post-processing timeout. They are not model hyperparameters.
 - `project_budget_override` marks search budgets reduced by this project to
-  make the 360-trial experiment computationally feasible.
+  make the 960-trial experiment computationally feasible.
 - `documented_adapter_defaults` restates effective settings already selected by
   the pinned SRBench adapter so they are visible in the experiment manifest.
 

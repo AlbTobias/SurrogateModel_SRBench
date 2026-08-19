@@ -137,9 +137,11 @@ references at
 <https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.qmc.LatinHypercube.html>.
 
 The pre-existing Cantilever generator is intentionally unchanged so the
-completed `benchmark_pilot_v1` remains reproducible. A future final thesis
-protocol can migrate all three problems to one common design policy under a new
-versioned configuration.
+completed `benchmark_pilot_v1` remains reproducible. The final protocol keeps
+this documented design difference: Cantilever uses sequential draws from one
+fixed generator, whereas Borehole and Piston use independently seeded Latin
+hypercube designs. The configuration records the sampling policy and seeds for
+each problem explicitly.
 
 CCPP uses one permutation of the original rows with fixed seed 20260815. The
 first 400 observations form the training set and the next 4,000 form the test
