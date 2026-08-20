@@ -1,0 +1,784 @@
+Data types as a more ergonomic frontend for
+Grammar-Guided Genetic Programming
+Guilherme Espada
+gjespada@ciencias.ulisboa.pt
+LASIGE, Faculdade de Ciências da
+Universidade de Lisboa
+Portugal
+Leon Ingelse
+lingelse@lasige.di.fc.ul.pt
+LASIGE, Faculdade de Ciências da
+Universidade de Lisboa
+Portugal
+Paulo Canelas
+pacsantos@ciencias.ulisboa.pt
+School of Computer Science
+Carnegie Mellon University
+USA
+LASIGE, Faculdade de Ciências da
+Universidade de Lisboa
+Portugal
+Pedro Barbosa
+psbarbosa@ciencias.ulisboa.pt
+LASIGE, Faculdade de Ciências da
+Universidade de Lisboa
+Portugal
+Instituto de Medicina Molecular
+Portugal
+Alcides Fonseca
+alcides@ciencias.ulisboa.pt
+LASIGE, Faculdade de Ciências da
+Universidade de Lisboa
+Portugal
+Abstract
+Genetic Programming (GP) is an heuristic method that can
+be applied to many Machine Learning, Optimization and
+Engineering problems. In particular, it has been widely used
+in Software Engineering for Test-case generation, Program
+Synthesis and Improvement of Software (GI).
+Grammar-Guided Genetic Programming (GGGP) approaches
+allow the user to refine the domain of valid program solutions. Backus Normal Form is the most popular interface for
+describing Context-Free Grammars (CFG) for GGGP. BNF
+and its derivatives have the disadvantage of interleaving the
+grammar language and the target language of the program.
+We propose to embed the grammar as an internal DomainSpecific Language in the host language of the framework.
+This approach has the same expressive power as BNF and
+EBNF while using the host language type-system to take
+advantage of all the existing tooling: linters, formatters, typecheckers, autocomplete, and legacy code support. These tools
+have a practical utility in designing software in general, and
+GP systems in particular.
+Permission to make digital or hard copies of all or part of this work for
+personal or classroom use is granted without fee provided that copies are not
+made or distributed for profit or commercial advantage and that copies bear
+this notice and the full citation on the first page. Copyrights for components
+of this work owned by others than ACM must be honored. Abstracting with
+credit is permitted. To copy otherwise, or republish, to post on servers or to
+redistribute to lists, requires prior specific permission and/or a fee. Request
+permissions from permissions@acm.org.
+Conference acronym ’XX, June 03–05, 2018, Woodstock, NY
+© 2018 Association for Computing Machinery.
+ACM ISBN 978-1-4503-XXXX-X/18/06. . . $15.00
+https://doi.org/XXXXXXX.XXXXXXX
+We also present Meta-Handlers, user-defined overrides
+of the tree-generation system. This technique extends our
+object-oriented encoding with more practicability and expressive power than existing CFG approaches, achieving the
+same expressive power of Attribute Grammars, but without
+the grammar vs target language duality.
+Furthermore, we evidence that this approach is feasible,
+showing an example Python implementation as proof. We
+also compare our approach against textual BNF-representations
+w.r.t. expressive power and ergonomics. These advantages
+do not come at the cost of performance, as shown by our
+empirical evaluation on 5 benchmarks of our example implementation against PonyGE2. We conclude that our approach
+has better ergonomics with the same expressive power and
+performance of textual BNF-based grammar encodings.
+CCS Concepts: • Computer systems organization→Embedded systems; Redundancy; Robotics; • Networks →
+Network reliability.
+Keywords: Grammar-guided Genetic Programming, StronglyTyped Genetic Programming, Genetic Programming Framework
+ACM Reference Format:
+Guilherme Espada, Leon Ingelse, Paulo Canelas, Pedro Barbosa,
+and Alcides Fonseca. 2018. Data types as a more ergonomic frontend
+for Grammar-Guided Genetic Programming. In Proceedings of Make
+sure to enter the correct conference title from your rights confirmation
+emai (Conference acronym ’XX). ACM, New York, NY, USA, 9 pages.
+https://doi.org/XXXXXXX.XXXXXXX
+arXiv:2210.04826v1 [cs.PL] 10 Oct 2022
+Conference acronym ’XX, June 03–05, 2018, Woodstock, NY Espada et al.
+1 Introduction
+Genetic Programming (GP) has been applied to several domains [1], including test-case generation [6], program synthesis [10] and automatic optimization of programs [18].
+Being a search-based method, GP often requires the user to
+encode domain-specific restrictions to the possible solutions.
+Throughout the Genetic Programming procedure, many
+solutions (also called programs or trees) are generated, modified and combined in order to search the one that has the
+best performance or solves the problem. One of the main
+challenges of using GP is to define the boundaries of the
+search-space in a way that is performant and efficient. Encoding domain-knowledge in the definition of the search
+space is desirable, so many candidate, but invalid solutions
+are removed from the search.Grammar-Guided and StronglyTyped Genetic Programming (GGGP [33] and STGP [21])
+are two popular families of approaches to guide the random
+solution generation by the user. To restrict valid solutions,
+GGGP relies on user-defined grammars while STGP relies
+on user-defined type annotations.
+Within each family of approaches, there are different tradeoffs between expressive power and computational complexity. Context-Free Grammars [33] can be used with little overhead in processing, while Attribute Grammars [5] can encode more complex restrictions. Similarly, polymorphic type
+systems [37] are more expressive than monomorphic ones,
+but they have a higher overhead during the evolutionary
+process.
+However, in practice, popular implementations of these
+systems are limited to Context-Free grammars (CFG) (e.g.,
+PonyGE2 [7]) and base types (e.g., DEAP [11] and Jenetics [36]).
+Problem Statement
+GGGP requires users to express the search-space of valid programs in the Backus Normal Form (BNF) or one of its derivations, such as the Extended Backus Normal Form (EBNF).
+We consider BNF and its derivatives to be a textual editing
+medium of the target language, as concepts in the target
+language (like types, functions, literals) have no meaning in
+the grammar language. As such, users are treating the target
+language as character streams, instead of treating them as
+semantic code units, as they do in code editors.
+The BNF approach is not ergonomic nor error-prone due
+to the interleaving of two languages: the BNF meta-syntax
+and the syntax of the target language, i.e., the language of
+the generated programs. As an example, Listing 1 depicts
+two common errors that both novices and experts do while
+writing grammars. These are not detected immediately, and
+are typically only revealed during execution.
+Ideally, these two bugs would be detected immediately in
+most development environments: the type-checker would
+identify a missing import, and the type mismatch in the
+1 <S> ::= <S> "+" <S> | "x" | 1 | np.array([<A>])
+2 <A> ::= [0-9]+,<A> | [0-9]+
+Listing 1. Example of a grammar with two possible bugs:
+the np module may not be imported, and the + operator may
+be applied to a string and integer, causing a crash.
+1 <Real> ::= <RealLit> | DATASET[GE_RANGE:3] | <
+RealLit> + <RealLit> | np.average(<Vector>)
+2 <RealLit> ::= <d>.<d>
+3 <d> ::= GE_RANGE:10<d> |
+4 <Vector> ::= DATASET[3 + GE_RANGE:3]
+Listing 2. PonyGE2 grammar for a subset of VectorialGP
+operator. Is it really necessary that, to implement a grammar,
+developers have to lose access to an array of tooling that
+has shown to be useful in software engineering? Or is there
+a more ergonomic interface that is integrated into the host
+language ecosystem, providing access to code editors, syntax
+highlighting, linting, formatting, test suites, etc...?
+If there is, such an approach could reduce the barrier to
+adoption of GGGP, STGP, and similar systems, increasing
+the productivity of practitioners and reducing the number of
+possible bugs that are not caught earlier due the mismatch
+between the host language and the grammar language.
+It is important to notice that usability has been identified
+as a relevant open challenge for GP both in 2010 [25], and
+again in 2020, when it was identified as one of the 10 major
+challenges for the following 15 years [30]. This work addresses exactly that problem, especially in the case where
+practitioners encode domain information to improve the
+performance of GP.
+Approach
+Our first contribution is an object-oriented encoding of grammars to be used in GGGP, regardless of representation. In
+short, non-terminals are represented as abstract classes (or
+interfaces, or traits) and productions are represented as concrete classes that implement the corresponding abstract class.
+As a running example, we will use grammars to describe
+the VectorialGP example in Azzali et al. [2]. Listing 2 describes that subset using a PonyGE2’s flavor of BNF, while
+Listing 3 encodes the same grammar using the proposed
+approach, both implemented in Python.
+There is a direct correspondence between the abstract and
+concrete types, and the non-terminals and productions of
+the grammar. This direct correspondence is an advantage of
+this approach, that does not add more cognitive overhead
+when using the Object-Oriented encoding.
+Data types as a more ergonomic frontend for GGGP Conference acronym ’XX, June 03–05, 2018, Woodstock, NY
+1 @abstract class Real: pass
+2 @abstract class Vector: pass
+3
+4 class FloatLiteral(Real):
+5 value: float
+6 def evaluate(self):
+7 return self.value
+8
+9 class RealFeature(Real): # First three columns
+have reals
+10 column: Annotated[int, IntBetween[0,3]]
+11 def evaluate(self):
+12 return DATASET[self.column]
+13
+14 class RealSum(Real):
+15 left: Real, right: Real
+16 def evaluate(self):
+17 return self.left.evaluate() + self.right.
+evaluate()
+18
+19 class Average(Real):
+20 values: Vector
+21 def evaluate(self):
+22 return np.average(self.values)
+23
+24 class VectorFeature(Vector): # Last three
+columns have vectors
+25 column: Annotated[int, IntBetween[3,6]]
+26 def evaluate(self):
+27 return DATASET[self.column]
+Listing 3. Proposed Object-Oriented encoding of grammar
+in listing 2.
+Our proposal is also more verbose (visible in the number of lines of code, which tells nothing about code complexity [27]), but is more ergonomic, when measured using
+Kiper’s framework [17]. In particular, developers can have
+immediate feedback about their grammars and semantic actions using the target language tooling like type-checkers,
+autocompleters, linting and test frameworks. It is important
+to notice that our user-facing encoding of grammars supports
+any internal representation, from Whigham’s CFG-GP [33]
+to Grammatical Evolution [28], regardless of which one is
+better in a given problem [13, 20, 35].
+Our second contribution, that builds on top of the first,
+is the usage of Meta-Handlers. Meta-Handlers are type annotations that can be used to efficiently override the treegeneration process, to achieve a higher (formal and practical)
+expressive power when compared to BNF and its extensions.
+We will now present the related work (section 2), describe
+our approach (section 3), present our evaluation (section 4)
+and draw conclusions (section 5).
+2 Related Work
+2.1 Search-space Restriction
+The benefits of GP are sometimes hampered by very large
+or unbounded search spaces [19]. The search space can
+be restricted using grammars (GGGP [34]) or using types
+(STGP [21]), to introduce bias in the population.
+The initial proposal of GGGP used context-free grammars
+(CFG) in the Backus Normal Form to generate trees, and is
+referred to as CFG-GP [33]. Ryan et al. [28] proposed Grammatical Evolution, using variable-length string genomes to
+represent programs, with the grammar being used in the
+genotype-phenotype mapping. Ryan et al. [29] introduced
+Attribute Grammars as a more expressive alternative to CFG
+grammars, albeit more computationally expensive.
+Strongly-Typed Genetic Programming [21] only generates
+trees that are valid by construction, showing success in practice [12, 26]. Refinement-Typed GP [9] (RTGP) extends STGP
+with dependent types, increasing the expressive power of the
+system. Strongly-Formed GP [3] (SFGP) also extends STGP
+with the ability to distinguish node-to-node from node-toterminal relations, allowing for higher specificity and thus a
+reduction of the search space.
+2.2 Genetic Programming frameworks
+While GE libraries exist for C (libGE [22]), Java (GEVA [24])
+and R (gramEvol [23]), PonyGE2 [7] in Python is the most
+mature framework. In PonyGE2, the user is required to write
+a grammar in BNF notation and to implement the fitness
+function in Python. We have identified a few limitations of
+PonyGE2: It is a framework, and not a library that you can
+use within other programs; it requires the user to be familiar
+with BNF notation; and it does not support code completion,
+checking, or linting inside the grammar.
+Different frameworks support restricting the shape of the
+tree with STGP: DEAP [11], PyStep [15] and monkeys [31]
+(Python), Jenetics [36] (Java) and RGP [8] (R). Except for
+monkeys, other libraries are limited to basic types and functions. While this option may be more efficient, it limits the
+expressive power of the solution, as an AST cannot be easily
+created and manipulated. On the other hand, monkeys supports using the internal AST of Python to generate Python
+code. This framework requires the user to know the internal
+representation of Python, a very complex and large language.
+Furthermore, monkeys does not support custom generators
+for code, and does not use the default type annotations in
+Python, requiring custom annotations that can upset usage
+of pre-existing code.
+3 The Data Type Approach
+Our approach relies on two main concepts: Type Hierarchies
+as Grammars, and Meta-Handlers as user-customizable overrides for tree generation. The first concept provides the same
+expressive power as BNF in a more ergonomic interface. The
+Conference acronym ’XX, June 03–05, 2018, Woodstock, NY Espada et al.
+second allows users of GGGP frameworks to encode even
+more expressive constraints on the grammar.
+3.1 Type-Hierarchy Encoding of Grammars
+Grammar-Guided approaches require the practitioner to restrict the grammar of valid, candidate programs. The grammar is typically described using BNF or one of its variants.
+Each grammar describes productions from non-terminal
+symbols to a sequence of terminal and non-terminal symbols.
+Because terminal symbols belong to the target programming
+language, productions mix the target language with the metalanguage (BNF). As such, there is no tooling to verify that a
+grammar generates valid programs in the target language.
+This can be checked by generating individuals and evaluating
+them, but it is not complete. It may take many generations
+before generating an individual that is not valid, and the user
+finds that the grammar was not properly designed.
+STGP is less error-prone because syntactic and semantic
+errors in the specification of the search space is detected
+by type-checkers. If the user selects the wrong type for a
+function, the program will not compile.
+Our approach combines the expressive power of GGGP
+with the ergonomic advantages of STGP. Briefly, a CFG grammar is encoded using the type system of the target language,
+with the grammar being specified in the same programming
+language that is being generated. Thus, all existing tooling
+can be used and applied to the grammar definition, and it
+avoids mixing different syntaxes in the same file.
+Formally, a grammar 𝐺 is defined as the quadruple <
+𝑁 , Σ, 𝑃, 𝑆 >, where 𝑁 is the set of non-terminals, Σ is the
+set of terminal symbols, 𝑃 is the set of productions in the
+grammar and 𝑆 is the starting symbol to produce the grammar. Most often, non-terminal (𝑁) and terminal (Σ) symbols
+are distinguished using a special syntax (e.g., enclosing the
+non-terminal symbol with angled brackeds, like in <Real>),
+and the starting symbol is often identified by being the first
+one defined, or having a pre-defined name, such as start
+or S. Hence, the main concern when defining a grammar is
+defining the production and the non-terminal symbols.
+Rule 1: Non-terminal symbols are defined as abstract data
+types, interfaces, abstract classes, traits, protocols or typeclasses. The distinction between them [4] is not relevant and
+can be chosen according to the preference of the implementer.
+Querying the existing abstract types builds the non-terminal
+set.
+Rule 2: Each grammar production will correspond to a
+different concrete data type that implements (or inherits
+from) the corresponding non-terminal abstract type. The
+main requirement is that this relationship can be queried by
+the GP implementation. Querying the relationship between
+concrete types and their abstract types is what builds the
+production set of the grammar.
+Rule 3: Terminal symbols exist in runnable code, separated from the grammar. This could take the form of an
+interpreter function, or a more object-oriented visitor pattern.
+Let us revisit the grammar in listing 2 and the corresponding encoding in listing 3 to see how these rules can be applied.
+The non-terminals 𝑅𝑒𝑎𝑙 and 𝑉 𝑒𝑐𝑡𝑜𝑟 correspond to abstract
+classes. The non-terminals 𝑅𝑒𝑎𝑙𝐿𝑖𝑡 and 𝑑 are not necessary
+as they exist only due to the textual nature of BNF, and can
+be replaced by the native type 𝑓 𝑙𝑜𝑎𝑡. Each production results in a concrete class, with a field for each non-terminal
+included in that production.
+3.2 Meta-Handlers
+Programming languages often have base types (such as integers, floats, strings) that can be complex to implement
+in BNF syntax. For instance, integers are often represented
+as <I> ::= <P> | -<P>, <P> ::= <D><P> | , <D> ::=
+0 | 1 | 2 | 3 | 4 | 5 | 6 | 8 | 9.
+Depending on the language, this approach can lead to int
+overflowing or lack of floating-point precision. Grammars
+designers should design strict subsets of the official grammar
+of the target language, with all the lengthy implementation
+work that it entails.
+Our datatype approach does not require grammar designers to specify the syntactic nature of literal values. Instead,
+designers define the semantic type of that literal (e.g., int or
+float).
+However, it is often useful to further restrict these values. For instance, it might be relevant to restrict integers
+to be positive, or less than 10. To achieve this, we propose
+Meta-Handlers, inspired by Refinement Typed Genetic Programming [9].
+Meta-Handlers are type refinements. In the running example, Annotated[int, IntBetween[0,3]] refines the int
+datatype with the Meta-Handler IntBetween[0,3]. In Refinement Types, this predicate would restrict the int values
+that belong to this refined type. However, Meta-Handlers
+serve a dual purpose: they override the tree generation process.
+During the initialization phase of GP, a population of individuals is generated from a grammar. In GGGP (like in
+PonyGE2), non-terminal symbols are iteratively and nondeterministically replaced by valid productions until there is
+no non-terminal. The final result should be a string in the
+target language, that will be parsed into an abstract syntax
+tree to be evaluated, or compiled.
+In our proposed encoding, the grammar is used to construct the abstract syntax tree directly (avoiding redundant
+string operations and parsing). Starting with the non-terminal
+root type, a concrete subclass is non-deterministically selected, and that object is created. For each field (or constructor argument), a compatible object is constructed by recursively calling this algorithm. The base case is when native
+types (like int or float) are used, and then native random
+value generators are used.
+Data types as a more ergonomic frontend for GGGP Conference acronym ’XX, June 03–05, 2018, Woodstock, NY
+However, if a type is annotated with a Meta-Handler, instead of calling the recursive algorithm, the tree construction
+is delegated to that Meta-Handler. For instance, instead of
+generating a random value in the target language, Annotated
+[int, IntBetween[0,3]] will only generate integers between 0 and 3. The same could be done for other data types,
+including polymorphic ones like lists, and even user-defined
+types if grammar designers also define the corresponding
+Meta-Handlers.
+These overrides can be used for changing the non-deterministic
+nature of value generation. For instance, instead of generating integers following a uniform distribution, a MetaHandler could replace that method with taking numbers
+following a given normal distribution. CFGs, even including probabilistic CFGs [16], could not express this, as the
+designer would need to define an infinite number of productions. This example proves that Meta-Handlers increase the
+expressive power of the grammar in GGGP approaches and
+the types in non-dependent STGP approaches.
+Another example where Meta-Handlers contribute to expressive power is through dependent types [9]. Consider the
+example of generating a pair of integers (𝑖, 𝑗) where 𝑗 > 𝑖.
+CFGs do not support this, but a simple Meta-handler could
+generate any value of 𝑖 and restrict the minimum value of 𝑗
+to be 𝑖.
+PonyGE2, that uses BNF, supports a custom fixed macro
+for selecting a value from a list (GE_RANGE:li), but is
+limited to that example and, mainly, does not support userdefined macros. It is also important to note that textual
+macros are not as expressive as type-guided hygienic macros,
+which would be equivalent to Meta-Handlers.
+Attribute Grammars [5], where semantic actions are associated with grammar productions are also more powerful than CFG, and equivalent to our encoding with MetaHandlers. However, Attribute Grammars also suffer from
+the same issue of interleaving two languages, and work by
+aborting the tree generation process [5], instead of guiding
+it, like with Meta-Handlers.
+4 Evaluation
+We evaluate our approach against BNF and similar interfaces
+for grammars in three aspects: feasibility, expressive power,
+performance, and ergonomics.
+4.1 Feasibility
+To evaluate the feasibility of our design, we implemented this
+approach in a new Python GP framework, named Genetic
+Engine that features a data-type frontend, but uses grammars internally. This implementation can be considered a
+hybrid of GGGP and STGP, and it is open-source and available at https://github.com/alcides/GeneticEngine and can be
+installed using pip install geneticengine.
+1 @dataclass
+2 class Container(Parent):
+3 age : Annotated[int, IntRange[0, 200]]
+4 height : Annotated[float, FloatRange[0.10, 2.5]]
+5 children : Annotated[List[Container],
+ListSizeBetween[1,30]]
+6 var_name : Annotated[str, VarRange[["x", "y", "z
+"]]]
+Listing 4. Examples of Meta-handlers
+To implement the proposed approach, we resorted to type
+reflection to list abstract classes (to use as non-terminal symbols), and to identify the parameter types of constructors (to
+instantiate productions). Furthermore, we used the method
+resolution order (via the mro() method) to detect which
+classes were subclasses of other classes. This approach could
+be implemented in other dynamic languages that support
+these reflection features, or in a more statically typed language through the use of compile-time macros.
+Furthermore, we implemented Meta-Handlers within this
+framework, to increase the expressive power of our solution.
+In particular, listing 4 presents examples of a few available
+Meta-Handlers, implemented in pure Python.
+We implemented several working examples of GGGP on
+top of this framework, showing the feasibility of our proposed approach.
+4.2 Expressive Power
+Our grammar encoding method is capable of expressing any
+CFG, shown by the direct encoding of CFGs according to
+the rules introduced in section 3.1. With Meta-Handlers, we
+support the semantic actions of Attribute Grammars as long
+as the programming language is Turing-complete, as are
+most of the target languages of GGGP. In particular, because
+tree nodes are built bottom up, our approach is equivalent
+to S-attributed grammars, in which the evaluation order is
+well-defined.
+While not relevant for the theoretical expressive power, it
+is important to compare the practical expressive power, in
+terms of equivalent abstraction levels. BNF grammars can
+be directly encoded in the type hierarchy, requiring to be
+as verbose as the target language requires. For instance, if
+targeting Haskell or Scala, the lines of code required will be
+equivalent to the BNF syntax.
+EBNF [14] is a more convenient syntax than BNF, as it provides some useful syntax sugar features. Optional symbols
+([a]) can be achieved in our approach using the Optional
+or Maybe datatype. Repeated symbols (a{1-3}) can be
+achieved using the List datatype. Finally, static special sequences (?? a ??), which are often not implemented, can
+be achieved using Meta-Handlers. However, Meta-Handlers
+are more expressive than static macros in the EBNF syntax.
+Conference acronym ’XX, June 03–05, 2018, Woodstock, NY Espada et al.
+Furthermore, if considering practical expressive power,
+our Meta-Handler approach can factor out probabilistic patterns in the language, that a Probabilistic CFG cannot. As a
+realistic example, consider a grammar that wants to generate
+programs with a list of DNA motifs. Motifs have an alphabet
+of four letters (A, T, C, and G) and have a probability for each
+letter at each position. For instance, the very simple (and artificial) example [.5, .5, 0, 0], [1, 0, 0, 0] would have length 2,
+and it would have the same probability of generating AA and
+AT. Each position is represented as the probability of the corresponding letter being in that given position. Probabilistic
+CFGs can express this pattern (M ::= L1 A, L1 ::= (.5) A
+, L1 ::= (.5) T ), but require each letter with alternatives
+to be expressed. Our motif Meta-Handler requires only the
+motif-defining matrix to be passed, and it handles the generation of trees according to that motif probability. This is
+very useful when a series of motifs has a higher probability
+of appearing in the solution than random words.
+A common solution to implement probabilistic grammars
+in GGGP is to use Probabilistic CFG syntax [16], that extends
+CFG with a probability, or weight, for each production. Our
+implementation supports the same feature, by annotating
+each concrete type with a probability (@weight(0.1) class
+A(S): pass).
+4.3 Performance
+We evaluate the performance implications of using a GGGPSTGP hybrid approach (through our Genetic Engine implementation) against a textual BNF approach (through the
+PonyGE2 implementation). We implemented five examples
+(Classification task, Regression Task, VectorialGP, String
+Match, and Game of Life) in both frameworks. We evaluate
+the performance of both using the same algorithm conditions
+(initialization method, population size, operator probabilities). The code for replicating these experiments is available
+at https://github.com/pcanelas/GeneticEngineEvaluation.
+We executed the latest version of both frameworks, using
+Python 3.9 running on Ubuntu 20.04.1 on an Intel Xeon X5670
+24-Core Processor with 24GB of RAM.
+Figure 1 shows the distribution of executing each of the
+five benchmarks with 30 different seeds. Both platforms had
+the same exact configurations for each benchmark, including
+a fixed number of generations. The details of each configuration are available in the replication package. The time
+distribution shows that Genetic Engine is not overall slower
+than PonyGE2. In fact, in the Classification benchmark, it
+takes less than half of the time. These results evidence that
+the ergonomic advantages of Genetic Engine do not come at
+the cost of performance.
+Figure 2 shows the distribution of the fitness of the five
+benchmarks, run with 30 different seeds. These runs had the
+same configuration as before, but the stopping criterion was
+the time budget of 1 minute. Again, it is possible to see that
+fitness is generally on par with PonyGE2.
+From this evaluation, we can conclude that our encoding
+does not introduce significant overhead in the process. In fact,
+avoiding textual representation of programs and subsequent
+parsing allows our approach to be faster than PonyGE2 in
+some cases.
+4.4 Ergonomics
+According to the Rust language ergonomics initiative [32],
+Ergonomics is a measure of the friction you experience when
+trying to get things done with a tool.
+We compare the ergonomics of our approach against BNF
+and its derivatives using the framework of Kiper [17], also
+used to evaluate software development tools. We compare
+both approaches with regards to Granularity, Coherence and
+Harmony.
+Granularity refers to what is the smallest unit which can
+have feedback, and it should be as fine as possible. The granularity of our approach is higher than the granularity of
+existing BNF syntaxes (including those describing Attribute
+Grammars). A user can only validate their BNF syntax at the
+file level, by using the grammar in a GGGP evolution run.
+On the other hand, our approach has a finer granularity, at
+the token level, because parsers and typecheckers provide
+immediate feedback on the syntactic and semantic correctness (such as Pylance for Python, or Roslyn for C#). In this
+spectrum, our approach is more ergonomic due to the finer
+granularity level.
+Coherence refers to how the units are related and integrated with each other. BNF syntaxes require the user to
+edit streams of characters, with no notion of structure other
+than defining productions. As an example, the textual representation of the target language has no meaning within
+a BNF syntax. Our approach has a higher degree of coherence, as programs can be organized in methods, classes and
+modules, as in most mainstream programming languages.
+Furthermore, code editors have semantic visualizations of
+these structural components and allow semantic actions over
+them (such as renaming a class across the whole project).
+This is not possible with textual BNF representations. As
+such, our approach is also better according to the Coherence
+criterion.
+Harmony refers to agreement between the elements and
+the corresponding unit, and should be high (as opposed to
+dissonant). BNF languages are dissonant regarding the two
+languages in which programmers define their grammars. The
+granularity of BNF is not harmonious with the granularity
+of the target language. On the other hand, the granularity
+of our approach is exactly the same of the target language,
+showing the advantage of encoding grammars in the target
+language. Furthermore, error messages are more harmonious
+in our language, because they are located in the relevant
+grammar component (grammar or abstract class), while in
+BNF approaches it is dissonant, as the error will occur in
+the target language, and not at the grammar level. As such,
+Data types as a more ergonomic frontend for GGGP Conference acronym ’XX, June 03–05, 2018, Woodstock, NY
+PonyGE2 GEngine
+25
+50
+75
+100
+Time (s)
+Classification
+PonyGE2 GEngine
+20
+25
+30
+Game of life
+PonyGE2 GEngine
+10
+15
+20
+Regression
+PonyGE2 GEngine
+5
+6
+7
+String match
+PonyGE2 GEngine
+40
+60
+80
+100
+VectorialGP
+Figure 1. Execution time, in seconds, of executing PonyGE2 and Genetic Engine on the same benchmarks, under the same
+conditions (including the number of generations), modulo the differences in the approach. A lower time is better.
+PonyGE2 GEngine
+0.90
+0.95
+1.00
+Fitness
+Classification
+PonyGE2 GEngine
+0.6
+0.7
+0.8
+Game of life
+PonyGE2 GEngine
+−0.03
+−0.02
+−0.01
+Regression
+PonyGE2 GEngine
+−3
+−2
+−1
+String match
+PonyGE2 GEngine
+−300
+−200
+−100
+0
+VectorialGP
+Figure 2. Fitness comparison of PonyGE2 and Genetic Engine on the same benchmarks, under the same conditions, with a
+budget of 1 minute. Higher is better.
+we can conclude that our approach is more harmonic than
+BNF-approaches.
+We can conclude that our approach is more ergonomic
+than BNF-based textual approaches, using the framework of
+Kiper [17]. Furthermore, we identify many concrete advantages practitioners have by using our approach:
+• Type-checked Grammars: Being part of valid code,
+grammars are type-checked. Errors in the design of
+grammar can be immediately detected using a typechecker.
+• Localized Error Messages: Syntactic and semantic
+errors (both static and dynamic) include a precise localization of the error, while in textual representations
+users have to backtrack the location to the BNF location.
+• Autocompletion: In larger codebases, developers rely
+on autocompletion tools to avoid unnecessarily navigating files and browsing for the wanted method or
+variable names. Textual BNF representation prevents
+these tools from working, but our encoding supports
+them.
+• Refactoring Tools: Developers rely on many refactoring actions in their editors to evolve software codebases. Having code inside the textual BNF syntax prevents this tooling support from working. By encoding
+grammars in the target language, all refactors can be
+applied to both the grammar and the semantic actions.
+• Testing Infrastructure: Encoding grammars in the
+language gives support for designing unit and integration tests that validate the grammar design. This is
+useful to assure the quality of grammars in real-world
+scenarios.
+• Auto Formatters: When working on larger projects,
+it is important to minimize version control conflicts
+caused by different formatting choices. By encoding
+the language in the target language, users can reuse
+linters for the target language to avoid unnecessary
+conflicts.
+5 Conclusion
+We proposed an approach that replaces BNF grammars as
+the interface for GGGP (both Grammatical Evolution and
+Tree-based GP), based on an Object-Oriented type system.
+As such, it could be considered to provide the "Best of Both
+Worlds" [35]. This GGGP-STGP hybrid embeds the grammar
+within the host language, providing a series of advantages
+over traditional GGGP: It supports type-checking to validate
+the consistency and integration of the grammar, autocomplete, auto-imports, can be integrated into existing projects,
+can be tested and auto-formatted. These advantages translate
+to better ergonomics, evaluated using the framework of Kiper
+[17]. These advantages come at no significant performance
+overhead or lack of expressive power. In fact, the proposal of
+Meta-Handlers as user-customizable tree-generation overrides provides more expressive power, both from a theoretical
+Conference acronym ’XX, June 03–05, 2018, Woodstock, NY Espada et al.
+perspective (dependent types) and a practical perspective (to
+refactor grammar patterns).
+Acknowledgments
+This work was supported by Fundação para a Ciência e Tecnologia (FCT) in the LASIGE Research Unit under the ref.
+UIDB/00408/2020 and UIDP/00408/2020 and through the
+PhD fellowships under the refs. SFRH/BD/137062/2018 and
+UI/BD/151179/2021, the CMU–Portugal Dual Degree PhD
+Program (SFRH/BD/151469/2021), by the CMU–Portugal
+project CAMELOT (POCI-01-0247-FEDER-045915), and the
+RAP project under the reference (EXPL/CCI-COM/1306/2021).
+References
+[1] Milad Taleby Ahvanooey, Qianmu Li, Ming Wu, and Shuo Wang. 2019.
+A Survey of Genetic Programming and Its Applications. KSII Trans.
+Internet Inf. Syst. 13, 4 (2019), 1765–1794. https://doi.org/10.3837/tiis.
+2019.04.002
+[2] Irene Azzali, Leonardo Vanneschi, Sara Silva, Illya Bakurov, and Mario
+Giacobini. 2019. A Vectorial Approach to Genetic Programming. In
+Genetic Programming - 22nd European Conference, EuroGP 2019, Held
+as Part of EvoStar 2019, Leipzig, Germany, April 24-26, 2019, Proceedings
+(Lecture Notes in Computer Science, Vol. 11451), Lukás Sekanina, Ting
+Hu, Nuno Lourenço, Hendrik Richter, and Pablo García-Sánchez (Eds.).
+Springer, 213–227. https://doi.org/10.1007/978-3-030-16670-0_14
+[3] Tom Castle and Colin G. Johnson. 2012. Evolving High-Level Imperative Program Trees with Strongly Formed Genetic Programming. In Genetic Programming - 15th European Conference, EuroGP
+2012, Málaga, Spain, April 11-13, 2012. Proceedings (Lecture Notes in
+Computer Science, Vol. 7244), Alberto Moraglio, Sara Silva, Krzysztof
+Krawiec, Penousal Machado, and Carlos Cotta (Eds.). Springer, 1–12.
+https://doi.org/10.1007/978-3-642-29139-5_1
+[4] William R. Cook. 1990. Object-Oriented Programming Versus Abstract
+Data Types. In Foundations of Object-Oriented Languages, REX School/-
+Workshop, Noordwijkerhout, The Netherlands, May 28 - June 1, 1990,
+Proceedings (Lecture Notes in Computer Science, Vol. 489), J. W. de Bakker,
+Willem P. de Roever, and Grzegorz Rozenberg (Eds.). Springer, 151–178.
+https://doi.org/10.1007/BFb0019443
+[5] Marina de la Cruz, Alfonso Ortega de la Puente, and Manuel Alfonseca. 2005. Attribute Grammar Evolution. In Artificial Intelligence
+and Knowledge Engineering Applications: A Bioinspired Approach: First
+International Work-Conference on the Interplay Between Natural and Artificial Computation, IWINAC 2005, Las Palmas, Canary Islands, Spain,
+June 15-18, 2005, Proceedings, Part II (Lecture Notes in Computer Science, Vol. 3562), José Mira and José R. Álvarez (Eds.). Springer, 182–191.
+https://doi.org/10.1007/11499305_19
+[6] Maria Cláudia Figueiredo Pereira Emer and Silvia Regina Vergilio.
+2002. GPTesT: A Testing Tool Based On Genetic Programming. In
+GECCO 2002: Proceedings of the Genetic and Evolutionary Computation
+Conference, New York, USA, 9-13 July 2002, William B. Langdon, Erick
+Cantú-Paz, Keith E. Mathias, Rajkumar Roy, David Davis, Riccardo Poli,
+Karthik Balakrishnan, Vasant G. Honavar, Günter Rudolph, Joachim
+Wegener, Larry Bull, Mitchell A. Potter, Alan C. Schultz, Julian F. Miller,
+Edmund K. Burke, and Natasa Jonoska (Eds.). Morgan Kaufmann, 1343–
+1350.
+[7] Michael Fenton, James McDermott, David Fagan, Stefan Forstenlechner, Erik Hemberg, and Michael O’Neill. 2017. PonyGE2: grammatical evolution in Python. In Genetic and Evolutionary Computation
+Conference, Berlin, Germany, July 15-19, 2017, Companion Material
+Proceedings, Peter A. N. Bosman (Ed.). ACM, 1194–1201. https:
+//doi.org/10.1145/3067695.3082469
+[8] Oliver Flasch, Olaf Mersmann, and Thomas Bartz-Beielstein. 2010.
+RGP: an open source genetic programming system for the R environment. In Genetic and Evolutionary Computation Conference, GECCO
+2010, Proceedings, Portland, Oregon, USA, July 7-11, 2010, Companion
+Material, Martin Pelikan and Jürgen Branke (Eds.). ACM, 2071–2072.
+https://doi.org/10.1145/1830761.1830867
+[9] Alcides Fonseca, Paulo Santos, and Sara Silva. 2020. The Usability
+Argument for Refinement Typed Genetic Programming. In Parallel
+Problem Solving from Nature - PPSN XVI - 16th International Conference,
+PPSN 2020, Leiden, The Netherlands, September 5-9, 2020, Proceedings,
+Part II (Lecture Notes in Computer Science, Vol. 12270), Thomas Bäck,
+Mike Preuss, André H. Deutz, Hao Wang, Carola Doerr, Michael T. M.
+Emmerich, and Heike Trautmann (Eds.). Springer, 18–32. https://doi.
+org/10.1007/978-3-030-58115-2_2
+[10] Stefan Forstenlechner, David Fagan, Miguel Nicolau, and Michael
+O’Neill. 2017. A Grammar Design Pattern for Arbitrary Program
+Synthesis Problems in Genetic Programming. In Genetic Programming
+- 20th European Conference, EuroGP 2017, Amsterdam, The Netherlands,
+April 19-21, 2017, Proceedings. 262–277. https://doi.org/10.1007/978-3-
+319-55696-3_17
+[11] Félix-Antoine Fortin, François-Michel De Rainville, Marc-André Gardner, Marc Parizeau, and Christian Gagné. 2012. DEAP: evolutionary algorithms made easy. J. Mach. Learn. Res. 13 (2012), 2171–2175.
+http://dl.acm.org/citation.cfm?id=2503311
+[12] Thomas Haynes, Roger L. Wainwright, Sandip Sen, and Dale A.
+Schoenefeld. 1995. Strongly Typed Genetic Programming in Evolving
+Cooperation Strategies. In Proceedings of the 6th International Conference on Genetic Algorithms, Pittsburgh, PA, USA, July 15-19, 1995,
+Larry J. Eshelman (Ed.). Morgan Kaufmann, 271–278.
+[13] Leon Ingelse, Guilherme Espada, and Alcides Fonseca. 2022. Benchmarking Representations of Individuals in Grammar-Guided Genetic
+Programming. Evo* 2022 (2022), to appear.
+[14] I JTC. 1996. Information technology-Syntactic metalanguage-Extended
+BNF. ISO/IEC Internationl Standard, vol. 14977: 1996 (E) (1996).
+[15] Mehdi Khoury et al. 2009. Pystep or python strongly typed genetic
+programming. https://pythonhosted.org/pySTEP/html/
+[16] Hyun-Tae Kim and Chang Wook Ahn. 2015. A New Grammatical
+Evolution Based on Probabilistic Context-free Grammar. In Proceedings
+of the 18th Asia Pacific Symposium on Intelligent and Evolutionary
+Systems - Volume 2, Hisashi Handa, Hisao Ishibuchi, Yew-Soon Ong,
+and Kay-Chen Tan (Eds.). Springer International Publishing, Cham,
+1–12.
+[17] James D. Kiper. 1994. A framework for characterization of the degree
+of integration of software tools. J. Syst. Integr. 4, 1 (1994), 5–32. https:
+//doi.org/10.1007/BF01975670
+[18] William B. Langdon. 2014. Genetic Improvement of Programs. In
+16th International Symposium on Symbolic and Numeric Algorithms for
+Scientific Computing, SYNASC 2014, Timisoara, Romania, September 22-
+25, 2014, Franz Winkler, Viorel Negru, Tetsuo Ida, Tudor Jebelean, Dana
+Petcu, Stephen M. Watt, and Daniela Zaharie (Eds.). IEEE Computer
+Society, 14–19. https://doi.org/10.1109/SYNASC.2014.10
+[19] William B. Langdon and Riccardo Poli. 2002. Foundations of genetic
+programming. Springer. http://www.springer.com/computer/swe/
+book/978-3-540-42451-2
+[20] Nuno Lourenço, Joaquim Ferrer, Francisco Pereira, and Ernesto Costa.
+2017. A Comparative Study of Different Grammar-Based Genetic
+Programming Approaches. 311–325. https://doi.org/10.1007/978-3-
+319-55696-3_20
+[21] David J. Montana. 1995. Strongly Typed Genetic Programming. Evol.
+Comput. 3, 2 (1995), 199–230. https://doi.org/10.1162/evco.1995.3.2.199
+[22] Miguel Nicolau and Darwin Slattery. 2006. libGE. http://bds.ul.ie/
+libGE/libGE.pdf for version 0.27alpha1, 14 September 2006.
+[23] Farzad Noorian, Anthony Mihirana de Silva, Philip HW Leong, et al.
+2016. gramEvol: Grammatical evolution in R. Journal of Statistical
+Data types as a more ergonomic frontend for GGGP Conference acronym ’XX, June 03–05, 2018, Woodstock, NY
+Software 71, 1 (2016), 1–26.
+[24] Michael O’Neill, Erik Hemberg, Conor Gilligan, Eliott Bartley, James
+McDermott, and Anthony Brabazon. 2008. GEVA: grammatical evolution in Java. ACM SIGEVOlution 3, 2 (2008), 17–22.
+[25] Michael O’Neill, Leonardo Vanneschi, Steven M. Gustafson, and Wolfgang Banzhaf. 2010. Open issues in genetic programming. Genet.
+Program. Evolvable Mach. 11, 3-4 (2010), 339–363. https://doi.org/10.
+1007/s10710-010-9113-2
+[26] David Pinheiro, Alberto Cano, and Sebastián Ventura. 2015. Synthesis
+of In-Place Iterative Sorting Algorithms Using GP: A Comparison
+Between STGP, SFGP, G3P and GE. In Progress in Artificial Intelligence -
+17th Portuguese Conference on Artificial Intelligence, EPIA 2015, Coimbra,
+Portugal, September 8-11, 2015. Proceedings (Lecture Notes in Computer
+Science, Vol. 9273), Francisco C. Pereira, Penousal Machado, Ernesto
+Costa, and Amílcar Cardoso (Eds.). Springer, 305–310. https://doi.org/
+10.1007/978-3-319-23485-4_32
+[27] Jarrett Rosenberg. 1997. Some Misconceptions About Lines of Code.
+In 4th IEEE International Software Metrics Symposium (METRICS 1997),
+November 5-7, 1997, Albuquerque, NM, USA. IEEE Computer Society,
+137. https://doi.org/10.1109/METRIC.1997.637174
+[28] Conor Ryan, JJ Collins, and Michael O Neill. 1998. Grammatical
+evolution: Evolving programs for an arbitrary language. In Lecture
+Notes in Computer Science (including subseries Lecture Notes in Artificial Intelligence and Lecture Notes in Bioinformatics). Vol. 1391. 83–96.
+https://doi.org/10.1007/BFb0055930
+[29] Conor Ryan, Miguel Nicolau, and Michael O’Neill. 2002. Genetic Algorithms Using Grammatical Evolution. In Genetic Programming, 5th
+European Conference, EuroGP 2002, Kinsale, Ireland, April 3-5, 2002, Proceedings (Lecture Notes in Computer Science, Vol. 2278), James A. Foster,
+Evelyne Lutton, Julian F. Miller, Conor Ryan, and Andrea Tettamanzi
+(Eds.). Springer, 278–287. https://doi.org/10.1007/3-540-45984-7_27
+[30] Moshe Sipper and Jason H. Moore. 2020. Genetic programming theory
+and practice: a fifteen-year trajectory. Genet. Program. Evolvable Mach.
+21, 1-2 (2020), 169–179. https://doi.org/10.1007/s10710-019-09353-5
+[31] H. Chase Stevens. 2018. monkeys. https://github.com/hchasestevens/
+monkeys
+[32] Aaron Turon. 2017. Rust’s language ergonomics initiative. https:
+//blog.rust-lang.org/2017/03/02/lang-ergonomics.html
+[33] P A Whigham. 1995. Grammatically-based Genetic Programming. In
+Proceedings of the Workshop on Genetic Programming: From Theory to
+Real-World Applications,, JP Rosca (Ed.). 33–41.
+[34] Peter A Whigham. 1996. Search bias, language bias, and genetic
+programming. Genetic Programming 1996 (1996), 230–237.
+[35] Peter A Whigham, Grant Dick, James Maclaurin, and Caitlin A Owen.
+2015. Examining the" best of both worlds" of grammatical evolution. In
+Proceedings of the 2015 Annual Conference on Genetic and Evolutionary
+Computation. 1111–1118.
+[36] Franz Wilhelmstötter. 2017. Jenetics: Java genetic algorithm library
+(2017). URL: http://jenetics. io (2017).
+[37] Tina Yu. 2001. Polymorphism and Genetic Programming. In Genetic Programming, 4th European Conference, EuroGP 2001, Lake Como,
+Italy, April 18-20, 2001, Proceedings (Lecture Notes in Computer Science,
+Vol. 2038), Julian F. Miller, Marco Tomassini, Pier Luca Lanzi, Conor
+Ryan, Andrea Tettamanzi, and William B. Langdon (Eds.). Springer,
+218–233. https://doi.org/10.1007/3-540-45355-5_17

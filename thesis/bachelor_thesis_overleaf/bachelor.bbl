@@ -28,6 +28,10 @@ Burlacu, B., Kronberger, G. \harvardand\ Kommenda, M.  \harvardyearleft 2020\har
 Cranmer, M.  \harvardyearleft 2023\harvardyearright , `Interpretable machine learning for science with {PySR} and {SymbolicRegression.jl}'.
 \newline\harvardurl{https://arxiv.org/abs/2305.01582}
 
+\harvarditem{de~Fran{\c c}a \harvardand\ Aldeia}{2021}{defranca2021itea}
+de~Fran{\c c}a, F.~O. \harvardand\ Aldeia, G. S.~I.  \harvardyearleft 2021\harvardyearright , `Interaction--transformation evolutionary algorithm for symbolic regression', {\em Evolutionary Computation} {\bf 29}(3),~367--390.
+\newline\harvardurl{https://doi.org/10.1162/evco\_a\_00285}
+
 \harvarditem[de~Fran{\c c}a et~al.]{de~Fran{\c c}a, Virgolin, Kommenda, Majumder, Cranmer, Espada, Ingelse, Fonseca, Landajuela, Petersen et~al.}{2025}{defranca2025srbench}
 de~Fran{\c c}a, F.~O., Virgolin, M., Kommenda, M., Majumder, M.~S., Cranmer, M., Espada, G., Ingelse, L., Fonseca, A., Landajuela, M., Petersen, B. et~al.  \harvardyearleft 2025\harvardyearright , `{SRBench++}: Principled benchmarking of symbolic regression with domain-expert interpretation', {\em IEEE Transactions on Evolutionary Computation} {\bf 29}(4),~1127--1134.
 \newline\harvardurl{https://doi.org/10.1109/TEVC.2024.3423681}
@@ -35,6 +39,10 @@ de~Fran{\c c}a, F.~O., Virgolin, M., Kommenda, M., Majumder, M.~S., Cranmer, M.,
 \harvarditem{Dong \harvardand\ Zhong}{2025}{dong2025recent}
 Dong, J. \harvardand\ Zhong, J.  \harvardyearleft 2025\harvardyearright , `Recent advances in symbolic regression', {\em ACM Computing Surveys} {\bf 57}(11),~1--37.
 \newline\harvardurl{https://doi.org/10.1145/3735634}
+
+\harvarditem[Espada et~al.]{Espada, Ingelse, Canelas, Barbosa \harvardand\ Fonseca}{2022}{espada2022datatypes}
+Espada, G., Ingelse, L., Canelas, P., Barbosa, P. \harvardand\ Fonseca, A.  \harvardyearleft 2022\harvardyearright , Data types as a more ergonomic frontend for grammar-guided genetic programming, {\em in} `Proceedings of the 21st ACM SIGPLAN International Conference on Generative Programming: Concepts and Experiences', GPCE 2022, Association for Computing Machinery, pp.~86--94.
+\newline\harvardurl{https://doi.org/10.1145/3564719.3568697}
 
 \harvarditem{Guo \harvardand\ Yin}{2024}{guo2024harnessing}
 Guo, J. \harvardand\ Yin, W.-J.  \harvardyearleft 2024\harvardyearright , `Harnessing data using symbolic regression methods for discovering novel paradigms in physics', {\em Science China Physics, Mechanics \& Astronomy} {\bf 67}(6),~267301.
@@ -59,6 +67,15 @@ Petersen, B.~K., Landajuela~Larma, M., Mundhenk, T.~N., Santiago, C.~P., Kim, S.
 \harvarditem{Rudin}{2019}{rudin2019stop}
 Rudin, C.  \harvardyearleft 2019\harvardyearright , `Stop explaining black box machine learning models for high stakes decisions and use interpretable models instead', {\em Nature Machine Intelligence} {\bf 1}(5),~206--215.
 \newline\harvardurl{https://doi.org/10.1038/s42256-019-0048-x}
+
+\harvarditem[Sahoo et~al.]{Sahoo, Lampert \harvardand\ Martius}{2018}{sahoo2018eql}
+Sahoo, S.~S., Lampert, C.~H. \harvardand\ Martius, G.  \harvardyearleft 2018\harvardyearright , Learning equations for extrapolation and control, {\em in} `Proceedings of the 35th International Conference on Machine Learning', Vol.~80 of {\em Proceedings of Machine Learning Research}, PMLR, pp.~4442--4450.
+\newline\harvardurl{https://proceedings.mlr.press/v80/sahoo18a.html}
+
+\harvarditem{Stephens}{2026}{stephens2026gplearn}
+Stephens, T.  \harvardyearleft 2026\harvardyearright , `{gplearn}: Genetic programming in python', Software documentation.
+\newblock Accessed 20 August 2026.
+\newline\harvardurl{https://gplearn.readthedocs.io/en/stable/}
 
 \harvarditem{Udrescu \harvardand\ Tegmark}{2020}{udrescu2020ai}
 Udrescu, S.-M. \harvardand\ Tegmark, M.  \harvardyearleft 2020\harvardyearright , `{AI Feynman}: A physics-inspired method for symbolic regression', {\em Science Advances} {\bf 6}(16),~eaay2631.

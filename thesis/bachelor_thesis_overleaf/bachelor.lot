@@ -3,13 +3,12 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {4.1}{Datasets used in the primary benchmark. The reported noise level is the standard deviation of Gaussian noise added to the training target in the robustness experiment.}}{17}{table.4.1}%
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {5.1}{Main framework configurations used in the experiments.}}{23}{table.5.1}%
-\contentsline {table}{\numberline {5.2}{Completed run coverage in the primary experiment matrix.}}{25}{table.5.2}%
+\contentsline {table}{\numberline {5.1}{Main framework configurations used in the experiments.}}{24}{table.5.1}%
+\contentsline {table}{\numberline {5.2}{Completed run coverage in the primary experiment matrix.}}{26}{table.5.2}%
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {6.1}{Clean logistic-map results. Repeated values are means; $n$ is the number of completed seeds.}}{29}{table.6.1}%
-\contentsline {table}{\numberline {6.2}{Clean-test $R^2$ on empirical datasets. Values for DSR and NeSymRe, and all values on the two energy replacement tasks, are single seed-42 runs; the other values are three-seed means.}}{29}{table.6.2}%
+\contentsline {table}{\numberline {6.1}{Clean logistic-map results. Repeated values are means; $n$ is the number of completed seeds.}}{30}{table.6.1}%
+\contentsline {table}{\numberline {6.2}{Clean-test $R^2$ on empirical datasets. Values for DSR and NeSymRe, and all values on the two energy replacement tasks, are single seed-42 runs; the other values are three-seed means.}}{30}{table.6.2}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
