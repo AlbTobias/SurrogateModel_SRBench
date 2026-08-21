@@ -3,44 +3,44 @@ Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: bachelor.aux
 The style file: agsm.bst
 Database file #1: literatur.bib
-You've used 21 entries,
+You've used 22 entries,
             2909 wiz_defined-function locations,
-            786 strings with 10374 characters,
-and the built_in function-call counts, 126908 in all, are:
-= -- 20895
-> -- 1763
+            793 strings with 10618 characters,
+and the built_in function-call counts, 130898 in all, are:
+= -- 21567
+> -- 1787
 < -- 2
-+ -- 10230
-- -- 546
-* -- 11331
-:= -- 24784
-add.period$ -- 22
-call.type$ -- 21
-change.case$ -- 294
-chr.to.int$ -- 21
-cite$ -- 21
-duplicate$ -- 373
-empty$ -- 776
-format.name$ -- 621
-if$ -- 22890
++ -- 10545
+- -- 553
+* -- 11663
+:= -- 25589
+add.period$ -- 24
+call.type$ -- 22
+change.case$ -- 308
+chr.to.int$ -- 22
+cite$ -- 22
+duplicate$ -- 384
+empty$ -- 802
+format.name$ -- 630
+if$ -- 23603
 int.to.chr$ -- 5
 int.to.str$ -- 0
 missing$ -- 19
-newline$ -- 88
-num.names$ -- 223
-pop$ -- 89
+newline$ -- 93
+num.names$ -- 233
+pop$ -- 99
 preamble$ -- 1
-purify$ -- 315
+purify$ -- 330
 quote$ -- 0
-skip$ -- 308
+skip$ -- 315
 stack$ -- 0
-substring$ -- 30009
-swap$ -- 88
-text.length$ -- 296
+substring$ -- 30964
+swap$ -- 89
+text.length$ -- 310
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 84
+type$ -- 88
 warning$ -- 0
-while$ -- 475
+while$ -- 496
 width$ -- 0
-write$ -- 318
+write$ -- 333

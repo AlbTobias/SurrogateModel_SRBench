@@ -72,6 +72,11 @@ Rudin, C.  \harvardyearleft 2019\harvardyearright , `Stop explaining black box m
 Sahoo, S.~S., Lampert, C.~H. \harvardand\ Martius, G.  \harvardyearleft 2018\harvardyearright , Learning equations for extrapolation and control, {\em in} `Proceedings of the 35th International Conference on Machine Learning', Vol.~80 of {\em Proceedings of Machine Learning Research}, PMLR, pp.~4442--4450.
 \newline\harvardurl{https://proceedings.mlr.press/v80/sahoo18a.html}
 
+\harvarditem{{SRBench contributors}}{n.d.}{srbenchRepository}
+{SRBench contributors}  \harvardyearleft n.d.\harvardyearright , `{SRBench}: A living benchmark framework for symbolic regression', GitHub repository.
+\newblock Revision ac1059bae0f641cf9e4dfd5c91add5d4e01dbcb5, accessed 21 August 2026.
+\newline\harvardurl{https://github.com/cavalab/srbench}
+
 \harvarditem{Stephens}{2026}{stephens2026gplearn}
 Stephens, T.  \harvardyearleft 2026\harvardyearright , `{gplearn}: Genetic programming in python', Software documentation.
 \newblock Accessed 20 August 2026.

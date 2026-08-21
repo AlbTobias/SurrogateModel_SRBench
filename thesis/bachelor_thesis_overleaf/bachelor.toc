@@ -28,23 +28,33 @@
 \contentsline {section}{\numberline {4.1}Framework Selection Criteria}{17}{section.4.1}%
 \contentsline {section}{\numberline {4.2}Dataset Selection Criteria}{17}{section.4.2}%
 \contentsline {section}{\numberline {4.3}Benchmark Protocol}{18}{section.4.3}%
-\contentsline {section}{\numberline {4.4}Evaluation Metrics}{20}{section.4.4}%
+\contentsline {section}{\numberline {4.4}Evaluation Metrics}{19}{section.4.4}%
+\contentsline {subsection}{\numberline {4.4.1}Predictive Performance}{19}{subsection.4.4.1}%
+\contentsline {subsection}{\numberline {4.4.2}Computational Efficiency}{20}{subsection.4.4.2}%
+\contentsline {subsection}{\numberline {4.4.3}Expression Complexity}{21}{subsection.4.4.3}%
 \contentsline {section}{\numberline {4.5}Reproducibility Setup}{21}{section.4.5}%
-\contentsline {section}{\numberline {4.6}Interpretability Rubric}{21}{section.4.6}%
+\contentsline {section}{\numberline {4.6}Interpretability Evaluation}{22}{section.4.6}%
 \contentsline {chapter}{\numberline {5}Experiments}{23}{chapter.5}%
 \contentsline {section}{\numberline {5.1}Experimental Matrix and Task Roles}{23}{section.5.1}%
-\contentsline {section}{\numberline {5.2}Framework Configurations}{24}{section.5.2}%
-\contentsline {section}{\numberline {5.3}Execution Procedure and Environments}{25}{section.5.3}%
-\contentsline {section}{\numberline {5.4}Repeated Runs and Matrix Coverage}{26}{section.5.4}%
-\contentsline {section}{\numberline {5.5}Target-Noise Experiments}{27}{section.5.5}%
-\contentsline {section}{\numberline {5.6}Logistic-Map Rollout Experiment}{27}{section.5.6}%
-\contentsline {section}{\numberline {5.7}Diagnostic and Excluded Experiments}{28}{section.5.7}%
-\contentsline {chapter}{\numberline {6}Results}{29}{chapter.6}%
-\contentsline {section}{\numberline {6.1}Known-Equation Recovery}{29}{section.6.1}%
-\contentsline {section}{\numberline {6.2}Predictive Performance on Empirical Tasks}{30}{section.6.2}%
-\contentsline {section}{\numberline {6.3}Computational Efficiency and Practical Execution}{31}{section.6.3}%
-\contentsline {section}{\numberline {6.4}Equation Complexity and Interpretability Evidence}{32}{section.6.4}%
-\contentsline {section}{\numberline {6.5}Noise Robustness and Seed Stability}{33}{section.6.5}%
+\contentsline {section}{\numberline {5.2}Dataset Construction}{24}{section.5.2}%
+\contentsline {subsection}{\numberline {5.2.1}Common Construction Procedure}{24}{subsection.5.2.1}%
+\contentsline {subsection}{\numberline {5.2.2}Analytical Datasets}{25}{subsection.5.2.2}%
+\contentsline {subsection}{\numberline {5.2.3}External Datasets}{25}{subsection.5.2.3}%
+\contentsline {subsection}{\numberline {5.2.4}Input Normalization}{26}{subsection.5.2.4}%
+\contentsline {section}{\numberline {5.3}Framework Configurations}{26}{section.5.3}%
+\contentsline {section}{\numberline {5.4}Execution Procedure and Environments}{27}{section.5.4}%
+\contentsline {section}{\numberline {5.5}Repetitions and Trial Coverage}{28}{section.5.5}%
+\contentsline {section}{\numberline {5.6}Symbolic Post-Processing}{29}{section.5.6}%
+\contentsline {chapter}{\numberline {6}Results}{31}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Trial Coverage}{31}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Predictive Performance}{33}{section.6.2}%
+\contentsline {subsection}{\numberline {6.2.1}Raw Inputs}{33}{subsection.6.2.1}%
+\contentsline {subsection}{\numberline {6.2.2}Domain-Normalized Inputs}{33}{subsection.6.2.2}%
+\contentsline {section}{\numberline {6.3}Lowest Mean Error by Problem}{33}{section.6.3}%
+\contentsline {section}{\numberline {6.4}Runtime and Expression Complexity}{33}{section.6.4}%
+\contentsline {section}{\numberline {6.5}Framework-Level Summary}{34}{section.6.5}%
+\contentsline {section}{\numberline {6.6}Exact Symbolic Recovery}{34}{section.6.6}%
+\contentsline {section}{\numberline {6.7}Figures Under Preparation}{34}{section.6.7}%
 \contentsline {chapter}{\numberline {7}Discussion}{35}{chapter.7}%
 \contentsline {section}{\numberline {7.1}Interpretation of Framework Trade-Offs}{35}{section.7.1}%
 \contentsline {section}{\numberline {7.2}Suitability for Surrogate-Modelling Tasks}{35}{section.7.2}%
