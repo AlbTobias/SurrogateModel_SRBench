@@ -67,48 +67,79 @@ def save_heatmap(rows: list[dict[str, object]], scaling: str, output: Path) -> N
     plt.close(fig)
 
 
-def save_scaling_effect(rows: list[dict[str, object]], output: Path) -> None:
-    lookup = {(str(r["problem"]), str(r["algorithm"]), str(r["scaling"])): r for r in rows}
-    fig, ax = plt.subplots(figsize=(8.5, 5.5), constrained_layout=True)
-    for algorithm in ALGORITHMS:
-        raw = np.array([number(lookup[(p, algorithm, "raw")], "nrmse_range_mean") for p in PROBLEMS])
-        scaled = np.array([number(lookup[(p, algorithm, "domain_minmax")], "nrmse_range_mean") for p in PROBLEMS])
-        ax.scatter(raw, scaled, label=algorithm, s=45, alpha=0.85)
-    finite = [number(r, "nrmse_range_mean") for r in rows]
-    finite = np.array([v for v in finite if np.isfinite(v) and v > 0])
-    lower, upper = finite.min(), finite.max()
-    ax.plot([lower, upper], [lower, upper], color="black", linestyle="--", linewidth=1)
-    ax.set_xscale("log")
-    ax.set_yscale("log")
-    ax.set_xlabel(r"Raw-input mean $\mathrm{NRMSE}_{range}$")
-    ax.set_ylabel(r"Normalized-input mean $\mathrm{NRMSE}_{range}$")
-    ax.set_title("Effect of domain normalization")
-    ax.legend(ncol=2)
+def save_r2_heatmap(rows: list[dict[str, object]], scaling: str, output: Path) -> None:
+    selected = {(str(r["problem"]), str(r["algorithm"])): r for r in rows if r["scaling"] == scaling}
+    matrix = np.array([
+        [number(selected[(problem, algorithm)], "r2_mean") for algorithm in ALGORITHMS]
+        for problem in PROBLEMS
+    ])
+    shown = np.clip(matrix, -1.0, 1.0)
+    fig, ax = plt.subplots(figsize=(10.5, 5.5), constrained_layout=True)
+    image = ax.imshow(shown, aspect="auto", cmap="RdYlGn", vmin=-1.0, vmax=1.0)
+    ax.set_xticks(range(len(ALGORITHMS)), ALGORITHMS, rotation=30, ha="right")
+    ax.set_yticks(range(len(PROBLEMS)), [label for _, label in PROBLEMS.values()])
+    ax.set_title(f"Mean coefficient of determination ({scaling.replace('_', ' ')})")
+    for i in range(matrix.shape[0]):
+        for j in range(matrix.shape[1]):
+            value = matrix[i, j]
+            label = "--" if np.isnan(value) else f"{value:.3g}"
+            ax.text(j, i, label, ha="center", va="center", fontsize=7,
+                    color="white" if shown[i, j] < -0.65 else "black")
+    fig.colorbar(image, ax=ax, label=r"Mean $R^2$ (color scale clipped to $[-1,1]$)")
     fig.savefig(output, dpi=220)
     plt.close(fig)
 
 
-def save_accuracy_complexity(rows: list[dict[str, object]], output: Path) -> None:
-    fig, ax = plt.subplots(figsize=(8.5, 5.5), constrained_layout=True)
-    markers = {"raw": "o", "domain_minmax": "^"}
-    colors = dict(zip(ALGORITHMS, plt.get_cmap("tab10").colors))
-    for row in rows:
-        error = number(row, "nrmse_range_mean")
-        nodes = number(row, "simplified_node_count_mean")
-        if not np.isfinite(error) or not np.isfinite(nodes) or error <= 0 or nodes <= 0:
-            continue
-        ax.scatter(nodes, error, marker=markers[str(row["scaling"])],
-                   color=colors[str(row["algorithm"])], alpha=0.72, s=42)
-    for algorithm in ALGORITHMS:
-        ax.scatter([], [], color=colors[algorithm], label=algorithm)
-    ax.scatter([], [], color="black", marker="o", label="raw")
-    ax.scatter([], [], color="black", marker="^", label="domain normalized")
-    ax.set_xscale("log")
-    ax.set_yscale("log")
-    ax.set_xlabel("Mean simplified expression-tree node count")
-    ax.set_ylabel(r"Mean $\mathrm{NRMSE}_{range}$")
-    ax.set_title("Predictive error and symbolic complexity")
-    ax.legend(ncol=2, fontsize=8)
+def save_positive_metric_heatmap(
+    rows: list[dict[str, object]], scaling: str, metric: str, title: str,
+    colorbar_label: str, output: Path
+) -> None:
+    selected = {(str(r["problem"]), str(r["algorithm"])): r for r in rows if r["scaling"] == scaling}
+    matrix = np.array([
+        [number(selected[(problem, algorithm)], metric) for algorithm in ALGORITHMS]
+        for problem in PROBLEMS
+    ])
+    shown = np.log10(np.where(matrix > 0, matrix, np.nan))
+    fig, ax = plt.subplots(figsize=(10.5, 5.5), constrained_layout=True)
+    image = ax.imshow(shown, aspect="auto", cmap="viridis")
+    ax.set_xticks(range(len(ALGORITHMS)), ALGORITHMS, rotation=30, ha="right")
+    ax.set_yticks(range(len(PROBLEMS)), [label for _, label in PROBLEMS.values()])
+    ax.set_title(f"{title} ({scaling.replace('_', ' ')})")
+    midpoint = float(np.nanmedian(shown))
+    for i in range(matrix.shape[0]):
+        for j in range(matrix.shape[1]):
+            value = matrix[i, j]
+            label = "--" if np.isnan(value) else f"{value:.3g}"
+            ax.text(j, i, label, ha="center", va="center", fontsize=7,
+                    color="white" if shown[i, j] < midpoint else "black")
+    fig.colorbar(image, ax=ax, label=colorbar_label)
+    fig.savefig(output, dpi=220)
+    plt.close(fig)
+
+
+def save_framework_bars(
+    rows: list[dict[str, object]], metric: str, ylabel: str, title: str, output: Path
+) -> None:
+    values: dict[str, list[float]] = {scaling: [] for scaling in SCALINGS}
+    for scaling in SCALINGS:
+        for algorithm in ALGORITHMS:
+            observations = [
+                number(row, metric)
+                for row in rows
+                if row["scaling"] == scaling and row["algorithm"] == algorithm
+            ]
+            values[scaling].append(float(np.nanmedian(observations)))
+    positions = np.arange(len(ALGORITHMS))
+    width = 0.36
+    fig, ax = plt.subplots(figsize=(9.5, 5.2), constrained_layout=True)
+    ax.bar(positions - width / 2, values["raw"], width, label="Raw inputs")
+    ax.bar(positions + width / 2, values["domain_minmax"], width,
+           label="Domain-normalized inputs")
+    ax.set_xticks(positions, ALGORITHMS, rotation=25, ha="right")
+    ax.set_ylabel(ylabel)
+    ax.set_title(title)
+    ax.legend()
+    ax.grid(axis="y", linestyle=":", alpha=0.5)
     fig.savefig(output, dpi=220)
     plt.close(fig)
 
@@ -123,9 +154,55 @@ def main() -> None:
     rows = load_rows(project_dir)
     save_heatmap(rows, "raw", args.output_dir / "nrmse_heatmap_raw.png")
     save_heatmap(rows, "domain_minmax", args.output_dir / "nrmse_heatmap_domain_minmax.png")
-    save_scaling_effect(rows, args.output_dir / "normalization_effect.png")
-    save_accuracy_complexity(rows, args.output_dir / "accuracy_complexity.png")
-    print(f"Wrote four figures to {args.output_dir}")
+    save_r2_heatmap(rows, "raw", args.output_dir / "r2_heatmap_raw.png")
+    save_r2_heatmap(rows, "domain_minmax", args.output_dir / "r2_heatmap_domain_minmax.png")
+    save_framework_bars(
+        rows,
+        "simplified_node_count_mean",
+        "Simplified expression-tree nodes",
+        "Expression complexity by framework",
+        args.output_dir / "complexity_by_framework.png",
+    )
+    save_framework_bars(
+        rows,
+        "fit_seconds_mean",
+        "Fitting time (seconds)",
+        "Fitting time by framework",
+        args.output_dir / "fit_time_by_framework.png",
+    )
+    save_positive_metric_heatmap(
+        rows,
+        "raw",
+        "simplified_node_count_mean",
+        "Mean simplified expression-tree node count",
+        r"$\log_{10}(\mathrm{node\ count})$",
+        args.output_dir / "complexity_heatmap_raw.png",
+    )
+    save_positive_metric_heatmap(
+        rows,
+        "domain_minmax",
+        "simplified_node_count_mean",
+        "Mean simplified expression-tree node count",
+        r"$\log_{10}(\mathrm{node\ count})$",
+        args.output_dir / "complexity_heatmap_domain_minmax.png",
+    )
+    save_positive_metric_heatmap(
+        rows,
+        "raw",
+        "fit_seconds_mean",
+        "Mean fitting time",
+        r"$\log_{10}(\mathrm{seconds})$",
+        args.output_dir / "fit_time_heatmap_raw.png",
+    )
+    save_positive_metric_heatmap(
+        rows,
+        "domain_minmax",
+        "fit_seconds_mean",
+        "Mean fitting time",
+        r"$\log_{10}(\mathrm{seconds})$",
+        args.output_dir / "fit_time_heatmap_domain_minmax.png",
+    )
+    print(f"Wrote ten figures to {args.output_dir}")
 
 
 if __name__ == "__main__":
