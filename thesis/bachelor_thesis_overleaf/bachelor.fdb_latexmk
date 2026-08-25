@@ -1,16 +1,16 @@
 # Fdb version 4
-["bibtex bachelor"] 1787662688.26373 "bachelor.aux" "bachelor.bbl" "bachelor" 1787665661.17654 0
+["bibtex bachelor"] 1787669077.80378 "bachelor.aux" "bachelor.bbl" "bachelor" 1787669080.73307 0
   "./literatur.bib" 1787333348.91899 12431 dc0c7c42f7801c88358c5345b89d71bd ""
   "/usr/share/texlive/texmf-dist/bibtex/bst/harvard/agsm.bst" 1136766823 25549 e3d0f1ab4ae55e777f7352db30e2c6f7 ""
-  "bachelor.aux" 1787665661.02061 41105 04a83906c78efd980a10cf5d32a4c95f "pdflatex"
+  "bachelor.aux" 1787669080.59561 40228 74cf71d8c455de9c1d8c493a176847e3 "pdflatex"
   (generated)
   "bachelor.bbl"
   "bachelor.blg"
   (rewritten before read)
-["pdflatex"] 1787665658.2201 "/home/tobias-albrecht/Programming/SurrogateModel_SRBench/thesis/bachelor_thesis_overleaf/bachelor.tex" "bachelor.pdf" "bachelor" 1787665661.1768 0
+["pdflatex"] 1787669077.83666 "/home/tobias-albrecht/Programming/SurrogateModel_SRBench/thesis/bachelor_thesis_overleaf/bachelor.tex" "bachelor.pdf" "bachelor" 1787669080.7333 0
   "/etc/texmf/web2c/texmf.cnf" 1785263456.53489 475 c0e671620eb5563b2130f56340a5fde8 ""
   "/home/tobias-albrecht/.texlive2025/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1200.600pk" 1785678706.60945 14040 9cc40933fd5ca631f26df47fccd4c6c1 ""
-  "/home/tobias-albrecht/Programming/SurrogateModel_SRBench/thesis/bachelor_thesis_overleaf/bachelor.tex" 1787665658.02663 81312 c1b163eb55fb55a895355760058151a4 ""
+  "/home/tobias-albrecht/Programming/SurrogateModel_SRBench/thesis/bachelor_thesis_overleaf/bachelor.tex" 1787669074.48815 75860 620e9388edcfad8fd91e67f974ba12fe ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/tcrm1200.tfm" 1136768653 1536 74b7293ec3713bb7fdca8dd1bd1f469c ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmbsy6.tfm" 1246382020 1124 14ccf5552bc7f77ca02a8a402bea8bfb ""
@@ -94,6 +94,7 @@
   "/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty" 1738182759 5048 0270515b828149155424600fd2d58ac5 ""
   "/usr/share/texlive/texmf-dist/tex/latex/bookmark/bkm-pdftex.def" 1702241854 8818 aa5157b46368efebf023abff55611467 ""
   "/usr/share/texlive/texmf-dist/tex/latex/bookmark/bookmark.sty" 1702241854 18245 97e6be180cf07bb6f7008cfdaaecfce5 ""
+  "/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty" 1579038678 6078 f1cb470c9199e7110a27851508ed7a5c ""
   "/usr/share/texlive/texmf-dist/tex/latex/caption/caption.sty" 1696191071 56128 c2ccf1a29d78c33bc553880402e4fb9a ""
   "/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty" 1579991033 13886 d1306dcf79a944f6988e688c1785f9ce ""
   "/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty" 1759437024 46885 8953c67ffba03252c6090aa19568b8ba ""
@@ -149,12 +150,12 @@
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1785263467 128227 ed67923a37f7748d267799454bc1f95b ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1785263685 2701506 09430f13b31b925a55f6706672243b14 ""
   "Logo.pdf" 1786467577.67518 25925 9edda2e98ef759575aed3c9677327aa4 ""
-  "bachelor.aux" 1787665661.02061 41105 04a83906c78efd980a10cf5d32a4c95f "pdflatex"
-  "bachelor.bbl" 1787662688.29273 9305 108b299e5dfe3099800b8bdbb25af507 "bibtex bachelor"
-  "bachelor.lof" 1787665661.02792 2466 3fad1614b6c4f6090e4e7b5cefa68541 "pdflatex"
-  "bachelor.lot" 1787665661.02792 1649 fafb848b77c052900e99bafc848c2000 "pdflatex"
-  "bachelor.tex" 1787665658.02663 81312 c1b163eb55fb55a895355760058151a4 ""
-  "bachelor.toc" 1787665661.02792 5515 470b882e49270dee0d009383e1ec32be "pdflatex"
+  "bachelor.aux" 1787669080.59561 40228 74cf71d8c455de9c1d8c493a176847e3 "pdflatex"
+  "bachelor.bbl" 1787669077.83252 9305 108b299e5dfe3099800b8bdbb25af507 "bibtex bachelor"
+  "bachelor.lof" 1787669080.60361 2466 d5addf76e41b8a7a427d115110d81f6e "pdflatex"
+  "bachelor.lot" 1787669080.60361 1649 fd886e3a5f39dcde49e76ae6c6a66f3a "pdflatex"
+  "bachelor.tex" 1787669074.48815 75860 620e9388edcfad8fd91e67f974ba12fe ""
+  "bachelor.toc" 1787669080.60361 5348 dd641c9a6eaa4b390ef5113d3101f6b6 "pdflatex"
   "images/results/complexity_by_framework.png" 1787420239.82282 106432 d5dc8ddeaa1c115296d286a98ded2b24 ""
   "images/results/complexity_heatmap_domain_minmax.png" 1787420242.07078 152474 0801207271220485054fae5fbb29e55e ""
   "images/results/complexity_heatmap_raw.png" 1787420241.1718 153923 1a8719c821f798b6a166147135acf26c ""
