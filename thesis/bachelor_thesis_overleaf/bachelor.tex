@@ -19,6 +19,7 @@
 
 \usepackage{array}
 \usepackage{longtable}
+\usepackage{booktabs}
 \usepackage{listings}
 \usepackage{color}
 \usepackage[usenames,dvipsnames]{xcolor}
@@ -400,13 +401,23 @@ The selected frameworks cover several parts of the contemporary SR landscape. gp
 
 \section{Framework Selection Criteria}
 
-The purpose of the benchmark is not to identify a universally best Symbolic Regression (SR) algorithm, but to compare representative frameworks under conditions relevant to surrogate modeling. Framework selection was guided by five criteria: (i) the method is described in a scientific publication or authoritative software documentation, (ii) an open-source implementation is publicly available, (iii) the implementation returns an explicit mathematical expression rather than predictions alone, (iv) it can be integrated into the common SRBench-derived evaluation pipeline, and (v) it contributes a relevant algorithmic or representational approach to the comparison. Practical installability, compatibility with the evaluation interface, and reproducible execution were also considered because technical failures and unavailable model expressions affect the usefulness of a framework in practice. This reflects recommendations that SR benchmarks should consider reproducibility, complexity, and practical execution in addition to predictive accuracy \cite{defranca2025srbench,aldeia2025call}.
+The purpose of this benchmark is not to identify a universally best Symbolic Regression algorithm, but to compare representative frameworks under conditions relevant to surrogate modeling. Framework selection was guided by five criteria:
+
+\begin{itemize}
+    \item the method is described in a scientific publication or has detailed software documentation;
+    \item an open-source implementation is publicly available;
+    \item the implementation returns an explicit mathematical expression rather than predictions alone;
+    \item the framework can be integrated into the common SRBench-derived evaluation pipeline;
+    \item the framework contributes a relevant algorithmic or representational approach to the comparison.
+\end{itemize}
+
+Practical installability, compatibility with the evaluation interface, and reproducible execution were also considered because technical failures and unavailable model expressions affect the usefulness of a framework in practice. This reflects recommendations that SR benchmarks should consider reproducibility, complexity, and practical execution in addition to predictive accuracy \cite{defranca2025srbench,aldeia2025call}.
 
 Based on these criteria, six frameworks were included: gplearn, Operon, PySR, GeneticEngine, ITEA, and EQL. Together, they provide a range of evolutionary, representation-based, and gradient-based approaches to Symbolic Regression. Their exact configurations and execution environments are described in Chapter~5.
 
 \section{Dataset Selection Criteria}
 
-The benchmark problems were selected to represent scientific and engineering surrogate-modeling tasks while remaining feasible for repeated Symbolic Regression searches. Each problem was required to have numerical input variables, a continuous target, clearly documented feature meanings and domains, and a reproducible data source or generating function. The available data also had to support disjoint training and test sets without categorical encoding, missing-value imputation, or extensive feature engineering. Documented input domains were additionally required so that the effect of fixed domain-based input scaling could be evaluated consistently.
+The benchmark problems were selected to represent scientific and engineering surrogate-modeling tasks while remaining feasible for repeated Symbolic Regression searches. Each problem is required to have numerical input variables, a continuous target, clearly documented feature meanings and domains, and a reproducible data source or generating function. The available data also had to support disjoint training and test sets without categorical encoding, missing-value imputation, or extensive feature engineering.
 
 The selection combines problems with known analytical equations and problems for which no privileged ground-truth expression is available. Cantilever, Borehole, Piston, and Wing Weight provide analytical generating equations and therefore support both predictive evaluation and symbolic recovery analysis. Combined Cycle Power Plant, Naval Propulsion, Gas Turbine NOx Emissions, and Concrete Compressive Strength represent simulator-derived, measured, or experimental relationships for which evaluation is based on held-out predictive performance, expression complexity, runtime, and stability rather than exact equation recovery.
 
@@ -428,7 +439,7 @@ The final repetition protocol uses the predefined labels 2, 3, 5, 7, 11, 13, 17,
 
 Each trial fits one model using the fixed training target and evaluates it exclusively on the corresponding held-out reference-test set. A successful result, an explicit execution failure, and an absent trial are treated as three separate states. Failure records retain the algorithm, problem, scaling condition, repetition label, and process exit status, while the summary tables report successful, failed, and missing trials separately. Failed or missing runs are therefore not silently excluded from the reported experiment coverage.
 
-Each framework uses one explicitly documented configuration across the benchmark, no hyperparameter optimization is performed using the final test results. The configured search effort is expressed through algorithm-specific controls, such as population sizes, generations, evaluation limits, iterations, or time limits. These settings were selected to make repeated execution feasible and do not impose equal computational budgets across frameworks. Runtime comparisons therefore describe the evaluated configurations and must not be interpreted as either equal compute comparisons or estimates of each framework's best attainable performance.
+Each framework uses one explicitly documented configuration across the benchmark, no hyperparameter optimization is performed using the final test results. The configured search effort is expressed through algorithm-specific controls, such as population sizes, generations, evaluation limits, iterations, or time limits. These settings were selected to make repeated execution feasible and do not impose equal computational budgets across frameworks. Runtime comparisons therefore describe the evaluated configurations and must not be interpreted as equal compute comparisons or estimates of the frameworks best attainable performance.
 
 Shared execution controls restrict benchmark containers to one thread. After fitting each model predicts the complete test set five times to obtain a more reliable estimate of prediction time. Model fitting, prediction, and expression extraction are timed within the running algorithm environment. Container startup, image retrieval, dataset generation, result serialization, and symbolic post-processing are excluded from the reported algorithm runtime.
 
@@ -458,21 +469,21 @@ The normalization uses the range of the reference-test target and allows predict
 
 \subsection{Computational Efficiency}
 
-Computational efficiency is evaluated using wall-clock measurements obtained with a monotonic high-resolution timer. The benchmark records the duration of the complete estimator fitting call and the first prediction over the reference-test set. Prediction of the full test set is repeated five times, from which the mean, median, and sample standard deviation are calculated. The median duration is also divided by the number of test observations and reported in microseconds per sample. Expression extraction is timed separately, while symbolic post-processing, container startup, image retrieval, dataset generation, and result serialization are excluded from the algorithm runtime.
+Computational efficiency is evaluated using wall-clock measurements. The benchmark records the duration of the complete estimator fitting call and the first prediction over the reference-test set. Prediction of the full test set is repeated five times, from which the mean, median, and sample standard deviation are calculated. The median duration is also divided by the number of test observations and reported in microseconds per sample. Expression extraction is timed separately, while symbolic post-processing, container startup, image retrieval, dataset generation, and result serialization are excluded from the algorithm runtime.
 
 \subsection{Expression Complexity}
 
-Every returned expression is parsed with SymPy to obtain framework-independent structural measures. These include expression-tree node count, tree depth, operator count and operator set, constant count, and the number and identity of variables used. The same measures are calculated after symbolic simplification where possible. If simplification fails or reaches its time limit, the unsimplified expression measures remain available and are identified as a fallback rather than being silently combined with simplified values. The adapter-specific model-size value is retained for reference but is not used as the primary cross-framework complexity measure because its definition differs between adapters.
+Every returned expression is parsed with SymPy to obtain framework-independent structural measures. These include expression-tree node count, tree depth, operator count and operator set, constant count, and the number and identity of variables used. The same measures are calculated after symbolic simplification where possible. The adapter-specific model-size value is retained for reference but is not used as the primary cross-framework complexity measure because its definition differs between adapters.
 
 \section{Reproducibility Setup}
 
 The benchmark is organized around separate components for dataset preparation, framework adapters, trial evaluation, symbolic analysis, and result aggregation. Versioned JSON files under \texttt{configs/} define the problem set, repetition labels, input-scaling conditions, shared execution controls, and algorithm-specific parameters. Runner scripts under \texttt{scripts/} execute individual trials or the complete experiment matrix. The resolved configuration, its cryptographic hash, and the parameters accepted by the estimator are recorded with each trial result.
 
-Algorithm environments are isolated using the published SRBench container images. The image references are pinned by immutable SHA-256 digests in \texttt{containers/images.lock}, preventing a later image update from silently changing the execution environment. The host virtual environment is used for dataset preparation, experiment coordination, symbolic post-processing, aggregation, and automated tests. Shared execution controls restrict the algorithm containers to one thread, while supported estimators receive the configured repetition seed. Frameworks without a controllable seed parameter are identified explicitly in the result metadata.
+Algorithm environments are isolated using the published SRBench container images. The image references are pinned by immutable SHA-256 digests in \texttt{containers/images.lock}, preventing a later image update from silently changing the execution environment. The host virtual environment is used for dataset preparation, experiment coordination, symbolic post-processing, aggregation, and automated tests. Shared execution controls restrict the algorithm containers to one thread, while supported estimators receive the configured repetition seed.
 
 Dataset origin is recorded independently of the algorithm runs. Analytical datasets are generated from documented equations, domains, and fixed generation seeds. External datasets retain their source URLs, identifiers, selection procedures, and source-file hashes. Every trial additionally records hashes of the exact training and test tables it received, making it possible to verify that all frameworks were evaluated on identical observations.
 
-Trial results are stored under \path{results/<problem>/<benchmark>/<input-scaling>/<algorithm>/} as JSON files indexed by repetition label. Symbolic parsing, coordinate transformation, simplification, and ground-truth comparison write separate analysis sidecars so that post-processing does not modify the original trial record. Aggregate CSV files are generated from these stored artefacts and report successful, failed, and missing trials explicitly. This structure allows tables and statistical summaries to be regenerated without fitting the models again.
+Trial results are stored under \path{results/<problem>/<benchmark>/<input-scaling>/<algorithm>/} as JSON files indexed by repetition label. Symbolic parsing, coordinate transformation, simplification, and ground-truth comparison write separate analysis sidecars so that post-processing does not modify the original trial record. Aggregate CSV files are generated from these stored artefacts and report successful, failed, and missing trials explicitly.
 
 \section{Interpretability Evaluation}
 
@@ -480,15 +491,15 @@ Trial results are stored under \path{results/<problem>/<benchmark>/<input-scalin
 
 \chapter{Experiments}
 
-This chapter describes the concrete realization of the benchmark protocol introduced in the preceding methodology chapter. It defines the experimental matrix, documents how the individual datasets were constructed, records the configurations used for the six symbolic regression frameworks, and explains the execution and symbolic post-processing procedures. The chapter also reports the coverage of the completed experiment matrix, including trials that ended in recorded failures.
+This chapter describes the realization of the benchmark protocol introduced in the methodology chapter. It defines the experimental matrix, documents how the individual datasets were constructed, records the configurations used for the six symbolic regression frameworks, and explains the execution and symbolic post-processing procedures.
 
 \section{Experimental Matrix and Task Roles}
 
-The experimental matrix combines eight regression problems, six symbolic regression frameworks, two input-scaling conditions, and ten repetition labels. This produces
+The experimental matrix combines eight regression problems, six symbolic regression frameworks, two input-scaling conditions, and ten repetitions. This produces
 \begin{equation}
     8 \times 6 \times 2 \times 10 = 960
 \end{equation}
-distinct trial coordinates. The evaluated frameworks are gplearn, Operon, PySR, GeneticEngine, ITEA, and EQL. Each framework is evaluated on both the original input variables and a domain-normalized representation in which every input is mapped to the interval $[-1,1]$. Target values remain in their original units under both conditions.
+distinct trial coordinates.
 
 The benchmark problems were selected to fulfill complementary experimental roles rather than to form a homogeneous dataset collection. Four analytical problems provide known generating equations and permit controlled sampling over documented domains. The remaining four problems are based on measured, experimental, or simulator-generated data and test approximation under relationships for which the benchmark does not assume an exact symbolic ground truth.
 
@@ -503,8 +514,8 @@ Problem & Data type & Inputs & Train/test & Experimental role \\
 Problem & Data type & Inputs & Train/test & Experimental role \\
 \hline
 \endhead
-Cantilever & Analytical & 5 & 400/4000 & Rational power-law relationship and exact equation recovery \\
-Borehole & Analytical & 8 & 400/4000 & Higher-dimensional rational relationship and exact equation recovery \\
+Cantilever & Analytical & 5 & 400/4000 & Rational power-law relationship\\
+Borehole & Analytical & 8 & 400/4000 & Higher-dimensional rational relationship\\
 Piston & Analytical & 7 & 400/4000 & Nonlinear relationship containing a nested square root \\
 Combined Cycle Power Plant & Measured & 4 & 400/4000 & Low-dimensional industrial energy dataset \\
 Naval Propulsion & Simulator-generated & 3 & 400/4000 & Propulsion-system surrogate with correlated operating variables \\
@@ -514,7 +525,7 @@ Concrete Strength & Experimental & 8 & 400/592 & Material-property prediction wi
 \hline
 \end{longtable}
 
-The analytical tasks emphasize controlled approximation and recovery of compact mathematical structure, whereas the empirical and simulator-generated tasks emphasize predictive performance on real-valued surrogate-modeling problems. Exact symbolic equivalence is evaluated automatically for Cantilever, Borehole, and Piston. Wing Weight also has a documented analytical generating equation, but its more complex combination of fractional powers and a trigonometric term is primarily used to evaluate approximation quality and expression structure in the present analysis.
+The analytical tasks emphasize controlled approximation and recovery of compact mathematical structure, whereas the empirical and simulator-generated tasks emphasize predictive performance on real-valued surrogate-modeling problems.
 
 \section{Dataset Construction}
 
@@ -524,23 +535,23 @@ All training and reference-test tables are constructed before the symbolic regre
 
 \subsection{Analytical Datasets}
 
-The Cantilever problem is generated from its analytical rational power-law equation using five input variables. A single random generator initialized with seed 20260810 is used to draw the 400 training observations followed by the 4000 reference-test observations. The two tables are disjoint because they are produced by consecutive draws from the same fixed generator.
+The Cantilever problem is generated from its analytical rational power-law equation using five input variables. A single random generator is used to draw the 400 training observations followed by the 4000 reference-test observations.
 
-The Borehole problem contains eight input variables and is generated from the standard analytical borehole-flow equation. The training and reference-test designs are independently generated using scrambled Latin hypercube sampling with seeds 20260811 and 20260812, respectively. The equation contains several nonlinear interactions, including logarithmic and rational terms, making it a more demanding structural-recovery task than the Cantilever problem.
+The Borehole problem contains eight input variables and is generated from the standard analytical borehole-flow equation. The training and reference-test designs are independently generated using scrambled Latin hypercube sampling. The equation contains several nonlinear interactions, including logarithmic and rational terms, making it a more demanding structural-recovery task than the Cantilever problem.
 
-The Piston problem contains seven inputs and represents the cycle time of a simulated piston system. Scrambled Latin hypercube designs with seeds 20260813 and 20260814 are used for the training and reference-test tables. Its generating expression contains multiple intermediate interactions and a nested square root, allowing the benchmark to examine whether the frameworks can approximate a comparatively deep analytical structure.
+The Piston problem contains seven inputs and represents the cycle time of a simulated piston system. Scrambled Latin hypercube designs are used for the training and reference-test tables. The generating expression contains multiple intermediate interactions and a nested square root, allowing the benchmark to examine whether the frameworks can approximate a comparatively deep analytical structure.
 
-The Wing Weight problem contains ten inputs and is generated from an analytical aircraft-wing weight equation. Independent scrambled Latin hypercube samples with seeds 20260817 and 20260818 produce the training and reference-test tables. The equation combines products, fractional powers, and a cosine term, thereby extending the analytical task collection beyond rational and square-root expressions.
+The Wing Weight problem contains ten inputs and is generated from an analytical aircraft-wing weight equation. Independent scrambled Latin hypercube samples produce the training and reference-test tables. The equation combines products, fractional powers, and a cosine term, thereby extending the analytical task collection beyond rational and square-root expressions.
 
 \subsection{External Datasets}
 
-The Combined Cycle Power Plant dataset is obtained from the UCI Machine Learning Repository and contains 9568 observations with four input variables. A fixed permutation generated with seed 20260815 is applied to the complete dataset. The first 400 permuted observations form the training set, and the following 4000 observations form the reference-test set. The source-file hash is pinned in the dataset specification to make the selected observations reproducible.
+The Combined Cycle Power Plant dataset is obtained from the UCI Machine Learning Repository and contains 9568 observations with four input variables. A fixed permutation is applied to the complete dataset. The first 400 permuted observations form the training set, and the following 4000 observations form the reference-test set.
 
-The Naval Propulsion problem is based on the UCI Condition Based Maintenance of Naval Propulsion Plants dataset. The source data contain a full factorial simulator design with 11934 observations. Three operating variables are used to predict the selected propulsion-system target. A permutation generated with seed 20260816 determines the 400 training and 4000 reference-test observations. Hashes of the downloaded archive and the extracted source member are retained with the dataset metadata.
+The Naval Propulsion problem is based on the UCI Condition Based Maintenance of Naval Propulsion Plants dataset. The source data contains a full factorial simulator design with 11934 observations. Three operating variables are used to predict the selected propulsion-system target.
 
-The Gas Turbine NOx problem is constructed from five annual UCI gas-turbine emissions files containing 36733 observations in total. Nine ambient and process variables are used to predict nitrogen-oxide emissions, while the year indicator and carbon-monoxide target are excluded. Observations from 2011--2013 define the training pool, and observations from 2014--2015 define the reference-test pool. Seed 20260819 is used to sample 400 and 4000 observations without replacement from the respective pools. This chronological separation reduces direct overlap between the operating periods represented during fitting and evaluation.
+The Gas Turbine NOx problem is constructed from five annual UCI gas-turbine emissions files containing 36733 observations in total. Nine ambient and process variables are used to predict nitrogen-oxide emissions, while the year indicator and carbon-monoxide target are excluded.
 
-The Concrete Strength problem is obtained from the UCI Concrete Compressive Strength dataset. Observations with identical values for all eight input variables are aggregated into distinct experimental designs, and their target values are combined, producing 992 unique designs. A fixed permutation generated with seed 20260820 assigns 400 designs to the training set and the remaining 592 designs to the reference-test set. The source-file hash and the aggregation procedure are recorded in the dataset specification.
+The Concrete Strength problem is obtained from the UCI Concrete Compressive Strength dataset. Observations with identical values for all eight input variables are aggregated into distinct experimental designs, and their target values are combined, producing 992 unique designs.
 
 \subsection{Input Normalization}
 
@@ -555,51 +566,53 @@ These bounds are fixed by the dataset specification and are not estimated from e
 
 All frameworks are executed with fixed configurations that are shared across problems, scaling conditions, and repetition labels. The configurations were selected before the final experiment matrix was executed, and no problem-specific hyperparameter optimization was performed. Table~\ref{tab:framework-configurations} summarizes the principal search controls.
 
+\renewcommand{\arraystretch}{1.18}
+
 \begin{longtable}{p{2.5cm}p{3.8cm}p{7.4cm}}
 \caption{Principal framework configurations used in the experiments.}
 \label{tab:framework-configurations}\\
-\hline
+\toprule
 Framework & Search approach & Principal configuration \\
-\hline
+\midrule
 \endfirsthead
-\hline
+
+\toprule
 Framework & Search approach & Principal configuration \\
-\hline
+\midrule
 \endhead
-gplearn & Tree-based genetic programming & Population size 500 and 100 generations \\
-Operon & Efficient tree-based genetic programming & Population size 1000, 1000 generations, and a maximum of 1,000,000 evaluations \\
-PySR & Multi-population evolutionary search & 20 iterations, 500 cycles per iteration, population size 100, three populations, and a 60-second timeout \\
-GeneticEngine & Grammar-guided genetic programming & Population size 200, 100 generations, and a 60-second timer \\
-ITEA & Interaction--transformation evolutionary search & Population size 1000 and 500 generations \\
+
+gplearn & Tree-based genetic programming & Population size 500 and 100 generations \\[0.25em]
+Operon & Efficient tree-based genetic programming & Population size 1000, 1000 generations, and a maximum of 1,000,000 evaluations \\[0.25em]
+PySR & Multi-population evolutionary search & 20 iterations, 500 cycles per iteration, population size 100, three populations, and a 60-second timeout \\[0.25em]
+GeneticEngine & Grammar-guided genetic programming & Population size 200, 100 generations, and a 60-second timer \\[0.25em]
+ITEA & Interaction--transformation evolutionary search & Population size 1000 and 500 generations \\[0.25em]
 EQL & Differentiable equation-learning network & 10,000 training iterations \\
-\hline
+\bottomrule
 \end{longtable}
 
 The gplearn, PySR, and GeneticEngine settings include project-level budget overrides introduced to keep the complete matrix computationally feasible. The Operon, ITEA, and EQL settings follow the parameter values exposed by their SRBench adapters. PySR is configured for deterministic serial execution, while the shared execution controls restrict all algorithm containers to one processing thread where supported.
 
 The configurations do not represent equal wall-clock or equal-function-evaluation budgets because the frameworks expose different search controls and perform different internal operations. Runtime comparisons therefore describe the cost of the evaluated configurations rather than a hardware-normalized competition under exactly equivalent search effort.
 
-The operator sets and estimator parameters accepted by each adapter are stored in the resolved trial records. This is important because similarly named operators may be implemented with different protected-domain behavior across frameworks. The recorded configuration and estimator parameters make these adapter-level differences visible instead of assuming that all frameworks search an identical expression space.
-
 \section{Execution Procedure and Environments}
 
 The experiment matrix is executed using the benchmark runner scripts, which select one problem, framework, input-scaling condition, and repetition label for each trial. The runner loads the fixed training and reference-test tables, applies the selected input representation, invokes the framework adapter, evaluates the returned estimator, extracts its symbolic expression, and writes the complete trial record as JSON. Failed fitting, prediction, or expression-extraction operations are recorded explicitly.
 
-Each algorithm is executed in its published SRBench container environment. The six container references are pinned by immutable SHA-256 digests in \texttt{containers/images.lock}, preventing later image updates from silently changing the framework environments. Dataset preparation, experiment coordination, result validation, symbolic post-processing, and aggregation are performed in the project's host virtual environment.
+Each algorithm is executed in its published SRBench container environment. Dataset preparation, experiment coordination, result validation, symbolic post-processing, and aggregation are performed in the project's host virtual environment.
 
 Shared execution controls restrict algorithm containers to one thread to reduce uncontrolled parallelism between frameworks. The configured repetition label is passed to every estimator that exposes a compatible seed parameter. ITEA does not provide a controllable estimator seed through the employed adapter, and its repetitions are consequently marked as uncontrolled rather than being presented as deterministically reproducible seed runs.
 
-For each successful fit, predictive metrics are computed on the complete reference-test set. The first prediction call is recorded separately, after which prediction over the same test table is repeated five times to estimate the mean, median, and sample standard deviation of prediction time. Expression extraction is timed independently. Container startup, image retrieval, dataset construction, symbolic post-processing, and result serialization are excluded from the reported algorithm runtime.
-
 \section{Repetitions and Trial Coverage}
 
-Each framework--problem--scaling combination is assigned the ten repetition labels
+Each framework problem scaling combination is assigned the ten repetition labels
 \begin{equation}
     \{2,3,5,7,11,13,17,19,23,29\}.
 \end{equation}
 These labels control the framework seed where supported, they do not alter the already constructed training and reference-test tables. Repetitions therefore measure variation in the symbolic regression procedure rather than variation caused by resampling the datasets.
 
-All 960 coordinates of the planned matrix are represented by either a successful trial record or an explicit failure record. A total of 947 trials completed successfully and 13 trials failed during framework execution. Table~\ref{tab:trial-coverage} reports the resulting coverage by problem.
+All 960 coordinates of the planned matrix are represented by either a successful trial record or an explicit failure record. Table~\ref{tab:trial-coverage} reports the resulting coverage by problem.
+
+\textcolor{red}{TODO: Update Table with final results.}
 
 \begin{longtable}{p{3.8cm}p{3.2cm}rrr}
 \caption{Coverage of the completed experimental matrix.}
@@ -625,15 +638,11 @@ Total & -- & 960 & 947 & 13 \\
 \hline
 \end{longtable}
 
-All 13 recorded failures occurred under domain normalization. Twelve originated from GeneticEngine and one from Operon. These failures are retained as part of the benchmark outcome because numerical or adapter-level instability under a shared input transformation is relevant to practical framework comparison. They are excluded from metric averages but included when reporting completion and failure rates.
-
-Statistical summaries are calculated from the available successful repetitions for each framework--problem--scaling combination. The number of successful trials is reported alongside every aggregate so that reduced coverage is visible. No metric values are imputed for failed trials, and out-of-protocol result files with repetition labels outside the configured set are ignored during aggregation.
-
 \section{Symbolic Post-Processing}
 
-Symbolic post-processing is performed after framework execution and writes a separate analysis sidecar for every successful trial. This separation preserves the original expression and metrics returned by the framework while allowing the symbolic analysis procedure to be repeated or improved without fitting the model again. Each sidecar records a hash of its source trial result so that stale analyses can be detected.
+Symbolic post-processing is performed after framework execution and writes a separate analysis sidecar. This separation preserves the original expression and metrics returned by the framework while allowing the symbolic analysis procedure to be repeated or improved without fitting the model again. Each sidecar records a hash of its source trial.
 
-Expressions are translated into SymPy using parsers adapted to the expression formats returned by the frameworks. This includes conversion of the prefix-style function notation used by gplearn and the infix expressions returned by the other adapters. Parsing, coordinate transformation, simplification, and ground-truth comparison are treated as separate stages, each with a 60-second time limit. A failure or timeout in one symbolic stage is recorded explicitly and does not invalidate the predictive results of the corresponding trial.
+Expressions are translated into SymPy using parsers adapted to the expression formats returned by the frameworks. This includes conversion of the prefix-style function notation used by gplearn and the infix expressions returned by the other adapters. Parsing, coordinate transformation, simplification, and ground-truth comparison are treated as separate stages. A failure or timeout in one symbolic stage is recorded explicitly and does not invalidate the predictive results of the corresponding trial.
 
 For trials trained on normalized inputs, the symbolic variables $z_j$ are replaced by the inverse of Equation~\ref{eq:experiment-domain-scaling},
 \begin{equation}
@@ -642,10 +651,6 @@ For trials trained on normalized inputs, the symbolic variables $z_j$ are replac
 to express the learned model in terms of the original physical variables. Candidate expressions are then normalized and simplified using operations such as cancellation and factorization. The smallest valid candidate produced by the simplification procedure is retained as the principal simplified expression, while the original parsed expression remains available in the sidecar.
 
 Framework-independent structural measures are computed before and after simplification. These measures include expression-tree node count, tree depth, operator count and operator set, constant count, and the number and identity of variables used. Complexity values associated with transformed expressions describe the equation in the original input coordinates, whereas the untransformed values document the structure directly returned by the estimator.
-
-For Cantilever, Borehole, and Piston, the transformed expression is additionally compared with the documented generating equation. Exact equivalence is accepted only when symbolic simplification reduces the difference between the discovered and reference expressions to zero. Variable recovery and expression-size ratios are retained as supplementary structural measures because a numerically accurate model may recover only part of the generating structure or may express an equivalent relationship in a more complicated form.
-
-Symbolic analysis sidecars are available for all 947 successful protocol-valid trials. Consequently, predictive, timing, and structural summaries can be generated from the same set of completed runs, while parsing or simplification fallbacks remain distinguishable from expressions that completed every symbolic analysis stage.
 
 
 \chapter{Results}
@@ -897,11 +902,7 @@ EQL & 160 & 0 & 0.15122 & $-0.15328$ & 50.4 & 24.51 \\
 
 \section{Interpretation of Framework Trade-Offs}
 
-\section{Suitability for Surrogate-Modelling Tasks}
-
-\section{Practical Framework Selection}
-
-\section{Limitations and Threats to Validity}
+\section{Suitability for Interpretable Surrogate Modeling}
 
 \section{Research Gaps and Future Benchmarking Needs}
 
@@ -912,7 +913,7 @@ EQL & 160 & 0 & 0.15122 & $-0.15328$ & 50.4 & 24.51 \\
 
 \section{Answer to the Research Question}
 
-\section{Future Work}
+\section{Outlook and Future Work}
 
 %
 % agsm in der uibk vorlage
