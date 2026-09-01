@@ -2,7 +2,7 @@
 set -uo pipefail
 
 project_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-config_file="${BENCHMARK_CONFIG:-configs/benchmark_suite_v8.json}"
+config_file="${BENCHMARK_CONFIG:-configs/benchmark_suite_v10.json}"
 config_path="$project_dir/$config_file"
 if [[ ! -f "$config_path" ]]; then
   echo "Benchmark configuration not found: $config_path" >&2

@@ -10,6 +10,8 @@ CONFIG_V5 = Path(__file__).resolve().parents[2] / "configs/benchmark_suite_v5.js
 CONFIG_V6 = Path(__file__).resolve().parents[2] / "configs/benchmark_suite_v6.json"
 CONFIG_V7 = Path(__file__).resolve().parents[2] / "configs/benchmark_suite_v7.json"
 CONFIG_V8 = Path(__file__).resolve().parents[2] / "configs/benchmark_suite_v8.json"
+CONFIG_V9 = Path(__file__).resolve().parents[2] / "configs/benchmark_suite_v9.json"
+CONFIG_V10 = Path(__file__).resolve().parents[2] / "configs/benchmark_suite_v10.json"
 
 
 def test_algorithm_parameter_provenance_is_complete() -> None:
@@ -159,4 +161,40 @@ def test_suite_v8_preserves_v7_protocol_and_adds_concrete() -> None:
     } == {
         algorithm: entry["parameters"]
         for algorithm, entry in suite_v7["algorithms"].items()
+    }
+
+
+def test_suite_v9_preserves_v8_protocol_and_adds_energy_efficiency() -> None:
+    suite_v8 = json.loads(CONFIG_V8.read_text(encoding="utf-8"))
+    suite_v9 = json.loads(CONFIG_V9.read_text(encoding="utf-8"))
+
+    assert suite_v9["problems"][-1] == "energy_efficiency_heating"
+    assert suite_v9["problems"][:-1] == suite_v8["problems"]
+    assert set(suite_v9["dataset_generation"]) == set(suite_v9["problems"])
+    for key in ("seeds", "input_scalings", "execution_controls"):
+        assert suite_v9[key] == suite_v8[key]
+    assert {
+        algorithm: entry["parameters"]
+        for algorithm, entry in suite_v9["algorithms"].items()
+    } == {
+        algorithm: entry["parameters"]
+        for algorithm, entry in suite_v8["algorithms"].items()
+    }
+
+
+def test_suite_v10_preserves_v9_protocol_and_adds_airfoil() -> None:
+    suite_v9 = json.loads(CONFIG_V9.read_text(encoding="utf-8"))
+    suite_v10 = json.loads(CONFIG_V10.read_text(encoding="utf-8"))
+
+    assert suite_v10["problems"][-1] == "airfoil_self_noise"
+    assert suite_v10["problems"][:-1] == suite_v9["problems"]
+    assert set(suite_v10["dataset_generation"]) == set(suite_v10["problems"])
+    for key in ("seeds", "input_scalings", "execution_controls"):
+        assert suite_v10[key] == suite_v9[key]
+    assert {
+        algorithm: entry["parameters"]
+        for algorithm, entry in suite_v10["algorithms"].items()
+    } == {
+        algorithm: entry["parameters"]
+        for algorithm, entry in suite_v9["algorithms"].items()
     }

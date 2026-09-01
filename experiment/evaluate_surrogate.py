@@ -51,6 +51,24 @@ def sha256_dataset(path: Path) -> str:
     return digest.hexdigest()
 
 
+def normalize_prediction_shape(
+    prediction: object, n_samples: int
+) -> tuple[np.ndarray, bool]:
+    """Return one prediction per sample, broadcasting a scalar constant model."""
+
+    values = np.asarray(prediction)
+    if values.ndim == 0 or values.size == 1:
+        constant = float(values.reshape(-1)[0])
+        return np.full(n_samples, constant, dtype=float), True
+    values = values.reshape(-1)
+    if values.size != n_samples:
+        raise ValueError(
+            "Estimator returned an invalid number of predictions: "
+            f"expected {n_samples}, received {values.size}"
+        )
+    return values, False
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--algorithm", default="gplearn")
@@ -156,9 +174,13 @@ def main() -> None:
 
     prediction_timings: list[float] = []
     prediction = None
+    prediction_scalar_broadcast = False
     for _ in range(prediction_repeats):
         prediction_started = time.perf_counter()
-        current_prediction = np.asarray(estimator.predict(x_test_fit)).reshape(-1)
+        current_prediction, scalar_broadcast = normalize_prediction_shape(
+            estimator.predict(x_test_fit), len(x_test_fit)
+        )
+        prediction_scalar_broadcast = prediction_scalar_broadcast or scalar_broadcast
         prediction_timings.append(time.perf_counter() - prediction_started)
         if prediction is None:
             prediction = current_prediction
@@ -233,6 +255,7 @@ def main() -> None:
         "fit_seconds": fit_seconds,
         "prediction_seconds": prediction_timings[0],
         "prediction_repeats": prediction_repeats,
+        "prediction_scalar_broadcast": prediction_scalar_broadcast,
         "prediction_mean_seconds": float(np.mean(prediction_timings)),
         "prediction_median_seconds": float(np.median(prediction_timings)),
         "prediction_std_seconds": (

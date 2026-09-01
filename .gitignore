@@ -124,4 +124,6 @@ data/naval_propulsion/
 data/wing_weight/
 data/gas_turbine_nox/
 data/concrete_strength/
+data/energy_efficiency_heating/
+data/airfoil_self_noise/
 hall_of_fame_*

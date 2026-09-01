@@ -29,9 +29,9 @@ def main() -> None:
     project_dir = Path(__file__).resolve().parents[1]
     parser = argparse.ArgumentParser()
     parser.add_argument("--problem", required=True)
-    parser.add_argument("--benchmark", default="benchmark_suite_v8")
+    parser.add_argument("--benchmark", default="benchmark_suite_v10")
     parser.add_argument(
-        "--config", type=Path, default=project_dir / "configs/benchmark_suite_v8.json"
+        "--config", type=Path, default=project_dir / "configs/benchmark_suite_v10.json"
     )
     parser.add_argument("--input-scaling", choices=("raw", "domain_minmax"))
     parser.add_argument("--timeout", type=int, default=60)

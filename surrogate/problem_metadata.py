@@ -74,4 +74,21 @@ PROBLEM_DOMAINS: dict[str, dict[str, tuple[float, float]]] = {
         "fine_aggregate": (594.0, 992.6),
         "age": (1.0, 365.0),
     },
+    "energy_efficiency_heating": {
+        "relative_compactness": (0.62, 0.98),
+        "surface_area": (514.5, 808.5),
+        "wall_area": (245.0, 416.5),
+        "roof_area": (110.25, 220.5),
+        "overall_height": (3.5, 7.0),
+        "orientation": (2.0, 5.0),
+        "glazing_area": (0.0, 0.4),
+        "glazing_area_distribution": (0.0, 5.0),
+    },
+    "airfoil_self_noise": {
+        "frequency": (200.0, 20000.0),
+        "angle_of_attack": (0.0, 22.2),
+        "chord_length": (0.0254, 0.3048),
+        "free_stream_velocity": (31.7, 71.3),
+        "suction_side_displacement_thickness": (0.000400682, 0.0584113),
+    },
 }

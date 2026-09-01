@@ -27,6 +27,14 @@ from surrogate.prepare_concrete_strength import (
     aggregate_replicates as aggregate_concrete,
     split_dataset as split_concrete,
 )
+from surrogate.prepare_energy_efficiency_heating import (
+    FEATURE_COLUMNS as ENERGY_FEATURE_COLUMNS,
+    split_dataset as split_energy,
+)
+from surrogate.prepare_airfoil_self_noise import (
+    FEATURE_COLUMNS as AIRFOIL_FEATURE_COLUMNS,
+    split_dataset as split_airfoil,
+)
 
 
 def test_borehole_reference_value() -> None:
@@ -141,3 +149,42 @@ def test_concrete_replicates_are_averaged_before_disjoint_split() -> None:
     train_designs = set(map(tuple, train.loc[:, CONCRETE_FEATURE_COLUMNS].to_numpy()))
     test_designs = set(map(tuple, test.loc[:, CONCRETE_FEATURE_COLUMNS].to_numpy()))
     assert train_designs.isdisjoint(test_designs)
+
+
+def test_energy_efficiency_split_is_reproducible_and_disjoint() -> None:
+    source = pd.DataFrame(
+        {
+            **{name: np.arange(20, dtype=float) for name in ENERGY_FEATURE_COLUMNS},
+            "target": np.arange(20, dtype=float),
+        }
+    )
+    train, test = split_energy(source, seed=654, train_size=8, test_size=12)
+    repeated_train, repeated_test = split_energy(
+        source, seed=654, train_size=8, test_size=12
+    )
+
+    pd.testing.assert_frame_equal(train, repeated_train)
+    pd.testing.assert_frame_equal(test, repeated_test)
+    train_designs = set(map(tuple, train.loc[:, ENERGY_FEATURE_COLUMNS].to_numpy()))
+    test_designs = set(map(tuple, test.loc[:, ENERGY_FEATURE_COLUMNS].to_numpy()))
+    assert train_designs.isdisjoint(test_designs)
+
+
+def test_airfoil_split_is_reproducible_disjoint_and_value_preserving() -> None:
+    source = pd.DataFrame(
+        {
+            **{name: np.arange(20, dtype=float) for name in AIRFOIL_FEATURE_COLUMNS},
+            "target": np.arange(20, dtype=float),
+        }
+    )
+    train, test = split_airfoil(source, seed=987, train_size=8, test_size=12)
+    repeated_train, repeated_test = split_airfoil(
+        source, seed=987, train_size=8, test_size=12
+    )
+
+    pd.testing.assert_frame_equal(train, repeated_train)
+    pd.testing.assert_frame_equal(test, repeated_test)
+    train_designs = set(map(tuple, train.loc[:, AIRFOIL_FEATURE_COLUMNS].to_numpy()))
+    test_designs = set(map(tuple, test.loc[:, AIRFOIL_FEATURE_COLUMNS].to_numpy()))
+    assert train_designs.isdisjoint(test_designs)
+    assert set(train["target"]) | set(test["target"]) == set(source["target"])

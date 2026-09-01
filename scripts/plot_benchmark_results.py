@@ -20,6 +20,8 @@ PROBLEMS = {
     "wing_weight": ("benchmark_suite_v6", "Wing Weight"),
     "gas_turbine_nox": ("benchmark_suite_v7", "Gas Turbine NOx"),
     "concrete_strength": ("benchmark_suite_v8", "Concrete Strength"),
+    "energy_efficiency_heating": ("benchmark_suite_v9", "Energy Efficiency"),
+    "airfoil_self_noise": ("benchmark_suite_v10", "Airfoil Self-Noise"),
 }
 ALGORITHMS = ("gplearn", "operon", "pysr", "geneticengine", "itea", "eql")
 SCALINGS = ("raw", "domain_minmax")

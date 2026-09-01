@@ -30,6 +30,11 @@ it does not rewrite these files or scale the target.
 | `data/<problem>/train.tsv.gz` | 400 | Fit the symbolic-regression model |
 | `data/<problem>/test.tsv.gz` | 4,000 | Independent reference evaluation |
 
+Concrete Strength uses all 592 designs remaining after its 400-design training
+selection. Energy Efficiency similarly uses all 368 designs remaining after
+its 400-design training selection. Airfoil Self-Noise uses all 1,103
+observations remaining after its 400-observation training selection.
+
 The train/test generation or selection seeds are fixed. Cantilever uses
 independent uniform random samples. Borehole and Piston use independently seeded
 scrambled Latin hypercube samples. CCPP uses a seeded, non-overlapping selection
@@ -317,6 +322,69 @@ UCI CSV is checksum-pinned and downloaded data are not committed.
 
 Preparation script: `surrogate/prepare_concrete_strength.py`
 
+## 9. Residential-building heating load
+
+Directory: `data/energy_efficiency_heating/`
+
+This simulator-derived problem searches for an empirical surrogate of the form
+
+$$
+\widehat{HL}=f(RC,S_A,W_A,R_A,H,O,G_A,G_D).
+$$
+
+| Column | Meaning | Published design range |
+|---|---|---:|
+| `relative_compactness` | Relative compactness | $[0.62,0.98]$ |
+| `surface_area` | Surface area | $[514.5,808.5]$ |
+| `wall_area` | Wall area | $[245,416.5]$ |
+| `roof_area` | Roof area | $[110.25,220.5]$ |
+| `overall_height` | Overall height | $[3.5,7]$ |
+| `orientation` | Orientation code | $[2,5]$ |
+| `glazing_area` | Glazing area | $[0,0.4]$ |
+| `glazing_area_distribution` | Glazing-area distribution code | $[0,5]$ |
+| `target` | Heating load | observed $[6.01,43.10]$ |
+
+All 768 input designs are unique. A permutation with seed 20260901 assigns 400
+designs to training and the remaining 368 to testing. Cooling load is excluded
+rather than supplied as an input. The two integer-coded design variables are
+retained as published; algebraic use of their numeric ordering must therefore
+be interpreted cautiously.
+
+Source: UCI Energy Efficiency dataset, DOI
+[`10.24432/C51307`](https://doi.org/10.24432/C51307), CC BY 4.0. The source CSV
+is checksum-pinned and downloaded on demand.
+
+Preparation script: `surrogate/prepare_energy_efficiency_heating.py`
+
+## 10. Airfoil self-noise
+
+Directory: `data/airfoil_self_noise/`
+
+This experimental aeroacoustic problem searches for a surrogate of the form
+
+$$
+\widehat{SPL}=f(frequency,\alpha,c,U,\delta_s).
+$$
+
+| Column | Meaning | Published dataset range |
+|---|---|---:|
+| `frequency` | Frequency (Hz) | $[200,20000]$ |
+| `angle_of_attack` | Angle of attack (degrees) | $[0,22.2]$ |
+| `chord_length` | Airfoil chord length (m) | $[0.0254,0.3048]$ |
+| `free_stream_velocity` | Free-stream velocity (m/s) | $[31.7,71.3]$ |
+| `suction_side_displacement_thickness` | Suction-side displacement thickness (m) | $[0.000400682,0.0584113]$ |
+| `target` | Scaled sound-pressure level (dB) | observed $[103.380,140.987]$ |
+
+All 1,503 input designs are unique. A permutation with seed 20260902 assigns
+400 observations to training and all remaining 1,103 to testing. No values are
+transformed during dataset preparation.
+
+Source: UCI Airfoil Self-Noise, DOI
+[`10.24432/C5VW2C`](https://doi.org/10.24432/C5VW2C), CC BY 4.0. The source
+archive and contained data member are checksum-pinned and downloaded on demand.
+
+Preparation script: `surrogate/prepare_airfoil_self_noise.py`
+
 ## How results are judged
 
 The current evaluator reports test-set RMSE, range-normalized RMSE, MAE, maximum
@@ -328,5 +396,5 @@ an expression written in a different but algebraically equivalent form should
 count as successful symbolic recovery. Predictive and symbolic-fidelity results
 should therefore be reported separately in the thesis. For CCPP and Naval
 Propulsion, exact-match fields remain unavailable rather than being counted as
-failures. The same applies to Gas Turbine NOx Emissions and Concrete
-Compressive Strength.
+failures. The same applies to Gas Turbine NOx Emissions, Concrete Compressive
+Strength, Energy Efficiency, and Airfoil Self-Noise.

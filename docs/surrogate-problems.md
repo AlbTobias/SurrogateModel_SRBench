@@ -127,6 +127,43 @@ materials-specific descriptor generation.
   using artificial neural networks,” *Cement and Concrete Research*, 28(12),
   1797–1808.
 
+### Energy Efficiency Heating Load
+
+This simulator-derived building-design problem predicts residential heating
+load from relative compactness, surface, wall and roof areas, overall height,
+orientation, glazing area, and glazing-area distribution. The 768 designs were
+evaluated with the Ecotect building-energy simulator. Heating load is selected
+as the single target, while cooling load is excluded entirely. This task was
+added as a comparatively learnable empirical surrogate problem to balance the
+difficult Gas Turbine NOx task; that selection rationale was fixed before the
+six framework results were generated.
+
+- Dataset: <https://archive.ics.uci.edu/dataset/242/energy+efficiency>
+- DOI: <https://doi.org/10.24432/C51307>
+- License: CC BY 4.0.
+- Reference: Tsanas and Xifara (2012), “Accurate quantitative estimation of
+  energy performance of residential buildings using statistical machine
+  learning tools,” *Energy and Buildings*, 49, 560–567.
+
+Orientation and glazing-area distribution are discrete design codes. They are
+retained as the numerical inputs supplied by the established dataset, but this
+limits literal interpretation of algebraic operations involving those fields.
+
+### Airfoil Self-Noise
+
+This experimental aeroacoustic problem predicts scaled sound-pressure level
+from frequency, angle of attack, airfoil chord length, free-stream velocity,
+and suction-side displacement thickness. The observations originate from NASA
+wind-tunnel tests of NACA 0012 airfoil sections. It is included as a moderately
+difficult empirical surrogate task with fewer inputs than Gas Turbine NOx but
+more irregular behavior than the Energy Efficiency simulator grid.
+
+- Dataset: <https://archive.ics.uci.edu/dataset/291/airfoil+self+noise>
+- DOI: <https://doi.org/10.24432/C5VW2C>
+- License: CC BY 4.0.
+- Reference: Brooks, Pope, and Marcolini (1989), *Airfoil Self-Noise and
+  Prediction*, NASA Reference Publication 1218.
+
 ## Experimental design
 
 Borehole and Piston use seeded, scrambled Latin hypercube designs. Each
@@ -173,6 +210,18 @@ partitions. A fixed permutation with seed 20260820 assigns 400 designs to
 training and the remaining 592 to testing. The direct UCI CSV and its hash are
 pinned. The normalized condition uses fixed full-source bounds, and the target
 remains in MPa.
+
+Energy Efficiency uses one fixed permutation with seed 20260901. The first 400
+simulated building designs form the training set and all remaining 368 designs
+form the reference-test set. The direct UCI CSV and its SHA-256 hash are pinned.
+The normalized condition uses the fixed bounds of the complete published design
+grid; heating load is not scaled and cooling load is not exposed to estimators.
+
+Airfoil Self-Noise uses one fixed permutation with seed 20260902. The first 400
+wind-tunnel observations form the training set and all remaining 1,103
+observations form the reference-test set. The UCI archive and its contained data
+file are checksum-pinned. The normalized condition uses the fixed ranges of the
+complete published dataset, while sound-pressure values remain in decibels.
 
 The SFU reference-code pages carry GPL-2.0 notices. No source code from those
 implementations is copied here: the vectorized Python functions independently

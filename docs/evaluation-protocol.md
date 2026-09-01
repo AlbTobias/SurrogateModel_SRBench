@@ -6,7 +6,7 @@ substitute for interpretability or symbolic recovery.
 
 ## Input-scaling conditions
 
-The final `benchmark_suite_v8` experiment runs every problem, algorithm, and
+The final `benchmark_suite_v10` experiment runs every problem, algorithm, and
 repetition in two separate conditions. This protocol was introduced in
 `benchmark_suite_v3` and retained by the later problem-set extensions:
 
@@ -32,8 +32,8 @@ does not silently substitute the normalized expression for a physical one.
 
 The final suite uses the first ten prime numbers as its predefined repetition
 seeds: 2, 3, 5, 7, 11, 13, 17, 19, 23, and 29. For every
-algorithm/problem/scaling combination this gives 6 algorithms × 8 problems × 2
-scaling conditions × 10 repetitions = 960 expected trials. The choice of prime
+algorithm/problem/scaling combination this gives 6 algorithms × 10 problems × 2
+scaling conditions × 10 repetitions = 1,200 expected trials. The choice of prime
 numbers has no special statistical meaning; it is simply a fixed, distinct,
 documented set selected before the final experiment. Train and test datasets
 are regenerated from fixed problem-specific dataset seeds, not from the
@@ -61,7 +61,7 @@ hyperparameter search. Its configuration separates three concepts:
   including one-thread execution, repeated prediction timing, and the symbolic
   post-processing timeout. They are not model hyperparameters.
 - `project_budget_override` marks search budgets reduced by this project to
-  make the 960-trial experiment computationally feasible.
+  make the repeated experiment computationally feasible.
 - `documented_adapter_defaults` restates effective settings already selected by
   the pinned SRBench adapter so they are visible in the experiment manifest.
 
@@ -83,6 +83,23 @@ computational effort: some algorithms are time-limited and others use
 evaluation, iteration, or generation limits. Accordingly, conclusions concern
 performance under these fixed representative configurations, not maximum tuned
 performance or an equal-compute ranking.
+
+## Prediction-shape compatibility
+
+The evaluator requires one prediction per reference-test observation. A scalar
+or one-element prediction is treated as a valid constant regression model and
+is broadcast to the number of test observations before metrics are calculated.
+The trial record identifies this conversion with
+`prediction_scalar_broadcast: true`. This framework-independent rule does not
+change the learned constant or its predictive performance; it only converts the
+adapter output to the usual regression-estimator shape. Any non-scalar output
+whose length differs from the number of test observations remains an error and
+causes the trial to fail.
+
+This rule is required for the legacy GeneticEngine implementation in the pinned
+SRBench image, whose `predict` method returns a scalar when evolution selects a
+constant phenotype. Without broadcasting, such a valid but potentially poor
+model would be misclassified as an execution failure during metric calculation.
 
 ## Expression representations
 

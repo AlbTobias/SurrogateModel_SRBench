@@ -70,8 +70,10 @@ protocol, including repeated prediction timing, expression analysis, and
 explicitly separated raw and normalized input conditions. Versions 4 through 8
 successively added the UCI Combined Cycle Power Plant dataset, the naval
 propulsion simulator, Wing Weight, measured gas-turbine NOx emissions, and
-concrete compressive strength. The resulting eight-problem suite is defined in
-`configs/benchmark_suite_v8.json` and is the runner default.
+concrete compressive strength. Version 9 adds UCI Energy Efficiency heating
+load, and version 10 adds experimental Airfoil Self-Noise prediction. The
+resulting ten-problem suite is defined in `configs/benchmark_suite_v10.json`
+and is the runner default.
 Individual trials
 use `./scripts/run_benchmark_trial.sh ALGORITHM SEED [PROBLEM] [INPUT_SCALING]`,
 and aggregate metrics are written to
@@ -83,7 +85,8 @@ The full suite adds the established Borehole water-flow and Piston cycle-time
 computer-experiment problems, the measured CCPP energy problem, and the naval
 propulsion fuel-flow simulator, the analytical Wing Weight problem, and the
 measured Gas Turbine NOx Emissions problem, and the experimental Concrete
-Compressive Strength problem. Their
+Compressive Strength, Energy Efficiency heating-load, and Airfoil Self-Noise
+problems. Their
 selection rationale, equations, domains,
 and sources are documented in [docs/surrogate-problems.md](docs/surrogate-problems.md).
 The generated table layout, every input column, and the exact target equations
@@ -91,9 +94,9 @@ are summarized in [data/README.md](data/README.md).
 Framework-independent expression complexity, symbolic ground-truth comparison,
 and runtime measurement are defined in
 [docs/evaluation-protocol.md](docs/evaluation-protocol.md).
-By default, `run_benchmark_group.sh` runs all eight problems in both `raw` and
+By default, `run_benchmark_group.sh` runs all ten problems in both `raw` and
 `domain_minmax` conditions, using the first ten prime numbers as repetition
-seeds (2, 3, 5, 7, 11, 13, 17, 19, 23, 29): 960 expected
+seeds (2, 3, 5, 7, 11, 13, 17, 19, 23, 29): 1,200 expected
 trials in total. Restrict a run with, for example,
 `BENCHMARK_PROBLEMS="borehole piston"` or `BENCHMARK_SCALINGS=domain_minmax`.
 Run one normalized trial with:
@@ -132,6 +135,18 @@ Run only Concrete Compressive Strength with:
 BENCHMARK_PROBLEMS=concrete_strength ./scripts/run_benchmark_group.sh
 ```
 
+Run only Energy Efficiency heating load with:
+
+```bash
+BENCHMARK_PROBLEMS=energy_efficiency_heating ./scripts/run_benchmark_group.sh
+```
+
+Run only Airfoil Self-Noise with:
+
+```bash
+BENCHMARK_PROBLEMS=airfoil_self_noise ./scripts/run_benchmark_group.sh
+```
+
 Normalization maps each documented physical domain to $[-1,1]$ using fixed
 bounds; it is never fitted from the sampled data, and the target is not scaled.
 Every result JSON records the condition, formula, and bounds. When expression
@@ -168,6 +183,11 @@ The published Operon and GeneticEngine images contain older package APIs than
 the current SRBench adapters. Their adapters include narrowly scoped fallback
 paths for those pinned images. ITEA's published estimator exposes no random-seed
 parameter; result JSON records this explicitly as `"seed_parameter": null`.
+The legacy GeneticEngine predictor can return a scalar when its learned
+phenotype is constant. The common evaluator broadcasts this scalar to one value
+per test observation and records `"prediction_scalar_broadcast": true`; other
+prediction-length mismatches remain trial failures. The complete rule is
+documented in [docs/evaluation-protocol.md](docs/evaluation-protocol.md).
 
 On a supported Ubuntu system without Docker, install Docker Engine from its
 official apt repository with:
@@ -203,12 +223,12 @@ remote named `upstream`.
 ## Current project status
 
 The surrogate-specific evaluator uses fixed, disjoint training and reference
-test sets instead of the upstream evaluator's random 75/25 split. The final
-eight-problem configuration, datasets, and 960 trial coordinates have been
-materialized under `results/`; explicit failure records are retained alongside
-successful trials. Before thesis tables are generated, rerun symbolic analysis
-and summary generation so every checked-in `summary.csv` reflects the complete
-set of trial artefacts.
+test sets instead of the upstream evaluator's random 75/25 split. The completed
+earlier suite artefacts remain under `results/`; v10 adds Airfoil Self-Noise
+without changing the earlier budgets or protocol. Explicit
+failure records are retained alongside successful trials. Before thesis tables
+are generated, rerun symbolic analysis and summary generation so every
+`summary.csv` reflects the complete set of trial artefacts.
 
 ## License and attribution
 
