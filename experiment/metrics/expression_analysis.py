@@ -144,6 +144,7 @@ def analyze_expression(
     feature_names: list[str],
     problem: str,
     timeout_seconds: int = 5,
+    simplify: bool = True,
 ) -> dict[str, object]:
     """Parse, simplify, measure, and compare an expression with ground truth."""
 
@@ -170,30 +171,35 @@ def analyze_expression(
         return result
 
     simplified = None
-    try:
-        with time_limit(timeout_seconds):
-            candidates = (
-                parsed,
-                sp.cancel(parsed),
-                sp.factor(parsed),
-                sp.factor(sp.cancel(parsed)),
-                sp.simplify(parsed),
-            )
-            simplified = min(
-                candidates,
-                key=lambda candidate: (
-                    structural_metrics(candidate)["node_count"],
-                    len(str(candidate)),
-                ),
-            )
-        simplified_metrics = structural_metrics(simplified)
-        result.update(
-            {f"simplified_{key}": value for key, value in simplified_metrics.items()}
+    if not simplify:
+        result["expression_simplify_error"] = (
+            "SimplificationSkipped: disabled after resource-limited analysis failure"
         )
-        result["simplified_expression"] = str(simplified)
-        result["expression_simplify_success"] = True
-    except Exception as error:
-        result["expression_simplify_error"] = f"{type(error).__name__}: {error}"
+    else:
+        try:
+            with time_limit(timeout_seconds):
+                candidates = (
+                    parsed,
+                    sp.cancel(parsed),
+                    sp.factor(parsed),
+                    sp.factor(sp.cancel(parsed)),
+                    sp.simplify(parsed),
+                )
+                simplified = min(
+                    candidates,
+                    key=lambda candidate: (
+                        structural_metrics(candidate)["node_count"],
+                        len(str(candidate)),
+                    ),
+                )
+            simplified_metrics = structural_metrics(simplified)
+            result.update(
+                {f"simplified_{key}": value for key, value in simplified_metrics.items()}
+            )
+            result["simplified_expression"] = str(simplified)
+            result["expression_simplify_success"] = True
+        except Exception as error:
+            result["expression_simplify_error"] = f"{type(error).__name__}: {error}"
 
     ground_truth_text = GROUND_TRUTH.get(problem)
     if ground_truth_text:

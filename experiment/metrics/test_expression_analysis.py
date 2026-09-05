@@ -49,6 +49,15 @@ def test_reports_missing_or_invalid_expressions_without_raising() -> None:
     assert invalid["expression_parse_error"]
 
 
+def test_can_retain_unsimplified_complexity_after_resource_failure() -> None:
+    result = analyze_expression("sin(x) + x**2", ["x"], "unknown", simplify=False)
+
+    assert result["expression_parse_success"]
+    assert not result["expression_simplify_success"]
+    assert result["expression_node_count"] > 0
+    assert "SimplificationSkipped" in result["expression_simplify_error"]
+
+
 def test_equivalent_algebraic_form_matches_borehole_ground_truth() -> None:
     features = [
         "borehole_radius",

@@ -118,7 +118,7 @@
 
 \begin{tabular}{ll}
   Submission Date:  & \textcolor{red}{TODO: Add Submission Date} \\
-  Supervisor: & Prof. Philipp Zech, PhD \\
+  Supervisor: & Ass.-Prof. Philipp Zech, PhD \\
 \end{tabular}
 
 \newpage
@@ -174,7 +174,7 @@ Surrogate models are often used in scientific and engineering applications to ap
 
 This thesis provides a systematic study of Symbolic Regression methods for surrogate modeling. The main goal is to compare open-source SR frameworks that employ different algorithmic approaches, including evolutionary, genetic programming, transformation-based, and neural methods. The evaluated frameworks are gplearn, Operon, PySR, GeneticEngine, ITEA, and EQL.
 
-To evaluate these frameworks, the benchmark usses datasets from different domains, including engineering, physics, material science and energy systems. The selected SR models are evaluated using identical training and test data and a common evaluation protocol with documented algorithm-specific search budgets. The evaluation considers predictive accuracy, computational efficiency, model complexity, stability across repeated trials, and sensitivity to input scaling. The thesis also investigates the trade-offs between accuracy and interpretability, as well as the current challenges and research gaps in Symbolic Regression for surrogate modeling.
+To evaluate these frameworks, the benchmark uses datasets from different domains, including engineering, physics, material science and energy systems. The selected SR models are evaluated using identical training and test data and a common evaluation protocol with documented algorithm-specific search budgets. The evaluation considers predictive accuracy, computational efficiency, model complexity, stability across repeated trials, and sensitivity to input scaling. The thesis also investigates the trade-offs between accuracy and interpretability, as well as the current challenges and research gaps in Symbolic Regression for surrogate modeling.
 
 \textcolor{red}{TODO: Add Results and Conclusion to Abstract.}
 
@@ -188,11 +188,9 @@ To evaluate these frameworks, the benchmark usses datasets from different domain
 
 \chapter{Introduction}
 
-\section{Motivation}
-
 Scientific and engineering research mostly relies on numerical simulations and physical experiments to investigate complex systems, optimize technical designs, and evaluate control strategies. High-fidelity simulations may require expensive numerical solvers, while physical experiments may be time consuming and costly. These costs become a practical bottleneck when a system must be evaluated repeatedly, for example during optimization, uncertainty quantification, sensitivity analysis, or parameter exploration \cite{alizadeh2020managing}.
 
-A surrogate is trained on observations obtained from simulations, physical measurements, or both and is then used to provide inexpensive predictions for new inputs. This approach is widely used to manage computational complexity in engineering design and simulation-based analysis, where the cost of generating training data must be balanced against predictive accuracy and the computational savings achieved during repeated evaluation \cite{alizadeh2020managing}. Surrogate models are particularly useful in domains such as physics, mechanical engineering, materials science and energy systems, where obtaining direct simulation results or experimental measurements can be expensive.
+A surrogate model is trained on observations obtained from simulations, physical measurements, or both and is then used to provide inexpensive predictions for new inputs. This approach is widely used to manage computational complexity in engineering design and simulation-based analysis, where the cost of generating training data must be balanced against predictive accuracy and the computational savings achieved during repeated evaluation \cite{alizadeh2020managing}. Surrogate models are particularly useful in domains such as physics, mechanical engineering, materials science and energy systems, where obtaining direct simulation results or experimental measurements can be expensive.
 
 Modern machine learning methods are common choices for surrogate modeling because they can approximate complex nonlinear relationships. Neural networks, ensemble models, Gaussian processes, and other flexible approaches achieve strong predictive performance \cite{alizadeh2020managing}. However, this flexibility can make the resulting surrogate difficult to inspect, explain, or compare with known scientific relationships. This lack of transparency may be acceptable when a surrogate is used only for prediction. However, when the model is intended to support scientific understanding, engineering decisions, or safety-relevant applications, predictive accuracy alone may be insufficient, and the structure and behavior of the learned model must also be considered.
 
@@ -240,6 +238,8 @@ The remainder of this thesis is organized as follows. Chapter 2 introduces the b
 
 
 \chapter{Background}
+
+This chapter introduces the theoretical background of the thesis. It discusses surrogate modeling, the role of interpretable models, the foundations and challenges of Symbolic Regression, and the frameworks selected for the benchmark.
 
 \section{Surrogate Modeling}
 
@@ -342,8 +342,6 @@ This thesis treats interpretability as an evaluation criterion rather than as a 
 
 \chapter{Related Work}
 
-\section{Symbolic Regression Reviews}
-
 The recent growth of Symbolic Regression (SR) has led to several survey papers that organize the field and summarize its main technical directions. Makke and Chawla provide a broad review of SR as a method for interpretable scientific discovery, emphasizing the ability of SR to infer compact mathematical expressions directly from data \cite{makke2024interpretable}. Their review discusses the historical development of SR, its relation to genetic programming, the emergence of deep-learning-based approaches, and applications in scientific domains. This perspective is closely aligned with the motivation of this thesis, because surrogate modeling in science and engineering often requires models that are not only accurate but also interpretable.
 
 Angelis et al. focuses specifically on SR in the physical sciences \cite{angelis2023artificial}. Their review positions SR as a response to the limitations of black-box machine learning models in physics-based computation. They discuss SR as a data-driven method that can generate analytical equations and thereby support interpretation, generalization, and the discovery or verification of physical relations.
@@ -366,7 +364,7 @@ Aldeia et al. present a call for the next generation of SR benchmarks, arguing t
 
 Overall, benchmark studies show that SR evaluation is more complex than ordinary regression benchmarking. Accuracy, model complexity, solution recovery, runtime, robustness, and interpretability all matter. The present thesis builds on these insights but uses a narrower experimental scope. Instead of ranking many SR methods across hundreds of datasets, it compares a selected set of open-source frameworks under a reproducible surrogate modeling protocol.
 
-\section{Selected Framework Publications}
+\section{Selected Frameworks}
 
 This thesis evaluates six open-source Symbolic Regression frameworks: gplearn, Operon, PySR, GeneticEngine, ITEA, and EQL. They were selected to represent different approaches to symbolic model construction, including conventional tree-based genetic programming, performance-oriented evolutionary search, grammar-guided genetic programming, interaction transformation expressions, and neural equation learning. The associated publications describe the algorithms and software architectures, while the exact versions and configurations used in this thesis are specified separately in the experimental methodology.
 
@@ -398,6 +396,8 @@ The selected frameworks cover several parts of the contemporary SR landscape. gp
 
 
 \chapter{Methodology}
+
+This chapter describes the methodology used to design and conduct the benchmark. It presents the framework and dataset selection criteria, the common experimental protocol, the evaluation metrics, and the measures taken to ensure reproducibility.
 
 \section{Framework Selection Criteria}
 
@@ -446,6 +446,8 @@ Shared execution controls restrict benchmark containers to one thread. After fit
 Symbolic parsing, transformation to physical coordinates, simplification, complexity measurement, and comparison with available ground-truth equations are performed as separate post-processing steps. Each stage has an independent timeout and writes a versioned analysis record without modifying the original trial result. Separating expression analysis from model execution ensures that a parsing or simplification failure does not invalidate an otherwise successful training and prediction trial.
 
 \section{Evaluation Metrics}
+
+This section defines the metrics used to compare the benchmarked frameworks. The evaluation considers predictive performance, computational efficiency, and expression complexity to capture both the quality and practical characteristics of the resulting symbolic models.
 
 \subsection{Predictive Performance}
 

@@ -28,6 +28,12 @@ expression. Fields prefixed with `training_scale_` describe the expression as
 seen by the algorithm. A failed back-transformation is recorded explicitly and
 does not silently substitute the normalized expression for a physical one.
 
+Each expression-analysis subprocess has a 2 GiB virtual-memory limit in
+addition to the per-stage time limit. If a resource-intensive SymPy operation
+terminates the first attempt, the expression is analyzed again without
+algebraic simplification. Parsing and unsimplified structural measures are then
+retained, and the result is explicitly marked as an unsimplified fallback.
+
 ## Final repetition protocol
 
 The final suite uses the first ten prime numbers as its predefined repetition

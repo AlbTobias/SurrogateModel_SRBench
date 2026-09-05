@@ -25,7 +25,9 @@ from experiment.metrics.input_scaling import (
 ANALYSIS_VERSION = "expression_analysis_v2"
 
 
-def analyze_result(result: dict[str, object], timeout_seconds: int) -> dict[str, object]:
+def analyze_result(
+    result: dict[str, object], timeout_seconds: int, simplify: bool = True
+) -> dict[str, object]:
     feature_names = list(result.get("feature_names") or result["input_scaling_parameters"])
     expression = result.get("symbolic_model")
     started = time.perf_counter()
@@ -34,6 +36,7 @@ def analyze_result(result: dict[str, object], timeout_seconds: int) -> dict[str,
         feature_names,
         "training_scale_without_ground_truth",
         timeout_seconds=timeout_seconds,
+        simplify=simplify,
     )
 
     back_transform_error = None
@@ -54,6 +57,7 @@ def analyze_result(result: dict[str, object], timeout_seconds: int) -> dict[str,
         feature_names,
         str(result["problem"]),
         timeout_seconds=timeout_seconds,
+        simplify=simplify,
     )
     parse_success = physical_analysis["expression_parse_success"] is True
     simplify_success = physical_analysis["expression_simplify_success"] is True
@@ -65,6 +69,7 @@ def analyze_result(result: dict[str, object], timeout_seconds: int) -> dict[str,
         "seed": result["seed"],
         "input_scaling": result["input_scaling"],
         "expression_timeout_seconds_per_stage": timeout_seconds,
+        "simplification_requested": simplify,
         "analysis_seconds": time.perf_counter() - started,
         "analysis_python": platform.python_version(),
         "analysis_platform": platform.platform(),
@@ -84,9 +89,10 @@ def main() -> None:
     parser.add_argument("result", type=Path)
     parser.add_argument("--output", type=Path)
     parser.add_argument("--timeout", type=int, default=60)
+    parser.add_argument("--skip-simplification", action="store_true")
     args = parser.parse_args()
     result = json.loads(args.result.read_text(encoding="utf-8"))
-    analysis = analyze_result(result, args.timeout)
+    analysis = analyze_result(result, args.timeout, simplify=not args.skip_simplification)
     analysis["source_result"] = args.result.name
     analysis["source_result_sha256"] = hashlib.sha256(args.result.read_bytes()).hexdigest()
     output = args.output or args.result.with_name(

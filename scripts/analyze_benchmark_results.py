@@ -11,6 +11,8 @@ import subprocess
 import sys
 from pathlib import Path
 
+import resource
+
 
 def sidecar_matches_result(result_path: Path, output_path: Path) -> bool:
     """Return whether a sidecar was produced from the current result bytes."""
@@ -36,6 +38,7 @@ def main() -> None:
     parser.add_argument("--input-scaling", choices=("raw", "domain_minmax"))
     parser.add_argument("--timeout", type=int, default=60)
     parser.add_argument("--jobs", type=int, default=1)
+    parser.add_argument("--memory-limit-mb", type=int, default=2048)
     parser.add_argument("--force", action="store_true")
     args = parser.parse_args()
     configuration = json.loads(args.config.read_text(encoding="utf-8"))
@@ -63,11 +66,32 @@ def main() -> None:
 
     def run(task: tuple[Path, Path]) -> tuple[Path, int]:
         result_path, output = task
-        process = subprocess.run(
-            [sys.executable, str(project_dir / "scripts/analyze_expression_result.py"),
-             str(result_path), "--output", str(output), "--timeout", str(args.timeout)],
-            check=False,
-        )
+        memory_limit = args.memory_limit_mb * 1024 * 1024
+
+        def limit_memory() -> None:
+            resource.setrlimit(resource.RLIMIT_AS, (memory_limit, memory_limit))
+
+        command = [
+            sys.executable,
+            str(project_dir / "scripts/analyze_expression_result.py"),
+            str(result_path),
+            "--output",
+            str(output),
+            "--timeout",
+            str(args.timeout),
+        ]
+        process = subprocess.run(command, check=False, preexec_fn=limit_memory)
+        if process.returncode:
+            print(
+                f"Resource-limited analysis failed for {result_path}; "
+                "retrying without symbolic simplification",
+                file=sys.stderr,
+            )
+            process = subprocess.run(
+                [*command, "--skip-simplification"],
+                check=False,
+                preexec_fn=limit_memory,
+            )
         return result_path, process.returncode
 
     completed = 0
