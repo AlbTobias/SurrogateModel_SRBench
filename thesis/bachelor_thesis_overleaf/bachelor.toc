@@ -43,21 +43,30 @@
 \contentsline {section}{\numberline {5.5}Repetitions and Trial Coverage}{26}{section.5.5}%
 \contentsline {section}{\numberline {5.6}Symbolic Post-Processing}{27}{section.5.6}%
 \contentsline {chapter}{\numberline {6}Results}{29}{chapter.6}%
-\contentsline {section}{\numberline {6.1}Trial Coverage}{29}{section.6.1}%
-\contentsline {section}{\numberline {6.2}Predictive Performance}{30}{section.6.2}%
-\contentsline {subsection}{\numberline {6.2.1}Raw Inputs}{30}{subsection.6.2.1}%
-\contentsline {subsection}{\numberline {6.2.2}Domain-Normalized Inputs}{30}{subsection.6.2.2}%
-\contentsline {section}{\numberline {6.3}Lowest Mean Error by Problem}{31}{section.6.3}%
-\contentsline {section}{\numberline {6.4}Runtime and Expression Complexity}{31}{section.6.4}%
-\contentsline {section}{\numberline {6.5}Framework-Level Summary}{32}{section.6.5}%
-\contentsline {section}{\numberline {6.6}Graphical Results}{32}{section.6.6}%
-\contentsline {chapter}{\numberline {7}Discussion}{38}{chapter.7}%
-\contentsline {section}{\numberline {7.1}Interpretation of Framework Trade-Offs}{38}{section.7.1}%
-\contentsline {section}{\numberline {7.2}Suitability for Interpretable Surrogate Modeling}{38}{section.7.2}%
-\contentsline {section}{\numberline {7.3}Research Gaps and Future Benchmarking Needs}{38}{section.7.3}%
-\contentsline {chapter}{\numberline {8}Conclusion}{39}{chapter.8}%
-\contentsline {section}{\numberline {8.1}Summary of Findings}{39}{section.8.1}%
-\contentsline {section}{\numberline {8.2}Answer to the Research Question}{39}{section.8.2}%
-\contentsline {section}{\numberline {8.3}Outlook and Future Work}{39}{section.8.3}%
-\contentsline {chapter}{\nonumberline Bibliography}{40}{chapter*.11}%
+\contentsline {section}{\numberline {6.1}Trial and Analysis Coverage}{29}{section.6.1}%
+\contentsline {subsection}{\numberline {6.1.1}Trial Completion and Failures}{29}{subsection.6.1.1}%
+\contentsline {subsection}{\numberline {6.1.2}Symbolic-Analysis Coverage}{30}{subsection.6.1.2}%
+\contentsline {section}{\numberline {6.2}Predictive Performance}{31}{section.6.2}%
+\contentsline {subsection}{\numberline {6.2.1}Overall Framework Performance}{31}{subsection.6.2.1}%
+\contentsline {subsection}{\numberline {6.2.2}Performance by Problem}{33}{subsection.6.2.2}%
+\contentsline {subsection}{\numberline {6.2.3}Analytical and Empirical Problems}{34}{subsection.6.2.3}%
+\contentsline {section}{\numberline {6.3}Effects of Input Scaling and Repetition Variability}{34}{section.6.3}%
+\contentsline {subsection}{\numberline {6.3.1}Effect of Domain Normalization}{35}{subsection.6.3.1}%
+\contentsline {subsection}{\numberline {6.3.2}Stability Across Repetitions}{36}{subsection.6.3.2}%
+\contentsline {section}{\numberline {6.4}Symbolic Model Properties}{37}{section.6.4}%
+\contentsline {subsection}{\numberline {6.4.1}Expression Complexity}{37}{subsection.6.4.1}%
+\contentsline {subsection}{\numberline {6.4.2}Symbolic Simplification and Fallbacks}{38}{subsection.6.4.2}%
+\contentsline {section}{\numberline {6.5}Computational Efficiency}{38}{section.6.5}%
+\contentsline {subsection}{\numberline {6.5.1}Model-Fitting Time}{39}{subsection.6.5.1}%
+\contentsline {subsection}{\numberline {6.5.2}Prediction and Expression-Extraction Time}{40}{subsection.6.5.2}%
+\contentsline {section}{\numberline {6.6}Consolidated Framework Comparison}{40}{section.6.6}%
+\contentsline {chapter}{\numberline {7}Discussion}{42}{chapter.7}%
+\contentsline {section}{\numberline {7.1}Interpretation of Framework Trade-Offs}{42}{section.7.1}%
+\contentsline {section}{\numberline {7.2}Suitability for Interpretable Surrogate Modeling}{42}{section.7.2}%
+\contentsline {section}{\numberline {7.3}Research Gaps and Future Benchmarking Needs}{42}{section.7.3}%
+\contentsline {chapter}{\numberline {8}Conclusion}{43}{chapter.8}%
+\contentsline {section}{\numberline {8.1}Summary of Findings}{43}{section.8.1}%
+\contentsline {section}{\numberline {8.2}Answer to the Research Question}{43}{section.8.2}%
+\contentsline {section}{\numberline {8.3}Outlook and Future Work}{43}{section.8.3}%
+\contentsline {chapter}{\nonumberline Bibliography}{44}{chapter*.11}%
 \providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 

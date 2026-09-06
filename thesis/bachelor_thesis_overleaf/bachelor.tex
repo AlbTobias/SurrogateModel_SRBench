@@ -661,247 +661,380 @@ Framework-independent structural measures are computed before and after simplifi
 
 \chapter{Results}
 
-\section{Trial Coverage}
+This chapter presents the results of the completed benchmark. It first reports trial and symbolic-analysis coverage before comparing the frameworks in terms of predictive performance, sensitivity to input scaling, stability across repetitions, expression complexity, symbolic recovery, and computational efficiency. The chapter concludes with a consolidated comparison of the observed framework trade-offs.
+
+\section{Trial and Analysis Coverage}
+
+Before comparing the frameworks, it is necessary to establish which trials completed successfully and which fitted expressions could be processed by the symbolic-analysis pipeline. This section reports both forms of coverage so that all subsequent summaries can be interpreted in relation to the available results.
+
+\subsection{Trial Completion and Failures}
+
+The complete experimental matrix comprised ten problems, six symbolic regression frameworks, two input-scaling conditions, and ten repetition labels, resulting in 1200 planned trials. Of these trials, 1187 completed successfully and 13 failed, corresponding to an overall completion rate of 98.9\%. No trial was missing from the recorded matrix. Table~\ref{tab:results-trial-coverage} shows that six problems completed all 120 trials, while failures occurred for Piston, Combined Cycle Power Plant (CCPP), Wing Weight, and Gas Turbine NOx.
 
 \begin{table}[H]
-\centering
-\caption{Coverage of the experimental matrix.}
-\label{tab:results-coverage}
-\begin{tabular}{lrrr}
-\hline
-Problem & Planned & Successful & Failed \\
-\hline
-Cantilever & 120 & 120 & 0 \\
-Borehole & 120 & 120 & 0 \\
-Piston & 120 & 118 & 2 \\
-Combined Cycle Power Plant & 120 & 114 & 6 \\
-Naval Propulsion & 120 & 120 & 0 \\
-Wing Weight & 120 & 117 & 3 \\
-Gas Turbine NOx & 120 & 118 & 2 \\
-Concrete Strength & 120 & 120 & 0 \\
-\hline
-Total & 960 & 947 & 13 \\
-\hline
-\end{tabular}
+    \centering
+    \caption{Trial coverage by problem.}
+    \label{tab:results-trial-coverage}
+    \begin{tabular}{lrrr}
+        \toprule
+        Problem & Planned & Successful & Failed \\
+        \midrule
+        Cantilever & 120 & 120 & 0 \\
+        Borehole & 120 & 120 & 0 \\
+        Piston & 120 & 118 & 2 \\
+        CCPP & 120 & 114 & 6 \\
+        Naval Propulsion & 120 & 120 & 0 \\
+        Wing Weight & 120 & 117 & 3 \\
+        Gas Turbine NOx & 120 & 118 & 2 \\
+        Concrete Strength & 120 & 120 & 0 \\
+        Energy Efficiency & 120 & 120 & 0 \\
+        Airfoil Self-Noise & 120 & 120 & 0 \\
+        \midrule
+        Total & 1200 & 1187 & 13 \\
+        \bottomrule
+    \end{tabular}
 \end{table}
 
+All 13 failures occurred under domain-normalized inputs. GeneticEngine accounted for 12 failures: two on Piston, five on CCPP, three on Wing Weight, and two on Gas Turbine NOx. Operon produced the remaining failure on CCPP at repetition 7. gplearn, PySR, ITEA, and EQL completed all 200 trials assigned to each framework. Failed trials were retained as failures and were excluded from numerical means rather than replaced or imputed.
+
+\subsection{Symbolic-Analysis Coverage}
+
+Symbolic post-processing was attempted for every successful trial. As shown in Table~\ref{tab:results-symbolic-coverage}, analysis sidecars were produced for all 1187 successful runs, and 1186 expressions could be parsed and assigned framework-independent complexity measures. The single parsing failure occurred for a gplearn expression. SymPy simplification completed within the configured limit for 1006 expressions; for the remaining 180 parsed expressions, the analysis retained the unsimplified expression and its structural measures as an explicit fallback.
+
 \begin{table}[H]
-\centering
-\caption{Recorded failed trials.}
-\label{tab:results-failures}
-\begin{tabular}{llll}
-\hline
-Problem & Framework & Failed repetitions & Count \\
-\hline
-Piston & GeneticEngine & 2, 13 & 2 \\
-Combined Cycle Power Plant & GeneticEngine & 3, 5, 7, 13, 19 & 5 \\
-Combined Cycle Power Plant & Operon & 7 & 1 \\
-Wing Weight & GeneticEngine & 2, 3, 23 & 3 \\
-Gas Turbine NOx & GeneticEngine & 3, 19 & 2 \\
-\hline
-Total & & & 13 \\
-\hline
-\end{tabular}
+    \centering
+    \caption{Symbolic-analysis coverage by framework. ``Simplified'' denotes completion of symbolic simplification, while ``Fallback'' denotes use of the parsed unsimplified expression.}
+    \label{tab:results-symbolic-coverage}
+    \begin{tabular}{lrrrrr}
+        \toprule
+        Framework & Successful & Analysed & Parsed & Simplified & Fallback \\
+        \midrule
+        gplearn & 200 & 200 & 199 & 125 & 74 \\
+        Operon & 199 & 199 & 199 & 165 & 34 \\
+        PySR & 200 & 200 & 200 & 195 & 5 \\
+        GeneticEngine & 188 & 188 & 188 & 188 & 0 \\
+        ITEA & 200 & 200 & 200 & 176 & 24 \\
+        EQL & 200 & 200 & 200 & 157 & 43 \\
+        \midrule
+        Total & 1187 & 1187 & 1186 & 1006 & 180 \\
+        \bottomrule
+    \end{tabular}
 \end{table}
 
 \section{Predictive Performance}
 
-\subsection{Raw Inputs}
+Predictive performance is examined at three levels. The framework-wide comparison provides an overall summary, the problem-level results show where individual methods performed best, and the final comparison distinguishes between analytical problems with known equations and empirical problems without a known ground-truth expression.
+
+\subsection{Overall Framework Performance}
+
+Figure~\ref{fig:results-nrmse-heatmaps} compares the mean range-normalized RMSE (NRMSE) of every framework--problem combination under raw and domain-normalized inputs. Lower values indicate better predictive performance. The corresponding $R^2$ values are shown in Figure~\ref{fig:results-r2-heatmaps}, where values closer to one indicate a better fit and negative values indicate performance below prediction by the reference-test mean. Each cell is calculated from the successful repetitions available for that configuration.
+
+\begin{figure}[H]
+    \centering
+    \fbox{\parbox[c][3.2cm][c]{0.86\textwidth}{\centering\textcolor{red}{TODO: Regenerate the raw-input and domain-normalized NRMSE heatmaps for all ten problems.}}}
+    \caption{Mean range-normalized RMSE by framework, problem, and input-scaling condition.}
+    \label{fig:results-nrmse-heatmaps}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \fbox{\parbox[c][3.2cm][c]{0.86\textwidth}{\centering\textcolor{red}{TODO: Regenerate the raw-input and domain-normalized $R^2$ heatmaps for all ten problems.}}}
+    \caption{Mean coefficient of determination by framework, problem, and input-scaling condition.}
+    \label{fig:results-r2-heatmaps}
+\end{figure}
+
+Across the 20 problem--scaling combinations, Operon achieved the lowest mean NRMSE in 13 cases. ITEA was best in three cases, while PySR and EQL were each best in two. Neither gplearn nor GeneticEngine obtained the lowest mean NRMSE in any combination. When the 20 problem-level means are summarized by their median, Operon obtained the lowest NRMSE at 0.0259 and the highest median $R^2$ at 0.9849. ITEA and PySR formed the next group, with median NRMSE values of 0.0722 and 0.0773, respectively.
 
 \begin{table}[H]
-\centering
-\caption{Mean range-normalized RMSE for the raw-input condition.}
-\label{tab:results-nrmse-raw}
-\resizebox{\textwidth}{!}{
-\begin{tabular}{lrrrrrr}
-\hline
-Problem & gplearn & Operon & PySR & GeneticEngine & ITEA & EQL \\
-\hline
-Cantilever & 0.02004 & $3.70\times10^{-8}$ & 0.00885 & 0.03736 & 0.02693 & 0.02759 \\
-Borehole & 0.08650 & 0.00095 & 0.08075 & 0.08871 & 0.01673 & 21.277 \\
-Piston & 0.12170 & 0.01980 & 0.07466 & 0.06815 & 0.03774 & 2827.2 \\
-CCPP & 0.17524 & 0.07685 & 0.07396 & 0.11389 & 0.06044 & 0.33061 \\
-Naval Propulsion & 0.04301 & 0.01719 & 0.04369 & 0.06453 & 0.05473 & 0.19129 \\
-Wing Weight & 0.08385 & 0.01197 & 0.09249 & 0.09389 & 0.01964 & 1.1258 \\
-Gas Turbine NOx & 1.6051 & 0.18091 & 0.15364 & 0.19827 & 0.16260 & 1.0648 \\
-Concrete Strength & 0.12577 & 0.09358 & 0.15076 & 0.12357 & 0.10729 & 0.40273 \\
-\hline
-Median across problems & 0.10410 & 0.01850 & 0.07770 & 0.09130 & 0.04623 & 0.73378 \\
-\hline
-\end{tabular}
-}
+    \centering
+    \caption{Overall predictive summary across the 20 problem--scaling combinations. Medians are calculated from problem-level means, and wins count the lowest mean NRMSE in each combination.}
+    \label{tab:results-overall-predictive}
+    \begin{tabular}{lrrr}
+        \toprule
+        Framework & Median NRMSE & Median $R^2$ & NRMSE wins \\
+        \midrule
+        gplearn & 0.1267 & 0.5064 & 0 \\
+        Operon & 0.0259 & 0.9849 & 13 \\
+        PySR & 0.0773 & 0.8396 & 2 \\
+        GeneticEngine & 0.1175 & 0.6101 & 0 \\
+        ITEA & 0.0722 & 0.8564 & 3 \\
+        EQL & 0.1791 & -0.5483 & 2 \\
+        \bottomrule
+    \end{tabular}
 \end{table}
 
-\subsection{Domain-Normalized Inputs}
+\subsection{Performance by Problem}
+
+Table~\ref{tab:results-problem-winners} reports the strongest framework for each problem and scaling condition. Operon led both conditions on Cantilever, Piston, Naval Propulsion, and Concrete Strength. It also led raw Borehole and both the normalized Energy Efficiency and Airfoil Self-Noise configurations. EQL produced the lowest mean NRMSE for normalized Borehole and Wing Weight, whereas ITEA led both CCPP conditions and raw Airfoil Self-Noise. PySR obtained the best result on Gas Turbine NOx under both scaling conditions.
+
+\begin{longtable}{llrr}
+\caption{Lowest mean NRMSE for each problem and input-scaling condition.}\label{tab:results-problem-winners}\\
+\toprule
+Problem & Scaling & Framework & Mean NRMSE \\
+\midrule
+\endfirsthead
+\toprule
+Problem & Scaling & Framework & Mean NRMSE \\
+\midrule
+\endhead
+Cantilever & Raw & Operon & $3.70\times10^{-8}$ \\
+Cantilever & Domain-normalized & Operon & 0.0101 \\
+Borehole & Raw & Operon & 0.0009 \\
+Borehole & Domain-normalized & EQL & 0.0072 \\
+Piston & Raw & Operon & 0.0198 \\
+Piston & Domain-normalized & Operon & 0.0199 \\
+CCPP & Raw & ITEA & 0.0604 \\
+CCPP & Domain-normalized & ITEA & 0.0648 \\
+Naval Propulsion & Raw & Operon & 0.0172 \\
+Naval Propulsion & Domain-normalized & Operon & 0.0170 \\
+Wing Weight & Raw & Operon & 0.0120 \\
+Wing Weight & Domain-normalized & EQL & 0.0099 \\
+Gas Turbine NOx & Raw & PySR & 0.1536 \\
+Gas Turbine NOx & Domain-normalized & PySR & 0.1563 \\
+Concrete Strength & Raw & Operon & 0.0936 \\
+Concrete Strength & Domain-normalized & Operon & 0.0900 \\
+Energy Efficiency & Raw & Operon & 0.0591 \\
+Energy Efficiency & Domain-normalized & Operon & 0.0319 \\
+Airfoil Self-Noise & Raw & ITEA & 0.1142 \\
+Airfoil Self-Noise & Domain-normalized & Operon & 0.1120 \\
+\bottomrule
+\end{longtable}
+
+The analytical problems generally admitted substantially lower errors than the external datasets, although performance differed between methods. Operon nearly recovered the Cantilever mapping numerically under raw inputs and reached mean NRMSE below 0.02 on several analytical configurations. The Gas Turbine NOx problem was the most consistently difficult empirical task: even its best framework produced negative mean $R^2$ in both conditions ($-0.4349$ for raw inputs and $-0.4763$ for normalized inputs). Airfoil Self-Noise and Concrete Strength were also more difficult than the strongest analytical results, but their best mean $R^2$ values remained positive at approximately 0.65 and 0.81, respectively.
+
+\subsection{Analytical and Empirical Problems}
+
+The four analytical problems and six external datasets serve different evaluation roles. Table~\ref{tab:results-problem-types} summarizes their mean-NRMSE distributions across frameworks. The median result on analytical problems was lower under raw inputs than under normalized inputs, whereas the median over external problems was almost unchanged. The analytical median nevertheless conceals several poor individual results, particularly the extreme raw-input EQL errors on Piston and Wing Weight. Conversely, the external group contains both the comparatively well-predicted Energy Efficiency task and the substantially harder Gas Turbine NOx task.
 
 \begin{table}[H]
-\centering
-\caption{Mean range-normalized RMSE for the domain-normalized condition.}
-\label{tab:results-nrmse-normalized}
-\resizebox{\textwidth}{!}{
-\begin{tabular}{lrrrrrr}
-\hline
-Problem & gplearn & Operon & PySR & GeneticEngine & ITEA & EQL \\
-\hline
-Cantilever & 0.05087 & 0.01013 & 0.04239 & 0.09602 & 0.08066 & 0.02102 \\
-Borehole & 0.12756 & 0.00837 & 0.06133 & 0.09728 & 0.07189 & 0.00715 \\
-Piston & 0.16630 & 0.01990 & 0.05898 & 0.12117 & 0.06273 & 0.13550 \\
-CCPP & 0.63118 & 0.07530 & 0.07291 & 0.20305 & 0.06479 & 0.10566 \\
-Naval Propulsion & 0.05207 & 0.01703 & 0.02569 & 0.07498 & 0.02491 & 0.07684 \\
-Wing Weight & 0.24328 & 0.01212 & 0.06828 & 0.13261 & 0.09237 & 0.00991 \\
-Gas Turbine NOx & 0.23702 & 0.19524 & 0.15632 & 0.19976 & 0.15669 & 0.16693 \\
-Concrete Strength & 0.13172 & 0.09002 & 0.17683 & 10499 & 0.15130 & 0.11628 \\
-\hline
-Median across problems & 0.14901 & 0.01847 & 0.06481 & 0.12689 & 0.07627 & 0.09125 \\
-\hline
-\end{tabular}
-}
+    \centering
+    \caption{Median of the framework-level mean NRMSE values by problem type and scaling condition.}
+    \label{tab:results-problem-types}
+    \begin{tabular}{lrr}
+        \toprule
+        Problem type & Raw inputs & Domain-normalized inputs \\
+        \midrule
+        Analytical problems & 0.0529 & 0.0655 \\
+        External datasets & 0.1247 & 0.1240 \\
+        \bottomrule
+    \end{tabular}
 \end{table}
 
-\section{Lowest Mean Error by Problem}
+No framework produced an expression classified as an exact symbolic match to the generating equation on any analytical problem. Low numerical error therefore did not imply recovery of the original expression within the benchmark's symbolic-equivalence procedure. The analytical tasks consequently provide evidence about both approximation quality and the difference between predictive agreement and structural recovery.
+
+\section{Effects of Input Scaling and Repetition Variability}
+
+In addition to average predictive performance, the benchmark evaluates whether the results change when the inputs are domain-normalized and how strongly they vary across repeated trials. These analyses reveal whether a framework's observed performance is consistent across preprocessing conditions and repetitions.
+
+\subsection{Effect of Domain Normalization}
+
+The effect of domain normalization was framework-dependent rather than uniformly beneficial. Table~\ref{tab:results-scaling-effect} compares each framework's normalized-input mean NRMSE with its raw-input result on the same problem. EQL improved on all ten problems and showed the largest median reduction, with a normalized-to-raw NRMSE ratio of 0.114. PySR improved on six problems and Operon on five, while Operon's median ratio remained close to one. gplearn, GeneticEngine, and ITEA improved on only two, one, and two problems, respectively, and their median ratios were above one.
 
 \begin{table}[H]
-\centering
-\caption{Framework with the lowest mean range-normalized RMSE for each problem and scaling condition.}
-\label{tab:results-best-frameworks}
-\begin{tabular}{llrlr}
-\hline
-& \multicolumn{2}{c}{Raw inputs} & \multicolumn{2}{c}{Domain-normalized inputs} \\
-Problem & Framework & NRMSE & Framework & NRMSE \\
-\hline
-Cantilever & Operon & $3.70\times10^{-8}$ & Operon & 0.01013 \\
-Borehole & Operon & 0.00095 & EQL & 0.00715 \\
-Piston & Operon & 0.01980 & Operon & 0.01990 \\
-CCPP & ITEA & 0.06044 & ITEA & 0.06479 \\
-Naval Propulsion & Operon & 0.01719 & Operon & 0.01703 \\
-Wing Weight & Operon & 0.01197 & EQL & 0.00991 \\
-Gas Turbine NOx & PySR & 0.15364 & PySR & 0.15632 \\
-Concrete Strength & Operon & 0.09358 & Operon & 0.09002 \\
-\hline
-\end{tabular}
+    \centering
+    \caption{Effect of domain normalization. The ratio is calculated per problem from the normalized and raw mean NRMSE and then summarized by its median; values below one favor normalization.}
+    \label{tab:results-scaling-effect}
+    \begin{tabular}{lrr}
+        \toprule
+        Framework & Problems improved (of 10) & Median NRMSE ratio \\
+        \midrule
+        gplearn & 2 & 1.336 \\
+        Operon & 5 & 0.998 \\
+        PySR & 6 & 0.914 \\
+        GeneticEngine & 1 & 1.320 \\
+        ITEA & 2 & 1.406 \\
+        EQL & 10 & 0.114 \\
+        \bottomrule
+    \end{tabular}
 \end{table}
 
-\section{Runtime and Expression Complexity}
+Figure~\ref{fig:results-scaling-effect} displays the paired raw and normalized results for each framework and problem. Points below the diagonal indicate an improvement after normalization. The figure highlights that EQL's aggregate improvement was driven in part by avoiding very large raw-input errors, whereas the other frameworks showed smaller and less consistent shifts in either direction.
+
+\begin{figure}[H]
+    \centering
+    \fbox{\parbox[c][3.2cm][c]{0.86\textwidth}{\centering\textcolor{red}{TODO: Create a paired raw-versus-domain-normalized NRMSE plot using a logarithmic scale.}}}
+    \caption{Effect of domain normalization on mean range-normalized RMSE. The diagonal represents equal error under both input-scaling conditions.}
+    \label{fig:results-scaling-effect}
+\end{figure}
+
+\subsection{Stability Across Repetitions}
+
+Repetition variability was evaluated using the sample standard deviation of NRMSE within each framework--problem--scaling configuration. Table~\ref{tab:results-repetition-stability} summarizes these values by taking their median across problems. Operon and PySR showed comparatively small dispersion under both scaling conditions. gplearn and GeneticEngine were more variable, particularly with normalized inputs. EQL was highly unstable with raw inputs because individual repetitions produced very large prediction errors, while normalization reduced its median standard deviation substantially.
 
 \begin{table}[H]
-\centering
-\caption{Median of the eight problem-level mean results for fitting time, prediction time, and simplified expression size.}
-\label{tab:results-runtime-complexity}
-\resizebox{\textwidth}{!}{
-\begin{tabular}{llrrr}
-\hline
-Framework & Input condition & Fit time (s) & Prediction time ($\mu$s/sample) & Simplified nodes \\
-\hline
-gplearn & Raw & 35.33 & 0.591 & 147.2 \\
-gplearn & Domain normalized & 45.69 & 0.693 & 61.4 \\
-Operon & Raw & 4.00 & 0.025 & 67.5 \\
-Operon & Domain normalized & 3.86 & 0.025 & 66.0 \\
-PySR & Raw & 89.86 & 0.709 & 9.1 \\
-PySR & Domain normalized & 89.70 & 0.820 & 16.1 \\
-GeneticEngine & Raw & 60.24 & 0.037 & 27.0 \\
-GeneticEngine & Domain normalized & 60.24 & 0.042 & 29.7 \\
-ITEA & Raw & 11.32 & 0.213 & 23.6 \\
-ITEA & Domain normalized & 4.29 & 0.214 & 18.0 \\
-EQL & Raw & 24.59 & 1.896 & 46.0 \\
-EQL & Domain normalized & 24.44 & 1.895 & 64.7 \\
-\hline
-\end{tabular}
-}
+    \centering
+    \caption{Median problem-level sample standard deviation of NRMSE across repetitions.}
+    \label{tab:results-repetition-stability}
+    \begin{tabular}{lrr}
+        \toprule
+        Framework & Raw inputs & Domain-normalized inputs \\
+        \midrule
+        gplearn & 0.0306 & 0.0469 \\
+        Operon & 0.0038 & 0.0034 \\
+        PySR & 0.0121 & 0.0084 \\
+        GeneticEngine & 0.0185 & 0.0372 \\
+        ITEA & 0.0002 & $<0.0001$ \\
+        EQL & 1.2407 & 0.0192 \\
+        \bottomrule
+    \end{tabular}
 \end{table}
 
-\section{Framework-Level Summary}
+ITEA produced nearly identical results across repetitions. This observation should not be interpreted as evidence that a controllable random seed made the method reproducible, because the evaluated adapter does not expose a supported repetition-seed parameter. Instead, it indicates that the evaluated configuration returned almost unchanged results when invoked repeatedly on the same fixed tables. Figure~\ref{fig:results-repetition-distributions} shows the full distribution of repetition-level NRMSE values and makes both narrow distributions and isolated failures or extreme errors visible.
+
+\begin{figure}[H]
+    \centering
+    \fbox{\parbox[c][3.2cm][c]{0.86\textwidth}{\centering\textcolor{red}{TODO: Create repetition-level NRMSE distribution plots with a logarithmic error axis and distinguish failed trials from successful outliers.}}}
+    \caption{Distribution of repetition-level range-normalized RMSE by framework and input-scaling condition.}
+    \label{fig:results-repetition-distributions}
+\end{figure}
+
+\section{Symbolic Model Properties}
+
+The returned equations are compared not only through their predictions but also through properties of their symbolic representations. This section examines expression-tree complexity and reports how frequently the common symbolic simplification procedure completed or required a fallback to the unsimplified expression.
+
+\subsection{Expression Complexity}
+
+Expression complexity varied substantially between frameworks. Table~\ref{tab:results-complexity-summary} reports the median, across the 20 problem--scaling combinations, of each combination's mean simplified node count. On this measure, PySR returned the smallest parsed expressions, followed by ITEA and GeneticEngine. Operon, despite leading predictive performance, returned larger expressions than these three frameworks. gplearn had the largest median node count. These comparisons describe syntactic expression size and do not by themselves measure semantic clarity or scientific usefulness.
 
 \begin{table}[H]
-\centering
-\caption{Framework-level results across both input conditions. NRMSE, $R^2$, expression size, and fitting time are medians of the 16 problem--scaling means.}
-\label{tab:results-framework-summary}
-\resizebox{\textwidth}{!}{
-\begin{tabular}{lrrrrrr}
-\hline
-Framework & Successful & Failed & Median NRMSE & Median $R^2$ & Median nodes & Median fit time (s) \\
-\hline
-gplearn & 160 & 0 & 0.12666 & 0.50638 & 108.4 & 36.61 \\
-Operon & 159 & 1 & 0.01850 & 0.98892 & 66.4 & 3.89 \\
-PySR & 160 & 0 & 0.07344 & 0.83956 & 9.8 & 89.80 \\
-GeneticEngine & 148 & 12 & 0.10558 & 0.61006 & 27.5 & 60.24 \\
-ITEA & 160 & 0 & 0.06376 & 0.88633 & 23.1 & 5.64 \\
-EQL & 160 & 0 & 0.15122 & $-0.15328$ & 50.4 & 24.51 \\
-\hline
-\end{tabular}
-}
+    \centering
+    \caption{Median of the problem-level mean simplified expression-tree node counts across both scaling conditions. Only trials for which simplification completed are included.}
+    \label{tab:results-complexity-summary}
+    \begin{tabular}{lr}
+        \toprule
+        Framework & Median simplified node count \\
+        \midrule
+        gplearn & 108.39 \\
+        Operon & 66.00 \\
+        PySR & 11.21 \\
+        GeneticEngine & 27.49 \\
+        ITEA & 21.55 \\
+        EQL & 51.65 \\
+        \bottomrule
+    \end{tabular}
 \end{table}
 
-\section{Graphical Results}
+Figure~\ref{fig:results-complexity-heatmaps} shows that expression size also depended on the problem and scaling condition, so the aggregate ordering did not hold uniformly in every cell. Complexity must therefore be considered alongside prediction error at the framework--problem level rather than interpreted only through one framework-wide average.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth]{images/results/nrmse_heatmap_raw.png}
-    \caption{Mean range-normalized RMSE by problem and framework for the raw-input condition. Values are displayed on a logarithmic color scale.}
-    \label{fig:results-nrmse-raw}
+    \fbox{\parbox[c][3.2cm][c]{0.86\textwidth}{\centering\textcolor{red}{TODO: Regenerate the raw-input and domain-normalized simplified-node-count heatmaps for all ten problems and mark simplification fallbacks separately.}}}
+    \caption{Mean simplified expression-tree node count by framework, problem, and input-scaling condition.}
+    \label{fig:results-complexity-heatmaps}
 \end{figure}
+
+\subsection{Symbolic Simplification and Fallbacks}
+
+The simplification completion rate differed markedly between frameworks. GeneticEngine completed simplification for all 188 parsed expressions, and PySR did so for 195 of 200. gplearn required the unsimplified fallback for 74 of its 199 parsed expressions, the largest number among the frameworks. EQL required 43 fallbacks, Operon 34, and ITEA 24. Because fallback expressions can be structurally larger than their simplified counterparts, the primary simplified-complexity comparison excludes them rather than treating the two forms as directly equivalent.
+
+\begin{table}[H]
+    \centering
+    \caption{Symbolic simplification outcomes for parsed expressions.}
+    \label{tab:results-simplification}
+    \begin{tabular}{lrrr}
+        \toprule
+        Framework & Parsed & Simplified & Fallback rate \\
+        \midrule
+        gplearn & 199 & 125 & 37.2\% \\
+        Operon & 199 & 165 & 17.1\% \\
+        PySR & 200 & 195 & 2.5\% \\
+        GeneticEngine & 188 & 188 & 0.0\% \\
+        ITEA & 200 & 176 & 12.0\% \\
+        EQL & 200 & 157 & 21.5\% \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+These fallback counts reflect the benchmark's bounded post-processing procedure rather than failures of model fitting. Separating the original trial record from its analysis sidecar preserved the fitted equation and predictive results even when parsing or simplification was incomplete.
+
+\section{Computational Efficiency}
+
+Computational efficiency is reported separately for model fitting and for the subsequent use of the fitted model. This distinction is relevant for surrogate modeling because training is performed once per trial, whereas prediction may be repeated many times after an expression has been obtained.
+
+\subsection{Model-Fitting Time}
+
+Model-fitting times describe the evaluated configurations under the common one-thread execution controls; they are not the result of equal wall-clock search budgets. Operon had the lowest median problem-level mean fit time at 3.89 seconds, followed by ITEA at 5.63 seconds. EQL required 24.48 seconds, gplearn 37.62 seconds, GeneticEngine 60.24 seconds, and PySR 89.76 seconds. PySR's fit times were comparatively consistent with the configured fixed search duration, while the other methods showed stronger problem-dependent variation.
+
+\begin{table}[H]
+    \centering
+    \caption{Median of problem-level mean model-fitting times across both scaling conditions.}
+    \label{tab:results-fit-time-summary}
+    \begin{tabular}{lr}
+        \toprule
+        Framework & Fit time (s) \\
+        \midrule
+        Operon & 3.89 \\
+        ITEA & 5.63 \\
+        EQL & 24.48 \\
+        gplearn & 37.62 \\
+        GeneticEngine & 60.24 \\
+        PySR & 89.76 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+Figure~\ref{fig:results-fit-time-heatmaps} displays the problem-level mean fit times separately for raw and normalized inputs. This placement makes it possible to distinguish framework-wide timing differences from problem-specific increases and from the reduced number of successful repetitions in failed configurations.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth]{images/results/nrmse_heatmap_domain_minmax.png}
-    \caption{Mean range-normalized RMSE by problem and framework for the domain-normalized input condition. Values are displayed on a logarithmic color scale.}
-    \label{fig:results-nrmse-domain-minmax}
+    \fbox{\parbox[c][3.2cm][c]{0.86\textwidth}{\centering\textcolor{red}{TODO: Regenerate the raw-input and domain-normalized fit-time heatmaps for all ten problems using successful repetitions only.}}}
+    \caption{Mean model-fitting time by framework, problem, and input-scaling condition.}
+    \label{fig:results-fit-time-heatmaps}
 \end{figure}
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{images/results/r2_heatmap_raw.png}
-    \caption{$R^2$ by problem and framework for the raw-input condition. Cell labels show the unmodified values, while the color scale is limited to the interval $[-1,1]$.}
-    \label{fig:results-r2-raw}
-\end{figure}
+\subsection{Prediction and Expression-Extraction Time}
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{images/results/r2_heatmap_domain_minmax.png}
-    \caption{$R^2$ by problem and framework for the domain-normalized input condition. Cell labels show the unmodified values, while the color scale is limited to the interval $[-1,1]$.}
-    \label{fig:results-r2-domain-minmax}
-\end{figure}
+Prediction was fast for all fitted symbolic models relative to model fitting. Table~\ref{tab:results-prediction-extraction-time} reports medians of the problem-level mean measurements for each scaling condition. Operon and GeneticEngine had the lowest prediction time per observation, while EQL had the highest. Expression extraction was negligible for gplearn, Operon, GeneticEngine, and ITEA, remained below approximately 0.011 seconds for PySR, and required approximately 0.10 seconds for EQL.
 
-\begin{figure}[H]
+\begin{table}[H]
     \centering
-    \includegraphics[width=0.88\textwidth]{images/results/complexity_by_framework.png}
-    \caption{Median simplified expression-tree node count by framework and input-scaling condition. Values are medians of the eight problem-level means.}
-    \label{fig:results-complexity}
-\end{figure}
+    \caption{Median problem-level mean prediction and expression-extraction times. Prediction time is the median full-test prediction duration divided by the number of reference-test observations.}
+    \label{tab:results-prediction-extraction-time}
+    \begin{tabular}{llrr}
+        \toprule
+        Framework & Scaling & Prediction ($\mu$s/sample) & Extraction (s) \\
+        \midrule
+        gplearn & Raw & 0.923 & 0.000295 \\
+        gplearn & Domain-normalized & 0.901 & 0.000272 \\
+        Operon & Raw & 0.026 & 0.000066 \\
+        Operon & Domain-normalized & 0.026 & 0.000064 \\
+        PySR & Raw & 0.730 & 0.008750 \\
+        PySR & Domain-normalized & 0.856 & 0.010920 \\
+        GeneticEngine & Raw & 0.038 & 0.000025 \\
+        GeneticEngine & Domain-normalized & 0.042 & 0.000025 \\
+        ITEA & Raw & 0.214 & 0.000053 \\
+        ITEA & Domain-normalized & 0.223 & 0.000050 \\
+        EQL & Raw & 1.912 & 0.097620 \\
+        EQL & Domain-normalized & 1.907 & 0.104760 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.88\textwidth]{images/results/fit_time_by_framework.png}
-    \caption{Median fitting time by framework and input-scaling condition. Values are medians of the eight problem-level means.}
-    \label{fig:results-fit-time}
-\end{figure}
+Even the largest median prediction time remained below two microseconds per reference-test observation. The fitted expressions were therefore inexpensive to evaluate once training had completed, although the measurements exclude calling-process and container-startup overhead and should be interpreted as in-process prediction costs.
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{images/results/complexity_heatmap_raw.png}
-    \caption{Mean simplified expression-tree node count by problem and framework for the raw-input condition. Values are displayed on a logarithmic color scale.}
-    \label{fig:results-complexity-raw}
-\end{figure}
+\section{Consolidated Framework Comparison}
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{images/results/complexity_heatmap_domain_minmax.png}
-    \caption{Mean simplified expression-tree node count by problem and framework for the domain-normalized input condition. Values are displayed on a logarithmic color scale.}
-    \label{fig:results-complexity-domain-minmax}
-\end{figure}
+Table~\ref{tab:results-consolidated} combines the main framework-level outcomes. Operon provided the strongest overall predictive performance and the shortest model-fitting time, but its expressions were larger than those returned by PySR, ITEA, and GeneticEngine. PySR produced the smallest expressions and completed every trial, at the cost of the longest fitting time. ITEA combined the second-lowest median NRMSE with short fitting times and relatively compact expressions. gplearn completed every trial but was less accurate and produced the largest expressions in the aggregate. GeneticEngine returned compact expressions but accounted for most execution failures. EQL benefited most consistently from domain normalization and won two normalized analytical configurations, but its aggregate raw-input performance and variability were poor.
 
-\begin{figure}[H]
+\begin{table}[H]
     \centering
-    \includegraphics[width=\textwidth]{images/results/fit_time_heatmap_raw.png}
-    \caption{Mean fitting time by problem and framework for the raw-input condition. Values are shown in seconds on a logarithmic color scale.}
-    \label{fig:results-fit-time-raw}
-\end{figure}
+    \caption{Consolidated framework comparison. Predictive, timing, and complexity values are medians of problem-level means across both scaling conditions. Simplified node counts exclude fallback expressions.}
+    \label{tab:results-consolidated}
+    \begin{tabular}{lrrrrr}
+        \toprule
+        Framework & NRMSE & $R^2$ & Fit time (s) & Nodes & Failed \\
+        \midrule
+        gplearn & 0.1267 & 0.5064 & 37.62 & 108.39 & 0 \\
+        Operon & 0.0259 & 0.9849 & 3.89 & 66.00 & 1 \\
+        PySR & 0.0773 & 0.8396 & 89.76 & 11.21 & 0 \\
+        GeneticEngine & 0.1175 & 0.6101 & 60.24 & 27.49 & 12 \\
+        ITEA & 0.0722 & 0.8564 & 5.63 & 21.55 & 0 \\
+        EQL & 0.1791 & -0.5483 & 24.48 & 51.65 & 0 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{images/results/fit_time_heatmap_domain_minmax.png}
-    \caption{Mean fitting time by problem and framework for the domain-normalized input condition. Values are shown in seconds on a logarithmic color scale.}
-    \label{fig:results-fit-time-domain-minmax}
-\end{figure}
+The results do not identify one framework as best under every evaluation dimension. Operon dominated the predictive and fitting-time summaries, PySR minimized syntactic expression size, ITEA offered a strong balance of accuracy, speed, and compactness, and EQL demonstrated the clearest dependence on input scaling. These observed trade-offs, together with the absence of exact symbolic recovery and the concentration of failures in particular framework--problem combinations, form the basis of the interpretation in the following chapter.
 
 
 \chapter{Discussion}

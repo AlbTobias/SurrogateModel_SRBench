@@ -1,93 +1,173 @@
 \begin{thebibliography}{xx}
 
-\harvarditem[Aldeia et~al.]{Aldeia, Zhang, Bomarito, Cranmer, Fonseca, Burlacu, La~Cava \harvardand\ de~Fran{\c c}a}{2025}{aldeia2025call}
-Aldeia, G. S.~I., Zhang, H., Bomarito, G., Cranmer, M., Fonseca, A., Burlacu, B., La~Cava, W.~G. \harvardand\ de~Fran{\c c}a, F.~O.  \harvardyearleft 2025\harvardyearright , Call for action: Towards the next generation of symbolic regression benchmark, {\em in} `Proceedings of the Genetic and Evolutionary Computation Conference Companion', Association for Computing Machinery, New York, NY, USA, pp.~1--10.
+\harvarditem[Aldeia et~al.]{Aldeia, Zhang, Bomarito, Cranmer, Fonseca, Burlacu,
+  La~Cava \harvardand\ de~Fran{\c c}a}{2025}{aldeia2025call}
+Aldeia, G. S.~I., Zhang, H., Bomarito, G., Cranmer, M., Fonseca, A., Burlacu,
+  B., La~Cava, W.~G. \harvardand\ de~Fran{\c c}a, F.~O.  \harvardyearleft
+  2025\harvardyearright , Call for action: Towards the next generation of
+  symbolic regression benchmark, {\em in} `Proceedings of the Genetic and
+  Evolutionary Computation Conference Companion', Association for Computing
+  Machinery, New York, NY, USA, pp.~1--10.
 \newline\harvardurl{https://doi.org/10.1145/3712255.3734309}
 
-\harvarditem[Alizadeh et~al.]{Alizadeh, Allen \harvardand\ Mistree}{2020}{alizadeh2020managing}
-Alizadeh, R., Allen, J.~K. \harvardand\ Mistree, F.  \harvardyearleft 2020\harvardyearright , `Managing computational complexity using surrogate models: A critical review', {\em Research in Engineering Design} {\bf 31}(3),~275--298.
+\harvarditem[Alizadeh et~al.]{Alizadeh, Allen \harvardand\
+  Mistree}{2020}{alizadeh2020managing}
+Alizadeh, R., Allen, J.~K. \harvardand\ Mistree, F.  \harvardyearleft
+  2020\harvardyearright , `Managing computational complexity using surrogate
+  models: A critical review', {\em Research in Engineering Design} {\bf
+  31}(3),~275--298.
 \newline\harvardurl{https://doi.org/10.1007/s00163-020-00336-7}
 
-\harvarditem[Angelis et~al.]{Angelis, Sofos \harvardand\ Karakasidis}{2023}{angelis2023artificial}
-Angelis, D., Sofos, F. \harvardand\ Karakasidis, T.~E.  \harvardyearleft 2023\harvardyearright , `Artificial intelligence in physical sciences: Symbolic regression trends and perspectives', {\em Archives of Computational Methods in Engineering} {\bf 30}(6),~3845--3865.
+\harvarditem[Angelis et~al.]{Angelis, Sofos \harvardand\
+  Karakasidis}{2023}{angelis2023artificial}
+Angelis, D., Sofos, F. \harvardand\ Karakasidis, T.~E.  \harvardyearleft
+  2023\harvardyearright , `Artificial intelligence in physical sciences:
+  Symbolic regression trends and perspectives', {\em Archives of Computational
+  Methods in Engineering} {\bf 30}(6),~3845--3865.
 \newline\harvardurl{https://doi.org/10.1007/s11831-023-09922-z}
 
-\harvarditem[Brum et~al.]{Brum, Lober, Previdelli \harvardand\ Rodrigues}{2026}{brum2026discovering}
-Brum, B.~R., Lober, L., Previdelli, I. \harvardand\ Rodrigues, F.~A.  \harvardyearleft 2026\harvardyearright , `Discovering equations from data: Symbolic regression in dynamical systems', {\em Journal of Physics: Complexity} {\bf 7}(1),~012001.
+\harvarditem[Brum et~al.]{Brum, Lober, Previdelli \harvardand\
+  Rodrigues}{2026}{brum2026discovering}
+Brum, B.~R., Lober, L., Previdelli, I. \harvardand\ Rodrigues, F.~A.
+  \harvardyearleft 2026\harvardyearright , `Discovering equations from data:
+  Symbolic regression in dynamical systems', {\em Journal of Physics:
+  Complexity} {\bf 7}(1),~012001.
 \newline\harvardurl{https://doi.org/10.1088/2632-072X/ae3eed}
 
-\harvarditem[Brunton et~al.]{Brunton, Proctor \harvardand\ Kutz}{2016}{brunton2016discovering}
-Brunton, S.~L., Proctor, J.~L. \harvardand\ Kutz, J.~N.  \harvardyearleft 2016\harvardyearright , `Discovering governing equations from data by sparse identification of nonlinear dynamical systems', {\em Proceedings of the National Academy of Sciences} {\bf 113}(15),~3932--3937.
+\harvarditem[Brunton et~al.]{Brunton, Proctor \harvardand\
+  Kutz}{2016}{brunton2016discovering}
+Brunton, S.~L., Proctor, J.~L. \harvardand\ Kutz, J.~N.  \harvardyearleft
+  2016\harvardyearright , `Discovering governing equations from data by sparse
+  identification of nonlinear dynamical systems', {\em Proceedings of the
+  National Academy of Sciences} {\bf 113}(15),~3932--3937.
 \newline\harvardurl{https://doi.org/10.1073/pnas.1517384113}
 
-\harvarditem[Burlacu et~al.]{Burlacu, Kronberger \harvardand\ Kommenda}{2020}{burlacu2020operon}
-Burlacu, B., Kronberger, G. \harvardand\ Kommenda, M.  \harvardyearleft 2020\harvardyearright , {Operon C++}: An efficient genetic programming framework for symbolic regression, {\em in} `Proceedings of the Genetic and Evolutionary Computation Conference Companion', Association for Computing Machinery, New York, NY, USA, pp.~1562--1570.
+\harvarditem[Burlacu et~al.]{Burlacu, Kronberger \harvardand\
+  Kommenda}{2020}{burlacu2020operon}
+Burlacu, B., Kronberger, G. \harvardand\ Kommenda, M.  \harvardyearleft
+  2020\harvardyearright , {Operon C++}: An efficient genetic programming
+  framework for symbolic regression, {\em in} `Proceedings of the Genetic and
+  Evolutionary Computation Conference Companion', Association for Computing
+  Machinery, New York, NY, USA, pp.~1562--1570.
 \newline\harvardurl{https://doi.org/10.1145/3377929.3398099}
 
 \harvarditem{Cranmer}{2023}{cranmer2023interpretable}
-Cranmer, M.  \harvardyearleft 2023\harvardyearright , `Interpretable machine learning for science with {PySR} and {SymbolicRegression.jl}'.
+Cranmer, M.  \harvardyearleft 2023\harvardyearright , `Interpretable machine
+  learning for science with {PySR} and {SymbolicRegression.jl}'.
 \newline\harvardurl{https://arxiv.org/abs/2305.01582}
 
 \harvarditem{de~Fran{\c c}a \harvardand\ Aldeia}{2021}{defranca2021itea}
-de~Fran{\c c}a, F.~O. \harvardand\ Aldeia, G. S.~I.  \harvardyearleft 2021\harvardyearright , `Interaction--transformation evolutionary algorithm for symbolic regression', {\em Evolutionary Computation} {\bf 29}(3),~367--390.
+de~Fran{\c c}a, F.~O. \harvardand\ Aldeia, G. S.~I.  \harvardyearleft
+  2021\harvardyearright , `Interaction--transformation evolutionary algorithm
+  for symbolic regression', {\em Evolutionary Computation} {\bf
+  29}(3),~367--390.
 \newline\harvardurl{https://doi.org/10.1162/evco\_a\_00285}
 
-\harvarditem[de~Fran{\c c}a et~al.]{de~Fran{\c c}a, Virgolin, Kommenda, Majumder, Cranmer, Espada, Ingelse, Fonseca, Landajuela, Petersen et~al.}{2025}{defranca2025srbench}
-de~Fran{\c c}a, F.~O., Virgolin, M., Kommenda, M., Majumder, M.~S., Cranmer, M., Espada, G., Ingelse, L., Fonseca, A., Landajuela, M., Petersen, B. et~al.  \harvardyearleft 2025\harvardyearright , `{SRBench++}: Principled benchmarking of symbolic regression with domain-expert interpretation', {\em IEEE Transactions on Evolutionary Computation} {\bf 29}(4),~1127--1134.
+\harvarditem[de~Fran{\c c}a et~al.]{de~Fran{\c c}a, Virgolin, Kommenda,
+  Majumder, Cranmer, Espada, Ingelse, Fonseca, Landajuela, Petersen
+  et~al.}{2025}{defranca2025srbench}
+de~Fran{\c c}a, F.~O., Virgolin, M., Kommenda, M., Majumder, M.~S., Cranmer,
+  M., Espada, G., Ingelse, L., Fonseca, A., Landajuela, M., Petersen, B. et~al.
+   \harvardyearleft 2025\harvardyearright , `{SRBench++}: Principled
+  benchmarking of symbolic regression with domain-expert interpretation', {\em
+  IEEE Transactions on Evolutionary Computation} {\bf 29}(4),~1127--1134.
 \newline\harvardurl{https://doi.org/10.1109/TEVC.2024.3423681}
 
 \harvarditem{Dong \harvardand\ Zhong}{2025}{dong2025recent}
-Dong, J. \harvardand\ Zhong, J.  \harvardyearleft 2025\harvardyearright , `Recent advances in symbolic regression', {\em ACM Computing Surveys} {\bf 57}(11),~1--37.
+Dong, J. \harvardand\ Zhong, J.  \harvardyearleft 2025\harvardyearright ,
+  `Recent advances in symbolic regression', {\em ACM Computing Surveys} {\bf
+  57}(11),~1--37.
 \newline\harvardurl{https://doi.org/10.1145/3735634}
 
-\harvarditem[Espada et~al.]{Espada, Ingelse, Canelas, Barbosa \harvardand\ Fonseca}{2022}{espada2022datatypes}
-Espada, G., Ingelse, L., Canelas, P., Barbosa, P. \harvardand\ Fonseca, A.  \harvardyearleft 2022\harvardyearright , Data types as a more ergonomic frontend for grammar-guided genetic programming, {\em in} `Proceedings of the 21st ACM SIGPLAN International Conference on Generative Programming: Concepts and Experiences', GPCE 2022, Association for Computing Machinery, pp.~86--94.
+\harvarditem[Espada et~al.]{Espada, Ingelse, Canelas, Barbosa \harvardand\
+  Fonseca}{2022}{espada2022datatypes}
+Espada, G., Ingelse, L., Canelas, P., Barbosa, P. \harvardand\ Fonseca, A.
+  \harvardyearleft 2022\harvardyearright , Data types as a more ergonomic
+  frontend for grammar-guided genetic programming, {\em in} `Proceedings of the
+  21st ACM SIGPLAN International Conference on Generative Programming: Concepts
+  and Experiences', GPCE 2022, Association for Computing Machinery, pp.~86--94.
 \newline\harvardurl{https://doi.org/10.1145/3564719.3568697}
 
 \harvarditem{Guo \harvardand\ Yin}{2024}{guo2024harnessing}
-Guo, J. \harvardand\ Yin, W.-J.  \harvardyearleft 2024\harvardyearright , `Harnessing data using symbolic regression methods for discovering novel paradigms in physics', {\em Science China Physics, Mechanics \& Astronomy} {\bf 67}(6),~267301.
+Guo, J. \harvardand\ Yin, W.-J.  \harvardyearleft 2024\harvardyearright ,
+  `Harnessing data using symbolic regression methods for discovering novel
+  paradigms in physics', {\em Science China Physics, Mechanics \& Astronomy}
+  {\bf 67}(6),~267301.
 \newline\harvardurl{https://doi.org/10.1007/s11433-023-2346-2}
 
-\harvarditem[La~Cava et~al.]{La~Cava, Orzechowski, Burlacu, de~Fran{\c c}a, Virgolin, Jin, Kommenda \harvardand\ Moore}{2021}{lacava2021contemporary}
-La~Cava, W.~G., Orzechowski, P., Burlacu, B., de~Fran{\c c}a, F.~O., Virgolin, M., Jin, Y., Kommenda, M. \harvardand\ Moore, J.~H.  \harvardyearleft 2021\harvardyearright , Contemporary symbolic regression methods and their relative performance, {\em in} `Proceedings of the Neural Information Processing Systems Track on Datasets and Benchmarks', Vol.~1.
+\harvarditem[La~Cava et~al.]{La~Cava, Orzechowski, Burlacu, de~Fran{\c c}a,
+  Virgolin, Jin, Kommenda \harvardand\ Moore}{2021}{lacava2021contemporary}
+La~Cava, W.~G., Orzechowski, P., Burlacu, B., de~Fran{\c c}a, F.~O., Virgolin,
+  M., Jin, Y., Kommenda, M. \harvardand\ Moore, J.~H.  \harvardyearleft
+  2021\harvardyearright , Contemporary symbolic regression methods and their
+  relative performance, {\em in} `Proceedings of the Neural Information
+  Processing Systems Track on Datasets and Benchmarks', Vol.~1.
 \newline\harvardurl{https://openreview.net/forum?id=xVQMrDLyGst}
 
 \harvarditem{Makke \harvardand\ Chawla}{2024}{makke2024interpretable}
-Makke, N. \harvardand\ Chawla, S.  \harvardyearleft 2024\harvardyearright , `Interpretable scientific discovery with symbolic regression: A review', {\em Artificial Intelligence Review} {\bf 57}(2).
+Makke, N. \harvardand\ Chawla, S.  \harvardyearleft 2024\harvardyearright ,
+  `Interpretable scientific discovery with symbolic regression: A review', {\em
+  Artificial Intelligence Review} {\bf 57}(2).
 \newline\harvardurl{https://doi.org/10.1007/s10462-023-10622-0}
 
-\harvarditem[Orzechowski et~al.]{Orzechowski, La~Cava \harvardand\ Moore}{2018}{orzechowski2018where}
-Orzechowski, P., La~Cava, W. \harvardand\ Moore, J.~H.  \harvardyearleft 2018\harvardyearright , Where are we now? a large benchmark study of recent symbolic regression methods, {\em in} `Proceedings of the Genetic and Evolutionary Computation Conference', Association for Computing Machinery, New York, NY, USA, pp.~1183--1190.
+\harvarditem[Orzechowski et~al.]{Orzechowski, La~Cava \harvardand\
+  Moore}{2018}{orzechowski2018where}
+Orzechowski, P., La~Cava, W. \harvardand\ Moore, J.~H.  \harvardyearleft
+  2018\harvardyearright , Where are we now? a large benchmark study of recent
+  symbolic regression methods, {\em in} `Proceedings of the Genetic and
+  Evolutionary Computation Conference', Association for Computing Machinery,
+  New York, NY, USA, pp.~1183--1190.
 \newline\harvardurl{https://doi.org/10.1145/3205455.3205539}
 
-\harvarditem[Petersen et~al.]{Petersen, Landajuela~Larma, Mundhenk, Santiago, Kim \harvardand\ Kim}{2021}{petersen2021deep}
-Petersen, B.~K., Landajuela~Larma, M., Mundhenk, T.~N., Santiago, C.~P., Kim, S.~K. \harvardand\ Kim, J.~T.  \harvardyearleft 2021\harvardyearright , Deep symbolic regression: Recovering mathematical expressions from data via risk-seeking policy gradients, {\em in} `International Conference on Learning Representations'.
+\harvarditem[Petersen et~al.]{Petersen, Landajuela~Larma, Mundhenk, Santiago,
+  Kim \harvardand\ Kim}{2021}{petersen2021deep}
+Petersen, B.~K., Landajuela~Larma, M., Mundhenk, T.~N., Santiago, C.~P., Kim,
+  S.~K. \harvardand\ Kim, J.~T.  \harvardyearleft 2021\harvardyearright , Deep
+  symbolic regression: Recovering mathematical expressions from data via
+  risk-seeking policy gradients, {\em in} `International Conference on Learning
+  Representations'.
 \newline\harvardurl{https://arxiv.org/abs/1912.04871}
 
 \harvarditem{Rudin}{2019}{rudin2019stop}
-Rudin, C.  \harvardyearleft 2019\harvardyearright , `Stop explaining black box machine learning models for high stakes decisions and use interpretable models instead', {\em Nature Machine Intelligence} {\bf 1}(5),~206--215.
+Rudin, C.  \harvardyearleft 2019\harvardyearright , `Stop explaining black box
+  machine learning models for high stakes decisions and use interpretable
+  models instead', {\em Nature Machine Intelligence} {\bf 1}(5),~206--215.
 \newline\harvardurl{https://doi.org/10.1038/s42256-019-0048-x}
 
-\harvarditem[Sahoo et~al.]{Sahoo, Lampert \harvardand\ Martius}{2018}{sahoo2018eql}
-Sahoo, S.~S., Lampert, C.~H. \harvardand\ Martius, G.  \harvardyearleft 2018\harvardyearright , Learning equations for extrapolation and control, {\em in} `Proceedings of the 35th International Conference on Machine Learning', Vol.~80 of {\em Proceedings of Machine Learning Research}, PMLR, pp.~4442--4450.
+\harvarditem[Sahoo et~al.]{Sahoo, Lampert \harvardand\
+  Martius}{2018}{sahoo2018eql}
+Sahoo, S.~S., Lampert, C.~H. \harvardand\ Martius, G.  \harvardyearleft
+  2018\harvardyearright , Learning equations for extrapolation and control,
+  {\em in} `Proceedings of the 35th International Conference on Machine
+  Learning', Vol.~80 of {\em Proceedings of Machine Learning Research}, PMLR,
+  pp.~4442--4450.
 \newline\harvardurl{https://proceedings.mlr.press/v80/sahoo18a.html}
 
 \harvarditem{{SRBench contributors}}{n.d.}{srbenchRepository}
-{SRBench contributors}  \harvardyearleft n.d.\harvardyearright , `{SRBench}: A living benchmark framework for symbolic regression', GitHub repository.
-\newblock Revision ac1059bae0f641cf9e4dfd5c91add5d4e01dbcb5, accessed 21 August 2026.
+{SRBench contributors}  \harvardyearleft n.d.\harvardyearright , `{SRBench}: A
+  living benchmark framework for symbolic regression', GitHub repository.
+\newblock Revision ac1059bae0f641cf9e4dfd5c91add5d4e01dbcb5, accessed 21 August
+  2026.
 \newline\harvardurl{https://github.com/cavalab/srbench}
 
 \harvarditem{Stephens}{2026}{stephens2026gplearn}
-Stephens, T.  \harvardyearleft 2026\harvardyearright , `{gplearn}: Genetic programming in python', Software documentation.
+Stephens, T.  \harvardyearleft 2026\harvardyearright , `{gplearn}: Genetic
+  programming in python', Software documentation.
 \newblock Accessed 20 August 2026.
 \newline\harvardurl{https://gplearn.readthedocs.io/en/stable/}
 
 \harvarditem{Udrescu \harvardand\ Tegmark}{2020}{udrescu2020ai}
-Udrescu, S.-M. \harvardand\ Tegmark, M.  \harvardyearleft 2020\harvardyearright , `{AI Feynman}: A physics-inspired method for symbolic regression', {\em Science Advances} {\bf 6}(16),~eaay2631.
+Udrescu, S.-M. \harvardand\ Tegmark, M.  \harvardyearleft 2020\harvardyearright
+  , `{AI Feynman}: A physics-inspired method for symbolic regression', {\em
+  Science Advances} {\bf 6}(16),~eaay2631.
 \newline\harvardurl{https://doi.org/10.1126/sciadv.aay2631}
 
-\harvarditem[Wang et~al.]{Wang, Wang, Li, Zhou \harvardand\ Sun}{2024}{wang2024exploring}
-Wang, G., Wang, E., Li, Z., Zhou, J. \harvardand\ Sun, Z.  \harvardyearleft 2024\harvardyearright , `Exploring the mathematic equations behind the materials science data using interpretable symbolic regression', {\em Interdisciplinary Materials} {\bf 3}(4),~637--657.
+\harvarditem[Wang et~al.]{Wang, Wang, Li, Zhou \harvardand\
+  Sun}{2024}{wang2024exploring}
+Wang, G., Wang, E., Li, Z., Zhou, J. \harvardand\ Sun, Z.  \harvardyearleft
+  2024\harvardyearright , `Exploring the mathematic equations behind the
+  materials science data using interpretable symbolic regression', {\em
+  Interdisciplinary Materials} {\bf 3}(4),~637--657.
 \newline\harvardurl{https://doi.org/10.1002/idm2.12180}
 
 \end{thebibliography}
