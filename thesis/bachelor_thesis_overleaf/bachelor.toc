@@ -51,14 +51,14 @@
 \contentsline {subsection}{\numberline {6.2.2}Performance by Problem}{33}{subsection.6.2.2}%
 \contentsline {subsection}{\numberline {6.2.3}Analytical and Empirical Problems}{34}{subsection.6.2.3}%
 \contentsline {section}{\numberline {6.3}Effects of Input Scaling and Repetition Variability}{34}{section.6.3}%
-\contentsline {subsection}{\numberline {6.3.1}Effect of Domain Normalization}{35}{subsection.6.3.1}%
-\contentsline {subsection}{\numberline {6.3.2}Stability Across Repetitions}{36}{subsection.6.3.2}%
-\contentsline {section}{\numberline {6.4}Symbolic Model Properties}{37}{section.6.4}%
+\contentsline {subsection}{\numberline {6.3.1}Effect of Domain Normalization}{34}{subsection.6.3.1}%
+\contentsline {subsection}{\numberline {6.3.2}Stability Across Repetitions}{35}{subsection.6.3.2}%
+\contentsline {section}{\numberline {6.4}Symbolic Model Properties}{36}{section.6.4}%
 \contentsline {subsection}{\numberline {6.4.1}Expression Complexity}{37}{subsection.6.4.1}%
 \contentsline {subsection}{\numberline {6.4.2}Symbolic Simplification and Fallbacks}{38}{subsection.6.4.2}%
 \contentsline {section}{\numberline {6.5}Computational Efficiency}{38}{section.6.5}%
-\contentsline {subsection}{\numberline {6.5.1}Model-Fitting Time}{39}{subsection.6.5.1}%
-\contentsline {subsection}{\numberline {6.5.2}Prediction and Expression-Extraction Time}{40}{subsection.6.5.2}%
+\contentsline {subsection}{\numberline {6.5.1}Model-Fitting Time}{38}{subsection.6.5.1}%
+\contentsline {subsection}{\numberline {6.5.2}Prediction and Expression-Extraction Time}{39}{subsection.6.5.2}%
 \contentsline {section}{\numberline {6.6}Consolidated Framework Comparison}{40}{section.6.6}%
 \contentsline {chapter}{\numberline {7}Discussion}{42}{chapter.7}%
 \contentsline {section}{\numberline {7.1}Interpretation of Framework Trade-Offs}{42}{section.7.1}%

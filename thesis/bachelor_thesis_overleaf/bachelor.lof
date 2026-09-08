@@ -9,7 +9,7 @@
 \contentsline {figure}{\numberline {6.2}{\ignorespaces Mean coefficient of determination by framework, problem, and input-scaling condition.}}{32}{figure.6.2}%
 \contentsline {figure}{\numberline {6.3}{\ignorespaces Effect of domain normalization on mean range-normalized RMSE. The diagonal represents equal error under both input-scaling conditions.}}{35}{figure.6.3}%
 \contentsline {figure}{\numberline {6.4}{\ignorespaces Distribution of repetition-level range-normalized RMSE by framework and input-scaling condition.}}{36}{figure.6.4}%
-\contentsline {figure}{\numberline {6.5}{\ignorespaces Mean simplified expression-tree node count by framework, problem, and input-scaling condition.}}{38}{figure.6.5}%
+\contentsline {figure}{\numberline {6.5}{\ignorespaces Mean simplified expression-tree node count by framework, problem, and input-scaling condition.}}{37}{figure.6.5}%
 \contentsline {figure}{\numberline {6.6}{\ignorespaces Mean model-fitting time by framework, problem, and input-scaling condition.}}{39}{figure.6.6}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }

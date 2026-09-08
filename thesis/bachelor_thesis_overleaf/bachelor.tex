@@ -661,7 +661,7 @@ Framework-independent structural measures are computed before and after simplifi
 
 \chapter{Results}
 
-This chapter presents the results of the completed benchmark. It first reports trial and symbolic-analysis coverage before comparing the frameworks in terms of predictive performance, sensitivity to input scaling, stability across repetitions, expression complexity, symbolic recovery, and computational efficiency. The chapter concludes with a consolidated comparison of the observed framework trade-offs.
+This chapter presents the results of the completed benchmark. It first reports trial and symbolic-analysis coverage before comparing the frameworks in terms of predictive performance, sensitivity to input scaling, stability across repetitions, expression complexity, symbolic recovery, and computational efficiency.
 
 \section{Trial and Analysis Coverage}
 
@@ -669,7 +669,7 @@ Before comparing the frameworks, it is necessary to establish which trials compl
 
 \subsection{Trial Completion and Failures}
 
-The complete experimental matrix comprised ten problems, six symbolic regression frameworks, two input-scaling conditions, and ten repetition labels, resulting in 1200 planned trials. Of these trials, 1187 completed successfully and 13 failed, corresponding to an overall completion rate of 98.9\%. No trial was missing from the recorded matrix. Table~\ref{tab:results-trial-coverage} shows that six problems completed all 120 trials, while failures occurred for Piston, Combined Cycle Power Plant (CCPP), Wing Weight, and Gas Turbine NOx.
+The complete experimental matrix comprised ten problems, six symbolic regression frameworks, two input-scaling conditions, and ten repetition labels, resulting in 1200 planned trials. Of these trials, 1187 completed successfully and 13 failed, corresponding to an overall completion rate of 98.9\%. Table~\ref{tab:results-trial-coverage} shows that six problems completed all 120 trials, while failures occurred for Piston, Combined Cycle Power Plant (CCPP), Wing Weight, and Gas Turbine NOx.
 
 \begin{table}[H]
     \centering
@@ -800,7 +800,7 @@ Airfoil Self-Noise & Domain-normalized & Operon & 0.1120 \\
 \bottomrule
 \end{longtable}
 
-The analytical problems generally admitted substantially lower errors than the external datasets, although performance differed between methods. Operon nearly recovered the Cantilever mapping numerically under raw inputs and reached mean NRMSE below 0.02 on several analytical configurations. The Gas Turbine NOx problem was the most consistently difficult empirical task: even its best framework produced negative mean $R^2$ in both conditions ($-0.4349$ for raw inputs and $-0.4763$ for normalized inputs). Airfoil Self-Noise and Concrete Strength were also more difficult than the strongest analytical results, but their best mean $R^2$ values remained positive at approximately 0.65 and 0.81, respectively.
+The analytical problems generally admitted substantially lower errors than the external datasets, although performance differed between methods. Operon nearly recovered the Cantilever mapping numerically under raw inputs and reached mean NRMSE below 0.02 on several analytical configurations. The Gas Turbine NOx problem was the most consistently difficult empirical task, even its best framework produced negative mean $R^2$ in both conditions ($-0.4349$ for raw inputs and $-0.4763$ for normalized inputs). Airfoil Self-Noise and Concrete Strength were also more difficult than the strongest analytical results, but their best mean $R^2$ values remained positive at approximately 0.65 and 0.81, respectively.
 
 \subsection{Analytical and Empirical Problems}
 
@@ -820,11 +820,9 @@ The four analytical problems and six external datasets serve different evaluatio
     \end{tabular}
 \end{table}
 
-No framework produced an expression classified as an exact symbolic match to the generating equation on any analytical problem. Low numerical error therefore did not imply recovery of the original expression within the benchmark's symbolic-equivalence procedure. The analytical tasks consequently provide evidence about both approximation quality and the difference between predictive agreement and structural recovery.
-
 \section{Effects of Input Scaling and Repetition Variability}
 
-In addition to average predictive performance, the benchmark evaluates whether the results change when the inputs are domain-normalized and how strongly they vary across repeated trials. These analyses reveal whether a framework's observed performance is consistent across preprocessing conditions and repetitions.
+In addition to average predictive performance, the benchmark evaluates whether the results change when the inputs are domain-normalized and how strongly they vary across repeated trials. This analysis reveals whether a framework's observed performance is consistent across preprocessing conditions and repetitions.
 
 \subsection{Effect of Domain Normalization}
 
@@ -914,7 +912,7 @@ Expression complexity varied substantially between frameworks. Table~\ref{tab:re
     \end{tabular}
 \end{table}
 
-Figure~\ref{fig:results-complexity-heatmaps} shows that expression size also depended on the problem and scaling condition, so the aggregate ordering did not hold uniformly in every cell. Complexity must therefore be considered alongside prediction error at the framework--problem level rather than interpreted only through one framework-wide average.
+Figure~\ref{fig:results-complexity-heatmaps} shows that expression size is also dependent on the problem and scaling condition, so the aggregate ordering did not hold uniformly in every cell. Complexity must therefore be considered alongside prediction error at the framework--problem level rather than interpreted only through one framework-wide average.
 
 \begin{figure}[H]
     \centering
@@ -953,7 +951,7 @@ Computational efficiency is reported separately for model fitting and for the su
 
 \subsection{Model-Fitting Time}
 
-Model-fitting times describe the evaluated configurations under the common one-thread execution controls; they are not the result of equal wall-clock search budgets. Operon had the lowest median problem-level mean fit time at 3.89 seconds, followed by ITEA at 5.63 seconds. EQL required 24.48 seconds, gplearn 37.62 seconds, GeneticEngine 60.24 seconds, and PySR 89.76 seconds. PySR's fit times were comparatively consistent with the configured fixed search duration, while the other methods showed stronger problem-dependent variation.
+Model-fitting times describe the evaluated configurations under the common one-thread execution controls, they are not the result of equal wall-clock search budgets. Operon had the lowest median problem-level mean fit time at 3.89 seconds, followed by ITEA at 5.63 seconds. EQL required 24.48 seconds, gplearn 37.62 seconds, GeneticEngine 60.24 seconds, and PySR 89.76 seconds. PySR's fit times were comparatively consistent with the configured fixed search duration, while the other methods showed stronger problem-dependent variation.
 
 \begin{table}[H]
     \centering
