@@ -1,16 +1,16 @@
 # Fdb version 4
-["bibtex bachelor"] 1788887015.47146 "bachelor.aux" "bachelor.bbl" "bachelor" 1788887540.12243 0
+["bibtex bachelor"] 1788888109.60699 "bachelor.aux" "bachelor.bbl" "bachelor" 1788890005.30947 0
   "./literatur.bib" 1787333348.91899 12431 dc0c7c42f7801c88358c5345b89d71bd ""
   "/usr/share/texlive/texmf-dist/bibtex/bst/harvard/agsm.bst" 1136766823 25549 e3d0f1ab4ae55e777f7352db30e2c6f7 ""
-  "bachelor.aux" 1788887539.99103 45311 b9ebd4e2857650c96ed59691253d207c "pdflatex"
+  "bachelor.aux" 1788890005.17067 48759 a53e5be7ebfbcf2ab8e395296f4a065c "pdflatex"
   (generated)
   "bachelor.bbl"
   "bachelor.blg"
   (rewritten before read)
-["pdflatex"] 1788887538.71243 "/home/tobias-albrecht/Programming/SurrogateModel_SRBench/thesis/bachelor_thesis_overleaf/bachelor.tex" "bachelor.pdf" "bachelor" 1788887540.12266 0
+["pdflatex"] 1788890002.14888 "/home/tobias-albrecht/Programming/SurrogateModel_SRBench/thesis/bachelor_thesis_overleaf/bachelor.tex" "bachelor.pdf" "bachelor" 1788890005.30971 0
   "/etc/texmf/web2c/texmf.cnf" 1785263456.53489 475 c0e671620eb5563b2130f56340a5fde8 ""
   "/home/tobias-albrecht/.texlive2025/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1200.600pk" 1785678706.60945 14040 9cc40933fd5ca631f26df47fccd4c6c1 ""
-  "/home/tobias-albrecht/Programming/SurrogateModel_SRBench/thesis/bachelor_thesis_overleaf/bachelor.tex" 1788887538.52079 93780 43d7a6e44a97c522ab42fbfe930682e2 ""
+  "/home/tobias-albrecht/Programming/SurrogateModel_SRBench/thesis/bachelor_thesis_overleaf/bachelor.tex" 1788890001.9501 95392 91a1ff94258b733dbb0770365600b5d9 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/tcrm1200.tfm" 1136768653 1536 74b7293ec3713bb7fdca8dd1bd1f469c ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmbsy6.tfm" 1246382020 1124 14ccf5552bc7f77ca02a8a402bea8bfb ""
@@ -150,12 +150,22 @@
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1785263467 128227 ed67923a37f7748d267799454bc1f95b ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1785263685 2701506 09430f13b31b925a55f6706672243b14 ""
   "Logo.pdf" 1786467577.67518 25925 9edda2e98ef759575aed3c9677327aa4 ""
-  "bachelor.aux" 1788887539.99103 45311 b9ebd4e2857650c96ed59691253d207c "pdflatex"
-  "bachelor.bbl" 1788887015.49777 9305 108b299e5dfe3099800b8bdbb25af507 "bibtex bachelor"
-  "bachelor.lof" 1788887539.99997 1287 81036e43a9837bed3a87d9dd463216e0 "pdflatex"
-  "bachelor.lot" 1788887539.99997 2935 5e67982ebd11ecffd9839f263d0b69ea "pdflatex"
-  "bachelor.tex" 1788887538.52079 93780 43d7a6e44a97c522ab42fbfe930682e2 ""
-  "bachelor.toc" 1788887539.99997 6142 fe597f189095f85dc0a711f5f18f137e "pdflatex"
+  "bachelor.aux" 1788890005.17067 48759 a53e5be7ebfbcf2ab8e395296f4a065c "pdflatex"
+  "bachelor.bbl" 1788888109.63782 9463 84e639375e8d87f4feee4d272991f05f "bibtex bachelor"
+  "bachelor.lof" 1788890005.17967 2962 a97db3d1cbf6c1c4fed17953b4ce1cf1 "pdflatex"
+  "bachelor.lot" 1788890005.17967 2935 4d6870eaf681ba4a4ac028063e4cee3e "pdflatex"
+  "bachelor.tex" 1788890001.9501 95392 91a1ff94258b733dbb0770365600b5d9 ""
+  "bachelor.toc" 1788890005.17967 6142 1b38a4953f7632896c316f43df19ffdf "pdflatex"
+  "images/results/complexity_heatmap_domain_minmax.png" 1788888004.18859 179916 bebe8e92e3d0a1c229773f0c2f455a2b ""
+  "images/results/complexity_heatmap_raw.png" 1788888004.18847 181702 be115eeb593d69f28a38b5a41c46671d ""
+  "images/results/fit_time_heatmap_domain_minmax.png" 1788888004.18891 184785 cddc95b7844e59d2abd8830c6f863dc3 ""
+  "images/results/fit_time_heatmap_raw.png" 1788888004.18876 176856 448f8ac11cfdfb41a38689cffe0a4e97 ""
+  "images/results/normalization_effect.png" 1788888004.18675 174950 2733146aadfedd1a7b7c82a137c2acbc ""
+  "images/results/nrmse_heatmap_domain_minmax.png" 1788888004.18614 194869 2979a8606530cbcee08dfc6bbc51225f ""
+  "images/results/nrmse_heatmap_raw.png" 1788888004.18425 192897 5391cb10b2f534d65684eebd37412d33 ""
+  "images/results/r2_heatmap_domain_minmax.png" 1788888004.18657 210324 822cfc5466c75e5411f66b5ab486c7ea ""
+  "images/results/r2_heatmap_raw.png" 1788888004.18639 208037 5dd0f8ed833e6192941df43a0824a8d6 ""
+  "images/results/repetition_nrmse_distributions.png" 1788888004.18692 204762 3ad746e78a14c8b5c7911836703ee968 ""
   (generated)
   "bachelor.aux"
   "bachelor.lof"

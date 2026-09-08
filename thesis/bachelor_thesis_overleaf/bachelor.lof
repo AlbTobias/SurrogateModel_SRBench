@@ -5,12 +5,16 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {6.1}{\ignorespaces Mean range-normalized RMSE by framework, problem, and input-scaling condition.}}{32}{figure.6.1}%
-\contentsline {figure}{\numberline {6.2}{\ignorespaces Mean coefficient of determination by framework, problem, and input-scaling condition.}}{32}{figure.6.2}%
-\contentsline {figure}{\numberline {6.3}{\ignorespaces Effect of domain normalization on mean range-normalized RMSE. The diagonal represents equal error under both input-scaling conditions.}}{35}{figure.6.3}%
-\contentsline {figure}{\numberline {6.4}{\ignorespaces Distribution of repetition-level range-normalized RMSE by framework and input-scaling condition.}}{36}{figure.6.4}%
-\contentsline {figure}{\numberline {6.5}{\ignorespaces Mean simplified expression-tree node count by framework, problem, and input-scaling condition.}}{37}{figure.6.5}%
-\contentsline {figure}{\numberline {6.6}{\ignorespaces Mean model-fitting time by framework, problem, and input-scaling condition.}}{39}{figure.6.6}%
+\contentsline {figure}{\numberline {6.1}{\ignorespaces Mean range-normalized RMSE by framework and problem using raw inputs. Cell colors represent the base-10 logarithm of NRMSE, while annotations show the untransformed values.}}{32}{figure.6.1}%
+\contentsline {figure}{\numberline {6.2}{\ignorespaces Mean range-normalized RMSE by framework and problem using domain-normalized inputs. Cell colors represent the base-10 logarithm of NRMSE, while annotations show the untransformed values.}}{32}{figure.6.2}%
+\contentsline {figure}{\numberline {6.3}{\ignorespaces Mean coefficient of determination by framework and problem using raw inputs. The color scale is clipped to $[-1,1]$, while annotations report the untruncated values.}}{33}{figure.6.3}%
+\contentsline {figure}{\numberline {6.4}{\ignorespaces Mean coefficient of determination by framework and problem using domain-normalized inputs. The color scale is clipped to $[-1,1]$, while annotations report the untruncated values.}}{33}{figure.6.4}%
+\contentsline {figure}{\numberline {6.5}{\ignorespaces Effect of domain normalization on mean range-normalized RMSE. The diagonal represents equal error under both input-scaling conditions.}}{37}{figure.6.5}%
+\contentsline {figure}{\numberline {6.6}{\ignorespaces Distribution of repetition-level range-normalized RMSE by framework and input-scaling condition. Points represent successful trials across all problems, boxes summarize their distributions, and red annotations report failed trials.}}{38}{figure.6.6}%
+\contentsline {figure}{\numberline {6.7}{\ignorespaces Mean simplified expression-tree node count by framework and problem using raw inputs. An asterisk indicates that at least one expression in the cell required the unsimplified complexity fallback and was excluded from the displayed simplified mean.}}{40}{figure.6.7}%
+\contentsline {figure}{\numberline {6.8}{\ignorespaces Mean simplified expression-tree node count by framework and problem using domain-normalized inputs. An asterisk indicates that at least one expression in the cell required the unsimplified complexity fallback and was excluded from the displayed simplified mean.}}{40}{figure.6.8}%
+\contentsline {figure}{\numberline {6.9}{\ignorespaces Mean model-fitting time by framework and problem using raw inputs. Cell colors represent the base-10 logarithm of time, while annotations report seconds.}}{42}{figure.6.9}%
+\contentsline {figure}{\numberline {6.10}{\ignorespaces Mean model-fitting time by framework and problem using domain-normalized inputs. Cell colors represent the base-10 logarithm of time, while annotations report seconds and are based on successful trials only.}}{43}{figure.6.10}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }

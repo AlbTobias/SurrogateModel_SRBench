@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import argparse
 import csv
+import json
 from pathlib import Path
 
 import matplotlib.pyplot as plt
@@ -25,6 +26,14 @@ PROBLEMS = {
 }
 ALGORITHMS = ("gplearn", "operon", "pysr", "geneticengine", "itea", "eql")
 SCALINGS = ("raw", "domain_minmax")
+ALGORITHM_LABELS = {
+    "gplearn": "gplearn",
+    "operon": "Operon",
+    "pysr": "PySR",
+    "geneticengine": "GeneticEngine",
+    "itea": "ITEA",
+    "eql": "EQL",
+}
 
 
 def load_rows(project_dir: Path) -> list[dict[str, object]]:
@@ -94,7 +103,7 @@ def save_r2_heatmap(rows: list[dict[str, object]], scaling: str, output: Path) -
 
 def save_positive_metric_heatmap(
     rows: list[dict[str, object]], scaling: str, metric: str, title: str,
-    colorbar_label: str, output: Path
+    colorbar_label: str, output: Path, mark_fallbacks: bool = False
 ) -> None:
     selected = {(str(r["problem"]), str(r["algorithm"])): r for r in rows if r["scaling"] == scaling}
     matrix = np.array([
@@ -112,9 +121,99 @@ def save_positive_metric_heatmap(
         for j in range(matrix.shape[1]):
             value = matrix[i, j]
             label = "--" if np.isnan(value) else f"{value:.3g}"
+            if mark_fallbacks and number(selected[(list(PROBLEMS)[i], ALGORITHMS[j])],
+                                                 "unsimplified_fallback_trials") > 0:
+                label += "*"
             ax.text(j, i, label, ha="center", va="center", fontsize=7,
                     color="white" if shown[i, j] < midpoint else "black")
     fig.colorbar(image, ax=ax, label=colorbar_label)
+    fig.savefig(output, dpi=220)
+    plt.close(fig)
+
+
+def save_normalization_effect(rows: list[dict[str, object]], output: Path) -> None:
+    selected = {
+        (str(row["problem"]), str(row["algorithm"]), str(row["scaling"])): row
+        for row in rows
+    }
+    fig, ax = plt.subplots(figsize=(7.6, 6.4), constrained_layout=True)
+    colors = plt.get_cmap("tab10")
+    all_values: list[float] = []
+    for index, algorithm in enumerate(ALGORITHMS):
+        raw_values = []
+        normalized_values = []
+        for problem in PROBLEMS:
+            raw = number(selected[(problem, algorithm, "raw")], "nrmse_range_mean")
+            normalized = number(
+                selected[(problem, algorithm, "domain_minmax")], "nrmse_range_mean"
+            )
+            if np.isfinite(raw) and np.isfinite(normalized) and raw > 0 and normalized > 0:
+                raw_values.append(raw)
+                normalized_values.append(normalized)
+                all_values.extend((raw, normalized))
+        ax.scatter(raw_values, normalized_values, s=42, alpha=0.8,
+                   color=colors(index), label=ALGORITHM_LABELS[algorithm])
+    lower = 10 ** np.floor(np.log10(min(all_values)))
+    upper = 10 ** np.ceil(np.log10(max(all_values)))
+    ax.plot([lower, upper], [lower, upper], linestyle="--", color="black", linewidth=1)
+    ax.set_xscale("log")
+    ax.set_yscale("log")
+    ax.set_xlim(lower, upper)
+    ax.set_ylim(lower, upper)
+    ax.set_xlabel("Mean NRMSE with raw inputs")
+    ax.set_ylabel("Mean NRMSE with domain-normalized inputs")
+    ax.set_title("Effect of domain normalization")
+    ax.grid(which="both", linestyle=":", alpha=0.35)
+    ax.legend(ncol=2, fontsize=8)
+    fig.savefig(output, dpi=220)
+    plt.close(fig)
+
+
+def load_trial_nrmse(project_dir: Path) -> tuple[dict[tuple[str, str], list[float]], dict[tuple[str, str], int]]:
+    values = {(scaling, algorithm): [] for scaling in SCALINGS for algorithm in ALGORITHMS}
+    failures = {(scaling, algorithm): 0 for scaling in SCALINGS for algorithm in ALGORITHMS}
+    for problem, (suite, _) in PROBLEMS.items():
+        for scaling in SCALINGS:
+            root = project_dir / "results" / problem / suite / scaling
+            for algorithm in ALGORITHMS:
+                for path in sorted((root / algorithm).glob("seed-*.json")):
+                    if path.name.endswith(".analysis.json"):
+                        continue
+                    result = json.loads(path.read_text(encoding="utf-8"))
+                    value = result.get("nrmse_range")
+                    if value is not None and np.isfinite(float(value)) and float(value) > 0:
+                        values[(scaling, algorithm)].append(float(value))
+                failures[(scaling, algorithm)] += len(
+                    list((root / "failures" / algorithm).glob("seed-*.json"))
+                )
+    return values, failures
+
+
+def save_repetition_distributions(project_dir: Path, output: Path) -> None:
+    values, failures = load_trial_nrmse(project_dir)
+    fig, axes = plt.subplots(1, 2, figsize=(12.5, 5.4), sharey=True, constrained_layout=True)
+    rng = np.random.default_rng(20260908)
+    for ax, scaling in zip(axes, SCALINGS):
+        groups = [values[(scaling, algorithm)] for algorithm in ALGORITHMS]
+        box = ax.boxplot(groups, tick_labels=[ALGORITHM_LABELS[a] for a in ALGORITHMS],
+                         showfliers=False, patch_artist=True)
+        for patch in box["boxes"]:
+            patch.set_facecolor("#8fb9dd")
+            patch.set_alpha(0.65)
+        for position, (algorithm, observations) in enumerate(zip(ALGORITHMS, groups), start=1):
+            jitter = rng.uniform(-0.16, 0.16, len(observations))
+            ax.scatter(position + jitter, observations, s=8, alpha=0.28,
+                       color="#244a6b", linewidths=0)
+            failed = failures[(scaling, algorithm)]
+            if failed:
+                ax.text(position, 0.97, f"{failed} failed", transform=ax.get_xaxis_transform(),
+                        ha="center", va="top", fontsize=7, color="#a51c30")
+        ax.set_yscale("log")
+        ax.set_title("Raw inputs" if scaling == "raw" else "Domain-normalized inputs")
+        ax.tick_params(axis="x", rotation=30)
+        ax.grid(axis="y", which="both", linestyle=":", alpha=0.35)
+    axes[0].set_ylabel("Repetition-level range-normalized RMSE")
+    fig.suptitle("Predictive variability across problems and repetitions")
     fig.savefig(output, dpi=220)
     plt.close(fig)
 
@@ -179,6 +278,7 @@ def main() -> None:
         "Mean simplified expression-tree node count",
         r"$\log_{10}(\mathrm{node\ count})$",
         args.output_dir / "complexity_heatmap_raw.png",
+        mark_fallbacks=True,
     )
     save_positive_metric_heatmap(
         rows,
@@ -187,6 +287,7 @@ def main() -> None:
         "Mean simplified expression-tree node count",
         r"$\log_{10}(\mathrm{node\ count})$",
         args.output_dir / "complexity_heatmap_domain_minmax.png",
+        mark_fallbacks=True,
     )
     save_positive_metric_heatmap(
         rows,
@@ -204,7 +305,9 @@ def main() -> None:
         r"$\log_{10}(\mathrm{seconds})$",
         args.output_dir / "fit_time_heatmap_domain_minmax.png",
     )
-    print(f"Wrote ten figures to {args.output_dir}")
+    save_normalization_effect(rows, args.output_dir / "normalization_effect.png")
+    save_repetition_distributions(project_dir, args.output_dir / "repetition_nrmse_distributions.png")
+    print(f"Wrote twelve figures to {args.output_dir}")
 
 
 if __name__ == "__main__":

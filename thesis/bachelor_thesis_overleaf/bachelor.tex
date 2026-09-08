@@ -727,20 +727,34 @@ Predictive performance is examined at three levels. The framework-wide compariso
 
 \subsection{Overall Framework Performance}
 
-Figure~\ref{fig:results-nrmse-heatmaps} compares the mean range-normalized RMSE (NRMSE) of every framework--problem combination under raw and domain-normalized inputs. Lower values indicate better predictive performance. The corresponding $R^2$ values are shown in Figure~\ref{fig:results-r2-heatmaps}, where values closer to one indicate a better fit and negative values indicate performance below prediction by the reference-test mean. Each cell is calculated from the successful repetitions available for that configuration.
+Figures~\ref{fig:results-nrmse-raw} and~\ref{fig:results-nrmse-domain} compare the mean range-normalized RMSE (NRMSE) of every framework--problem combination under raw and domain-normalized inputs. Lower values indicate better predictive performance. The corresponding $R^2$ values are shown in Figures~\ref{fig:results-r2-raw} and~\ref{fig:results-r2-domain}, where values closer to one indicate a better fit and negative values indicate performance below prediction by the reference-test mean. Each cell is calculated from the successful repetitions available for that configuration.
 
 \begin{figure}[H]
     \centering
-    \fbox{\parbox[c][3.2cm][c]{0.86\textwidth}{\centering\textcolor{red}{TODO: Regenerate the raw-input and domain-normalized NRMSE heatmaps for all ten problems.}}}
-    \caption{Mean range-normalized RMSE by framework, problem, and input-scaling condition.}
-    \label{fig:results-nrmse-heatmaps}
+    \includegraphics[width=0.96\textwidth]{images/results/nrmse_heatmap_raw.png}
+    \caption{Mean range-normalized RMSE by framework and problem using raw inputs. Cell colors represent the base-10 logarithm of NRMSE, while annotations show the untransformed values.}
+    \label{fig:results-nrmse-raw}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \fbox{\parbox[c][3.2cm][c]{0.86\textwidth}{\centering\textcolor{red}{TODO: Regenerate the raw-input and domain-normalized $R^2$ heatmaps for all ten problems.}}}
-    \caption{Mean coefficient of determination by framework, problem, and input-scaling condition.}
-    \label{fig:results-r2-heatmaps}
+    \includegraphics[width=0.96\textwidth]{images/results/nrmse_heatmap_domain_minmax.png}
+    \caption{Mean range-normalized RMSE by framework and problem using domain-normalized inputs. Cell colors represent the base-10 logarithm of NRMSE, while annotations show the untransformed values.}
+    \label{fig:results-nrmse-domain}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.96\textwidth]{images/results/r2_heatmap_raw.png}
+    \caption{Mean coefficient of determination by framework and problem using raw inputs. The color scale is clipped to $[-1,1]$, while annotations report the untruncated values.}
+    \label{fig:results-r2-raw}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.96\textwidth]{images/results/r2_heatmap_domain_minmax.png}
+    \caption{Mean coefficient of determination by framework and problem using domain-normalized inputs. The color scale is clipped to $[-1,1]$, while annotations report the untruncated values.}
+    \label{fig:results-r2-domain}
 \end{figure}
 
 Across the 20 problem--scaling combinations, Operon achieved the lowest mean NRMSE in 13 cases. ITEA was best in three cases, while PySR and EQL were each best in two. Neither gplearn nor GeneticEngine obtained the lowest mean NRMSE in any combination. When the 20 problem-level means are summarized by their median, Operon obtained the lowest NRMSE at 0.0259 and the highest median $R^2$ at 0.9849. ITEA and PySR formed the next group, with median NRMSE values of 0.0722 and 0.0773, respectively.
@@ -850,7 +864,7 @@ Figure~\ref{fig:results-scaling-effect} displays the paired raw and normalized r
 
 \begin{figure}[H]
     \centering
-    \fbox{\parbox[c][3.2cm][c]{0.86\textwidth}{\centering\textcolor{red}{TODO: Create a paired raw-versus-domain-normalized NRMSE plot using a logarithmic scale.}}}
+    \includegraphics[width=0.88\textwidth]{images/results/normalization_effect.png}
     \caption{Effect of domain normalization on mean range-normalized RMSE. The diagonal represents equal error under both input-scaling conditions.}
     \label{fig:results-scaling-effect}
 \end{figure}
@@ -881,8 +895,8 @@ ITEA produced nearly identical results across repetitions. This observation shou
 
 \begin{figure}[H]
     \centering
-    \fbox{\parbox[c][3.2cm][c]{0.86\textwidth}{\centering\textcolor{red}{TODO: Create repetition-level NRMSE distribution plots with a logarithmic error axis and distinguish failed trials from successful outliers.}}}
-    \caption{Distribution of repetition-level range-normalized RMSE by framework and input-scaling condition.}
+    \includegraphics[width=0.98\textwidth]{images/results/repetition_nrmse_distributions.png}
+    \caption{Distribution of repetition-level range-normalized RMSE by framework and input-scaling condition. Points represent successful trials across all problems, boxes summarize their distributions, and red annotations report failed trials.}
     \label{fig:results-repetition-distributions}
 \end{figure}
 
@@ -912,13 +926,20 @@ Expression complexity varied substantially between frameworks. Table~\ref{tab:re
     \end{tabular}
 \end{table}
 
-Figure~\ref{fig:results-complexity-heatmaps} shows that expression size is also dependent on the problem and scaling condition, so the aggregate ordering did not hold uniformly in every cell. Complexity must therefore be considered alongside prediction error at the framework--problem level rather than interpreted only through one framework-wide average.
+Figures~\ref{fig:results-complexity-raw} and~\ref{fig:results-complexity-domain} show that expression size is also dependent on the problem and scaling condition, so the aggregate ordering did not hold uniformly in every cell. Complexity must therefore be considered alongside prediction error at the framework--problem level rather than interpreted only through one framework-wide average.
 
 \begin{figure}[H]
     \centering
-    \fbox{\parbox[c][3.2cm][c]{0.86\textwidth}{\centering\textcolor{red}{TODO: Regenerate the raw-input and domain-normalized simplified-node-count heatmaps for all ten problems and mark simplification fallbacks separately.}}}
-    \caption{Mean simplified expression-tree node count by framework, problem, and input-scaling condition.}
-    \label{fig:results-complexity-heatmaps}
+    \includegraphics[width=0.96\textwidth]{images/results/complexity_heatmap_raw.png}
+    \caption{Mean simplified expression-tree node count by framework and problem using raw inputs. An asterisk indicates that at least one expression in the cell required the unsimplified complexity fallback and was excluded from the displayed simplified mean.}
+    \label{fig:results-complexity-raw}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.96\textwidth]{images/results/complexity_heatmap_domain_minmax.png}
+    \caption{Mean simplified expression-tree node count by framework and problem using domain-normalized inputs. An asterisk indicates that at least one expression in the cell required the unsimplified complexity fallback and was excluded from the displayed simplified mean.}
+    \label{fig:results-complexity-domain}
 \end{figure}
 
 \subsection{Symbolic Simplification and Fallbacks}
@@ -971,13 +992,20 @@ Model-fitting times describe the evaluated configurations under the common one-t
     \end{tabular}
 \end{table}
 
-Figure~\ref{fig:results-fit-time-heatmaps} displays the problem-level mean fit times separately for raw and normalized inputs. This placement makes it possible to distinguish framework-wide timing differences from problem-specific increases and from the reduced number of successful repetitions in failed configurations.
+Figures~\ref{fig:results-fit-time-raw} and~\ref{fig:results-fit-time-domain} display the problem-level mean fit times separately for raw and normalized inputs. This placement makes it possible to distinguish framework-wide timing differences from problem-specific increases and from the reduced number of successful repetitions in failed configurations.
 
 \begin{figure}[H]
     \centering
-    \fbox{\parbox[c][3.2cm][c]{0.86\textwidth}{\centering\textcolor{red}{TODO: Regenerate the raw-input and domain-normalized fit-time heatmaps for all ten problems using successful repetitions only.}}}
-    \caption{Mean model-fitting time by framework, problem, and input-scaling condition.}
-    \label{fig:results-fit-time-heatmaps}
+    \includegraphics[width=0.96\textwidth]{images/results/fit_time_heatmap_raw.png}
+    \caption{Mean model-fitting time by framework and problem using raw inputs. Cell colors represent the base-10 logarithm of time, while annotations report seconds.}
+    \label{fig:results-fit-time-raw}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.96\textwidth]{images/results/fit_time_heatmap_domain_minmax.png}
+    \caption{Mean model-fitting time by framework and problem using domain-normalized inputs. Cell colors represent the base-10 logarithm of time, while annotations report seconds and are based on successful trials only.}
+    \label{fig:results-fit-time-domain}
 \end{figure}
 
 \subsection{Prediction and Expression-Extraction Time}
