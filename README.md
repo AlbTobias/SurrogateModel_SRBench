@@ -225,10 +225,21 @@ remote named `upstream`.
 The surrogate-specific evaluator uses fixed, disjoint training and reference
 test sets instead of the upstream evaluator's random 75/25 split. The completed
 earlier suite artefacts remain under `results/`; v10 adds Airfoil Self-Noise
-without changing the earlier budgets or protocol. Explicit
-failure records are retained alongside successful trials. Before thesis tables
-are generated, rerun symbolic analysis and summary generation so every
-`summary.csv` reflects the complete set of trial artefacts.
+without changing the earlier budgets or protocol. Explicit failure records are
+retained alongside successful trials. Thesis reporting resolves these
+incremental suites at the individual problem--scaling--algorithm--seed level:
+`scripts/summarize_latest_results.py` accepts only manifests compatible with the
+v10 protocol and selects the highest suite version containing each coordinate.
+If success and failure records coexist within that suite, the most recently
+written record is used. The resulting auditable selection is written to
+`results/latest/manifest.csv`, with aggregate values in
+`results/latest/summary.csv`.
+
+Running `scripts/plot_benchmark_results.py` refreshes both resolved files before
+creating figures, and stops if any expected coordinate is missing or if a
+selected successful trial lacks a current symbolic-analysis sidecar. Therefore,
+later compatible reruns are incorporated automatically instead of requiring a
+hard-coded suite version for each problem.
 
 ## License and attribution
 

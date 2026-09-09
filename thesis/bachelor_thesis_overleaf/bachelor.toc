@@ -1,7 +1,7 @@
 \babel@toc {english}{}\relax 
 \contentsline {chapter}{Abstract}{II}{chapter*.1}%
 \contentsline {chapter}{\nonumberline List of Figures}{V}{chapter*.3}%
-\contentsline {chapter}{\nonumberline List of Tables}{VI}{chapter*.4}%
+\contentsline {chapter}{\nonumberline List of Tables}{VII}{chapter*.4}%
 \contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}%
 \contentsline {section}{\numberline {1.1}The Need for Interpretable Models}{1}{section.1.1}%
 \contentsline {section}{\numberline {1.2}Symbolic Regression as a Candidate Approach}{2}{section.1.2}%
@@ -53,20 +53,20 @@
 \contentsline {section}{\numberline {6.3}Effects of Input Scaling and Repetition Variability}{36}{section.6.3}%
 \contentsline {subsection}{\numberline {6.3.1}Effect of Domain Normalization}{36}{subsection.6.3.1}%
 \contentsline {subsection}{\numberline {6.3.2}Stability Across Repetitions}{37}{subsection.6.3.2}%
-\contentsline {section}{\numberline {6.4}Symbolic Model Properties}{39}{section.6.4}%
-\contentsline {subsection}{\numberline {6.4.1}Expression Complexity}{39}{subsection.6.4.1}%
-\contentsline {subsection}{\numberline {6.4.2}Symbolic Simplification and Fallbacks}{41}{subsection.6.4.2}%
-\contentsline {section}{\numberline {6.5}Computational Efficiency}{41}{section.6.5}%
-\contentsline {subsection}{\numberline {6.5.1}Model-Fitting Time}{41}{subsection.6.5.1}%
-\contentsline {subsection}{\numberline {6.5.2}Prediction and Expression-Extraction Time}{43}{subsection.6.5.2}%
-\contentsline {section}{\numberline {6.6}Consolidated Framework Comparison}{44}{section.6.6}%
-\contentsline {chapter}{\numberline {7}Discussion}{46}{chapter.7}%
-\contentsline {section}{\numberline {7.1}Interpretation of Framework Trade-Offs}{46}{section.7.1}%
-\contentsline {section}{\numberline {7.2}Suitability for Interpretable Surrogate Modeling}{46}{section.7.2}%
-\contentsline {section}{\numberline {7.3}Research Gaps and Future Benchmarking Needs}{46}{section.7.3}%
-\contentsline {chapter}{\numberline {8}Conclusion}{47}{chapter.8}%
-\contentsline {section}{\numberline {8.1}Summary of Findings}{47}{section.8.1}%
-\contentsline {section}{\numberline {8.2}Answer to the Research Question}{47}{section.8.2}%
-\contentsline {section}{\numberline {8.3}Outlook and Future Work}{47}{section.8.3}%
-\contentsline {chapter}{\nonumberline Bibliography}{48}{chapter*.11}%
+\contentsline {section}{\numberline {6.4}Symbolic Model Properties}{40}{section.6.4}%
+\contentsline {subsection}{\numberline {6.4.1}Expression Complexity}{40}{subsection.6.4.1}%
+\contentsline {subsection}{\numberline {6.4.2}Symbolic Simplification and Fallbacks}{42}{subsection.6.4.2}%
+\contentsline {section}{\numberline {6.5}Computational Efficiency}{43}{section.6.5}%
+\contentsline {subsection}{\numberline {6.5.1}Model-Fitting Time}{43}{subsection.6.5.1}%
+\contentsline {subsection}{\numberline {6.5.2}Prediction and Expression-Extraction Time}{45}{subsection.6.5.2}%
+\contentsline {section}{\numberline {6.6}Consolidated Framework Comparison}{45}{section.6.6}%
+\contentsline {chapter}{\numberline {7}Discussion}{47}{chapter.7}%
+\contentsline {section}{\numberline {7.1}Interpretation of Framework Trade-Offs}{47}{section.7.1}%
+\contentsline {section}{\numberline {7.2}Suitability for Interpretable Surrogate Modeling}{47}{section.7.2}%
+\contentsline {section}{\numberline {7.3}Research Gaps and Future Benchmarking Needs}{47}{section.7.3}%
+\contentsline {chapter}{\numberline {8}Conclusion}{48}{chapter.8}%
+\contentsline {section}{\numberline {8.1}Summary of Findings}{48}{section.8.1}%
+\contentsline {section}{\numberline {8.2}Answer to the Research Question}{48}{section.8.2}%
+\contentsline {section}{\numberline {8.3}Outlook and Future Work}{48}{section.8.3}%
+\contentsline {chapter}{\nonumberline Bibliography}{49}{chapter*.11}%
 \providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 

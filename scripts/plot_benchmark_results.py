@@ -11,6 +11,8 @@ from pathlib import Path
 import matplotlib.pyplot as plt
 import numpy as np
 
+from summarize_latest_results import write_latest_summary
+
 
 PROBLEMS = {
     "cantilever": ("benchmark_suite_v3", "Cantilever"),
@@ -37,16 +39,20 @@ ALGORITHM_LABELS = {
 
 
 def load_rows(project_dir: Path) -> list[dict[str, object]]:
+    summary = project_dir / "results" / "latest" / "summary.csv"
+    if not summary.exists():
+        raise FileNotFoundError(
+            f"Missing resolved summary: {summary}. Run scripts/summarize_latest_results.py first."
+        )
     rows: list[dict[str, object]] = []
-    for problem, (suite, label) in PROBLEMS.items():
-        for scaling in SCALINGS:
-            path = project_dir / "results" / problem / suite / scaling / "summary.csv"
-            if not path.exists():
-                raise FileNotFoundError(f"Missing summary: {path}")
-            with path.open(newline="", encoding="utf-8") as handle:
-                for row in csv.DictReader(handle):
-                    row.update(problem=problem, problem_label=label, scaling=scaling)
-                    rows.append(row)
+    with summary.open(newline="", encoding="utf-8") as handle:
+        for row in csv.DictReader(handle):
+            problem = str(row["problem"])
+            row.update(problem_label=PROBLEMS[problem][1], scaling=row["input_scaling"])
+            rows.append(row)
+    expected = len(PROBLEMS) * len(SCALINGS) * len(ALGORITHMS)
+    if len(rows) != expected:
+        raise ValueError(f"Expected {expected} resolved summary rows, found {len(rows)}")
     return rows
 
 
@@ -172,29 +178,38 @@ def save_normalization_effect(rows: list[dict[str, object]], output: Path) -> No
 def load_trial_nrmse(project_dir: Path) -> tuple[dict[tuple[str, str], list[float]], dict[tuple[str, str], int]]:
     values = {(scaling, algorithm): [] for scaling in SCALINGS for algorithm in ALGORITHMS}
     failures = {(scaling, algorithm): 0 for scaling in SCALINGS for algorithm in ALGORITHMS}
-    for problem, (suite, _) in PROBLEMS.items():
-        for scaling in SCALINGS:
-            root = project_dir / "results" / problem / suite / scaling
-            for algorithm in ALGORITHMS:
-                for path in sorted((root / algorithm).glob("seed-*.json")):
-                    if path.name.endswith(".analysis.json"):
-                        continue
-                    result = json.loads(path.read_text(encoding="utf-8"))
-                    value = result.get("nrmse_range")
-                    if value is not None and np.isfinite(float(value)) and float(value) > 0:
-                        values[(scaling, algorithm)].append(float(value))
-                failures[(scaling, algorithm)] += len(
-                    list((root / "failures" / algorithm).glob("seed-*.json"))
-                )
+    manifest = project_dir / "results" / "latest" / "manifest.csv"
+    if not manifest.exists():
+        raise FileNotFoundError(
+            f"Missing resolved manifest: {manifest}. Run scripts/summarize_latest_results.py first."
+        )
+    with manifest.open(newline="", encoding="utf-8") as handle:
+        for row in csv.DictReader(handle):
+            scaling = row["input_scaling"]
+            algorithm = row["algorithm"]
+            if row["status"] == "failed":
+                failures[(scaling, algorithm)] += 1
+            elif row["status"] == "success":
+                result = json.loads((project_dir / row["path"]).read_text(encoding="utf-8"))
+                value = result.get("nrmse_range")
+                if value is not None and np.isfinite(float(value)) and float(value) > 0:
+                    values[(scaling, algorithm)].append(float(value))
     return values, failures
 
 
-def save_repetition_distributions(project_dir: Path, output: Path) -> None:
+def save_repetition_distributions(project_dir: Path, output_dir: Path) -> None:
     values, failures = load_trial_nrmse(project_dir)
-    fig, axes = plt.subplots(1, 2, figsize=(12.5, 5.4), sharey=True, constrained_layout=True)
     rng = np.random.default_rng(20260908)
-    for ax, scaling in zip(axes, SCALINGS):
+    filenames = {
+        "raw": "repetition_nrmse_raw.png",
+        "domain_minmax": "repetition_nrmse_domain_minmax.png",
+    }
+    for scaling in SCALINGS:
+        fig, ax = plt.subplots(figsize=(9.2, 6.0), constrained_layout=True)
         groups = [values[(scaling, algorithm)] for algorithm in ALGORITHMS]
+        scaling_values = [value for observations in groups for value in observations]
+        lower = 10 ** np.floor(np.log10(min(scaling_values)))
+        upper = 10 ** np.ceil(np.log10(max(scaling_values)))
         box = ax.boxplot(groups, tick_labels=[ALGORITHM_LABELS[a] for a in ALGORITHMS],
                          showfliers=False, patch_artist=True)
         for patch in box["boxes"]:
@@ -209,13 +224,13 @@ def save_repetition_distributions(project_dir: Path, output: Path) -> None:
                 ax.text(position, 0.97, f"{failed} failed", transform=ax.get_xaxis_transform(),
                         ha="center", va="top", fontsize=7, color="#a51c30")
         ax.set_yscale("log")
+        ax.set_ylim(lower, upper)
         ax.set_title("Raw inputs" if scaling == "raw" else "Domain-normalized inputs")
         ax.tick_params(axis="x", rotation=30)
         ax.grid(axis="y", which="both", linestyle=":", alpha=0.35)
-    axes[0].set_ylabel("Repetition-level range-normalized RMSE")
-    fig.suptitle("Predictive variability across problems and repetitions")
-    fig.savefig(output, dpi=220)
-    plt.close(fig)
+        ax.set_ylabel("Repetition-level range-normalized RMSE")
+        fig.savefig(output_dir / filenames[scaling], dpi=220)
+        plt.close(fig)
 
 
 def save_framework_bars(
@@ -248,10 +263,26 @@ def save_framework_bars(
 def main() -> None:
     project_dir = Path(__file__).resolve().parents[1]
     parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--config", type=Path,
+        default=project_dir / "configs" / "benchmark_suite_v10.json",
+    )
     parser.add_argument("--output-dir", type=Path,
                         default=project_dir / "results" / "figures")
     args = parser.parse_args()
     args.output_dir.mkdir(parents=True, exist_ok=True)
+    statuses = write_latest_summary(
+        project_dir, args.config, project_dir / "results" / "latest"
+    )
+    if statuses["missing"]:
+        raise RuntimeError(
+            f"Resolved benchmark contains {statuses['missing']} missing trial coordinates"
+        )
+    if statuses["analysis_missing"]:
+        raise RuntimeError(
+            "Resolved benchmark contains "
+            f"{statuses['analysis_missing']} successful trials without current analysis sidecars"
+        )
     rows = load_rows(project_dir)
     save_heatmap(rows, "raw", args.output_dir / "nrmse_heatmap_raw.png")
     save_heatmap(rows, "domain_minmax", args.output_dir / "nrmse_heatmap_domain_minmax.png")
@@ -306,8 +337,11 @@ def main() -> None:
         args.output_dir / "fit_time_heatmap_domain_minmax.png",
     )
     save_normalization_effect(rows, args.output_dir / "normalization_effect.png")
-    save_repetition_distributions(project_dir, args.output_dir / "repetition_nrmse_distributions.png")
-    print(f"Wrote twelve figures to {args.output_dir}")
+    save_repetition_distributions(project_dir, args.output_dir)
+    print(
+        f"Wrote thirteen figures to {args.output_dir} from resolved results "
+        f"(success={statuses['success']}, failed={statuses['failed']})"
+    )
 
 
 if __name__ == "__main__":

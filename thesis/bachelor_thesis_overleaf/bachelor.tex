@@ -648,7 +648,7 @@ Total & -- & 960 & 947 & 13 \\
 
 Symbolic post-processing is performed after framework execution and writes a separate analysis sidecar. This separation preserves the original expression and metrics returned by the framework while allowing the symbolic analysis procedure to be repeated or improved without fitting the model again. Each sidecar records a hash of its source trial.
 
-Expressions are translated into SymPy using parsers adapted to the expression formats returned by the frameworks. This includes conversion of the prefix-style function notation used by gplearn and the infix expressions returned by the other adapters. Parsing, coordinate transformation, simplification, and ground-truth comparison are treated as separate stages. A failure or timeout in one symbolic stage is recorded explicitly and does not invalidate the predictive results of the corresponding trial.
+Expressions are translated into SymPy using parsers adapted to the expression formats returned by the frameworks. This includes conversion of the prefix-style function notation used by gplearn and the infix expressions returned by the other adapters. Parsing, coordinate transformation and simplification are treated as separate stages. A failure or timeout in one symbolic stage is recorded explicitly and does not invalidate the predictive results of the corresponding trial.
 
 For trials trained on normalized inputs, the symbolic variables $z_j$ are replaced by the inverse of Equation~\ref{eq:experiment-domain-scaling},
 \begin{equation}
@@ -669,7 +669,7 @@ Before comparing the frameworks, it is necessary to establish which trials compl
 
 \subsection{Trial Completion and Failures}
 
-The complete experimental matrix comprised ten problems, six symbolic regression frameworks, two input-scaling conditions, and ten repetition labels, resulting in 1200 planned trials. Of these trials, 1187 completed successfully and 13 failed, corresponding to an overall completion rate of 98.9\%. Table~\ref{tab:results-trial-coverage} shows that six problems completed all 120 trials, while failures occurred for Piston, Combined Cycle Power Plant (CCPP), Wing Weight, and Gas Turbine NOx.
+The complete experimental matrix comprised ten problems, six symbolic regression frameworks, two input-scaling conditions, and ten repetition labels, resulting in 1200 planned trials. Because the problem collection was expanded incrementally, the reported matrix resolves each problem--scaling--framework--repetition coordinate to its newest result from a suite compatible with the final protocol. This procedure incorporates later reruns without replacing coordinates that were not rerun in the newer suite. Of the resolved trials, 1199 completed successfully and one failed, corresponding to an overall completion rate of 99.9\%. Table~\ref{tab:results-trial-coverage} shows that nine problems completed all 120 trials, while the remaining failure occurred for Combined Cycle Power Plant (CCPP).
 
 \begin{table}[H]
     \centering
@@ -681,25 +681,25 @@ The complete experimental matrix comprised ten problems, six symbolic regression
         \midrule
         Cantilever & 120 & 120 & 0 \\
         Borehole & 120 & 120 & 0 \\
-        Piston & 120 & 118 & 2 \\
-        CCPP & 120 & 114 & 6 \\
+        Piston & 120 & 120 & 0 \\
+        CCPP & 120 & 119 & 1 \\
         Naval Propulsion & 120 & 120 & 0 \\
-        Wing Weight & 120 & 117 & 3 \\
-        Gas Turbine NOx & 120 & 118 & 2 \\
+        Wing Weight & 120 & 120 & 0 \\
+        Gas Turbine NOx & 120 & 120 & 0 \\
         Concrete Strength & 120 & 120 & 0 \\
         Energy Efficiency & 120 & 120 & 0 \\
         Airfoil Self-Noise & 120 & 120 & 0 \\
         \midrule
-        Total & 1200 & 1187 & 13 \\
+        Total & 1200 & 1199 & 1 \\
         \bottomrule
     \end{tabular}
 \end{table}
 
-All 13 failures occurred under domain-normalized inputs. GeneticEngine accounted for 12 failures: two on Piston, five on CCPP, three on Wing Weight, and two on Gas Turbine NOx. Operon produced the remaining failure on CCPP at repetition 7. gplearn, PySR, ITEA, and EQL completed all 200 trials assigned to each framework. Failed trials were retained as failures and were excluded from numerical means rather than replaced or imputed.
+The only unresolved failure occurred for Operon on domain-normalized CCPP at repetition 7. All six frameworks completed their remaining assigned trials, including all 200 GeneticEngine trials after later compatible reruns replaced 12 earlier output-shape failures. The remaining failed trial was retained as a failure and excluded from numerical means rather than replaced or imputed.
 
 \subsection{Symbolic-Analysis Coverage}
 
-Symbolic post-processing was attempted for every successful trial. As shown in Table~\ref{tab:results-symbolic-coverage}, analysis sidecars were produced for all 1187 successful runs, and 1186 expressions could be parsed and assigned framework-independent complexity measures. The single parsing failure occurred for a gplearn expression. SymPy simplification completed within the configured limit for 1006 expressions; for the remaining 180 parsed expressions, the analysis retained the unsimplified expression and its structural measures as an explicit fallback.
+Symbolic post-processing was attempted for every successful trial. As shown in Table~\ref{tab:results-symbolic-coverage}, analysis sidecars were produced for all 1199 successful runs, and 1198 expressions could be parsed and assigned framework-independent complexity measures. The single parsing failure occurred for a gplearn expression. SymPy simplification completed within the configured limit for 1018 expressions; for the remaining 180 parsed expressions, the analysis retained the unsimplified expression and its structural measures as an explicit fallback.
 
 \begin{table}[H]
     \centering
@@ -712,11 +712,11 @@ Symbolic post-processing was attempted for every successful trial. As shown in T
         gplearn & 200 & 200 & 199 & 125 & 74 \\
         Operon & 199 & 199 & 199 & 165 & 34 \\
         PySR & 200 & 200 & 200 & 195 & 5 \\
-        GeneticEngine & 188 & 188 & 188 & 188 & 0 \\
+        GeneticEngine & 200 & 200 & 200 & 200 & 0 \\
         ITEA & 200 & 200 & 200 & 176 & 24 \\
         EQL & 200 & 200 & 200 & 157 & 43 \\
         \midrule
-        Total & 1187 & 1187 & 1186 & 1006 & 180 \\
+        Total & 1199 & 1199 & 1198 & 1018 & 180 \\
         \bottomrule
     \end{tabular}
 \end{table}
@@ -770,7 +770,7 @@ Across the 20 problem--scaling combinations, Operon achieved the lowest mean NRM
         gplearn & 0.1267 & 0.5064 & 0 \\
         Operon & 0.0259 & 0.9849 & 13 \\
         PySR & 0.0773 & 0.8396 & 2 \\
-        GeneticEngine & 0.1175 & 0.6101 & 0 \\
+        GeneticEngine & 0.1187 & 0.6101 & 0 \\
         ITEA & 0.0722 & 0.8564 & 3 \\
         EQL & 0.1791 & -0.5483 & 2 \\
         \bottomrule
@@ -828,7 +828,7 @@ The four analytical problems and six external datasets serve different evaluatio
         \toprule
         Problem type & Raw inputs & Domain-normalized inputs \\
         \midrule
-        Analytical problems & 0.0529 & 0.0655 \\
+        Analytical problems & 0.0546 & 0.0655 \\
         External datasets & 0.1247 & 0.1240 \\
         \bottomrule
     \end{tabular}
@@ -840,7 +840,7 @@ In addition to average predictive performance, the benchmark evaluates whether t
 
 \subsection{Effect of Domain Normalization}
 
-The effect of domain normalization was framework-dependent rather than uniformly beneficial. Table~\ref{tab:results-scaling-effect} compares each framework's normalized-input mean NRMSE with its raw-input result on the same problem. EQL improved on all ten problems and showed the largest median reduction, with a normalized-to-raw NRMSE ratio of 0.114. PySR improved on six problems and Operon on five, while Operon's median ratio remained close to one. gplearn, GeneticEngine, and ITEA improved on only two, one, and two problems, respectively, and their median ratios were above one.
+The effect of domain normalization was framework-dependent rather than uniformly beneficial. Table~\ref{tab:results-scaling-effect} compares each framework's normalized-input mean NRMSE with its raw-input result on the same problem. EQL improved on all ten problems and showed the largest median reduction, with a normalized-to-raw NRMSE ratio of 0.114. PySR improved on six problems and Operon on five, while Operon's median ratio remained close to one. gplearn, GeneticEngine, and ITEA each improved on two problems, and their median ratios were above one.
 
 \begin{table}[H]
     \centering
@@ -853,7 +853,7 @@ The effect of domain normalization was framework-dependent rather than uniformly
         gplearn & 2 & 1.336 \\
         Operon & 5 & 0.998 \\
         PySR & 6 & 0.914 \\
-        GeneticEngine & 1 & 1.320 \\
+        GeneticEngine & 2 & 1.344 \\
         ITEA & 2 & 1.406 \\
         EQL & 10 & 0.114 \\
         \bottomrule
@@ -891,13 +891,20 @@ Repetition variability was evaluated using the sample standard deviation of NRMS
     \end{tabular}
 \end{table}
 
-ITEA produced nearly identical results across repetitions. This observation should not be interpreted as evidence that a controllable random seed made the method reproducible, because the evaluated adapter does not expose a supported repetition-seed parameter. Instead, it indicates that the evaluated configuration returned almost unchanged results when invoked repeatedly on the same fixed tables. Figure~\ref{fig:results-repetition-distributions} shows the full distribution of repetition-level NRMSE values and makes both narrow distributions and isolated failures or extreme errors visible.
+ITEA produced nearly identical results across repetitions. This observation should not be interpreted as evidence that a controllable random seed made the method reproducible, because the evaluated adapter does not expose a supported repetition-seed parameter. Instead, it indicates that the evaluated configuration returned almost unchanged results when invoked repeatedly on the same fixed tables. Figures~\ref{fig:results-repetition-raw} and~\ref{fig:results-repetition-domain} show the full distributions of repetition-level NRMSE values and make both narrow distributions and isolated failures or extreme errors visible. Separate vertical ranges are used so that the substantially narrower normalized-input distribution remains legible.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.98\textwidth]{images/results/repetition_nrmse_distributions.png}
-    \caption{Distribution of repetition-level range-normalized RMSE by framework and input-scaling condition. Points represent successful trials across all problems, boxes summarize their distributions, and red annotations report failed trials.}
-    \label{fig:results-repetition-distributions}
+    \includegraphics[width=0.95\textwidth]{images/results/repetition_nrmse_raw.png}
+    \caption{Distribution of repetition-level range-normalized RMSE by framework using raw inputs. Points represent successful trials across all problems and boxes summarize their distributions.}
+    \label{fig:results-repetition-raw}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{images/results/repetition_nrmse_domain_minmax.png}
+    \caption{Distribution of repetition-level range-normalized RMSE by framework using domain-normalized inputs. Points represent successful trials across all problems, boxes summarize their distributions, and red annotations report failed trials.}
+    \label{fig:results-repetition-domain}
 \end{figure}
 
 \section{Symbolic Model Properties}
@@ -919,8 +926,8 @@ Expression complexity varied substantially between frameworks. Table~\ref{tab:re
         gplearn & 108.39 \\
         Operon & 66.00 \\
         PySR & 11.21 \\
-        GeneticEngine & 27.49 \\
-        ITEA & 21.55 \\
+        GeneticEngine & 26.10 \\
+        ITEA & 21.60 \\
         EQL & 51.65 \\
         \bottomrule
     \end{tabular}
@@ -944,7 +951,7 @@ Figures~\ref{fig:results-complexity-raw} and~\ref{fig:results-complexity-domain}
 
 \subsection{Symbolic Simplification and Fallbacks}
 
-The simplification completion rate differed markedly between frameworks. GeneticEngine completed simplification for all 188 parsed expressions, and PySR did so for 195 of 200. gplearn required the unsimplified fallback for 74 of its 199 parsed expressions, the largest number among the frameworks. EQL required 43 fallbacks, Operon 34, and ITEA 24. Because fallback expressions can be structurally larger than their simplified counterparts, the primary simplified-complexity comparison excludes them rather than treating the two forms as directly equivalent.
+The simplification completion rate differed markedly between frameworks. GeneticEngine completed simplification for all 200 parsed expressions, and PySR did so for 195 of 200. gplearn required the unsimplified fallback for 74 of its 199 parsed expressions, the largest number among the frameworks. EQL required 43 fallbacks, Operon 34, and ITEA 24. Because fallback expressions can be structurally larger than their simplified counterparts, the primary simplified-complexity comparison excludes them rather than treating the two forms as directly equivalent.
 
 \begin{table}[H]
     \centering
@@ -957,7 +964,7 @@ The simplification completion rate differed markedly between frameworks. Genetic
         gplearn & 199 & 125 & 37.2\% \\
         Operon & 199 & 165 & 17.1\% \\
         PySR & 200 & 195 & 2.5\% \\
-        GeneticEngine & 188 & 188 & 0.0\% \\
+        GeneticEngine & 200 & 200 & 0.0\% \\
         ITEA & 200 & 176 & 12.0\% \\
         EQL & 200 & 157 & 21.5\% \\
         \bottomrule
@@ -972,7 +979,7 @@ Computational efficiency is reported separately for model fitting and for the su
 
 \subsection{Model-Fitting Time}
 
-Model-fitting times describe the evaluated configurations under the common one-thread execution controls, they are not the result of equal wall-clock search budgets. Operon had the lowest median problem-level mean fit time at 3.89 seconds, followed by ITEA at 5.63 seconds. EQL required 24.48 seconds, gplearn 37.62 seconds, GeneticEngine 60.24 seconds, and PySR 89.76 seconds. PySR's fit times were comparatively consistent with the configured fixed search duration, while the other methods showed stronger problem-dependent variation.
+Model-fitting times describe the evaluated configurations under the common one-thread execution controls; they are not the result of equal wall-clock search budgets. Operon had the lowest median problem-level mean fit time at 3.88 seconds, followed by ITEA at 5.67 seconds. EQL required 24.50 seconds, gplearn 37.62 seconds, GeneticEngine 60.24 seconds, and PySR 89.66 seconds. PySR's fit times were comparatively consistent with the configured fixed search duration, while the other methods showed stronger problem-dependent variation.
 
 \begin{table}[H]
     \centering
@@ -982,12 +989,12 @@ Model-fitting times describe the evaluated configurations under the common one-t
         \toprule
         Framework & Fit time (s) \\
         \midrule
-        Operon & 3.89 \\
-        ITEA & 5.63 \\
-        EQL & 24.48 \\
+        Operon & 3.88 \\
+        ITEA & 5.67 \\
+        EQL & 24.50 \\
         gplearn & 37.62 \\
         GeneticEngine & 60.24 \\
-        PySR & 89.76 \\
+        PySR & 89.66 \\
         \bottomrule
     \end{tabular}
 \end{table}
@@ -1020,18 +1027,18 @@ Prediction was fast for all fitted symbolic models relative to model fitting. Ta
         \toprule
         Framework & Scaling & Prediction ($\mu$s/sample) & Extraction (s) \\
         \midrule
-        gplearn & Raw & 0.923 & 0.000295 \\
-        gplearn & Domain-normalized & 0.901 & 0.000272 \\
-        Operon & Raw & 0.026 & 0.000066 \\
-        Operon & Domain-normalized & 0.026 & 0.000064 \\
-        PySR & Raw & 0.730 & 0.008750 \\
-        PySR & Domain-normalized & 0.856 & 0.010920 \\
-        GeneticEngine & Raw & 0.038 & 0.000025 \\
-        GeneticEngine & Domain-normalized & 0.042 & 0.000025 \\
-        ITEA & Raw & 0.214 & 0.000053 \\
-        ITEA & Domain-normalized & 0.223 & 0.000050 \\
-        EQL & Raw & 1.912 & 0.097620 \\
-        EQL & Domain-normalized & 1.907 & 0.104760 \\
+        gplearn & Raw & 0.952 & 0.000294 \\
+        gplearn & Domain-normalized & 0.886 & 0.000272 \\
+        Operon & Raw & 0.025 & 0.000066 \\
+        Operon & Domain-normalized & 0.028 & 0.000064 \\
+        PySR & Raw & 0.713 & 0.008723 \\
+        PySR & Domain-normalized & 0.852 & 0.010874 \\
+        GeneticEngine & Raw & 0.039 & 0.000025 \\
+        GeneticEngine & Domain-normalized & 0.040 & 0.000025 \\
+        ITEA & Raw & 0.219 & 0.000054 \\
+        ITEA & Domain-normalized & 0.231 & 0.000048 \\
+        EQL & Raw & 1.915 & 0.096072 \\
+        EQL & Domain-normalized & 1.901 & 0.104759 \\
         \bottomrule
     \end{tabular}
 \end{table}
@@ -1040,7 +1047,7 @@ Even the largest median prediction time remained below two microseconds per refe
 
 \section{Consolidated Framework Comparison}
 
-Table~\ref{tab:results-consolidated} combines the main framework-level outcomes. Operon provided the strongest overall predictive performance and the shortest model-fitting time, but its expressions were larger than those returned by PySR, ITEA, and GeneticEngine. PySR produced the smallest expressions and completed every trial, at the cost of the longest fitting time. ITEA combined the second-lowest median NRMSE with short fitting times and relatively compact expressions. gplearn completed every trial but was less accurate and produced the largest expressions in the aggregate. GeneticEngine returned compact expressions but accounted for most execution failures. EQL benefited most consistently from domain normalization and won two normalized analytical configurations, but its aggregate raw-input performance and variability were poor.
+Table~\ref{tab:results-consolidated} combines the main framework-level outcomes. Operon provided the strongest overall predictive performance and the shortest model-fitting time, but its expressions were larger than those returned by PySR, ITEA, and GeneticEngine. PySR produced the smallest expressions and completed every trial, at the cost of the longest fitting time. ITEA combined the second-lowest median NRMSE with short fitting times and relatively compact expressions. gplearn completed every trial but was less accurate and produced the largest expressions in the aggregate. GeneticEngine returned compact expressions and completed all trials after its later compatible reruns were incorporated. EQL benefited most consistently from domain normalization and won two normalized analytical configurations, but its aggregate raw-input performance and variability were poor.
 
 \begin{table}[H]
     \centering
@@ -1051,16 +1058,16 @@ Table~\ref{tab:results-consolidated} combines the main framework-level outcomes.
         Framework & NRMSE & $R^2$ & Fit time (s) & Nodes & Failed \\
         \midrule
         gplearn & 0.1267 & 0.5064 & 37.62 & 108.39 & 0 \\
-        Operon & 0.0259 & 0.9849 & 3.89 & 66.00 & 1 \\
-        PySR & 0.0773 & 0.8396 & 89.76 & 11.21 & 0 \\
-        GeneticEngine & 0.1175 & 0.6101 & 60.24 & 27.49 & 12 \\
-        ITEA & 0.0722 & 0.8564 & 5.63 & 21.55 & 0 \\
-        EQL & 0.1791 & -0.5483 & 24.48 & 51.65 & 0 \\
+        Operon & 0.0259 & 0.9849 & 3.88 & 66.00 & 1 \\
+        PySR & 0.0773 & 0.8396 & 89.66 & 11.21 & 0 \\
+        GeneticEngine & 0.1187 & 0.6101 & 60.24 & 26.10 & 0 \\
+        ITEA & 0.0722 & 0.8564 & 5.67 & 21.60 & 0 \\
+        EQL & 0.1791 & -0.5483 & 24.50 & 51.65 & 0 \\
         \bottomrule
     \end{tabular}
 \end{table}
 
-The results do not identify one framework as best under every evaluation dimension. Operon dominated the predictive and fitting-time summaries, PySR minimized syntactic expression size, ITEA offered a strong balance of accuracy, speed, and compactness, and EQL demonstrated the clearest dependence on input scaling. These observed trade-offs, together with the absence of exact symbolic recovery and the concentration of failures in particular framework--problem combinations, form the basis of the interpretation in the following chapter.
+The results do not identify one framework as best under every evaluation dimension. Operon dominated the predictive and fitting-time summaries, PySR minimized syntactic expression size, ITEA offered a strong balance of accuracy, speed, and compactness, and EQL demonstrated the clearest dependence on input scaling. These observed trade-offs, together with the absence of exact symbolic recovery and the single unresolved execution failure, form the basis of the interpretation in the following chapter.
 
 
 \chapter{Discussion}
