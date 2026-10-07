@@ -62,11 +62,11 @@
 \contentsline {section}{\numberline {6.6}Consolidated Framework Comparison}{45}{section.6.6}%
 \contentsline {chapter}{\numberline {7}Discussion}{47}{chapter.7}%
 \contentsline {section}{\numberline {7.1}Interpretation of Framework Trade-Offs}{47}{section.7.1}%
-\contentsline {section}{\numberline {7.2}Suitability for Interpretable Surrogate Modeling}{47}{section.7.2}%
-\contentsline {section}{\numberline {7.3}Research Gaps and Future Benchmarking Needs}{47}{section.7.3}%
-\contentsline {chapter}{\numberline {8}Conclusion}{48}{chapter.8}%
-\contentsline {section}{\numberline {8.1}Summary of Findings}{48}{section.8.1}%
-\contentsline {section}{\numberline {8.2}Answer to the Research Question}{48}{section.8.2}%
-\contentsline {section}{\numberline {8.3}Outlook and Future Work}{48}{section.8.3}%
-\contentsline {chapter}{\nonumberline Bibliography}{49}{chapter*.11}%
+\contentsline {section}{\numberline {7.2}Suitability for Interpretable Surrogate Modeling}{49}{section.7.2}%
+\contentsline {section}{\numberline {7.3}Research Gaps and Future Benchmarking Needs}{50}{section.7.3}%
+\contentsline {chapter}{\numberline {8}Conclusion}{53}{chapter.8}%
+\contentsline {section}{\numberline {8.1}Summary of Findings}{53}{section.8.1}%
+\contentsline {section}{\numberline {8.2}Answer to the Research Question}{53}{section.8.2}%
+\contentsline {section}{\numberline {8.3}Outlook and Future Work}{53}{section.8.3}%
+\contentsline {chapter}{\nonumberline Bibliography}{54}{chapter*.11}%
 \providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 
