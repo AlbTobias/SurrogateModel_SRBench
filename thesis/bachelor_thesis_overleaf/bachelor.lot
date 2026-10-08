@@ -4,22 +4,22 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {5.1}{Problems and their roles in the experimental matrix.}}{22}{table.5.1}%
-\contentsline {table}{\numberline {5.2}{Principal framework configurations used in the experiments.}}{25}{table.5.2}%
-\contentsline {table}{\numberline {5.3}{Coverage of the completed experimental matrix.}}{27}{table.5.3}%
+\contentsline {table}{\numberline {5.1}{Problems and their roles in the experimental matrix.}}{24}{table.5.1}%
+\contentsline {table}{\numberline {5.2}{Principal framework configurations used in the experiments.}}{27}{table.5.2}%
+\contentsline {table}{\numberline {5.3}{Coverage of the completed experimental matrix.}}{30}{table.5.3}%
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {6.1}{\ignorespaces Trial coverage by problem.}}{30}{table.6.1}%
-\contentsline {table}{\numberline {6.2}{\ignorespaces Symbolic-analysis coverage by framework. ``Simplified'' denotes completion of symbolic simplification, while ``Fallback'' denotes use of the parsed unsimplified expression.}}{31}{table.6.2}%
-\contentsline {table}{\numberline {6.3}{\ignorespaces Overall predictive summary across the 20 problem--scaling combinations. Medians are calculated from problem-level means, and wins count the lowest mean NRMSE in each combination.}}{34}{table.6.3}%
-\contentsline {table}{\numberline {6.4}{Lowest mean NRMSE for each problem and input-scaling condition.}}{34}{table.6.4}%
-\contentsline {table}{\numberline {6.5}{\ignorespaces Median of the framework-level mean NRMSE values by problem type and scaling condition.}}{35}{table.6.5}%
-\contentsline {table}{\numberline {6.6}{\ignorespaces Effect of domain normalization. The ratio is calculated per problem from the normalized and raw mean NRMSE and then summarized by its median; values below one favor normalization.}}{36}{table.6.6}%
-\contentsline {table}{\numberline {6.7}{\ignorespaces Median problem-level sample standard deviation of NRMSE across repetitions.}}{38}{table.6.7}%
-\contentsline {table}{\numberline {6.8}{\ignorespaces Median of the problem-level mean simplified expression-tree node counts across both scaling conditions. Only trials for which simplification completed are included.}}{41}{table.6.8}%
-\contentsline {table}{\numberline {6.9}{\ignorespaces Symbolic simplification outcomes for parsed expressions.}}{42}{table.6.9}%
-\contentsline {table}{\numberline {6.10}{\ignorespaces Median of problem-level mean model-fitting times across both scaling conditions.}}{43}{table.6.10}%
-\contentsline {table}{\numberline {6.11}{\ignorespaces Median problem-level mean prediction and expression-extraction times. Prediction time is the median full-test prediction duration divided by the number of reference-test observations.}}{45}{table.6.11}%
-\contentsline {table}{\numberline {6.12}{\ignorespaces Consolidated framework comparison. Predictive, timing, and complexity values are medians of problem-level means across both scaling conditions. Simplified node counts exclude fallback expressions.}}{46}{table.6.12}%
+\contentsline {table}{\numberline {6.1}{\ignorespaces Trial coverage by problem.}}{33}{table.6.1}%
+\contentsline {table}{\numberline {6.2}{\ignorespaces Symbolic-analysis coverage by framework. ``Simplified'' denotes completion of symbolic simplification, while ``Fallback'' denotes use of the parsed unsimplified expression.}}{34}{table.6.2}%
+\contentsline {table}{\numberline {6.3}{\ignorespaces Overall predictive summary across the 20 problem--scaling combinations. Medians are calculated from problem-level means, and wins count the lowest mean NRMSE in each combination.}}{37}{table.6.3}%
+\contentsline {table}{\numberline {6.4}{Lowest mean NRMSE for each problem and input-scaling condition.}}{37}{table.6.4}%
+\contentsline {table}{\numberline {6.5}{\ignorespaces Median of the framework-level mean NRMSE values by problem type and scaling condition.}}{38}{table.6.5}%
+\contentsline {table}{\numberline {6.6}{\ignorespaces Effect of domain normalization. The ratio is calculated per problem from the normalized and raw mean NRMSE and then summarized by its median; values below one favor normalization.}}{39}{table.6.6}%
+\contentsline {table}{\numberline {6.7}{\ignorespaces Median problem-level sample standard deviation of NRMSE across repetitions.}}{41}{table.6.7}%
+\contentsline {table}{\numberline {6.8}{\ignorespaces Median of the problem-level mean simplified expression-tree node counts across both scaling conditions. Only trials for which simplification completed are included.}}{44}{table.6.8}%
+\contentsline {table}{\numberline {6.9}{\ignorespaces Symbolic simplification outcomes for parsed expressions.}}{45}{table.6.9}%
+\contentsline {table}{\numberline {6.10}{\ignorespaces Median of problem-level mean model-fitting times across both scaling conditions.}}{46}{table.6.10}%
+\contentsline {table}{\numberline {6.11}{\ignorespaces Median problem-level mean prediction and expression-extraction times. Prediction time is the median full-test prediction duration divided by the number of reference-test observations.}}{48}{table.6.11}%
+\contentsline {table}{\numberline {6.12}{\ignorespaces Consolidated framework comparison. Predictive, timing, and complexity values are medians of problem-level means across both scaling conditions. Simplified node counts exclude fallback expressions.}}{49}{table.6.12}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }

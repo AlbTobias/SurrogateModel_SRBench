@@ -170,13 +170,13 @@ Unterschrift: & & \rule{7cm}{0.4pt}
 \chapter*{Abstract}
 \addcontentsline{toc}{chapter}{Abstract}
 
-Surrogate models are often used in scientific and engineering applications to approximate computationally expensive simulations. However, many of the currently used surrogate models are black box models which provide almost no insight into the process of their actual learnings. Symbolic Regression (SR) addresses this limitation by discovering explicit mathematical expressions directly from the input data, therefore enabling better model interpretability while maintaining predictive performance.
+Surrogate models are often used in scientific and engineering applications to approximate computationally expensive simulations. However, many flexible surrogate methods produce black-box models whose learned relationships are difficult to inspect. Symbolic Regression (SR) addresses this limitation by discovering explicit mathematical expressions directly from data, thereby combining predictive modeling with an inspectable model representation.
 
 This thesis provides a systematic study of Symbolic Regression methods for surrogate modeling. The main goal is to compare open-source SR frameworks that employ different algorithmic approaches, including evolutionary, genetic programming, transformation-based, and neural methods. The evaluated frameworks are gplearn, Operon, PySR, GeneticEngine, ITEA, and EQL.
 
-To evaluate these frameworks, the benchmark uses datasets from different domains, including engineering, physics, material science and energy systems. The selected SR models are evaluated using identical training and test data and a common evaluation protocol with documented algorithm-specific search budgets. The evaluation considers predictive accuracy, computational efficiency, model complexity, stability across repeated trials, and sensitivity to input scaling. The thesis also investigates the trade-offs between accuracy and interpretability, as well as the current challenges and research gaps in Symbolic Regression for surrogate modeling.
+To evaluate these frameworks, the benchmark uses ten problems from different domains, including engineering, physics, materials, energy systems, building simulation, and aeroacoustics. The selected SR models are evaluated using identical training and test data and a common evaluation protocol with documented algorithm-specific search budgets. The evaluation considers predictive accuracy, computational efficiency, model complexity, stability across repeated trials, sensitivity to input scaling, and practical usability. The thesis also investigates the trade-offs between accuracy and interpretability, as well as current challenges in Symbolic Regression for surrogate modeling.
 
-\textcolor{red}{TODO: Add Results and Conclusion to Abstract.}
+Across 1200 planned trials, 1199 completed successfully. Operon achieved the lowest mean range-normalized RMSE in 13 of 20 problem--scaling combinations, the best median value of 0.0259, and the shortest median fitting time of 3.88 seconds. PySR produced the smallest expressions, ITEA offered a strong balance of accuracy, runtime, and compactness, and EQL benefited most consistently from input normalization. The results show that SR can provide inexpensive and inspectable surrogates, but suitability depends on the problem and objective, and predictive success does not guarantee a simple, stable, or scientifically meaningful model.
 
 \tableofcontents
 \listoffigures
@@ -222,14 +222,14 @@ The central research question of this thesis is:
 \emph{How suitable are Symbolic Regression frameworks for interpretable surrogate modeling, and how do they compare with respect to predictive performance, computational cost, equation complexity, and practical usability?}
 \end{quote}
 
-To answer this question, this thesis conducts a systematic study of six open-source SR frameworks: gplearn \cite{stephens2026gplearn}, Operon \cite{burlacu2020operon}, PySR \cite{cranmer2023interpretable}, GeneticEngine \cite{espada2022datatypes}, ITEA \cite{defranca2021itea}, and EQL \cite{sahoo2018eql}. The selected frameworks represent different approaches to symbolic model discovery, including tree-based genetic programming, efficient evolutionary search, grammar-guided genetic programming, interaction transformation based evolutionary search, and neural equation learning. The frameworks are evaluated on eight analytical, simulated, and empirical surrogate-modeling problems using fixed training and test datasets and documented algorithm-specific search budgets. The comparison considers predictive accuracy, computational efficiency, expression complexity, recovery of known equations, stability across repeated trials, sensitivity to input scaling, and practical reproducibility.
+To answer this question, this thesis conducts a systematic study of six open-source SR frameworks: gplearn \cite{stephens2026gplearn}, Operon \cite{burlacu2020operon}, PySR \cite{cranmer2023interpretable}, GeneticEngine \cite{espada2022datatypes}, ITEA \cite{defranca2021itea}, and EQL \cite{sahoo2018eql}. The selected frameworks represent different approaches to symbolic model discovery, including tree-based genetic programming, efficient evolutionary search, grammar-guided genetic programming, interaction transformation based evolutionary search, and neural equation learning. The frameworks are evaluated on ten analytical, simulator-generated, experimental, and measured surrogate-modeling problems using fixed training and test datasets and documented algorithm-specific search budgets. The comparison considers predictive accuracy, computational efficiency, expression complexity, stability across repeated trials, sensitivity to input scaling, practical usability, and reproducibility.
 
 The main contributions of this thesis are:
 
 \begin{itemize}
     \item a structured overview of Symbolic Regression as an approach for interpretable surrogate modeling;
     \item a benchmark setup for comparing the selected SR frameworks on datasets from different application domains;
-    \item an evaluation protocol covering predictive accuracy, runtime, setup effort, equation complexity, and stability in repeated prediction settings;
+    \item an evaluation protocol covering predictive accuracy, runtime, equation complexity, stability across repeated fitting trials, and qualitative practical usability;
     \item an interpretability-oriented comparison of the discovered symbolic expressions;
     \item practical guidance on strengths, limitations, and challenges of the current SR frameworks for surrogate modeling.
 \end{itemize}
@@ -423,9 +423,9 @@ Based on these criteria, six frameworks were included: gplearn, Operon, PySR, Ge
 
 The benchmark problems were selected to represent scientific and engineering surrogate-modeling tasks while remaining feasible for repeated Symbolic Regression searches. Each problem is required to have numerical input variables, a continuous target, clearly documented feature meanings and domains, and a reproducible data source or generating function. The available data also had to support disjoint training and test sets without categorical encoding, missing-value imputation, or extensive feature engineering.
 
-The selection combines problems with known analytical equations and problems for which no privileged ground-truth expression is available. Cantilever, Borehole, Piston, and Wing Weight provide analytical generating equations and therefore support both predictive evaluation and symbolic recovery analysis. Combined Cycle Power Plant, Naval Propulsion, Gas Turbine NOx Emissions, and Concrete Compressive Strength represent simulator-derived, measured, or experimental relationships for which evaluation is based on held-out predictive performance, expression complexity, runtime, and stability rather than exact equation recovery.
+The selection combines four analytical problems with six external datasets. Cantilever, Borehole, Piston, and Wing Weight provide controlled relationships of different structural forms. Combined Cycle Power Plant, Naval Propulsion, Gas Turbine NOx Emissions, Concrete Compressive Strength, Energy Efficiency, and Airfoil Self-Noise add simulator-generated, measured, or experimental relationships from several engineering domains. All ten problems are evaluated using the same predictive, computational, stability, and expression-structure criteria; the analytical generating equations are used to construct controlled datasets but are not used as reference expressions in the interpretability comparison.
 
-The final set of eight problems covers several engineering domains, between three and ten input variables, different physical scales, and mathematical relationships of varying structural difficulty. The analytical problems include multiplication, division, integer and fractional powers, logarithms, square roots, and trigonometric terms, while the non-analytical problems introduce measurement variation and relationships not defined by a known closed-form equation. This combination enables the frameworks to be assessed both as equation-recovery methods and as practical data-driven surrogate models. The exact problem definitions, sample sizes, data sources, and train test construction procedures are presented in Chapter~5.
+The final set of ten problems covers several engineering domains, between three and ten input variables, different physical scales, and relationships of varying structural difficulty. The analytical problems include multiplication, division, integer and fractional powers, logarithms, square roots, and trigonometric terms, while the external datasets introduce measurement variation and relationships for which the benchmark does not assume a privileged symbolic form. This combination allows the frameworks to be assessed across controlled and application-oriented surrogate-modeling tasks. The exact problem definitions, sample sizes, data sources, and train--test construction procedures are presented in Chapter~5.
 
 \section{Benchmark Protocol}
 
@@ -439,7 +439,7 @@ Every algorithm problem combination is evaluated under two input-scaling conditi
 
 The transformation uses fixed problem-domain bounds rather than statistics estimated from the training data, ensuring that it is identical across frameworks and repetitions and does not introduce test-data leakage. Target values are not scaled and remain in their original units under both conditions. Expressions learned from normalized inputs are transformed back to the original physical variables during symbolic post processing.
 
-The final repetition protocol uses the predefined labels 2, 3, 5, 7, 11, 13, 17, 19, 23, and 29. These labels are passed to each estimator that exposes a supported random-seed parameter. The ITEA implementation does not expose such a parameter, so its ten executions are reported as uncontrolled repetitions rather than seed-controlled trials. With six algorithms, eight problems, two input-scaling conditions, and ten repetitions, the complete benchmark contains 960 expected trials.
+The final repetition protocol uses the predefined labels 2, 3, 5, 7, 11, 13, 17, 19, 23, and 29. These labels are passed to each estimator that exposes a supported random-seed parameter. The ITEA implementation does not expose such a parameter, so its ten executions are reported as uncontrolled repetitions rather than seed-controlled trials. With six algorithms, ten problems, two input-scaling conditions, and ten repetitions, the complete benchmark contains 1200 expected trials.
 
 Each trial fits one model using the fixed training target and evaluates it exclusively on the corresponding held-out reference-test set. A successful result, an explicit execution failure, and an absent trial are treated as three separate states. Failure records retain the algorithm, problem, scaling condition, repetition label, and process exit status, while the summary tables report successful, failed, and missing trials separately. Failed or missing runs are therefore not silently excluded from the reported experiment coverage.
 
@@ -447,7 +447,7 @@ Each framework uses one explicitly documented configuration across the benchmark
 
 Shared execution controls restrict benchmark containers to one thread. After fitting each model predicts the complete test set five times to obtain a more reliable estimate of prediction time. Model fitting, prediction, and expression extraction are timed within the running algorithm environment. Container startup, image retrieval, dataset generation, result serialization, and symbolic post-processing are excluded from the reported algorithm runtime.
 
-Symbolic parsing, transformation to physical coordinates, simplification, complexity measurement, and comparison with available ground-truth equations are performed as separate post-processing steps. Each stage has an independent timeout and writes a versioned analysis record without modifying the original trial result. Separating expression analysis from model execution ensures that a parsing or simplification failure does not invalidate an otherwise successful training and prediction trial.
+Symbolic parsing, transformation to physical coordinates, simplification, and structural measurement are performed as separate post-processing steps. Each stage has an independent timeout and writes a versioned analysis record without modifying the original trial result. Separating expression analysis from model execution ensures that a parsing or simplification failure does not invalidate an otherwise successful training and prediction trial.
 
 \section{Evaluation Metrics}
 
@@ -481,6 +481,12 @@ Computational efficiency is evaluated using wall-clock measurements. The benchma
 
 Every returned expression is parsed with SymPy to obtain framework-independent structural measures. These include expression-tree node count, tree depth, operator count and operator set, constant count, and the number and identity of variables used. The same measures are calculated after symbolic simplification where possible. The adapter-specific model-size value is retained for reference but is not used as the primary cross-framework complexity measure because its definition differs between adapters.
 
+\subsection{Practical Usability}
+
+Practical usability is evaluated qualitatively rather than reduced to a single numerical score. The assessment considers whether a framework can be executed in a documented environment, integrated through the common estimator interface, supplied with a controllable repetition seed, used to return both predictions and an explicit expression, and processed by the shared symbolic-analysis pipeline. Trial completion, expression availability, parsing coverage, dependency or API incompatibilities, and the need for adapter-specific compatibility handling provide observable evidence for this assessment.
+
+This definition concerns the use of each framework within the benchmark workflow and does not attempt to measure general software quality or the effort required for every possible installation environment. Setup observations, pinned container requirements, unsupported seed controls, execution failures, and compatibility workarounds are therefore reported descriptively alongside the quantitative predictive, timing, stability, and complexity results. No framework is assigned a composite usability rank because the importance of these factors depends on the intended application and reproducibility requirements.
+
 \section{Reproducibility Setup}
 
 The benchmark is organized around separate components for dataset preparation, framework adapters, trial evaluation, symbolic analysis, and result aggregation. Versioned JSON files under \texttt{configs/} define the problem set, repetition labels, input-scaling conditions, shared execution controls, and algorithm-specific parameters. Runner scripts under \texttt{scripts/} execute individual trials or the complete experiment matrix. The resolved configuration, its cryptographic hash, and the parameters accepted by the estimator are recorded with each trial result.
@@ -489,11 +495,27 @@ Algorithm environments are isolated using the published SRBench container images
 
 Dataset origin is recorded independently of the algorithm runs. Analytical datasets are generated from documented equations, domains, and fixed generation seeds. External datasets retain their source URLs, identifiers, selection procedures, and source-file hashes. Every trial additionally records hashes of the exact training and test tables it received, making it possible to verify that all frameworks were evaluated on identical observations.
 
-Trial results are stored under \path{results/<problem>/<benchmark>/<input-scaling>/<algorithm>/} as JSON files indexed by repetition label. Symbolic parsing, coordinate transformation, simplification, and ground-truth comparison write separate analysis sidecars so that post-processing does not modify the original trial record. Aggregate CSV files are generated from these stored artefacts and report successful, failed, and missing trials explicitly.
+Trial results are stored under \path{results/<problem>/<benchmark>/<input-scaling>/<algorithm>/} as JSON files indexed by repetition label. Symbolic parsing, coordinate transformation, simplification, and structural measurement write separate analysis sidecars so that post-processing does not modify the original trial record. Aggregate CSV files are generated from these stored artefacts and report successful, failed, and missing trials explicitly.
 
 \section{Interpretability Evaluation}
 
-\textcolor{red}{TODO: Describe interpretability evaluation.}
+The interpretability evaluation is restricted to properties of the returned symbolic representation that can be measured consistently across all frameworks. It therefore treats expression availability, parseability, structural complexity, and simplification behavior as observable indicators of inspectability. These indicators complement predictive performance but do not establish by themselves that an expression is understandable to a particular reader or scientifically meaningful.
+
+\subsection{Structural Measures}
+
+After conversion to a SymPy expression tree, the benchmark records the total node count, tree depth, operator count and operator set, constant count, and the number and identity of variables used. Node count includes operator, variable, and numerical-constant nodes. Tree depth is the longest number of edges from the expression root to a leaf, with an isolated variable or constant having depth zero. Operator count records the number of non-leaf nodes, while the operator set identifies the distinct operation types present in the tree. Constants are numerical atomic nodes, and variables are the free symbols occurring in the expression.
+
+These measures are calculated both for the parsed expression and, when simplification succeeds, for its simplified form. The framework-specific model-size value is retained in the trial record for reference but is not used for the primary comparison because the adapters define model size differently. The cross-framework analysis instead uses the common SymPy-based measures, with simplified node count serving as the principal summary of syntactic expression size.
+
+\subsection{Parsing and Simplification Policy}
+
+The original expression string returned by each adapter remains unchanged in the trial result. A separate post-processing stage translates the prefix notation used by gplearn and the infix notation used by the other frameworks into SymPy. Expressions learned with domain-normalized inputs are then transformed into the original physical input variables before their primary structural measures are calculated. Parsing success and any parsing error are recorded explicitly, and a parsing failure leaves the predictive result valid but prevents framework-independent structural measurement.
+
+For a parsed expression, the post-processing procedure considers the parsed form together with cancelled, factored, factorized-after-cancellation, and generally simplified candidates. The valid candidate with the smallest node count is selected, with textual length used to break ties. Symbolic stages are bounded by the configured timeout. If simplification fails or exceeds its resource limit, the parsed unsimplified expression and its structural measures are retained as a documented fallback. Simplified and fallback expressions are counted separately and are not silently combined in the primary simplified-complexity averages.
+
+\subsection{Interpretive Scope}
+
+Smaller and shallower expressions with fewer operations may be easier to inspect, but syntactic complexity is only a proxy for interpretability. The recorded statistics do not measure whether an equation is physically plausible, dimensionally consistent, familiar to a domain expert, or useful for scientific reasoning. The evaluation reported in this thesis does not compare learned expressions with the analytical equations used to generate the controlled datasets. Interpretability is therefore discussed through the observed representation and its structural statistics, together with predictive accuracy, rather than through a claim that the underlying relationship was rediscovered.
 
 \chapter{Experiments}
 
@@ -501,15 +523,15 @@ This chapter describes the realization of the benchmark protocol introduced in t
 
 \section{Experimental Matrix and Task Roles}
 
-The experimental matrix combines eight regression problems, six symbolic regression frameworks, two input-scaling conditions, and ten repetitions. This produces
+The experimental matrix combines ten regression problems, six symbolic regression frameworks, two input-scaling conditions, and ten repetitions. This produces
 \begin{equation}
-    8 \times 6 \times 2 \times 10 = 960
+    10 \times 6 \times 2 \times 10 = 1200
 \end{equation}
 distinct trial coordinates.
 
-The benchmark problems were selected to fulfill complementary experimental roles rather than to form a homogeneous dataset collection. Four analytical problems provide known generating equations and permit controlled sampling over documented domains. The remaining four problems are based on measured, experimental, or simulator-generated data and test approximation under relationships for which the benchmark does not assume an exact symbolic ground truth.
+The benchmark problems were selected to fulfill complementary experimental roles rather than to form a homogeneous dataset collection. Four analytical problems permit controlled sampling from relationships with different mathematical structures. The remaining six problems are based on measured, experimental, or simulator-generated data and represent applied surrogate-modeling tasks from energy, propulsion, materials, building simulation, and aeroacoustics.
 
-\begin{longtable}{p{3.3cm}p{3.2cm}rrp{4.6cm}}
+\begin{longtable}{p{2.9cm}p{2.5cm}rrp{4.4cm}}
 \caption{Problems and their roles in the experimental matrix.}
 \label{tab:experiment-matrix}\\
 \hline
@@ -528,10 +550,12 @@ Naval Propulsion & Simulator-generated & 3 & 400/4000 & Propulsion-system surrog
 Wing Weight & Analytical & 10 & 400/4000 & Higher-dimensional expression with fractional powers and a trigonometric term \\
 Gas Turbine NOx & Measured & 9 & 400/4000 & Industrial-emissions prediction with a chronological train--test separation \\
 Concrete Strength & Experimental & 8 & 400/592 & Material-property prediction with replicated experimental observations \\
+Energy Efficiency & Simulator-generated & 8 & 400/368 & Building heating-load prediction over simulated designs \\
+Airfoil Self-Noise & Experimental & 5 & 400/1103 & Aeroacoustic prediction from wind-tunnel measurements \\
 \hline
 \end{longtable}
 
-The analytical tasks emphasize controlled approximation and recovery of compact mathematical structure, whereas the empirical and simulator-generated tasks emphasize predictive performance on real-valued surrogate-modeling problems.
+The analytical tasks emphasize controlled approximation of relationships with known structural characteristics, whereas the external datasets emphasize predictive performance on simulator-generated, experimental, and measured surrogate-modeling problems. All problems are evaluated using the same predictive, computational, stability, and expression-structure measures.
 
 \section{Dataset Construction}
 
@@ -543,7 +567,7 @@ All training and reference-test tables are constructed before the symbolic regre
 
 The Cantilever problem is generated from its analytical rational power-law equation using five input variables. A single random generator is used to draw the 400 training observations followed by the 4000 reference-test observations.
 
-The Borehole problem contains eight input variables and is generated from the standard analytical borehole-flow equation. The training and reference-test designs are independently generated using scrambled Latin hypercube sampling. The equation contains several nonlinear interactions, including logarithmic and rational terms, making it a more demanding structural-recovery task than the Cantilever problem.
+The Borehole problem contains eight input variables and is generated from the standard analytical borehole-flow equation. The training and reference-test designs are independently generated using scrambled Latin hypercube sampling. The equation contains several nonlinear interactions, including logarithmic and rational terms, making it a more structurally demanding approximation task than the Cantilever problem.
 
 The Piston problem contains seven inputs and represents the cycle time of a simulated piston system. Scrambled Latin hypercube designs are used for the training and reference-test tables. The generating expression contains multiple intermediate interactions and a nested square root, allowing the benchmark to examine whether the frameworks can approximate a comparatively deep analytical structure.
 
@@ -558,6 +582,10 @@ The Naval Propulsion problem is based on the UCI Condition Based Maintenance of 
 The Gas Turbine NOx problem is constructed from five annual UCI gas-turbine emissions files containing 36733 observations in total. Nine ambient and process variables are used to predict nitrogen-oxide emissions, while the year indicator and carbon-monoxide target are excluded.
 
 The Concrete Strength problem is obtained from the UCI Concrete Compressive Strength dataset. Observations with identical values for all eight input variables are aggregated into distinct experimental designs, and their target values are combined, producing 992 unique designs.
+
+The Energy Efficiency problem is obtained from the UCI Energy Efficiency dataset and contains 768 simulated building designs with eight input variables. Heating load is used as the target, while cooling load is excluded. A fixed permutation assigns the first 400 designs to the training set and the remaining 368 designs to the reference-test set.
+
+The Airfoil Self-Noise problem is obtained from the UCI Airfoil Self-Noise dataset and contains 1503 wind-tunnel observations with five input variables. Scaled sound-pressure level is used as the target. A fixed permutation assigns 400 observations to the training set and the remaining 1103 observations to the reference-test set.
 
 \subsection{Input Normalization}
 
@@ -616,31 +644,39 @@ Each framework problem scaling combination is assigned the ten repetition labels
 \end{equation}
 These labels control the framework seed where supported, they do not alter the already constructed training and reference-test tables. Repetitions therefore measure variation in the symbolic regression procedure rather than variation caused by resampling the datasets.
 
-All 960 coordinates of the planned matrix are represented by either a successful trial record or an explicit failure record. Table~\ref{tab:trial-coverage} reports the resulting coverage by problem.
+\subsection{Compatible Result Resolution}
 
-\textcolor{red}{TODO: Update Table with final results.}
+The benchmark suites were extended incrementally: version 7 introduced Gas Turbine NOx, version 8 added Concrete Strength, version 9 added Energy Efficiency, and version 10 added Airfoil Self-Noise. Later suites also contain selected reruns of earlier coordinates, but repeating every previously completed trial after each dataset addition would duplicate substantial computation without changing the protocol. The final reporting process therefore resolves each problem--scaling--framework--repetition coordinate independently instead of treating one suite directory as an indivisible result set. The resolved matrix consequently combines selected records from compatible versions 7 through 10.
+
+A candidate result is eligible only when its configuration has the same schema version, repetition protocol, execution controls, repetition labels, input-scaling conditions, and effective algorithm parameters as the final version-10 configuration. The candidate must also contain the relevant problem and use exactly the same problem-specific dataset-construction specification. Among eligible candidates, the record from the highest suite version is selected; if both a success and a failure record exist for the same coordinate within that suite, the most recently written record is used. The resolver writes the selected status, suite, and source path to an auditable manifest. A successful result's symbolic-analysis sidecar is accepted only when its stored SHA-256 source hash matches the selected trial file, preventing stale post-processing data from being combined with a newer trial.
+
+\subsection{Completed Trial Matrix}
+
+All 1200 coordinates of the planned matrix are represented by either a successful trial record or an explicit failure record. Table~\ref{tab:trial-coverage} reports the resulting coverage by problem; no planned coordinate is missing.
 
 \begin{longtable}{p{3.8cm}p{3.2cm}rrr}
 \caption{Coverage of the completed experimental matrix.}
 \label{tab:trial-coverage}\\
 \hline
-Problem & Configuration suite & Planned & Successful & Failed \\
+Problem & Resolved suite(s) & Planned & Successful & Failed \\
 \hline
 \endfirsthead
 \hline
-Problem & Configuration suite & Planned & Successful & Failed \\
+Problem & Resolved suite(s) & Planned & Successful & Failed \\
 \hline
 \endhead
-Cantilever & \texttt{v3} & 120 & 120 & 0 \\
-Borehole & \texttt{v3} & 120 & 120 & 0 \\
-Piston & \texttt{v3} & 120 & 118 & 2 \\
-Combined Cycle Power Plant & \texttt{v4} & 120 & 114 & 6 \\
-Naval Propulsion & \texttt{v5} & 120 & 120 & 0 \\
-Wing Weight & \texttt{v6} & 120 & 117 & 3 \\
-Gas Turbine NOx & \texttt{v7} & 120 & 118 & 2 \\
+Cantilever & \texttt{v8} & 120 & 120 & 0 \\
+Borehole & \texttt{v8} & 120 & 120 & 0 \\
+Piston & \texttt{v8} & 120 & 120 & 0 \\
+Combined Cycle Power Plant & \texttt{v8} & 120 & 119 & 1 \\
+Naval Propulsion & \texttt{v8} & 120 & 120 & 0 \\
+Wing Weight & \texttt{v8} & 120 & 120 & 0 \\
+Gas Turbine NOx & \texttt{v7}, \texttt{v8}, \texttt{v10} & 120 & 120 & 0 \\
 Concrete Strength & \texttt{v8} & 120 & 120 & 0 \\
+Energy Efficiency & \texttt{v9} & 120 & 120 & 0 \\
+Airfoil Self-Noise & \texttt{v10} & 120 & 120 & 0 \\
 \hline
-Total & -- & 960 & 947 & 13 \\
+Total & -- & 1200 & 1199 & 1 \\
 \hline
 \end{longtable}
 
@@ -661,7 +697,7 @@ Framework-independent structural measures are computed before and after simplifi
 
 \chapter{Results}
 
-This chapter presents the results of the completed benchmark. It first reports trial and symbolic-analysis coverage before comparing the frameworks in terms of predictive performance, sensitivity to input scaling, stability across repetitions, expression complexity, symbolic recovery, and computational efficiency.
+This chapter presents the results of the completed benchmark. It first reports trial and symbolic-analysis coverage before comparing the frameworks in terms of predictive performance, sensitivity to input scaling, stability across repetitions, expression complexity, and computational efficiency.
 
 \section{Trial and Analysis Coverage}
 
@@ -1067,7 +1103,7 @@ Table~\ref{tab:results-consolidated} combines the main framework-level outcomes.
     \end{tabular}
 \end{table}
 
-The results do not identify one framework as best under every evaluation dimension. Operon dominated the predictive and fitting-time summaries, PySR minimized syntactic expression size, ITEA offered a strong balance of accuracy, speed, and compactness, and EQL demonstrated the clearest dependence on input scaling. These observed trade-offs, together with the absence of exact symbolic recovery and the single unresolved execution failure, form the basis of the interpretation in the following chapter.
+The results do not identify one framework as best under every evaluation dimension. Operon dominated the predictive and fitting-time summaries, PySR minimized syntactic expression size, ITEA offered a strong balance of accuracy, speed, and compactness, and EQL demonstrated the clearest dependence on input scaling. These observed trade-offs, together with the variation in symbolic-analysis coverage and the single unresolved execution failure, form the basis of the interpretation in the following chapter.
 
 
 \chapter{Discussion}
@@ -1096,9 +1132,7 @@ The benchmark supports Symbolic Regression as a useful but conditional approach 
 
 Explicitness, however, should not be equated automatically with interpretability. The median simplified expressions ranged from approximately 11 nodes for PySR to more than 108 nodes for gplearn, and individual problem-level means were considerably larger. An equation with many nested operations can be technically visible while remaining difficult to understand. Node count is also only a syntactic proxy: it does not measure whether the variables have physically plausible roles, whether constants correspond to meaningful quantities, or whether the expression communicates a useful scientific relationship. The simplification fallbacks reinforce this distinction because 180 parsed expressions could not be reduced within the bounded procedure and were therefore excluded from the primary simplified-complexity means.
 
-The analytical problems provide the strongest warning against interpreting predictive success as equation discovery. Some models achieved very low held-out error, most notably Operon on raw Cantilever and Borehole, yet no returned expression satisfied the benchmark's exact symbolic-recovery criterion. A numerically accurate surrogate can therefore represent the sampled domain well without recovering the generating mechanism. Such a model may still be valuable for inexpensive interpolation, but it should not be presented as a rediscovered physical law without additional evidence. Structural equivalence, dimensional consistency, asymptotic behavior, extrapolation, and agreement with domain knowledge would need to be evaluated separately.
-
-For empirical problems, exact recovery is not available as a validation criterion because no privileged closed-form equation is known. In these cases, explicit expressions enable inspection, but predictive adequacy remains a necessary first condition. The negative $R^2$ results on Gas Turbine NOx show that an inspectable equation is not useful as a surrogate merely because it is symbolic. Conversely, the stronger Energy Efficiency, CCPP, Naval Propulsion, Concrete Strength, and Airfoil Self-Noise results show that SR can provide workable approximations for several engineering datasets under modest training sizes. Whether those expressions are scientifically informative would require domain-specific review beyond the structural measures used here.
+The structural statistics must also be considered together with predictive adequacy. The negative $R^2$ results on Gas Turbine NOx show that an inspectable equation is not useful as a surrogate merely because it is symbolic. Conversely, the stronger Energy Efficiency, CCPP, Naval Propulsion, Concrete Strength, and Airfoil Self-Noise results show that SR can provide workable approximations for several engineering datasets under modest training sizes. Whether those expressions are scientifically informative would require domain-specific review beyond the structural measures used here.
 
 The framework choice should consequently follow the intended use. Operon is the strongest candidate from this benchmark when predictive accuracy and fitting speed are primary, provided that moderately larger expressions are acceptable. PySR is preferable when compact output is a central requirement and longer fitting time is tolerable. ITEA offers a favorable compromise between accuracy, speed, and expression size, although its uncontrolled repetition behavior should be considered when strict seed reproducibility is required. EQL may be useful for compatible analytical structures but should be used with normalized inputs and careful stability checks. gplearn remains useful as a transparent conventional baseline, while GeneticEngine offers compact grammar-guided models but did not match the leading predictive results in this configuration.
 
@@ -1118,18 +1152,40 @@ The absence of non-symbolic baselines limits conclusions about whether SR pays a
 
 Interpretability itself requires broader evaluation. This thesis measures expression size, depth, operators, constants, and variables, but these quantities do not fully capture human understanding. Future studies should combine syntactic measures with expert assessment of physical plausibility, dimensional validity, recognizable substructures, and the effort required to explain an equation. Controlled user studies could test whether scientists or engineers actually make better judgments with the returned symbolic models. The distinction between a small expression and a meaningful expression is especially important when simplification introduces numerically fitted constants or algebraically unusual but compact forms.
 
-Symbolic-recovery evaluation also warrants refinement. Exact equivalence is a demanding and useful criterion, but failure to prove equivalence does not show that two expressions behave differently over the relevant domain. Future protocols could report several levels of recovery: exact symbolic equivalence, equivalence after constant tolerance and canonicalization, numerical equivalence on independently sampled points, recovery of the correct variables and operator families, and recovery of physically meaningful subexpressions. These levels would make it easier to distinguish approximate surrogates from near-equivalent rediscoveries and unrelated interpolating formulas.
-
 Finally, the benchmark exposed the importance of infrastructure as a research topic. Framework APIs, expression languages, random-seed controls, and prediction shapes remain inconsistent. Common schemas for expressions, protected operators, complexity, resource budgets, and failure reporting would reduce the amount of adapter-specific logic and make independent reproduction easier. The coordinate-level newest-compatible-result resolver introduced for this thesis also illustrates why provenance must be maintained when benchmark suites evolve: later reruns should be incorporated without silently mixing incompatible protocols. Continued development toward standardized, versioned, and auditable SR benchmarks is therefore necessary for reliable comparison and practical adoption.
 
 
 \chapter{Conclusion}
 
+This chapter summarizes the principal findings, answers the research question, and identifies the most important directions for extending the benchmark. The conclusions apply to the evaluated datasets, framework versions, and fixed configurations and should not be interpreted as universal rankings of Symbolic Regression methods.
+
 \section{Summary of Findings}
+
+The benchmark compared gplearn, Operon, PySR, GeneticEngine, ITEA, and EQL on ten analytical, simulator-generated, experimental, and measured surrogate-modeling problems. Each framework was evaluated with raw and domain-normalized inputs over ten repetitions, producing 1200 planned trial coordinates. Of these, 1199 completed successfully, and all successful trials received a current symbolic-analysis record. A common protocol, fixed train--test tables, pinned container images, configuration hashes, and coordinate-level result resolution were used to preserve comparability and traceability as the problem collection was expanded.
+
+Operon achieved the strongest overall predictive result under the evaluated configurations. It obtained the lowest mean range-normalized RMSE in 13 of the 20 problem--scaling combinations, the lowest median value of 0.0259, and the shortest median fitting time of 3.88 seconds. ITEA provided a strong compromise, combining the second-lowest median error with short fitting times and relatively compact expressions, although its adapter did not expose a controllable repetition seed. PySR produced the smallest expressions, with a median problem-level mean of approximately 11 simplified nodes, but also had the longest median fitting time. gplearn was reliable but produced the largest expressions, GeneticEngine returned comparatively compact models but weaker predictive results, and EQL showed the greatest dependence on input normalization.
+
+The experiments also showed that preprocessing and problem characteristics can substantially affect the apparent quality of a framework. Domain normalization improved EQL on every problem but was not consistently beneficial for the evolutionary methods. Gas Turbine NOx remained difficult for all frameworks, whereas several analytical problems and the Energy Efficiency dataset admitted substantially lower prediction errors. Repetition variability likewise differed between frameworks and scaling conditions. Once fitted, however, the symbolic surrogates were inexpensive to evaluate: at the framework-summary level, median prediction costs remained below two microseconds per test observation.
+
+Expression structure introduced a separate trade-off from predictive accuracy. Smaller expressions were not always the most accurate, and the framework with the strongest predictive performance did not produce the smallest models. Most returned expressions could be parsed and measured through the common SymPy representation, but simplification required an unsimplified fallback for 180 expressions. These results support reporting structural coverage and complexity alongside accuracy rather than treating the availability of an explicit equation as sufficient evidence of interpretability.
 
 \section{Answer to the Research Question}
 
+The results support Symbolic Regression as a suitable approach for constructing inexpensive and inspectable surrogate models, but only with important qualifications. The evaluated frameworks usually produced explicit expressions that could be extracted, parsed, structurally analyzed, and evaluated at low cost. This makes SR useful when a surrogate must support repeated prediction while also exposing its variables and mathematical operations for inspection.
+
+Suitability nevertheless depends on the problem and the objective of the application. Operon is the strongest candidate in this benchmark when predictive accuracy and fitting speed are prioritized and moderately larger expressions are acceptable. PySR is more appropriate when compact symbolic output is central and longer fitting time can be tolerated. ITEA offers a favorable balance of predictive performance, runtime, and expression size, while EQL requires particular attention to input scaling and stability. gplearn provides a conventional and dependable baseline, and GeneticEngine offers relatively compact grammar-guided expressions but did not match the leading predictive results under the selected configuration.
+
+Predictive success alone does not guarantee that a symbolic model is simple, stable across repetitions, physically plausible, or scientifically correct. Conversely, a compact expression is not useful as a surrogate if its predictions are inadequate. The structural statistics used in this thesis measure syntactic inspectability rather than human understanding or domain validity. SR should therefore be treated as a way to expose a predictive model in mathematical form, after which accuracy, complexity, stability, and application-specific plausibility must be assessed together.
+
+Practical usability also depends on the surrounding software workflow. The near-complete trial matrix demonstrates that all six frameworks can be integrated successfully, but this required pinned containers, common prediction-shape handling, adapter-specific compatibility logic, explicit failure reporting, and separate symbolic post-processing. Seed control, expression-export behavior, parsing coverage, and environment reproducibility are consequently part of a framework's suitability, not merely implementation details separate from the algorithm.
+
 \section{Outlook and Future Work}
+
+Future evaluations should extend the problem collection while preserving the fixed, auditable protocol. Additional tasks should cover larger sample sizes, higher dimensions, discontinuities, controlled noise, and application-specific physical constraints. Separate interpolation and extrapolation tracks would reveal whether expressions that perform well inside the sampled domain remain reliable outside it, while dynamical rollout experiments could assess error accumulation during repeated use.
+
+The comparison could also be strengthened through non-symbolic surrogate baselines and complementary budget tracks. Linear and polynomial regression, Gaussian processes, tree ensembles, and compact neural networks would provide context for the predictive cost of obtaining an explicit expression. A common wall-clock track could complement the present fixed framework configurations, while framework-specific recommended settings and complete accuracy--complexity Pareto fronts would show how sensitive the conclusions are to search budgets and model selection.
+
+Finally, interpretability should be evaluated beyond syntactic complexity. Domain experts could assess dimensional consistency, physical plausibility, recognizable interactions, and the effort required to understand or validate an expression. At the infrastructure level, more consistent framework interfaces for seed control, protected operators, expression export, complexity definitions, and failure diagnostics would reduce adapter-specific work and improve independent reproduction. These extensions would provide a stronger basis for deciding when an explicit symbolic surrogate offers a practical advantage over established alternatives.
 
 %
 % agsm in der uibk vorlage
