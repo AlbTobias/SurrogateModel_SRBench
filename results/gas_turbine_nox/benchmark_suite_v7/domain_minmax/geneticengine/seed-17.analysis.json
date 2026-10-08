@@ -1,0 +1,100 @@
+{
+  "analysis_version": "expression_analysis_v2",
+  "analysis_status": "complete",
+  "problem": "gas_turbine_nox",
+  "algorithm": "geneticengine",
+  "seed": 17,
+  "input_scaling": "domain_minmax",
+  "expression_timeout_seconds_per_stage": 60,
+  "analysis_seconds": 0.9627692410012969,
+  "analysis_python": "3.11.15",
+  "analysis_platform": "Linux-7.0.0-29-generic-x86_64-with-glibc2.43",
+  "raw_scale_symbolic_model": "100.0*sqrt(20*turbine_inlet_temperature/1001 - 21017/1001)*log(8*ambient_pressure/203 - 39434/1015)/((8*ambient_pressure/203 - 40449/1015)*(20*turbine_inlet_temperature/1001 - 21017/1001) + sqrt(20*turbine_inlet_temperature/1001 - 21017/1001)) + 100.0*log(8*ambient_pressure/203 - 40449/1015)*log(1000*gas_turbine_exhaust_pressure/11509 - 29207/11509)*log(625*air_filter_pressure_difference/1726 + 16*ambient_pressure/203 - 1141648259/14015120)",
+  "raw_scale_back_transform_error": null,
+  "complexity_valid": true,
+  "complexity_source": "simplified",
+  "training_scale_expression_parse_success": true,
+  "training_scale_expression_parse_error": null,
+  "training_scale_expression_simplify_success": true,
+  "training_scale_expression_simplify_error": null,
+  "training_scale_symbolic_comparison_error": null,
+  "training_scale_symbolic_exact_match": null,
+  "training_scale_expression_node_count": 31,
+  "training_scale_expression_depth": 5,
+  "training_scale_expression_operator_count": 15,
+  "training_scale_expression_operators": [
+    "Add",
+    "Mul",
+    "Pow",
+    "log"
+  ],
+  "training_scale_expression_constant_count": 7,
+  "training_scale_expression_variable_count": 4,
+  "training_scale_expression_variables": [
+    "air_filter_pressure_difference",
+    "ambient_pressure",
+    "gas_turbine_exhaust_pressure",
+    "turbine_inlet_temperature"
+  ],
+  "training_scale_simplified_node_count": 31,
+  "training_scale_simplified_depth": 5,
+  "training_scale_simplified_operator_count": 15,
+  "training_scale_simplified_operators": [
+    "Add",
+    "Mul",
+    "Pow",
+    "log"
+  ],
+  "training_scale_simplified_constant_count": 7,
+  "training_scale_simplified_variable_count": 4,
+  "training_scale_simplified_variables": [
+    "air_filter_pressure_difference",
+    "ambient_pressure",
+    "gas_turbine_exhaust_pressure",
+    "turbine_inlet_temperature"
+  ],
+  "training_scale_simplified_expression": "100.0*sqrt(turbine_inlet_temperature)*log(ambient_pressure + 1)/(ambient_pressure*turbine_inlet_temperature + sqrt(turbine_inlet_temperature)) + 100.0*log(ambient_pressure)*log(gas_turbine_exhaust_pressure)*log(air_filter_pressure_difference + 2*ambient_pressure)",
+  "expression_parse_success": true,
+  "expression_parse_error": null,
+  "expression_simplify_success": true,
+  "expression_simplify_error": null,
+  "symbolic_comparison_error": null,
+  "symbolic_exact_match": null,
+  "expression_node_count": 60,
+  "expression_depth": 7,
+  "expression_operator_count": 29,
+  "expression_operators": [
+    "Add",
+    "Mul",
+    "Pow",
+    "log"
+  ],
+  "expression_constant_count": 22,
+  "expression_variable_count": 4,
+  "expression_variables": [
+    "air_filter_pressure_difference",
+    "ambient_pressure",
+    "gas_turbine_exhaust_pressure",
+    "turbine_inlet_temperature"
+  ],
+  "simplified_node_count": 60,
+  "simplified_depth": 7,
+  "simplified_operator_count": 29,
+  "simplified_operators": [
+    "Add",
+    "Mul",
+    "Pow",
+    "log"
+  ],
+  "simplified_constant_count": 22,
+  "simplified_variable_count": 4,
+  "simplified_variables": [
+    "air_filter_pressure_difference",
+    "ambient_pressure",
+    "gas_turbine_exhaust_pressure",
+    "turbine_inlet_temperature"
+  ],
+  "simplified_expression": "100.0*sqrt(20*turbine_inlet_temperature/1001 - 21017/1001)*log(8*ambient_pressure/203 - 39434/1015)/((8*ambient_pressure/203 - 40449/1015)*(20*turbine_inlet_temperature/1001 - 21017/1001) + sqrt(20*turbine_inlet_temperature/1001 - 21017/1001)) + 100.0*log(8*ambient_pressure/203 - 40449/1015)*log(1000*gas_turbine_exhaust_pressure/11509 - 29207/11509)*log(625*air_filter_pressure_difference/1726 + 16*ambient_pressure/203 - 1141648259/14015120)",
+  "source_result": "seed-17.json",
+  "source_result_sha256": "1e58fc3fac43accb77cf0439d6d1cc5c1ee036f8496106b61ddd6e6723077b01"
+}

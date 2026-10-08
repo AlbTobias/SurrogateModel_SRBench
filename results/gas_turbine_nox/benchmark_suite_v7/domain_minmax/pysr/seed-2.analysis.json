@@ -1,0 +1,71 @@
+{
+  "analysis_version": "expression_analysis_v2",
+  "analysis_status": "complete",
+  "problem": "gas_turbine_nox",
+  "algorithm": "pysr",
+  "seed": 2,
+  "input_scaling": "domain_minmax",
+  "expression_timeout_seconds_per_stage": 60,
+  "analysis_seconds": 67.09093609699994,
+  "analysis_python": "3.11.15",
+  "analysis_platform": "Linux-7.0.0-29-generic-x86_64-with-glibc2.43",
+  "raw_scale_symbolic_model": "69.3215621543795*exp((10000*ambient_temperature/216689 - 14031/19699)*(1000*gas_turbine_exhaust_pressure/11509 - 29207/11509))",
+  "raw_scale_back_transform_error": null,
+  "complexity_valid": true,
+  "complexity_source": "unsimplified_fallback",
+  "training_scale_expression_parse_success": true,
+  "training_scale_expression_parse_error": null,
+  "training_scale_expression_simplify_success": true,
+  "training_scale_expression_simplify_error": null,
+  "training_scale_symbolic_comparison_error": null,
+  "training_scale_symbolic_exact_match": null,
+  "training_scale_expression_node_count": 6,
+  "training_scale_expression_depth": 3,
+  "training_scale_expression_operator_count": 3,
+  "training_scale_expression_operators": [
+    "Mul",
+    "exp"
+  ],
+  "training_scale_expression_constant_count": 1,
+  "training_scale_expression_variable_count": 2,
+  "training_scale_expression_variables": [
+    "ambient_temperature",
+    "gas_turbine_exhaust_pressure"
+  ],
+  "training_scale_simplified_node_count": 6,
+  "training_scale_simplified_depth": 3,
+  "training_scale_simplified_operator_count": 3,
+  "training_scale_simplified_operators": [
+    "Mul",
+    "exp"
+  ],
+  "training_scale_simplified_constant_count": 1,
+  "training_scale_simplified_variable_count": 2,
+  "training_scale_simplified_variables": [
+    "ambient_temperature",
+    "gas_turbine_exhaust_pressure"
+  ],
+  "training_scale_simplified_expression": "69.3215621543795*exp(ambient_temperature*gas_turbine_exhaust_pressure)",
+  "expression_parse_success": true,
+  "expression_parse_error": null,
+  "expression_simplify_success": false,
+  "expression_simplify_error": "ExpressionTimeoutError: symbolic analysis exceeded 60 seconds",
+  "symbolic_comparison_error": null,
+  "symbolic_exact_match": null,
+  "expression_node_count": 14,
+  "expression_depth": 5,
+  "expression_operator_count": 7,
+  "expression_operators": [
+    "Add",
+    "Mul",
+    "exp"
+  ],
+  "expression_constant_count": 5,
+  "expression_variable_count": 2,
+  "expression_variables": [
+    "ambient_temperature",
+    "gas_turbine_exhaust_pressure"
+  ],
+  "source_result": "seed-2.json",
+  "source_result_sha256": "b3fcf60bb139a1d9f4aeebd3ebba9968804cb100d991170a34009cd9cd81a350"
+}

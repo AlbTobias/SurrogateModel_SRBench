@@ -1,0 +1,92 @@
+{
+  "analysis_version": "expression_analysis_v2",
+  "analysis_status": "complete",
+  "problem": "naval_propulsion",
+  "algorithm": "operon",
+  "seed": 11,
+  "input_scaling": "domain_minmax",
+  "expression_timeout_seconds_per_stage": 60,
+  "analysis_seconds": 3.4435171099976287,
+  "analysis_python": "3.11.15",
+  "analysis_platform": "Linux-7.0.0-29-generic-x86_64-with-glibc2.43",
+  "raw_scale_symbolic_model": "0.170995899165*(ship_speed/12 - 5/4)*(-0.0204646666666667*ship_speed - 0.667544820432*(ship_speed/12 - 5/4)**2 + 0.30697) - 0.046314 + 0.246695*(2.75264*compressor_decay - 0.12966625*ship_speed + 6.22216*turbine_decay - 9.73711125 + 0.037172/(-0.412137922*(ship_speed/12 - 5/4)**2 + 2.660269*(ship_speed/12 - 5/4)*(0.52359875*ship_speed - 9.26479825) - 0.306626) + 0.037172/(0.0670321666666667*ship_speed - 2.3706575))/(0.0670321666666667*ship_speed - 2.3706575)",
+  "raw_scale_back_transform_error": null,
+  "complexity_valid": true,
+  "complexity_source": "simplified",
+  "training_scale_expression_parse_success": true,
+  "training_scale_expression_parse_error": null,
+  "training_scale_expression_simplify_success": true,
+  "training_scale_expression_simplify_error": null,
+  "training_scale_symbolic_comparison_error": null,
+  "training_scale_symbolic_exact_match": null,
+  "training_scale_expression_node_count": 62,
+  "training_scale_expression_depth": 9,
+  "training_scale_expression_operator_count": 26,
+  "training_scale_expression_operators": [
+    "Add",
+    "Mul",
+    "Pow"
+  ],
+  "training_scale_expression_constant_count": 25,
+  "training_scale_expression_variable_count": 3,
+  "training_scale_expression_variables": [
+    "compressor_decay",
+    "ship_speed",
+    "turbine_decay"
+  ],
+  "training_scale_simplified_node_count": 62,
+  "training_scale_simplified_depth": 9,
+  "training_scale_simplified_operator_count": 26,
+  "training_scale_simplified_operators": [
+    "Add",
+    "Mul",
+    "Pow"
+  ],
+  "training_scale_simplified_constant_count": 25,
+  "training_scale_simplified_variable_count": 3,
+  "training_scale_simplified_variables": [
+    "compressor_decay",
+    "ship_speed",
+    "turbine_decay"
+  ],
+  "training_scale_simplified_expression": "-0.170995899165*ship_speed*(0.667544820432*ship_speed**2 + 0.245576*ship_speed) - 0.046314 + 0.246695*(0.068816*compressor_decay - 1.555995*ship_speed + 0.077777*turbine_decay - 2.853898 - 0.037172/(0.412137922*ship_speed**2 - 2.660269*ship_speed*(6.283185*ship_speed - 1.410817) + 0.306626) + 0.037172/(0.804386*ship_speed - 1.365175))/(0.804386*ship_speed - 1.365175)",
+  "expression_parse_success": true,
+  "expression_parse_error": null,
+  "expression_simplify_success": true,
+  "expression_simplify_error": null,
+  "symbolic_comparison_error": null,
+  "symbolic_exact_match": null,
+  "expression_node_count": 76,
+  "expression_depth": 10,
+  "expression_operator_count": 34,
+  "expression_operators": [
+    "Add",
+    "Mul",
+    "Pow"
+  ],
+  "expression_constant_count": 31,
+  "expression_variable_count": 3,
+  "expression_variables": [
+    "compressor_decay",
+    "ship_speed",
+    "turbine_decay"
+  ],
+  "simplified_node_count": 76,
+  "simplified_depth": 10,
+  "simplified_operator_count": 34,
+  "simplified_operators": [
+    "Add",
+    "Mul",
+    "Pow"
+  ],
+  "simplified_constant_count": 31,
+  "simplified_variable_count": 3,
+  "simplified_variables": [
+    "compressor_decay",
+    "ship_speed",
+    "turbine_decay"
+  ],
+  "simplified_expression": "(0.01424965826375*ship_speed - 0.21374487395625)*(-0.0204646666666667*ship_speed - 0.667544820432*(ship_speed/12 - 5/4)**2 + 0.30697) - 0.046314 + (0.6790625248*compressor_decay - 0.03198801554375*ship_speed + 1.5349757612*turbine_decay - 2.40209665981875 + 0.00917014654/(-0.412137922*(ship_speed/12 - 5/4)**2 + (0.221689083333333*ship_speed - 3.32533625)*(0.52359875*ship_speed - 9.26479825) - 0.306626) + 0.00917014654/(0.0670321666666667*ship_speed - 2.3706575))/(0.0670321666666667*ship_speed - 2.3706575)",
+  "source_result": "seed-11.json",
+  "source_result_sha256": "4c8bcbbef0bc9e729b7cbddd7fcbda643ef10886481b0f5caeaff9f054cace63"
+}

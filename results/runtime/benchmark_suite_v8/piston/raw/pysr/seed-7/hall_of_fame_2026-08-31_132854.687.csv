@@ -1,0 +1,12 @@
+Complexity,Loss,Equation
+1,0.018947177,"0.46042356"
+3,0.014860698,"(0.0045751394 / surface_area)"
+4,0.014549646,"sin(initial_volume / surface_area)"
+5,0.013920333,"(sqrt(initial_volume) * exp(1.8053555))"
+6,0.0033296444,"sqrt((initial_volume / surface_area) * 0.39436525)"
+7,0.0032077164,"(sqrt(initial_volume) * sqrt(0.40835354 / surface_area))"
+8,0.0032004535,"(sqrt(sin(initial_volume)) * sqrt(0.41071022 / surface_area))"
+23,0.003198896,"((sqrt(sin(initial_volume)) + (((exp((sin(0.54469734) * initial_volume) - ambient_temperature) * sin(-0.31917435)) * atmospheric_pressure) * 0.8369098)) * sqrt(0.41148865 / surface_area))"
+25,0.0031890925,"((sqrt(sin(initial_volume)) + (exp(-1.7660025 / 0.1412286) * (sqrt(initial_volume / gas_temperature) + (sin(log(sqrt(ambient_temperature))) / surface_area)))) * sqrt(0.40835354 / surface_area))"
+27,0.0030697798,"((sqrt(sin(initial_volume)) + ((exp(-1.7660025 / 0.1412286) * ((sqrt(gas_temperature) - -1.5782081) + sin(log(sqrt(ambient_temperature - -0.9088081))))) * piston_mass)) * sqrt(0.40835354 / surface_area))"
+29,0.002544755,"((sqrt(sin(initial_volume)) + ((exp(initial_volume * -1.1524296) * 0.76028436) * (sin(surface_area) + (sqrt(initial_volume / gas_temperature) * (sin(log(sqrt(ambient_temperature - piston_mass))) / surface_area))))) / 0.40835354)"

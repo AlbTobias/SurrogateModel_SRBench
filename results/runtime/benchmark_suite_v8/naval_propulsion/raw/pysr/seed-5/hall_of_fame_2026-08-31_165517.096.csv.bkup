@@ -1,0 +1,11 @@
+Complexity,Loss,Equation
+1,0.24507497,"0.6448116"
+3,0.24472661,"(1.6263008 - compressor_decay)"
+4,0.069653325,"(log(1.0582933) * ship_speed)"
+6,0.05676092,"((log(1.0582933) * ship_speed) * 0.7154596)"
+7,0.017722582,"exp(sin(ship_speed * -0.15979941) + -0.36738566)"
+8,0.017409995,"exp(sin(ship_speed * -0.15979941) - sqrt(0.15047479))"
+9,0.0072725867,"exp(sin((ship_speed - turbine_decay) + ship_speed) / 0.7269509)"
+11,0.0036491258,"(exp(sin(ship_speed + (ship_speed + (-0.28425932 - turbine_decay)))) - 0.17779435)"
+12,0.003576879,"(exp(sin(ship_speed + (ship_speed + (-0.28425932 - turbine_decay)))) - sqrt(0.036925793))"
+14,0.003528609,"(exp(sin(ship_speed + (ship_speed + (-0.28425932 - turbine_decay)))) - (sqrt(0.036925793) * compressor_decay))"

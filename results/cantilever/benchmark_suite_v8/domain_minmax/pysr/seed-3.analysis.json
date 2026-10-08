@@ -1,0 +1,119 @@
+{
+  "analysis_version": "expression_analysis_v2",
+  "analysis_status": "complete",
+  "problem": "cantilever",
+  "algorithm": "pysr",
+  "seed": 3,
+  "input_scaling": "domain_minmax",
+  "expression_timeout_seconds_per_stage": 60,
+  "analysis_seconds": 1.1703374120006629,
+  "analysis_python": "3.11.15",
+  "analysis_platform": "Linux-7.0.0-29-generic-x86_64-with-glibc2.43",
+  "raw_scale_symbolic_model": "(9.33314157828492 - 20*height/3)*(5*length + sin(2*force - 10*width/3 + 1.13408594333333) - 5) + 4.56879959626194*exp(10/3 - 10*height/3)",
+  "raw_scale_back_transform_error": null,
+  "complexity_valid": true,
+  "complexity_source": "simplified",
+  "training_scale_expression_parse_success": true,
+  "training_scale_expression_parse_error": null,
+  "training_scale_expression_simplify_success": true,
+  "training_scale_expression_simplify_error": null,
+  "training_scale_symbolic_comparison_error": null,
+  "training_scale_symbolic_exact_match": null,
+  "training_scale_expression_node_count": 24,
+  "training_scale_expression_depth": 7,
+  "training_scale_expression_operator_count": 12,
+  "training_scale_expression_operators": [
+    "Add",
+    "Mul",
+    "exp",
+    "sin"
+  ],
+  "training_scale_expression_constant_count": 7,
+  "training_scale_expression_variable_count": 4,
+  "training_scale_expression_variables": [
+    "force",
+    "height",
+    "length",
+    "width"
+  ],
+  "training_scale_simplified_node_count": 24,
+  "training_scale_simplified_depth": 7,
+  "training_scale_simplified_operator_count": 12,
+  "training_scale_simplified_operators": [
+    "Add",
+    "Mul",
+    "exp",
+    "sin"
+  ],
+  "training_scale_simplified_constant_count": 7,
+  "training_scale_simplified_variable_count": 4,
+  "training_scale_simplified_variables": [
+    "force",
+    "height",
+    "length",
+    "width"
+  ],
+  "training_scale_simplified_expression": "(2.66647491161825 - 2*height)*(length - sin(-force + width + 0.19924739)) + 4.56879959626194*exp(-height)",
+  "expression_parse_success": true,
+  "expression_parse_error": null,
+  "expression_simplify_success": true,
+  "expression_simplify_error": null,
+  "symbolic_comparison_error": null,
+  "symbolic_exact_match": false,
+  "expression_node_count": 29,
+  "expression_depth": 6,
+  "expression_operator_count": 14,
+  "expression_operators": [
+    "Add",
+    "Mul",
+    "exp",
+    "sin"
+  ],
+  "expression_constant_count": 10,
+  "expression_variable_count": 4,
+  "expression_variables": [
+    "force",
+    "height",
+    "length",
+    "width"
+  ],
+  "simplified_node_count": 29,
+  "simplified_depth": 6,
+  "simplified_operator_count": 14,
+  "simplified_operators": [
+    "Add",
+    "Mul",
+    "exp",
+    "sin"
+  ],
+  "simplified_constant_count": 10,
+  "simplified_variable_count": 4,
+  "simplified_variables": [
+    "force",
+    "height",
+    "length",
+    "width"
+  ],
+  "simplified_expression": "(9.33314157828492 - 20*height/3)*(5*length + sin(2*force - 10*width/3 + 1.13408594333333) - 5) + 4.56879959626194*exp(10/3 - 10*height/3)",
+  "ground_truth_node_count": 15,
+  "ground_truth_depth": 2,
+  "ground_truth_operator_count": 5,
+  "ground_truth_operators": [
+    "Mul",
+    "Pow"
+  ],
+  "ground_truth_constant_count": 5,
+  "ground_truth_variable_count": 5,
+  "ground_truth_variables": [
+    "force",
+    "height",
+    "length",
+    "modulus",
+    "width"
+  ],
+  "ground_truth_expression": "4*force*length**3/(height**3*modulus*width)",
+  "ground_truth_variable_recall": 0.8,
+  "simplified_to_ground_truth_size_ratio": 1.9333333333333333,
+  "source_result": "seed-3.json",
+  "source_result_sha256": "a70e194ea71cb507842f759ce6ffd4e1daf65522c22a8b5d84f6f0c2b79f8689"
+}

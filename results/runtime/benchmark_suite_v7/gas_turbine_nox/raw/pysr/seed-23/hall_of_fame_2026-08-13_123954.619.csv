@@ -1,0 +1,12 @@
+Complexity,Loss,Equation
+1,121.505516,"68.969185"
+3,118.57394,"(72.19264 - air_filter_pressure_difference)"
+4,111.46054,"(72.19264 - sqrt(ambient_temperature))"
+7,86.06439,"(sqrt(turbine_inlet_temperature * log(turbine_inlet_temperature)) - ambient_temperature)"
+9,85.8131,"(sqrt((turbine_inlet_temperature - air_filter_pressure_difference) * log(turbine_inlet_temperature)) - ambient_temperature)"
+11,83.49101,"(sqrt((ambient_pressure * log(ambient_pressure + 0.19647256)) + turbine_after_temperature) - ambient_temperature)"
+13,83.28893,"((sqrt((turbine_inlet_temperature * log(turbine_inlet_temperature + turbine_inlet_temperature)) + -0.65865713) - ambient_temperature) - air_filter_pressure_difference)"
+15,82.86677,"(((94.67196 - (ambient_temperature + 0.1030587)) - 0.08785838) + log(sin(-0.563653 * (-0.563653 / turbine_after_temperature))))"
+20,76.26353,"(log(((ambient_pressure - compressor_discharge_pressure) + turbine_after_temperature) / (ambient_temperature * 0.42458218)) / ((sqrt(turbine_after_temperature) * sqrt(compressor_discharge_pressure + 0.10498776)) / ambient_pressure))"
+27,75.22239,"(((log(((ambient_pressure - gas_turbine_exhaust_pressure) * compressor_discharge_pressure) / (compressor_discharge_pressure * ambient_temperature)) / ((sqrt(turbine_after_temperature) * sqrt(compressor_discharge_pressure + 0.77231467)) / ambient_pressure)) + log(compressor_discharge_pressure)) + (15.176567 - -0.73775667))"
+30,75.108765,"(((log(((ambient_pressure - gas_turbine_exhaust_pressure) * compressor_discharge_pressure) / (compressor_discharge_pressure * ambient_temperature)) / ((sqrt(turbine_after_temperature) * sqrt(compressor_discharge_pressure + 0.77231467)) / ambient_pressure)) + log(sqrt(compressor_discharge_pressure))) + ((15.176567 - -1.8561584) - -0.73775667))"

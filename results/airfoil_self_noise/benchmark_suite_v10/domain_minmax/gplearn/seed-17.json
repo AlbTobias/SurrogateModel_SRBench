@@ -1,0 +1,89 @@
+{
+  "status": "success",
+  "problem": "airfoil_self_noise",
+  "algorithm": "gplearn",
+  "seed": 17,
+  "seed_parameter": "random_state",
+  "train_samples": 400,
+  "test_samples": 1103,
+  "feature_names": [
+    "frequency",
+    "angle_of_attack",
+    "chord_length",
+    "free_stream_velocity",
+    "suction_side_displacement_thickness"
+  ],
+  "dataset_policy": "fixed across algorithm trials",
+  "dataset_hash_scope": "SHA-256 of uncompressed table bytes",
+  "train_dataset_sha256": "d3314580be9771c9e4fd8c84de41e36e943efbb05a87cd287bce18bda706d6f7",
+  "test_dataset_sha256": "98d084b30a6a62461dd5171647dab91177f55ed421f5f24a2c07a86252395291",
+  "requested_population_size": null,
+  "requested_iterations": null,
+  "time_limit": null,
+  "profile": "benchmark",
+  "benchmark_name": "benchmark_suite_v10",
+  "config_file": "/workspace/configs/benchmark_suite_v10.json",
+  "configuration_schema_version": 2,
+  "configuration_sha256": "82ad8c73b89e010abad96cf0bd889cb824413a051430ae65a71403bf340a2fa7",
+  "use_dataframe": true,
+  "input_scaling": "domain_minmax",
+  "input_scaling_applied": true,
+  "input_scaling_source": "fixed documented problem domain",
+  "input_scaling_formula": "z = 2 * (x - lower) / (upper - lower) - 1",
+  "input_scaling_parameters": {
+    "frequency": {
+      "lower": 200.0,
+      "upper": 20000.0
+    },
+    "angle_of_attack": {
+      "lower": 0.0,
+      "upper": 22.2
+    },
+    "chord_length": {
+      "lower": 0.0254,
+      "upper": 0.3048
+    },
+    "free_stream_velocity": {
+      "lower": 31.7,
+      "upper": 71.3
+    },
+    "suction_side_displacement_thickness": {
+      "lower": 0.000400682,
+      "upper": 0.0584113
+    }
+  },
+  "target_scaling": "none; target remains in original units",
+  "algorithm_configuration_role": "project_budget_override",
+  "algorithm_configuration_rationale": "Reduced from the SRBench adapter's 1000 individuals and 500 generations to keep repeated trials computationally feasible; not selected using test performance.",
+  "configured_parameters": {
+    "population_size": 500,
+    "generations": 100
+  },
+  "applied_parameters": {
+    "random_state": 17,
+    "population_size": 500,
+    "generations": 100
+  },
+  "rmse": 5.582541598183755,
+  "nrmse_range": 0.15278727894749997,
+  "mae": 4.292668566312708,
+  "r2": 0.34844516307209894,
+  "max_absolute_error": 19.748393883771598,
+  "fit_seconds": 45.42271955900014,
+  "prediction_seconds": 0.0017123490006270004,
+  "prediction_repeats": 5,
+  "prediction_scalar_broadcast": false,
+  "prediction_mean_seconds": 0.0016064530002040556,
+  "prediction_median_seconds": 0.0015676289995099069,
+  "prediction_std_seconds": 7.956123295615939e-05,
+  "prediction_microseconds_per_sample": 1.4212411600271142,
+  "expression_extraction_seconds": 0.00034602699997776654,
+  "evaluation_seconds": 45.431424126999445,
+  "timing_scope": "fit/predict/expression extraction inside the running container; symbolic analysis, image pull, container startup, data generation, and metric serialization excluded",
+  "model_size": 276,
+  "symbolic_model": "sqrt(mul(sub(div(div(0.858, 0.297), 0.297), cos(chord_length)), mul(div(div(0.858, 0.297), 0.297), sqrt(mul(sub(div(sub(frequency, 0.297), 0.055), div(0.858, 0.297)), mul(div(div(0.858, 0.297), 0.297), sqrt(mul(div(div(0.858, 0.297), 0.297), mul(div(div(0.858, 0.297), 0.297), sqrt(mul(mul(div(div(0.858, 0.297), 0.297), sqrt(mul(sub(div(div(div(div(0.858, sub(frequency, 0.297)), 0.297), 0.297), 0.297), cos(chord_length)), mul(div(div(div(0.858, sub(sub(frequency, 0.297), 0.297)), 0.297), 0.297), sqrt(mul(sub(div(add(suction_side_displacement_thickness, chord_length), 0.297), cos(chord_length)), sqrt(mul(div(mul(div(div(add(suction_side_displacement_thickness, 0.297), 0.297), 0.297), sqrt(add(suction_side_displacement_thickness, chord_length))), 0.297), mul(mul(div(div(div(0.858, sub(sub(frequency, 0.297), 0.297)), 0.297), 0.297), div(0.858, 0.297)), mul(div(div(div(0.858, sub(sub(frequency, 0.297), 0.297)), 0.297), 0.297), sqrt(mul(div(add(suction_side_displacement_thickness, chord_length), 0.297), sqrt(mul(div(mul(div(div(add(suction_side_displacement_thickness, chord_length), 0.297), 0.297), sqrt(div(0.858, 0.297))), 0.297), mul(mul(div(sqrt(mul(sub(div(add(suction_side_displacement_thickness, chord_length), 0.297), cos(chord_length)), sqrt(mul(div(mul(div(div(add(suction_side_displacement_thickness, chord_length), 0.297), 0.297), sqrt(add(suction_side_displacement_thickness, chord_length))), 0.297), mul(mul(div(div(0.858, 0.297), 0.297), div(div(div(0.858, sub(sub(frequency, 0.297), 0.297)), 0.297), 0.297)), mul(div(div(div(0.858, sub(sub(frequency, 0.297), 0.297)), 0.297), 0.297), sqrt(mul(sub(0.297, cos(chord_length)), sqrt(mul(div(mul(div(div(frequency, 0.297), 0.297), 0.297), 0.297), div(0.858, 0.297))))))))))), 0.297), div(0.858, 0.297)), div(div(sub(frequency, 0.297), 0.055), 0.297)))))))))))))))), mul(div(div(0.858, 0.297), 0.297), mul(div(div(div(0.858, sub(frequency, 0.297)), 0.297), 0.297), sqrt(div(0.858, sub(sub(chord_length, 0.297), cos(add(suction_side_displacement_thickness, chord_length))))))))))))))))))",
+  "symbolic_model_coordinate_system": "domain_minmax",
+  "symbolic_analysis": "separate post-processing sidecar",
+  "python": "3.12.5",
+  "platform": "Linux-7.0.0-30-generic-x86_64-with-glibc2.36"
+}

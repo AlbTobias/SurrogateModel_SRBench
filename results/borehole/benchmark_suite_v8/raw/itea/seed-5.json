@@ -1,0 +1,102 @@
+{
+  "status": "success",
+  "problem": "borehole",
+  "algorithm": "itea",
+  "seed": 5,
+  "seed_parameter": null,
+  "train_samples": 400,
+  "test_samples": 4000,
+  "feature_names": [
+    "borehole_radius",
+    "influence_radius",
+    "upper_transmissivity",
+    "upper_head",
+    "lower_transmissivity",
+    "lower_head",
+    "borehole_length",
+    "hydraulic_conductivity"
+  ],
+  "dataset_policy": "fixed across algorithm trials",
+  "dataset_hash_scope": "SHA-256 of uncompressed table bytes",
+  "train_dataset_sha256": "07ebea8de5c2ecbc91a9a401e0d2502d5896a14d7fb10bd6a6f2b415bd32a767",
+  "test_dataset_sha256": "e94f3036e7987909ecb11e11e6dab5517a508af8cf9f83520d9c12a1ab3a1504",
+  "requested_population_size": null,
+  "requested_iterations": null,
+  "time_limit": null,
+  "profile": "benchmark",
+  "benchmark_name": "benchmark_suite_v8",
+  "config_file": "/workspace/configs/benchmark_suite_v8.json",
+  "configuration_schema_version": 2,
+  "configuration_sha256": "674e097628af3ce351b421c973b1ebdb7bf4d2087fa24a83ea042312a03335eb",
+  "use_dataframe": true,
+  "input_scaling": "raw",
+  "input_scaling_applied": false,
+  "input_scaling_source": "fixed documented problem domain",
+  "input_scaling_formula": "x unchanged",
+  "input_scaling_parameters": {
+    "borehole_radius": {
+      "lower": 0.05,
+      "upper": 0.15
+    },
+    "influence_radius": {
+      "lower": 100.0,
+      "upper": 50000.0
+    },
+    "upper_transmissivity": {
+      "lower": 63070.0,
+      "upper": 115600.0
+    },
+    "upper_head": {
+      "lower": 990.0,
+      "upper": 1110.0
+    },
+    "lower_transmissivity": {
+      "lower": 63.1,
+      "upper": 116.0
+    },
+    "lower_head": {
+      "lower": 700.0,
+      "upper": 820.0
+    },
+    "borehole_length": {
+      "lower": 1120.0,
+      "upper": 1680.0
+    },
+    "hydraulic_conductivity": {
+      "lower": 9855.0,
+      "upper": 12045.0
+    }
+  },
+  "target_scaling": "none; target remains in original units",
+  "algorithm_configuration_role": "documented_adapter_defaults",
+  "algorithm_configuration_rationale": "Restates the population and generation settings already defined by the pinned SRBench adapter.",
+  "configured_parameters": {
+    "npop": 1000,
+    "ngens": 500
+  },
+  "applied_parameters": {
+    "npop": 1000,
+    "ngens": 500
+  },
+  "rmse": 5.282085787663765,
+  "nrmse_range": 0.021736028725753816,
+  "mae": 3.8990678643742975,
+  "r2": 0.9862824000498654,
+  "max_absolute_error": 26.285940850656488,
+  "fit_seconds": 11.063267115000599,
+  "prediction_seconds": 0.0008305340006700135,
+  "prediction_repeats": 5,
+  "prediction_mean_seconds": 0.0009268584000892588,
+  "prediction_median_seconds": 0.0008909830003176467,
+  "prediction_std_seconds": 0.00011214664723338893,
+  "prediction_microseconds_per_sample": 0.22274575007941166,
+  "expression_extraction_seconds": 3.858600030071102e-05,
+  "evaluation_seconds": 11.068381389999558,
+  "timing_scope": "fit/predict/expression extraction inside the running container; symbolic analysis, image pull, container startup, data generation, and metric serialization excluded",
+  "model_size": 29,
+  "symbolic_model": "4073.9842055315776 + 19.217606289930515*Exp(borehole_radius*upper_head*lower_head**(-1)*borehole_length**(-1)*hydraulic_conductivity) + -4100.370341749545*Cos(borehole_radius*upper_head*lower_head**(-1))",
+  "symbolic_model_coordinate_system": "raw",
+  "symbolic_analysis": "separate post-processing sidecar",
+  "python": "3.12.5",
+  "platform": "Linux-7.0.0-29-generic-x86_64-with-glibc2.36"
+}

@@ -1,0 +1,100 @@
+{
+  "analysis_version": "expression_analysis_v2",
+  "analysis_status": "complete",
+  "problem": "concrete_strength",
+  "algorithm": "operon",
+  "seed": 19,
+  "input_scaling": "domain_minmax",
+  "expression_timeout_seconds_per_stage": 60,
+  "analysis_seconds": 0.3959200530007365,
+  "analysis_python": "3.11.15",
+  "analysis_platform": "Linux-7.0.0-30-generic-x86_64-with-glibc2.43",
+  "raw_scale_symbolic_model": "0.0910280961909738*blast_furnace_slag + 0.113321859512041*cement + 0.064471220058071*fly_ash - 0.228898793012093*water + 18.7569953584642*(age/182 - 183/182)**5*(-0.00519078571428571*age + 0.815296701408*(age/182 - 183/182)**2 + 0.949913785714286) + 49.1683630757367",
+  "raw_scale_back_transform_error": null,
+  "complexity_valid": true,
+  "complexity_source": "simplified",
+  "training_scale_expression_parse_success": true,
+  "training_scale_expression_parse_error": null,
+  "training_scale_expression_simplify_success": true,
+  "training_scale_expression_simplify_error": null,
+  "training_scale_symbolic_comparison_error": null,
+  "training_scale_symbolic_exact_match": null,
+  "training_scale_expression_node_count": 28,
+  "training_scale_expression_depth": 5,
+  "training_scale_expression_operator_count": 11,
+  "training_scale_expression_operators": [
+    "Add",
+    "Mul",
+    "Pow"
+  ],
+  "training_scale_expression_constant_count": 10,
+  "training_scale_expression_variable_count": 5,
+  "training_scale_expression_variables": [
+    "age",
+    "blast_furnace_slag",
+    "cement",
+    "fly_ash",
+    "water"
+  ],
+  "training_scale_simplified_node_count": 23,
+  "training_scale_simplified_depth": 4,
+  "training_scale_simplified_operator_count": 9,
+  "training_scale_simplified_operators": [
+    "Add",
+    "Mul",
+    "Pow"
+  ],
+  "training_scale_simplified_constant_count": 8,
+  "training_scale_simplified_variable_count": 5,
+  "training_scale_simplified_variables": [
+    "age",
+    "blast_furnace_slag",
+    "cement",
+    "fly_ash",
+    "water"
+  ],
+  "training_scale_simplified_expression": "age**6*(15.292516444081*age - 17.7201649260344) + 16.357748885518*blast_furnace_slag + 24.817487233137*cement + 6.45034556681*fly_ash - 14.329064442557*water + 66.143837",
+  "expression_parse_success": true,
+  "expression_parse_error": null,
+  "expression_simplify_success": true,
+  "expression_simplify_error": null,
+  "symbolic_comparison_error": null,
+  "symbolic_exact_match": null,
+  "expression_node_count": 37,
+  "expression_depth": 7,
+  "expression_operator_count": 15,
+  "expression_operators": [
+    "Add",
+    "Mul",
+    "Pow"
+  ],
+  "expression_constant_count": 15,
+  "expression_variable_count": 5,
+  "expression_variables": [
+    "age",
+    "blast_furnace_slag",
+    "cement",
+    "fly_ash",
+    "water"
+  ],
+  "simplified_node_count": 32,
+  "simplified_depth": 6,
+  "simplified_operator_count": 13,
+  "simplified_operators": [
+    "Add",
+    "Mul",
+    "Pow"
+  ],
+  "simplified_constant_count": 12,
+  "simplified_variable_count": 5,
+  "simplified_variables": [
+    "age",
+    "blast_furnace_slag",
+    "cement",
+    "fly_ash",
+    "water"
+  ],
+  "simplified_expression": "0.0910280961909738*blast_furnace_slag + 0.113321859512041*cement + 0.064471220058071*fly_ash - 0.228898793012093*water + (age - 183)**5*(-4.87572757239718e-13*age + 2.31195427371767e-15*(age - 183)**2 + 8.92258145748685e-11) + 49.1683630757367",
+  "source_result": "seed-19.json",
+  "source_result_sha256": "6c4e7d84d80be399da9ccf7e6edcb6854bb8c51ce0eb32467713ef6dc876b940"
+}

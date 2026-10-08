@@ -1,0 +1,103 @@
+{
+  "status": "success",
+  "problem": "borehole",
+  "algorithm": "gplearn",
+  "seed": 2,
+  "seed_parameter": "random_state",
+  "train_samples": 400,
+  "test_samples": 4000,
+  "feature_names": [
+    "borehole_radius",
+    "influence_radius",
+    "upper_transmissivity",
+    "upper_head",
+    "lower_transmissivity",
+    "lower_head",
+    "borehole_length",
+    "hydraulic_conductivity"
+  ],
+  "dataset_policy": "fixed across algorithm trials",
+  "dataset_hash_scope": "SHA-256 of uncompressed table bytes",
+  "train_dataset_sha256": "07ebea8de5c2ecbc91a9a401e0d2502d5896a14d7fb10bd6a6f2b415bd32a767",
+  "test_dataset_sha256": "e94f3036e7987909ecb11e11e6dab5517a508af8cf9f83520d9c12a1ab3a1504",
+  "requested_population_size": null,
+  "requested_iterations": null,
+  "time_limit": null,
+  "profile": "benchmark",
+  "benchmark_name": "benchmark_suite_v8",
+  "config_file": "/workspace/configs/benchmark_suite_v8.json",
+  "configuration_schema_version": 2,
+  "configuration_sha256": "674e097628af3ce351b421c973b1ebdb7bf4d2087fa24a83ea042312a03335eb",
+  "use_dataframe": true,
+  "input_scaling": "domain_minmax",
+  "input_scaling_applied": true,
+  "input_scaling_source": "fixed documented problem domain",
+  "input_scaling_formula": "z = 2 * (x - lower) / (upper - lower) - 1",
+  "input_scaling_parameters": {
+    "borehole_radius": {
+      "lower": 0.05,
+      "upper": 0.15
+    },
+    "influence_radius": {
+      "lower": 100.0,
+      "upper": 50000.0
+    },
+    "upper_transmissivity": {
+      "lower": 63070.0,
+      "upper": 115600.0
+    },
+    "upper_head": {
+      "lower": 990.0,
+      "upper": 1110.0
+    },
+    "lower_transmissivity": {
+      "lower": 63.1,
+      "upper": 116.0
+    },
+    "lower_head": {
+      "lower": 700.0,
+      "upper": 820.0
+    },
+    "borehole_length": {
+      "lower": 1120.0,
+      "upper": 1680.0
+    },
+    "hydraulic_conductivity": {
+      "lower": 9855.0,
+      "upper": 12045.0
+    }
+  },
+  "target_scaling": "none; target remains in original units",
+  "algorithm_configuration_role": "project_budget_override",
+  "algorithm_configuration_rationale": "Reduced from the SRBench adapter's 1000 individuals and 500 generations to keep repeated trials computationally feasible; not selected using test performance.",
+  "configured_parameters": {
+    "population_size": 500,
+    "generations": 100
+  },
+  "applied_parameters": {
+    "random_state": 2,
+    "population_size": 500,
+    "generations": 100
+  },
+  "rmse": 18.038737053786107,
+  "nrmse_range": 0.07423024209359422,
+  "mae": 13.035057887734784,
+  "r2": 0.8400149179185777,
+  "max_absolute_error": 105.90872719565238,
+  "fit_seconds": 40.60024603999955,
+  "prediction_seconds": 0.003235126001527533,
+  "prediction_repeats": 5,
+  "prediction_mean_seconds": 0.002904291000231751,
+  "prediction_median_seconds": 0.002827697999236989,
+  "prediction_std_seconds": 0.0001941295028220808,
+  "prediction_microseconds_per_sample": 0.7069244998092472,
+  "expression_extraction_seconds": 0.00025901699882524554,
+  "evaluation_seconds": 40.61537899200084,
+  "timing_scope": "fit/predict/expression extraction inside the running container; symbolic analysis, image pull, container startup, data generation, and metric serialization excluded",
+  "model_size": 195,
+  "symbolic_model": "sqrt(mul(div(sub(sin(mul(borehole_radius, cos(0.490))), -0.788), mul(mul(sin(0.355), sin(0.355)), sin(mul(0.355, sin(0.355))))), sqrt(mul(div(div(borehole_radius, sin(0.355)), mul(sin(0.355), sin(mul(sub(cos(sin(sin(0.355))), cos(0.490)), sin(0.355))))), div(sub(mul(div(borehole_radius, sin(0.355)), cos(influence_radius)), div(sub(sub(cos(influence_radius), -0.788), div(-0.788, borehole_radius)), sub(sin(0.355), cos(mul(sin(borehole_radius), sin(sqrt(mul(div(mul(div(div(borehole_radius, sin(sin(0.355))), sin(0.355)), div(mul(div(borehole_radius, sin(0.355)), cos(influence_radius)), sub(cos(0.355), cos(0.490)))), cos(sin(0.355))), sqrt(sin(0.355)))))))))), sub(cos(0.355), cos(mul(sin(sin(sqrt(div(sub(cos(mul(sub(cos(div(mul(div(div(borehole_radius, sin(0.355)), mul(sin(0.355), sin(mul(div(sub(cos(influence_radius), div(-0.788, borehole_radius)), sub(sin(0.355), cos(mul(sin(mul(borehole_radius, cos(0.490))), sin(sqrt(mul(sub(mul(div(borehole_radius, sin(sin(0.355))), cos(influence_radius)), div(-0.788, borehole_radius)), cos(0.490)))))))), sin(0.355))))), div(mul(div(borehole_radius, sin(0.355)), div(sub(cos(sin(0.355)), cos(0.490)), sub(0.778, upper_head))), sub(cos(0.355), cos(0.490)))), cos(sin(0.355)))), cos(0.490)), sin(0.355))), cos(0.490)), sub(0.778, upper_head))))), 0.355))))))))",
+  "symbolic_model_coordinate_system": "domain_minmax",
+  "symbolic_analysis": "separate post-processing sidecar",
+  "python": "3.12.5",
+  "platform": "Linux-7.0.0-29-generic-x86_64-with-glibc2.36"
+}

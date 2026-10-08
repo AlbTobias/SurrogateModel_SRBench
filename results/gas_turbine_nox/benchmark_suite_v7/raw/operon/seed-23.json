@@ -1,0 +1,110 @@
+{
+  "status": "success",
+  "problem": "gas_turbine_nox",
+  "algorithm": "operon",
+  "seed": 23,
+  "seed_parameter": "random_state",
+  "train_samples": 400,
+  "test_samples": 4000,
+  "feature_names": [
+    "ambient_temperature",
+    "ambient_pressure",
+    "ambient_humidity",
+    "air_filter_pressure_difference",
+    "gas_turbine_exhaust_pressure",
+    "turbine_inlet_temperature",
+    "turbine_after_temperature",
+    "turbine_energy_yield",
+    "compressor_discharge_pressure"
+  ],
+  "dataset_policy": "fixed across algorithm trials",
+  "dataset_hash_scope": "SHA-256 of uncompressed table bytes",
+  "train_dataset_sha256": "663b72e6a205d52a2aa99c1cc7706c3c3dc85d728b6a73377b5a8ba4294426a5",
+  "test_dataset_sha256": "cd5d763a69d3d39d00034c1d645d835f9ff4d117409be9f19ceef4ce438a9f84",
+  "requested_population_size": null,
+  "requested_iterations": null,
+  "time_limit": null,
+  "profile": "benchmark",
+  "benchmark_name": "benchmark_suite_v7",
+  "config_file": "/workspace/configs/benchmark_suite_v7.json",
+  "configuration_schema_version": 2,
+  "configuration_sha256": "54500ace407ff580e0e85a892bfe94a5f6e2e5868e421e289c670f33a5d20970",
+  "use_dataframe": false,
+  "input_scaling": "raw",
+  "input_scaling_applied": false,
+  "input_scaling_source": "fixed documented problem domain",
+  "input_scaling_formula": "x unchanged",
+  "input_scaling_parameters": {
+    "ambient_temperature": {
+      "lower": -6.2348,
+      "upper": 37.103
+    },
+    "ambient_pressure": {
+      "lower": 985.85,
+      "upper": 1036.6
+    },
+    "ambient_humidity": {
+      "lower": 24.085,
+      "upper": 100.2
+    },
+    "air_filter_pressure_difference": {
+      "lower": 2.0874,
+      "upper": 7.6106
+    },
+    "gas_turbine_exhaust_pressure": {
+      "lower": 17.698,
+      "upper": 40.716
+    },
+    "turbine_inlet_temperature": {
+      "lower": 1000.8,
+      "upper": 1100.9
+    },
+    "turbine_after_temperature": {
+      "lower": 511.04,
+      "upper": 550.61
+    },
+    "turbine_energy_yield": {
+      "lower": 100.02,
+      "upper": 179.5
+    },
+    "compressor_discharge_pressure": {
+      "lower": 9.8518,
+      "upper": 15.159
+    }
+  },
+  "target_scaling": "none; target remains in original units",
+  "algorithm_configuration_role": "documented_adapter_defaults",
+  "algorithm_configuration_rationale": "Restates the effective settings of the legacy Operon estimator in the pinned SRBench image for auditability.",
+  "configured_parameters": {
+    "population_size": 1000,
+    "generations": 1000,
+    "max_evaluations": 1000000
+  },
+  "applied_parameters": {
+    "random_state": 23,
+    "population_size": 1000,
+    "generations": 1000,
+    "max_evaluations": 1000000
+  },
+  "rmse": 13.480488642315294,
+  "nrmse_range": 0.16464920050706322,
+  "mae": 11.811860047698975,
+  "r2": -0.6325395232612441,
+  "max_absolute_error": 136.7714487915039,
+  "fit_seconds": 4.1450952599998345,
+  "prediction_seconds": 0.00019887999951606616,
+  "prediction_repeats": 5,
+  "prediction_mean_seconds": 0.000132095199842297,
+  "prediction_median_seconds": 0.00010338500032958109,
+  "prediction_std_seconds": 4.731888947970865e-05,
+  "prediction_microseconds_per_sample": 0.025846250082395272,
+  "expression_extraction_seconds": 6.266899981710594e-05,
+  "evaluation_seconds": 4.146179659000154,
+  "timing_scope": "fit/predict/expression extraction inside the running container; symbolic analysis, image pull, container startup, data generation, and metric serialization excluded",
+  "model_size": 99,
+  "symbolic_model": "(65.036140 + ((-18048496.000000) * ((((((((0.145600 * ambient_humidity) * (1.049529 * ambient_temperature)) - (((2.948990 * gas_turbine_exhaust_pressure) + (6.283185 * air_filter_pressure_difference)) + (((-4.851947) * ambient_temperature) - ((-0.452643) * turbine_after_temperature)))) / ((-1.415047) * turbine_energy_yield)) / (0.660633 * gas_turbine_exhaust_pressure)) / ((((((-4.742822) * ambient_temperature) + (2.948990 * gas_turbine_exhaust_pressure)) / (((0.145600 * ambient_humidity) * (1.049529 * ambient_temperature)) - (((-4.687454) * ambient_temperature) - ((-0.452643) * turbine_after_temperature)))) + (1.023900 * gas_turbine_exhaust_pressure)) + (0.145600 * ambient_humidity))) / (((2.948990 * gas_turbine_exhaust_pressure) / (((0.145600 * ambient_humidity) * (1.049529 * ambient_temperature)) - (((-0.229664) * ambient_temperature) - ((-0.452643) * turbine_after_temperature)))) + ((0.057255 * ambient_temperature) + ((2.718282 * air_filter_pressure_difference) + (0.434294 * gas_turbine_exhaust_pressure))))) / ((-0.841560) * turbine_energy_yield))))",
+  "symbolic_model_coordinate_system": "raw",
+  "symbolic_analysis": "separate post-processing sidecar",
+  "python": "3.12.5",
+  "platform": "Linux-7.0.0-29-generic-x86_64-with-glibc2.36"
+}

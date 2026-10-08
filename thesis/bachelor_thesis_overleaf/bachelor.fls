@@ -3,7 +3,7 @@ INPUT /etc/texmf/web2c/texmf.cnf
 INPUT /usr/share/texmf/web2c/texmf.cnf
 INPUT /usr/share/texlive/texmf-dist/web2c/texmf.cnf
 INPUT /var/lib/texmf/web2c/pdftex/pdflatex.fmt
-INPUT bachelor.tex
+INPUT /home/tobias-albrecht/Programming/SurrogateModel_SRBench/thesis/bachelor_thesis_overleaf/bachelor.tex
 OUTPUT bachelor.log
 INPUT /usr/share/texlive/texmf-dist/tex/latex/koma-script/scrbook.cls
 INPUT /usr/share/texlive/texmf-dist/tex/latex/koma-script/scrbook.cls

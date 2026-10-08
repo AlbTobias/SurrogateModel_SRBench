@@ -1,0 +1,80 @@
+{
+  "analysis_version": "expression_analysis_v2",
+  "analysis_status": "complete",
+  "problem": "airfoil_self_noise",
+  "algorithm": "itea",
+  "seed": 7,
+  "input_scaling": "domain_minmax",
+  "expression_timeout_seconds_per_stage": 60,
+  "simplification_requested": true,
+  "analysis_seconds": 60.265129953000724,
+  "analysis_python": "3.11.15",
+  "analysis_platform": "Linux-7.0.0-30-generic-x86_64-with-glibc2.43",
+  "raw_scale_symbolic_model": "7.259754732560095*exp((10*angle_of_attack/111 - 1)*(10000*chord_length/1397 - 13/11)) - 13.052722097655522*sin(frequency/9900 - 101/99) + 109.37563227088823",
+  "raw_scale_back_transform_error": null,
+  "complexity_valid": true,
+  "complexity_source": "unsimplified_fallback",
+  "training_scale_expression_parse_success": true,
+  "training_scale_expression_parse_error": null,
+  "training_scale_expression_simplify_success": true,
+  "training_scale_expression_simplify_error": null,
+  "training_scale_symbolic_comparison_error": null,
+  "training_scale_symbolic_exact_match": null,
+  "training_scale_expression_node_count": 12,
+  "training_scale_expression_depth": 4,
+  "training_scale_expression_operator_count": 6,
+  "training_scale_expression_operators": [
+    "Add",
+    "Mul",
+    "exp",
+    "sin"
+  ],
+  "training_scale_expression_constant_count": 3,
+  "training_scale_expression_variable_count": 3,
+  "training_scale_expression_variables": [
+    "angle_of_attack",
+    "chord_length",
+    "frequency"
+  ],
+  "training_scale_simplified_node_count": 12,
+  "training_scale_simplified_depth": 4,
+  "training_scale_simplified_operator_count": 6,
+  "training_scale_simplified_operators": [
+    "Add",
+    "Mul",
+    "exp",
+    "sin"
+  ],
+  "training_scale_simplified_constant_count": 3,
+  "training_scale_simplified_variable_count": 3,
+  "training_scale_simplified_variables": [
+    "angle_of_attack",
+    "chord_length",
+    "frequency"
+  ],
+  "training_scale_simplified_expression": "7.259754732560095*exp(angle_of_attack*chord_length) - 13.052722097655522*sin(frequency) + 109.37563227088823",
+  "expression_parse_success": true,
+  "expression_parse_error": null,
+  "expression_simplify_success": false,
+  "expression_simplify_error": "ExpressionTimeoutError: symbolic analysis exceeded 60 seconds",
+  "symbolic_comparison_error": null,
+  "symbolic_exact_match": null,
+  "expression_node_count": 24,
+  "expression_depth": 6,
+  "expression_operator_count": 12,
+  "expression_operators": [
+    "Add",
+    "Mul",
+    "exp",
+    "sin"
+  ],
+  "expression_constant_count": 9,
+  "expression_variable_count": 3,
+  "expression_variables": [
+    "angle_of_attack",
+    "chord_length",
+    "frequency"
+  ],
+  "source_result": "seed-7.json",
+  "source_result_sha256": "79436a933737e55929efafb2d69245daf4f380fcc33ae1f84671da83424bcb67"
+}

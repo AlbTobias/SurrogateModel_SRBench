@@ -1,0 +1,88 @@
+{
+  "analysis_version": "expression_analysis_v2",
+  "analysis_status": "complete",
+  "problem": "concrete_strength",
+  "algorithm": "pysr",
+  "seed": 7,
+  "input_scaling": "domain_minmax",
+  "expression_timeout_seconds_per_stage": 60,
+  "analysis_seconds": 0.8095380890008528,
+  "analysis_python": "3.11.15",
+  "analysis_platform": "Linux-7.0.0-30-generic-x86_64-with-glibc2.43",
+  "raw_scale_symbolic_model": "1.0055267404469*superplasticizer + 16.1889805211951*exp(cement/219 - 107/73) + 13.2912533795804",
+  "raw_scale_back_transform_error": null,
+  "complexity_valid": true,
+  "complexity_source": "simplified",
+  "training_scale_expression_parse_success": true,
+  "training_scale_expression_parse_error": null,
+  "training_scale_expression_simplify_success": true,
+  "training_scale_expression_simplify_error": null,
+  "training_scale_symbolic_comparison_error": null,
+  "training_scale_symbolic_exact_match": null,
+  "training_scale_expression_node_count": 9,
+  "training_scale_expression_depth": 3,
+  "training_scale_expression_operator_count": 4,
+  "training_scale_expression_operators": [
+    "Add",
+    "Mul",
+    "exp"
+  ],
+  "training_scale_expression_constant_count": 3,
+  "training_scale_expression_variable_count": 2,
+  "training_scale_expression_variables": [
+    "cement",
+    "superplasticizer"
+  ],
+  "training_scale_simplified_node_count": 9,
+  "training_scale_simplified_depth": 3,
+  "training_scale_simplified_operator_count": 4,
+  "training_scale_simplified_operators": [
+    "Add",
+    "Mul",
+    "exp"
+  ],
+  "training_scale_simplified_constant_count": 3,
+  "training_scale_simplified_variable_count": 2,
+  "training_scale_simplified_variables": [
+    "cement",
+    "superplasticizer"
+  ],
+  "training_scale_simplified_expression": "16.1889805211951*superplasticizer + 16.1889805211951*exp(cement) + 29.4802339007755",
+  "expression_parse_success": true,
+  "expression_parse_error": null,
+  "expression_simplify_success": true,
+  "expression_simplify_error": null,
+  "symbolic_comparison_error": null,
+  "symbolic_exact_match": null,
+  "expression_node_count": 13,
+  "expression_depth": 5,
+  "expression_operator_count": 6,
+  "expression_operators": [
+    "Add",
+    "Mul",
+    "exp"
+  ],
+  "expression_constant_count": 5,
+  "expression_variable_count": 2,
+  "expression_variables": [
+    "cement",
+    "superplasticizer"
+  ],
+  "simplified_node_count": 13,
+  "simplified_depth": 5,
+  "simplified_operator_count": 6,
+  "simplified_operators": [
+    "Add",
+    "Mul",
+    "exp"
+  ],
+  "simplified_constant_count": 5,
+  "simplified_variable_count": 2,
+  "simplified_variables": [
+    "cement",
+    "superplasticizer"
+  ],
+  "simplified_expression": "1.0055267404469*superplasticizer + 16.1889805211951*exp(cement/219 - 107/73) + 13.2912533795804",
+  "source_result": "seed-7.json",
+  "source_result_sha256": "1388628e04ee530a2e8659f7bf8528a99519cb54ca74747857b47fcd2704ab74"
+}

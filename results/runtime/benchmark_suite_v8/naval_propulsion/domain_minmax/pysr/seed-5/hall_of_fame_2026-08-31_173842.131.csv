@@ -1,0 +1,13 @@
+Complexity,Loss,Equation
+1,0.24511242,"0.649737"
+2,0.24510461,"sqrt(0.42129818)"
+3,0.06848331,"(0.65674925 + ship_speed)"
+4,0.01027571,"exp(ship_speed - 0.5592678)"
+6,0.006466794,"exp((ship_speed - 0.6442835) / 0.7391306)"
+7,0.002858028,"exp((ship_speed / 0.7994663) - sqrt(0.5592678))"
+8,0.0027082337,"exp((ship_speed - sqrt(sin(0.36890593))) / 0.7546645)"
+10,0.0022777887,"(exp(((0.25808662 * ship_speed) + 0.30131522) + ship_speed) * 0.36148733)"
+11,0.0022525145,"(exp(((ship_speed * 0.29747686) + sqrt(0.081089936)) + ship_speed) * 0.35824615)"
+28,0.0021944707,"((sqrt(exp(0.027122073 - (0.77472985 - sin(ship_speed)))) * (ship_speed - (0.090363294 * (exp(ship_speed / 0.485738) * sin(sqrt(exp(ship_speed)) / 0.4852832))))) + sqrt(sin(0.3063762)))"
+29,0.002107028,"((sqrt(exp((0.027122073 / -0.7965063) - (0.77472985 - ship_speed))) * (ship_speed - (0.090363294 * (exp(ship_speed / 0.485738) * sin(sqrt(exp(ship_speed)) / 0.4852832))))) + sqrt(sin(0.3063762)))"
+30,0.0016809526,"((sqrt(exp((0.027122073 / -0.7965063) - (0.77472985 - ship_speed))) * (ship_speed - (0.090363294 * (exp(sin(ship_speed) / 0.485738) * sin(sqrt(exp(ship_speed)) / 0.4852832))))) + sqrt(sin(0.3063762)))"

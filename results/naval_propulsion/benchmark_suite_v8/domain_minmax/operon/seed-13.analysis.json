@@ -1,0 +1,92 @@
+{
+  "analysis_version": "expression_analysis_v2",
+  "analysis_status": "complete",
+  "problem": "naval_propulsion",
+  "algorithm": "operon",
+  "seed": 13,
+  "input_scaling": "domain_minmax",
+  "expression_timeout_seconds_per_stage": 60,
+  "analysis_seconds": 8.964039081001829,
+  "analysis_python": "3.11.15",
+  "analysis_platform": "Linux-7.0.0-29-generic-x86_64-with-glibc2.43",
+  "raw_scale_symbolic_model": "-0.009850833327*(2.4510935 - 0.2265235*ship_speed)*(ship_speed/12 - 5/4)*(-0.517659*(ship_speed/12 - 5/4)*(1.84912*compressor_decay - 0.138490583333333*ship_speed + 0.27446675) - 1.522726)*(-1.19356*compressor_decay + 0.760030166666667*ship_speed + 0.424323617822*(40*compressor_decay - 39)*(ship_speed/12 - 5/4) - 10.2367315) + 0.490876 + 0.471851*(1.19356*compressor_decay - 0.173884833333333*ship_speed + 3.69824*turbine_decay - 2.2074605)/(0.0696388333333333*ship_speed - 2.5376645)",
+  "raw_scale_back_transform_error": null,
+  "complexity_valid": true,
+  "complexity_source": "simplified",
+  "training_scale_expression_parse_success": true,
+  "training_scale_expression_parse_error": null,
+  "training_scale_expression_simplify_success": true,
+  "training_scale_expression_simplify_error": null,
+  "training_scale_symbolic_comparison_error": null,
+  "training_scale_symbolic_exact_match": null,
+  "training_scale_expression_node_count": 52,
+  "training_scale_expression_depth": 6,
+  "training_scale_expression_operator_count": 21,
+  "training_scale_expression_operators": [
+    "Add",
+    "Mul",
+    "Pow"
+  ],
+  "training_scale_expression_constant_count": 18,
+  "training_scale_expression_variable_count": 3,
+  "training_scale_expression_variables": [
+    "compressor_decay",
+    "ship_speed",
+    "turbine_decay"
+  ],
+  "training_scale_simplified_node_count": 52,
+  "training_scale_simplified_depth": 6,
+  "training_scale_simplified_operator_count": 21,
+  "training_scale_simplified_operators": [
+    "Add",
+    "Mul",
+    "Pow"
+  ],
+  "training_scale_simplified_constant_count": 18,
+  "training_scale_simplified_variable_count": 3,
+  "training_scale_simplified_variables": [
+    "compressor_decay",
+    "ship_speed",
+    "turbine_decay"
+  ],
+  "training_scale_simplified_expression": "-0.009850833327*ship_speed*(-2.718282*ship_speed - 0.946759)*(-0.517659*ship_speed*(0.046228*compressor_decay - 1.661887*ship_speed) - 1.522726)*(0.424323617822*compressor_decay*ship_speed - 0.029839*compressor_decay + 9.120362*ship_speed) + 0.490876 + 0.471851*(0.029839*compressor_decay - 2.086618*ship_speed + 0.046228*turbine_decay)/(0.835666*ship_speed - 1.493082)",
+  "expression_parse_success": true,
+  "expression_parse_error": null,
+  "expression_simplify_success": true,
+  "expression_simplify_error": null,
+  "symbolic_comparison_error": null,
+  "symbolic_exact_match": null,
+  "expression_node_count": 67,
+  "expression_depth": 6,
+  "expression_operator_count": 29,
+  "expression_operators": [
+    "Add",
+    "Mul",
+    "Pow"
+  ],
+  "expression_constant_count": 25,
+  "expression_variable_count": 3,
+  "expression_variables": [
+    "compressor_decay",
+    "ship_speed",
+    "turbine_decay"
+  ],
+  "simplified_node_count": 67,
+  "simplified_depth": 6,
+  "simplified_operator_count": 29,
+  "simplified_operators": [
+    "Add",
+    "Mul",
+    "Pow"
+  ],
+  "simplified_constant_count": 25,
+  "simplified_variable_count": 3,
+  "simplified_variables": [
+    "compressor_decay",
+    "ship_speed",
+    "turbine_decay"
+  ],
+  "simplified_expression": "(0.00223144524314868*ship_speed - 0.0241453135373931)*(ship_speed/12 - 5/4)*((0.64707375 - 0.04313825*ship_speed)*(1.84912*compressor_decay - 0.138490583333333*ship_speed + 0.27446675) - 1.522726)*(-1.19356*compressor_decay + 0.760030166666667*ship_speed + (16.97294471288*compressor_decay - 16.548621095058)*(ship_speed/12 - 5/4) - 10.2367315) + 0.490876 + (0.56318247956*compressor_decay - 0.0820477324931665*ship_speed + 1.74501824224*turbine_decay - 1.0415924443855)/(0.0696388333333333*ship_speed - 2.5376645)",
+  "source_result": "seed-13.json",
+  "source_result_sha256": "da33ce12ad8aa8d75f98e085e6e1b73eae51d91701a20fad5f40c5ff5c031a43"
+}

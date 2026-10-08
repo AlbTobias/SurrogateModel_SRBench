@@ -1,0 +1,12 @@
+Complexity,Loss,Equation
+1,0.01894532,"0.46219027"
+3,0.01894523,"(1.4519377 * 0.31796038)"
+5,0.008721825,"(0.4516604 - (0.1968553 * surface_area))"
+6,0.008310932,"(0.44714254 / exp(surface_area * 0.44714254))"
+7,0.008218647,"(0.44714254 / exp(surface_area * sin(0.44714254)))"
+10,0.0034530684,"((0.6785028 + ((initial_volume - surface_area) / exp(1.5117643))) * 0.6785028)"
+14,0.0030359558,"((sin(surface_area + ((-0.27842888 - 0.364145) * (initial_volume * 1.1361086))) * -0.21942262) - -0.46027917)"
+16,0.0030132222,"((sin(0.6824774) + ((sin(initial_volume - -0.38647434) - surface_area) / exp(sqrt(1.9916998)))) * sin(0.710407))"
+18,0.0027420425,"((sin(0.6824774) + ((sin(initial_volume - -0.38647434) - surface_area) / (exp(sqrt(1.9916998)) + surface_area))) * sin(0.710407))"
+20,0.0019133794,"((sin(0.6824774) + ((sin(initial_volume - -0.38647434) - surface_area) / ((exp(sqrt(1.9916998)) + surface_area) + spring_coefficient))) * sin(0.710407))"
+24,0.0018256668,"(((sin(0.6824774) + (((sin(initial_volume - -0.38647434) + -0.1810952) - surface_area) / ((exp(sqrt(1.9916998)) + surface_area) + spring_coefficient))) * sin(0.710407)) / 0.99378127)"

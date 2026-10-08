@@ -1,0 +1,122 @@
+{
+  "analysis_version": "expression_analysis_v2",
+  "analysis_status": "complete",
+  "problem": "wing_weight",
+  "algorithm": "geneticengine",
+  "seed": 19,
+  "input_scaling": "raw",
+  "expression_timeout_seconds_per_stage": 60,
+  "analysis_seconds": 0.45538737199967727,
+  "analysis_python": "3.11.15",
+  "analysis_platform": "Linux-7.0.0-29-generic-x86_64-with-glibc2.43",
+  "raw_scale_symbolic_model": "(sqrt(((((ultimate_load_factor/0.001) + ((-0.001 * aspect_ratio) * (ultimate_load_factor/0.001))) * (((aspect_ratio/0.001) * (-0.001 * thickness_chord_ratio)) + (aspect_ratio + aspect_ratio))))) + (((((taper_ratio/thickness_chord_ratio) + (1/thickness_chord_ratio)) + (ultimate_load_factor * (0.1/thickness_chord_ratio)))/((aspect_ratio + ultimate_load_factor)/((taper_ratio + aspect_ratio) + (taper_ratio + aspect_ratio)))) * (0.1/thickness_chord_ratio)))",
+  "raw_scale_back_transform_error": null,
+  "complexity_valid": true,
+  "complexity_source": "simplified",
+  "training_scale_expression_parse_success": true,
+  "training_scale_expression_parse_error": null,
+  "training_scale_expression_simplify_success": true,
+  "training_scale_expression_simplify_error": null,
+  "training_scale_symbolic_comparison_error": null,
+  "training_scale_symbolic_exact_match": null,
+  "training_scale_expression_node_count": 52,
+  "training_scale_expression_depth": 5,
+  "training_scale_expression_operator_count": 22,
+  "training_scale_expression_operators": [
+    "Add",
+    "Mul",
+    "Pow"
+  ],
+  "training_scale_expression_constant_count": 14,
+  "training_scale_expression_variable_count": 4,
+  "training_scale_expression_variables": [
+    "aspect_ratio",
+    "taper_ratio",
+    "thickness_chord_ratio",
+    "ultimate_load_factor"
+  ],
+  "training_scale_simplified_node_count": 43,
+  "training_scale_simplified_depth": 7,
+  "training_scale_simplified_operator_count": 18,
+  "training_scale_simplified_operators": [
+    "Add",
+    "Mul",
+    "Pow"
+  ],
+  "training_scale_simplified_constant_count": 11,
+  "training_scale_simplified_variable_count": 4,
+  "training_scale_simplified_variables": [
+    "aspect_ratio",
+    "taper_ratio",
+    "thickness_chord_ratio",
+    "ultimate_load_factor"
+  ],
+  "training_scale_simplified_expression": "(thickness_chord_ratio**2*sqrt(aspect_ratio*ultimate_load_factor*(1.0*aspect_ratio - 1000.0)*(1.0*thickness_chord_ratio - 2))*(aspect_ratio + ultimate_load_factor) + 0.2*(aspect_ratio + taper_ratio)*(taper_ratio + 0.1*ultimate_load_factor + 1))/(thickness_chord_ratio**2*(aspect_ratio + ultimate_load_factor))",
+  "expression_parse_success": true,
+  "expression_parse_error": null,
+  "expression_simplify_success": true,
+  "expression_simplify_error": null,
+  "symbolic_comparison_error": null,
+  "symbolic_exact_match": false,
+  "expression_node_count": 52,
+  "expression_depth": 5,
+  "expression_operator_count": 22,
+  "expression_operators": [
+    "Add",
+    "Mul",
+    "Pow"
+  ],
+  "expression_constant_count": 14,
+  "expression_variable_count": 4,
+  "expression_variables": [
+    "aspect_ratio",
+    "taper_ratio",
+    "thickness_chord_ratio",
+    "ultimate_load_factor"
+  ],
+  "simplified_node_count": 43,
+  "simplified_depth": 7,
+  "simplified_operator_count": 18,
+  "simplified_operators": [
+    "Add",
+    "Mul",
+    "Pow"
+  ],
+  "simplified_constant_count": 11,
+  "simplified_variable_count": 4,
+  "simplified_variables": [
+    "aspect_ratio",
+    "taper_ratio",
+    "thickness_chord_ratio",
+    "ultimate_load_factor"
+  ],
+  "simplified_expression": "(thickness_chord_ratio**2*sqrt(aspect_ratio*ultimate_load_factor*(1.0*aspect_ratio - 1000.0)*(1.0*thickness_chord_ratio - 2))*(aspect_ratio + ultimate_load_factor) + 0.2*(aspect_ratio + taper_ratio)*(taper_ratio + 0.1*ultimate_load_factor + 1))/(thickness_chord_ratio**2*(aspect_ratio + ultimate_load_factor))",
+  "ground_truth_node_count": 45,
+  "ground_truth_depth": 7,
+  "ground_truth_operator_count": 19,
+  "ground_truth_operators": [
+    "Add",
+    "Mul",
+    "Pow",
+    "cos"
+  ],
+  "ground_truth_constant_count": 14,
+  "ground_truth_variable_count": 10,
+  "ground_truth_variables": [
+    "aspect_ratio",
+    "design_gross_weight",
+    "dynamic_pressure",
+    "fuel_weight",
+    "paint_weight",
+    "sweep_angle_degrees",
+    "taper_ratio",
+    "thickness_chord_ratio",
+    "ultimate_load_factor",
+    "wing_area"
+  ],
+  "ground_truth_expression": "0.00904279115343449*dynamic_pressure**0.006*fuel_weight**0.0035*taper_ratio**0.04*wing_area**0.758*(aspect_ratio/cos(pi*sweep_angle_degrees/180)**2)**0.6*(design_gross_weight*ultimate_load_factor)**0.49/(thickness_chord_ratio/cos(pi*sweep_angle_degrees/180))**0.3 + paint_weight*wing_area",
+  "ground_truth_variable_recall": 0.4,
+  "simplified_to_ground_truth_size_ratio": 0.9555555555555556,
+  "source_result": "seed-19.json",
+  "source_result_sha256": "605d3935f968e2d3b60615bd466f562151303c1f7b423dc2f05e6400726b0581"
+}

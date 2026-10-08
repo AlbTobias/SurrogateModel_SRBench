@@ -1,0 +1,8 @@
+Complexity,Loss,Equation
+1,121.50293,"68.980156"
+3,119.594696,"(71.7564 - air_filter_pressure_difference)"
+10,100.84008,"sqrt(((ambient_pressure - (ambient_temperature / 0.13109563)) / 0.43689826) / 0.43689826)"
+12,100.50754,"(sqrt(((ambient_pressure - (ambient_temperature / 0.13109563)) / 0.43689826) / 0.43689826) + 0.1409494)"
+13,99.30318,"(sqrt(((ambient_pressure - (ambient_temperature / 0.13109563)) / 0.43689826) / 0.43689826) + sin(turbine_energy_yield))"
+14,97.50379,"(sqrt(((ambient_pressure - (ambient_temperature / 0.13109563)) / 0.43689826) / 0.43689826) + exp(sin(air_filter_pressure_difference)))"
+16,84.68234,"(sqrt(((ambient_pressure - (1.137632 + 0.13109563)) / 0.43689826) / 0.301325) + (sin(log(turbine_after_temperature)) - ambient_temperature))"

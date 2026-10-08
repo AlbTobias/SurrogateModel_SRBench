@@ -1,0 +1,91 @@
+{
+  "status": "success",
+  "problem": "airfoil_self_noise",
+  "algorithm": "operon",
+  "seed": 23,
+  "seed_parameter": "random_state",
+  "train_samples": 400,
+  "test_samples": 1103,
+  "feature_names": [
+    "frequency",
+    "angle_of_attack",
+    "chord_length",
+    "free_stream_velocity",
+    "suction_side_displacement_thickness"
+  ],
+  "dataset_policy": "fixed across algorithm trials",
+  "dataset_hash_scope": "SHA-256 of uncompressed table bytes",
+  "train_dataset_sha256": "d3314580be9771c9e4fd8c84de41e36e943efbb05a87cd287bce18bda706d6f7",
+  "test_dataset_sha256": "98d084b30a6a62461dd5171647dab91177f55ed421f5f24a2c07a86252395291",
+  "requested_population_size": null,
+  "requested_iterations": null,
+  "time_limit": null,
+  "profile": "benchmark",
+  "benchmark_name": "benchmark_suite_v10",
+  "config_file": "/workspace/configs/benchmark_suite_v10.json",
+  "configuration_schema_version": 2,
+  "configuration_sha256": "82ad8c73b89e010abad96cf0bd889cb824413a051430ae65a71403bf340a2fa7",
+  "use_dataframe": false,
+  "input_scaling": "domain_minmax",
+  "input_scaling_applied": true,
+  "input_scaling_source": "fixed documented problem domain",
+  "input_scaling_formula": "z = 2 * (x - lower) / (upper - lower) - 1",
+  "input_scaling_parameters": {
+    "frequency": {
+      "lower": 200.0,
+      "upper": 20000.0
+    },
+    "angle_of_attack": {
+      "lower": 0.0,
+      "upper": 22.2
+    },
+    "chord_length": {
+      "lower": 0.0254,
+      "upper": 0.3048
+    },
+    "free_stream_velocity": {
+      "lower": 31.7,
+      "upper": 71.3
+    },
+    "suction_side_displacement_thickness": {
+      "lower": 0.000400682,
+      "upper": 0.0584113
+    }
+  },
+  "target_scaling": "none; target remains in original units",
+  "algorithm_configuration_role": "documented_adapter_defaults",
+  "algorithm_configuration_rationale": "Restates the effective settings of the legacy Operon estimator in the pinned SRBench image for auditability.",
+  "configured_parameters": {
+    "population_size": 1000,
+    "generations": 1000,
+    "max_evaluations": 1000000
+  },
+  "applied_parameters": {
+    "random_state": 23,
+    "population_size": 1000,
+    "generations": 1000,
+    "max_evaluations": 1000000
+  },
+  "rmse": 4.405266657121397,
+  "nrmse_range": 0.12056671566920456,
+  "mae": 3.3774237820857884,
+  "r2": 0.5942753059466674,
+  "max_absolute_error": 16.274263549804687,
+  "fit_seconds": 3.789108497999223,
+  "prediction_seconds": 0.00016296500052703777,
+  "prediction_repeats": 5,
+  "prediction_scalar_broadcast": false,
+  "prediction_mean_seconds": 8.918299990909873e-05,
+  "prediction_median_seconds": 7.144699975469848e-05,
+  "prediction_std_seconds": 4.1695207499850133e-05,
+  "prediction_microseconds_per_sample": 0.06477515843581004,
+  "expression_extraction_seconds": 9.580500045558438e-05,
+  "evaluation_seconds": 3.790022924999903,
+  "timing_scope": "fit/predict/expression extraction inside the running container; symbolic analysis, image pull, container startup, data generation, and metric serialization excluded",
+  "model_size": 57,
+  "symbolic_model": "(110.901993 + ((-5.492449) * (((-0.415471) * free_stream_velocity) + (((1.736961 * chord_length) + (((0.100305 / (((2.718282 * frequency) * (0.683945 * chord_length)) - (2.647818 * chord_length))) + ((1.099496 * frequency) + (0.462344 * suction_side_displacement_thickness))) + (0.966280 * angle_of_attack))) - (((-1.234672) * frequency) * (((-1.234672) * frequency) + (((-1.234672) * frequency) * (((-1.325587) * frequency) * (((-1.042148) * frequency) * (0.683945 * chord_length))))))))))",
+  "symbolic_model_coordinate_system": "domain_minmax",
+  "symbolic_analysis": "separate post-processing sidecar",
+  "python": "3.12.5",
+  "platform": "Linux-7.0.0-30-generic-x86_64-with-glibc2.36"
+}

@@ -1,0 +1,92 @@
+{
+  "status": "success",
+  "problem": "cantilever",
+  "algorithm": "geneticengine",
+  "seed": 19,
+  "seed_parameter": "seed",
+  "train_samples": 400,
+  "test_samples": 4000,
+  "feature_names": [
+    "force",
+    "length",
+    "modulus",
+    "width",
+    "height"
+  ],
+  "dataset_policy": "fixed across algorithm trials",
+  "dataset_hash_scope": "SHA-256 of uncompressed table bytes",
+  "train_dataset_sha256": "47ac0960181a6eeb569c70492065f55028aa6ea4b1606096efafbb754900e380",
+  "test_dataset_sha256": "fb1b4eac780cca9fd9696b7ce23188a1916b66b76fbf1a76ab2063389beedb67",
+  "requested_population_size": null,
+  "requested_iterations": null,
+  "time_limit": null,
+  "profile": "benchmark",
+  "benchmark_name": "benchmark_suite_v8",
+  "config_file": "/workspace/configs/benchmark_suite_v8.json",
+  "configuration_schema_version": 2,
+  "configuration_sha256": "674e097628af3ce351b421c973b1ebdb7bf4d2087fa24a83ea042312a03335eb",
+  "use_dataframe": true,
+  "input_scaling": "raw",
+  "input_scaling_applied": false,
+  "input_scaling_source": "fixed documented problem domain",
+  "input_scaling_formula": "x unchanged",
+  "input_scaling_parameters": {
+    "force": {
+      "lower": 0.5,
+      "upper": 1.5
+    },
+    "length": {
+      "lower": 0.8,
+      "upper": 1.2
+    },
+    "modulus": {
+      "lower": 0.8,
+      "upper": 1.2
+    },
+    "width": {
+      "lower": 0.7,
+      "upper": 1.3
+    },
+    "height": {
+      "lower": 0.7,
+      "upper": 1.3
+    }
+  },
+  "target_scaling": "none; target remains in original units",
+  "algorithm_configuration_role": "project_budget_override",
+  "algorithm_configuration_rationale": "Reduces the adapter's one-hour allowance to a 60-second practical budget for repeated evaluation; not selected using test performance.",
+  "configured_parameters": {
+    "population_size": 200,
+    "number_of_generations": 100,
+    "timer_stop_criteria": true,
+    "timer_limit": 60
+  },
+  "applied_parameters": {
+    "seed": 19,
+    "population_size": 200,
+    "number_of_generations": 100,
+    "timer_stop_criteria": true,
+    "timer_limit": 60
+  },
+  "rmse": 2.299978444666105,
+  "nrmse_range": 0.06963678619072732,
+  "mae": 1.6184704758901907,
+  "r2": 0.6901738641970192,
+  "max_absolute_error": 15.608174263796538,
+  "fit_seconds": 60.26089290599998,
+  "prediction_seconds": 0.00022771200019633397,
+  "prediction_repeats": 5,
+  "prediction_mean_seconds": 0.00017296560008617234,
+  "prediction_median_seconds": 0.00016609900012554135,
+  "prediction_std_seconds": 3.3378992006800866e-05,
+  "prediction_microseconds_per_sample": 0.04152475003138534,
+  "expression_extraction_seconds": 2.5869999944916344e-05,
+  "evaluation_seconds": 60.26221110300003,
+  "timing_scope": "fit/predict/expression extraction inside the running container; symbolic analysis, image pull, container startup, data generation, and metric serialization excluded",
+  "model_size": null,
+  "symbolic_model": "((sqrt((sqrt((((force * force)/-0.001)))))/(height + ((width * (height * height)) * ((height * height) * (height * 0.1)))))/((width * (height * modulus)) + (((height * height) * height) * (((height * height) * 0.1) * sqrt(((modulus/length)))))))",
+  "symbolic_model_coordinate_system": "raw",
+  "symbolic_analysis": "separate post-processing sidecar",
+  "python": "3.9.12",
+  "platform": "Linux-7.0.0-29-generic-x86_64-with-glibc2.36"
+}

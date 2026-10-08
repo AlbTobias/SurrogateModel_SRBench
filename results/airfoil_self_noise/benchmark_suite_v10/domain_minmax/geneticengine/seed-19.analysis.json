@@ -1,0 +1,84 @@
+{
+  "analysis_version": "expression_analysis_v2",
+  "analysis_status": "complete",
+  "problem": "airfoil_self_noise",
+  "algorithm": "geneticengine",
+  "seed": 19,
+  "input_scaling": "domain_minmax",
+  "expression_timeout_seconds_per_stage": 60,
+  "analysis_seconds": 0.24494309599958797,
+  "analysis_python": "3.11.15",
+  "analysis_platform": "Linux-7.0.0-30-generic-x86_64-with-glibc2.43",
+  "raw_scale_symbolic_model": "100.0*log(log(log(frequency/9900 - 1.12020202020202)) - 7.20034037197618)",
+  "raw_scale_back_transform_error": null,
+  "complexity_valid": true,
+  "complexity_source": "simplified",
+  "training_scale_expression_parse_success": true,
+  "training_scale_expression_parse_error": null,
+  "training_scale_expression_simplify_success": true,
+  "training_scale_expression_simplify_error": null,
+  "training_scale_symbolic_comparison_error": null,
+  "training_scale_symbolic_exact_match": null,
+  "training_scale_expression_node_count": 10,
+  "training_scale_expression_depth": 6,
+  "training_scale_expression_operator_count": 6,
+  "training_scale_expression_operators": [
+    "Add",
+    "Mul",
+    "log"
+  ],
+  "training_scale_expression_constant_count": 3,
+  "training_scale_expression_variable_count": 1,
+  "training_scale_expression_variables": [
+    "frequency"
+  ],
+  "training_scale_simplified_node_count": 10,
+  "training_scale_simplified_depth": 6,
+  "training_scale_simplified_operator_count": 6,
+  "training_scale_simplified_operators": [
+    "Add",
+    "Mul",
+    "log"
+  ],
+  "training_scale_simplified_constant_count": 3,
+  "training_scale_simplified_variable_count": 1,
+  "training_scale_simplified_variables": [
+    "frequency"
+  ],
+  "training_scale_simplified_expression": "100.0*log(log(log(frequency - 0.1)) - 7.20034037197618)",
+  "expression_parse_success": true,
+  "expression_parse_error": null,
+  "expression_simplify_success": true,
+  "expression_simplify_error": null,
+  "symbolic_comparison_error": null,
+  "symbolic_exact_match": null,
+  "expression_node_count": 12,
+  "expression_depth": 7,
+  "expression_operator_count": 7,
+  "expression_operators": [
+    "Add",
+    "Mul",
+    "log"
+  ],
+  "expression_constant_count": 4,
+  "expression_variable_count": 1,
+  "expression_variables": [
+    "frequency"
+  ],
+  "simplified_node_count": 12,
+  "simplified_depth": 7,
+  "simplified_operator_count": 7,
+  "simplified_operators": [
+    "Add",
+    "Mul",
+    "log"
+  ],
+  "simplified_constant_count": 4,
+  "simplified_variable_count": 1,
+  "simplified_variables": [
+    "frequency"
+  ],
+  "simplified_expression": "100.0*log(log(log(frequency/9900 - 1.12020202020202)) - 7.20034037197618)",
+  "source_result": "seed-19.json",
+  "source_result_sha256": "40014884ef5f83e10415b42da804d9e45f34612d48f34736868c3023e2203bc4"
+}

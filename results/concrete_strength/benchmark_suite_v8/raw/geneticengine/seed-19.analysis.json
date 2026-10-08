@@ -1,0 +1,96 @@
+{
+  "analysis_version": "expression_analysis_v2",
+  "analysis_status": "complete",
+  "problem": "concrete_strength",
+  "algorithm": "geneticengine",
+  "seed": 19,
+  "input_scaling": "raw",
+  "expression_timeout_seconds_per_stage": 60,
+  "analysis_seconds": 0.21459141500054102,
+  "analysis_python": "3.11.15",
+  "analysis_platform": "Linux-7.0.0-30-generic-x86_64-with-glibc2.43",
+  "raw_scale_symbolic_model": "(superplasticizer + sqrt((((sqrt(((age/-0.01))) * sqrt(((-0.001 + cement)))) + (((-0.001 + blast_furnace_slag)/superplasticizer) * sqrt(((-0.001 + cement))))))))",
+  "raw_scale_back_transform_error": null,
+  "complexity_valid": true,
+  "complexity_source": "simplified",
+  "training_scale_expression_parse_success": true,
+  "training_scale_expression_parse_error": null,
+  "training_scale_expression_simplify_success": true,
+  "training_scale_expression_simplify_error": null,
+  "training_scale_symbolic_comparison_error": null,
+  "training_scale_symbolic_exact_match": null,
+  "training_scale_expression_node_count": 29,
+  "training_scale_expression_depth": 6,
+  "training_scale_expression_operator_count": 13,
+  "training_scale_expression_operators": [
+    "Add",
+    "Mul",
+    "Pow"
+  ],
+  "training_scale_expression_constant_count": 10,
+  "training_scale_expression_variable_count": 4,
+  "training_scale_expression_variables": [
+    "age",
+    "blast_furnace_slag",
+    "cement",
+    "superplasticizer"
+  ],
+  "training_scale_simplified_node_count": 24,
+  "training_scale_simplified_depth": 7,
+  "training_scale_simplified_operator_count": 10,
+  "training_scale_simplified_operators": [
+    "Add",
+    "Mul",
+    "Pow"
+  ],
+  "training_scale_simplified_constant_count": 8,
+  "training_scale_simplified_variable_count": 4,
+  "training_scale_simplified_variables": [
+    "age",
+    "blast_furnace_slag",
+    "cement",
+    "superplasticizer"
+  ],
+  "training_scale_simplified_expression": "superplasticizer + sqrt(sqrt(cement - 0.001)*(blast_furnace_slag + 10.0*superplasticizer*sqrt(-age) - 0.001)/superplasticizer)",
+  "expression_parse_success": true,
+  "expression_parse_error": null,
+  "expression_simplify_success": true,
+  "expression_simplify_error": null,
+  "symbolic_comparison_error": null,
+  "symbolic_exact_match": null,
+  "expression_node_count": 29,
+  "expression_depth": 6,
+  "expression_operator_count": 13,
+  "expression_operators": [
+    "Add",
+    "Mul",
+    "Pow"
+  ],
+  "expression_constant_count": 10,
+  "expression_variable_count": 4,
+  "expression_variables": [
+    "age",
+    "blast_furnace_slag",
+    "cement",
+    "superplasticizer"
+  ],
+  "simplified_node_count": 24,
+  "simplified_depth": 7,
+  "simplified_operator_count": 10,
+  "simplified_operators": [
+    "Add",
+    "Mul",
+    "Pow"
+  ],
+  "simplified_constant_count": 8,
+  "simplified_variable_count": 4,
+  "simplified_variables": [
+    "age",
+    "blast_furnace_slag",
+    "cement",
+    "superplasticizer"
+  ],
+  "simplified_expression": "superplasticizer + sqrt(sqrt(cement - 0.001)*(blast_furnace_slag + 10.0*superplasticizer*sqrt(-age) - 0.001)/superplasticizer)",
+  "source_result": "seed-19.json",
+  "source_result_sha256": "919078a231298375e504355ac227bc0840758afd85b79f4bc945004cd2d6c757"
+}

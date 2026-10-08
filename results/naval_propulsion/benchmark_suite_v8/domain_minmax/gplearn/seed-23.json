@@ -1,0 +1,79 @@
+{
+  "status": "success",
+  "problem": "naval_propulsion",
+  "algorithm": "gplearn",
+  "seed": 23,
+  "seed_parameter": "random_state",
+  "train_samples": 400,
+  "test_samples": 4000,
+  "feature_names": [
+    "ship_speed",
+    "compressor_decay",
+    "turbine_decay"
+  ],
+  "dataset_policy": "fixed across algorithm trials",
+  "dataset_hash_scope": "SHA-256 of uncompressed table bytes",
+  "train_dataset_sha256": "3ed6c46cc391a0fd45c6e903541143481327895a8c5d0a69ae82a282f894a384",
+  "test_dataset_sha256": "b4a3d1c417b20d661351bebd6f5fa5bf655e3944215fc437d5c7c1a8a9dd8b36",
+  "requested_population_size": null,
+  "requested_iterations": null,
+  "time_limit": null,
+  "profile": "benchmark",
+  "benchmark_name": "benchmark_suite_v8",
+  "config_file": "/workspace/configs/benchmark_suite_v8.json",
+  "configuration_schema_version": 2,
+  "configuration_sha256": "674e097628af3ce351b421c973b1ebdb7bf4d2087fa24a83ea042312a03335eb",
+  "use_dataframe": true,
+  "input_scaling": "domain_minmax",
+  "input_scaling_applied": true,
+  "input_scaling_source": "fixed documented problem domain",
+  "input_scaling_formula": "z = 2 * (x - lower) / (upper - lower) - 1",
+  "input_scaling_parameters": {
+    "ship_speed": {
+      "lower": 3.0,
+      "upper": 27.0
+    },
+    "compressor_decay": {
+      "lower": 0.95,
+      "upper": 1.0
+    },
+    "turbine_decay": {
+      "lower": 0.975,
+      "upper": 1.0
+    }
+  },
+  "target_scaling": "none; target remains in original units",
+  "algorithm_configuration_role": "project_budget_override",
+  "algorithm_configuration_rationale": "Reduced from the SRBench adapter's 1000 individuals and 500 generations to keep repeated trials computationally feasible; not selected using test performance.",
+  "configured_parameters": {
+    "population_size": 500,
+    "generations": 100
+  },
+  "applied_parameters": {
+    "random_state": 23,
+    "population_size": 500,
+    "generations": 100
+  },
+  "rmse": 0.07573623050986095,
+  "nrmse_range": 0.04293437103733614,
+  "mae": 0.05456777270407377,
+  "r2": 0.9776261771145739,
+  "max_absolute_error": 0.23050731544315523,
+  "fit_seconds": 22.173351153000112,
+  "prediction_seconds": 0.0008037320003495552,
+  "prediction_repeats": 5,
+  "prediction_scalar_broadcast": false,
+  "prediction_mean_seconds": 0.0006010272009007167,
+  "prediction_median_seconds": 0.0005568160013353918,
+  "prediction_std_seconds": 0.00011551903894685281,
+  "prediction_microseconds_per_sample": 0.13920400033384794,
+  "expression_extraction_seconds": 0.00011018100121873431,
+  "evaluation_seconds": 22.176807926000038,
+  "timing_scope": "fit/predict/expression extraction inside the running container; symbolic analysis, image pull, container startup, data generation, and metric serialization excluded",
+  "model_size": 16,
+  "symbolic_model": "sub(mul(mul(add(0.673, ship_speed), add(0.673, ship_speed)), sqrt(sub(-0.844, -0.598))), sub(-0.844, -0.598))",
+  "symbolic_model_coordinate_system": "domain_minmax",
+  "symbolic_analysis": "separate post-processing sidecar",
+  "python": "3.12.5",
+  "platform": "Linux-7.0.0-29-generic-x86_64-with-glibc2.36"
+}

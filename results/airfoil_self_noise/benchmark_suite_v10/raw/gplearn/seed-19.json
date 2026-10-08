@@ -1,0 +1,89 @@
+{
+  "status": "success",
+  "problem": "airfoil_self_noise",
+  "algorithm": "gplearn",
+  "seed": 19,
+  "seed_parameter": "random_state",
+  "train_samples": 400,
+  "test_samples": 1103,
+  "feature_names": [
+    "frequency",
+    "angle_of_attack",
+    "chord_length",
+    "free_stream_velocity",
+    "suction_side_displacement_thickness"
+  ],
+  "dataset_policy": "fixed across algorithm trials",
+  "dataset_hash_scope": "SHA-256 of uncompressed table bytes",
+  "train_dataset_sha256": "d3314580be9771c9e4fd8c84de41e36e943efbb05a87cd287bce18bda706d6f7",
+  "test_dataset_sha256": "98d084b30a6a62461dd5171647dab91177f55ed421f5f24a2c07a86252395291",
+  "requested_population_size": null,
+  "requested_iterations": null,
+  "time_limit": null,
+  "profile": "benchmark",
+  "benchmark_name": "benchmark_suite_v10",
+  "config_file": "/workspace/configs/benchmark_suite_v10.json",
+  "configuration_schema_version": 2,
+  "configuration_sha256": "82ad8c73b89e010abad96cf0bd889cb824413a051430ae65a71403bf340a2fa7",
+  "use_dataframe": true,
+  "input_scaling": "raw",
+  "input_scaling_applied": false,
+  "input_scaling_source": "fixed documented problem domain",
+  "input_scaling_formula": "x unchanged",
+  "input_scaling_parameters": {
+    "frequency": {
+      "lower": 200.0,
+      "upper": 20000.0
+    },
+    "angle_of_attack": {
+      "lower": 0.0,
+      "upper": 22.2
+    },
+    "chord_length": {
+      "lower": 0.0254,
+      "upper": 0.3048
+    },
+    "free_stream_velocity": {
+      "lower": 31.7,
+      "upper": 71.3
+    },
+    "suction_side_displacement_thickness": {
+      "lower": 0.000400682,
+      "upper": 0.0584113
+    }
+  },
+  "target_scaling": "none; target remains in original units",
+  "algorithm_configuration_role": "project_budget_override",
+  "algorithm_configuration_rationale": "Reduced from the SRBench adapter's 1000 individuals and 500 generations to keep repeated trials computationally feasible; not selected using test performance.",
+  "configured_parameters": {
+    "population_size": 500,
+    "generations": 100
+  },
+  "applied_parameters": {
+    "random_state": 19,
+    "population_size": 500,
+    "generations": 100
+  },
+  "rmse": 10.348623922383688,
+  "nrmse_range": 0.28322907445354656,
+  "mae": 7.823210373525607,
+  "r2": -1.238990478091747,
+  "max_absolute_error": 37.80918013993208,
+  "fit_seconds": 51.67327616500006,
+  "prediction_seconds": 0.0026642269999683776,
+  "prediction_repeats": 5,
+  "prediction_scalar_broadcast": false,
+  "prediction_mean_seconds": 0.002478188799977943,
+  "prediction_median_seconds": 0.0024527529999431863,
+  "prediction_std_seconds": 0.00011104425705889118,
+  "prediction_microseconds_per_sample": 2.2237107887064247,
+  "expression_extraction_seconds": 0.0008383800000046904,
+  "evaluation_seconds": 51.68684286499979,
+  "timing_scope": "fit/predict/expression extraction inside the running container; symbolic analysis, image pull, container startup, data generation, and metric serialization excluded",
+  "model_size": 674,
+  "symbolic_model": "sub(add(sqrt(sqrt(add(angle_of_attack, add(frequency, div(free_stream_velocity, suction_side_displacement_thickness))))), sub(add(sqrt(add(add(sub(div(free_stream_velocity, sin(div(add(sqrt(sin(div(add(sqrt(add(-0.720, free_stream_velocity)), free_stream_velocity), cos(free_stream_velocity)))), free_stream_velocity), cos(free_stream_velocity)))), -0.720), free_stream_velocity), free_stream_velocity)), sub(add(cos(free_stream_velocity), add(add(angle_of_attack, sqrt(add(add(add(free_stream_velocity, free_stream_velocity), add(angle_of_attack, sqrt(add(angle_of_attack, add(frequency, div(free_stream_velocity, suction_side_displacement_thickness)))))), add(add(sqrt(free_stream_velocity), add(add(add(sub(add(sqrt(add(angle_of_attack, free_stream_velocity)), add(sqrt(add(angle_of_attack, free_stream_velocity)), add(add(sub(add(sqrt(add(angle_of_attack, free_stream_velocity)), add(add(sub(div(free_stream_velocity, sin(div(add(sqrt(add(-0.720, free_stream_velocity)), free_stream_velocity), cos(free_stream_velocity)))), -0.720), free_stream_velocity), free_stream_velocity)), -0.720), free_stream_velocity), add(add(sub(div(free_stream_velocity, sin(div(add(sqrt(add(angle_of_attack, free_stream_velocity)), free_stream_velocity), cos(free_stream_velocity)))), -0.720), free_stream_velocity), free_stream_velocity)))), -0.720), free_stream_velocity), free_stream_velocity), add(add(sub(div(free_stream_velocity, sin(div(sqrt(suction_side_displacement_thickness), cos(free_stream_velocity)))), -0.720), free_stream_velocity), free_stream_velocity))), add(add(add(add(add(sub(div(free_stream_velocity, sin(div(add(sqrt(sin(div(add(sqrt(add(-0.720, free_stream_velocity)), free_stream_velocity), cos(free_stream_velocity)))), free_stream_velocity), cos(free_stream_velocity)))), -0.720), free_stream_velocity), free_stream_velocity), free_stream_velocity), free_stream_velocity), add(add(add(add(add(sub(add(angle_of_attack, sqrt(add(angle_of_attack, add(frequency, div(sub(add(add(add(free_stream_velocity, sub(add(angle_of_attack, sqrt(add(angle_of_attack, add(frequency, div(sub(add(add(add(add(add(add(angle_of_attack, free_stream_velocity), free_stream_velocity), free_stream_velocity), free_stream_velocity), add(add(add(sub(add(angle_of_attack, sqrt(add(angle_of_attack, add(frequency, div(sub(add(add(add(free_stream_velocity, sub(add(angle_of_attack, sqrt(add(angle_of_attack, add(frequency, div(sub(add(add(add(add(add(add(angle_of_attack, free_stream_velocity), free_stream_velocity), free_stream_velocity), free_stream_velocity), add(add(angle_of_attack, sub(add(sqrt(add(angle_of_attack, free_stream_velocity)), add(add(sub(div(free_stream_velocity, sin(div(add(sqrt(add(-0.720, free_stream_velocity)), free_stream_velocity), cos(free_stream_velocity)))), -0.720), free_stream_velocity), free_stream_velocity)), -0.720)), free_stream_velocity)), add(div(mul(chord_length, div(0.071, free_stream_velocity)), cos(free_stream_velocity)), add(sqrt(suction_side_displacement_thickness), free_stream_velocity))), -0.720), suction_side_displacement_thickness))))), -0.720)), add(add(add(add(sub(add(angle_of_attack, sqrt(add(angle_of_attack, add(frequency, div(sub(add(add(add(free_stream_velocity, add(angle_of_attack, add(angle_of_attack, add(add(add(angle_of_attack, free_stream_velocity), free_stream_velocity), div(add(add(add(add(angle_of_attack, free_stream_velocity), free_stream_velocity), free_stream_velocity), free_stream_velocity), sin(div(mul(sqrt(sin(div(add(sqrt(add(-0.720, free_stream_velocity)), free_stream_velocity), cos(free_stream_velocity)))), div(0.071, free_stream_velocity)), cos(cos(free_stream_velocity))))))))), div(free_stream_velocity, sin(div(mul(chord_length, div(0.071, free_stream_velocity)), cos(free_stream_velocity))))), add(add(add(sub(add(add(angle_of_attack, sqrt(add(angle_of_attack, add(frequency, angle_of_attack)))), add(add(angle_of_attack, sqrt(mul(chord_length, div(0.071, free_stream_velocity)))), free_stream_velocity)), -0.720), free_stream_velocity), free_stream_velocity), free_stream_velocity)), -0.720), suction_side_displacement_thickness))))), -0.720), free_stream_velocity), free_stream_velocity), free_stream_velocity), free_stream_velocity)), add(add(add(sub(add(cos(free_stream_velocity), add(add(angle_of_attack, sqrt(mul(chord_length, div(0.071, free_stream_velocity)))), free_stream_velocity)), -0.720), free_stream_velocity), free_stream_velocity), free_stream_velocity)), add(angle_of_attack, add(add(add(angle_of_attack, free_stream_velocity), free_stream_velocity), div(add(add(add(add(angle_of_attack, free_stream_velocity), free_stream_velocity), free_stream_velocity), free_stream_velocity), sin(div(mul(sqrt(sin(div(add(sqrt(add(-0.720, free_stream_velocity)), free_stream_velocity), cos(free_stream_velocity)))), div(0.071, free_stream_velocity)), cos(cos(free_stream_velocity)))))))), suction_side_displacement_thickness))))), -0.720), free_stream_velocity), free_stream_velocity), free_stream_velocity)), add(div(mul(chord_length, div(0.071, free_stream_velocity)), cos(free_stream_velocity)), add(sqrt(suction_side_displacement_thickness), free_stream_velocity))), -0.720), suction_side_displacement_thickness))))), -0.720)), add(add(add(add(sub(add(angle_of_attack, sqrt(add(angle_of_attack, add(frequency, div(sub(add(add(add(free_stream_velocity, add(angle_of_attack, add(angle_of_attack, add(add(add(angle_of_attack, free_stream_velocity), free_stream_velocity), div(add(add(add(add(angle_of_attack, free_stream_velocity), free_stream_velocity), free_stream_velocity), free_stream_velocity), sin(div(mul(sqrt(sin(div(add(sqrt(add(-0.720, free_stream_velocity)), free_stream_velocity), cos(free_stream_velocity)))), div(0.071, free_stream_velocity)), cos(cos(free_stream_velocity))))))))), div(free_stream_velocity, sin(div(mul(chord_length, div(0.071, free_stream_velocity)), cos(free_stream_velocity))))), add(add(add(sub(add(add(angle_of_attack, sqrt(add(angle_of_attack, add(frequency, div(div(free_stream_velocity, sin(div(mul(chord_length, div(0.071, free_stream_velocity)), cos(sub(free_stream_velocity, angle_of_attack))))), suction_side_displacement_thickness))))), add(add(angle_of_attack, sqrt(mul(chord_length, div(0.071, free_stream_velocity)))), free_stream_velocity)), -0.720), free_stream_velocity), free_stream_velocity), free_stream_velocity)), -0.720), suction_side_displacement_thickness))))), -0.720), free_stream_velocity), free_stream_velocity), free_stream_velocity), free_stream_velocity)), add(add(add(sub(add(cos(free_stream_velocity), add(add(angle_of_attack, sqrt(mul(chord_length, div(mul(chord_length, div(0.071, free_stream_velocity)), cos(free_stream_velocity))))), free_stream_velocity)), -0.720), free_stream_velocity), free_stream_velocity), free_stream_velocity)), add(angle_of_attack, add(add(add(angle_of_attack, free_stream_velocity), free_stream_velocity), div(add(add(add(add(angle_of_attack, free_stream_velocity), free_stream_velocity), free_stream_velocity), free_stream_velocity), sin(div(mul(sqrt(sin(div(add(sqrt(add(-0.720, free_stream_velocity)), free_stream_velocity), cos(free_stream_velocity)))), div(0.071, free_stream_velocity)), cos(cos(free_stream_velocity)))))))), suction_side_displacement_thickness))))), -0.720), free_stream_velocity), free_stream_velocity), free_stream_velocity), sqrt(add(-0.720, free_stream_velocity))), free_stream_velocity)))))), free_stream_velocity)), -0.720)), -0.720)), -0.720)",
+  "symbolic_model_coordinate_system": "raw",
+  "symbolic_analysis": "separate post-processing sidecar",
+  "python": "3.12.5",
+  "platform": "Linux-7.0.0-30-generic-x86_64-with-glibc2.36"
+}

@@ -1,0 +1,96 @@
+{
+  "analysis_version": "expression_analysis_v2",
+  "analysis_status": "complete",
+  "problem": "energy_efficiency_heating",
+  "algorithm": "pysr",
+  "seed": 29,
+  "input_scaling": "domain_minmax",
+  "expression_timeout_seconds_per_stage": 60,
+  "analysis_seconds": 0.32693462099996395,
+  "analysis_python": "3.11.15",
+  "analysis_platform": "Linux-7.0.0-30-generic-x86_64-with-glibc2.43",
+  "raw_scale_symbolic_model": "17.1101122988001*glazing_area + 8.01899922613438*exp(4*overall_height/7 - 3) + 5.85817359594678 + 0.5844497/(4*wall_area/343 - 27/7)",
+  "raw_scale_back_transform_error": null,
+  "complexity_valid": true,
+  "complexity_source": "simplified",
+  "training_scale_expression_parse_success": true,
+  "training_scale_expression_parse_error": null,
+  "training_scale_expression_simplify_success": true,
+  "training_scale_expression_simplify_error": null,
+  "training_scale_symbolic_comparison_error": null,
+  "training_scale_symbolic_exact_match": null,
+  "training_scale_expression_node_count": 14,
+  "training_scale_expression_depth": 3,
+  "training_scale_expression_operator_count": 6,
+  "training_scale_expression_operators": [
+    "Add",
+    "Mul",
+    "Pow",
+    "exp"
+  ],
+  "training_scale_expression_constant_count": 5,
+  "training_scale_expression_variable_count": 3,
+  "training_scale_expression_variables": [
+    "glazing_area",
+    "overall_height",
+    "wall_area"
+  ],
+  "training_scale_simplified_node_count": 14,
+  "training_scale_simplified_depth": 3,
+  "training_scale_simplified_operator_count": 6,
+  "training_scale_simplified_operators": [
+    "Add",
+    "Mul",
+    "Pow",
+    "exp"
+  ],
+  "training_scale_simplified_constant_count": 5,
+  "training_scale_simplified_variable_count": 3,
+  "training_scale_simplified_variables": [
+    "glazing_area",
+    "overall_height",
+    "wall_area"
+  ],
+  "training_scale_simplified_expression": "3.42202245976001*glazing_area + 8.01899922613438*exp(overall_height) + 9.28019605570679 + 0.5844497/wall_area",
+  "expression_parse_success": true,
+  "expression_parse_error": null,
+  "expression_simplify_success": true,
+  "expression_simplify_error": null,
+  "symbolic_comparison_error": null,
+  "symbolic_exact_match": null,
+  "expression_node_count": 22,
+  "expression_depth": 5,
+  "expression_operator_count": 10,
+  "expression_operators": [
+    "Add",
+    "Mul",
+    "Pow",
+    "exp"
+  ],
+  "expression_constant_count": 9,
+  "expression_variable_count": 3,
+  "expression_variables": [
+    "glazing_area",
+    "overall_height",
+    "wall_area"
+  ],
+  "simplified_node_count": 22,
+  "simplified_depth": 5,
+  "simplified_operator_count": 10,
+  "simplified_operators": [
+    "Add",
+    "Mul",
+    "Pow",
+    "exp"
+  ],
+  "simplified_constant_count": 9,
+  "simplified_variable_count": 3,
+  "simplified_variables": [
+    "glazing_area",
+    "overall_height",
+    "wall_area"
+  ],
+  "simplified_expression": "17.1101122988001*glazing_area + 8.01899922613438*exp(4*overall_height/7 - 3) + 5.85817359594678 + 0.5844497/(4*wall_area/343 - 27/7)",
+  "source_result": "seed-29.json",
+  "source_result_sha256": "25eca21931a992b0fe76c12abbd0b475aa4dbe7b19ca79c2df4d75445a3595dd"
+}

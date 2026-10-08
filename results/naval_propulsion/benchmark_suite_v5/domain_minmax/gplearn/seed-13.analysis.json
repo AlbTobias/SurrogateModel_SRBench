@@ -1,0 +1,76 @@
+{
+  "analysis_version": "expression_analysis_v2",
+  "analysis_status": "complete",
+  "problem": "naval_propulsion",
+  "algorithm": "gplearn",
+  "seed": 13,
+  "input_scaling": "domain_minmax",
+  "expression_timeout_seconds_per_stage": 60,
+  "analysis_seconds": 61.7651416890003,
+  "analysis_python": "3.11.15",
+  "analysis_platform": "Linux-7.0.0-29-generic-x86_64-with-glibc2.43",
+  "raw_scale_symbolic_model": "sqrt((ship_speed/12 - 0.943)*(sin(ship_speed/12 - 5/4) + cos(cos(cos((ship_speed/12 - 0.943)*(ship_speed/12 + cos(ship_speed/12 - 5/4) - 5/4) + sin(ship_speed/12 - 5/4))))))",
+  "raw_scale_back_transform_error": null,
+  "complexity_valid": true,
+  "complexity_source": "unsimplified_fallback",
+  "training_scale_expression_parse_success": true,
+  "training_scale_expression_parse_error": null,
+  "training_scale_expression_simplify_success": true,
+  "training_scale_expression_simplify_error": null,
+  "training_scale_symbolic_comparison_error": null,
+  "training_scale_symbolic_exact_match": null,
+  "training_scale_expression_node_count": 23,
+  "training_scale_expression_depth": 10,
+  "training_scale_expression_operator_count": 14,
+  "training_scale_expression_operators": [
+    "Add",
+    "Mul",
+    "Pow",
+    "cos",
+    "sin"
+  ],
+  "training_scale_expression_constant_count": 3,
+  "training_scale_expression_variable_count": 1,
+  "training_scale_expression_variables": [
+    "ship_speed"
+  ],
+  "training_scale_simplified_node_count": 23,
+  "training_scale_simplified_depth": 10,
+  "training_scale_simplified_operator_count": 14,
+  "training_scale_simplified_operators": [
+    "Add",
+    "Mul",
+    "Pow",
+    "cos",
+    "sin"
+  ],
+  "training_scale_simplified_constant_count": 3,
+  "training_scale_simplified_variable_count": 1,
+  "training_scale_simplified_variables": [
+    "ship_speed"
+  ],
+  "training_scale_simplified_expression": "sqrt((ship_speed + 0.307)*(sin(ship_speed) + cos(cos(cos((ship_speed + 0.307)*(ship_speed + cos(ship_speed)) + sin(ship_speed))))))",
+  "expression_parse_success": true,
+  "expression_parse_error": null,
+  "expression_simplify_success": false,
+  "expression_simplify_error": "ExpressionTimeoutError: symbolic analysis exceeded 60 seconds",
+  "symbolic_comparison_error": null,
+  "symbolic_exact_match": null,
+  "expression_node_count": 42,
+  "expression_depth": 12,
+  "expression_operator_count": 23,
+  "expression_operators": [
+    "Add",
+    "Mul",
+    "Pow",
+    "cos",
+    "sin"
+  ],
+  "expression_constant_count": 13,
+  "expression_variable_count": 1,
+  "expression_variables": [
+    "ship_speed"
+  ],
+  "source_result": "seed-13.json",
+  "source_result_sha256": "2f39bedecc837215501cf93f35d1e8d4a61985c8a3fcfb23f1527d075616cebb"
+}

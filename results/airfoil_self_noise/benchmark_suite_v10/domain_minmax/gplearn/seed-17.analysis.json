@@ -1,0 +1,62 @@
+{
+  "analysis_version": "expression_analysis_v2",
+  "analysis_status": "complete",
+  "problem": "airfoil_self_noise",
+  "algorithm": "gplearn",
+  "seed": 17,
+  "input_scaling": "domain_minmax",
+  "expression_timeout_seconds_per_stage": 60,
+  "analysis_seconds": 120.3849816359998,
+  "analysis_python": "3.11.15",
+  "analysis_platform": "Linux-7.0.0-30-generic-x86_64-with-glibc2.43",
+  "raw_scale_symbolic_model": "16.942995137544*sqrt(sqrt((sqrt(sqrt(sqrt(sqrt(sqrt(sqrt(sqrt(sqrt((0.297 - cos(10000*chord_length/1397 - 13/11))*sqrt(frequency/9900 - 101/99))*sqrt(10000*chord_length/1397 + 1000000000*suction_side_displacement_thickness/29005309 - 700534918/319058399)*(81.1504056793988*chord_length + 390.849539765703*suction_side_displacement_thickness - 24.8912500263732)/(frequency/9900 - 1.61420202020202)**2)*(24.1016704867814*chord_length + 116.082313310414*suction_side_displacement_thickness - cos(10000*chord_length/1397 - 13/11) - 7.39270125783283))*(0.00618366091277019*frequency - 80.6367934007971)*(464.407970926179*chord_length + 2236.75581385419*suction_side_displacement_thickness - 142.447777331306))*(24.1016704867814*chord_length + 116.082313310414*suction_side_displacement_thickness - 7.39270125783283))*(390.849539765703*suction_side_displacement_thickness - 8.12631468170105)*sqrt(10000*chord_length/1397 + 1000000000*suction_side_displacement_thickness/29005309 - 700534918/319058399)/(frequency/9900 - 1.61420202020202)**2)*(24.1016704867814*chord_length + 116.082313310414*suction_side_displacement_thickness - cos(10000*chord_length/1397 - 13/11) - 7.39270125783283))*(-cos(10000*chord_length/1397 - 13/11) + 32.7505003898569/(frequency/9900 - 1.31720202020202))/(frequency/9900 - 1.61420202020202))*sqrt(1/(10000*chord_length/1397 - cos(10000*chord_length/1397 + 1000000000*suction_side_displacement_thickness/29005309 - 700534918/319058399) - 1.47881818181818))/(frequency/9900 - 1.31720202020202))**(1/4)*(0.00183654729109275*frequency - 26.8380165289256))*(9.7268986157875 - cos(10000*chord_length/1397 - 13/11)))",
+  "raw_scale_back_transform_error": null,
+  "complexity_valid": true,
+  "complexity_source": "unsimplified_fallback",
+  "training_scale_expression_parse_success": true,
+  "training_scale_expression_parse_error": null,
+  "training_scale_expression_simplify_success": false,
+  "training_scale_expression_simplify_error": "ExpressionTimeoutError: symbolic analysis exceeded 60 seconds",
+  "training_scale_symbolic_comparison_error": null,
+  "training_scale_symbolic_exact_match": null,
+  "training_scale_expression_node_count": 163,
+  "training_scale_expression_depth": 26,
+  "training_scale_expression_operator_count": 79,
+  "training_scale_expression_operators": [
+    "Add",
+    "Mul",
+    "Pow",
+    "cos"
+  ],
+  "training_scale_expression_constant_count": 53,
+  "training_scale_expression_variable_count": 3,
+  "training_scale_expression_variables": [
+    "chord_length",
+    "frequency",
+    "suction_side_displacement_thickness"
+  ],
+  "expression_parse_success": true,
+  "expression_parse_error": null,
+  "expression_simplify_success": false,
+  "expression_simplify_error": "ExpressionTimeoutError: symbolic analysis exceeded 60 seconds",
+  "symbolic_comparison_error": null,
+  "symbolic_exact_match": null,
+  "expression_node_count": 219,
+  "expression_depth": 28,
+  "expression_operator_count": 103,
+  "expression_operators": [
+    "Add",
+    "Mul",
+    "Pow",
+    "cos"
+  ],
+  "expression_constant_count": 85,
+  "expression_variable_count": 3,
+  "expression_variables": [
+    "chord_length",
+    "frequency",
+    "suction_side_displacement_thickness"
+  ],
+  "source_result": "seed-17.json",
+  "source_result_sha256": "50a5ffc99e4f01870805499a207b0afe591238c2660f621a650e9c7fa08853d4"
+}

@@ -1,0 +1,6 @@
+Complexity,Loss,Equation
+1,2108.461,"267.89218"
+3,1824.441,"(33.731083 * aspect_ratio)"
+9,690.49554,"(((aspect_ratio * 1.57806) * exp(sqrt(ultimate_load_factor))) + wing_area)"
+13,647.0681,"(((aspect_ratio * 1.57806) * exp(sqrt(ultimate_load_factor))) + (wing_area - (ultimate_load_factor + -0.08230722)))"
+18,577.1067,"((aspect_ratio * exp(sqrt(ultimate_load_factor))) + ((wing_area - -1.729671) + (((aspect_ratio / thickness_chord_ratio) * sqrt(aspect_ratio)) * 0.17838176)))"

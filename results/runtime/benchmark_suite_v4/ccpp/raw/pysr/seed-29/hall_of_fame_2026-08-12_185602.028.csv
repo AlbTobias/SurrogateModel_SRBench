@@ -1,0 +1,10 @@
+Complexity,Loss,Equation
+1,272.24222,"454.44724"
+3,229.84521,"(0.44674972 * ambient_pressure)"
+4,227.57758,"(sin(2.6773853) * ambient_pressure)"
+5,77.14114,"(398.75662 + (2858.7207 / exhaust_vacuum))"
+7,61.697594,"((ambient_pressure - (ambient_temperature + 518.08746)) - ambient_temperature)"
+10,60.843697,"((ambient_pressure * sin(0.52722514)) - ((-1.0789632 - exhaust_vacuum) * -0.97636974))"
+12,49.85795,"((sqrt(exp(-1.5084013)) * (ambient_pressure + sqrt(ambient_pressure))) - (ambient_temperature / 0.5865099))"
+13,33.697296,"((sqrt(exp(-1.4010901)) * ((ambient_pressure - exhaust_vacuum) + (0.39131057 * -1.0361283))) - ambient_temperature)"
+15,31.675636,"((sqrt(exp(-1.5084013)) * ((ambient_pressure - (sqrt(exp(-1.5084013)) + exhaust_vacuum)) / 0.9504463)) - ambient_temperature)"

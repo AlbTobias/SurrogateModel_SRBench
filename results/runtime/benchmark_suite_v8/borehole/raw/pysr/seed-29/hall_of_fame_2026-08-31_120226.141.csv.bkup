@@ -1,0 +1,13 @@
+Complexity,Loss,Equation
+1,2116.2205,"79.11528"
+3,769.5142,"(borehole_radius * 904.45026)"
+5,735.1409,"((upper_head * borehole_radius) / 1.3979622)"
+6,430.0475,"((upper_head * borehole_radius) - sqrt(lower_head))"
+7,371.32413,"((borehole_radius * 1542.1863) - (38.102673 + 36.538803))"
+9,370.82727,"(((borehole_radius * 1542.1863) - (38.102673 + 36.538803)) - borehole_radius)"
+10,293.29462,"(((hydraulic_conductivity * (borehole_radius / 2.087813)) * borehole_radius) * exp(0.33426198))"
+11,292.67566,"(((hydraulic_conductivity * (sin(borehole_radius) / 2.087813)) * borehole_radius) * exp(0.33426198))"
+12,290.95764,"(((hydraulic_conductivity * (sin(borehole_radius) / sin(0.5191223))) * borehole_radius) * sin(0.33426198))"
+14,290.9303,"((((hydraulic_conductivity * (sin(borehole_radius) / sin(0.5191223))) + -0.95531106) * borehole_radius) * sin(0.33426198))"
+21,290.71344,"(((((hydraulic_conductivity * (borehole_radius / sin(0.5191223))) - ((borehole_radius * -2.045757) / sin(borehole_length))) * borehole_radius) + sin(-0.07612662)) * sin(0.33426198))"
+23,290.70517,"((((((hydraulic_conductivity - 0.90326047) * (borehole_radius / sin(0.5191223))) - ((borehole_radius * -2.045757) / sin(borehole_length))) * borehole_radius) + sin(-0.07612662)) * sin(0.33426198))"

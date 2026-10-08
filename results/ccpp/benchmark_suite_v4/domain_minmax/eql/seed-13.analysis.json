@@ -1,0 +1,92 @@
+{
+  "analysis_version": "expression_analysis_v2",
+  "analysis_status": "complete",
+  "problem": "ccpp",
+  "algorithm": "eql",
+  "seed": 13,
+  "input_scaling": "domain_minmax",
+  "expression_timeout_seconds_per_stage": 60,
+  "analysis_seconds": 3.0178598489983415,
+  "analysis_python": "3.11.15",
+  "analysis_platform": "Linux-7.0.0-29-generic-x86_64-with-glibc2.43",
+  "raw_scale_symbolic_model": "0.0722593417470923*ambient_pressure - 0.411331444759207*ambient_temperature - 0.0580071174377224*exhaust_vacuum - 0.501340482573727*relative_humidity + (-0.0228656273199703*ambient_pressure + 0.026742209631728*ambient_temperature + 0.00320284697508897*exhaust_vacuum + 0.0116353887399464*relative_humidity + 14.0420245748106)*(0.193936154417223*ambient_pressure - 0.00197167138810198*ambient_temperature + 0.00148116725978648*exhaust_vacuum - 0.133415549597855*relative_humidity - 242.209261388092) + 10.0142553205488",
+  "raw_scale_back_transform_error": null,
+  "complexity_valid": true,
+  "complexity_source": "simplified",
+  "training_scale_expression_parse_success": true,
+  "training_scale_expression_parse_error": null,
+  "training_scale_expression_simplify_success": true,
+  "training_scale_expression_simplify_error": null,
+  "training_scale_symbolic_comparison_error": null,
+  "training_scale_symbolic_exact_match": null,
+  "training_scale_expression_node_count": 43,
+  "training_scale_expression_depth": 4,
+  "training_scale_expression_operator_count": 16,
+  "training_scale_expression_operators": [
+    "Add",
+    "Mul"
+  ],
+  "training_scale_expression_constant_count": 15,
+  "training_scale_expression_variable_count": 4,
+  "training_scale_expression_variables": [
+    "ambient_pressure",
+    "ambient_temperature",
+    "exhaust_vacuum",
+    "relative_humidity"
+  ],
+  "training_scale_simplified_node_count": 43,
+  "training_scale_simplified_depth": 4,
+  "training_scale_simplified_operator_count": 16,
+  "training_scale_simplified_operators": [
+    "Add",
+    "Mul"
+  ],
+  "training_scale_simplified_constant_count": 15,
+  "training_scale_simplified_variable_count": 4,
+  "training_scale_simplified_variables": [
+    "ambient_pressure",
+    "ambient_temperature",
+    "exhaust_vacuum",
+    "relative_humidity"
+  ],
+  "training_scale_simplified_expression": "1.46*ambient_pressure - 7.26*ambient_temperature - 1.63*exhaust_vacuum - 18.7*relative_humidity + (-0.462*ambient_pressure + 0.472*ambient_temperature + 0.09*exhaust_vacuum + 0.434*relative_humidity - 7.7)*(3.91848*ambient_pressure - 0.0348*ambient_temperature + 0.0416208*exhaust_vacuum - 4.9764*relative_humidity - 54.0792) + 40.6",
+  "expression_parse_success": true,
+  "expression_parse_error": null,
+  "expression_simplify_success": true,
+  "expression_simplify_error": null,
+  "symbolic_comparison_error": null,
+  "symbolic_exact_match": null,
+  "expression_node_count": 43,
+  "expression_depth": 4,
+  "expression_operator_count": 16,
+  "expression_operators": [
+    "Add",
+    "Mul"
+  ],
+  "expression_constant_count": 15,
+  "expression_variable_count": 4,
+  "expression_variables": [
+    "ambient_pressure",
+    "ambient_temperature",
+    "exhaust_vacuum",
+    "relative_humidity"
+  ],
+  "simplified_node_count": 43,
+  "simplified_depth": 4,
+  "simplified_operator_count": 16,
+  "simplified_operators": [
+    "Add",
+    "Mul"
+  ],
+  "simplified_constant_count": 15,
+  "simplified_variable_count": 4,
+  "simplified_variables": [
+    "ambient_pressure",
+    "ambient_temperature",
+    "exhaust_vacuum",
+    "relative_humidity"
+  ],
+  "simplified_expression": "0.0722593417470923*ambient_pressure - 0.411331444759207*ambient_temperature - 0.0580071174377224*exhaust_vacuum - 0.501340482573727*relative_humidity + (-0.0228656273199703*ambient_pressure + 0.026742209631728*ambient_temperature + 0.00320284697508897*exhaust_vacuum + 0.0116353887399464*relative_humidity + 14.0420245748106)*(0.193936154417223*ambient_pressure - 0.00197167138810198*ambient_temperature + 0.00148116725978648*exhaust_vacuum - 0.133415549597855*relative_humidity - 242.209261388092) + 10.0142553205488",
+  "source_result": "seed-13.json",
+  "source_result_sha256": "b72865987232e5dc5b0c9a36b96262dd722a4e4f4ac3cccf4d432020323a4f13"
+}

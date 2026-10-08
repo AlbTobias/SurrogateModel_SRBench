@@ -1,0 +1,115 @@
+{
+  "analysis_version": "expression_analysis_v2",
+  "analysis_status": "complete",
+  "problem": "cantilever",
+  "algorithm": "eql",
+  "seed": 13,
+  "input_scaling": "raw",
+  "expression_timeout_seconds_per_stage": 60,
+  "analysis_seconds": 5.035149232999629,
+  "analysis_python": "3.11.15",
+  "analysis_platform": "Linux-7.0.0-29-generic-x86_64-with-glibc2.43",
+  "raw_scale_symbolic_model": "3.71*force + 3.73*length - 1.78*width - 2.85*height + 3.83*(-1.41*force - 1.66*length + 0.541*modulus + 0.829*width + 2.86*height - 2.19)*(-0.036*force - 2.4*length + 1.16*modulus + 0.719*width + 2.62*height - 2.19) + 0.468",
+  "raw_scale_back_transform_error": null,
+  "complexity_valid": true,
+  "complexity_source": "simplified",
+  "training_scale_expression_parse_success": true,
+  "training_scale_expression_parse_error": null,
+  "training_scale_expression_simplify_success": true,
+  "training_scale_expression_simplify_error": null,
+  "training_scale_symbolic_comparison_error": null,
+  "training_scale_symbolic_exact_match": null,
+  "training_scale_expression_node_count": 49,
+  "training_scale_expression_depth": 4,
+  "training_scale_expression_operator_count": 18,
+  "training_scale_expression_operators": [
+    "Add",
+    "Mul"
+  ],
+  "training_scale_expression_constant_count": 17,
+  "training_scale_expression_variable_count": 5,
+  "training_scale_expression_variables": [
+    "force",
+    "height",
+    "length",
+    "modulus",
+    "width"
+  ],
+  "training_scale_simplified_node_count": 49,
+  "training_scale_simplified_depth": 4,
+  "training_scale_simplified_operator_count": 18,
+  "training_scale_simplified_operators": [
+    "Add",
+    "Mul"
+  ],
+  "training_scale_simplified_constant_count": 17,
+  "training_scale_simplified_variable_count": 5,
+  "training_scale_simplified_variables": [
+    "force",
+    "height",
+    "length",
+    "modulus",
+    "width"
+  ],
+  "training_scale_simplified_expression": "3.71*force - 2.85*height + 3.73*length - 1.78*width + (0.036*force - 2.62*height + 2.4*length - 1.16*modulus - 0.719*width + 2.19)*(5.4003*force - 10.9538*height + 6.3578*length - 2.07203*modulus - 3.17507*width + 8.3877) + 0.468",
+  "expression_parse_success": true,
+  "expression_parse_error": null,
+  "expression_simplify_success": true,
+  "expression_simplify_error": null,
+  "symbolic_comparison_error": null,
+  "symbolic_exact_match": false,
+  "expression_node_count": 49,
+  "expression_depth": 4,
+  "expression_operator_count": 18,
+  "expression_operators": [
+    "Add",
+    "Mul"
+  ],
+  "expression_constant_count": 17,
+  "expression_variable_count": 5,
+  "expression_variables": [
+    "force",
+    "height",
+    "length",
+    "modulus",
+    "width"
+  ],
+  "simplified_node_count": 49,
+  "simplified_depth": 4,
+  "simplified_operator_count": 18,
+  "simplified_operators": [
+    "Add",
+    "Mul"
+  ],
+  "simplified_constant_count": 17,
+  "simplified_variable_count": 5,
+  "simplified_variables": [
+    "force",
+    "height",
+    "length",
+    "modulus",
+    "width"
+  ],
+  "simplified_expression": "3.71*force - 2.85*height + 3.73*length - 1.78*width + (0.036*force - 2.62*height + 2.4*length - 1.16*modulus - 0.719*width + 2.19)*(5.4003*force - 10.9538*height + 6.3578*length - 2.07203*modulus - 3.17507*width + 8.3877) + 0.468",
+  "ground_truth_node_count": 15,
+  "ground_truth_depth": 2,
+  "ground_truth_operator_count": 5,
+  "ground_truth_operators": [
+    "Mul",
+    "Pow"
+  ],
+  "ground_truth_constant_count": 5,
+  "ground_truth_variable_count": 5,
+  "ground_truth_variables": [
+    "force",
+    "height",
+    "length",
+    "modulus",
+    "width"
+  ],
+  "ground_truth_expression": "4*force*length**3/(height**3*modulus*width)",
+  "ground_truth_variable_recall": 1.0,
+  "simplified_to_ground_truth_size_ratio": 3.2666666666666666,
+  "source_result": "seed-13.json",
+  "source_result_sha256": "f9308eb792a085f1bd11e2e388160b8da4a38ab56d759c1452ebb9e904b6cdcc"
+}

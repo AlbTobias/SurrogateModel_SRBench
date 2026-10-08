@@ -1,0 +1,88 @@
+{
+  "analysis_version": "expression_analysis_v2",
+  "analysis_status": "complete",
+  "problem": "concrete_strength",
+  "algorithm": "gplearn",
+  "seed": 3,
+  "input_scaling": "raw",
+  "expression_timeout_seconds_per_stage": 60,
+  "analysis_seconds": 0.19396473800043168,
+  "analysis_python": "3.11.15",
+  "analysis_platform": "Linux-7.0.0-30-generic-x86_64-with-glibc2.43",
+  "raw_scale_symbolic_model": "add(sqrt(fine_aggregate), sqrt(sub(age, sqrt(sqrt(sub(age, add(sqrt(fine_aggregate), add(add(sqrt(fine_aggregate), sqrt(sub(age, sqrt(sqrt(sub(age, add(sqrt(fine_aggregate), add(sqrt(fine_aggregate), sqrt(fine_aggregate))))))))), sqrt(fine_aggregate)))))))))",
+  "raw_scale_back_transform_error": null,
+  "complexity_valid": true,
+  "complexity_source": "simplified",
+  "training_scale_expression_parse_success": true,
+  "training_scale_expression_parse_error": null,
+  "training_scale_expression_simplify_success": true,
+  "training_scale_expression_simplify_error": null,
+  "training_scale_symbolic_comparison_error": null,
+  "training_scale_symbolic_exact_match": null,
+  "training_scale_expression_node_count": 36,
+  "training_scale_expression_depth": 14,
+  "training_scale_expression_operator_count": 17,
+  "training_scale_expression_operators": [
+    "Add",
+    "Mul",
+    "Pow"
+  ],
+  "training_scale_expression_constant_count": 12,
+  "training_scale_expression_variable_count": 2,
+  "training_scale_expression_variables": [
+    "age",
+    "fine_aggregate"
+  ],
+  "training_scale_simplified_node_count": 36,
+  "training_scale_simplified_depth": 14,
+  "training_scale_simplified_operator_count": 17,
+  "training_scale_simplified_operators": [
+    "Add",
+    "Mul",
+    "Pow"
+  ],
+  "training_scale_simplified_constant_count": 12,
+  "training_scale_simplified_variable_count": 2,
+  "training_scale_simplified_variables": [
+    "age",
+    "fine_aggregate"
+  ],
+  "training_scale_simplified_expression": "sqrt(fine_aggregate) + sqrt(age - (age - 3*sqrt(fine_aggregate) - sqrt(age - (age - 3*sqrt(fine_aggregate))**(1/4)))**(1/4))",
+  "expression_parse_success": true,
+  "expression_parse_error": null,
+  "expression_simplify_success": true,
+  "expression_simplify_error": null,
+  "symbolic_comparison_error": null,
+  "symbolic_exact_match": null,
+  "expression_node_count": 36,
+  "expression_depth": 14,
+  "expression_operator_count": 17,
+  "expression_operators": [
+    "Add",
+    "Mul",
+    "Pow"
+  ],
+  "expression_constant_count": 12,
+  "expression_variable_count": 2,
+  "expression_variables": [
+    "age",
+    "fine_aggregate"
+  ],
+  "simplified_node_count": 36,
+  "simplified_depth": 14,
+  "simplified_operator_count": 17,
+  "simplified_operators": [
+    "Add",
+    "Mul",
+    "Pow"
+  ],
+  "simplified_constant_count": 12,
+  "simplified_variable_count": 2,
+  "simplified_variables": [
+    "age",
+    "fine_aggregate"
+  ],
+  "simplified_expression": "sqrt(fine_aggregate) + sqrt(age - (age - 3*sqrt(fine_aggregate) - sqrt(age - (age - 3*sqrt(fine_aggregate))**(1/4)))**(1/4))",
+  "source_result": "seed-3.json",
+  "source_result_sha256": "a2229d85dcf068c9067aa2fc06cc7f8c8e4c8238947d959e72587e4db8a9fca7"
+}

@@ -1,0 +1,92 @@
+{
+  "analysis_version": "expression_analysis_v2",
+  "analysis_status": "complete",
+  "problem": "naval_propulsion",
+  "algorithm": "operon",
+  "seed": 17,
+  "input_scaling": "domain_minmax",
+  "expression_timeout_seconds_per_stage": 60,
+  "analysis_seconds": 1.6495503389996884,
+  "analysis_python": "3.11.15",
+  "analysis_platform": "Linux-7.0.0-29-generic-x86_64-with-glibc2.43",
+  "raw_scale_symbolic_model": "0.495669 - 0.248*(-5.22592*compressor_decay + 0.50312625*ship_speed - 10.45184*turbine_decay - 0.402892*(ship_speed/12 - 5/4)/(0.160667333333333*ship_speed - 2.059068) - 0.402892*(ship_speed/12 - 5/4)/(0.1477045*ship_speed + 0.2534325) + 0.16481850147515*(ship_speed/12 - 5/4)/((0.136747916666667*ship_speed - 1.38813875)*(0.14061625*ship_speed - 2.42755375)) + 7.86957025)/(0.136747916666667*ship_speed - 4.82507475)",
+  "raw_scale_back_transform_error": null,
+  "complexity_valid": true,
+  "complexity_source": "simplified",
+  "training_scale_expression_parse_success": true,
+  "training_scale_expression_parse_error": null,
+  "training_scale_expression_simplify_success": true,
+  "training_scale_expression_simplify_error": null,
+  "training_scale_symbolic_comparison_error": null,
+  "training_scale_symbolic_exact_match": null,
+  "training_scale_expression_node_count": 58,
+  "training_scale_expression_depth": 7,
+  "training_scale_expression_operator_count": 24,
+  "training_scale_expression_operators": [
+    "Add",
+    "Mul",
+    "Pow"
+  ],
+  "training_scale_expression_constant_count": 23,
+  "training_scale_expression_variable_count": 3,
+  "training_scale_expression_variables": [
+    "compressor_decay",
+    "ship_speed",
+    "turbine_decay"
+  ],
+  "training_scale_simplified_node_count": 58,
+  "training_scale_simplified_depth": 7,
+  "training_scale_simplified_operator_count": 24,
+  "training_scale_simplified_operators": [
+    "Add",
+    "Mul",
+    "Pow"
+  ],
+  "training_scale_simplified_constant_count": 23,
+  "training_scale_simplified_variable_count": 3,
+  "training_scale_simplified_variables": [
+    "compressor_decay",
+    "ship_speed",
+    "turbine_decay"
+  ],
+  "training_scale_simplified_expression": "0.495669 + 0.248*(0.130648*compressor_decay - 6.037515*ship_speed + 0.402892*ship_speed/(1.928008*ship_speed + 0.350942) + 0.402892*ship_speed/(1.772454*ship_speed + 2.469) - 0.16481850147515*ship_speed/((1.640975*ship_speed + 0.66308)*(1.687395*ship_speed - 0.31831)) + 0.130648*turbine_decay)/(1.640975*ship_speed - 2.773856)",
+  "expression_parse_success": true,
+  "expression_parse_error": null,
+  "expression_simplify_success": true,
+  "expression_simplify_error": null,
+  "symbolic_comparison_error": null,
+  "symbolic_exact_match": null,
+  "expression_node_count": 71,
+  "expression_depth": 7,
+  "expression_operator_count": 30,
+  "expression_operators": [
+    "Add",
+    "Mul",
+    "Pow"
+  ],
+  "expression_constant_count": 30,
+  "expression_variable_count": 3,
+  "expression_variables": [
+    "compressor_decay",
+    "ship_speed",
+    "turbine_decay"
+  ],
+  "simplified_node_count": 70,
+  "simplified_depth": 7,
+  "simplified_operator_count": 30,
+  "simplified_operators": [
+    "Add",
+    "Mul",
+    "Pow"
+  ],
+  "simplified_constant_count": 29,
+  "simplified_variable_count": 3,
+  "simplified_variables": [
+    "compressor_decay",
+    "ship_speed",
+    "turbine_decay"
+  ],
+  "simplified_expression": "0.495669 + (1.29602816*compressor_decay - 0.12477531*ship_speed + 2.59205632*turbine_decay - 0.248*(0.0137348751229292*ship_speed - 0.206023126843938)/((0.136747916666667*ship_speed - 1.38813875)*(0.14061625*ship_speed - 2.42755375)) + 0.248*(0.0335743333333333*ship_speed - 0.503615)/(0.160667333333333*ship_speed - 2.059068) + 0.248*(0.0335743333333333*ship_speed - 0.503615)/(0.1477045*ship_speed + 0.2534325) - 1.951653422)/(0.136747916666667*ship_speed - 4.82507475)",
+  "source_result": "seed-17.json",
+  "source_result_sha256": "6ae4203ad637ed9a6f5342c89c38752eb5647a198bd8de41047451c64de9a380"
+}

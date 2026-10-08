@@ -1,0 +1,198 @@
+{
+  "status": "success",
+  "problem": "borehole",
+  "algorithm": "operon",
+  "seed": 3,
+  "seed_parameter": "random_state",
+  "train_samples": 400,
+  "test_samples": 4000,
+  "dataset_policy": "fixed across algorithm trials",
+  "dataset_hash_scope": "SHA-256 of uncompressed table bytes",
+  "train_dataset_sha256": "07ebea8de5c2ecbc91a9a401e0d2502d5896a14d7fb10bd6a6f2b415bd32a767",
+  "test_dataset_sha256": "e94f3036e7987909ecb11e11e6dab5517a508af8cf9f83520d9c12a1ab3a1504",
+  "requested_population_size": null,
+  "requested_iterations": null,
+  "time_limit": null,
+  "profile": "benchmark",
+  "benchmark_name": "benchmark_suite_v3",
+  "config_file": "/workspace/configs/benchmark_suite_v3.json",
+  "use_dataframe": false,
+  "input_scaling": "raw",
+  "input_scaling_applied": false,
+  "input_scaling_source": "fixed published problem domain",
+  "input_scaling_formula": "x unchanged",
+  "input_scaling_parameters": {
+    "borehole_radius": {
+      "lower": 0.05,
+      "upper": 0.15
+    },
+    "influence_radius": {
+      "lower": 100.0,
+      "upper": 50000.0
+    },
+    "upper_transmissivity": {
+      "lower": 63070.0,
+      "upper": 115600.0
+    },
+    "upper_head": {
+      "lower": 990.0,
+      "upper": 1110.0
+    },
+    "lower_transmissivity": {
+      "lower": 63.1,
+      "upper": 116.0
+    },
+    "lower_head": {
+      "lower": 700.0,
+      "upper": 820.0
+    },
+    "borehole_length": {
+      "lower": 1120.0,
+      "upper": 1680.0
+    },
+    "hydraulic_conductivity": {
+      "lower": 9855.0,
+      "upper": 12045.0
+    }
+  },
+  "target_scaling": "none; target remains in original units",
+  "applied_parameters": {
+    "random_state": 3,
+    "population_size": 1000,
+    "generations": 1000,
+    "max_evaluations": 1000000
+  },
+  "rmse": 0.17336628893630052,
+  "nrmse_range": 0.0007134103435422352,
+  "mae": 0.13092857358302154,
+  "r2": 0.9999852226507346,
+  "max_absolute_error": 1.3029634455486985,
+  "fit_seconds": 3.6811141519999637,
+  "prediction_seconds": 0.00020605099985004927,
+  "prediction_repeats": 5,
+  "prediction_mean_seconds": 0.00012861799996244372,
+  "prediction_median_seconds": 0.00010569699998086435,
+  "prediction_std_seconds": 5.080908662621111e-05,
+  "prediction_microseconds_per_sample": 0.026424249995216087,
+  "expression_extraction_seconds": 5.937000014455407e-05,
+  "expression_analysis_seconds": 0.3183800369999972,
+  "evaluation_seconds": 4.000624527000127,
+  "timing_scope": "fit/predict/expression processing inside the running container; image pull, container startup, data generation, and metric serialization excluded",
+  "model_size": 51,
+  "symbolic_model": "(0.416320 + (22.485756 * (((0.318310 * hydraulic_conductivity) * (((((-0.957206) * upper_head) - ((-0.875590) * lower_head)) * ((((-1.741970) * borehole_radius) / ((-1.478843) * lower_transmissivity)) / ((-2.602171) * borehole_length))) * ((-0.889260) * borehole_radius))) + ((0.318310 * hydraulic_conductivity) * (((((-1.068310) * upper_head) - ((-1.068330) * lower_head)) * (((-1.741970) * borehole_radius) / ((-2.602171) * borehole_length))) * ((-0.613358) * borehole_radius))))))",
+  "symbolic_model_coordinate_system": "raw",
+  "raw_scale_symbolic_model": "(0.416320 + (22.485756 * (((0.318310 * hydraulic_conductivity) * (((((-0.957206) * upper_head) - ((-0.875590) * lower_head)) * ((((-1.741970) * borehole_radius) / ((-1.478843) * lower_transmissivity)) / ((-2.602171) * borehole_length))) * ((-0.889260) * borehole_radius))) + ((0.318310 * hydraulic_conductivity) * (((((-1.068310) * upper_head) - ((-1.068330) * lower_head)) * (((-1.741970) * borehole_radius) / ((-2.602171) * borehole_length))) * ((-0.613358) * borehole_radius))))))",
+  "raw_scale_back_transform_error": null,
+  "training_scale_expression_parse_success": true,
+  "training_scale_expression_parse_error": null,
+  "training_scale_expression_simplify_success": true,
+  "training_scale_expression_simplify_error": null,
+  "training_scale_symbolic_comparison_error": null,
+  "training_scale_symbolic_exact_match": null,
+  "training_scale_expression_node_count": 37,
+  "training_scale_expression_depth": 4,
+  "training_scale_expression_operator_count": 14,
+  "training_scale_expression_operators": [
+    "Add",
+    "Mul",
+    "Pow"
+  ],
+  "training_scale_expression_constant_count": 12,
+  "training_scale_expression_variable_count": 6,
+  "training_scale_expression_variables": [
+    "borehole_length",
+    "borehole_radius",
+    "hydraulic_conductivity",
+    "lower_head",
+    "lower_transmissivity",
+    "upper_head"
+  ],
+  "training_scale_simplified_node_count": 37,
+  "training_scale_simplified_depth": 4,
+  "training_scale_simplified_operator_count": 14,
+  "training_scale_simplified_operators": [
+    "Add",
+    "Mul",
+    "Pow"
+  ],
+  "training_scale_simplified_constant_count": 12,
+  "training_scale_simplified_variable_count": 6,
+  "training_scale_simplified_variables": [
+    "borehole_length",
+    "borehole_radius",
+    "hydraulic_conductivity",
+    "lower_head",
+    "lower_transmissivity",
+    "upper_head"
+  ],
+  "training_scale_simplified_expression": "0.41632 - 2.93884478367778*borehole_radius**2*hydraulic_conductivity*(1.06833*lower_head - 1.06831*upper_head)/borehole_length + 2.88117277788665*borehole_radius**2*hydraulic_conductivity*(0.87559*lower_head - 0.957206*upper_head)/(borehole_length*lower_transmissivity)",
+  "expression_parse_success": true,
+  "expression_parse_error": null,
+  "expression_simplify_success": true,
+  "expression_simplify_error": null,
+  "symbolic_comparison_error": null,
+  "symbolic_exact_match": false,
+  "expression_node_count": 37,
+  "expression_depth": 4,
+  "expression_operator_count": 14,
+  "expression_operators": [
+    "Add",
+    "Mul",
+    "Pow"
+  ],
+  "expression_constant_count": 12,
+  "expression_variable_count": 6,
+  "expression_variables": [
+    "borehole_length",
+    "borehole_radius",
+    "hydraulic_conductivity",
+    "lower_head",
+    "lower_transmissivity",
+    "upper_head"
+  ],
+  "simplified_node_count": 37,
+  "simplified_depth": 4,
+  "simplified_operator_count": 14,
+  "simplified_operators": [
+    "Add",
+    "Mul",
+    "Pow"
+  ],
+  "simplified_constant_count": 12,
+  "simplified_variable_count": 6,
+  "simplified_variables": [
+    "borehole_length",
+    "borehole_radius",
+    "hydraulic_conductivity",
+    "lower_head",
+    "lower_transmissivity",
+    "upper_head"
+  ],
+  "simplified_expression": "0.41632 - 2.93884478367778*borehole_radius**2*hydraulic_conductivity*(1.06833*lower_head - 1.06831*upper_head)/borehole_length + 2.88117277788665*borehole_radius**2*hydraulic_conductivity*(0.87559*lower_head - 0.957206*upper_head)/(borehole_length*lower_transmissivity)",
+  "ground_truth_node_count": 44,
+  "ground_truth_depth": 8,
+  "ground_truth_operator_count": 18,
+  "ground_truth_operators": [
+    "Add",
+    "Mul",
+    "Pow",
+    "log"
+  ],
+  "ground_truth_constant_count": 13,
+  "ground_truth_variable_count": 8,
+  "ground_truth_variables": [
+    "borehole_length",
+    "borehole_radius",
+    "hydraulic_conductivity",
+    "influence_radius",
+    "lower_head",
+    "lower_transmissivity",
+    "upper_head",
+    "upper_transmissivity"
+  ],
+  "ground_truth_expression": "2*pi*upper_transmissivity*(-lower_head + upper_head)/((2*borehole_length*upper_transmissivity/(borehole_radius**2*hydraulic_conductivity*log(influence_radius/borehole_radius)) + 1 + upper_transmissivity/lower_transmissivity)*log(influence_radius/borehole_radius))",
+  "ground_truth_variable_recall": 0.75,
+  "simplified_to_ground_truth_size_ratio": 0.8409090909090909,
+  "python": "3.12.5",
+  "platform": "Linux-7.0.0-29-generic-x86_64-with-glibc2.36"
+}

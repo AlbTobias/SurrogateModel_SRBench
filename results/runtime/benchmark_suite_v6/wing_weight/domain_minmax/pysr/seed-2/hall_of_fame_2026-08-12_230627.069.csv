@@ -1,0 +1,12 @@
+Complexity,Loss,Equation
+1,2108.4272,"267.6493"
+3,2090.1812,"(271.20212 + ultimate_load_factor)"
+5,2076.653,"((264.06284 + aspect_ratio) - thickness_chord_ratio)"
+8,1652.2618,"(exp(4.0158596) * (sqrt(exp(aspect_ratio)) + 3.871788))"
+10,1647.4591,"(exp(4.0158596) * (exp(sin(aspect_ratio + -0.25983655)) + 3.871788))"
+11,1203.4089,"(exp(4.0158596) * (sqrt(exp(sin(aspect_ratio + ultimate_load_factor))) + 3.871788))"
+13,1202.5364,"((exp(4.0158596) * (sqrt(exp(sin(aspect_ratio + ultimate_load_factor))) + 3.871788)) - fuel_weight)"
+14,1136.1539,"((exp(3.293708) + ultimate_load_factor) * ((exp(-1.736804) * exp(4.0158596)) + (wing_area + ultimate_load_factor)))"
+18,1060.886,"(((exp(3.293708) + ultimate_load_factor) * ((exp(-1.736804) * exp(4.0158596)) + (wing_area + (aspect_ratio / 0.98803693)))) - fuel_weight)"
+19,614.49927,"((exp(3.293708) + ultimate_load_factor) * ((exp(-1.736804) * exp(4.0158596)) + (wing_area + (ultimate_load_factor + (exp(aspect_ratio) - 0.98803693)))))"
+30,431.89645,"(exp((((aspect_ratio - aspect_ratio) - -2.1364539) + 0.8294357) - -2.1364539) - (((((sqrt(exp(sin(ultimate_load_factor))) / 0.29578948) - thickness_chord_ratio) + ((exp(aspect_ratio) + wing_area) + -0.3203278)) / -0.042931866) - -0.67831635))"

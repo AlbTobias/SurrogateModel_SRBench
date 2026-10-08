@@ -1,0 +1,7 @@
+Complexity,Loss,Equation
+1,2109.3044,"268.6385"
+3,1845.8578,"(96.78653 + wing_area)"
+5,1829.6968,"((wing_area - paint_weight) + 92.0704)"
+7,1527.2365,"((71.4345 - -334.50046) + (-518.0956 / ultimate_load_factor))"
+9,1461.4187,"(((71.4345 - -334.50046) - ultimate_load_factor) + (-518.0956 / ultimate_load_factor))"
+10,727.4526,"sqrt(ultimate_load_factor * (aspect_ratio * (design_gross_weight + (-1.2327164 / 0.23869157))))"

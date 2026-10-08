@@ -1,0 +1,90 @@
+{
+  "status": "success",
+  "problem": "cantilever",
+  "algorithm": "operon",
+  "seed": 13,
+  "seed_parameter": "random_state",
+  "train_samples": 400,
+  "test_samples": 4000,
+  "feature_names": [
+    "force",
+    "length",
+    "modulus",
+    "width",
+    "height"
+  ],
+  "dataset_policy": "fixed across algorithm trials",
+  "dataset_hash_scope": "SHA-256 of uncompressed table bytes",
+  "train_dataset_sha256": "47ac0960181a6eeb569c70492065f55028aa6ea4b1606096efafbb754900e380",
+  "test_dataset_sha256": "fb1b4eac780cca9fd9696b7ce23188a1916b66b76fbf1a76ab2063389beedb67",
+  "requested_population_size": null,
+  "requested_iterations": null,
+  "time_limit": null,
+  "profile": "benchmark",
+  "benchmark_name": "benchmark_suite_v8",
+  "config_file": "/workspace/configs/benchmark_suite_v8.json",
+  "configuration_schema_version": 2,
+  "configuration_sha256": "674e097628af3ce351b421c973b1ebdb7bf4d2087fa24a83ea042312a03335eb",
+  "use_dataframe": false,
+  "input_scaling": "raw",
+  "input_scaling_applied": false,
+  "input_scaling_source": "fixed documented problem domain",
+  "input_scaling_formula": "x unchanged",
+  "input_scaling_parameters": {
+    "force": {
+      "lower": 0.5,
+      "upper": 1.5
+    },
+    "length": {
+      "lower": 0.8,
+      "upper": 1.2
+    },
+    "modulus": {
+      "lower": 0.8,
+      "upper": 1.2
+    },
+    "width": {
+      "lower": 0.7,
+      "upper": 1.3
+    },
+    "height": {
+      "lower": 0.7,
+      "upper": 1.3
+    }
+  },
+  "target_scaling": "none; target remains in original units",
+  "algorithm_configuration_role": "documented_adapter_defaults",
+  "algorithm_configuration_rationale": "Restates the effective settings of the legacy Operon estimator in the pinned SRBench image for auditability.",
+  "configured_parameters": {
+    "population_size": 1000,
+    "generations": 1000,
+    "max_evaluations": 1000000
+  },
+  "applied_parameters": {
+    "random_state": 13,
+    "population_size": 1000,
+    "generations": 1000,
+    "max_evaluations": 1000000
+  },
+  "rmse": 1.3967180893197026e-06,
+  "nrmse_range": 4.2288639348008e-08,
+  "mae": 1.0076004663350652e-06,
+  "r2": 0.9999999999998858,
+  "max_absolute_error": 1.0021443689112175e-05,
+  "fit_seconds": 3.7018041259998427,
+  "prediction_seconds": 0.00017502799983049044,
+  "prediction_repeats": 5,
+  "prediction_mean_seconds": 0.00010056039986920951,
+  "prediction_median_seconds": 8.145899982991978e-05,
+  "prediction_std_seconds": 4.234365905867332e-05,
+  "prediction_microseconds_per_sample": 0.020364749957479944,
+  "expression_extraction_seconds": 5.790299996988324e-05,
+  "evaluation_seconds": 3.702784099999917,
+  "timing_scope": "fit/predict/expression extraction inside the running container; symbolic analysis, image pull, container startup, data generation, and metric serialization excluded",
+  "model_size": 35,
+  "symbolic_model": "((-0.000001) + ((-17371.242188) * ((((0.032950 * length) / (((-0.350312) * modulus) * ((-0.375122) * height))) * ((0.318310 * length) / (1.442695 * height))) * (((((-1.061907) * force) / (6.283185 * height)) / (1.337917 * width)) * (0.032950 * length)))))",
+  "symbolic_model_coordinate_system": "raw",
+  "symbolic_analysis": "separate post-processing sidecar",
+  "python": "3.12.5",
+  "platform": "Linux-7.0.0-29-generic-x86_64-with-glibc2.36"
+}

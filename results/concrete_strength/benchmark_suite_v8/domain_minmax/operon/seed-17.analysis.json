@@ -1,0 +1,100 @@
+{
+  "analysis_version": "expression_analysis_v2",
+  "analysis_status": "complete",
+  "problem": "concrete_strength",
+  "algorithm": "operon",
+  "seed": 17,
+  "input_scaling": "domain_minmax",
+  "expression_timeout_seconds_per_stage": 60,
+  "analysis_seconds": 1.6403977339996345,
+  "analysis_python": "3.11.15",
+  "analysis_platform": "Linux-7.0.0-30-generic-x86_64-with-glibc2.43",
+  "raw_scale_symbolic_model": "0.0979522385371397*blast_furnace_slag + 0.09683355924179*cement - 0.214244442834569*water + 9.0766589685098*(age/182 - 183/182)**3*(-0.0148979505494506*age + 0.00512929326655537*blast_furnace_slag - 0.00108091780821918*cement + 2.275032497205*(age/182 - 183/182)**2 + 2.15156556698781) - 6.89835130280306*(10*superplasticizer/161 - 1)**2 + 5.584963387728*(10*superplasticizer/161 - 1)*(-0.0767183229813665*superplasticizer - 1.920455121339*(age/182 - 183/182)**2 + 1.235165) + 63.4981864769559",
+  "raw_scale_back_transform_error": null,
+  "complexity_valid": true,
+  "complexity_source": "simplified",
+  "training_scale_expression_parse_success": true,
+  "training_scale_expression_parse_error": null,
+  "training_scale_expression_simplify_success": true,
+  "training_scale_expression_simplify_error": null,
+  "training_scale_symbolic_comparison_error": null,
+  "training_scale_symbolic_exact_match": null,
+  "training_scale_expression_node_count": 48,
+  "training_scale_expression_depth": 5,
+  "training_scale_expression_operator_count": 19,
+  "training_scale_expression_operators": [
+    "Add",
+    "Mul",
+    "Pow"
+  ],
+  "training_scale_expression_constant_count": 17,
+  "training_scale_expression_variable_count": 5,
+  "training_scale_expression_variables": [
+    "age",
+    "blast_furnace_slag",
+    "cement",
+    "superplasticizer",
+    "water"
+  ],
+  "training_scale_simplified_node_count": 44,
+  "training_scale_simplified_depth": 3,
+  "training_scale_simplified_operator_count": 16,
+  "training_scale_simplified_operators": [
+    "Add",
+    "Mul",
+    "Pow"
+  ],
+  "training_scale_simplified_constant_count": 16,
+  "training_scale_simplified_variable_count": 5,
+  "training_scale_simplified_variables": [
+    "age",
+    "blast_furnace_slag",
+    "cement",
+    "superplasticizer",
+    "water"
+  ],
+  "training_scale_simplified_expression": "20.649694119407*age**5 - 24.6106981970096*age**4 + 8.36626517768041*age**3*blast_furnace_slag - 2.14863578768461*age**3*cement - 10.725671540453*age**2*superplasticizer + 17.602017265124*blast_furnace_slag + 21.206549473952*cement - 13.7967026056061*superplasticizer**2 - 13.411702121444*water + 72.677101",
+  "expression_parse_success": true,
+  "expression_parse_error": null,
+  "expression_simplify_success": true,
+  "expression_simplify_error": null,
+  "symbolic_comparison_error": null,
+  "symbolic_exact_match": null,
+  "expression_node_count": 69,
+  "expression_depth": 7,
+  "expression_operator_count": 29,
+  "expression_operators": [
+    "Add",
+    "Mul",
+    "Pow"
+  ],
+  "expression_constant_count": 28,
+  "expression_variable_count": 5,
+  "expression_variables": [
+    "age",
+    "blast_furnace_slag",
+    "cement",
+    "superplasticizer",
+    "water"
+  ],
+  "simplified_node_count": 63,
+  "simplified_depth": 6,
+  "simplified_operator_count": 26,
+  "simplified_operators": [
+    "Add",
+    "Mul",
+    "Pow"
+  ],
+  "simplified_constant_count": 25,
+  "simplified_variable_count": 5,
+  "simplified_variables": [
+    "age",
+    "blast_furnace_slag",
+    "cement",
+    "superplasticizer",
+    "water"
+  ],
+  "simplified_expression": "0.0979522385371397*blast_furnace_slag + 0.09683355924179*cement - 0.214244442834569*water + (age - 183)**3*(-2.24304704644762e-8*age + 7.72270392073155e-9*blast_furnace_slag - 1.6274382769166e-9*cement + 1.03408605838416e-10*(age - 183)**2 + 3.2394138873339e-6) - (0.346892135883727*superplasticizer - 5.584963387728)*(0.0767183229813665*superplasticizer + 5.7977753934881e-5*(age - 183)**2 - 1.235165) - 0.000266129829204238*(10*superplasticizer - 161)**2 + 63.4981864769559",
+  "source_result": "seed-17.json",
+  "source_result_sha256": "25699d912104bf7cd3ca9e7c1c78c7afd653e109dd3c3757ae37119776f962f3"
+}

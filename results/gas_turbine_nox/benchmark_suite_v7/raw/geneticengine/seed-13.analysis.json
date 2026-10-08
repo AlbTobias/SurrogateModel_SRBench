@@ -1,0 +1,92 @@
+{
+  "analysis_version": "expression_analysis_v2",
+  "analysis_status": "complete",
+  "problem": "gas_turbine_nox",
+  "algorithm": "geneticengine",
+  "seed": 13,
+  "input_scaling": "raw",
+  "expression_timeout_seconds_per_stage": 60,
+  "analysis_seconds": 0.33438929700059816,
+  "analysis_python": "3.11.15",
+  "analysis_platform": "Linux-7.0.0-29-generic-x86_64-with-glibc2.43",
+  "raw_scale_symbolic_model": "((turbine_after_temperature + (((sqrt((-0.01)) * ambient_temperature) * air_filter_pressure_difference) + ((sqrt((-0.01)) * turbine_after_temperature) * air_filter_pressure_difference)))/((air_filter_pressure_difference + sqrt((ambient_temperature))) + sqrt((((air_filter_pressure_difference + sqrt((ambient_temperature))) + sqrt((air_filter_pressure_difference)))))))",
+  "raw_scale_back_transform_error": null,
+  "complexity_valid": true,
+  "complexity_source": "simplified",
+  "training_scale_expression_parse_success": true,
+  "training_scale_expression_parse_error": null,
+  "training_scale_expression_simplify_success": true,
+  "training_scale_expression_simplify_error": null,
+  "training_scale_symbolic_comparison_error": null,
+  "training_scale_symbolic_exact_match": null,
+  "training_scale_expression_node_count": 30,
+  "training_scale_expression_depth": 6,
+  "training_scale_expression_operator_count": 11,
+  "training_scale_expression_operators": [
+    "Add",
+    "Mul",
+    "Pow"
+  ],
+  "training_scale_expression_constant_count": 9,
+  "training_scale_expression_variable_count": 3,
+  "training_scale_expression_variables": [
+    "air_filter_pressure_difference",
+    "ambient_temperature",
+    "turbine_after_temperature"
+  ],
+  "training_scale_simplified_node_count": 30,
+  "training_scale_simplified_depth": 6,
+  "training_scale_simplified_operator_count": 11,
+  "training_scale_simplified_operators": [
+    "Add",
+    "Mul",
+    "Pow"
+  ],
+  "training_scale_simplified_constant_count": 9,
+  "training_scale_simplified_variable_count": 3,
+  "training_scale_simplified_variables": [
+    "air_filter_pressure_difference",
+    "ambient_temperature",
+    "turbine_after_temperature"
+  ],
+  "training_scale_simplified_expression": "(0.1*I*air_filter_pressure_difference*ambient_temperature + 0.1*I*air_filter_pressure_difference*turbine_after_temperature + turbine_after_temperature)/(air_filter_pressure_difference + sqrt(ambient_temperature) + sqrt(sqrt(air_filter_pressure_difference) + air_filter_pressure_difference + sqrt(ambient_temperature)))",
+  "expression_parse_success": true,
+  "expression_parse_error": null,
+  "expression_simplify_success": true,
+  "expression_simplify_error": null,
+  "symbolic_comparison_error": null,
+  "symbolic_exact_match": null,
+  "expression_node_count": 30,
+  "expression_depth": 6,
+  "expression_operator_count": 11,
+  "expression_operators": [
+    "Add",
+    "Mul",
+    "Pow"
+  ],
+  "expression_constant_count": 9,
+  "expression_variable_count": 3,
+  "expression_variables": [
+    "air_filter_pressure_difference",
+    "ambient_temperature",
+    "turbine_after_temperature"
+  ],
+  "simplified_node_count": 30,
+  "simplified_depth": 6,
+  "simplified_operator_count": 11,
+  "simplified_operators": [
+    "Add",
+    "Mul",
+    "Pow"
+  ],
+  "simplified_constant_count": 9,
+  "simplified_variable_count": 3,
+  "simplified_variables": [
+    "air_filter_pressure_difference",
+    "ambient_temperature",
+    "turbine_after_temperature"
+  ],
+  "simplified_expression": "(0.1*I*air_filter_pressure_difference*ambient_temperature + 0.1*I*air_filter_pressure_difference*turbine_after_temperature + turbine_after_temperature)/(air_filter_pressure_difference + sqrt(ambient_temperature) + sqrt(sqrt(air_filter_pressure_difference) + air_filter_pressure_difference + sqrt(ambient_temperature)))",
+  "source_result": "seed-13.json",
+  "source_result_sha256": "c007a6d5d8830a1a95a56cbbbfcd7d6f5f7590322a87fb8d654234542cbb1578"
+}

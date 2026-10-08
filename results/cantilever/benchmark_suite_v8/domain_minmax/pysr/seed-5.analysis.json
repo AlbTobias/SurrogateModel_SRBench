@@ -1,0 +1,119 @@
+{
+  "analysis_version": "expression_analysis_v2",
+  "analysis_status": "complete",
+  "problem": "cantilever",
+  "algorithm": "pysr",
+  "seed": 5,
+  "input_scaling": "domain_minmax",
+  "expression_timeout_seconds_per_stage": 60,
+  "analysis_seconds": 0.5602665630003685,
+  "analysis_python": "3.11.15",
+  "analysis_platform": "Linux-7.0.0-29-generic-x86_64-with-glibc2.43",
+  "raw_scale_symbolic_model": "4*force - 10*width/3 + 3.03984461310025*exp(-10*height/3 + sin(5*length - 5) + 10/3) + 0.135437273333333",
+  "raw_scale_back_transform_error": null,
+  "complexity_valid": true,
+  "complexity_source": "simplified",
+  "training_scale_expression_parse_success": true,
+  "training_scale_expression_parse_error": null,
+  "training_scale_expression_simplify_success": true,
+  "training_scale_expression_simplify_error": null,
+  "training_scale_symbolic_comparison_error": null,
+  "training_scale_symbolic_exact_match": null,
+  "training_scale_expression_node_count": 17,
+  "training_scale_expression_depth": 5,
+  "training_scale_expression_operator_count": 8,
+  "training_scale_expression_operators": [
+    "Add",
+    "Mul",
+    "exp",
+    "sin"
+  ],
+  "training_scale_expression_constant_count": 5,
+  "training_scale_expression_variable_count": 4,
+  "training_scale_expression_variables": [
+    "force",
+    "height",
+    "length",
+    "width"
+  ],
+  "training_scale_simplified_node_count": 17,
+  "training_scale_simplified_depth": 5,
+  "training_scale_simplified_operator_count": 8,
+  "training_scale_simplified_operators": [
+    "Add",
+    "Mul",
+    "exp",
+    "sin"
+  ],
+  "training_scale_simplified_constant_count": 5,
+  "training_scale_simplified_variable_count": 4,
+  "training_scale_simplified_variables": [
+    "force",
+    "height",
+    "length",
+    "width"
+  ],
+  "training_scale_simplified_expression": "2*force - width + 3.03984461310025*exp(-height + sin(length)) + 0.80210394",
+  "expression_parse_success": true,
+  "expression_parse_error": null,
+  "expression_simplify_success": true,
+  "expression_simplify_error": null,
+  "symbolic_comparison_error": null,
+  "symbolic_exact_match": false,
+  "expression_node_count": 22,
+  "expression_depth": 7,
+  "expression_operator_count": 10,
+  "expression_operators": [
+    "Add",
+    "Mul",
+    "exp",
+    "sin"
+  ],
+  "expression_constant_count": 8,
+  "expression_variable_count": 4,
+  "expression_variables": [
+    "force",
+    "height",
+    "length",
+    "width"
+  ],
+  "simplified_node_count": 22,
+  "simplified_depth": 7,
+  "simplified_operator_count": 10,
+  "simplified_operators": [
+    "Add",
+    "Mul",
+    "exp",
+    "sin"
+  ],
+  "simplified_constant_count": 8,
+  "simplified_variable_count": 4,
+  "simplified_variables": [
+    "force",
+    "height",
+    "length",
+    "width"
+  ],
+  "simplified_expression": "4*force - 10*width/3 + 3.03984461310025*exp(-10*height/3 + sin(5*length - 5) + 10/3) + 0.135437273333333",
+  "ground_truth_node_count": 15,
+  "ground_truth_depth": 2,
+  "ground_truth_operator_count": 5,
+  "ground_truth_operators": [
+    "Mul",
+    "Pow"
+  ],
+  "ground_truth_constant_count": 5,
+  "ground_truth_variable_count": 5,
+  "ground_truth_variables": [
+    "force",
+    "height",
+    "length",
+    "modulus",
+    "width"
+  ],
+  "ground_truth_expression": "4*force*length**3/(height**3*modulus*width)",
+  "ground_truth_variable_recall": 0.8,
+  "simplified_to_ground_truth_size_ratio": 1.4666666666666666,
+  "source_result": "seed-5.json",
+  "source_result_sha256": "4e204c6a914c7640b710a108e12cb0d8a1dec023274ad55ef3d85df303ecab8e"
+}

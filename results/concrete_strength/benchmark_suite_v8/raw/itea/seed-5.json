@@ -1,0 +1,103 @@
+{
+  "status": "success",
+  "problem": "concrete_strength",
+  "algorithm": "itea",
+  "seed": 5,
+  "seed_parameter": null,
+  "train_samples": 400,
+  "test_samples": 592,
+  "feature_names": [
+    "cement",
+    "blast_furnace_slag",
+    "fly_ash",
+    "water",
+    "superplasticizer",
+    "coarse_aggregate",
+    "fine_aggregate",
+    "age"
+  ],
+  "dataset_policy": "fixed across algorithm trials",
+  "dataset_hash_scope": "SHA-256 of uncompressed table bytes",
+  "train_dataset_sha256": "10bccfdc34cc23641ef9d20fef46a4bdcb1035380ee9344bbed9277f76ef3ffd",
+  "test_dataset_sha256": "91ad97074b5b15ec9ab59f1105b6e901837e4dcc8f4e7c62ebdedd530957b522",
+  "requested_population_size": null,
+  "requested_iterations": null,
+  "time_limit": null,
+  "profile": "benchmark",
+  "benchmark_name": "benchmark_suite_v8",
+  "config_file": "/workspace/configs/benchmark_suite_v8.json",
+  "configuration_schema_version": 2,
+  "configuration_sha256": "674e097628af3ce351b421c973b1ebdb7bf4d2087fa24a83ea042312a03335eb",
+  "use_dataframe": true,
+  "input_scaling": "raw",
+  "input_scaling_applied": false,
+  "input_scaling_source": "fixed documented problem domain",
+  "input_scaling_formula": "x unchanged",
+  "input_scaling_parameters": {
+    "cement": {
+      "lower": 102.0,
+      "upper": 540.0
+    },
+    "blast_furnace_slag": {
+      "lower": 0.0,
+      "upper": 359.4
+    },
+    "fly_ash": {
+      "lower": 0.0,
+      "upper": 200.1
+    },
+    "water": {
+      "lower": 121.8,
+      "upper": 247.0
+    },
+    "superplasticizer": {
+      "lower": 0.0,
+      "upper": 32.2
+    },
+    "coarse_aggregate": {
+      "lower": 801.0,
+      "upper": 1145.0
+    },
+    "fine_aggregate": {
+      "lower": 594.0,
+      "upper": 992.6
+    },
+    "age": {
+      "lower": 1.0,
+      "upper": 365.0
+    }
+  },
+  "target_scaling": "none; target remains in original units",
+  "algorithm_configuration_role": "documented_adapter_defaults",
+  "algorithm_configuration_rationale": "Restates the population and generation settings already defined by the pinned SRBench adapter.",
+  "configured_parameters": {
+    "npop": 1000,
+    "ngens": 500
+  },
+  "applied_parameters": {
+    "npop": 1000,
+    "ngens": 500
+  },
+  "rmse": 8.216157921583907,
+  "nrmse_range": 0.10716261799379036,
+  "mae": 6.138384044407183,
+  "r2": 0.7370173712626762,
+  "max_absolute_error": 32.096026243778105,
+  "fit_seconds": 9.921921274999477,
+  "prediction_seconds": 0.0008686720011610305,
+  "prediction_repeats": 5,
+  "prediction_scalar_broadcast": false,
+  "prediction_mean_seconds": 0.0007672454001294681,
+  "prediction_median_seconds": 0.0007764060010231333,
+  "prediction_std_seconds": 9.203419302094964e-05,
+  "prediction_microseconds_per_sample": 1.3114966233498873,
+  "expression_extraction_seconds": 3.7181000152486376e-05,
+  "evaluation_seconds": 9.926144094999472,
+  "timing_scope": "fit/predict/expression extraction inside the running container; symbolic analysis, image pull, container startup, data generation, and metric serialization excluded",
+  "model_size": 24,
+  "symbolic_model": "-41.20602029107934 + -5.278713742524163e-7*(water*coarse_aggregate*fine_aggregate) + 8.696036224638565*Log(cement*water**(-1)*coarse_aggregate*fine_aggregate*age)",
+  "symbolic_model_coordinate_system": "raw",
+  "symbolic_analysis": "separate post-processing sidecar",
+  "python": "3.12.5",
+  "platform": "Linux-7.0.0-30-generic-x86_64-with-glibc2.36"
+}

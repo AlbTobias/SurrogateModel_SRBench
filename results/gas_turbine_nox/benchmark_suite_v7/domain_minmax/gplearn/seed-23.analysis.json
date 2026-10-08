@@ -1,0 +1,96 @@
+{
+  "analysis_version": "expression_analysis_v2",
+  "analysis_status": "complete",
+  "problem": "gas_turbine_nox",
+  "algorithm": "gplearn",
+  "seed": 23,
+  "input_scaling": "domain_minmax",
+  "expression_timeout_seconds_per_stage": 60,
+  "analysis_seconds": 0.7730832180004654,
+  "analysis_python": "3.11.15",
+  "analysis_platform": "Linux-7.0.0-29-generic-x86_64-with-glibc2.43",
+  "raw_scale_symbolic_model": "7.37452586980487*sqrt(-I*log(50*turbine_energy_yield/1987 + (10000*ambient_temperature/216689 - 14031/19699)*(1250*compressor_discharge_pressure/3317 - 2017/428) + (10000*ambient_temperature/216689 - 14031/19699)*(100*turbine_energy_yield/1987 + 2*(10000*ambient_temperature/216689 - 14031/19699)*(1250*compressor_discharge_pressure/3317 - 2017/428) + (10000*ambient_temperature/216689 - 14031/19699)*(50*turbine_energy_yield/1987 + (10000*ambient_temperature/216689 - 14031/19699)*(1250*compressor_discharge_pressure/3317 - 2017/428) - 3.51821219705861) + (10000*ambient_temperature/216689 - 14031/19699)*(100*turbine_energy_yield/1987 + (10000*ambient_temperature/216689 - 14031/19699)*(1250*compressor_discharge_pressure/3317 - 2017/428) + (1250*compressor_discharge_pressure/3317 - 2017/428)*(50*turbine_energy_yield/1987 + (10000*ambient_temperature/216689 - 14031/19699)*(1250*compressor_discharge_pressure/3317 - 2017/428) - 6988/1987) - 13976/1987) - 7.08571917463513) + (1250*compressor_discharge_pressure/3317 - 2017/428)*(50*turbine_energy_yield/1987 + (10000*ambient_temperature/216689 - 14031/19699)*(1250*compressor_discharge_pressure/3317 - 2017/428) - 6988/1987) - 6988/1987)) + 27.1902840533006*I*log(0.106265904064483*I)",
+  "raw_scale_back_transform_error": null,
+  "complexity_valid": true,
+  "complexity_source": "simplified",
+  "training_scale_expression_parse_success": true,
+  "training_scale_expression_parse_error": null,
+  "training_scale_expression_simplify_success": true,
+  "training_scale_expression_simplify_error": null,
+  "training_scale_symbolic_comparison_error": null,
+  "training_scale_symbolic_exact_match": null,
+  "training_scale_expression_node_count": 63,
+  "training_scale_expression_depth": 13,
+  "training_scale_expression_operator_count": 27,
+  "training_scale_expression_operators": [
+    "Add",
+    "Mul",
+    "Pow",
+    "log"
+  ],
+  "training_scale_expression_constant_count": 13,
+  "training_scale_expression_variable_count": 3,
+  "training_scale_expression_variables": [
+    "ambient_temperature",
+    "compressor_discharge_pressure",
+    "turbine_energy_yield"
+  ],
+  "training_scale_simplified_node_count": 63,
+  "training_scale_simplified_depth": 13,
+  "training_scale_simplified_operator_count": 27,
+  "training_scale_simplified_operators": [
+    "Add",
+    "Mul",
+    "Pow",
+    "log"
+  ],
+  "training_scale_simplified_constant_count": 13,
+  "training_scale_simplified_variable_count": 3,
+  "training_scale_simplified_variables": [
+    "ambient_temperature",
+    "compressor_discharge_pressure",
+    "turbine_energy_yield"
+  ],
+  "training_scale_simplified_expression": "7.37452586980487*sqrt(-I*log(ambient_temperature*compressor_discharge_pressure + ambient_temperature*(2*ambient_temperature*compressor_discharge_pressure + ambient_temperature*(ambient_temperature*compressor_discharge_pressure + turbine_energy_yield - 0.00135260974104112) + ambient_temperature*(ambient_temperature*compressor_discharge_pressure + compressor_discharge_pressure*(ambient_temperature*compressor_discharge_pressure + turbine_energy_yield) + 2*turbine_energy_yield) + 2*turbine_energy_yield - 0.052) + compressor_discharge_pressure*(ambient_temperature*compressor_discharge_pressure + turbine_energy_yield) + turbine_energy_yield)) + 27.1902840533006*I*log(0.106265904064483*I)",
+  "expression_parse_success": true,
+  "expression_parse_error": null,
+  "expression_simplify_success": true,
+  "expression_simplify_error": null,
+  "symbolic_comparison_error": null,
+  "symbolic_exact_match": null,
+  "expression_node_count": 142,
+  "expression_depth": 15,
+  "expression_operator_count": 65,
+  "expression_operators": [
+    "Add",
+    "Mul",
+    "Pow",
+    "log"
+  ],
+  "expression_constant_count": 54,
+  "expression_variable_count": 3,
+  "expression_variables": [
+    "ambient_temperature",
+    "compressor_discharge_pressure",
+    "turbine_energy_yield"
+  ],
+  "simplified_node_count": 105,
+  "simplified_depth": 8,
+  "simplified_operator_count": 37,
+  "simplified_operators": [
+    "Add",
+    "Mul",
+    "Pow",
+    "log"
+  ],
+  "simplified_constant_count": 38,
+  "simplified_variable_count": 3,
+  "simplified_variables": [
+    "ambient_temperature",
+    "compressor_discharge_pressure",
+    "turbine_energy_yield"
+  ],
+  "simplified_expression": "7.37452586980487*sqrt(-I*log(1.39578487177665e-5*ambient_temperature**3*compressor_discharge_pressure**2 - 0.000275019867995383*ambient_temperature**3*compressor_discharge_pressure + 0.00125643487849069*ambient_temperature**3 - 0.000646280498684638*ambient_temperature**2*compressor_discharge_pressure**2 + 2.0195887741172e-5*ambient_temperature**2*compressor_discharge_pressure*turbine_energy_yield + 0.0115166443208448*ambient_temperature**2*compressor_discharge_pressure - 9.17822314285302e-5*ambient_temperature**2*turbine_energy_yield - 0.0654245030991515*ambient_temperature**2 + 0.0165285432609002*ambient_temperature*compressor_discharge_pressure**2 - 0.000623410701972045*ambient_temperature*compressor_discharge_pressure*turbine_energy_yield - 0.305483732860897*ambient_temperature*compressor_discharge_pressure + 0.00515570332035547*ambient_temperature*turbine_energy_yield + 1.60207661346907*ambient_temperature - 0.152468916175303*compressor_discharge_pressure**2 + 0.0142936934722387*compressor_discharge_pressure*turbine_energy_yield + 1.65728596013236*compressor_discharge_pressure - 0.151132730745898*turbine_energy_yield - 0.70437569301301)) - 13.5951420266503*pi - 60.9554723659959*I",
+  "source_result": "seed-23.json",
+  "source_result_sha256": "8592a41dab7587a2b11af32e9a688b27beedc501f66122aee1020ba2ec0ae9b5"
+}

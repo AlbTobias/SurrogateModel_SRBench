@@ -1,0 +1,6 @@
+Complexity,Loss,Equation
+1,121.49729,"69.18124"
+3,82.58622,"(86.530426 - ambient_temperature)"
+6,81.588684,"(86.3778 - (ambient_temperature + sin(turbine_inlet_temperature)))"
+7,79.76633,"(86.3778 - (ambient_temperature + exp(sin(compressor_discharge_pressure))))"
+13,79.01776,"(86.3778 - ((-0.24835674 + exp(sin(compressor_discharge_pressure))) + (ambient_temperature + exp(sin(compressor_discharge_pressure)))))"

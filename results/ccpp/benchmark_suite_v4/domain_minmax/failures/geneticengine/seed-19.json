@@ -1,0 +1,8 @@
+{
+  "problem": "ccpp",
+  "input_scaling": "domain_minmax",
+  "algorithm": "geneticengine",
+  "seed": 19,
+  "status": "failed",
+  "exit_code": 1
+}

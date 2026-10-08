@@ -1,0 +1,9 @@
+Complexity,Loss,Equation
+1,2108.4656,"267.50037"
+3,1850.9263,"(97.3657 + wing_area)"
+4,1730.3684,"(wing_area * log(ultimate_load_factor))"
+6,1288.1963,"(wing_area * log(ultimate_load_factor - -0.32233942))"
+10,1109.2502,"((wing_area * 0.8676822) * log(paint_weight - (-1.4472075 - ultimate_load_factor)))"
+11,1091.4353,"((wing_area * 0.8676822) * log(sqrt(paint_weight) - (-1.4472075 - ultimate_load_factor)))"
+13,1090.355,"(((wing_area * 0.8676822) * log(sqrt(paint_weight) - (-1.4472075 - ultimate_load_factor))) - thickness_chord_ratio)"
+14,1032.0292,"(((wing_area * (0.8676822 + -0.014556407)) * log(paint_weight - (-1.4472075 - ultimate_load_factor))) + aspect_ratio)"

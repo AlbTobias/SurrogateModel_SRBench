@@ -1,0 +1,13 @@
+Complexity,Loss,Equation
+1,2108.4297,"267.76642"
+3,2078.1743,"(268.20203 + ultimate_load_factor)"
+5,1406.3411,"((ultimate_load_factor * 44.56581) - -264.5193)"
+7,909.6368,"(((aspect_ratio + ultimate_load_factor) / 0.022700908) - -261.35846)"
+9,901.38696,"((((aspect_ratio + ultimate_load_factor) / 0.022700908) - -261.35846) - -0.68822736)"
+11,568.5292,"((dynamic_pressure - -262.20673) + (((ultimate_load_factor + wing_area) + aspect_ratio) / 0.02629224))"
+13,525.75806,"((design_gross_weight - -271.58554) + ((((ultimate_load_factor + wing_area) + aspect_ratio) / 0.02356276) + design_gross_weight))"
+15,514.57947,"((design_gross_weight - -271.58554) + (((((ultimate_load_factor + wing_area) + aspect_ratio) / 0.02356276) + design_gross_weight) + design_gross_weight))"
+18,499.9337,"((taper_ratio - -271.58554) + ((((sin(ultimate_load_factor + wing_area) + (aspect_ratio - thickness_chord_ratio)) / 0.02356276) + sweep_angle_degrees) + sweep_angle_degrees))"
+20,462.5762,"(((thickness_chord_ratio - -271.58554) + (design_gross_weight / 0.10787907)) + (((((ultimate_load_factor + wing_area) + aspect_ratio) / 0.02356276) - exp(1.247318)) + -0.4491725))"
+27,444.5854,"((((1.9934942 - -271.58554) + ((design_gross_weight / 0.10787907) + -2.1436172)) + (((((ultimate_load_factor + wing_area) + aspect_ratio) / 0.02356276) - exp(1.247318)) + (exp(fuel_weight) * 0.24806084))) - 0.42535117)"
+29,431.78378,"((((design_gross_weight - -271.58554) + (design_gross_weight / 0.10787907)) + ((((((ultimate_load_factor + wing_area) + aspect_ratio) / 0.02356276) - exp(1.247318)) + (exp(sin(fuel_weight)) * sin(0.24806084))) + -0.4491725)) - wing_area)"

@@ -1,0 +1,82 @@
+{
+  "status": "success",
+  "problem": "ccpp",
+  "algorithm": "eql",
+  "seed": 7,
+  "seed_parameter": "random_state",
+  "train_samples": 400,
+  "test_samples": 4000,
+  "feature_names": [
+    "ambient_temperature",
+    "exhaust_vacuum",
+    "ambient_pressure",
+    "relative_humidity"
+  ],
+  "dataset_policy": "fixed across algorithm trials",
+  "dataset_hash_scope": "SHA-256 of uncompressed table bytes",
+  "train_dataset_sha256": "fbdca0171ab3964d280c43bf8ac2995076bb71300d9e8ed4a4aa892b66a5f793",
+  "test_dataset_sha256": "002cd7e58a36d1f6350d7fb564f016e76e614490eca1066c9cbec1fa1dde7f29",
+  "requested_population_size": null,
+  "requested_iterations": null,
+  "time_limit": null,
+  "profile": "benchmark",
+  "benchmark_name": "benchmark_suite_v8",
+  "config_file": "/workspace/configs/benchmark_suite_v8.json",
+  "configuration_schema_version": 2,
+  "configuration_sha256": "674e097628af3ce351b421c973b1ebdb7bf4d2087fa24a83ea042312a03335eb",
+  "use_dataframe": false,
+  "input_scaling": "raw",
+  "input_scaling_applied": false,
+  "input_scaling_source": "fixed documented problem domain",
+  "input_scaling_formula": "x unchanged",
+  "input_scaling_parameters": {
+    "ambient_temperature": {
+      "lower": 1.81,
+      "upper": 37.11
+    },
+    "exhaust_vacuum": {
+      "lower": 25.36,
+      "upper": 81.56
+    },
+    "ambient_pressure": {
+      "lower": 992.89,
+      "upper": 1033.3
+    },
+    "relative_humidity": {
+      "lower": 25.56,
+      "upper": 100.16
+    }
+  },
+  "target_scaling": "none; target remains in original units",
+  "algorithm_configuration_role": "documented_adapter_defaults",
+  "algorithm_configuration_rationale": "Restates the 10000 optimization iterations already defined by the pinned SRBench adapter; the adapter's inactive candidate grid is not used.",
+  "configured_parameters": {
+    "n_iter": 10000
+  },
+  "applied_parameters": {
+    "random_state": 7,
+    "n_iter": 10000
+  },
+  "rmse": 105.00383715412087,
+  "nrmse_range": 1.4009851521563828,
+  "mae": 104.81624707097787,
+  "r2": -37.34893261432865,
+  "max_absolute_error": 138.50959060574553,
+  "fit_seconds": 24.990359408002405,
+  "prediction_seconds": 0.1055840610024461,
+  "prediction_repeats": 5,
+  "prediction_scalar_broadcast": false,
+  "prediction_mean_seconds": 0.027304252199974142,
+  "prediction_median_seconds": 0.007663567001145566,
+  "prediction_std_seconds": 0.04376050376743688,
+  "prediction_microseconds_per_sample": 1.9158917502863915,
+  "expression_extraction_seconds": 0.07755693799845176,
+  "evaluation_seconds": 25.20483504599906,
+  "timing_scope": "fit/predict/expression extraction inside the running container; symbolic analysis, image pull, container startup, data generation, and metric serialization excluded",
+  "model_size": null,
+  "symbolic_model": "-1.03*ambient_temperature - 0.357*exhaust_vacuum + 0.465*ambient_pressure - 0.00403*relative_humidity - 0.049*(-0.223*ambient_temperature - 0.013*exhaust_vacuum + 0.036*ambient_pressure + 0.024*relative_humidity + 0.038)*(-0.21*ambient_temperature - 0.217*exhaust_vacuum - 0.177*ambient_pressure + 0.486*relative_humidity + 0.242) + 6.69",
+  "symbolic_model_coordinate_system": "raw",
+  "symbolic_analysis": "separate post-processing sidecar",
+  "python": "3.10.14",
+  "platform": "Linux-7.0.0-29-generic-x86_64-with-glibc2.36"
+}

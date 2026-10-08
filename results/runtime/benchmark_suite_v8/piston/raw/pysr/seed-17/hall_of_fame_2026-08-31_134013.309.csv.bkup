@@ -1,0 +1,10 @@
+Complexity,Loss,Equation
+1,0.018945385,"0.4622863"
+2,0.018945266,"exp(-0.77317786)"
+3,0.0182234,"(0.4622863 - surface_area)"
+4,0.00837895,"sqrt(0.002568996 / surface_area)"
+5,0.008343374,"sqrt(sin(0.002568996 / surface_area))"
+6,0.008023798,"sqrt((0.002568996 / surface_area) - surface_area)"
+7,0.0046934304,"(sin(sqrt(initial_volume / surface_area)) * 0.78164566)"
+8,0.0036535105,"(sin(sqrt(initial_volume / surface_area)) * sin(0.78164566))"
+9,0.0036370931,"((sin(sqrt(initial_volume / surface_area)) * 0.78164566) - surface_area)"

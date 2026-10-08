@@ -1,0 +1,13 @@
+Complexity,Loss,Equation
+1,104.88319,"22.135971"
+3,24.347559,"(overall_height * 4.2024274)"
+5,19.98047,"(overall_height * (4.104308 + glazing_area))"
+6,19.91338,"(overall_height * (4.104308 + sqrt(glazing_area)))"
+8,14.920026,"exp((glazing_area + sin(0.55096537)) + sqrt(overall_height))"
+10,14.742456,"(exp((0.53054506 + sin(glazing_area)) + sqrt(overall_height)) + -0.17092277)"
+11,13.614272,"(exp((0.53054506 + sin(glazing_area)) + sqrt(overall_height)) + sin(wall_area))"
+14,11.85598,"(((exp(-1.0103581 * relative_compactness) * overall_height) + exp(glazing_area)) * (overall_height + sqrt(glazing_area)))"
+16,10.602761,"(((exp(-1.0103581 * relative_compactness) * overall_height) + exp(glazing_area / relative_compactness)) * (overall_height + sqrt(glazing_area)))"
+21,9.496225,"((((exp(-1.0103581 * relative_compactness) * overall_height) + sqrt(sin(glazing_area))) * (overall_height + exp(sqrt(sin(glazing_area))))) + exp(sqrt(glazing_area)))"
+25,9.359686,"(((((exp(-1.0103581 * relative_compactness) * overall_height) + sqrt(sin(glazing_area))) * (overall_height + exp(sqrt(sin(glazing_area))))) + exp(sqrt(sin(glazing_area)))) + log(1.289217))"
+26,9.119219,"(((((((exp((-0.9945293 + sin(sqrt(glazing_area))) * relative_compactness) * overall_height) / relative_compactness) * overall_height) - glazing_area) + exp(1.0085927)) + sin(2.083612)) * sin(sqrt(0.81657624)))"

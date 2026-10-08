@@ -1,0 +1,113 @@
+{
+  "status": "success",
+  "problem": "wing_weight",
+  "algorithm": "itea",
+  "seed": 11,
+  "seed_parameter": null,
+  "train_samples": 400,
+  "test_samples": 4000,
+  "feature_names": [
+    "wing_area",
+    "fuel_weight",
+    "aspect_ratio",
+    "sweep_angle_degrees",
+    "dynamic_pressure",
+    "taper_ratio",
+    "thickness_chord_ratio",
+    "ultimate_load_factor",
+    "design_gross_weight",
+    "paint_weight"
+  ],
+  "dataset_policy": "fixed across algorithm trials",
+  "dataset_hash_scope": "SHA-256 of uncompressed table bytes",
+  "train_dataset_sha256": "7273670fa5a6f37cbbe8d0a26ed96e4f295b9ee2d444d735cd2cda1877152c92",
+  "test_dataset_sha256": "05567111a31d97fa7a887bda4b257e1b300a0c4fb1c3b62cd69d60cb37b634c7",
+  "requested_population_size": null,
+  "requested_iterations": null,
+  "time_limit": null,
+  "profile": "benchmark",
+  "benchmark_name": "benchmark_suite_v8",
+  "config_file": "/workspace/configs/benchmark_suite_v8.json",
+  "configuration_schema_version": 2,
+  "configuration_sha256": "674e097628af3ce351b421c973b1ebdb7bf4d2087fa24a83ea042312a03335eb",
+  "use_dataframe": true,
+  "input_scaling": "raw",
+  "input_scaling_applied": false,
+  "input_scaling_source": "fixed documented problem domain",
+  "input_scaling_formula": "x unchanged",
+  "input_scaling_parameters": {
+    "wing_area": {
+      "lower": 150.0,
+      "upper": 200.0
+    },
+    "fuel_weight": {
+      "lower": 220.0,
+      "upper": 300.0
+    },
+    "aspect_ratio": {
+      "lower": 6.0,
+      "upper": 10.0
+    },
+    "sweep_angle_degrees": {
+      "lower": -10.0,
+      "upper": 10.0
+    },
+    "dynamic_pressure": {
+      "lower": 16.0,
+      "upper": 45.0
+    },
+    "taper_ratio": {
+      "lower": 0.5,
+      "upper": 1.0
+    },
+    "thickness_chord_ratio": {
+      "lower": 0.08,
+      "upper": 0.18
+    },
+    "ultimate_load_factor": {
+      "lower": 2.5,
+      "upper": 6.0
+    },
+    "design_gross_weight": {
+      "lower": 1700.0,
+      "upper": 2500.0
+    },
+    "paint_weight": {
+      "lower": 0.025,
+      "upper": 0.08
+    }
+  },
+  "target_scaling": "none; target remains in original units",
+  "algorithm_configuration_role": "documented_adapter_defaults",
+  "algorithm_configuration_rationale": "Restates the population and generation settings already defined by the pinned SRBench adapter.",
+  "configured_parameters": {
+    "npop": 1000,
+    "ngens": 500
+  },
+  "applied_parameters": {
+    "npop": 1000,
+    "ngens": 500
+  },
+  "rmse": 5.84569604108696,
+  "nrmse_range": 0.01813733956812518,
+  "mae": 4.695676390108585,
+  "r2": 0.9848901497436089,
+  "max_absolute_error": 19.4500389677263,
+  "fit_seconds": 11.234458322000137,
+  "prediction_seconds": 0.0011179840000750119,
+  "prediction_repeats": 5,
+  "prediction_scalar_broadcast": false,
+  "prediction_mean_seconds": 0.0009295779999774822,
+  "prediction_median_seconds": 0.0008987789999537199,
+  "prediction_std_seconds": 0.00011322185084715967,
+  "prediction_microseconds_per_sample": 0.22469474998842998,
+  "expression_extraction_seconds": 6.231400016076805e-05,
+  "evaluation_seconds": 11.23954383299997,
+  "timing_scope": "fit/predict/expression extraction inside the running container; symbolic analysis, image pull, container startup, data generation, and metric serialization excluded",
+  "model_size": 25,
+  "symbolic_model": "-71.73099165178601 + 2.5041103934019142e-2*Sqrt(Abs(wing_area*aspect_ratio*thickness_chord_ratio**(-1)*ultimate_load_factor*design_gross_weight)) + 6.947414293504961*Sqrt(Abs(wing_area*aspect_ratio*thickness_chord_ratio))",
+  "symbolic_model_coordinate_system": "raw",
+  "symbolic_analysis": "separate post-processing sidecar",
+  "python": "3.12.5",
+  "platform": "Linux-7.0.0-30-generic-x86_64-with-glibc2.36"
+}

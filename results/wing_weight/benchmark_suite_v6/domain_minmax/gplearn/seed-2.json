@@ -1,0 +1,113 @@
+{
+  "status": "success",
+  "problem": "wing_weight",
+  "algorithm": "gplearn",
+  "seed": 2,
+  "seed_parameter": "random_state",
+  "train_samples": 400,
+  "test_samples": 4000,
+  "feature_names": [
+    "wing_area",
+    "fuel_weight",
+    "aspect_ratio",
+    "sweep_angle_degrees",
+    "dynamic_pressure",
+    "taper_ratio",
+    "thickness_chord_ratio",
+    "ultimate_load_factor",
+    "design_gross_weight",
+    "paint_weight"
+  ],
+  "dataset_policy": "fixed across algorithm trials",
+  "dataset_hash_scope": "SHA-256 of uncompressed table bytes",
+  "train_dataset_sha256": "7273670fa5a6f37cbbe8d0a26ed96e4f295b9ee2d444d735cd2cda1877152c92",
+  "test_dataset_sha256": "05567111a31d97fa7a887bda4b257e1b300a0c4fb1c3b62cd69d60cb37b634c7",
+  "requested_population_size": null,
+  "requested_iterations": null,
+  "time_limit": null,
+  "profile": "benchmark",
+  "benchmark_name": "benchmark_suite_v6",
+  "config_file": "/workspace/configs/benchmark_suite_v6.json",
+  "configuration_schema_version": 2,
+  "configuration_sha256": "ae7273b58513324e7363ac0b68f335ab4a8b6661f16f1b6774b9bfa5e4e56bda",
+  "use_dataframe": true,
+  "input_scaling": "domain_minmax",
+  "input_scaling_applied": true,
+  "input_scaling_source": "fixed documented problem domain",
+  "input_scaling_formula": "z = 2 * (x - lower) / (upper - lower) - 1",
+  "input_scaling_parameters": {
+    "wing_area": {
+      "lower": 150.0,
+      "upper": 200.0
+    },
+    "fuel_weight": {
+      "lower": 220.0,
+      "upper": 300.0
+    },
+    "aspect_ratio": {
+      "lower": 6.0,
+      "upper": 10.0
+    },
+    "sweep_angle_degrees": {
+      "lower": -10.0,
+      "upper": 10.0
+    },
+    "dynamic_pressure": {
+      "lower": 16.0,
+      "upper": 45.0
+    },
+    "taper_ratio": {
+      "lower": 0.5,
+      "upper": 1.0
+    },
+    "thickness_chord_ratio": {
+      "lower": 0.08,
+      "upper": 0.18
+    },
+    "ultimate_load_factor": {
+      "lower": 2.5,
+      "upper": 6.0
+    },
+    "design_gross_weight": {
+      "lower": 1700.0,
+      "upper": 2500.0
+    },
+    "paint_weight": {
+      "lower": 0.025,
+      "upper": 0.08
+    }
+  },
+  "target_scaling": "none; target remains in original units",
+  "algorithm_configuration_role": "project_budget_override",
+  "algorithm_configuration_rationale": "Reduced from the SRBench adapter's 1000 individuals and 500 generations to keep repeated trials computationally feasible; not selected using test performance.",
+  "configured_parameters": {
+    "population_size": 500,
+    "generations": 100
+  },
+  "applied_parameters": {
+    "random_state": 2,
+    "population_size": 500,
+    "generations": 100
+  },
+  "rmse": 225.99901284531768,
+  "nrmse_range": 0.7012032115981234,
+  "mae": 165.69163855096977,
+  "r2": -21.58399586078717,
+  "max_absolute_error": 4831.2101235714235,
+  "fit_seconds": 138.2096452149999,
+  "prediction_seconds": 0.009642828998039477,
+  "prediction_repeats": 5,
+  "prediction_mean_seconds": 0.01011125179938972,
+  "prediction_median_seconds": 0.009642828998039477,
+  "prediction_std_seconds": 0.0010248557339879304,
+  "prediction_microseconds_per_sample": 2.410707249509869,
+  "expression_extraction_seconds": 0.001511811999080237,
+  "evaluation_seconds": 138.26226622899776,
+  "timing_scope": "fit/predict/expression extraction inside the running container; symbolic analysis, image pull, container startup, data generation, and metric serialization excluded",
+  "model_size": 851,
+  "symbolic_model": "sqrt(add(mul(mul(div(div(sqrt(mul(div(div(div(sub(sqrt(div(div(sub(div(div(sqrt(log(div(div(cos(paint_weight), sqrt(div(div(div(div(sub(mul(mul(div(div(sqrt(mul(div(div(aspect_ratio, fuel_weight), sub(paint_weight, fuel_weight)), sub(sin(ultimate_load_factor), sub(ultimate_load_factor, paint_weight)))), log(cos(mul(taper_ratio, sin(ultimate_load_factor))))), dynamic_pressure), sqrt(div(div(div(-0.997, paint_weight), mul(ultimate_load_factor, design_gross_weight)), cos(div(div(paint_weight, sub(mul(mul(div(div(sqrt(mul(div(div(aspect_ratio, fuel_weight), sub(paint_weight, fuel_weight)), sub(sub(sweep_angle_degrees, paint_weight), sub(ultimate_load_factor, paint_weight)))), paint_weight), dynamic_pressure), sqrt(div(div(div(-0.997, paint_weight), sqrt(sub(cos(paint_weight), cos(sub(fuel_weight, wing_area))))), cos(div(div(div(-0.997, paint_weight), mul(ultimate_load_factor, design_gross_weight)), sqrt(mul(dynamic_pressure, wing_area))))))), cos(log(ultimate_load_factor))), div(taper_ratio, ultimate_load_factor))), sqrt(mul(dynamic_pressure, wing_area))))))), cos(log(ultimate_load_factor))), div(log(cos(cos(taper_ratio))), cos(div(sin(0.899), div(sqrt(div(div(div(-0.997, paint_weight), mul(ultimate_load_factor, design_gross_weight)), cos(div(div(div(-0.997, paint_weight), mul(ultimate_load_factor, design_gross_weight)), sqrt(mul(dynamic_pressure, wing_area)))))), mul(ultimate_load_factor, design_gross_weight)))))), mul(ultimate_load_factor, design_gross_weight)), sqrt(mul(dynamic_pressure, wing_area))), mul(ultimate_load_factor, design_gross_weight)), cos(div(div(-0.997, paint_weight), cos(log(ultimate_load_factor))))))), cos(sub(fuel_weight, wing_area))))), sub(cos(cos(aspect_ratio)), cos(paint_weight))), sub(cos(paint_weight), sqrt(taper_ratio))), cos(paint_weight)), mul(ultimate_load_factor, design_gross_weight)), cos(sub(sqrt(div(cos(cos(aspect_ratio)), cos(div(div(-0.997, paint_weight), cos(log(ultimate_load_factor)))))), div(wing_area, taper_ratio))))), taper_ratio), sin(div(paint_weight, sub(mul(mul(div(div(sqrt(mul(div(div(aspect_ratio, fuel_weight), sub(paint_weight, fuel_weight)), sub(sin(ultimate_load_factor), sub(ultimate_load_factor, paint_weight)))), log(cos(mul(taper_ratio, sin(ultimate_load_factor))))), dynamic_pressure), sqrt(div(div(div(-0.997, paint_weight), mul(ultimate_load_factor, design_gross_weight)), cos(div(div(paint_weight, sub(mul(mul(div(div(sqrt(mul(div(div(aspect_ratio, fuel_weight), sub(paint_weight, fuel_weight)), sub(sub(sweep_angle_degrees, paint_weight), sub(ultimate_load_factor, paint_weight)))), log(cos(mul(taper_ratio, sqrt(taper_ratio))))), dynamic_pressure), sqrt(div(div(div(-0.997, paint_weight), sqrt(sub(cos(paint_weight), cos(div(taper_ratio, ultimate_load_factor))))), cos(div(div(div(-0.997, paint_weight), mul(ultimate_load_factor, design_gross_weight)), sqrt(mul(dynamic_pressure, wing_area))))))), cos(log(ultimate_load_factor))), div(taper_ratio, ultimate_load_factor))), sqrt(mul(dynamic_pressure, wing_area))))))), cos(log(ultimate_load_factor))), div(log(cos(cos(taper_ratio))), log(ultimate_load_factor)))))), fuel_weight), sub(paint_weight, fuel_weight)), cos(cos(aspect_ratio)))), log(cos(mul(taper_ratio, sin(ultimate_load_factor))))), dynamic_pressure), sqrt(div(div(div(-0.997, paint_weight), mul(ultimate_load_factor, design_gross_weight)), cos(div(div(sqrt(div(div(div(-0.997, paint_weight), mul(ultimate_load_factor, design_gross_weight)), cos(div(div(div(-0.997, paint_weight), mul(ultimate_load_factor, design_gross_weight)), sqrt(mul(dynamic_pressure, wing_area)))))), mul(ultimate_load_factor, design_gross_weight)), sqrt(mul(dynamic_pressure, wing_area))))))), cos(log(ultimate_load_factor))), div(sub(sqrt(div(div(sub(div(div(sqrt(log(div(div(cos(paint_weight), div(div(aspect_ratio, fuel_weight), sub(paint_weight, fuel_weight))), cos(div(div(cos(paint_weight), mul(ultimate_load_factor, design_gross_weight)), cos(mul(ultimate_load_factor, design_gross_weight))))))), sub(cos(cos(aspect_ratio)), cos(cos(sweep_angle_degrees)))), sub(cos(paint_weight), cos(mul(ultimate_load_factor, design_gross_weight)))), div(div(sqrt(log(div(div(div(sub(div(div(div(div(div(div(-0.997, paint_weight), mul(ultimate_load_factor, design_gross_weight)), log(cos(mul(taper_ratio, sin(ultimate_load_factor))))), dynamic_pressure), sub(cos(cos(aspect_ratio)), cos(sub(cos(paint_weight), sqrt(taper_ratio))))), sub(cos(paint_weight), sqrt(cos(cos(aspect_ratio))))), div(taper_ratio, ultimate_load_factor)), mul(ultimate_load_factor, design_gross_weight)), cos(div(div(-0.997, paint_weight), cos(log(ultimate_load_factor))))), cos(mul(ultimate_load_factor, div(cos(paint_weight), mul(ultimate_load_factor, design_gross_weight))))))), sub(cos(cos(sqrt(sub(cos(paint_weight), cos(sub(fuel_weight, wing_area)))))), cos(cos(sweep_angle_degrees)))), sub(cos(paint_weight), sqrt(taper_ratio)))), mul(ultimate_load_factor, design_gross_weight)), cos(sub(fuel_weight, wing_area)))), div(wing_area, taper_ratio)), sin(div(paint_weight, sub(div(div(sqrt(log(div(sqrt(div(div(div(div(sqrt(cos(sqrt(sub(cos(paint_weight), cos(sub(fuel_weight, wing_area)))))), sub(cos(cos(aspect_ratio)), cos(cos(sweep_angle_degrees)))), sub(fuel_weight, wing_area)), mul(taper_ratio, sin(ultimate_load_factor))), cos(div(div(div(-0.997, paint_weight), mul(ultimate_load_factor, design_gross_weight)), sqrt(mul(dynamic_pressure, wing_area)))))), cos(sweep_angle_degrees)))), sub(cos(cos(aspect_ratio)), cos(cos(sweep_angle_degrees)))), sqrt(sqrt(sub(cos(paint_weight), sqrt(taper_ratio))))), div(taper_ratio, div(div(sqrt(log(div(div(div(div(sqrt(sqrt(sub(cos(paint_weight), sqrt(taper_ratio)))), sub(cos(cos(aspect_ratio)), cos(cos(log(cos(mul(sub(sqrt(taper_ratio), sub(fuel_weight, wing_area)), design_gross_weight))))))), sub(cos(paint_weight), div(-0.997, paint_weight))), mul(ultimate_load_factor, design_gross_weight)), cos(div(-0.997, paint_weight))))), div(sub(sqrt(div(div(sub(div(div(sqrt(log(div(div(sqrt(taper_ratio), mul(ultimate_load_factor, design_gross_weight)), cos(mul(taper_ratio, sin(ultimate_load_factor)))))), sub(cos(cos(aspect_ratio)), cos(cos(sweep_angle_degrees)))), sub(cos(paint_weight), sqrt(taper_ratio))), div(taper_ratio, ultimate_load_factor)), mul(ultimate_load_factor, design_gross_weight)), cos(div(div(-0.997, paint_weight), cos(log(ultimate_load_factor)))))), div(wing_area, taper_ratio)), sin(div(paint_weight, sub(div(div(sqrt(log(div(div(cos(paint_weight), mul(ultimate_load_factor, design_gross_weight)), cos(div(div(div(-0.997, paint_weight), mul(ultimate_load_factor, design_gross_weight)), sqrt(mul(dynamic_pressure, div(div(sqrt(log(div(sqrt(div(div(div(-0.997, paint_weight), mul(ultimate_load_factor, design_gross_weight)), cos(div(div(div(-0.997, paint_weight), mul(ultimate_load_factor, design_gross_weight)), sqrt(mul(dynamic_pressure, wing_area)))))), cos(sub(fuel_weight, wing_area))))), sub(cos(cos(aspect_ratio)), cos(cos(sweep_angle_degrees)))), sqrt(sqrt(sub(cos(paint_weight), sqrt(taper_ratio)))))))))))), sub(cos(cos(aspect_ratio)), cos(cos(sweep_angle_degrees)))), sqrt(sqrt(sub(cos(paint_weight), sqrt(taper_ratio))))), div(taper_ratio, div(div(sqrt(log(div(div(div(div(sqrt(log(sub(div(div(-0.997, paint_weight), sub(cos(paint_weight), sqrt(taper_ratio))), div(taper_ratio, ultimate_load_factor)))), design_gross_weight), sub(cos(ultimate_load_factor), sqrt(taper_ratio))), mul(ultimate_load_factor, design_gross_weight)), cos(mul(ultimate_load_factor, design_gross_weight))))), sub(cos(cos(aspect_ratio)), cos(cos(paint_weight)))), sqrt(sqrt(sub(cos(paint_weight), sqrt(taper_ratio))))))))))), sqrt(sqrt(sub(cos(paint_weight), sqrt(taper_ratio))))))))))))",
+  "symbolic_model_coordinate_system": "domain_minmax",
+  "symbolic_analysis": "separate post-processing sidecar",
+  "python": "3.12.5",
+  "platform": "Linux-7.0.0-29-generic-x86_64-with-glibc2.36"
+}

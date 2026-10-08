@@ -1,0 +1,9 @@
+Complexity,Loss,Equation
+1,46.701992,"125.346664"
+6,44.97225,"(exp(1.6562055 - suction_side_displacement_thickness) / 0.041671723)"
+7,44.972023,"(exp(1.6562055 - sin(suction_side_displacement_thickness)) / 0.041671723)"
+8,43.501244,"(((exp(1.6562055) - chord_length) / 0.041671723) - -1.9379666)"
+12,43.028072,"((sin(exp(sqrt(suction_side_displacement_thickness * (frequency * chord_length)))) - -75.56547) / 0.6117558)"
+14,39.257057,"((sin(exp(sqrt(suction_side_displacement_thickness * (frequency * (chord_length * 0.3009474))))) - -75.56547) / 0.6117558)"
+15,30.856165,"(((sqrt(angle_of_attack + suction_side_displacement_thickness) - -75.56547) - sqrt(suction_side_displacement_thickness * (0.12128486 + frequency))) / 0.5975682)"
+17,29.484228,"((((sqrt(angle_of_attack + suction_side_displacement_thickness) - -75.56547) - sqrt(suction_side_displacement_thickness * (0.12128486 + frequency))) - -0.61138225) / 0.5975682)"

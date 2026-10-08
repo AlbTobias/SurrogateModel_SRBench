@@ -1,0 +1,12 @@
+Complexity,Loss,Equation
+1,46.667503,"125.14894"
+3,44.527866,"(125.14894 - chord_length)"
+5,42.974537,"((124.0023 - frequency) - chord_length)"
+7,41.694427,"(((124.0023 - frequency) - chord_length) - suction_side_displacement_thickness)"
+9,40.507885,"((((124.0023 - angle_of_attack) - frequency) - chord_length) - chord_length)"
+11,40.424904,"(123.7553 + ((exp(frequency * suction_side_displacement_thickness) - sin(chord_length)) - chord_length))"
+15,39.80722,"(((((46.21588 - -23.149717) - angle_of_attack) + (frequency - (10.009862 * frequency))) - -22.91975) - -25.132557)"
+17,35.103817,"(((((86.12213 - free_stream_velocity) + free_stream_velocity) + ((-8.256432 * frequency) - (chord_length - 31.619165))) - chord_length) - angle_of_attack)"
+25,34.7159,"(((exp((((0.063886136 - -0.68911105) + 1.4312503) - -1.0818412) - -0.68911105) / 0.45000315) - chord_length) + exp((((0.063886136 - frequency) + 1.2388798) + -0.68911105) - suction_side_displacement_thickness))"
+27,33.268536,"(((exp((((0.063886136 - -0.68911105) + 1.4312503) - -1.0818412) - -0.68911105) / 0.45000315) - (chord_length + frequency)) + exp((((0.063886136 - frequency) + 1.2388798) + -0.68911105) - suction_side_displacement_thickness))"
+29,30.143553,"(((((exp((((0.063886136 - -0.68911105) + 1.4312503) - -1.0818412) - -0.68911105) - chord_length) / 0.45000315) - chord_length) + exp((((0.063886136 - frequency) + 1.2388798) + -0.68911105) - suction_side_displacement_thickness)) - suction_side_displacement_thickness)"

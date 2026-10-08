@@ -1,0 +1,96 @@
+{
+  "analysis_version": "expression_analysis_v2",
+  "analysis_status": "complete",
+  "problem": "ccpp",
+  "algorithm": "gplearn",
+  "seed": 2,
+  "input_scaling": "domain_minmax",
+  "expression_timeout_seconds_per_stage": 60,
+  "analysis_seconds": 3.1069307279976783,
+  "analysis_python": "3.11.15",
+  "analysis_platform": "Linux-7.0.0-29-generic-x86_64-with-glibc2.43",
+  "raw_scale_symbolic_model": "6.12745098039216*(10*exhaust_vacuum/281 - 2673/1405)*log(-0.0161293819298836 + I*pi) + 37.5456555171088*log(cos((-0.0161293819298836 + I*pi)**(1/4))/(2.43015053046714*ambient_temperature + 2.47536885744169*(10*exhaust_vacuum/281 - 2673/1405)*log(-0.0161293819298836 + I*pi) + 6.12745098039216*sqrt((20*ambient_temperature/353 + sqrt(0.347164361495306*ambient_temperature - 6.77194785662854 + I*pi + 6.12745098039216*sqrt(0.323870618070116 + I*pi)) - 1946/1765)/sqrt(-0.0161293819298836 + I*pi) + 0.1632) + 2.47536885744169*(20*ambient_temperature/353 + 0.403980197534483*(10*exhaust_vacuum/281 - 2673/1405)*log(-0.0161293819298836 + I*pi) - 1946/1765)/sqrt(-0.0161293819298836 + I*pi) - 47.2907293228906 + log(-0.0161293819298836 + I*pi) + 6.12745098039216*log(-0.0161293819298836 + I*pi)**2)) + sqrt(cos(2*(10*exhaust_vacuum/281 - 2673/1405)*log(-0.0161293819298836 + I*pi))) + 37.5456555171088*log(-0.0161293819298836 + I*pi)**2",
+  "raw_scale_back_transform_error": null,
+  "complexity_valid": true,
+  "complexity_source": "simplified",
+  "training_scale_expression_parse_success": true,
+  "training_scale_expression_parse_error": null,
+  "training_scale_expression_simplify_success": true,
+  "training_scale_expression_simplify_error": null,
+  "training_scale_symbolic_comparison_error": null,
+  "training_scale_symbolic_exact_match": null,
+  "training_scale_expression_node_count": 130,
+  "training_scale_expression_depth": 17,
+  "training_scale_expression_operator_count": 63,
+  "training_scale_expression_operators": [
+    "Add",
+    "Mul",
+    "Pow",
+    "cos",
+    "log"
+  ],
+  "training_scale_expression_constant_count": 59,
+  "training_scale_expression_variable_count": 2,
+  "training_scale_expression_variables": [
+    "ambient_temperature",
+    "exhaust_vacuum"
+  ],
+  "training_scale_simplified_node_count": 130,
+  "training_scale_simplified_depth": 17,
+  "training_scale_simplified_operator_count": 63,
+  "training_scale_simplified_operators": [
+    "Add",
+    "Mul",
+    "Pow",
+    "cos",
+    "log"
+  ],
+  "training_scale_simplified_constant_count": 59,
+  "training_scale_simplified_variable_count": 2,
+  "training_scale_simplified_variables": [
+    "ambient_temperature",
+    "exhaust_vacuum"
+  ],
+  "training_scale_simplified_expression": "6.12745098039216*exhaust_vacuum*log(-0.0161293819298836 + I*pi) + 37.5456555171088*log(cos((-0.0161293819298836 + I*pi)**(1/4))/(42.8921568627451*ambient_temperature + 2.47536885744169*exhaust_vacuum*log(-0.0161293819298836 + I*pi) + 2.47536885744169*(ambient_temperature + 0.403980197534483*exhaust_vacuum*log(-0.0161293819298836 + I*pi))/sqrt(-0.0161293819298836 + I*pi) + 6.12745098039216*sqrt((ambient_temperature + sqrt(6.12745098039216*ambient_temperature - 0.0161293819298836 + I*pi + 6.12745098039216*sqrt(0.323870618070116 + I*pi)))/sqrt(-0.0161293819298836 + I*pi) + 0.1632) + log(-0.0161293819298836 + I*pi) + 6.12745098039216*log(-0.0161293819298836 + I*pi)**2)) + sqrt(cos(2*exhaust_vacuum*log(-0.0161293819298836 + I*pi))) + 37.5456555171088*log(-0.0161293819298836 + I*pi)**2",
+  "expression_parse_success": true,
+  "expression_parse_error": null,
+  "expression_simplify_success": true,
+  "expression_simplify_error": null,
+  "symbolic_comparison_error": null,
+  "symbolic_exact_match": null,
+  "expression_node_count": 149,
+  "expression_depth": 17,
+  "expression_operator_count": 73,
+  "expression_operators": [
+    "Add",
+    "Mul",
+    "Pow",
+    "cos",
+    "log"
+  ],
+  "expression_constant_count": 68,
+  "expression_variable_count": 2,
+  "expression_variables": [
+    "ambient_temperature",
+    "exhaust_vacuum"
+  ],
+  "simplified_node_count": 149,
+  "simplified_depth": 17,
+  "simplified_operator_count": 73,
+  "simplified_operators": [
+    "Add",
+    "Mul",
+    "Pow",
+    "cos",
+    "log"
+  ],
+  "simplified_constant_count": 68,
+  "simplified_variable_count": 2,
+  "simplified_variables": [
+    "ambient_temperature",
+    "exhaust_vacuum"
+  ],
+  "simplified_expression": "(0.218058753750611*exhaust_vacuum - 11.6574209755076)*log(-0.0161293819298836 + I*pi) + 37.5456555171088*log(cos((-0.0161293819298836 + I*pi)**(1/4))/(2.43015053046714*ambient_temperature + (0.088091418414295*exhaust_vacuum - 4.70936722842821)*log(-0.0161293819298836 + I*pi) + 6.12745098039216*sqrt((20*ambient_temperature/353 + sqrt(0.347164361495306*ambient_temperature - 6.77194785662854 + I*pi + 6.12745098039216*sqrt(0.323870618070116 + I*pi)) - 1946/1765)/sqrt(-0.0161293819298836 + I*pi) + 0.1632) + (0.140247527333807*ambient_temperature + 2.47536885744169*(0.0143765194852129*exhaust_vacuum - 0.768568731679483)*log(-0.0161293819298836 + I*pi) - 2.72921688191588)/sqrt(-0.0161293819298836 + I*pi) - 47.2907293228906 + log(-0.0161293819298836 + I*pi) + 6.12745098039216*log(-0.0161293819298836 + I*pi)**2)) + sqrt(cos((20*exhaust_vacuum/281 - 5346/1405)*log(-0.0161293819298836 + I*pi))) + 37.5456555171088*log(-0.0161293819298836 + I*pi)**2",
+  "source_result": "seed-2.json",
+  "source_result_sha256": "5a7ddaab0bf08114496755f535091834a7b5907d5053e2bd33e5fe6914154781"
+}

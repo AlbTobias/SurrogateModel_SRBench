@@ -1,0 +1,123 @@
+{
+  "analysis_version": "expression_analysis_v2",
+  "analysis_status": "complete",
+  "problem": "cantilever",
+  "algorithm": "gplearn",
+  "seed": 7,
+  "input_scaling": "domain_minmax",
+  "expression_timeout_seconds_per_stage": 60,
+  "analysis_seconds": 1.773946834000526,
+  "analysis_python": "3.11.15",
+  "analysis_platform": "Linux-7.0.0-29-generic-x86_64-with-glibc2.43",
+  "raw_scale_symbolic_model": "4*force - 40*height/3 - 10*width/3 + sqrt(-10*height/3 + sin(sin(sin(5*length - 5))) + 10/3) + sqrt(2*force - 10*height/3 + sin(5*length - 5) + 4/3) + sqrt(4*force - 40*height/3 + 5*length - 20*width/3 + sin(sin(5*length - 5)) + cos(-20*height/3 + 5*length + 5/3) + 11) + 3*sin(5*length - 5) + 13.6628845531379 + 0.922113912040835*sqrt(I)",
+  "raw_scale_back_transform_error": null,
+  "complexity_valid": true,
+  "complexity_source": "simplified",
+  "training_scale_expression_parse_success": true,
+  "training_scale_expression_parse_error": null,
+  "training_scale_expression_simplify_success": true,
+  "training_scale_expression_simplify_error": null,
+  "training_scale_symbolic_comparison_error": null,
+  "training_scale_symbolic_exact_match": null,
+  "training_scale_expression_node_count": 63,
+  "training_scale_expression_depth": 6,
+  "training_scale_expression_operator_count": 29,
+  "training_scale_expression_operators": [
+    "Add",
+    "Mul",
+    "Pow",
+    "cos",
+    "sin"
+  ],
+  "training_scale_expression_constant_count": 18,
+  "training_scale_expression_variable_count": 4,
+  "training_scale_expression_variables": [
+    "force",
+    "height",
+    "length",
+    "width"
+  ],
+  "training_scale_simplified_node_count": 63,
+  "training_scale_simplified_depth": 6,
+  "training_scale_simplified_operator_count": 29,
+  "training_scale_simplified_operators": [
+    "Add",
+    "Mul",
+    "Pow",
+    "cos",
+    "sin"
+  ],
+  "training_scale_simplified_constant_count": 18,
+  "training_scale_simplified_variable_count": 4,
+  "training_scale_simplified_variables": [
+    "force",
+    "height",
+    "length",
+    "width"
+  ],
+  "training_scale_simplified_expression": "2*force - 4*height - width + sqrt(-height + sin(sin(sin(length)))) + sqrt(force - height + sin(length)) + sqrt(2*force - 4*height + length - 2*width + sin(sin(length)) + cos(2*height - length)) + 3*sin(length) + 0.996217886471198 + 0.922113912040835*sqrt(I)",
+  "expression_parse_success": true,
+  "expression_parse_error": null,
+  "expression_simplify_success": true,
+  "expression_simplify_error": null,
+  "symbolic_comparison_error": null,
+  "symbolic_exact_match": false,
+  "expression_node_count": 87,
+  "expression_depth": 8,
+  "expression_operator_count": 39,
+  "expression_operators": [
+    "Add",
+    "Mul",
+    "Pow",
+    "cos",
+    "sin"
+  ],
+  "expression_constant_count": 32,
+  "expression_variable_count": 4,
+  "expression_variables": [
+    "force",
+    "height",
+    "length",
+    "width"
+  ],
+  "simplified_node_count": 87,
+  "simplified_depth": 8,
+  "simplified_operator_count": 39,
+  "simplified_operators": [
+    "Add",
+    "Mul",
+    "Pow",
+    "cos",
+    "sin"
+  ],
+  "simplified_constant_count": 32,
+  "simplified_variable_count": 4,
+  "simplified_variables": [
+    "force",
+    "height",
+    "length",
+    "width"
+  ],
+  "simplified_expression": "4*force - 40*height/3 - 10*width/3 + sqrt(-10*height/3 + sin(sin(sin(5*length - 5))) + 10/3) + sqrt(2*force - 10*height/3 + sin(5*length - 5) + 4/3) + sqrt(4*force - 40*height/3 + 5*length - 20*width/3 + sin(sin(5*length - 5)) + cos(-20*height/3 + 5*length + 5/3) + 11) + 3*sin(5*length - 5) + 13.6628845531379 + 0.922113912040835*sqrt(I)",
+  "ground_truth_node_count": 15,
+  "ground_truth_depth": 2,
+  "ground_truth_operator_count": 5,
+  "ground_truth_operators": [
+    "Mul",
+    "Pow"
+  ],
+  "ground_truth_constant_count": 5,
+  "ground_truth_variable_count": 5,
+  "ground_truth_variables": [
+    "force",
+    "height",
+    "length",
+    "modulus",
+    "width"
+  ],
+  "ground_truth_expression": "4*force*length**3/(height**3*modulus*width)",
+  "ground_truth_variable_recall": 0.8,
+  "simplified_to_ground_truth_size_ratio": 5.8,
+  "source_result": "seed-7.json",
+  "source_result_sha256": "8960a33e396e522786caca995567040ac9aaaf17a077d99787b13e4c6b6bb949"
+}

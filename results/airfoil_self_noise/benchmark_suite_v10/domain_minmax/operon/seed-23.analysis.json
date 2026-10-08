@@ -1,0 +1,101 @@
+{
+  "analysis_version": "expression_analysis_v2",
+  "analysis_status": "complete",
+  "problem": "airfoil_self_noise",
+  "algorithm": "operon",
+  "seed": 23,
+  "input_scaling": "domain_minmax",
+  "expression_timeout_seconds_per_stage": 60,
+  "simplification_requested": true,
+  "analysis_seconds": 1.4456378380000388,
+  "analysis_python": "3.11.15",
+  "analysis_platform": "Linux-7.0.0-30-generic-x86_64-with-glibc2.43",
+  "raw_scale_symbolic_model": "-0.478130055830631*angle_of_attack - 68.2904059233286*chord_length + 0.115250165579747*free_stream_velocity - 0.000609992495525657*frequency - 87.5495186228149*suction_side_displacement_thickness - 6.781372991728*(frequency/9900 - 101/99)*(-0.000124714343434343*frequency - 1.16656895306973*(10000*chord_length/1397 - 13/11)*(frequency/9900 - 101/99)**3 + 1.25961486868687) + 130.284003671791 - 0.550920096945/(-18.9536005726557*chord_length + 1.85915538249*(10000*chord_length/1397 - 13/11)*(frequency/9900 - 101/99) + 3.12923945454545)",
+  "raw_scale_back_transform_error": null,
+  "complexity_valid": true,
+  "complexity_source": "simplified",
+  "training_scale_expression_parse_success": true,
+  "training_scale_expression_parse_error": null,
+  "training_scale_expression_simplify_success": true,
+  "training_scale_expression_simplify_error": null,
+  "training_scale_symbolic_comparison_error": null,
+  "training_scale_symbolic_exact_match": null,
+  "training_scale_expression_node_count": 42,
+  "training_scale_expression_depth": 5,
+  "training_scale_expression_operator_count": 16,
+  "training_scale_expression_operators": [
+    "Add",
+    "Mul",
+    "Pow"
+  ],
+  "training_scale_expression_constant_count": 14,
+  "training_scale_expression_variable_count": 5,
+  "training_scale_expression_variables": [
+    "angle_of_attack",
+    "chord_length",
+    "free_stream_velocity",
+    "frequency",
+    "suction_side_displacement_thickness"
+  ],
+  "training_scale_simplified_node_count": 42,
+  "training_scale_simplified_depth": 5,
+  "training_scale_simplified_operator_count": 16,
+  "training_scale_simplified_operators": [
+    "Add",
+    "Mul",
+    "Pow"
+  ],
+  "training_scale_simplified_constant_count": 14,
+  "training_scale_simplified_variable_count": 5,
+  "training_scale_simplified_variables": [
+    "angle_of_attack",
+    "chord_length",
+    "free_stream_velocity",
+    "frequency",
+    "suction_side_displacement_thickness"
+  ],
+  "training_scale_simplified_expression": "-5.30724361972*angle_of_attack - 9.540169707489*chord_length + 2.281953278479*free_stream_velocity - 6.781372991728*frequency*(-1.16656895306973*chord_length*frequency**3 - 1.234672*frequency) - 6.038925705704*frequency - 2.539400840456*suction_side_displacement_thickness + 110.901993 - 0.550920096945/(1.85915538249*chord_length*frequency - 2.647818*chord_length)",
+  "expression_parse_success": true,
+  "expression_parse_error": null,
+  "expression_simplify_success": true,
+  "expression_simplify_error": null,
+  "symbolic_comparison_error": null,
+  "symbolic_exact_match": null,
+  "expression_node_count": 63,
+  "expression_depth": 7,
+  "expression_operator_count": 26,
+  "expression_operators": [
+    "Add",
+    "Mul",
+    "Pow"
+  ],
+  "expression_constant_count": 25,
+  "expression_variable_count": 5,
+  "expression_variables": [
+    "angle_of_attack",
+    "chord_length",
+    "free_stream_velocity",
+    "frequency",
+    "suction_side_displacement_thickness"
+  ],
+  "simplified_node_count": 63,
+  "simplified_depth": 7,
+  "simplified_operator_count": 26,
+  "simplified_operators": [
+    "Add",
+    "Mul",
+    "Pow"
+  ],
+  "simplified_constant_count": 25,
+  "simplified_variable_count": 5,
+  "simplified_variables": [
+    "angle_of_attack",
+    "chord_length",
+    "free_stream_velocity",
+    "frequency",
+    "suction_side_displacement_thickness"
+  ],
+  "simplified_expression": "-0.478130055830631*angle_of_attack - 68.2904059233286*chord_length + 0.115250165579747*free_stream_velocity - 0.000609992495525657*frequency - 87.5495186228149*suction_side_displacement_thickness - (0.000684987170881616*frequency - 6.91837042590432)*(-0.000124714343434343*frequency - (8.35052937057788*chord_length - 1.37867239908241)*(frequency/9900 - 101/99)**3 + 1.25961486868687) + 130.284003671791 - 0.550920096945/(-18.9536005726557*chord_length + (13.3081988725125*chord_length - 2.19718363385182)*(frequency/9900 - 101/99) + 3.12923945454545)",
+  "source_result": "seed-23.json",
+  "source_result_sha256": "065bd851421caef4dbfeeb895c5864ebcba0574785721b7dfd3672bd0102f223"
+}

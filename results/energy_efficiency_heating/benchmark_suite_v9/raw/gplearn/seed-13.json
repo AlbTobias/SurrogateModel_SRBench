@@ -1,0 +1,104 @@
+{
+  "status": "success",
+  "problem": "energy_efficiency_heating",
+  "algorithm": "gplearn",
+  "seed": 13,
+  "seed_parameter": "random_state",
+  "train_samples": 400,
+  "test_samples": 368,
+  "feature_names": [
+    "relative_compactness",
+    "surface_area",
+    "wall_area",
+    "roof_area",
+    "overall_height",
+    "orientation",
+    "glazing_area",
+    "glazing_area_distribution"
+  ],
+  "dataset_policy": "fixed across algorithm trials",
+  "dataset_hash_scope": "SHA-256 of uncompressed table bytes",
+  "train_dataset_sha256": "effde405e6758d431ac4edd3a52b99deab9ae28c02a0bba0a8ca4349571339af",
+  "test_dataset_sha256": "f0669327566bfcbb5d33278c87ab79ced39b1b9cd383efa666dcf9cc2aeb0fe6",
+  "requested_population_size": null,
+  "requested_iterations": null,
+  "time_limit": null,
+  "profile": "benchmark",
+  "benchmark_name": "benchmark_suite_v9",
+  "config_file": "/workspace/configs/benchmark_suite_v9.json",
+  "configuration_schema_version": 2,
+  "configuration_sha256": "3ab7503025ae4e84f31563c21dcfac02bb187d264b064522d8474776085d526c",
+  "use_dataframe": true,
+  "input_scaling": "raw",
+  "input_scaling_applied": false,
+  "input_scaling_source": "fixed documented problem domain",
+  "input_scaling_formula": "x unchanged",
+  "input_scaling_parameters": {
+    "relative_compactness": {
+      "lower": 0.62,
+      "upper": 0.98
+    },
+    "surface_area": {
+      "lower": 514.5,
+      "upper": 808.5
+    },
+    "wall_area": {
+      "lower": 245.0,
+      "upper": 416.5
+    },
+    "roof_area": {
+      "lower": 110.25,
+      "upper": 220.5
+    },
+    "overall_height": {
+      "lower": 3.5,
+      "upper": 7.0
+    },
+    "orientation": {
+      "lower": 2.0,
+      "upper": 5.0
+    },
+    "glazing_area": {
+      "lower": 0.0,
+      "upper": 0.4
+    },
+    "glazing_area_distribution": {
+      "lower": 0.0,
+      "upper": 5.0
+    }
+  },
+  "target_scaling": "none; target remains in original units",
+  "algorithm_configuration_role": "project_budget_override",
+  "algorithm_configuration_rationale": "Reduced from the SRBench adapter's 1000 individuals and 500 generations to keep repeated trials computationally feasible; not selected using test performance.",
+  "configured_parameters": {
+    "population_size": 500,
+    "generations": 100
+  },
+  "applied_parameters": {
+    "random_state": 13,
+    "population_size": 500,
+    "generations": 100
+  },
+  "rmse": 2.4935613550973805,
+  "nrmse_range": 0.06794445109257168,
+  "mae": 1.78113593849553,
+  "r2": 0.9366922329377423,
+  "max_absolute_error": 8.16683948827395,
+  "fit_seconds": 34.31666449099794,
+  "prediction_seconds": 0.0013180829992052168,
+  "prediction_repeats": 5,
+  "prediction_scalar_broadcast": false,
+  "prediction_mean_seconds": 0.0011567150002520065,
+  "prediction_median_seconds": 0.0011181090012541972,
+  "prediction_std_seconds": 9.028467315795286e-05,
+  "prediction_microseconds_per_sample": 3.038339677321188,
+  "expression_extraction_seconds": 0.000392084002669435,
+  "evaluation_seconds": 34.32317220099867,
+  "timing_scope": "fit/predict/expression extraction inside the running container; symbolic analysis, image pull, container startup, data generation, and metric serialization excluded",
+  "model_size": 338,
+  "symbolic_model": "sub(sub(mul(add(add(add(add(add(cos(mul(surface_area, cos(mul(surface_area, relative_compactness)))), cos(mul(surface_area, mul(surface_area, mul(sqrt(mul(mul(surface_area, relative_compactness), relative_compactness)), sqrt(relative_compactness)))))), cos(mul(surface_area, mul(surface_area, mul(sqrt(mul(mul(surface_area, relative_compactness), relative_compactness)), sqrt(relative_compactness)))))), cos(mul(surface_area, relative_compactness))), glazing_area), add(add(add(cos(mul(surface_area, cos(mul(surface_area, relative_compactness)))), cos(mul(add(overall_height, glazing_area_distribution), relative_compactness))), glazing_area), add(add(add(cos(div(sub(add(sqrt(relative_compactness), -0.898), sub(mul(sub(mul(sub(sqrt(mul(surface_area, relative_compactness)), mul(cos(mul(mul(surface_area, relative_compactness), relative_compactness)), add(overall_height, glazing_area_distribution))), sqrt(relative_compactness)), mul(cos(mul(surface_area, relative_compactness)), add(overall_height, glazing_area_distribution))), sin(sin(add(add(glazing_area, -0.898), glazing_area)))), sin(mul(glazing_area, relative_compactness)))), overall_height)), -0.898), add(add(cos(div(sub(add(glazing_area, -0.898), sub(sub(add(sqrt(relative_compactness), -0.898), sub(mul(sub(mul(sub(sqrt(mul(surface_area, relative_compactness)), mul(cos(sqrt(mul(mul(surface_area, relative_compactness), relative_compactness))), add(overall_height, glazing_area_distribution))), sqrt(relative_compactness)), mul(cos(mul(surface_area, relative_compactness)), add(overall_height, glazing_area_distribution))), sin(sin(sin(add(add(glazing_area, -0.898), glazing_area))))), sin(mul(glazing_area, sin(sin(add(mul(surface_area, relative_compactness), glazing_area))))))), sin(relative_compactness))), overall_height)), -0.898), cos(mul(surface_area, mul(surface_area, mul(sqrt(mul(surface_area, cos(mul(surface_area, relative_compactness)))), sqrt(relative_compactness))))))), sqrt(mul(surface_area, relative_compactness))))), sqrt(relative_compactness)), sin(sin(add(add(add(cos(div(sub(add(glazing_area, -0.898), sub(sub(add(sqrt(relative_compactness), -0.898), sub(mul(sub(mul(sub(sqrt(mul(surface_area, relative_compactness)), mul(cos(sqrt(mul(mul(surface_area, relative_compactness), relative_compactness))), add(overall_height, glazing_area_distribution))), sqrt(relative_compactness)), mul(cos(mul(surface_area, relative_compactness)), add(cos(mul(surface_area, cos(mul(surface_area, relative_compactness)))), cos(mul(surface_area, mul(surface_area, mul(sqrt(mul(surface_area, cos(mul(surface_area, relative_compactness)))), sqrt(relative_compactness)))))))), sin(sin(sin(add(add(glazing_area, -0.898), glazing_area))))), sin(mul(glazing_area, sin(sin(add(mul(surface_area, relative_compactness), glazing_area))))))), sin(relative_compactness))), overall_height)), -0.898), glazing_area), sqrt(mul(surface_area, relative_compactness)))))), mul(cos(div(sub(add(cos(sub(mul(sqrt(mul(surface_area, relative_compactness)), sqrt(relative_compactness)), cos(mul(mul(surface_area, relative_compactness), relative_compactness)))), -0.898), sub(mul(sqrt(mul(surface_area, relative_compactness)), sqrt(relative_compactness)), sin(sin(add(add(glazing_area, -0.898), glazing_area))))), overall_height)), add(overall_height, glazing_area_distribution)))",
+  "symbolic_model_coordinate_system": "raw",
+  "symbolic_analysis": "separate post-processing sidecar",
+  "python": "3.12.5",
+  "platform": "Linux-7.0.0-30-generic-x86_64-with-glibc2.36"
+}

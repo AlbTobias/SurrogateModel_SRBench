@@ -1,0 +1,97 @@
+{
+  "status": "success",
+  "problem": "piston",
+  "algorithm": "itea",
+  "seed": 23,
+  "seed_parameter": null,
+  "train_samples": 400,
+  "test_samples": 4000,
+  "feature_names": [
+    "piston_mass",
+    "surface_area",
+    "initial_volume",
+    "spring_coefficient",
+    "atmospheric_pressure",
+    "ambient_temperature",
+    "gas_temperature"
+  ],
+  "dataset_policy": "fixed across algorithm trials",
+  "dataset_hash_scope": "SHA-256 of uncompressed table bytes",
+  "train_dataset_sha256": "8fefa86a0b1a968ea30a3fcbf7b6952b0f8f532ea9a0b173d0d2f8edeefb5c33",
+  "test_dataset_sha256": "bdfcd412e6626624bc2850edc9812d349f20a36d09a5f7dde53a4c1be472ddce",
+  "requested_population_size": null,
+  "requested_iterations": null,
+  "time_limit": null,
+  "profile": "benchmark",
+  "benchmark_name": "benchmark_suite_v8",
+  "config_file": "/workspace/configs/benchmark_suite_v8.json",
+  "configuration_schema_version": 2,
+  "configuration_sha256": "674e097628af3ce351b421c973b1ebdb7bf4d2087fa24a83ea042312a03335eb",
+  "use_dataframe": true,
+  "input_scaling": "raw",
+  "input_scaling_applied": false,
+  "input_scaling_source": "fixed documented problem domain",
+  "input_scaling_formula": "x unchanged",
+  "input_scaling_parameters": {
+    "piston_mass": {
+      "lower": 30.0,
+      "upper": 60.0
+    },
+    "surface_area": {
+      "lower": 0.005,
+      "upper": 0.02
+    },
+    "initial_volume": {
+      "lower": 0.002,
+      "upper": 0.01
+    },
+    "spring_coefficient": {
+      "lower": 1000.0,
+      "upper": 5000.0
+    },
+    "atmospheric_pressure": {
+      "lower": 90000.0,
+      "upper": 110000.0
+    },
+    "ambient_temperature": {
+      "lower": 290.0,
+      "upper": 296.0
+    },
+    "gas_temperature": {
+      "lower": 340.0,
+      "upper": 360.0
+    }
+  },
+  "target_scaling": "none; target remains in original units",
+  "algorithm_configuration_role": "documented_adapter_defaults",
+  "algorithm_configuration_rationale": "Restates the population and generation settings already defined by the pinned SRBench adapter.",
+  "configured_parameters": {
+    "npop": 1000,
+    "ngens": 500
+  },
+  "applied_parameters": {
+    "npop": 1000,
+    "ngens": 500
+  },
+  "rmse": 0.034316083521838625,
+  "nrmse_range": 0.03981784231123821,
+  "mae": 0.025393730325574702,
+  "r2": 0.9414555264985063,
+  "max_absolute_error": 0.24553377534080423,
+  "fit_seconds": 10.641967052000837,
+  "prediction_seconds": 0.0010254410008201376,
+  "prediction_repeats": 5,
+  "prediction_mean_seconds": 0.0008350363998033572,
+  "prediction_median_seconds": 0.0008214669996959856,
+  "prediction_std_seconds": 0.00011596767442739094,
+  "prediction_microseconds_per_sample": 0.2053667499239964,
+  "expression_extraction_seconds": 4.1586999941500835e-05,
+  "evaluation_seconds": 10.646634206999806,
+  "timing_scope": "fit/predict/expression extraction inside the running container; symbolic analysis, image pull, container startup, data generation, and metric serialization excluded",
+  "model_size": 33,
+  "symbolic_model": "0.28379205672351504 + -0.13410059706100327*Exp(piston_mass**(-1)*initial_volume*spring_coefficient*ambient_temperature*gas_temperature**(-1)) + 0.7053622285649106*Tanh(surface_area**(-1)*initial_volume*ambient_temperature**(-1)*gas_temperature)",
+  "symbolic_model_coordinate_system": "raw",
+  "symbolic_analysis": "separate post-processing sidecar",
+  "python": "3.12.5",
+  "platform": "Linux-7.0.0-29-generic-x86_64-with-glibc2.36"
+}

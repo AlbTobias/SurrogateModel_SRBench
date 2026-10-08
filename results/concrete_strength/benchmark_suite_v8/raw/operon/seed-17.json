@@ -1,0 +1,106 @@
+{
+  "status": "success",
+  "problem": "concrete_strength",
+  "algorithm": "operon",
+  "seed": 17,
+  "seed_parameter": "random_state",
+  "train_samples": 400,
+  "test_samples": 592,
+  "feature_names": [
+    "cement",
+    "blast_furnace_slag",
+    "fly_ash",
+    "water",
+    "superplasticizer",
+    "coarse_aggregate",
+    "fine_aggregate",
+    "age"
+  ],
+  "dataset_policy": "fixed across algorithm trials",
+  "dataset_hash_scope": "SHA-256 of uncompressed table bytes",
+  "train_dataset_sha256": "10bccfdc34cc23641ef9d20fef46a4bdcb1035380ee9344bbed9277f76ef3ffd",
+  "test_dataset_sha256": "91ad97074b5b15ec9ab59f1105b6e901837e4dcc8f4e7c62ebdedd530957b522",
+  "requested_population_size": null,
+  "requested_iterations": null,
+  "time_limit": null,
+  "profile": "benchmark",
+  "benchmark_name": "benchmark_suite_v8",
+  "config_file": "/workspace/configs/benchmark_suite_v8.json",
+  "configuration_schema_version": 2,
+  "configuration_sha256": "674e097628af3ce351b421c973b1ebdb7bf4d2087fa24a83ea042312a03335eb",
+  "use_dataframe": false,
+  "input_scaling": "raw",
+  "input_scaling_applied": false,
+  "input_scaling_source": "fixed documented problem domain",
+  "input_scaling_formula": "x unchanged",
+  "input_scaling_parameters": {
+    "cement": {
+      "lower": 102.0,
+      "upper": 540.0
+    },
+    "blast_furnace_slag": {
+      "lower": 0.0,
+      "upper": 359.4
+    },
+    "fly_ash": {
+      "lower": 0.0,
+      "upper": 200.1
+    },
+    "water": {
+      "lower": 121.8,
+      "upper": 247.0
+    },
+    "superplasticizer": {
+      "lower": 0.0,
+      "upper": 32.2
+    },
+    "coarse_aggregate": {
+      "lower": 801.0,
+      "upper": 1145.0
+    },
+    "fine_aggregate": {
+      "lower": 594.0,
+      "upper": 992.6
+    },
+    "age": {
+      "lower": 1.0,
+      "upper": 365.0
+    }
+  },
+  "target_scaling": "none; target remains in original units",
+  "algorithm_configuration_role": "documented_adapter_defaults",
+  "algorithm_configuration_rationale": "Restates the effective settings of the legacy Operon estimator in the pinned SRBench image for auditability.",
+  "configured_parameters": {
+    "population_size": 1000,
+    "generations": 1000,
+    "max_evaluations": 1000000
+  },
+  "applied_parameters": {
+    "random_state": 17,
+    "population_size": 1000,
+    "generations": 1000,
+    "max_evaluations": 1000000
+  },
+  "rmse": 7.15978061646717,
+  "nrmse_range": 0.09338438263293557,
+  "mae": 5.295596028405266,
+  "r2": 0.8002950009465647,
+  "max_absolute_error": 30.698039550781253,
+  "fit_seconds": 4.194812274001379,
+  "prediction_seconds": 0.00016386800052714534,
+  "prediction_repeats": 5,
+  "prediction_scalar_broadcast": false,
+  "prediction_mean_seconds": 9.277140015910846e-05,
+  "prediction_median_seconds": 7.494700003007893e-05,
+  "prediction_std_seconds": 4.0341272425345695e-05,
+  "prediction_microseconds_per_sample": 0.12659966221297117,
+  "expression_extraction_seconds": 6.693899922538549e-05,
+  "evaluation_seconds": 4.1957338100000925,
+  "timing_scope": "fit/predict/expression extraction inside the running container; symbolic analysis, image pull, container startup, data generation, and metric serialization excluded",
+  "model_size": 99,
+  "symbolic_model": "((-10.757354) + (22.383558 * ((((((((((-1.049847) * water) + ((-1.866857) * fly_ash)) + ((-2.382793) * blast_furnace_slag)) - ((-2.521349) * age)) / ((0.422042 * fine_aggregate) / ((-0.912215) * age))) + ((((-3.017780) * cement) + ((-4.393984) * cement)) / (((-1.079911) * fly_ash) + ((1.814410 * fine_aggregate) / (3.141593 * fly_ash))))) + (((-1.915412) * superplasticizer) + ((((1.422044 * fine_aggregate) / ((-0.996053) * age)) - ((-1.331361) * cement)) / ((-0.853199) * age)))) + ((1.442695 * fly_ash) - ((((-0.869995) * cement) - (((1.368810 * blast_furnace_slag) - ((-2.468106) * age)) + (((-2.518402) * superplasticizer) + ((1.422044 * fine_aggregate) / ((-1.213638) * age))))) + ((-1.331361) * cement)))) / (2.184074 * water))))",
+  "symbolic_model_coordinate_system": "raw",
+  "symbolic_analysis": "separate post-processing sidecar",
+  "python": "3.12.5",
+  "platform": "Linux-7.0.0-30-generic-x86_64-with-glibc2.36"
+}

@@ -1,0 +1,6 @@
+Complexity,Loss,Equation
+1,0.01894598,"0.46272665"
+2,0.018945197,"sqrt(0.21321395)"
+3,0.0181778,"(0.46435708 - surface_area)"
+4,0.012558975,"(log(surface_area) * -0.10076325)"
+6,0.0031968146,"(sqrt(initial_volume / surface_area) * 0.6439455)"

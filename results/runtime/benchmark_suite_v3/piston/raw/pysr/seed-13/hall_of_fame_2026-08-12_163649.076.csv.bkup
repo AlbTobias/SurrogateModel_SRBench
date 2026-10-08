@@ -1,0 +1,10 @@
+Complexity,Loss,Equation
+1,0.018946396,"0.460732"
+2,0.018945819,"sin(0.48096293)"
+3,0.014841462,"(0.00458696 / surface_area)"
+4,0.013921482,"(5.981089 * sqrt(initial_volume))"
+5,0.013617169,"sin(sqrt(piston_mass * initial_volume))"
+7,0.0034386658,"((initial_volume / (initial_volume + surface_area)) - -0.109040305)"
+9,0.0032926076,"((initial_volume / (initial_volume + surface_area)) - (-0.109040305 - initial_volume))"
+10,0.0032925087,"((initial_volume / sin(initial_volume + surface_area)) - (-0.109040305 - initial_volume))"
+13,0.0030097747,"((sin(initial_volume) / (initial_volume + surface_area)) - ((exp(-0.030741457) + 0.23986353) * -0.109040305))"

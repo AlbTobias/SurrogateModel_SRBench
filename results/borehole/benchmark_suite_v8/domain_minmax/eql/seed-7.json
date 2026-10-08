@@ -1,0 +1,101 @@
+{
+  "status": "success",
+  "problem": "borehole",
+  "algorithm": "eql",
+  "seed": 7,
+  "seed_parameter": "random_state",
+  "train_samples": 400,
+  "test_samples": 4000,
+  "feature_names": [
+    "borehole_radius",
+    "influence_radius",
+    "upper_transmissivity",
+    "upper_head",
+    "lower_transmissivity",
+    "lower_head",
+    "borehole_length",
+    "hydraulic_conductivity"
+  ],
+  "dataset_policy": "fixed across algorithm trials",
+  "dataset_hash_scope": "SHA-256 of uncompressed table bytes",
+  "train_dataset_sha256": "07ebea8de5c2ecbc91a9a401e0d2502d5896a14d7fb10bd6a6f2b415bd32a767",
+  "test_dataset_sha256": "e94f3036e7987909ecb11e11e6dab5517a508af8cf9f83520d9c12a1ab3a1504",
+  "requested_population_size": null,
+  "requested_iterations": null,
+  "time_limit": null,
+  "profile": "benchmark",
+  "benchmark_name": "benchmark_suite_v8",
+  "config_file": "/workspace/configs/benchmark_suite_v8.json",
+  "configuration_schema_version": 2,
+  "configuration_sha256": "674e097628af3ce351b421c973b1ebdb7bf4d2087fa24a83ea042312a03335eb",
+  "use_dataframe": false,
+  "input_scaling": "domain_minmax",
+  "input_scaling_applied": true,
+  "input_scaling_source": "fixed documented problem domain",
+  "input_scaling_formula": "z = 2 * (x - lower) / (upper - lower) - 1",
+  "input_scaling_parameters": {
+    "borehole_radius": {
+      "lower": 0.05,
+      "upper": 0.15
+    },
+    "influence_radius": {
+      "lower": 100.0,
+      "upper": 50000.0
+    },
+    "upper_transmissivity": {
+      "lower": 63070.0,
+      "upper": 115600.0
+    },
+    "upper_head": {
+      "lower": 990.0,
+      "upper": 1110.0
+    },
+    "lower_transmissivity": {
+      "lower": 63.1,
+      "upper": 116.0
+    },
+    "lower_head": {
+      "lower": 700.0,
+      "upper": 820.0
+    },
+    "borehole_length": {
+      "lower": 1120.0,
+      "upper": 1680.0
+    },
+    "hydraulic_conductivity": {
+      "lower": 9855.0,
+      "upper": 12045.0
+    }
+  },
+  "target_scaling": "none; target remains in original units",
+  "algorithm_configuration_role": "documented_adapter_defaults",
+  "algorithm_configuration_rationale": "Restates the 10000 optimization iterations already defined by the pinned SRBench adapter; the adapter's inactive candidate grid is not used.",
+  "configured_parameters": {
+    "n_iter": 10000
+  },
+  "applied_parameters": {
+    "random_state": 7,
+    "n_iter": 10000
+  },
+  "rmse": 1.6233159565879347,
+  "nrmse_range": 0.006680020673987573,
+  "mae": 1.1096498905896082,
+  "r2": 0.9987043928153078,
+  "max_absolute_error": 12.64497464795204,
+  "fit_seconds": 24.409578111999508,
+  "prediction_seconds": 0.1028450640005758,
+  "prediction_repeats": 5,
+  "prediction_mean_seconds": 0.02654588000041258,
+  "prediction_median_seconds": 0.0073575140013417695,
+  "prediction_std_seconds": 0.04265344218750715,
+  "prediction_microseconds_per_sample": 1.8393785003354424,
+  "expression_extraction_seconds": 0.1220108360012091,
+  "evaluation_seconds": 24.664700137998807,
+  "timing_scope": "fit/predict/expression extraction inside the running container; symbolic analysis, image pull, container startup, data generation, and metric serialization excluded",
+  "model_size": null,
+  "symbolic_model": "11.0*borehole_radius + 0.796*influence_radius - 0.903*upper_transmissivity - 0.667*upper_head - 0.071*lower_transmissivity + 0.275*lower_head + 5.49*borehole_length - 2.76*hydraulic_conductivity + 3.22*(1.67*borehole_radius - 0.029*influence_radius - 0.03*upper_transmissivity + 1.35*upper_head + 0.00903*lower_transmissivity - 1.39*lower_head - 1.01*borehole_length + 0.51*hydraulic_conductivity + 3.9)*(3.27*borehole_radius - 0.046*influence_radius + 0.102*upper_transmissivity + 0.11*upper_head + 0.031*lower_transmissivity - 0.039*lower_head - 0.738*borehole_length + 0.35*hydraulic_conductivity + 3.55) + 26.2",
+  "symbolic_model_coordinate_system": "domain_minmax",
+  "symbolic_analysis": "separate post-processing sidecar",
+  "python": "3.10.14",
+  "platform": "Linux-7.0.0-29-generic-x86_64-with-glibc2.36"
+}

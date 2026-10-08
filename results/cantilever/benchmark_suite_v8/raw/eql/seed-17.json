@@ -1,0 +1,86 @@
+{
+  "status": "success",
+  "problem": "cantilever",
+  "algorithm": "eql",
+  "seed": 17,
+  "seed_parameter": "random_state",
+  "train_samples": 400,
+  "test_samples": 4000,
+  "feature_names": [
+    "force",
+    "length",
+    "modulus",
+    "width",
+    "height"
+  ],
+  "dataset_policy": "fixed across algorithm trials",
+  "dataset_hash_scope": "SHA-256 of uncompressed table bytes",
+  "train_dataset_sha256": "47ac0960181a6eeb569c70492065f55028aa6ea4b1606096efafbb754900e380",
+  "test_dataset_sha256": "fb1b4eac780cca9fd9696b7ce23188a1916b66b76fbf1a76ab2063389beedb67",
+  "requested_population_size": null,
+  "requested_iterations": null,
+  "time_limit": null,
+  "profile": "benchmark",
+  "benchmark_name": "benchmark_suite_v8",
+  "config_file": "/workspace/configs/benchmark_suite_v8.json",
+  "configuration_schema_version": 2,
+  "configuration_sha256": "674e097628af3ce351b421c973b1ebdb7bf4d2087fa24a83ea042312a03335eb",
+  "use_dataframe": false,
+  "input_scaling": "raw",
+  "input_scaling_applied": false,
+  "input_scaling_source": "fixed documented problem domain",
+  "input_scaling_formula": "x unchanged",
+  "input_scaling_parameters": {
+    "force": {
+      "lower": 0.5,
+      "upper": 1.5
+    },
+    "length": {
+      "lower": 0.8,
+      "upper": 1.2
+    },
+    "modulus": {
+      "lower": 0.8,
+      "upper": 1.2
+    },
+    "width": {
+      "lower": 0.7,
+      "upper": 1.3
+    },
+    "height": {
+      "lower": 0.7,
+      "upper": 1.3
+    }
+  },
+  "target_scaling": "none; target remains in original units",
+  "algorithm_configuration_role": "documented_adapter_defaults",
+  "algorithm_configuration_rationale": "Restates the 10000 optimization iterations already defined by the pinned SRBench adapter; the adapter's inactive candidate grid is not used.",
+  "configured_parameters": {
+    "n_iter": 10000
+  },
+  "applied_parameters": {
+    "random_state": 17,
+    "n_iter": 10000
+  },
+  "rmse": 0.7859267727885832,
+  "nrmse_range": 0.023795620678606896,
+  "mae": 0.4635099718347069,
+  "r2": 0.9638228220983431,
+  "max_absolute_error": 11.322972368242937,
+  "fit_seconds": 24.454178245000094,
+  "prediction_seconds": 0.10308095999994293,
+  "prediction_repeats": 5,
+  "prediction_mean_seconds": 0.026685711199979777,
+  "prediction_median_seconds": 0.007518681999954424,
+  "prediction_std_seconds": 0.042707530633667216,
+  "prediction_microseconds_per_sample": 1.879670499988606,
+  "expression_extraction_seconds": 0.08151268599999639,
+  "evaluation_seconds": 24.669516247000047,
+  "timing_scope": "fit/predict/expression extraction inside the running container; symbolic analysis, image pull, container startup, data generation, and metric serialization excluded",
+  "model_size": null,
+  "symbolic_model": "3.53*force + 3.8*length - 2.94*modulus - 3.57*width - 2.73*height + 3.77*(-0.000977*force - 2.83*length + 2.87*height - 0.384)*(-1.29*force - 1.34*length + 1.42*modulus + 1.22*width + 2.64*height - 3.49) + 5.01",
+  "symbolic_model_coordinate_system": "raw",
+  "symbolic_analysis": "separate post-processing sidecar",
+  "python": "3.10.14",
+  "platform": "Linux-7.0.0-29-generic-x86_64-with-glibc2.36"
+}

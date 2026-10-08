@@ -1,0 +1,115 @@
+{
+  "analysis_version": "expression_analysis_v2",
+  "analysis_status": "complete",
+  "problem": "cantilever",
+  "algorithm": "geneticengine",
+  "seed": 13,
+  "input_scaling": "raw",
+  "expression_timeout_seconds_per_stage": 60,
+  "analysis_seconds": 0.1484502230000544,
+  "analysis_python": "3.11.15",
+  "analysis_platform": "Linux-7.0.0-29-generic-x86_64-with-glibc2.43",
+  "raw_scale_symbolic_model": "((((((force/height)/modulus)/height)/sqrt((height)))/sqrt((-0.1)))/log((width)))",
+  "raw_scale_back_transform_error": null,
+  "complexity_valid": true,
+  "complexity_source": "simplified",
+  "training_scale_expression_parse_success": true,
+  "training_scale_expression_parse_error": null,
+  "training_scale_expression_simplify_success": true,
+  "training_scale_expression_simplify_error": null,
+  "training_scale_symbolic_comparison_error": null,
+  "training_scale_symbolic_exact_match": null,
+  "training_scale_expression_node_count": 14,
+  "training_scale_expression_depth": 3,
+  "training_scale_expression_operator_count": 5,
+  "training_scale_expression_operators": [
+    "Mul",
+    "Pow",
+    "log"
+  ],
+  "training_scale_expression_constant_count": 5,
+  "training_scale_expression_variable_count": 4,
+  "training_scale_expression_variables": [
+    "force",
+    "height",
+    "modulus",
+    "width"
+  ],
+  "training_scale_simplified_node_count": 14,
+  "training_scale_simplified_depth": 3,
+  "training_scale_simplified_operator_count": 5,
+  "training_scale_simplified_operators": [
+    "Mul",
+    "Pow",
+    "log"
+  ],
+  "training_scale_simplified_constant_count": 5,
+  "training_scale_simplified_variable_count": 4,
+  "training_scale_simplified_variables": [
+    "force",
+    "height",
+    "modulus",
+    "width"
+  ],
+  "training_scale_simplified_expression": "-3.16227766016838*I*force/(height**(5/2)*modulus*log(width))",
+  "expression_parse_success": true,
+  "expression_parse_error": null,
+  "expression_simplify_success": true,
+  "expression_simplify_error": null,
+  "symbolic_comparison_error": null,
+  "symbolic_exact_match": false,
+  "expression_node_count": 14,
+  "expression_depth": 3,
+  "expression_operator_count": 5,
+  "expression_operators": [
+    "Mul",
+    "Pow",
+    "log"
+  ],
+  "expression_constant_count": 5,
+  "expression_variable_count": 4,
+  "expression_variables": [
+    "force",
+    "height",
+    "modulus",
+    "width"
+  ],
+  "simplified_node_count": 14,
+  "simplified_depth": 3,
+  "simplified_operator_count": 5,
+  "simplified_operators": [
+    "Mul",
+    "Pow",
+    "log"
+  ],
+  "simplified_constant_count": 5,
+  "simplified_variable_count": 4,
+  "simplified_variables": [
+    "force",
+    "height",
+    "modulus",
+    "width"
+  ],
+  "simplified_expression": "-3.16227766016838*I*force/(height**(5/2)*modulus*log(width))",
+  "ground_truth_node_count": 15,
+  "ground_truth_depth": 2,
+  "ground_truth_operator_count": 5,
+  "ground_truth_operators": [
+    "Mul",
+    "Pow"
+  ],
+  "ground_truth_constant_count": 5,
+  "ground_truth_variable_count": 5,
+  "ground_truth_variables": [
+    "force",
+    "height",
+    "length",
+    "modulus",
+    "width"
+  ],
+  "ground_truth_expression": "4*force*length**3/(height**3*modulus*width)",
+  "ground_truth_variable_recall": 0.8,
+  "simplified_to_ground_truth_size_ratio": 0.9333333333333333,
+  "source_result": "seed-13.json",
+  "source_result_sha256": "479b6b61c80e15b082c95f808d41ad36cb945386a6b0675279b7ac2c51228683"
+}

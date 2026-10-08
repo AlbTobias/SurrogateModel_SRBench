@@ -1,0 +1,92 @@
+{
+  "analysis_version": "expression_analysis_v2",
+  "analysis_status": "complete",
+  "problem": "naval_propulsion",
+  "algorithm": "operon",
+  "seed": 13,
+  "input_scaling": "raw",
+  "expression_timeout_seconds_per_stage": 60,
+  "analysis_seconds": 98.23030953499983,
+  "analysis_python": "3.11.15",
+  "analysis_platform": "Linux-7.0.0-29-generic-x86_64-with-glibc2.43",
+  "raw_scale_symbolic_model": "(0.245547 + (0.006129 * (((((((-0.706510) * ship_speed) / ((0.009945 * ship_speed) + (-0.392562))) - (((((-0.020877) * ship_speed) * (((-0.718701) * ship_speed) * (0.330514 * ship_speed))) + (1.014190 / ((0.482175 * ship_speed) - (4.298578 * compressor_decay)))) + (((0.543231 * compressor_decay) / ((-0.572134) * ship_speed)) / (((-0.020877) * ship_speed) * ((0.263922 * ship_speed) + ((-3.098837) * turbine_decay)))))) * ((0.263922 * ship_speed) - (2.302585 * turbine_decay))) / (0.707107 * compressor_decay)) / (1.606206 * turbine_decay))))",
+  "raw_scale_back_transform_error": null,
+  "complexity_valid": true,
+  "complexity_source": "simplified",
+  "training_scale_expression_parse_success": true,
+  "training_scale_expression_parse_error": null,
+  "training_scale_expression_simplify_success": true,
+  "training_scale_expression_simplify_error": null,
+  "training_scale_symbolic_comparison_error": null,
+  "training_scale_symbolic_exact_match": null,
+  "training_scale_expression_node_count": 59,
+  "training_scale_expression_depth": 7,
+  "training_scale_expression_operator_count": 25,
+  "training_scale_expression_operators": [
+    "Add",
+    "Mul",
+    "Pow"
+  ],
+  "training_scale_expression_constant_count": 21,
+  "training_scale_expression_variable_count": 3,
+  "training_scale_expression_variables": [
+    "compressor_decay",
+    "ship_speed",
+    "turbine_decay"
+  ],
+  "training_scale_simplified_node_count": 59,
+  "training_scale_simplified_depth": 7,
+  "training_scale_simplified_operator_count": 25,
+  "training_scale_simplified_operators": [
+    "Add",
+    "Mul",
+    "Pow"
+  ],
+  "training_scale_simplified_constant_count": 21,
+  "training_scale_simplified_variable_count": 3,
+  "training_scale_simplified_variables": [
+    "compressor_decay",
+    "ship_speed",
+    "turbine_decay"
+  ],
+  "training_scale_simplified_expression": "0.245547 - 0.0053963889075064*(0.263922*ship_speed - 2.302585*turbine_decay)*(45.4798157939292*compressor_decay/(ship_speed**2*(0.263922*ship_speed - 3.098837*turbine_decay)) + 0.00495913807728938*ship_speed**3 + 0.70651*ship_speed/(0.009945*ship_speed - 0.392562) - 1.01419/(4.298578*compressor_decay - 0.482175*ship_speed))/(compressor_decay*turbine_decay)",
+  "expression_parse_success": true,
+  "expression_parse_error": null,
+  "expression_simplify_success": true,
+  "expression_simplify_error": null,
+  "symbolic_comparison_error": null,
+  "symbolic_exact_match": null,
+  "expression_node_count": 59,
+  "expression_depth": 7,
+  "expression_operator_count": 25,
+  "expression_operators": [
+    "Add",
+    "Mul",
+    "Pow"
+  ],
+  "expression_constant_count": 21,
+  "expression_variable_count": 3,
+  "expression_variables": [
+    "compressor_decay",
+    "ship_speed",
+    "turbine_decay"
+  ],
+  "simplified_node_count": 59,
+  "simplified_depth": 7,
+  "simplified_operator_count": 25,
+  "simplified_operators": [
+    "Add",
+    "Mul",
+    "Pow"
+  ],
+  "simplified_constant_count": 21,
+  "simplified_variable_count": 3,
+  "simplified_variables": [
+    "compressor_decay",
+    "ship_speed",
+    "turbine_decay"
+  ],
+  "simplified_expression": "0.245547 - 0.0053963889075064*(0.263922*ship_speed - 2.302585*turbine_decay)*(45.4798157939292*compressor_decay/(ship_speed**2*(0.263922*ship_speed - 3.098837*turbine_decay)) + 0.00495913807728938*ship_speed**3 + 0.70651*ship_speed/(0.009945*ship_speed - 0.392562) - 1.01419/(4.298578*compressor_decay - 0.482175*ship_speed))/(compressor_decay*turbine_decay)",
+  "source_result": "seed-13.json",
+  "source_result_sha256": "51655fb3ab3ec0d9a688f71a4caabf6ffb3eee605a011ed904349c0a9236172b"
+}

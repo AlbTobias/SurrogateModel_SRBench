@@ -1,0 +1,83 @@
+{
+  "status": "success",
+  "problem": "ccpp",
+  "algorithm": "gplearn",
+  "seed": 2,
+  "seed_parameter": "random_state",
+  "train_samples": 400,
+  "test_samples": 4000,
+  "feature_names": [
+    "ambient_temperature",
+    "exhaust_vacuum",
+    "ambient_pressure",
+    "relative_humidity"
+  ],
+  "dataset_policy": "fixed across algorithm trials",
+  "dataset_hash_scope": "SHA-256 of uncompressed table bytes",
+  "train_dataset_sha256": "fbdca0171ab3964d280c43bf8ac2995076bb71300d9e8ed4a4aa892b66a5f793",
+  "test_dataset_sha256": "002cd7e58a36d1f6350d7fb564f016e76e614490eca1066c9cbec1fa1dde7f29",
+  "requested_population_size": null,
+  "requested_iterations": null,
+  "time_limit": null,
+  "profile": "benchmark",
+  "benchmark_name": "benchmark_suite_v4",
+  "config_file": "/workspace/configs/benchmark_suite_v4.json",
+  "configuration_schema_version": 2,
+  "configuration_sha256": "d29f7fa60d3fde863b1074091a2041e3f8ff819d5fc6dd9fb0845d5d33334f4e",
+  "use_dataframe": true,
+  "input_scaling": "domain_minmax",
+  "input_scaling_applied": true,
+  "input_scaling_source": "fixed documented problem domain",
+  "input_scaling_formula": "z = 2 * (x - lower) / (upper - lower) - 1",
+  "input_scaling_parameters": {
+    "ambient_temperature": {
+      "lower": 1.81,
+      "upper": 37.11
+    },
+    "exhaust_vacuum": {
+      "lower": 25.36,
+      "upper": 81.56
+    },
+    "ambient_pressure": {
+      "lower": 992.89,
+      "upper": 1033.3
+    },
+    "relative_humidity": {
+      "lower": 25.56,
+      "upper": 100.16
+    }
+  },
+  "target_scaling": "none; target remains in original units",
+  "algorithm_configuration_role": "project_budget_override",
+  "algorithm_configuration_rationale": "Reduced from the SRBench adapter's 1000 individuals and 500 generations to keep repeated trials computationally feasible; not selected using test performance.",
+  "configured_parameters": {
+    "population_size": 500,
+    "generations": 100
+  },
+  "applied_parameters": {
+    "random_state": 2,
+    "population_size": 500,
+    "generations": 100
+  },
+  "rmse": 4.7265420184878195,
+  "nrmse_range": 0.06306260198115837,
+  "mae": 3.79131582994607,
+  "r2": 0.9222983954544242,
+  "max_absolute_error": 23.70816444392517,
+  "fit_seconds": 44.062432287000775,
+  "prediction_seconds": 0.00208534699959273,
+  "prediction_repeats": 5,
+  "prediction_mean_seconds": 0.0018697263996727998,
+  "prediction_median_seconds": 0.0018206889999419218,
+  "prediction_std_seconds": 0.00012730621268205598,
+  "prediction_microseconds_per_sample": 0.45517224998548045,
+  "expression_extraction_seconds": 0.00021637600002577528,
+  "evaluation_seconds": 44.07234737500039,
+  "timing_scope": "fit/predict/expression extraction inside the running container; symbolic analysis, image pull, container startup, data generation, and metric serialization excluded",
+  "model_size": 139,
+  "symbolic_model": "add(sqrt(cos(add(mul(exhaust_vacuum, log(log(-0.984))), mul(exhaust_vacuum, log(log(-0.984)))))), div(add(div(add(log(div(cos(sqrt(sqrt(log(-0.984)))), add(add(log(log(-0.984)), div(add(add(add(add(add(add(add(sqrt(add(div(add(sqrt(add(div(add(sqrt(add(log(-0.984), 0.340)), ambient_temperature), mul(0.340, 0.480)), log(-0.984))), ambient_temperature), sqrt(log(-0.984))), mul(0.340, 0.480))), ambient_temperature), ambient_temperature), ambient_temperature), ambient_temperature), ambient_temperature), ambient_temperature), mul(log(log(-0.984)), log(log(-0.984)))), mul(0.340, 0.480))), div(add(div(add(div(add(div(mul(exhaust_vacuum, log(log(-0.984))), div(sqrt(mul(0.340, 0.480)), mul(0.340, 0.480))), ambient_temperature), sqrt(log(-0.984))), mul(exhaust_vacuum, log(log(-0.984)))), div(sqrt(mul(0.340, 0.480)), mul(0.340, 0.480))), ambient_temperature), mul(0.340, 0.480))))), mul(log(log(-0.984)), log(log(-0.984)))), mul(0.340, 0.480)), mul(exhaust_vacuum, log(log(-0.984)))), mul(0.340, 0.480)))",
+  "symbolic_model_coordinate_system": "domain_minmax",
+  "symbolic_analysis": "separate post-processing sidecar",
+  "python": "3.12.5",
+  "platform": "Linux-7.0.0-29-generic-x86_64-with-glibc2.36"
+}

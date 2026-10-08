@@ -1,0 +1,13 @@
+Complexity,Loss,Equation
+1,272.15805,"454.2464"
+3,259.40417,"(453.86642 - exhaust_vacuum)"
+4,258.24445,"(455.981 - exp(exhaust_vacuum))"
+5,135.75153,"(455.981 - (ambient_temperature / 0.07572324))"
+6,118.79706,"(453.86642 - (exp(2.7128074) * ambient_temperature))"
+7,33.64327,"(455.981 - (0.33642575 - (ambient_temperature * -39.56102)))"
+8,32.331894,"(455.981 - (0.33642575 - (sin(ambient_temperature) * -39.56102)))"
+9,31.667475,"((455.981 - relative_humidity) - (exhaust_vacuum - (ambient_temperature * -39.56102)))"
+10,31.34374,"(455.981 - ((exp(exhaust_vacuum) * relative_humidity) - (ambient_temperature * -39.56102)))"
+16,31.174494,"(((456.57913 + -0.6851954) - 0.79429764) - ((relative_humidity - ((-28.050806 / 0.7133699) - relative_humidity)) * sin(ambient_temperature)))"
+17,28.52456,"((((453.09534 - (((exhaust_vacuum + ambient_temperature) + ambient_temperature) / (0.07622942 / 0.9039296))) + 1.9157188) + ambient_pressure) - relative_humidity)"
+19,27.893074,"(((((453.09534 - (((exhaust_vacuum + ambient_temperature) + ambient_temperature) / (0.07622942 / 0.9039296))) + 1.9157188) + ambient_pressure) + ambient_pressure) - relative_humidity)"

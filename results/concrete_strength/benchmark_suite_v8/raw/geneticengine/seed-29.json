@@ -1,0 +1,108 @@
+{
+  "status": "success",
+  "problem": "concrete_strength",
+  "algorithm": "geneticengine",
+  "seed": 29,
+  "seed_parameter": "seed",
+  "train_samples": 400,
+  "test_samples": 592,
+  "feature_names": [
+    "cement",
+    "blast_furnace_slag",
+    "fly_ash",
+    "water",
+    "superplasticizer",
+    "coarse_aggregate",
+    "fine_aggregate",
+    "age"
+  ],
+  "dataset_policy": "fixed across algorithm trials",
+  "dataset_hash_scope": "SHA-256 of uncompressed table bytes",
+  "train_dataset_sha256": "10bccfdc34cc23641ef9d20fef46a4bdcb1035380ee9344bbed9277f76ef3ffd",
+  "test_dataset_sha256": "91ad97074b5b15ec9ab59f1105b6e901837e4dcc8f4e7c62ebdedd530957b522",
+  "requested_population_size": null,
+  "requested_iterations": null,
+  "time_limit": null,
+  "profile": "benchmark",
+  "benchmark_name": "benchmark_suite_v8",
+  "config_file": "/workspace/configs/benchmark_suite_v8.json",
+  "configuration_schema_version": 2,
+  "configuration_sha256": "674e097628af3ce351b421c973b1ebdb7bf4d2087fa24a83ea042312a03335eb",
+  "use_dataframe": true,
+  "input_scaling": "raw",
+  "input_scaling_applied": false,
+  "input_scaling_source": "fixed documented problem domain",
+  "input_scaling_formula": "x unchanged",
+  "input_scaling_parameters": {
+    "cement": {
+      "lower": 102.0,
+      "upper": 540.0
+    },
+    "blast_furnace_slag": {
+      "lower": 0.0,
+      "upper": 359.4
+    },
+    "fly_ash": {
+      "lower": 0.0,
+      "upper": 200.1
+    },
+    "water": {
+      "lower": 121.8,
+      "upper": 247.0
+    },
+    "superplasticizer": {
+      "lower": 0.0,
+      "upper": 32.2
+    },
+    "coarse_aggregate": {
+      "lower": 801.0,
+      "upper": 1145.0
+    },
+    "fine_aggregate": {
+      "lower": 594.0,
+      "upper": 992.6
+    },
+    "age": {
+      "lower": 1.0,
+      "upper": 365.0
+    }
+  },
+  "target_scaling": "none; target remains in original units",
+  "algorithm_configuration_role": "project_budget_override",
+  "algorithm_configuration_rationale": "Reduces the adapter's one-hour allowance to a 60-second practical budget for repeated evaluation; not selected using test performance.",
+  "configured_parameters": {
+    "population_size": 200,
+    "number_of_generations": 100,
+    "timer_stop_criteria": true,
+    "timer_limit": 60
+  },
+  "applied_parameters": {
+    "seed": 29,
+    "population_size": 200,
+    "number_of_generations": 100,
+    "timer_stop_criteria": true,
+    "timer_limit": 60
+  },
+  "rmse": 9.166040031530494,
+  "nrmse_range": 0.1195518459831811,
+  "mae": 6.962931751184257,
+  "r2": 0.6726947246440833,
+  "max_absolute_error": 33.09027372492895,
+  "fit_seconds": 60.24593931799973,
+  "prediction_seconds": 0.0002176489997509634,
+  "prediction_repeats": 5,
+  "prediction_scalar_broadcast": false,
+  "prediction_mean_seconds": 0.0001728310002363287,
+  "prediction_median_seconds": 0.000157876000230317,
+  "prediction_std_seconds": 2.9280551800944202e-05,
+  "prediction_microseconds_per_sample": 0.2666824328214814,
+  "expression_extraction_seconds": 2.3742000848869793e-05,
+  "evaluation_seconds": 60.247239126998466,
+  "timing_scope": "fit/predict/expression extraction inside the running container; symbolic analysis, image pull, container startup, data generation, and metric serialization excluded",
+  "model_size": null,
+  "symbolic_model": "(sqrt(((((sqrt((age)) + log((age))) * (cement * log((-1)))) + ((sqrt((age)) + sqrt((blast_furnace_slag)))/((0.01 * 0.1)/(superplasticizer * 0.01)))))) + (log(((((age + age) + (age + age)) + ((age + age) + (age + fine_aggregate))))) * ((-0.1/0.1)/log((sqrt((log((-1)))))))))",
+  "symbolic_model_coordinate_system": "raw",
+  "symbolic_analysis": "separate post-processing sidecar",
+  "python": "3.9.12",
+  "platform": "Linux-7.0.0-30-generic-x86_64-with-glibc2.36"
+}

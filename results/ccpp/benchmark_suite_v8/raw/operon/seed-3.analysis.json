@@ -1,0 +1,96 @@
+{
+  "analysis_version": "expression_analysis_v2",
+  "analysis_status": "complete",
+  "problem": "ccpp",
+  "algorithm": "operon",
+  "seed": 3,
+  "input_scaling": "raw",
+  "expression_timeout_seconds_per_stage": 60,
+  "analysis_seconds": 1.2946476149991213,
+  "analysis_python": "3.11.15",
+  "analysis_platform": "Linux-7.0.0-29-generic-x86_64-with-glibc2.43",
+  "raw_scale_symbolic_model": "(493.993835 + (68435.539062 * ((((((((0.306835 * exhaust_vacuum) + (2.103212 * ambient_temperature)) - (0.266860 * ambient_pressure)) / ((((0.306835 * exhaust_vacuum) - ((-1.332782) * ambient_temperature)) * (0.306835 * exhaust_vacuum)) / ((0.366407 - (6.283185 * ambient_pressure)) - (1.538560 * ambient_pressure)))) + (((((2.316320 * ambient_temperature) + (0.434294 * exhaust_vacuum)) / (-0.538741)) + ((-0.145668) * ((-0.456239) * ambient_pressure))) * (((-1.055568) * relative_humidity) - (0.266860 * ambient_pressure)))) / (((-1.055568) * ambient_temperature) - (0.266860 * ambient_pressure))) / ((((-0.145668) * ((-0.456239) * ambient_pressure)) - (0.266860 * ambient_pressure)) - ((3.169792 * ambient_temperature) + (0.554459 * exhaust_vacuum)))) / ((-0.456239) * ambient_pressure))))",
+  "raw_scale_back_transform_error": null,
+  "complexity_valid": true,
+  "complexity_source": "simplified",
+  "training_scale_expression_parse_success": true,
+  "training_scale_expression_parse_error": null,
+  "training_scale_expression_simplify_success": true,
+  "training_scale_expression_simplify_error": null,
+  "training_scale_symbolic_comparison_error": null,
+  "training_scale_symbolic_exact_match": null,
+  "training_scale_expression_node_count": 76,
+  "training_scale_expression_depth": 7,
+  "training_scale_expression_operator_count": 33,
+  "training_scale_expression_operators": [
+    "Add",
+    "Mul",
+    "Pow"
+  ],
+  "training_scale_expression_constant_count": 25,
+  "training_scale_expression_variable_count": 4,
+  "training_scale_expression_variables": [
+    "ambient_pressure",
+    "ambient_temperature",
+    "exhaust_vacuum",
+    "relative_humidity"
+  ],
+  "training_scale_simplified_node_count": 76,
+  "training_scale_simplified_depth": 7,
+  "training_scale_simplified_operator_count": 33,
+  "training_scale_simplified_operators": [
+    "Add",
+    "Mul",
+    "Pow"
+  ],
+  "training_scale_simplified_constant_count": 25,
+  "training_scale_simplified_variable_count": 4,
+  "training_scale_simplified_variables": [
+    "ambient_pressure",
+    "ambient_temperature",
+    "exhaust_vacuum",
+    "relative_humidity"
+  ],
+  "training_scale_simplified_expression": "493.993835 - 149999.318475623*((-0.26686*ambient_pressure - 1.055568*relative_humidity)*(0.066459422652*ambient_pressure - 4.29950569939915*ambient_temperature - 0.806127619765342*exhaust_vacuum) + 3.25908061335897*(0.366407 - 7.821745*ambient_pressure)*(-0.26686*ambient_pressure + 2.103212*ambient_temperature + 0.306835*exhaust_vacuum)/(exhaust_vacuum*(1.332782*ambient_temperature + 0.306835*exhaust_vacuum)))/(ambient_pressure*(-0.26686*ambient_pressure - 1.055568*ambient_temperature)*(-0.200400577348*ambient_pressure - 3.169792*ambient_temperature - 0.554459*exhaust_vacuum))",
+  "expression_parse_success": true,
+  "expression_parse_error": null,
+  "expression_simplify_success": true,
+  "expression_simplify_error": null,
+  "symbolic_comparison_error": null,
+  "symbolic_exact_match": null,
+  "expression_node_count": 76,
+  "expression_depth": 7,
+  "expression_operator_count": 33,
+  "expression_operators": [
+    "Add",
+    "Mul",
+    "Pow"
+  ],
+  "expression_constant_count": 25,
+  "expression_variable_count": 4,
+  "expression_variables": [
+    "ambient_pressure",
+    "ambient_temperature",
+    "exhaust_vacuum",
+    "relative_humidity"
+  ],
+  "simplified_node_count": 76,
+  "simplified_depth": 7,
+  "simplified_operator_count": 33,
+  "simplified_operators": [
+    "Add",
+    "Mul",
+    "Pow"
+  ],
+  "simplified_constant_count": 25,
+  "simplified_variable_count": 4,
+  "simplified_variables": [
+    "ambient_pressure",
+    "ambient_temperature",
+    "exhaust_vacuum",
+    "relative_humidity"
+  ],
+  "simplified_expression": "493.993835 - 149999.318475623*((-0.26686*ambient_pressure - 1.055568*relative_humidity)*(0.066459422652*ambient_pressure - 4.29950569939915*ambient_temperature - 0.806127619765342*exhaust_vacuum) + 3.25908061335897*(0.366407 - 7.821745*ambient_pressure)*(-0.26686*ambient_pressure + 2.103212*ambient_temperature + 0.306835*exhaust_vacuum)/(exhaust_vacuum*(1.332782*ambient_temperature + 0.306835*exhaust_vacuum)))/(ambient_pressure*(-0.26686*ambient_pressure - 1.055568*ambient_temperature)*(-0.200400577348*ambient_pressure - 3.169792*ambient_temperature - 0.554459*exhaust_vacuum))",
+  "source_result": "seed-3.json",
+  "source_result_sha256": "57bc161703deaffba29c23dfc157bf94a2a1677b7236dc0c0393b609fdb2c9e2"
+}

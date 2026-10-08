@@ -1,0 +1,10 @@
+Complexity,Loss,Equation
+1,104.8743,"22.172508"
+3,23.789873,"(overall_height * 4.2842135)"
+4,23.635967,"(overall_height * exp(1.4712168))"
+6,21.119202,"((exp(1.4607309) + glazing_area) * overall_height)"
+8,20.101183,"(overall_height * ((exp(1.5964453) - 0.7561387) + glazing_area))"
+9,19.212296,"(overall_height * ((exp(glazing_area) / 0.26612908) - log(1.2236876)))"
+10,14.5366745,"exp(sqrt((overall_height + 0.7524226) / sin(0.85198593)) + glazing_area)"
+14,10.763017,"(((exp(relative_compactness) / 0.3668384) + sqrt(exp(overall_height) * (glazing_area - -0.123994425))) / relative_compactness)"
+16,10.534187,"(((exp(sqrt(sin(relative_compactness))) / 0.3668384) + sqrt(exp(overall_height) * (glazing_area - -0.123994425))) / relative_compactness)"

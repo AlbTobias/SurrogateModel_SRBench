@@ -1,0 +1,10 @@
+Complexity,Loss,Equation
+1,274.0991,"34.510017"
+3,249.78606,"(superplasticizer - -28.933224)"
+5,182.51122,"sqrt(log(age) * cement)"
+7,156.4757,"sqrt(log(age / 0.56009835) * cement)"
+9,116.76964,"((sqrt(cement * log(age)) + 0.04355746) + superplasticizer)"
+11,116.699295,"(((sqrt(cement * log(age)) + 0.04355746) + 0.6736731) + superplasticizer)"
+17,116.61619,"(((sqrt(cement * log(age)) + ((1.1582668 + 0.6637248) / (water + -1.4628662))) + 0.46414706) + superplasticizer)"
+19,116.055565,"(((sqrt(cement * log(age)) - (sqrt(log(age)) / ((-0.011569837 * age) + age))) + 0.46414706) + superplasticizer)"
+20,115.93142,"(((sqrt(cement * log(age)) - (log(age) / (((blast_furnace_slag * age) * -0.2751778) + age))) + 0.46414706) + superplasticizer)"

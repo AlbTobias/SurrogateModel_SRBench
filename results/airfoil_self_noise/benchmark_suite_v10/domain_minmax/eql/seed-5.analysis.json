@@ -1,0 +1,96 @@
+{
+  "analysis_version": "expression_analysis_v2",
+  "analysis_status": "complete",
+  "problem": "airfoil_self_noise",
+  "algorithm": "eql",
+  "seed": 5,
+  "input_scaling": "domain_minmax",
+  "expression_timeout_seconds_per_stage": 60,
+  "analysis_seconds": 7.667210751999846,
+  "analysis_python": "3.11.15",
+  "analysis_platform": "Linux-7.0.0-30-generic-x86_64-with-glibc2.43",
+  "raw_scale_symbolic_model": "-0.0895495495495496*angle_of_attack + 110.952040085898*chord_length + 0.107070707070707*free_stream_velocity - 0.0043030303030303*frequency - 29.8566031480651*suction_side_displacement_thickness - (-0.0384684684684685*angle_of_attack - 5.71224051539012*chord_length + 0.000101515151515152*free_stream_velocity + 0.000151515151515152*frequency + 29.2360271011076*suction_side_displacement_thickness + 2.82484549867392)*(0.00347747747747748*angle_of_attack + 37.3013600572656*chord_length + 0.00019689898989899*free_stream_velocity + 0.000192220202020202*frequency + 256.842635256877*suction_side_displacement_thickness - 30.3307311046184) + 66.9002458317454",
+  "raw_scale_back_transform_error": null,
+  "complexity_valid": true,
+  "complexity_source": "simplified",
+  "training_scale_expression_parse_success": true,
+  "training_scale_expression_parse_error": null,
+  "training_scale_expression_simplify_success": true,
+  "training_scale_expression_simplify_error": null,
+  "training_scale_symbolic_comparison_error": null,
+  "training_scale_symbolic_exact_match": null,
+  "training_scale_expression_node_count": 53,
+  "training_scale_expression_depth": 4,
+  "training_scale_expression_operator_count": 19,
+  "training_scale_expression_operators": [
+    "Add",
+    "Mul"
+  ],
+  "training_scale_expression_constant_count": 19,
+  "training_scale_expression_variable_count": 5,
+  "training_scale_expression_variables": [
+    "angle_of_attack",
+    "chord_length",
+    "free_stream_velocity",
+    "frequency",
+    "suction_side_displacement_thickness"
+  ],
+  "training_scale_simplified_node_count": 53,
+  "training_scale_simplified_depth": 4,
+  "training_scale_simplified_operator_count": 19,
+  "training_scale_simplified_operators": [
+    "Add",
+    "Mul"
+  ],
+  "training_scale_simplified_constant_count": 19,
+  "training_scale_simplified_variable_count": 5,
+  "training_scale_simplified_variables": [
+    "angle_of_attack",
+    "chord_length",
+    "free_stream_velocity",
+    "frequency",
+    "suction_side_displacement_thickness"
+  ],
+  "training_scale_simplified_expression": "-0.994*angle_of_attack + 15.5*chord_length + 2.12*free_stream_velocity - 42.6*frequency - 0.866*suction_side_displacement_thickness - (-0.427*angle_of_attack - 0.798*chord_length + 0.00201*free_stream_velocity + 1.5*frequency + 0.848*suction_side_displacement_thickness + 3.85)*(0.0386*angle_of_attack + 5.211*chord_length + 0.0038986*free_stream_velocity + 1.90298*frequency + 7.4498*suction_side_displacement_thickness - 14.6294) + 45.4",
+  "expression_parse_success": true,
+  "expression_parse_error": null,
+  "expression_simplify_success": true,
+  "expression_simplify_error": null,
+  "symbolic_comparison_error": null,
+  "symbolic_exact_match": null,
+  "expression_node_count": 53,
+  "expression_depth": 4,
+  "expression_operator_count": 19,
+  "expression_operators": [
+    "Add",
+    "Mul"
+  ],
+  "expression_constant_count": 19,
+  "expression_variable_count": 5,
+  "expression_variables": [
+    "angle_of_attack",
+    "chord_length",
+    "free_stream_velocity",
+    "frequency",
+    "suction_side_displacement_thickness"
+  ],
+  "simplified_node_count": 53,
+  "simplified_depth": 4,
+  "simplified_operator_count": 19,
+  "simplified_operators": [
+    "Add",
+    "Mul"
+  ],
+  "simplified_constant_count": 19,
+  "simplified_variable_count": 5,
+  "simplified_variables": [
+    "angle_of_attack",
+    "chord_length",
+    "free_stream_velocity",
+    "frequency",
+    "suction_side_displacement_thickness"
+  ],
+  "simplified_expression": "-0.0895495495495496*angle_of_attack + 110.952040085898*chord_length + 0.107070707070707*free_stream_velocity - 0.0043030303030303*frequency - 29.8566031480651*suction_side_displacement_thickness - (-0.0384684684684685*angle_of_attack - 5.71224051539012*chord_length + 0.000101515151515152*free_stream_velocity + 0.000151515151515152*frequency + 29.2360271011076*suction_side_displacement_thickness + 2.82484549867392)*(0.00347747747747748*angle_of_attack + 37.3013600572656*chord_length + 0.00019689898989899*free_stream_velocity + 0.000192220202020202*frequency + 256.842635256877*suction_side_displacement_thickness - 30.3307311046184) + 66.9002458317454",
+  "source_result": "seed-5.json",
+  "source_result_sha256": "d55c7b17b99afb083988967b69260bb8e801c7e65cdd5f241b07d36e15326c0e"
+}

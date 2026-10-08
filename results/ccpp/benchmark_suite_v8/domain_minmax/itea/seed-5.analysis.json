@@ -1,0 +1,76 @@
+{
+  "analysis_version": "expression_analysis_v2",
+  "analysis_status": "complete",
+  "problem": "ccpp",
+  "algorithm": "itea",
+  "seed": 5,
+  "input_scaling": "domain_minmax",
+  "expression_timeout_seconds_per_stage": 60,
+  "analysis_seconds": 60.67174836299819,
+  "analysis_python": "3.11.15",
+  "analysis_platform": "Linux-7.0.0-29-generic-x86_64-with-glibc2.43",
+  "raw_scale_symbolic_model": "-1.972189456219353*ambient_temperature - 12.735546358328785*exp((10*exhaust_vacuum/281 - 2673/1405)*(10*relative_humidity/373 - 3143/1865)) + 505.76102454544915",
+  "raw_scale_back_transform_error": null,
+  "complexity_valid": true,
+  "complexity_source": "unsimplified_fallback",
+  "training_scale_expression_parse_success": true,
+  "training_scale_expression_parse_error": null,
+  "training_scale_expression_simplify_success": true,
+  "training_scale_expression_simplify_error": null,
+  "training_scale_symbolic_comparison_error": null,
+  "training_scale_symbolic_exact_match": null,
+  "training_scale_expression_node_count": 11,
+  "training_scale_expression_depth": 4,
+  "training_scale_expression_operator_count": 5,
+  "training_scale_expression_operators": [
+    "Add",
+    "Mul",
+    "exp"
+  ],
+  "training_scale_expression_constant_count": 3,
+  "training_scale_expression_variable_count": 3,
+  "training_scale_expression_variables": [
+    "ambient_temperature",
+    "exhaust_vacuum",
+    "relative_humidity"
+  ],
+  "training_scale_simplified_node_count": 11,
+  "training_scale_simplified_depth": 4,
+  "training_scale_simplified_operator_count": 5,
+  "training_scale_simplified_operators": [
+    "Add",
+    "Mul",
+    "exp"
+  ],
+  "training_scale_simplified_constant_count": 3,
+  "training_scale_simplified_variable_count": 3,
+  "training_scale_simplified_variables": [
+    "ambient_temperature",
+    "exhaust_vacuum",
+    "relative_humidity"
+  ],
+  "training_scale_simplified_expression": "-34.80914390227158*ambient_temperature - 12.735546358328785*exp(exhaust_vacuum*relative_humidity) + 467.38221772742054",
+  "expression_parse_success": true,
+  "expression_parse_error": null,
+  "expression_simplify_success": false,
+  "expression_simplify_error": "ExpressionTimeoutError: symbolic analysis exceeded 60 seconds",
+  "symbolic_comparison_error": null,
+  "symbolic_exact_match": null,
+  "expression_node_count": 19,
+  "expression_depth": 6,
+  "expression_operator_count": 9,
+  "expression_operators": [
+    "Add",
+    "Mul",
+    "exp"
+  ],
+  "expression_constant_count": 7,
+  "expression_variable_count": 3,
+  "expression_variables": [
+    "ambient_temperature",
+    "exhaust_vacuum",
+    "relative_humidity"
+  ],
+  "source_result": "seed-5.json",
+  "source_result_sha256": "601d155c4cfc19ff805652b709ef09490a3b2c4cc60539ebea4be719734a73c5"
+}

@@ -1,0 +1,88 @@
+{
+  "analysis_version": "expression_analysis_v2",
+  "analysis_status": "complete",
+  "problem": "naval_propulsion",
+  "algorithm": "pysr",
+  "seed": 11,
+  "input_scaling": "domain_minmax",
+  "expression_timeout_seconds_per_stage": 60,
+  "analysis_seconds": 0.3465388019976672,
+  "analysis_python": "3.11.15",
+  "analysis_platform": "Linux-7.0.0-29-generic-x86_64-with-glibc2.43",
+  "raw_scale_symbolic_model": "(0.07738675301558*exp(ship_speed/12 - 5/4)*sin(ship_speed/12 - 5/4) - 0.00909247993268009)*exp(ship_speed/12 - 5/4) + 0.48262474329556*exp(ship_speed/12 - 5/4)",
+  "raw_scale_back_transform_error": null,
+  "complexity_valid": true,
+  "complexity_source": "simplified",
+  "training_scale_expression_parse_success": true,
+  "training_scale_expression_parse_error": null,
+  "training_scale_expression_simplify_success": true,
+  "training_scale_expression_simplify_error": null,
+  "training_scale_symbolic_comparison_error": null,
+  "training_scale_symbolic_exact_match": null,
+  "training_scale_expression_node_count": 16,
+  "training_scale_expression_depth": 5,
+  "training_scale_expression_operator_count": 9,
+  "training_scale_expression_operators": [
+    "Add",
+    "Mul",
+    "exp",
+    "sin"
+  ],
+  "training_scale_expression_constant_count": 3,
+  "training_scale_expression_variable_count": 1,
+  "training_scale_expression_variables": [
+    "ship_speed"
+  ],
+  "training_scale_simplified_node_count": 11,
+  "training_scale_simplified_depth": 4,
+  "training_scale_simplified_operator_count": 6,
+  "training_scale_simplified_operators": [
+    "Add",
+    "Mul",
+    "exp",
+    "sin"
+  ],
+  "training_scale_simplified_constant_count": 2,
+  "training_scale_simplified_variable_count": 1,
+  "training_scale_simplified_variables": [
+    "ship_speed"
+  ],
+  "training_scale_simplified_expression": "(0.07738675301558*exp(ship_speed)*sin(ship_speed) + 0.47353226336288)*exp(ship_speed)",
+  "expression_parse_success": true,
+  "expression_parse_error": null,
+  "expression_simplify_success": true,
+  "expression_simplify_error": null,
+  "symbolic_comparison_error": null,
+  "symbolic_exact_match": null,
+  "expression_node_count": 32,
+  "expression_depth": 7,
+  "expression_operator_count": 17,
+  "expression_operators": [
+    "Add",
+    "Mul",
+    "exp",
+    "sin"
+  ],
+  "expression_constant_count": 11,
+  "expression_variable_count": 1,
+  "expression_variables": [
+    "ship_speed"
+  ],
+  "simplified_node_count": 23,
+  "simplified_depth": 6,
+  "simplified_operator_count": 12,
+  "simplified_operators": [
+    "Add",
+    "Mul",
+    "exp",
+    "sin"
+  ],
+  "simplified_constant_count": 8,
+  "simplified_variable_count": 1,
+  "simplified_variables": [
+    "ship_speed"
+  ],
+  "simplified_expression": "(0.07738675301558*exp(ship_speed/12 - 5/4)*sin(ship_speed/12 - 5/4) + 0.47353226336288)*exp(ship_speed/12 - 5/4)",
+  "source_result": "seed-11.json",
+  "source_result_sha256": "e63ef10972b975d24c998ce09f4995b6e4eaca41e15b1222d39f884244d0a960"
+}

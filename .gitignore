@@ -113,8 +113,6 @@ ENV/
 
 # Local surrogate benchmark artifacts
 .pytest_cache/
-results/*
-!results/.gitkeep
 data/generated/
 data/cantilever/
 data/borehole/
@@ -127,3 +125,7 @@ data/concrete_strength/
 data/energy_efficiency_heating/
 data/airfoil_self_noise/
 hall_of_fame_*
+
+# Preserve benchmark results, including JSON trial and analysis records.
+!results/
+!results/**

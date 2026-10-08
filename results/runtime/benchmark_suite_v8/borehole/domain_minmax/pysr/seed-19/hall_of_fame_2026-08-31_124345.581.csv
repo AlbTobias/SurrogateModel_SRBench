@@ -1,0 +1,12 @@
+Complexity,Loss,Equation
+1,2114.94,"78.46338"
+3,2079.192,"(81.369804 + borehole_radius)"
+4,349.05264,"exp(4.2094374 + borehole_radius)"
+5,339.75098,"exp(4.2094374 + sin(borehole_radius))"
+7,333.92133,"exp((2.1214025 + 2.1214025) + sin(borehole_radius))"
+9,290.3419,"((exp(borehole_radius - -2.0012324) - lower_head) * exp(2.1528943))"
+11,283.96686,"((exp(borehole_radius - (-2.0012324 / 0.9896429)) - lower_head) * exp(2.1528943))"
+14,275.77365,"(((exp((sin(borehole_radius) + 0.4169252) - -1.9278991) - borehole_length) + borehole_radius) / sin(0.15376082))"
+16,245.86989,"((exp(borehole_radius - -2.0012324) - sin(lower_head)) * ((sin(upper_head) / exp(borehole_radius)) + exp(2.1528943)))"
+18,238.62668,"((exp(borehole_radius - (-2.0012324 / 0.9896429)) - sin(lower_head)) * ((sin(upper_head) / exp(borehole_radius)) + exp(2.1528943)))"
+21,213.57887,"(((exp(borehole_radius - (-2.0012324 / 0.9896429)) - sin(lower_head)) * ((sin(upper_head) / sin(exp(upper_transmissivity))) + exp(2.1528943))) + 0.38473743)"

@@ -1,0 +1,114 @@
+{
+  "analysis_version": "expression_analysis_v2",
+  "analysis_status": "complete",
+  "problem": "piston",
+  "algorithm": "gplearn",
+  "seed": 2,
+  "input_scaling": "raw",
+  "expression_timeout_seconds_per_stage": 60,
+  "analysis_seconds": 0.41575861599994823,
+  "analysis_python": "3.11.15",
+  "analysis_platform": "Linux-7.0.0-29-generic-x86_64-with-glibc2.43",
+  "raw_scale_symbolic_model": "sin(sin(sin(add(sin(div(initial_volume, surface_area)), 0.069))))",
+  "raw_scale_back_transform_error": null,
+  "complexity_valid": true,
+  "complexity_source": "simplified",
+  "training_scale_expression_parse_success": true,
+  "training_scale_expression_parse_error": null,
+  "training_scale_expression_simplify_success": true,
+  "training_scale_expression_simplify_error": null,
+  "training_scale_symbolic_comparison_error": null,
+  "training_scale_symbolic_exact_match": null,
+  "training_scale_expression_node_count": 11,
+  "training_scale_expression_depth": 7,
+  "training_scale_expression_operator_count": 7,
+  "training_scale_expression_operators": [
+    "Add",
+    "Mul",
+    "Pow",
+    "sin"
+  ],
+  "training_scale_expression_constant_count": 2,
+  "training_scale_expression_variable_count": 2,
+  "training_scale_expression_variables": [
+    "initial_volume",
+    "surface_area"
+  ],
+  "training_scale_simplified_node_count": 11,
+  "training_scale_simplified_depth": 7,
+  "training_scale_simplified_operator_count": 7,
+  "training_scale_simplified_operators": [
+    "Add",
+    "Mul",
+    "Pow",
+    "sin"
+  ],
+  "training_scale_simplified_constant_count": 2,
+  "training_scale_simplified_variable_count": 2,
+  "training_scale_simplified_variables": [
+    "initial_volume",
+    "surface_area"
+  ],
+  "training_scale_simplified_expression": "sin(sin(sin(sin(initial_volume/surface_area) + 0.069)))",
+  "expression_parse_success": true,
+  "expression_parse_error": null,
+  "expression_simplify_success": true,
+  "expression_simplify_error": null,
+  "symbolic_comparison_error": null,
+  "symbolic_exact_match": false,
+  "expression_node_count": 11,
+  "expression_depth": 7,
+  "expression_operator_count": 7,
+  "expression_operators": [
+    "Add",
+    "Mul",
+    "Pow",
+    "sin"
+  ],
+  "expression_constant_count": 2,
+  "expression_variable_count": 2,
+  "expression_variables": [
+    "initial_volume",
+    "surface_area"
+  ],
+  "simplified_node_count": 11,
+  "simplified_depth": 7,
+  "simplified_operator_count": 7,
+  "simplified_operators": [
+    "Add",
+    "Mul",
+    "Pow",
+    "sin"
+  ],
+  "simplified_constant_count": 2,
+  "simplified_variable_count": 2,
+  "simplified_variables": [
+    "initial_volume",
+    "surface_area"
+  ],
+  "simplified_expression": "sin(sin(sin(sin(initial_volume/surface_area) + 0.069)))",
+  "ground_truth_node_count": 66,
+  "ground_truth_depth": 14,
+  "ground_truth_operator_count": 24,
+  "ground_truth_operators": [
+    "Add",
+    "Mul",
+    "Pow"
+  ],
+  "ground_truth_constant_count": 18,
+  "ground_truth_variable_count": 7,
+  "ground_truth_variables": [
+    "ambient_temperature",
+    "atmospheric_pressure",
+    "gas_temperature",
+    "initial_volume",
+    "piston_mass",
+    "spring_coefficient",
+    "surface_area"
+  ],
+  "ground_truth_expression": "2*pi*sqrt(piston_mass/(4*ambient_temperature*atmospheric_pressure*initial_volume*spring_coefficient**2/(gas_temperature*(-atmospheric_pressure*surface_area + initial_volume*spring_coefficient/surface_area - 19.62*piston_mass + sqrt(4*ambient_temperature*atmospheric_pressure*initial_volume*spring_coefficient/gas_temperature + (atmospheric_pressure*surface_area - initial_volume*spring_coefficient/surface_area + 19.62*piston_mass)**2))**2) + spring_coefficient))",
+  "ground_truth_variable_recall": 0.2857142857142857,
+  "simplified_to_ground_truth_size_ratio": 0.16666666666666666,
+  "source_result": "seed-2.json",
+  "source_result_sha256": "6f8e2e3abe74e313ee750eef37331ae1fab67fcb0ac6853a296bad1fbe5e9aeb"
+}

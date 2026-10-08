@@ -1,0 +1,108 @@
+{
+  "status": "success",
+  "problem": "gas_turbine_nox",
+  "algorithm": "itea",
+  "seed": 7,
+  "seed_parameter": null,
+  "train_samples": 400,
+  "test_samples": 4000,
+  "feature_names": [
+    "ambient_temperature",
+    "ambient_pressure",
+    "ambient_humidity",
+    "air_filter_pressure_difference",
+    "gas_turbine_exhaust_pressure",
+    "turbine_inlet_temperature",
+    "turbine_after_temperature",
+    "turbine_energy_yield",
+    "compressor_discharge_pressure"
+  ],
+  "dataset_policy": "fixed across algorithm trials",
+  "dataset_hash_scope": "SHA-256 of uncompressed table bytes",
+  "train_dataset_sha256": "663b72e6a205d52a2aa99c1cc7706c3c3dc85d728b6a73377b5a8ba4294426a5",
+  "test_dataset_sha256": "cd5d763a69d3d39d00034c1d645d835f9ff4d117409be9f19ceef4ce438a9f84",
+  "requested_population_size": null,
+  "requested_iterations": null,
+  "time_limit": null,
+  "profile": "benchmark",
+  "benchmark_name": "benchmark_suite_v8",
+  "config_file": "/workspace/configs/benchmark_suite_v8.json",
+  "configuration_schema_version": 2,
+  "configuration_sha256": "674e097628af3ce351b421c973b1ebdb7bf4d2087fa24a83ea042312a03335eb",
+  "use_dataframe": true,
+  "input_scaling": "raw",
+  "input_scaling_applied": false,
+  "input_scaling_source": "fixed documented problem domain",
+  "input_scaling_formula": "x unchanged",
+  "input_scaling_parameters": {
+    "ambient_temperature": {
+      "lower": -6.2348,
+      "upper": 37.103
+    },
+    "ambient_pressure": {
+      "lower": 985.85,
+      "upper": 1036.6
+    },
+    "ambient_humidity": {
+      "lower": 24.085,
+      "upper": 100.2
+    },
+    "air_filter_pressure_difference": {
+      "lower": 2.0874,
+      "upper": 7.6106
+    },
+    "gas_turbine_exhaust_pressure": {
+      "lower": 17.698,
+      "upper": 40.716
+    },
+    "turbine_inlet_temperature": {
+      "lower": 1000.8,
+      "upper": 1100.9
+    },
+    "turbine_after_temperature": {
+      "lower": 511.04,
+      "upper": 550.61
+    },
+    "turbine_energy_yield": {
+      "lower": 100.02,
+      "upper": 179.5
+    },
+    "compressor_discharge_pressure": {
+      "lower": 9.8518,
+      "upper": 15.159
+    }
+  },
+  "target_scaling": "none; target remains in original units",
+  "algorithm_configuration_role": "documented_adapter_defaults",
+  "algorithm_configuration_rationale": "Restates the population and generation settings already defined by the pinned SRBench adapter.",
+  "configured_parameters": {
+    "npop": 1000,
+    "ngens": 500
+  },
+  "applied_parameters": {
+    "npop": 1000,
+    "ngens": 500
+  },
+  "rmse": 13.74501462497532,
+  "nrmse_range": 0.16788009166494028,
+  "mae": 12.45983547446026,
+  "r2": -0.6972383920463916,
+  "max_absolute_error": 51.401706931443904,
+  "fit_seconds": 15.512076882999963,
+  "prediction_seconds": 0.000926530000015191,
+  "prediction_repeats": 5,
+  "prediction_scalar_broadcast": false,
+  "prediction_mean_seconds": 0.000779766000005111,
+  "prediction_median_seconds": 0.0007193230001121265,
+  "prediction_std_seconds": 9.708492049297516e-05,
+  "prediction_microseconds_per_sample": 0.17983075002803162,
+  "expression_extraction_seconds": 4.0115000047080684e-05,
+  "evaluation_seconds": 15.516372506999915,
+  "timing_scope": "fit/predict/expression extraction inside the running container; symbolic analysis, image pull, container startup, data generation, and metric serialization excluded",
+  "model_size": 41,
+  "symbolic_model": "-123.97637532004325 + 783049.807659786*Sqrt(Abs(ambient_pressure**(-1)*turbine_inlet_temperature**(-1)*compressor_discharge_pressure**(-1))) + -1237.1145725370204*Tanh(ambient_temperature*ambient_humidity*gas_turbine_exhaust_pressure**(-1)*turbine_inlet_temperature**(-1)*turbine_after_temperature*turbine_energy_yield**(-1)*compressor_discharge_pressure**(-1))",
+  "symbolic_model_coordinate_system": "raw",
+  "symbolic_analysis": "separate post-processing sidecar",
+  "python": "3.12.5",
+  "platform": "Linux-7.0.0-30-generic-x86_64-with-glibc2.36"
+}

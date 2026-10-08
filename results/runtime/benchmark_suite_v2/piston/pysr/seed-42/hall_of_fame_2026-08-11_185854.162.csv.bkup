@@ -1,0 +1,9 @@
+Complexity,Loss,Equation
+1,0.018954743,"0.45874357"
+2,0.018945402,"sqrt(0.21371631)"
+3,0.018405177,"(0.4562524 - surface_area)"
+4,0.015934307,"sqrt(initial_volume * piston_mass)"
+5,0.013617169,"sin(sqrt(initial_volume * piston_mass))"
+6,0.01233335,"(sin(initial_volume / surface_area) / 1.0332804)"
+7,0.005087373,"sin(log((initial_volume / surface_area) + 1.1872386))"
+13,0.0033244493,"(sqrt(sin(((initial_volume * 0.22430126) / surface_area) / 0.5675646)) + (0.22430126 / atmospheric_pressure))"

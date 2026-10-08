@@ -1,0 +1,10 @@
+Complexity,Loss,Equation
+1,0.01894576,"0.46107697"
+2,0.01894526,"exp(-0.77196497)"
+3,0.01480521,"(0.0047076787 / surface_area)"
+10,0.014773258,"(sin(0.43072048) + ((-0.5848176 / (surface_area / -0.4952644)) / ambient_temperature))"
+11,0.012432381,"((sqrt(sin(0.34675524)) + (0.2697323 / atmospheric_pressure)) + (surface_area / -0.07586703))"
+13,0.0044455463,"(sqrt(exp(-0.96174175)) + ((gas_temperature * ((initial_volume - surface_area) * -0.07155461)) * -1.1455429))"
+14,0.0033747035,"(sqrt(exp(-0.96174175)) + (sin(ambient_temperature * ((initial_volume - surface_area) * -0.07155461)) * -1.1455429))"
+29,0.0033619967,"((sqrt(exp(sin(-0.96174175))) + initial_volume) + (((log(surface_area / initial_volume) / ((log(1.7125784) + -0.96174175) + surface_area)) + (((log(1.7125784) * 0.27746478) + -0.96174175) + surface_area)) * 0.08162081))"
+30,0.0033619914,"((sqrt(exp(sin(-0.96174175))) + initial_volume) + (((log(surface_area / sin(initial_volume)) / ((log(1.7125784) + -0.96174175) + surface_area)) + (((log(1.7125784) * 0.27746478) + -0.96174175) + surface_area)) * 0.08162081))"

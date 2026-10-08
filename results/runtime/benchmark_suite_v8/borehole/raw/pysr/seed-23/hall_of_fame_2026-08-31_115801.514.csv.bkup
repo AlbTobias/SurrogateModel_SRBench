@@ -1,0 +1,13 @@
+Complexity,Loss,Equation
+1,2115.054,"77.06652"
+3,715.9934,"(804.5273 * borehole_radius)"
+5,663.8568,"(borehole_radius * (upper_head - 248.67842))"
+6,430.0475,"((borehole_radius * upper_head) - sqrt(lower_head))"
+8,359.6057,"((borehole_radius * (upper_head + lower_transmissivity)) - sqrt(borehole_length))"
+10,290.255,"((borehole_radius * (upper_head + (borehole_radius * upper_head))) - sqrt(borehole_length))"
+11,243.66888,"((((borehole_radius / 0.70211554) * upper_head) - sqrt(borehole_length)) - sqrt(borehole_length))"
+13,242.63666,"((((borehole_radius / 0.70211554) * (upper_head + 1.4584559)) - sqrt(borehole_length)) - sqrt(borehole_length))"
+14,237.89319,"((1.5660303 + (((sin(borehole_radius) / 0.70211554) * upper_head) - sqrt(borehole_length))) - sqrt(borehole_length))"
+15,235.07993,"(((((borehole_radius / 0.70211554) * (upper_head + 1.4584559)) - sqrt(borehole_length)) - sqrt(borehole_length)) + 2.2956095)"
+17,235.06737,"((((((borehole_radius / 0.70211554) * (upper_head + 1.4584559)) - sqrt(borehole_length)) + 0.9834609) - sqrt(borehole_length)) + 2.2956095)"
+19,228.48889,"((-0.34073386 + ((-1.3470789 + (0.40275764 / borehole_radius)) + (((borehole_radius / 0.70211554) * upper_head) - sqrt(borehole_length)))) - sqrt(borehole_length))"

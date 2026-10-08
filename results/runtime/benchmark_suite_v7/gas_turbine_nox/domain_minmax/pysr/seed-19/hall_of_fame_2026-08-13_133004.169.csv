@@ -1,0 +1,11 @@
+Complexity,Loss,Equation
+1,121.49818,"69.18574"
+3,117.39533,"(69.19864 - ambient_temperature)"
+5,82.13086,"(71.28583 + (ambient_temperature * -17.813217))"
+7,81.30581,"(72.38584 + (ambient_temperature * (50.809 * compressor_discharge_pressure)))"
+13,76.93076,"(((69.19864 + (ambient_temperature / -0.052453265)) - (gas_turbine_exhaust_pressure / 0.21204907)) - (ambient_temperature * -1.701169))"
+15,76.77579,"(((69.19864 + ((ambient_temperature / -0.052453265) - air_filter_pressure_difference)) - (gas_turbine_exhaust_pressure / 0.21204907)) - (ambient_temperature * -1.701169))"
+17,74.684845,"(((69.19864 + (ambient_temperature / (-0.052453265 / (gas_turbine_exhaust_pressure * -1.4410834)))) - (gas_turbine_exhaust_pressure / 0.21204907)) - (ambient_temperature * -1.701169))"
+19,60.008392,"(((69.19864 + (ambient_temperature / -0.052453265)) - ((ambient_temperature / -0.052453265) * ((sqrt(exp(-0.63476676)) + gas_turbine_exhaust_pressure) + gas_turbine_exhaust_pressure))) + -0.08478781)"
+25,59.031395,"((((69.19864 + (ambient_temperature / (-0.052453265 / (gas_turbine_exhaust_pressure * -1.4410834)))) + (ambient_temperature / (-0.07610884 / (gas_turbine_exhaust_pressure * -1.4410834)))) - (exp(ambient_temperature) / sin(1.1871574))) - -1.701169)"
+28,58.48501,"((((69.19864 + (ambient_temperature / (-0.052453265 / (gas_turbine_exhaust_pressure * -1.4410834)))) + (ambient_temperature / (-0.052453265 / (gas_turbine_exhaust_pressure * -1.4410834)))) - (exp(ambient_temperature) / exp(1.1871574))) - (exp(-1.4410834) + -1.701169))"

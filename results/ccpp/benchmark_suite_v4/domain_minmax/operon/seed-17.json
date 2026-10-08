@@ -1,0 +1,85 @@
+{
+  "status": "success",
+  "problem": "ccpp",
+  "algorithm": "operon",
+  "seed": 17,
+  "seed_parameter": "random_state",
+  "train_samples": 400,
+  "test_samples": 4000,
+  "feature_names": [
+    "ambient_temperature",
+    "exhaust_vacuum",
+    "ambient_pressure",
+    "relative_humidity"
+  ],
+  "dataset_policy": "fixed across algorithm trials",
+  "dataset_hash_scope": "SHA-256 of uncompressed table bytes",
+  "train_dataset_sha256": "fbdca0171ab3964d280c43bf8ac2995076bb71300d9e8ed4a4aa892b66a5f793",
+  "test_dataset_sha256": "002cd7e58a36d1f6350d7fb564f016e76e614490eca1066c9cbec1fa1dde7f29",
+  "requested_population_size": null,
+  "requested_iterations": null,
+  "time_limit": null,
+  "profile": "benchmark",
+  "benchmark_name": "benchmark_suite_v4",
+  "config_file": "/workspace/configs/benchmark_suite_v4.json",
+  "configuration_schema_version": 2,
+  "configuration_sha256": "d29f7fa60d3fde863b1074091a2041e3f8ff819d5fc6dd9fb0845d5d33334f4e",
+  "use_dataframe": false,
+  "input_scaling": "domain_minmax",
+  "input_scaling_applied": true,
+  "input_scaling_source": "fixed documented problem domain",
+  "input_scaling_formula": "z = 2 * (x - lower) / (upper - lower) - 1",
+  "input_scaling_parameters": {
+    "ambient_temperature": {
+      "lower": 1.81,
+      "upper": 37.11
+    },
+    "exhaust_vacuum": {
+      "lower": 25.36,
+      "upper": 81.56
+    },
+    "ambient_pressure": {
+      "lower": 992.89,
+      "upper": 1033.3
+    },
+    "relative_humidity": {
+      "lower": 25.56,
+      "upper": 100.16
+    }
+  },
+  "target_scaling": "none; target remains in original units",
+  "algorithm_configuration_role": "documented_adapter_defaults",
+  "algorithm_configuration_rationale": "Restates the effective settings of the legacy Operon estimator in the pinned SRBench image for auditability.",
+  "configured_parameters": {
+    "population_size": 1000,
+    "generations": 1000,
+    "max_evaluations": 1000000
+  },
+  "applied_parameters": {
+    "random_state": 17,
+    "population_size": 1000,
+    "generations": 1000,
+    "max_evaluations": 1000000
+  },
+  "rmse": 16.067021861331423,
+  "nrmse_range": 0.2143698713986848,
+  "mae": 3.7926107675170906,
+  "r2": 0.10212948484494955,
+  "max_absolute_error": 795.7767578125,
+  "fit_seconds": 4.0487115979995,
+  "prediction_seconds": 0.00018732900207396597,
+  "prediction_repeats": 5,
+  "prediction_mean_seconds": 0.00012148000096203759,
+  "prediction_median_seconds": 0.00010145299893338233,
+  "prediction_std_seconds": 4.291693592425473e-05,
+  "prediction_microseconds_per_sample": 0.025363249733345583,
+  "expression_extraction_seconds": 6.408700210158713e-05,
+  "evaluation_seconds": 4.0498410779982805,
+  "timing_scope": "fit/predict/expression extraction inside the running container; symbolic analysis, image pull, container startup, data generation, and metric serialization excluded",
+  "model_size": 97,
+  "symbolic_model": "(455.666565 + ((-7.505769) * (((((0.033016 * exhaust_vacuum) - 0.141424) - ((-0.232102) * ambient_temperature)) * ((((((-0.208721) * ambient_pressure) / (((-0.695240) * relative_humidity) - ((1.156926 * ambient_temperature) + (0.843856 * exhaust_vacuum)))) - (4.184033 * ambient_temperature)) - (((0.770031 * ambient_temperature) * (0.163420 * ambient_temperature)) / (((0.770031 * exhaust_vacuum) - (4.184033 * ambient_temperature)) - ((((-1.874738) * relative_humidity) - (2.718282 * exhaust_vacuum)) * (((-0.695240) * relative_humidity) - (1.959692 * exhaust_vacuum)))))) - ((((-0.695240) * relative_humidity) - (((-0.208721) * ambient_pressure) + (0.843856 * exhaust_vacuum))) * (((-0.948563) * exhaust_vacuum) - (3.071100 * exhaust_vacuum))))) + (((-0.208721) * ambient_pressure) - ((((-0.695240) * relative_humidity) - (3.914082 * ambient_temperature)) + ((-0.948563) * exhaust_vacuum))))))",
+  "symbolic_model_coordinate_system": "domain_minmax",
+  "symbolic_analysis": "separate post-processing sidecar",
+  "python": "3.12.5",
+  "platform": "Linux-7.0.0-29-generic-x86_64-with-glibc2.36"
+}

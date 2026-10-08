@@ -1,0 +1,104 @@
+{
+  "status": "success",
+  "problem": "concrete_strength",
+  "algorithm": "gplearn",
+  "seed": 3,
+  "seed_parameter": "random_state",
+  "train_samples": 400,
+  "test_samples": 592,
+  "feature_names": [
+    "cement",
+    "blast_furnace_slag",
+    "fly_ash",
+    "water",
+    "superplasticizer",
+    "coarse_aggregate",
+    "fine_aggregate",
+    "age"
+  ],
+  "dataset_policy": "fixed across algorithm trials",
+  "dataset_hash_scope": "SHA-256 of uncompressed table bytes",
+  "train_dataset_sha256": "10bccfdc34cc23641ef9d20fef46a4bdcb1035380ee9344bbed9277f76ef3ffd",
+  "test_dataset_sha256": "91ad97074b5b15ec9ab59f1105b6e901837e4dcc8f4e7c62ebdedd530957b522",
+  "requested_population_size": null,
+  "requested_iterations": null,
+  "time_limit": null,
+  "profile": "benchmark",
+  "benchmark_name": "benchmark_suite_v8",
+  "config_file": "/workspace/configs/benchmark_suite_v8.json",
+  "configuration_schema_version": 2,
+  "configuration_sha256": "674e097628af3ce351b421c973b1ebdb7bf4d2087fa24a83ea042312a03335eb",
+  "use_dataframe": true,
+  "input_scaling": "domain_minmax",
+  "input_scaling_applied": true,
+  "input_scaling_source": "fixed documented problem domain",
+  "input_scaling_formula": "z = 2 * (x - lower) / (upper - lower) - 1",
+  "input_scaling_parameters": {
+    "cement": {
+      "lower": 102.0,
+      "upper": 540.0
+    },
+    "blast_furnace_slag": {
+      "lower": 0.0,
+      "upper": 359.4
+    },
+    "fly_ash": {
+      "lower": 0.0,
+      "upper": 200.1
+    },
+    "water": {
+      "lower": 121.8,
+      "upper": 247.0
+    },
+    "superplasticizer": {
+      "lower": 0.0,
+      "upper": 32.2
+    },
+    "coarse_aggregate": {
+      "lower": 801.0,
+      "upper": 1145.0
+    },
+    "fine_aggregate": {
+      "lower": 594.0,
+      "upper": 992.6
+    },
+    "age": {
+      "lower": 1.0,
+      "upper": 365.0
+    }
+  },
+  "target_scaling": "none; target remains in original units",
+  "algorithm_configuration_role": "project_budget_override",
+  "algorithm_configuration_rationale": "Reduced from the SRBench adapter's 1000 individuals and 500 generations to keep repeated trials computationally feasible; not selected using test performance.",
+  "configured_parameters": {
+    "population_size": 500,
+    "generations": 100
+  },
+  "applied_parameters": {
+    "random_state": 3,
+    "population_size": 500,
+    "generations": 100
+  },
+  "rmse": 11.655718680171788,
+  "nrmse_range": 0.15202450345861207,
+  "mae": 8.81957856152952,
+  "r2": 0.47074177060970135,
+  "max_absolute_error": 48.59179500712011,
+  "fit_seconds": 72.59836107199953,
+  "prediction_seconds": 0.0021602159995381953,
+  "prediction_repeats": 5,
+  "prediction_scalar_broadcast": false,
+  "prediction_mean_seconds": 0.0020195816003251823,
+  "prediction_median_seconds": 0.0019884610010194592,
+  "prediction_std_seconds": 7.934263012079108e-05,
+  "prediction_microseconds_per_sample": 3.3588868260463838,
+  "expression_extraction_seconds": 0.0005609199997707037,
+  "evaluation_seconds": 72.60935409400008,
+  "timing_scope": "fit/predict/expression extraction inside the running container; symbolic analysis, image pull, container startup, data generation, and metric serialization excluded",
+  "model_size": 497,
+  "symbolic_model": "add(add(cos(add(0.763, coarse_aggregate)), add(add(log(add(add(mul(age, fine_aggregate), mul(sub(log(mul(coarse_aggregate, water)), div(log(mul(blast_furnace_slag, div(add(log(superplasticizer), add(log(superplasticizer), cos(superplasticizer))), log(mul(age, superplasticizer))))), log(coarse_aggregate))), add(div(superplasticizer, mul(sqrt(div(-0.043, cement)), sub(div(0.374, superplasticizer), sin(log(cement))))), add(blast_furnace_slag, blast_furnace_slag)))), add(sqrt(div(superplasticizer, blast_furnace_slag)), sqrt(div(add(sin(fine_aggregate), sqrt(superplasticizer)), cos(blast_furnace_slag)))))), mul(div(sub(add(add(blast_furnace_slag, blast_furnace_slag), sub(fly_ash, cement)), cos(sub(water, age))), sqrt(cos(add(water, -0.359)))), add(log(sub(fine_aggregate, blast_furnace_slag)), add(add(blast_furnace_slag, blast_furnace_slag), add(add(add(blast_furnace_slag, blast_furnace_slag), sub(fly_ash, cement)), log(mul(blast_furnace_slag, div(add(log(superplasticizer), cos(sqrt(superplasticizer))), log(mul(age, superplasticizer)))))))))), add(sqrt(add(add(add(log(div(add(fine_aggregate, add(log(fine_aggregate), log(sub(water, age)))), mul(coarse_aggregate, water))), add(add(sqrt(superplasticizer), mul(sub(log(mul(coarse_aggregate, water)), sqrt(add(blast_furnace_slag, blast_furnace_slag))), add(log(sub(fine_aggregate, blast_furnace_slag)), add(add(add(blast_furnace_slag, blast_furnace_slag), sub(fly_ash, cement)), log(mul(blast_furnace_slag, div(add(superplasticizer, cos(mul(age, superplasticizer))), log(mul(age, superplasticizer))))))))), add(sqrt(add(sqrt(div(sub(log(mul(coarse_aggregate, water)), sqrt(div(superplasticizer, blast_furnace_slag))), add(0.763, coarse_aggregate))), sqrt(superplasticizer))), mul(sub(add(log(fine_aggregate), log(mul(blast_furnace_slag, add(sin(fine_aggregate), sqrt(superplasticizer))))), sqrt(div(superplasticizer, mul(sqrt(div(-0.043, cement)), sub(div(0.374, superplasticizer), add(log(fine_aggregate), div(add(superplasticizer, cos(sqrt(superplasticizer))), log(mul(age, superplasticizer))))))))), add(log(mul(age, superplasticizer)), add(fine_aggregate, add(superplasticizer, log(mul(blast_furnace_slag, div(log(fine_aggregate), log(mul(age, superplasticizer)))))))))))), add(sqrt(div(superplasticizer, blast_furnace_slag)), superplasticizer)), sqrt(superplasticizer))), add(sqrt(superplasticizer), log(add(add(sqrt(div(superplasticizer, blast_furnace_slag)), mul(sub(log(mul(coarse_aggregate, water)), div(add(water, -0.359), log(coarse_aggregate))), add(add(add(blast_furnace_slag, blast_furnace_slag), sub(fly_ash, cement)), log(mul(blast_furnace_slag, div(add(log(superplasticizer), cos(blast_furnace_slag)), log(mul(age, superplasticizer)))))))), add(sin(log(cement)), sqrt(div(sub(log(mul(coarse_aggregate, water)), sqrt(add(blast_furnace_slag, blast_furnace_slag))), add(0.763, coarse_aggregate)))))))))), add(cos(add(0.763, coarse_aggregate)), sqrt(div(add(sin(fine_aggregate), add(sin(fine_aggregate), log(mul(age, superplasticizer)))), div(sin(age), div(div(sub(add(superplasticizer, log(mul(blast_furnace_slag, div(log(fine_aggregate), log(mul(age, superplasticizer)))))), add(add(sqrt(superplasticizer), mul(sub(add(log(fine_aggregate), log(mul(blast_furnace_slag, div(sub(water, age), log(mul(age, superplasticizer)))))), sqrt(div(superplasticizer, blast_furnace_slag))), add(log(mul(superplasticizer, superplasticizer)), add(fine_aggregate, add(log(fine_aggregate), log(div(sqrt(cement), div(div(sub(mul(age, superplasticizer), add(add(sqrt(superplasticizer), mul(sub(add(log(fine_aggregate), log(mul(blast_furnace_slag, div(add(log(superplasticizer), cos(superplasticizer)), log(mul(age, log(fine_aggregate))))))), sqrt(div(superplasticizer, blast_furnace_slag))), add(log(mul(age, superplasticizer)), add(fine_aggregate, add(log(fine_aggregate), log(mul(blast_furnace_slag, div(add(sin(fine_aggregate), sqrt(superplasticizer)), log(mul(age, superplasticizer)))))))))), add(sqrt(add(sin(fine_aggregate), sqrt(superplasticizer))), sqrt(sin(fine_aggregate))))), sin(age)), div(sqrt(cement), cos(blast_furnace_slag)))))))))), add(sqrt(cos(blast_furnace_slag)), div(superplasticizer, mul(sqrt(div(-0.043, cement)), sub(div(0.374, superplasticizer), sub(water, age))))))), sin(age)), div(sqrt(cement), cos(blast_furnace_slag))))))))",
+  "symbolic_model_coordinate_system": "domain_minmax",
+  "symbolic_analysis": "separate post-processing sidecar",
+  "python": "3.12.5",
+  "platform": "Linux-7.0.0-30-generic-x86_64-with-glibc2.36"
+}

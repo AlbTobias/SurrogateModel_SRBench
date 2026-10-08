@@ -1,0 +1,102 @@
+{
+  "status": "success",
+  "problem": "energy_efficiency_heating",
+  "algorithm": "eql",
+  "seed": 13,
+  "seed_parameter": "random_state",
+  "train_samples": 400,
+  "test_samples": 368,
+  "feature_names": [
+    "relative_compactness",
+    "surface_area",
+    "wall_area",
+    "roof_area",
+    "overall_height",
+    "orientation",
+    "glazing_area",
+    "glazing_area_distribution"
+  ],
+  "dataset_policy": "fixed across algorithm trials",
+  "dataset_hash_scope": "SHA-256 of uncompressed table bytes",
+  "train_dataset_sha256": "effde405e6758d431ac4edd3a52b99deab9ae28c02a0bba0a8ca4349571339af",
+  "test_dataset_sha256": "f0669327566bfcbb5d33278c87ab79ced39b1b9cd383efa666dcf9cc2aeb0fe6",
+  "requested_population_size": null,
+  "requested_iterations": null,
+  "time_limit": null,
+  "profile": "benchmark",
+  "benchmark_name": "benchmark_suite_v9",
+  "config_file": "/workspace/configs/benchmark_suite_v9.json",
+  "configuration_schema_version": 2,
+  "configuration_sha256": "3ab7503025ae4e84f31563c21dcfac02bb187d264b064522d8474776085d526c",
+  "use_dataframe": false,
+  "input_scaling": "domain_minmax",
+  "input_scaling_applied": true,
+  "input_scaling_source": "fixed documented problem domain",
+  "input_scaling_formula": "z = 2 * (x - lower) / (upper - lower) - 1",
+  "input_scaling_parameters": {
+    "relative_compactness": {
+      "lower": 0.62,
+      "upper": 0.98
+    },
+    "surface_area": {
+      "lower": 514.5,
+      "upper": 808.5
+    },
+    "wall_area": {
+      "lower": 245.0,
+      "upper": 416.5
+    },
+    "roof_area": {
+      "lower": 110.25,
+      "upper": 220.5
+    },
+    "overall_height": {
+      "lower": 3.5,
+      "upper": 7.0
+    },
+    "orientation": {
+      "lower": 2.0,
+      "upper": 5.0
+    },
+    "glazing_area": {
+      "lower": 0.0,
+      "upper": 0.4
+    },
+    "glazing_area_distribution": {
+      "lower": 0.0,
+      "upper": 5.0
+    }
+  },
+  "target_scaling": "none; target remains in original units",
+  "algorithm_configuration_role": "documented_adapter_defaults",
+  "algorithm_configuration_rationale": "Restates the 10000 optimization iterations already defined by the pinned SRBench adapter; the adapter's inactive candidate grid is not used.",
+  "configured_parameters": {
+    "n_iter": 10000
+  },
+  "applied_parameters": {
+    "random_state": 13,
+    "n_iter": 10000
+  },
+  "rmse": 2.362616853726294,
+  "nrmse_range": 0.06437648102796441,
+  "mae": 1.8661140367293,
+  "r2": 0.943166621503731,
+  "max_absolute_error": 8.703939725682794,
+  "fit_seconds": 24.858560253000178,
+  "prediction_seconds": 0.10420712899940554,
+  "prediction_repeats": 5,
+  "prediction_scalar_broadcast": false,
+  "prediction_mean_seconds": 0.02695051920018159,
+  "prediction_median_seconds": 0.007564658000774216,
+  "prediction_std_seconds": 0.04318846129419199,
+  "prediction_microseconds_per_sample": 20.556135871669063,
+  "expression_extraction_seconds": 0.12747980100175482,
+  "evaluation_seconds": 25.121184196003014,
+  "timing_scope": "fit/predict/expression extraction inside the running container; symbolic analysis, image pull, container startup, data generation, and metric serialization excluded",
+  "model_size": null,
+  "symbolic_model": "10.3*relative_compactness - 0.00201*surface_area + 9.1*wall_area - 0.416*roof_area - 0.33*overall_height + 0.026*orientation + 4.82*glazing_area + 0.688*glazing_area_distribution + 3.46*(-2.07*relative_compactness + 0.353*surface_area - 4.87*wall_area + 1.9*roof_area - 2.02*overall_height + 0.011*orientation + 0.148*glazing_area + 0.218*glazing_area_distribution + 1.43)*(-0.386*relative_compactness - 2.49*surface_area + 1.16*wall_area - 1.58*roof_area - 2.75*overall_height - 0.031*orientation - 0.062*glazing_area - 0.00903*glazing_area_distribution + 0.242) + 26.0",
+  "symbolic_model_coordinate_system": "domain_minmax",
+  "symbolic_analysis": "separate post-processing sidecar",
+  "python": "3.10.14",
+  "platform": "Linux-7.0.0-30-generic-x86_64-with-glibc2.36"
+}

@@ -1,0 +1,84 @@
+{
+  "status": "success",
+  "problem": "ccpp",
+  "algorithm": "gplearn",
+  "seed": 3,
+  "seed_parameter": "random_state",
+  "train_samples": 400,
+  "test_samples": 4000,
+  "feature_names": [
+    "ambient_temperature",
+    "exhaust_vacuum",
+    "ambient_pressure",
+    "relative_humidity"
+  ],
+  "dataset_policy": "fixed across algorithm trials",
+  "dataset_hash_scope": "SHA-256 of uncompressed table bytes",
+  "train_dataset_sha256": "fbdca0171ab3964d280c43bf8ac2995076bb71300d9e8ed4a4aa892b66a5f793",
+  "test_dataset_sha256": "002cd7e58a36d1f6350d7fb564f016e76e614490eca1066c9cbec1fa1dde7f29",
+  "requested_population_size": null,
+  "requested_iterations": null,
+  "time_limit": null,
+  "profile": "benchmark",
+  "benchmark_name": "benchmark_suite_v8",
+  "config_file": "/workspace/configs/benchmark_suite_v8.json",
+  "configuration_schema_version": 2,
+  "configuration_sha256": "674e097628af3ce351b421c973b1ebdb7bf4d2087fa24a83ea042312a03335eb",
+  "use_dataframe": true,
+  "input_scaling": "domain_minmax",
+  "input_scaling_applied": true,
+  "input_scaling_source": "fixed documented problem domain",
+  "input_scaling_formula": "z = 2 * (x - lower) / (upper - lower) - 1",
+  "input_scaling_parameters": {
+    "ambient_temperature": {
+      "lower": 1.81,
+      "upper": 37.11
+    },
+    "exhaust_vacuum": {
+      "lower": 25.36,
+      "upper": 81.56
+    },
+    "ambient_pressure": {
+      "lower": 992.89,
+      "upper": 1033.3
+    },
+    "relative_humidity": {
+      "lower": 25.56,
+      "upper": 100.16
+    }
+  },
+  "target_scaling": "none; target remains in original units",
+  "algorithm_configuration_role": "project_budget_override",
+  "algorithm_configuration_rationale": "Reduced from the SRBench adapter's 1000 individuals and 500 generations to keep repeated trials computationally feasible; not selected using test performance.",
+  "configured_parameters": {
+    "population_size": 500,
+    "generations": 100
+  },
+  "applied_parameters": {
+    "random_state": 3,
+    "population_size": 500,
+    "generations": 100
+  },
+  "rmse": 30.918786451654018,
+  "nrmse_range": 0.4125255030240697,
+  "mae": 15.322947431482278,
+  "r2": -2.3249706830461614,
+  "max_absolute_error": 363.81523205442977,
+  "fit_seconds": 70.18095339299907,
+  "prediction_seconds": 0.004586204999213805,
+  "prediction_repeats": 5,
+  "prediction_scalar_broadcast": false,
+  "prediction_mean_seconds": 0.00425976259939489,
+  "prediction_median_seconds": 0.004157175000727875,
+  "prediction_std_seconds": 0.00019522535064220265,
+  "prediction_microseconds_per_sample": 1.0392937501819688,
+  "expression_extraction_seconds": 0.0005347250007616822,
+  "evaluation_seconds": 70.20312368099985,
+  "timing_scope": "fit/predict/expression extraction inside the running container; symbolic analysis, image pull, container startup, data generation, and metric serialization excluded",
+  "model_size": 464,
+  "symbolic_model": "div(add(add(sqrt(mul(sqrt(mul(div(sub(sin(mul(exhaust_vacuum, ambient_pressure)), div(add(sqrt(ambient_pressure), sub(sqrt(relative_humidity), sub(exhaust_vacuum, div(add(log(div(log(sub(exhaust_vacuum, div(add(log(div(log(sin(log(sqrt(0.914)))), log(sqrt(0.914)))), sqrt(relative_humidity)), sub(0.973, 0.669)))), log(sqrt(0.914)))), sqrt(relative_humidity)), sub(0.973, 0.669))))), sub(0.973, 0.669))), sin(log(cos(sub(sqrt(ambient_pressure), log(div(div(log(sub(sqrt(mul(div(add(ambient_pressure, ambient_pressure), sub(0.973, 0.669)), div(log(add(add(ambient_pressure, ambient_pressure), sqrt(relative_humidity))), log(sqrt(0.914))))), sub(add(ambient_pressure, ambient_pressure), div(add(log(div(log(sin(mul(exhaust_vacuum, ambient_pressure))), log(sqrt(0.914)))), sub(sqrt(sqrt(0.914)), log(sin(mul(exhaust_vacuum, ambient_pressure))))), sub(0.973, 0.669))))), log(sqrt(0.914))), log(sqrt(0.914))))))))), sin(cos(ambient_pressure)))), div(add(add(add(sqrt(mul(div(div(exhaust_vacuum, mul(exhaust_vacuum, ambient_pressure)), sub(sqrt(exhaust_vacuum), log(mul(ambient_pressure, ambient_pressure)))), sqrt(mul(sub(add(ambient_pressure, ambient_pressure), div(add(log(div(log(sin(log(div(log(sin(mul(exhaust_vacuum, ambient_pressure))), log(sqrt(0.914)))))), log(sqrt(0.914)))), sub(sqrt(sqrt(0.914)), log(sqrt(mul(mul(exhaust_vacuum, ambient_pressure), ambient_pressure))))), sub(0.973, 0.669))), add(add(add(sqrt(mul(mul(exhaust_vacuum, ambient_pressure), ambient_pressure)), div(add(sqrt(mul(sqrt(mul(div(sub(log(div(sqrt(relative_humidity), sqrt(ambient_pressure))), div(add(sqrt(ambient_pressure), sub(sqrt(ambient_pressure), sub(add(ambient_pressure, ambient_pressure), div(add(log(div(log(div(div(div(add(sqrt(ambient_pressure), sub(sqrt(exhaust_vacuum), log(mul(ambient_pressure, ambient_pressure)))), sub(0.973, 0.669)), sub(0.973, 0.669)), log(sub(ambient_pressure, log(div(div(sqrt(0.914), log(sqrt(0.914))), log(sqrt(0.914)))))))), log(sqrt(0.914)))), sqrt(relative_humidity)), sub(0.973, 0.669))))), sub(sqrt(exhaust_vacuum), 0.669))), exhaust_vacuum), sin(exhaust_vacuum))), div(add(mul(div(sub(log(sqrt(mul(exhaust_vacuum, ambient_pressure))), div(add(sqrt(ambient_pressure), sub(sqrt(ambient_pressure), sub(sub(0.973, 0.669), div(add(log(div(log(sub(sqrt(ambient_pressure), log(div(div(sqrt(0.914), log(sqrt(0.914))), log(sqrt(0.914)))))), log(sqrt(0.914)))), div(add(sqrt(ambient_pressure), sub(sqrt(exhaust_vacuum), log(sub(0.973, 0.669)))), sub(0.973, 0.669))), sub(0.973, 0.669))))), sub(sqrt(exhaust_vacuum), 0.669))), exhaust_vacuum), sin(cos(sin(mul(exhaust_vacuum, ambient_pressure))))), sub(sqrt(ambient_pressure), log(mul(relative_humidity, ambient_pressure)))), sub(0.973, 0.669)))), sqrt(ambient_pressure)), add(mul(exhaust_vacuum, ambient_pressure), ambient_pressure))), add(sqrt(0.914), div(log(sin(mul(exhaust_vacuum, ambient_pressure))), log(sqrt(0.914))))), sub(sqrt(ambient_pressure), sqrt(0.914))))))), div(log(sin(mul(exhaust_vacuum, ambient_pressure))), log(sqrt(0.914)))), add(div(sqrt(relative_humidity), sqrt(ambient_pressure)), log(div(log(sin(mul(exhaust_vacuum, ambient_pressure))), log(cos(sin(mul(exhaust_vacuum, ambient_pressure)))))))), sub(mul(exhaust_vacuum, ambient_pressure), log(sqrt(ambient_pressure)))), sub(0.973, 0.669)))), add(ambient_pressure, ambient_pressure)), mul(add(div(add(div(div(add(sqrt(ambient_pressure), sub(sqrt(exhaust_vacuum), log(mul(ambient_pressure, ambient_pressure)))), sub(0.973, 0.669)), sub(0.973, 0.669)), sub(sqrt(exhaust_vacuum), log(mul(ambient_pressure, ambient_pressure)))), sub(0.973, 0.669)), div(sqrt(0.914), mul(mul(sqrt(ambient_pressure), sqrt(ambient_pressure)), sqrt(ambient_pressure)))), sqrt(ambient_pressure))), sub(0.973, 0.669))",
+  "symbolic_model_coordinate_system": "domain_minmax",
+  "symbolic_analysis": "separate post-processing sidecar",
+  "python": "3.12.5",
+  "platform": "Linux-7.0.0-29-generic-x86_64-with-glibc2.36"
+}

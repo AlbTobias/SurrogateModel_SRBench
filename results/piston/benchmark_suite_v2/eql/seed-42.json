@@ -1,0 +1,92 @@
+{
+  "problem": "piston",
+  "algorithm": "eql",
+  "seed": 42,
+  "seed_parameter": "random_state",
+  "train_samples": 400,
+  "test_samples": 4000,
+  "requested_population_size": null,
+  "requested_iterations": null,
+  "time_limit": null,
+  "profile": "benchmark",
+  "benchmark_name": "benchmark_suite_v2",
+  "config_file": "/workspace/configs/benchmark_suite_v2.json",
+  "use_dataframe": false,
+  "applied_parameters": {
+    "random_state": 42,
+    "n_iter": 10000
+  },
+  "rmse": 0.21983319761191883,
+  "nrmse_range": 0.2550781644914722,
+  "mae": 0.18098280865466068,
+  "r2": -1.402575402078973,
+  "max_absolute_error": 0.6412439087351782,
+  "fit_seconds": 24.278715065000142,
+  "prediction_seconds": 0.10263374500027567,
+  "prediction_repeats": 5,
+  "prediction_mean_seconds": 0.026557157400202414,
+  "prediction_median_seconds": 0.007409351000205788,
+  "prediction_std_seconds": 0.042528940967196144,
+  "prediction_microseconds_per_sample": 1.852337750051447,
+  "expression_extraction_seconds": 0.08804698600033589,
+  "expression_analysis_seconds": 0.2775882289997753,
+  "evaluation_seconds": 24.777532167999198,
+  "timing_scope": "fit/predict/expression processing inside the running container; image pull, container startup, data generation, and metric serialization excluded",
+  "model_size": null,
+  "symbolic_model": "0.00101*initial_volume + 0.079",
+  "expression_parse_success": true,
+  "expression_parse_error": null,
+  "expression_simplify_success": true,
+  "expression_simplify_error": null,
+  "symbolic_comparison_error": null,
+  "symbolic_exact_match": false,
+  "expression_node_count": 5,
+  "expression_depth": 2,
+  "expression_operator_count": 2,
+  "expression_operators": [
+    "Add",
+    "Mul"
+  ],
+  "expression_constant_count": 2,
+  "expression_variable_count": 1,
+  "expression_variables": [
+    "initial_volume"
+  ],
+  "simplified_node_count": 5,
+  "simplified_depth": 2,
+  "simplified_operator_count": 2,
+  "simplified_operators": [
+    "Add",
+    "Mul"
+  ],
+  "simplified_constant_count": 2,
+  "simplified_variable_count": 1,
+  "simplified_variables": [
+    "initial_volume"
+  ],
+  "simplified_expression": "0.00101*initial_volume + 0.079",
+  "ground_truth_node_count": 66,
+  "ground_truth_depth": 14,
+  "ground_truth_operator_count": 23,
+  "ground_truth_operators": [
+    "Add",
+    "Mul",
+    "Pow"
+  ],
+  "ground_truth_constant_count": 19,
+  "ground_truth_variable_count": 7,
+  "ground_truth_variables": [
+    "ambient_temperature",
+    "atmospheric_pressure",
+    "gas_temperature",
+    "initial_volume",
+    "piston_mass",
+    "spring_coefficient",
+    "surface_area"
+  ],
+  "ground_truth_expression": "2*pi*sqrt(piston_mass/(0.0103911110279822*ambient_temperature*atmospheric_pressure*initial_volume*spring_coefficient**2/(gas_temperature*(-0.0509683995922528*atmospheric_pressure*surface_area + 0.0509683995922528*initial_volume*spring_coefficient/surface_area - piston_mass + sqrt(0.0103911110279822*ambient_temperature*atmospheric_pressure*initial_volume*spring_coefficient/gas_temperature + (0.0509683995922528*atmospheric_pressure*surface_area - 0.0509683995922528*initial_volume*spring_coefficient/surface_area + piston_mass)**2))**2) + spring_coefficient))",
+  "ground_truth_variable_recall": 0.14285714285714285,
+  "simplified_to_ground_truth_size_ratio": 0.07575757575757576,
+  "python": "3.10.14",
+  "platform": "Linux-7.0.0-29-generic-x86_64-with-glibc2.36"
+}

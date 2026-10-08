@@ -1,0 +1,13 @@
+Complexity,Loss,Equation
+1,0.018948948,"0.4598952"
+2,0.018945295,"log(1.5864717)"
+3,0.018118856,"(0.46796182 - surface_area)"
+4,0.014549646,"sin(initial_volume / surface_area)"
+5,0.013617169,"sin(sqrt(piston_mass * initial_volume))"
+6,0.003210715,"sqrt((initial_volume * 0.42058077) / surface_area)"
+7,0.0030784635,"sqrt(sin((initial_volume * 0.42584532) / surface_area))"
+11,0.0029582742,"(sqrt(sin((initial_volume * 0.47056204) / surface_area)) - (surface_area + surface_area))"
+13,0.0021495447,"(sqrt(sin((initial_volume * 0.33849138) / surface_area)) + (piston_mass / (surface_area * atmospheric_pressure)))"
+17,0.0019993251,"(sqrt(sin((initial_volume * 0.5411432) / surface_area)) + (initial_volume * ((0.5079545 - (spring_coefficient + initial_volume)) / ambient_temperature)))"
+22,0.0019992334,"(sqrt(sin((initial_volume * 0.5411432) / surface_area)) + (initial_volume * ((exp(0.5079545) - (spring_coefficient - (sqrt(spring_coefficient) - sqrt(spring_coefficient)))) / ambient_temperature)))"
+26,0.0019726234,"(sqrt(sin((initial_volume * (0.5411432 - -0.013139885)) / surface_area)) + (initial_volume * ((exp(0.5079545) - (spring_coefficient - (sqrt(1.2693613 - 0.32351437) - sqrt(spring_coefficient)))) / ambient_temperature)))"

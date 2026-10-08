@@ -1,0 +1,100 @@
+{
+  "status": "success",
+  "problem": "piston",
+  "algorithm": "operon",
+  "seed": 17,
+  "seed_parameter": "random_state",
+  "train_samples": 400,
+  "test_samples": 4000,
+  "feature_names": [
+    "piston_mass",
+    "surface_area",
+    "initial_volume",
+    "spring_coefficient",
+    "atmospheric_pressure",
+    "ambient_temperature",
+    "gas_temperature"
+  ],
+  "dataset_policy": "fixed across algorithm trials",
+  "dataset_hash_scope": "SHA-256 of uncompressed table bytes",
+  "train_dataset_sha256": "8fefa86a0b1a968ea30a3fcbf7b6952b0f8f532ea9a0b173d0d2f8edeefb5c33",
+  "test_dataset_sha256": "bdfcd412e6626624bc2850edc9812d349f20a36d09a5f7dde53a4c1be472ddce",
+  "requested_population_size": null,
+  "requested_iterations": null,
+  "time_limit": null,
+  "profile": "benchmark",
+  "benchmark_name": "benchmark_suite_v8",
+  "config_file": "/workspace/configs/benchmark_suite_v8.json",
+  "configuration_schema_version": 2,
+  "configuration_sha256": "674e097628af3ce351b421c973b1ebdb7bf4d2087fa24a83ea042312a03335eb",
+  "use_dataframe": false,
+  "input_scaling": "domain_minmax",
+  "input_scaling_applied": true,
+  "input_scaling_source": "fixed documented problem domain",
+  "input_scaling_formula": "z = 2 * (x - lower) / (upper - lower) - 1",
+  "input_scaling_parameters": {
+    "piston_mass": {
+      "lower": 30.0,
+      "upper": 60.0
+    },
+    "surface_area": {
+      "lower": 0.005,
+      "upper": 0.02
+    },
+    "initial_volume": {
+      "lower": 0.002,
+      "upper": 0.01
+    },
+    "spring_coefficient": {
+      "lower": 1000.0,
+      "upper": 5000.0
+    },
+    "atmospheric_pressure": {
+      "lower": 90000.0,
+      "upper": 110000.0
+    },
+    "ambient_temperature": {
+      "lower": 290.0,
+      "upper": 296.0
+    },
+    "gas_temperature": {
+      "lower": 340.0,
+      "upper": 360.0
+    }
+  },
+  "target_scaling": "none; target remains in original units",
+  "algorithm_configuration_role": "documented_adapter_defaults",
+  "algorithm_configuration_rationale": "Restates the effective settings of the legacy Operon estimator in the pinned SRBench image for auditability.",
+  "configured_parameters": {
+    "population_size": 1000,
+    "generations": 1000,
+    "max_evaluations": 1000000
+  },
+  "applied_parameters": {
+    "random_state": 17,
+    "population_size": 1000,
+    "generations": 1000,
+    "max_evaluations": 1000000
+  },
+  "rmse": 0.02123491615599008,
+  "nrmse_range": 0.024639424322810223,
+  "mae": 0.015250852380692794,
+  "r2": 0.9775822731365243,
+  "max_absolute_error": 0.1044762924745426,
+  "fit_seconds": 3.9074840009998297,
+  "prediction_seconds": 0.0001920119975693524,
+  "prediction_repeats": 5,
+  "prediction_mean_seconds": 0.00011468579978100025,
+  "prediction_median_seconds": 9.503700130153447e-05,
+  "prediction_std_seconds": 4.3993713541662277e-05,
+  "prediction_microseconds_per_sample": 0.02375925032538362,
+  "expression_extraction_seconds": 6.222499723662622e-05,
+  "evaluation_seconds": 3.9085359219970996,
+  "timing_scope": "fit/predict/expression extraction inside the running container; symbolic analysis, image pull, container startup, data generation, and metric serialization excluded",
+  "model_size": 95,
+  "symbolic_model": "(0.424840 + ((-0.042921) * (((((((((-0.850968) * initial_volume) - ((-1.137394) * surface_area)) + ((-0.356486) * piston_mass)) + ((-0.412454) * piston_mass)) + (((0.284574 * spring_coefficient) - 0.911843) - ((-0.152793) * atmospheric_pressure))) - ((((((-0.412454) * piston_mass) * ((-0.779608) * piston_mass)) + (((-0.803553) * initial_volume) - ((-1.430496) * surface_area))) + (((0.693147 * initial_volume) * (2.174943 * initial_volume)) + (((0.399658 * spring_coefficient) * (1.414214 * initial_volume)) + (((-0.803553) * initial_volume) - ((-1.430496) * surface_area))))) * ((((0.451790 * spring_coefficient) + (-0.752633)) + ((-0.276348) * piston_mass)) - ((-0.451276) * surface_area)))) + ((0.732223 * spring_coefficient) + (((-0.978274) * initial_volume) - ((-1.137394) * surface_area)))) + ((-0.463520) * piston_mass))))",
+  "symbolic_model_coordinate_system": "domain_minmax",
+  "symbolic_analysis": "separate post-processing sidecar",
+  "python": "3.12.5",
+  "platform": "Linux-7.0.0-29-generic-x86_64-with-glibc2.36"
+}

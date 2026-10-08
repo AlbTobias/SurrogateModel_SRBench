@@ -1,0 +1,4 @@
+Complexity,Loss,Equation
+1,272.15775,"454.0308"
+3,74.600655,"(509.155 - exhaust_vacuum)"
+5,33.246685,"((-2.088766 * ambient_temperature) - -496.36353)"

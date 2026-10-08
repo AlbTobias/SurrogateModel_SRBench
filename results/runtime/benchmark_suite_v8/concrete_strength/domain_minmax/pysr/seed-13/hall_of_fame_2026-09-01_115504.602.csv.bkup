@@ -1,0 +1,9 @@
+Complexity,Loss,Equation
+1,274.0894,"34.42596"
+3,266.75912,"(33.814194 + cement)"
+5,205.54108,"((cement + 2.337778) / 0.06346857)"
+12,191.29582,"((((-1.8382226 - (exp(superplasticizer) + cement)) / -0.9310309) - water) / 0.0710119)"
+14,175.0835,"((((-1.8382226 - ((exp(superplasticizer) - fine_aggregate) + cement)) / -0.9310309) - water) / 0.0710119)"
+15,174.07555,"((((-1.8382226 - ((exp(superplasticizer) - fine_aggregate) + cement)) / -0.9310309) - sin(water)) / 0.0710119)"
+18,173.4613,"(((((-1.8382226 - ((exp(superplasticizer) - fine_aggregate) + cement)) / -0.9310309) - water) / 0.0710119) + (blast_furnace_slag * 0.5220675))"
+19,166.85135,"(((((-1.8382226 - ((sin(exp(superplasticizer)) - fine_aggregate) + cement)) / -0.9310309) - water) / 0.0710119) + (blast_furnace_slag * 0.5220675))"

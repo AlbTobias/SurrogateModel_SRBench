@@ -1,0 +1,100 @@
+{
+  "analysis_version": "expression_analysis_v2",
+  "analysis_status": "complete",
+  "problem": "ccpp",
+  "algorithm": "gplearn",
+  "seed": 11,
+  "input_scaling": "raw",
+  "expression_timeout_seconds_per_stage": 60,
+  "analysis_seconds": 66.63591049999741,
+  "analysis_python": "3.11.15",
+  "analysis_platform": "Linux-7.0.0-29-generic-x86_64-with-glibc2.43",
+  "raw_scale_symbolic_model": "sub(sub(sub(mul(sub(add(exhaust_vacuum, exhaust_vacuum), ambient_pressure), cos(log(0.115))), sqrt(mul(sub(add(relative_humidity, log(0.115)), ambient_pressure), cos(sqrt(sub(mul(sub(add(exhaust_vacuum, exhaust_vacuum), ambient_pressure), cos(log(cos(log(0.115))))), sqrt(mul(sub(sub(0.115, ambient_pressure), ambient_pressure), cos(sqrt(sub(mul(sub(add(exhaust_vacuum, exhaust_vacuum), ambient_pressure), cos(log(cos(log(0.115))))), sub(log(ambient_pressure), ambient_pressure)))))))))))), log(ambient_pressure)), log(mul(mul(mul(mul(sub(sub(sub(sub(0.115, ambient_pressure), ambient_pressure), ambient_pressure), ambient_pressure), cos(sqrt(mul(sub(add(relative_humidity, log(0.115)), ambient_pressure), cos(sqrt(sub(mul(sub(add(exhaust_vacuum, exhaust_vacuum), ambient_pressure), cos(log(cos(log(0.115))))), sqrt(mul(sub(sub(add(exhaust_vacuum, exhaust_vacuum), ambient_pressure), ambient_pressure), cos(sqrt(sub(mul(sub(add(exhaust_vacuum, exhaust_vacuum), ambient_pressure), cos(log(cos(log(0.115))))), sub(log(ambient_pressure), ambient_pressure))))))))))))), cos(cos(sqrt(relative_humidity)))), cos(cos(sqrt(relative_humidity)))), mul(sub(mul(mul(sub(mul(mul(sub(sub(sub(sub(0.115, ambient_pressure), ambient_pressure), ambient_pressure), ambient_pressure), cos(sqrt(mul(sub(add(relative_humidity, cos(sqrt(relative_humidity))), ambient_pressure), cos(sqrt(sub(mul(sub(add(exhaust_vacuum, exhaust_vacuum), ambient_pressure), cos(log(cos(log(0.115))))), sqrt(mul(sub(sub(add(exhaust_vacuum, exhaust_vacuum), ambient_pressure), ambient_pressure), cos(cos(log(sub(add(exhaust_vacuum, exhaust_vacuum), ambient_pressure))))))))))))), cos(cos(sqrt(relative_humidity)))), cos(log(cos(log(0.115))))), log(0.115)), cos(cos(sqrt(relative_humidity)))), cos(sub(add(exhaust_vacuum, exhaust_vacuum), ambient_pressure))), log(0.115)))))",
+  "raw_scale_back_transform_error": null,
+  "complexity_valid": true,
+  "complexity_source": "simplified",
+  "training_scale_expression_parse_success": true,
+  "training_scale_expression_parse_error": null,
+  "training_scale_expression_simplify_success": true,
+  "training_scale_expression_simplify_error": null,
+  "training_scale_symbolic_comparison_error": null,
+  "training_scale_symbolic_exact_match": null,
+  "training_scale_expression_node_count": 248,
+  "training_scale_expression_depth": 22,
+  "training_scale_expression_operator_count": 128,
+  "training_scale_expression_operators": [
+    "Add",
+    "Mul",
+    "Pow",
+    "cos",
+    "log"
+  ],
+  "training_scale_expression_constant_count": 82,
+  "training_scale_expression_variable_count": 3,
+  "training_scale_expression_variables": [
+    "ambient_pressure",
+    "exhaust_vacuum",
+    "relative_humidity"
+  ],
+  "training_scale_simplified_node_count": 248,
+  "training_scale_simplified_depth": 22,
+  "training_scale_simplified_operator_count": 128,
+  "training_scale_simplified_operators": [
+    "Add",
+    "Mul",
+    "Pow",
+    "cos",
+    "log"
+  ],
+  "training_scale_simplified_constant_count": 82,
+  "training_scale_simplified_variable_count": 3,
+  "training_scale_simplified_variables": [
+    "ambient_pressure",
+    "exhaust_vacuum",
+    "relative_humidity"
+  ],
+  "training_scale_simplified_expression": "0.558044049355137*ambient_pressure - 1.11608809871027*exhaust_vacuum - sqrt((-ambient_pressure + relative_humidity - 2.16282315061889)*cos(sqrt(-sqrt((0.115 - 2*ambient_pressure)*cos(sqrt(ambient_pressure + (-ambient_pressure + 2*exhaust_vacuum)*cos(0.583317378219881 - I*pi) - log(ambient_pressure)))) + (-ambient_pressure + 2*exhaust_vacuum)*cos(0.583317378219881 - I*pi)))) - log(ambient_pressure) - log((0.115 - 4*ambient_pressure)*(-2.16282315061889*(-2.16282315061889*(0.115 - 4*ambient_pressure)*cos(sqrt((-ambient_pressure + relative_humidity + cos(sqrt(relative_humidity)))*cos(sqrt(-sqrt((-2*ambient_pressure + 2*exhaust_vacuum)*cos(cos(log(-ambient_pressure + 2*exhaust_vacuum)))) + (-ambient_pressure + 2*exhaust_vacuum)*cos(0.583317378219881 - I*pi)))))*cos(cos(sqrt(relative_humidity))) + 2.16282315061889*cos(0.583317378219881 - I*pi))*cos(cos(sqrt(relative_humidity))) + 2.16282315061889*cos(ambient_pressure - 2*exhaust_vacuum))*cos(sqrt((-ambient_pressure + relative_humidity - 2.16282315061889)*cos(sqrt(-sqrt((-2*ambient_pressure + 2*exhaust_vacuum)*cos(sqrt(ambient_pressure + (-ambient_pressure + 2*exhaust_vacuum)*cos(0.583317378219881 - I*pi) - log(ambient_pressure)))) + (-ambient_pressure + 2*exhaust_vacuum)*cos(0.583317378219881 - I*pi)))))*cos(cos(sqrt(relative_humidity)))**2)",
+  "expression_parse_success": true,
+  "expression_parse_error": null,
+  "expression_simplify_success": true,
+  "expression_simplify_error": null,
+  "symbolic_comparison_error": null,
+  "symbolic_exact_match": null,
+  "expression_node_count": 248,
+  "expression_depth": 22,
+  "expression_operator_count": 128,
+  "expression_operators": [
+    "Add",
+    "Mul",
+    "Pow",
+    "cos",
+    "log"
+  ],
+  "expression_constant_count": 82,
+  "expression_variable_count": 3,
+  "expression_variables": [
+    "ambient_pressure",
+    "exhaust_vacuum",
+    "relative_humidity"
+  ],
+  "simplified_node_count": 248,
+  "simplified_depth": 22,
+  "simplified_operator_count": 128,
+  "simplified_operators": [
+    "Add",
+    "Mul",
+    "Pow",
+    "cos",
+    "log"
+  ],
+  "simplified_constant_count": 82,
+  "simplified_variable_count": 3,
+  "simplified_variables": [
+    "ambient_pressure",
+    "exhaust_vacuum",
+    "relative_humidity"
+  ],
+  "simplified_expression": "0.558044049355137*ambient_pressure - 1.11608809871027*exhaust_vacuum - sqrt((-ambient_pressure + relative_humidity - 2.16282315061889)*cos(sqrt(-sqrt((0.115 - 2*ambient_pressure)*cos(sqrt(ambient_pressure + (-ambient_pressure + 2*exhaust_vacuum)*cos(0.583317378219881 - I*pi) - log(ambient_pressure)))) + (-ambient_pressure + 2*exhaust_vacuum)*cos(0.583317378219881 - I*pi)))) - log(ambient_pressure) - log((0.115 - 4*ambient_pressure)*(-2.16282315061889*(-2.16282315061889*(0.115 - 4*ambient_pressure)*cos(sqrt((-ambient_pressure + relative_humidity + cos(sqrt(relative_humidity)))*cos(sqrt(-sqrt((-2*ambient_pressure + 2*exhaust_vacuum)*cos(cos(log(-ambient_pressure + 2*exhaust_vacuum)))) + (-ambient_pressure + 2*exhaust_vacuum)*cos(0.583317378219881 - I*pi)))))*cos(cos(sqrt(relative_humidity))) + 2.16282315061889*cos(0.583317378219881 - I*pi))*cos(cos(sqrt(relative_humidity))) + 2.16282315061889*cos(ambient_pressure - 2*exhaust_vacuum))*cos(sqrt((-ambient_pressure + relative_humidity - 2.16282315061889)*cos(sqrt(-sqrt((-2*ambient_pressure + 2*exhaust_vacuum)*cos(sqrt(ambient_pressure + (-ambient_pressure + 2*exhaust_vacuum)*cos(0.583317378219881 - I*pi) - log(ambient_pressure)))) + (-ambient_pressure + 2*exhaust_vacuum)*cos(0.583317378219881 - I*pi)))))*cos(cos(sqrt(relative_humidity)))**2)",
+  "source_result": "seed-11.json",
+  "source_result_sha256": "e85f81676523e64e6812995813eaf61a1226d19fef638c1ea1ee0ae297fc1f3e"
+}

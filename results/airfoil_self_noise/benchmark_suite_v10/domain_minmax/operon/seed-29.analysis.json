@@ -1,0 +1,83 @@
+{
+  "analysis_version": "expression_analysis_v2",
+  "analysis_status": "complete",
+  "problem": "airfoil_self_noise",
+  "algorithm": "operon",
+  "seed": 29,
+  "input_scaling": "domain_minmax",
+  "expression_timeout_seconds_per_stage": 60,
+  "simplification_requested": true,
+  "analysis_seconds": 66.00723860399921,
+  "analysis_python": "3.11.15",
+  "analysis_platform": "Linux-7.0.0-30-generic-x86_64-with-glibc2.43",
+  "raw_scale_symbolic_model": "-0.725938288820721*angle_of_attack - 57.8523548648031*chord_length + 0.115509457598889*free_stream_velocity - 0.00117900475981556*frequency - 151.61079689963*suction_side_displacement_thickness + 1.74783165486416*(frequency/9900 - 101/99)**2*(-5.50715819613457*chord_length - 0.000118619292929293*frequency + 2.10728667676768) + 8.72905358152739*(frequency/9900 - 101/99)**2 + 4.541999*(0.0637033333333333*angle_of_attack + 7.12509663564782*chord_length - 1.88346045454545)*(5.22226198997853*chord_length - 1.17833475812144*(frequency/9900 - 101/99)**5*(-5.08696492483894*chord_length - 0.000120412121212121*frequency + 2.05602033333333)*(-8.31427272727273e-5*frequency - 49.9982951396932*suction_side_displacement_thickness + 2.30999096234771) - 0.862195454545455) + 131.564207531017",
+  "raw_scale_back_transform_error": null,
+  "complexity_valid": true,
+  "complexity_source": "unsimplified_fallback",
+  "training_scale_expression_parse_success": true,
+  "training_scale_expression_parse_error": null,
+  "training_scale_expression_simplify_success": true,
+  "training_scale_expression_simplify_error": null,
+  "training_scale_symbolic_comparison_error": null,
+  "training_scale_symbolic_exact_match": null,
+  "training_scale_expression_node_count": 66,
+  "training_scale_expression_depth": 6,
+  "training_scale_expression_operator_count": 27,
+  "training_scale_expression_operators": [
+    "Add",
+    "Mul",
+    "Pow"
+  ],
+  "training_scale_expression_constant_count": 22,
+  "training_scale_expression_variable_count": 5,
+  "training_scale_expression_variables": [
+    "angle_of_attack",
+    "chord_length",
+    "free_stream_velocity",
+    "frequency",
+    "suction_side_displacement_thickness"
+  ],
+  "training_scale_simplified_node_count": 66,
+  "training_scale_simplified_depth": 6,
+  "training_scale_simplified_operator_count": 27,
+  "training_scale_simplified_operators": [
+    "Add",
+    "Mul",
+    "Pow"
+  ],
+  "training_scale_simplified_constant_count": 22,
+  "training_scale_simplified_variable_count": 5,
+  "training_scale_simplified_variables": [
+    "angle_of_attack",
+    "chord_length",
+    "free_stream_velocity",
+    "frequency",
+    "suction_side_displacement_thickness"
+  ],
+  "training_scale_simplified_expression": "-8.05791500591*angle_of_attack - 8.081973974613*chord_length + 2.287087260458*free_stream_velocity - frequency**2*(1.34469428366974*chord_length + 2.05253289508829*frequency) + 8.72905358152739*frequency**2 - 11.672147122174*frequency - 4.39751801181*suction_side_displacement_thickness + 4.541999*(0.707107*angle_of_attack + 0.995376*chord_length)*(0.72955*chord_length - 1.17833475812144*frequency**5*(0.710649*chord_length + 1.19208*frequency)*(0.823113*frequency + 1.450216*suction_side_displacement_thickness)) + 103.537392",
+  "expression_parse_success": true,
+  "expression_parse_error": null,
+  "expression_simplify_success": false,
+  "expression_simplify_error": "ExpressionTimeoutError: symbolic analysis exceeded 60 seconds",
+  "symbolic_comparison_error": null,
+  "symbolic_exact_match": null,
+  "expression_node_count": 82,
+  "expression_depth": 7,
+  "expression_operator_count": 33,
+  "expression_operators": [
+    "Add",
+    "Mul",
+    "Pow"
+  ],
+  "expression_constant_count": 32,
+  "expression_variable_count": 5,
+  "expression_variables": [
+    "angle_of_attack",
+    "chord_length",
+    "free_stream_velocity",
+    "frequency",
+    "suction_side_displacement_thickness"
+  ],
+  "source_result": "seed-29.json",
+  "source_result_sha256": "a1a51997e5587594ddc75ea5ad9b4a9f89d8d15fa84d82af69d972af49009c97"
+}

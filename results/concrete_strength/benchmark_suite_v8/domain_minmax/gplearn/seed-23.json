@@ -1,0 +1,104 @@
+{
+  "status": "success",
+  "problem": "concrete_strength",
+  "algorithm": "gplearn",
+  "seed": 23,
+  "seed_parameter": "random_state",
+  "train_samples": 400,
+  "test_samples": 592,
+  "feature_names": [
+    "cement",
+    "blast_furnace_slag",
+    "fly_ash",
+    "water",
+    "superplasticizer",
+    "coarse_aggregate",
+    "fine_aggregate",
+    "age"
+  ],
+  "dataset_policy": "fixed across algorithm trials",
+  "dataset_hash_scope": "SHA-256 of uncompressed table bytes",
+  "train_dataset_sha256": "10bccfdc34cc23641ef9d20fef46a4bdcb1035380ee9344bbed9277f76ef3ffd",
+  "test_dataset_sha256": "91ad97074b5b15ec9ab59f1105b6e901837e4dcc8f4e7c62ebdedd530957b522",
+  "requested_population_size": null,
+  "requested_iterations": null,
+  "time_limit": null,
+  "profile": "benchmark",
+  "benchmark_name": "benchmark_suite_v8",
+  "config_file": "/workspace/configs/benchmark_suite_v8.json",
+  "configuration_schema_version": 2,
+  "configuration_sha256": "674e097628af3ce351b421c973b1ebdb7bf4d2087fa24a83ea042312a03335eb",
+  "use_dataframe": true,
+  "input_scaling": "domain_minmax",
+  "input_scaling_applied": true,
+  "input_scaling_source": "fixed documented problem domain",
+  "input_scaling_formula": "z = 2 * (x - lower) / (upper - lower) - 1",
+  "input_scaling_parameters": {
+    "cement": {
+      "lower": 102.0,
+      "upper": 540.0
+    },
+    "blast_furnace_slag": {
+      "lower": 0.0,
+      "upper": 359.4
+    },
+    "fly_ash": {
+      "lower": 0.0,
+      "upper": 200.1
+    },
+    "water": {
+      "lower": 121.8,
+      "upper": 247.0
+    },
+    "superplasticizer": {
+      "lower": 0.0,
+      "upper": 32.2
+    },
+    "coarse_aggregate": {
+      "lower": 801.0,
+      "upper": 1145.0
+    },
+    "fine_aggregate": {
+      "lower": 594.0,
+      "upper": 992.6
+    },
+    "age": {
+      "lower": 1.0,
+      "upper": 365.0
+    }
+  },
+  "target_scaling": "none; target remains in original units",
+  "algorithm_configuration_role": "project_budget_override",
+  "algorithm_configuration_rationale": "Reduced from the SRBench adapter's 1000 individuals and 500 generations to keep repeated trials computationally feasible; not selected using test performance.",
+  "configured_parameters": {
+    "population_size": 500,
+    "generations": 100
+  },
+  "applied_parameters": {
+    "random_state": 23,
+    "population_size": 500,
+    "generations": 100
+  },
+  "rmse": 8.525376528922035,
+  "nrmse_range": 0.1111957288238168,
+  "mae": 6.341890773365681,
+  "r2": 0.7168499492327238,
+  "max_absolute_error": 45.059111568781034,
+  "fit_seconds": 72.14201375899938,
+  "prediction_seconds": 0.0022574100003112108,
+  "prediction_repeats": 5,
+  "prediction_scalar_broadcast": false,
+  "prediction_mean_seconds": 0.0021358376001444413,
+  "prediction_median_seconds": 0.002105460000166204,
+  "prediction_std_seconds": 6.853042712556514e-05,
+  "prediction_microseconds_per_sample": 3.55652027055102,
+  "expression_extraction_seconds": 0.0004443620000529336,
+  "evaluation_seconds": 72.1534841850007,
+  "timing_scope": "fit/predict/expression extraction inside the running container; symbolic analysis, image pull, container startup, data generation, and metric serialization excluded",
+  "model_size": 428,
+  "symbolic_model": "add(add(add(mul(log(0.062), water), add(mul(age, water), add(add(sin(cement), add(add(add(add(div(log(0.062), -0.257), mul(age, water)), cos(add(div(mul(add(age, fine_aggregate), mul(age, water)), -0.257), add(sin(cement), add(sin(cement), log(log(age))))))), add(cos(age), log(water))), cos(add(superplasticizer, add(sin(cement), add(sin(cement), div(log(0.062), -0.257))))))), cos(add(mul(log(0.062), water), add(sin(cement), add(sin(cement), div(log(0.062), -0.257)))))))), add(sin(cos(add(cos(age), div(mul(age, age), coarse_aggregate)))), add(add(add(cement, log(add(age, fine_aggregate))), log(log(age))), add(add(sin(sqrt(add(sqrt(cement), div(add(sin(sqrt(add(add(cos(age), log(log(age))), div(log(div(log(log(age)), mul(add(age, fine_aggregate), mul(age, water)))), -0.257)))), add(sin(cement), log(log(age)))), -0.257)))), add(add(sqrt(cement), div(mul(add(age, log(age)), mul(age, water)), -0.257)), add(add(add(add(add(add(sin(sqrt(add(log(mul(age, water)), div(log(div(div(mul(age, age), coarse_aggregate), mul(add(age, fine_aggregate), mul(add(age, fine_aggregate), add(age, fine_aggregate))))), -0.257)))), add(sin(mul(log(0.062), water)), add(div(log(0.062), -0.257), mul(log(0.062), water)))), add(cos(age), add(mul(add(age, fine_aggregate), add(age, fine_aggregate)), add(sin(cement), log(log(age)))))), cos(add(cos(age), add(cos(age), log(log(age)))))), cos(add(add(cement, log(add(age, fine_aggregate))), add(sin(cement), age)))), add(cement, log(add(age, fine_aggregate)))), cos(div(cos(add(div(log(0.062), -0.257), mul(age, water))), mul(add(age, fine_aggregate), 0.062)))))), add(add(cos(add(add(sin(cement), add(sin(mul(age, water)), div(log(0.062), -0.257))), mul(log(0.062), water))), log(log(age))), add(log(log(age)), add(sin(log(div(div(mul(age, age), coarse_aggregate), mul(add(age, fine_aggregate), mul(age, water))))), add(sin(cement), add(add(sin(cement), add(add(add(add(add(add(sin(sqrt(mul(age, water))), add(sin(cement), add(sin(div(div(mul(age, age), coarse_aggregate), mul(add(age, fine_aggregate), mul(add(age, fine_aggregate), add(age, fine_aggregate))))), div(log(0.062), -0.257)))), add(sin(cement), add(cos(age), add(sin(cement), log(log(age)))))), cos(add(cos(age), add(cos(age), log(log(age)))))), cos(add(add(sqrt(cement), mul(log(0.062), water)), add(sin(mul(age, water)), add(div(log(0.062), -0.257), mul(log(sin(mul(age, water))), water)))))), add(cement, log(log(0.062)))), cos(add(cos(age), add(sin(cement), log(log(age))))))), cos(add(cos(age), add(sin(cement), log(log(age)))))))))))))), div(log(0.062), -0.257))",
+  "symbolic_model_coordinate_system": "domain_minmax",
+  "symbolic_analysis": "separate post-processing sidecar",
+  "python": "3.12.5",
+  "platform": "Linux-7.0.0-30-generic-x86_64-with-glibc2.36"
+}

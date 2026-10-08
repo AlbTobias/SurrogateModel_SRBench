@@ -1,0 +1,11 @@
+Complexity,Loss,Equation
+1,121.5059,"69.22163"
+2,121.49464,"exp(4.2344747)"
+3,117.761856,"(68.5834 - ambient_temperature)"
+5,117.48168,"((68.824554 - -0.070261076) - ambient_temperature)"
+7,82.511795,"((84.84932 + -13.062213) + (ambient_temperature * -19.379242))"
+20,79.57538,"(exp(sqrt(0.8526812) + (1.8447495 - sin(ambient_temperature))) + (((exp(0.8526812 + 1.8447495) + sqrt(4.2344747)) - turbine_energy_yield) / 0.31032553))"
+22,78.58696,"(exp(sqrt(0.8526812) + (1.8447495 - sin(ambient_temperature))) + (((exp(0.8526812 + 1.8447495) + sqrt(4.2344747 / 1.1753293)) - turbine_energy_yield) / 0.31032553))"
+24,77.63683,"(exp(sin(turbine_energy_yield + 1.8447495) + (1.8447495 - ambient_temperature)) + ((((exp(0.8526812 + 1.8447495) + (1.8447495 + ambient_temperature)) - turbine_after_temperature) - air_filter_pressure_difference) / 0.31032553))"
+26,76.81694,"(exp(sqrt(0.8526812) + (1.8447495 - ambient_temperature)) + (((((exp(0.8526812 + 1.8447495) - (sqrt(0.38354623) * -0.23820275)) + sin(turbine_after_temperature)) + 0.8526812) - turbine_energy_yield) / 0.31032553))"
+29,72.12837,"(exp((0.8526812 - compressor_discharge_pressure) + (1.8447495 - ambient_temperature)) + (((((exp(0.9508183 + 1.8447495) - (sin(sqrt(0.38354623)) * turbine_after_temperature)) - sin(exp(-1.9932808))) + turbine_energy_yield) - ambient_humidity) / 0.31032553))"

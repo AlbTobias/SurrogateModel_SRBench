@@ -1,0 +1,81 @@
+{
+  "status": "success",
+  "problem": "naval_propulsion",
+  "algorithm": "operon",
+  "seed": 17,
+  "seed_parameter": "random_state",
+  "train_samples": 400,
+  "test_samples": 4000,
+  "feature_names": [
+    "ship_speed",
+    "compressor_decay",
+    "turbine_decay"
+  ],
+  "dataset_policy": "fixed across algorithm trials",
+  "dataset_hash_scope": "SHA-256 of uncompressed table bytes",
+  "train_dataset_sha256": "3ed6c46cc391a0fd45c6e903541143481327895a8c5d0a69ae82a282f894a384",
+  "test_dataset_sha256": "b4a3d1c417b20d661351bebd6f5fa5bf655e3944215fc437d5c7c1a8a9dd8b36",
+  "requested_population_size": null,
+  "requested_iterations": null,
+  "time_limit": null,
+  "profile": "benchmark",
+  "benchmark_name": "benchmark_suite_v8",
+  "config_file": "/workspace/configs/benchmark_suite_v8.json",
+  "configuration_schema_version": 2,
+  "configuration_sha256": "674e097628af3ce351b421c973b1ebdb7bf4d2087fa24a83ea042312a03335eb",
+  "use_dataframe": false,
+  "input_scaling": "raw",
+  "input_scaling_applied": false,
+  "input_scaling_source": "fixed documented problem domain",
+  "input_scaling_formula": "x unchanged",
+  "input_scaling_parameters": {
+    "ship_speed": {
+      "lower": 3.0,
+      "upper": 27.0
+    },
+    "compressor_decay": {
+      "lower": 0.95,
+      "upper": 1.0
+    },
+    "turbine_decay": {
+      "lower": 0.975,
+      "upper": 1.0
+    }
+  },
+  "target_scaling": "none; target remains in original units",
+  "algorithm_configuration_role": "documented_adapter_defaults",
+  "algorithm_configuration_rationale": "Restates the effective settings of the legacy Operon estimator in the pinned SRBench image for auditability.",
+  "configured_parameters": {
+    "population_size": 1000,
+    "generations": 1000,
+    "max_evaluations": 1000000
+  },
+  "applied_parameters": {
+    "random_state": 17,
+    "population_size": 1000,
+    "generations": 1000,
+    "max_evaluations": 1000000
+  },
+  "rmse": 0.030446651018815298,
+  "nrmse_range": 0.017260006246493934,
+  "mae": 0.017562555752217768,
+  "r2": 0.9963841377046819,
+  "max_absolute_error": 0.16800850677490237,
+  "fit_seconds": 4.1698971270016045,
+  "prediction_seconds": 0.00018739100050879642,
+  "prediction_repeats": 5,
+  "prediction_scalar_broadcast": false,
+  "prediction_mean_seconds": 0.0001081867994798813,
+  "prediction_median_seconds": 8.850600352161564e-05,
+  "prediction_std_seconds": 4.47350011754709e-05,
+  "prediction_microseconds_per_sample": 0.02212650088040391,
+  "expression_extraction_seconds": 5.994199818815105e-05,
+  "evaluation_seconds": 4.170906335999462,
+  "timing_scope": "fit/predict/expression extraction inside the running container; symbolic analysis, image pull, container startup, data generation, and metric serialization excluded",
+  "model_size": 97,
+  "symbolic_model": "(0.168670 + (0.000633 * (((((-0.945541) * compressor_decay) / ((0.617444 * turbine_decay) - (((((-0.137703) * turbine_decay) + ((-0.490516) * ship_speed)) / (1.082956 * compressor_decay)) * ((-0.033391) * ship_speed)))) * (-0.547544)) + (((((((-0.747187) * compressor_decay) - (((-0.033391) * ship_speed) / (0.318310 * compressor_decay))) - ((-0.169618) * ship_speed)) * (((-0.161518) * ship_speed) * ((-0.033391) * ship_speed))) * ((((0.150672 * ship_speed) * (0.693147 * ship_speed)) + (((-0.490516) * ship_speed) / (0.005473 * ship_speed))) + (((((-0.161518) * ship_speed) * ((-0.033391) * ship_speed)) * ((((-0.945541) * compressor_decay) - ((-0.062699) * ship_speed)) * ((-1.128614) * ship_speed))) * (((-0.468318) * compressor_decay) * ((-0.033391) * ship_speed))))) / ((-0.548289) * turbine_decay)))))",
+  "symbolic_model_coordinate_system": "raw",
+  "symbolic_analysis": "separate post-processing sidecar",
+  "python": "3.12.5",
+  "platform": "Linux-7.0.0-29-generic-x86_64-with-glibc2.36"
+}

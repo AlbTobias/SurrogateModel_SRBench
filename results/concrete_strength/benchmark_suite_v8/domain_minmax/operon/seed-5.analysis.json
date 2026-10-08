@@ -1,0 +1,82 @@
+{
+  "analysis_version": "expression_analysis_v2",
+  "analysis_status": "complete",
+  "problem": "concrete_strength",
+  "algorithm": "operon",
+  "seed": 5,
+  "input_scaling": "domain_minmax",
+  "expression_timeout_seconds_per_stage": 60,
+  "analysis_seconds": 66.2780359999997,
+  "analysis_python": "3.11.15",
+  "analysis_platform": "Linux-7.0.0-30-generic-x86_64-with-glibc2.43",
+  "raw_scale_symbolic_model": "0.1118988279633*blast_furnace_slag + 0.0974603071023516*cement - 0.291894486715335*water + 6.56445964560444*(age/182 - 183/182)**3*(-0.0130492472527473*age - 0.00192639726027397*cement - 0.00387193403298351*fly_ash + 2.66192876780069)*(-0.00938475274725275*age + 0.0013847245409015*blast_furnace_slag - 0.941906*(age/182 - 183/182)*(-0.00938475274725275*age + 0.00385724540901502*blast_furnace_slag + 1.02426275274725) - 0.193625*(age/182 - 183/182)*(-0.0232851277955272*water - 2.135921131025*(age/182 - 183/182)*(cement/219 - 107/73) + 4.29377756549521) + 1.46857475274725) + 68.601318385448",
+  "raw_scale_back_transform_error": null,
+  "complexity_valid": true,
+  "complexity_source": "unsimplified_fallback",
+  "training_scale_expression_parse_success": true,
+  "training_scale_expression_parse_error": null,
+  "training_scale_expression_simplify_success": true,
+  "training_scale_expression_simplify_error": null,
+  "training_scale_symbolic_comparison_error": null,
+  "training_scale_symbolic_exact_match": null,
+  "training_scale_expression_node_count": 55,
+  "training_scale_expression_depth": 6,
+  "training_scale_expression_operator_count": 21,
+  "training_scale_expression_operators": [
+    "Add",
+    "Mul",
+    "Pow"
+  ],
+  "training_scale_expression_constant_count": 18,
+  "training_scale_expression_variable_count": 5,
+  "training_scale_expression_variables": [
+    "age",
+    "blast_furnace_slag",
+    "cement",
+    "fly_ash",
+    "water"
+  ],
+  "training_scale_simplified_node_count": 55,
+  "training_scale_simplified_depth": 6,
+  "training_scale_simplified_operator_count": 21,
+  "training_scale_simplified_operators": [
+    "Add",
+    "Mul",
+    "Pow"
+  ],
+  "training_scale_simplified_constant_count": 18,
+  "training_scale_simplified_variable_count": 5,
+  "training_scale_simplified_variables": [
+    "age",
+    "blast_furnace_slag",
+    "cement",
+    "fly_ash",
+    "water"
+  ],
+  "training_scale_simplified_expression": "-6.56445964560444*age**3*(2.374963*age + 0.421881*cement + 0.387387*fly_ash + 0.731844)*(0.941906*age*(1.708025*age - 0.693147*blast_furnace_slag) + 0.193625*age*(2.135921131025*age*cement + 1.457649*water) - 1.708025*age + 0.248835*blast_furnace_slag) + 20.108219385005*blast_furnace_slag + 21.343807255415*cement - 18.27259486838*water + 66.168953",
+  "expression_parse_success": true,
+  "expression_parse_error": null,
+  "expression_simplify_success": false,
+  "expression_simplify_error": "ExpressionTimeoutError: symbolic analysis exceeded 60 seconds",
+  "symbolic_comparison_error": null,
+  "symbolic_exact_match": null,
+  "expression_node_count": 78,
+  "expression_depth": 8,
+  "expression_operator_count": 31,
+  "expression_operators": [
+    "Add",
+    "Mul",
+    "Pow"
+  ],
+  "expression_constant_count": 31,
+  "expression_variable_count": 5,
+  "expression_variables": [
+    "age",
+    "blast_furnace_slag",
+    "cement",
+    "fly_ash",
+    "water"
+  ],
+  "source_result": "seed-5.json",
+  "source_result_sha256": "1fc7cc9f7df0863ba578312f6754f7d5c9c05b11542ee66ea6389a4b815b9cf1"
+}

@@ -1,0 +1,13 @@
+Complexity,Loss,Equation
+1,274.1104,"34.26535"
+3,249.66907,"(superplasticizer - -28.716812)"
+4,207.43253,"sqrt(cement / 0.22386448)"
+5,182.51122,"sqrt(log(age) * cement)"
+7,163.52827,"sqrt((log(age) - -0.37389594) * cement)"
+8,116.80538,"((sqrt(cement) * sqrt(log(age))) + superplasticizer)"
+10,116.70626,"(((sqrt(cement) * sqrt(log(age))) + superplasticizer) - -0.13591272)"
+11,114.96882,"(((sqrt(cement) * sqrt(log(age))) + superplasticizer) + sin(water))"
+12,114.37456,"((sqrt(cement - 1.6277858) * sqrt(log(age) * 1.1177763)) + superplasticizer)"
+13,114.03201,"(((sqrt(cement) * sqrt(log(age))) + superplasticizer) + (sin(water) * 2.128683))"
+16,113.388565,"(((sqrt(cement + (superplasticizer / water)) * sqrt(log(age) * 1.1177763)) + -1.612558) + superplasticizer)"
+18,112.57676,"((((sqrt(cement + (superplasticizer / water)) - -0.44225574) * sqrt(log(age) * 1.1177763)) + -1.612558) + superplasticizer)"

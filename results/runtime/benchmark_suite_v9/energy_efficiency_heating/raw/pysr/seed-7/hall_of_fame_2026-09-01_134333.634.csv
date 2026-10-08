@@ -1,0 +1,11 @@
+Complexity,Loss,Equation
+1,104.97767,"22.613369"
+3,23.769764,"(overall_height / 0.23315343)"
+5,20.986506,"((overall_height - relative_compactness) / 0.19278874)"
+7,20.406654,"(((overall_height - relative_compactness) / 0.19278874) + -0.41941288)"
+8,19.330719,"(((sqrt(overall_height) + 1.0303563) * overall_height) / relative_compactness)"
+10,19.236761,"(((sqrt(overall_height) + 1.0303563) * overall_height) / sin(sqrt(relative_compactness)))"
+11,19.222872,"((((sqrt(overall_height) + 1.0303563) * overall_height) - 1.0352664) / sin(relative_compactness))"
+13,12.453399,"((sqrt(exp(overall_height + (-1.143355 + glazing_area))) - (-4.72977 + -1.1210889)) / relative_compactness)"
+15,12.092782,"(((sqrt(exp(overall_height + (-1.143355 + glazing_area))) - (-4.72977 + -1.1210889)) / relative_compactness) + -0.76472706)"
+17,12.076176,"(((sqrt(exp(overall_height + (-1.143355 + glazing_area))) - ((-4.72977 + -1.1210889) - 0.07922621)) / relative_compactness) + -0.76472706)"

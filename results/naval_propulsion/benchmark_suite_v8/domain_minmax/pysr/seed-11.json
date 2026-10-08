@@ -1,0 +1,91 @@
+{
+  "status": "success",
+  "problem": "naval_propulsion",
+  "algorithm": "pysr",
+  "seed": 11,
+  "seed_parameter": "random_state",
+  "train_samples": 400,
+  "test_samples": 4000,
+  "feature_names": [
+    "ship_speed",
+    "compressor_decay",
+    "turbine_decay"
+  ],
+  "dataset_policy": "fixed across algorithm trials",
+  "dataset_hash_scope": "SHA-256 of uncompressed table bytes",
+  "train_dataset_sha256": "3ed6c46cc391a0fd45c6e903541143481327895a8c5d0a69ae82a282f894a384",
+  "test_dataset_sha256": "b4a3d1c417b20d661351bebd6f5fa5bf655e3944215fc437d5c7c1a8a9dd8b36",
+  "requested_population_size": null,
+  "requested_iterations": null,
+  "time_limit": null,
+  "profile": "benchmark",
+  "benchmark_name": "benchmark_suite_v8",
+  "config_file": "/workspace/configs/benchmark_suite_v8.json",
+  "configuration_schema_version": 2,
+  "configuration_sha256": "674e097628af3ce351b421c973b1ebdb7bf4d2087fa24a83ea042312a03335eb",
+  "use_dataframe": true,
+  "input_scaling": "domain_minmax",
+  "input_scaling_applied": true,
+  "input_scaling_source": "fixed documented problem domain",
+  "input_scaling_formula": "z = 2 * (x - lower) / (upper - lower) - 1",
+  "input_scaling_parameters": {
+    "ship_speed": {
+      "lower": 3.0,
+      "upper": 27.0
+    },
+    "compressor_decay": {
+      "lower": 0.95,
+      "upper": 1.0
+    },
+    "turbine_decay": {
+      "lower": 0.975,
+      "upper": 1.0
+    }
+  },
+  "target_scaling": "none; target remains in original units",
+  "algorithm_configuration_role": "project_budget_and_execution_override",
+  "algorithm_configuration_rationale": "Replaces the adapter's very long search with a 60-second practical budget and explicitly enforces deterministic single-process execution; not selected using test performance.",
+  "configured_parameters": {
+    "niterations": 20,
+    "ncyclesperiteration": 500,
+    "population_size": 100,
+    "populations": 3,
+    "timeout_in_seconds": 60,
+    "deterministic": true,
+    "procs": 0,
+    "multithreading": false
+  },
+  "applied_parameters": {
+    "random_state": 11,
+    "niterations": 20,
+    "ncyclesperiteration": 500,
+    "population_size": 100,
+    "populations": 3,
+    "timeout_in_seconds": 60,
+    "deterministic": true,
+    "procs": 0,
+    "multithreading": false
+  },
+  "rmse": 0.04139659181671229,
+  "nrmse_range": 0.023467455678408328,
+  "mae": 0.03370685591036385,
+  "r2": 0.9933156066545248,
+  "max_absolute_error": 0.17261007426995265,
+  "fit_seconds": 87.8928727929997,
+  "prediction_seconds": 0.009064571000635624,
+  "prediction_repeats": 5,
+  "prediction_scalar_broadcast": false,
+  "prediction_mean_seconds": 0.004372062601032667,
+  "prediction_median_seconds": 0.003276761002780404,
+  "prediction_std_seconds": 0.0026261358694682152,
+  "prediction_microseconds_per_sample": 0.819190250695101,
+  "expression_extraction_seconds": 0.01088956999956281,
+  "evaluation_seconds": 87.92609538200122,
+  "timing_scope": "fit/predict/expression extraction inside the running container; symbolic analysis, image pull, container startup, data generation, and metric serialization excluded",
+  "model_size": 19,
+  "symbolic_model": "0.07738675301558*(exp(ship_speed)*sin(ship_speed) - 0.11749401)*exp(ship_speed) + 0.48262474329556*exp(ship_speed)",
+  "symbolic_model_coordinate_system": "domain_minmax",
+  "symbolic_analysis": "separate post-processing sidecar",
+  "python": "3.11.0",
+  "platform": "Linux-7.0.0-29-generic-x86_64-with-glibc2.36"
+}

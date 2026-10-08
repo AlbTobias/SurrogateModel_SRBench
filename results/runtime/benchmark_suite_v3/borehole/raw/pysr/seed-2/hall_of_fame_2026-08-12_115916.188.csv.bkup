@@ -1,0 +1,9 @@
+Complexity,Loss,Equation
+1,2125.1729,"81.07218"
+3,720.5975,"(862.3591 * borehole_radius)"
+6,715.93286,"(borehole_radius * (854.8985 - exp(-268.2987)))"
+8,565.84436,"((lower_transmissivity / (1.2407811 - exp(borehole_radius))) * borehole_radius)"
+9,565.58026,"((lower_transmissivity / sin(1.2407811 - exp(borehole_radius))) * borehole_radius)"
+10,564.50464,"(((lower_transmissivity / (1.2407811 - exp(borehole_radius))) + 1.8069834) * borehole_radius)"
+11,561.6102,"(((lower_transmissivity / (1.2407811 - exp(borehole_radius))) + exp(1.8069834)) * borehole_radius)"
+13,430.5712,"((lower_head * borehole_radius) + (((exp(borehole_radius) * 669.542) + sqrt(upper_head)) - 769.6764))"

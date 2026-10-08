@@ -1,0 +1,116 @@
+{
+  "status": "success",
+  "problem": "energy_efficiency_heating",
+  "algorithm": "pysr",
+  "seed": 3,
+  "seed_parameter": "random_state",
+  "train_samples": 400,
+  "test_samples": 368,
+  "feature_names": [
+    "relative_compactness",
+    "surface_area",
+    "wall_area",
+    "roof_area",
+    "overall_height",
+    "orientation",
+    "glazing_area",
+    "glazing_area_distribution"
+  ],
+  "dataset_policy": "fixed across algorithm trials",
+  "dataset_hash_scope": "SHA-256 of uncompressed table bytes",
+  "train_dataset_sha256": "effde405e6758d431ac4edd3a52b99deab9ae28c02a0bba0a8ca4349571339af",
+  "test_dataset_sha256": "f0669327566bfcbb5d33278c87ab79ced39b1b9cd383efa666dcf9cc2aeb0fe6",
+  "requested_population_size": null,
+  "requested_iterations": null,
+  "time_limit": null,
+  "profile": "benchmark",
+  "benchmark_name": "benchmark_suite_v9",
+  "config_file": "/workspace/configs/benchmark_suite_v9.json",
+  "configuration_schema_version": 2,
+  "configuration_sha256": "3ab7503025ae4e84f31563c21dcfac02bb187d264b064522d8474776085d526c",
+  "use_dataframe": true,
+  "input_scaling": "raw",
+  "input_scaling_applied": false,
+  "input_scaling_source": "fixed documented problem domain",
+  "input_scaling_formula": "x unchanged",
+  "input_scaling_parameters": {
+    "relative_compactness": {
+      "lower": 0.62,
+      "upper": 0.98
+    },
+    "surface_area": {
+      "lower": 514.5,
+      "upper": 808.5
+    },
+    "wall_area": {
+      "lower": 245.0,
+      "upper": 416.5
+    },
+    "roof_area": {
+      "lower": 110.25,
+      "upper": 220.5
+    },
+    "overall_height": {
+      "lower": 3.5,
+      "upper": 7.0
+    },
+    "orientation": {
+      "lower": 2.0,
+      "upper": 5.0
+    },
+    "glazing_area": {
+      "lower": 0.0,
+      "upper": 0.4
+    },
+    "glazing_area_distribution": {
+      "lower": 0.0,
+      "upper": 5.0
+    }
+  },
+  "target_scaling": "none; target remains in original units",
+  "algorithm_configuration_role": "project_budget_and_execution_override",
+  "algorithm_configuration_rationale": "Replaces the adapter's very long search with a 60-second practical budget and explicitly enforces deterministic single-process execution; not selected using test performance.",
+  "configured_parameters": {
+    "niterations": 20,
+    "ncyclesperiteration": 500,
+    "population_size": 100,
+    "populations": 3,
+    "timeout_in_seconds": 60,
+    "deterministic": true,
+    "procs": 0,
+    "multithreading": false
+  },
+  "applied_parameters": {
+    "random_state": 3,
+    "niterations": 20,
+    "ncyclesperiteration": 500,
+    "population_size": 100,
+    "populations": 3,
+    "timeout_in_seconds": 60,
+    "deterministic": true,
+    "procs": 0,
+    "multithreading": false
+  },
+  "rmse": 3.0652191964868862,
+  "nrmse_range": 0.08352095903234022,
+  "mae": 2.088950151584854,
+  "r2": 0.9043378908677882,
+  "max_absolute_error": 8.95881795467508,
+  "fit_seconds": 89.9496393820009,
+  "prediction_seconds": 0.009020536999742035,
+  "prediction_repeats": 5,
+  "prediction_scalar_broadcast": false,
+  "prediction_mean_seconds": 0.004382823800551705,
+  "prediction_median_seconds": 0.003202715000952594,
+  "prediction_std_seconds": 0.0025944094755273902,
+  "prediction_microseconds_per_sample": 8.703029893892918,
+  "expression_extraction_seconds": 0.009207008999510435,
+  "evaluation_seconds": 89.98120255400136,
+  "timing_scope": "fit/predict/expression extraction inside the running container; symbolic analysis, image pull, container startup, data generation, and metric serialization excluded",
+  "model_size": 24,
+  "symbolic_model": "(sqrt(glazing_area) + 0.983107970780422)*(1.3867322*glazing_area + overall_height + overall_height*log(overall_height)/relative_compactness + log(relative_compactness) - 1.08474536047764)",
+  "symbolic_model_coordinate_system": "raw",
+  "symbolic_analysis": "separate post-processing sidecar",
+  "python": "3.11.0",
+  "platform": "Linux-7.0.0-30-generic-x86_64-with-glibc2.36"
+}

@@ -1,0 +1,10 @@
+Complexity,Loss,Equation
+1,2110.2612,"269.0567"
+3,1865.7876,"(1.5045944 * wing_area)"
+4,1730.3684,"(wing_area * log(ultimate_load_factor))"
+5,1129.2644,"(wing_area - (ultimate_load_factor * -21.189209))"
+9,1049.5424,"(wing_area * (log(ultimate_load_factor) / sqrt(sin(log(aspect_ratio)))))"
+16,897.65125,"((wing_area * (((-6.3822374 / exp(ultimate_load_factor)) - thickness_chord_ratio) - -1.4347919)) + (0.02877448 / (thickness_chord_ratio / fuel_weight)))"
+18,897.2188,"((wing_area * (((-6.3822374 / (thickness_chord_ratio + exp(ultimate_load_factor))) - thickness_chord_ratio) - -1.4347919)) + (0.02877448 / (thickness_chord_ratio / fuel_weight)))"
+19,896.0817,"((wing_area * (((-6.3822374 / (thickness_chord_ratio + exp(ultimate_load_factor))) - thickness_chord_ratio) - -1.4347919)) + (0.02877448 / (sin(thickness_chord_ratio) / fuel_weight)))"
+20,883.1325,"((wing_area * (((-6.3822374 / (thickness_chord_ratio + exp(ultimate_load_factor))) - (thickness_chord_ratio * 0.7987229)) - -1.4347919)) + (0.02877448 / (thickness_chord_ratio / fuel_weight)))"

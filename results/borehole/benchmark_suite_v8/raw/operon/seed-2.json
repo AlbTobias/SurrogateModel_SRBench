@@ -1,0 +1,105 @@
+{
+  "status": "success",
+  "problem": "borehole",
+  "algorithm": "operon",
+  "seed": 2,
+  "seed_parameter": "random_state",
+  "train_samples": 400,
+  "test_samples": 4000,
+  "feature_names": [
+    "borehole_radius",
+    "influence_radius",
+    "upper_transmissivity",
+    "upper_head",
+    "lower_transmissivity",
+    "lower_head",
+    "borehole_length",
+    "hydraulic_conductivity"
+  ],
+  "dataset_policy": "fixed across algorithm trials",
+  "dataset_hash_scope": "SHA-256 of uncompressed table bytes",
+  "train_dataset_sha256": "07ebea8de5c2ecbc91a9a401e0d2502d5896a14d7fb10bd6a6f2b415bd32a767",
+  "test_dataset_sha256": "e94f3036e7987909ecb11e11e6dab5517a508af8cf9f83520d9c12a1ab3a1504",
+  "requested_population_size": null,
+  "requested_iterations": null,
+  "time_limit": null,
+  "profile": "benchmark",
+  "benchmark_name": "benchmark_suite_v8",
+  "config_file": "/workspace/configs/benchmark_suite_v8.json",
+  "configuration_schema_version": 2,
+  "configuration_sha256": "674e097628af3ce351b421c973b1ebdb7bf4d2087fa24a83ea042312a03335eb",
+  "use_dataframe": false,
+  "input_scaling": "raw",
+  "input_scaling_applied": false,
+  "input_scaling_source": "fixed documented problem domain",
+  "input_scaling_formula": "x unchanged",
+  "input_scaling_parameters": {
+    "borehole_radius": {
+      "lower": 0.05,
+      "upper": 0.15
+    },
+    "influence_radius": {
+      "lower": 100.0,
+      "upper": 50000.0
+    },
+    "upper_transmissivity": {
+      "lower": 63070.0,
+      "upper": 115600.0
+    },
+    "upper_head": {
+      "lower": 990.0,
+      "upper": 1110.0
+    },
+    "lower_transmissivity": {
+      "lower": 63.1,
+      "upper": 116.0
+    },
+    "lower_head": {
+      "lower": 700.0,
+      "upper": 820.0
+    },
+    "borehole_length": {
+      "lower": 1120.0,
+      "upper": 1680.0
+    },
+    "hydraulic_conductivity": {
+      "lower": 9855.0,
+      "upper": 12045.0
+    }
+  },
+  "target_scaling": "none; target remains in original units",
+  "algorithm_configuration_role": "documented_adapter_defaults",
+  "algorithm_configuration_rationale": "Restates the effective settings of the legacy Operon estimator in the pinned SRBench image for auditability.",
+  "configured_parameters": {
+    "population_size": 1000,
+    "generations": 1000,
+    "max_evaluations": 1000000
+  },
+  "applied_parameters": {
+    "random_state": 2,
+    "population_size": 1000,
+    "generations": 1000,
+    "max_evaluations": 1000000
+  },
+  "rmse": 0.1021740416850133,
+  "nrmse_range": 0.0004204509344165895,
+  "mae": 0.0727181690790826,
+  "r2": 0.999994867270483,
+  "max_absolute_error": 1.0294758386449132,
+  "fit_seconds": 3.5507572079995953,
+  "prediction_seconds": 0.0001920100003189873,
+  "prediction_repeats": 5,
+  "prediction_mean_seconds": 0.00011445480013207998,
+  "prediction_median_seconds": 9.401200077263638e-05,
+  "prediction_std_seconds": 4.427471201768577e-05,
+  "prediction_microseconds_per_sample": 0.023503000193159096,
+  "expression_extraction_seconds": 6.065599973226199e-05,
+  "evaluation_seconds": 3.5517895270004374,
+  "timing_scope": "fit/predict/expression extraction inside the running container; symbolic analysis, image pull, container startup, data generation, and metric serialization excluded",
+  "model_size": 47,
+  "symbolic_model": "((-0.078786) + ((-172.050125) * ((((0.269462 * borehole_radius) * ((0.693147 * upper_head) - (0.693147 * lower_head))) / (((-0.698988) * borehole_length) / ((((-0.046326) * borehole_length) - ((1.573719 * borehole_radius) * (((-1.062334) * hydraulic_conductivity) * (0.161340 * borehole_radius)))) + (((-0.444743) * hydraulic_conductivity) + (((-0.444743) * hydraulic_conductivity) / ((-1.168798) * lower_transmissivity)))))) * ((-0.153419) * borehole_radius))))",
+  "symbolic_model_coordinate_system": "raw",
+  "symbolic_analysis": "separate post-processing sidecar",
+  "python": "3.12.5",
+  "platform": "Linux-7.0.0-29-generic-x86_64-with-glibc2.36"
+}

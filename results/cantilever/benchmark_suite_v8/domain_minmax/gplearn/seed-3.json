@@ -1,0 +1,88 @@
+{
+  "status": "success",
+  "problem": "cantilever",
+  "algorithm": "gplearn",
+  "seed": 3,
+  "seed_parameter": "random_state",
+  "train_samples": 400,
+  "test_samples": 4000,
+  "feature_names": [
+    "force",
+    "length",
+    "modulus",
+    "width",
+    "height"
+  ],
+  "dataset_policy": "fixed across algorithm trials",
+  "dataset_hash_scope": "SHA-256 of uncompressed table bytes",
+  "train_dataset_sha256": "47ac0960181a6eeb569c70492065f55028aa6ea4b1606096efafbb754900e380",
+  "test_dataset_sha256": "fb1b4eac780cca9fd9696b7ce23188a1916b66b76fbf1a76ab2063389beedb67",
+  "requested_population_size": null,
+  "requested_iterations": null,
+  "time_limit": null,
+  "profile": "benchmark",
+  "benchmark_name": "benchmark_suite_v8",
+  "config_file": "/workspace/configs/benchmark_suite_v8.json",
+  "configuration_schema_version": 2,
+  "configuration_sha256": "674e097628af3ce351b421c973b1ebdb7bf4d2087fa24a83ea042312a03335eb",
+  "use_dataframe": true,
+  "input_scaling": "domain_minmax",
+  "input_scaling_applied": true,
+  "input_scaling_source": "fixed documented problem domain",
+  "input_scaling_formula": "z = 2 * (x - lower) / (upper - lower) - 1",
+  "input_scaling_parameters": {
+    "force": {
+      "lower": 0.5,
+      "upper": 1.5
+    },
+    "length": {
+      "lower": 0.8,
+      "upper": 1.2
+    },
+    "modulus": {
+      "lower": 0.8,
+      "upper": 1.2
+    },
+    "width": {
+      "lower": 0.7,
+      "upper": 1.3
+    },
+    "height": {
+      "lower": 0.7,
+      "upper": 1.3
+    }
+  },
+  "target_scaling": "none; target remains in original units",
+  "algorithm_configuration_role": "project_budget_override",
+  "algorithm_configuration_rationale": "Reduced from the SRBench adapter's 1000 individuals and 500 generations to keep repeated trials computationally feasible; not selected using test performance.",
+  "configured_parameters": {
+    "population_size": 500,
+    "generations": 100
+  },
+  "applied_parameters": {
+    "random_state": 3,
+    "population_size": 500,
+    "generations": 100
+  },
+  "rmse": 1.836391008211065,
+  "nrmse_range": 0.055600681083745065,
+  "mae": 0.8553950067542639,
+  "r2": 0.8024846585012848,
+  "max_absolute_error": 20.561311156182686,
+  "fit_seconds": 29.224974799999927,
+  "prediction_seconds": 0.0016346350003004773,
+  "prediction_repeats": 5,
+  "prediction_mean_seconds": 0.0013983332001771486,
+  "prediction_median_seconds": 0.001341564000085782,
+  "prediction_std_seconds": 0.00013272151165608575,
+  "prediction_microseconds_per_sample": 0.3353910000214455,
+  "expression_extraction_seconds": 0.00017827000010584015,
+  "evaluation_seconds": 29.23248138300005,
+  "timing_scope": "fit/predict/expression extraction inside the running container; symbolic analysis, image pull, container startup, data generation, and metric serialization excluded",
+  "model_size": 112,
+  "symbolic_model": "sub(sub(add(sub(cos(mul(add(cos(height), width), sin(add(sub(cos(width), sub(height, cos(mul(add(cos(width), modulus), sin(cos(mul(0.423, modulus))))))), add(force, length))))), sub(height, cos(mul(add(sqrt(sqrt(sub(height, 0.423))), modulus), sin(add(sub(cos(width), sub(height, 0.423)), add(0.423, length))))))), add(force, length)), sub(height, 0.423)), sub(log(sqrt(mul(add(sin(add(sub(cos(width), sub(height, 0.423)), 0.423)), width), mul(0.292, log(sqrt(sin(sub(height, 0.423)))))))), add(sub(cos(mul(sqrt(sqrt(sub(modulus, sub(height, 0.423)))), mul(add(sin(sub(height, 0.423)), add(force, length)), sin(sub(height, 0.423))))), sub(height, 0.423)), add(force, length))))",
+  "symbolic_model_coordinate_system": "domain_minmax",
+  "symbolic_analysis": "separate post-processing sidecar",
+  "python": "3.12.5",
+  "platform": "Linux-7.0.0-29-generic-x86_64-with-glibc2.36"
+}

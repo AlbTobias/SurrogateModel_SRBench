@@ -1,0 +1,6 @@
+Complexity,Loss,Equation
+1,121.49427,"69.16173"
+3,120.94321,"(0.06820943 * ambient_pressure)"
+4,119.10749,"(69.61983 + sin(air_filter_pressure_difference))"
+5,99.70781,"((compressor_discharge_pressure - ambient_temperature) - -77.77666)"
+7,82.201355,"(((-0.9174174 * ambient_temperature) + 33.76715) + 51.96019)"

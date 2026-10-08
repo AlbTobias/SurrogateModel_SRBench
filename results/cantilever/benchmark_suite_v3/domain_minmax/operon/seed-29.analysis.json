@@ -1,0 +1,115 @@
+{
+  "analysis_version": "expression_analysis_v2",
+  "analysis_status": "complete",
+  "problem": "cantilever",
+  "algorithm": "operon",
+  "seed": 29,
+  "input_scaling": "domain_minmax",
+  "expression_timeout_seconds_per_stage": 60,
+  "analysis_seconds": 51.84456632399997,
+  "analysis_python": "3.11.15",
+  "analysis_platform": "Linux-7.0.0-29-generic-x86_64-with-glibc2.43",
+  "raw_scale_symbolic_model": "0.426124*(-(-9.35083333333333*height - 2.45430666666667*width + 15.903818)*(-0.48548915415*force + 1.5075390525*height - 1.385528210625*length + 0.596875943625*modulus + 0.404840319*width - 0.63823795035) + 2.602583)*(2.658036*force - 7.14298333333333*height + 7.467145*length - 2.52875*modulus - 2.45430666666667*width + 3.573838) + 2.135279",
+  "raw_scale_back_transform_error": null,
+  "complexity_valid": true,
+  "complexity_source": "simplified",
+  "training_scale_expression_parse_success": true,
+  "training_scale_expression_parse_error": null,
+  "training_scale_expression_simplify_success": true,
+  "training_scale_expression_simplify_error": null,
+  "training_scale_symbolic_comparison_error": null,
+  "training_scale_symbolic_exact_match": null,
+  "training_scale_expression_node_count": 49,
+  "training_scale_expression_depth": 6,
+  "training_scale_expression_operator_count": 19,
+  "training_scale_expression_operators": [
+    "Add",
+    "Mul"
+  ],
+  "training_scale_expression_constant_count": 18,
+  "training_scale_expression_variable_count": 5,
+  "training_scale_expression_variables": [
+    "force",
+    "height",
+    "length",
+    "modulus",
+    "width"
+  ],
+  "training_scale_simplified_node_count": 48,
+  "training_scale_simplified_depth": 6,
+  "training_scale_simplified_operator_count": 19,
+  "training_scale_simplified_operators": [
+    "Add",
+    "Mul"
+  ],
+  "training_scale_simplified_constant_count": 17,
+  "training_scale_simplified_variable_count": 5,
+  "training_scale_simplified_variables": [
+    "force",
+    "height",
+    "length",
+    "modulus",
+    "width"
+  ],
+  "training_scale_simplified_expression": "0.426124*((2.80525*height + 0.736292*width - 4.098678)*(-0.242744577075*force + 0.45226171575*height - 0.277105642125*length + 0.119375188725*modulus + 0.1214520957*width) + 2.602583)*(1.329018*force - 2.142895*height + 1.493429*length - 0.50575*modulus - 0.736292*width + 1.572979) + 2.135279",
+  "expression_parse_success": true,
+  "expression_parse_error": null,
+  "expression_simplify_success": true,
+  "expression_simplify_error": null,
+  "symbolic_comparison_error": null,
+  "symbolic_exact_match": false,
+  "expression_node_count": 49,
+  "expression_depth": 6,
+  "expression_operator_count": 19,
+  "expression_operators": [
+    "Add",
+    "Mul"
+  ],
+  "expression_constant_count": 18,
+  "expression_variable_count": 5,
+  "expression_variables": [
+    "force",
+    "height",
+    "length",
+    "modulus",
+    "width"
+  ],
+  "simplified_node_count": 49,
+  "simplified_depth": 6,
+  "simplified_operator_count": 19,
+  "simplified_operators": [
+    "Add",
+    "Mul"
+  ],
+  "simplified_constant_count": 18,
+  "simplified_variable_count": 5,
+  "simplified_variables": [
+    "force",
+    "height",
+    "length",
+    "modulus",
+    "width"
+  ],
+  "simplified_expression": "(0.426124*(9.35083333333333*height + 2.45430666666667*width - 15.903818)*(-0.48548915415*force + 1.5075390525*height - 1.385528210625*length + 0.596875943625*modulus + 0.404840319*width - 0.63823795035) + 1.109023078292)*(2.658036*force - 7.14298333333333*height + 7.467145*length - 2.52875*modulus - 2.45430666666667*width + 3.573838) + 2.135279",
+  "ground_truth_node_count": 15,
+  "ground_truth_depth": 2,
+  "ground_truth_operator_count": 5,
+  "ground_truth_operators": [
+    "Mul",
+    "Pow"
+  ],
+  "ground_truth_constant_count": 5,
+  "ground_truth_variable_count": 5,
+  "ground_truth_variables": [
+    "force",
+    "height",
+    "length",
+    "modulus",
+    "width"
+  ],
+  "ground_truth_expression": "4*force*length**3/(height**3*modulus*width)",
+  "ground_truth_variable_recall": 1.0,
+  "simplified_to_ground_truth_size_ratio": 3.2666666666666666,
+  "source_result": "seed-29.json",
+  "source_result_sha256": "b03d931bcc0c5067d4fd9c9ef0a275231717a58207cfce049159d82560c18538"
+}

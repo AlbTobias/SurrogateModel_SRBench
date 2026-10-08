@@ -1,0 +1,10 @@
+Complexity,Loss,Equation
+1,46.667492,"125.17357"
+3,44.586884,"(125.27008 - chord_length)"
+5,44.005493,"((125.27008 - chord_length) + free_stream_velocity)"
+7,42.83869,"(125.66178 + ((suction_side_displacement_thickness - 2.077356) * chord_length))"
+9,37.517838,"((122.7245 + -3.7974956) + ((frequency + suction_side_displacement_thickness) * -4.867246))"
+21,36.877087,"(((exp((1.9521191 - -0.9847399) + 1.9521191) - (1.9521191 - free_stream_velocity)) + (exp((chord_length + frequency) - -0.9847399) / -0.27863812)) + chord_length)"
+22,36.509098,"(((exp((1.9521191 - -0.9847399) + 1.9521191) - (1.9521191 - -0.9847399)) + (exp((chord_length + frequency) - sin(-0.9847399)) / -0.27863812)) + chord_length)"
+23,36.4621,"((((exp((1.9521191 - -0.9847399) + 1.9521191) - exp(-0.9847399)) - suction_side_displacement_thickness) + (exp(sin(chord_length + frequency) - -0.9847399) / -0.27863812)) / 1.0056863)"
+28,34.311565,"((((exp((1.9521191 - -0.9847399) + 1.9521191) - (sin(1.9521191 - frequency) - -0.9847399)) - suction_side_displacement_thickness) + (exp(sin(chord_length + frequency) - -0.9847399) / sin(-0.27863812))) / 1.0056863)"

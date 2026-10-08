@@ -1,0 +1,118 @@
+{
+  "analysis_version": "expression_analysis_v2",
+  "analysis_status": "complete",
+  "problem": "piston",
+  "algorithm": "operon",
+  "seed": 3,
+  "input_scaling": "domain_minmax",
+  "expression_timeout_seconds_per_stage": 60,
+  "analysis_seconds": 3.519745965999391,
+  "analysis_python": "3.11.15",
+  "analysis_platform": "Linux-7.0.0-29-generic-x86_64-with-glibc2.43",
+  "raw_scale_symbolic_model": "-3.36665344e-7*atmospheric_pressure + 35.600894116*initial_volume + 0.00341384752826667*piston_mass - 1.0205513184e-5*spring_coefficient - 25.1290439205333*surface_area - 0.12441224602*(400*surface_area/3 - 5/3)*(-222.81*initial_volume + 110.0468*surface_area - 0.0387249999999999)*(74.559*initial_volume + 0.000226088*spring_coefficient - 1.125618) + 0.086236*(-210.298*initial_volume + 110.0468*surface_area - 0.113797)*(170.93925*initial_volume - 0.0215205333333333*piston_mass + 0.000226088*spring_coefficient + 110.0468*surface_area + 0.424596649274*(spring_coefficient/2000 - 3/2)*(400*surface_area/3 - 5/3)*(0.000217147*spring_coefficient + 150.542133333333*surface_area - 2.53321766666667) - 2.1110605) + 0.468970619490667",
+  "raw_scale_back_transform_error": null,
+  "complexity_valid": true,
+  "complexity_source": "simplified",
+  "training_scale_expression_parse_success": true,
+  "training_scale_expression_parse_error": null,
+  "training_scale_expression_simplify_success": true,
+  "training_scale_expression_simplify_error": null,
+  "training_scale_symbolic_comparison_error": null,
+  "training_scale_symbolic_exact_match": null,
+  "training_scale_expression_node_count": 67,
+  "training_scale_expression_depth": 6,
+  "training_scale_expression_operator_count": 26,
+  "training_scale_expression_operators": [
+    "Add",
+    "Mul"
+  ],
+  "training_scale_expression_constant_count": 21,
+  "training_scale_expression_variable_count": 5,
+  "training_scale_expression_variables": [
+    "atmospheric_pressure",
+    "initial_volume",
+    "piston_mass",
+    "spring_coefficient",
+    "surface_area"
+  ],
+  "training_scale_simplified_node_count": 67,
+  "training_scale_simplified_depth": 6,
+  "training_scale_simplified_operator_count": 26,
+  "training_scale_simplified_operators": [
+    "Add",
+    "Mul"
+  ],
+  "training_scale_simplified_constant_count": 21,
+  "training_scale_simplified_variable_count": 5,
+  "training_scale_simplified_variables": [
+    "atmospheric_pressure",
+    "initial_volume",
+    "piston_mass",
+    "spring_coefficient",
+    "surface_area"
+  ],
+  "training_scale_simplified_expression": "-0.00336665344*atmospheric_pressure + 0.142403576464*initial_volume + 0.051207712924*piston_mass - 0.020411026368*spring_coefficient + 0.12441224602*surface_area*(0.298236*initial_volume + 0.452176*spring_coefficient)*(0.89124*initial_volume - 0.825351*surface_area) - 0.188467829404*surface_area - 0.086236*(0.841192*initial_volume - 0.825351*surface_area)*(0.683757*initial_volume - 0.322808*piston_mass + 0.424596649274*spring_coefficient*surface_area*(0.434294*spring_coefficient + 1.129066*surface_area) + 0.452176*spring_coefficient + 0.825351*surface_area) + 0.457803",
+  "expression_parse_success": true,
+  "expression_parse_error": null,
+  "expression_simplify_success": true,
+  "expression_simplify_error": null,
+  "symbolic_comparison_error": null,
+  "symbolic_exact_match": false,
+  "expression_node_count": 82,
+  "expression_depth": 6,
+  "expression_operator_count": 32,
+  "expression_operators": [
+    "Add",
+    "Mul"
+  ],
+  "expression_constant_count": 30,
+  "expression_variable_count": 5,
+  "expression_variables": [
+    "atmospheric_pressure",
+    "initial_volume",
+    "piston_mass",
+    "spring_coefficient",
+    "surface_area"
+  ],
+  "simplified_node_count": 82,
+  "simplified_depth": 6,
+  "simplified_operator_count": 32,
+  "simplified_operators": [
+    "Add",
+    "Mul"
+  ],
+  "simplified_constant_count": 30,
+  "simplified_variable_count": 5,
+  "simplified_variables": [
+    "atmospheric_pressure",
+    "initial_volume",
+    "piston_mass",
+    "spring_coefficient",
+    "surface_area"
+  ],
+  "simplified_expression": "-3.36665344e-7*atmospheric_pressure + 35.600894116*initial_volume + 0.00341384752826667*piston_mass - 1.0205513184e-5*spring_coefficient - 25.1290439205333*surface_area - (16.5882994693333*surface_area - 0.207353743366667)*(-222.81*initial_volume + 110.0468*surface_area - 0.0387249999999999)*(74.559*initial_volume + 0.000226088*spring_coefficient - 1.125618) + (-18.135258328*initial_volume + 9.4899958448*surface_area - 0.009813398092)*(170.93925*initial_volume - 0.0215205333333333*piston_mass + 0.000226088*spring_coefficient + 110.0468*surface_area + (0.000212298324637*spring_coefficient - 0.636894973911)*(400*surface_area/3 - 5/3)*(0.000217147*spring_coefficient + 150.542133333333*surface_area - 2.53321766666667) - 2.1110605) + 0.468970619490667",
+  "ground_truth_node_count": 66,
+  "ground_truth_depth": 14,
+  "ground_truth_operator_count": 24,
+  "ground_truth_operators": [
+    "Add",
+    "Mul",
+    "Pow"
+  ],
+  "ground_truth_constant_count": 18,
+  "ground_truth_variable_count": 7,
+  "ground_truth_variables": [
+    "ambient_temperature",
+    "atmospheric_pressure",
+    "gas_temperature",
+    "initial_volume",
+    "piston_mass",
+    "spring_coefficient",
+    "surface_area"
+  ],
+  "ground_truth_expression": "2*pi*sqrt(piston_mass/(4*ambient_temperature*atmospheric_pressure*initial_volume*spring_coefficient**2/(gas_temperature*(-atmospheric_pressure*surface_area + initial_volume*spring_coefficient/surface_area - 19.62*piston_mass + sqrt(4*ambient_temperature*atmospheric_pressure*initial_volume*spring_coefficient/gas_temperature + (atmospheric_pressure*surface_area - initial_volume*spring_coefficient/surface_area + 19.62*piston_mass)**2))**2) + spring_coefficient))",
+  "ground_truth_variable_recall": 0.7142857142857143,
+  "simplified_to_ground_truth_size_ratio": 1.2424242424242424,
+  "source_result": "seed-3.json",
+  "source_result_sha256": "7f1139066392459de3b4ed4a185bbf782da5235680688ed05754a94a380041ba"
+}

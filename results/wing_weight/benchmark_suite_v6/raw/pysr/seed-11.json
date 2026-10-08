@@ -1,0 +1,125 @@
+{
+  "status": "success",
+  "problem": "wing_weight",
+  "algorithm": "pysr",
+  "seed": 11,
+  "seed_parameter": "random_state",
+  "train_samples": 400,
+  "test_samples": 4000,
+  "feature_names": [
+    "wing_area",
+    "fuel_weight",
+    "aspect_ratio",
+    "sweep_angle_degrees",
+    "dynamic_pressure",
+    "taper_ratio",
+    "thickness_chord_ratio",
+    "ultimate_load_factor",
+    "design_gross_weight",
+    "paint_weight"
+  ],
+  "dataset_policy": "fixed across algorithm trials",
+  "dataset_hash_scope": "SHA-256 of uncompressed table bytes",
+  "train_dataset_sha256": "7273670fa5a6f37cbbe8d0a26ed96e4f295b9ee2d444d735cd2cda1877152c92",
+  "test_dataset_sha256": "05567111a31d97fa7a887bda4b257e1b300a0c4fb1c3b62cd69d60cb37b634c7",
+  "requested_population_size": null,
+  "requested_iterations": null,
+  "time_limit": null,
+  "profile": "benchmark",
+  "benchmark_name": "benchmark_suite_v6",
+  "config_file": "/workspace/configs/benchmark_suite_v6.json",
+  "configuration_schema_version": 2,
+  "configuration_sha256": "ae7273b58513324e7363ac0b68f335ab4a8b6661f16f1b6774b9bfa5e4e56bda",
+  "use_dataframe": true,
+  "input_scaling": "raw",
+  "input_scaling_applied": false,
+  "input_scaling_source": "fixed documented problem domain",
+  "input_scaling_formula": "x unchanged",
+  "input_scaling_parameters": {
+    "wing_area": {
+      "lower": 150.0,
+      "upper": 200.0
+    },
+    "fuel_weight": {
+      "lower": 220.0,
+      "upper": 300.0
+    },
+    "aspect_ratio": {
+      "lower": 6.0,
+      "upper": 10.0
+    },
+    "sweep_angle_degrees": {
+      "lower": -10.0,
+      "upper": 10.0
+    },
+    "dynamic_pressure": {
+      "lower": 16.0,
+      "upper": 45.0
+    },
+    "taper_ratio": {
+      "lower": 0.5,
+      "upper": 1.0
+    },
+    "thickness_chord_ratio": {
+      "lower": 0.08,
+      "upper": 0.18
+    },
+    "ultimate_load_factor": {
+      "lower": 2.5,
+      "upper": 6.0
+    },
+    "design_gross_weight": {
+      "lower": 1700.0,
+      "upper": 2500.0
+    },
+    "paint_weight": {
+      "lower": 0.025,
+      "upper": 0.08
+    }
+  },
+  "target_scaling": "none; target remains in original units",
+  "algorithm_configuration_role": "project_budget_and_execution_override",
+  "algorithm_configuration_rationale": "Replaces the adapter's very long search with a 60-second practical budget and explicitly enforces deterministic single-process execution; not selected using test performance.",
+  "configured_parameters": {
+    "niterations": 20,
+    "ncyclesperiteration": 500,
+    "population_size": 100,
+    "populations": 3,
+    "timeout_in_seconds": 60,
+    "deterministic": true,
+    "procs": 0,
+    "multithreading": false
+  },
+  "applied_parameters": {
+    "random_state": 11,
+    "niterations": 20,
+    "ncyclesperiteration": 500,
+    "population_size": 100,
+    "populations": 3,
+    "timeout_in_seconds": 60,
+    "deterministic": true,
+    "procs": 0,
+    "multithreading": false
+  },
+  "rmse": 20.108004643294745,
+  "nrmse_range": 0.062388756734785784,
+  "mae": 16.373790385389498,
+  "r2": 0.8212172328493392,
+  "max_absolute_error": 83.7146565946432,
+  "fit_seconds": 89.35419256800014,
+  "prediction_seconds": 0.008790141000645235,
+  "prediction_repeats": 5,
+  "prediction_mean_seconds": 0.004283477801072877,
+  "prediction_median_seconds": 0.003102957001829054,
+  "prediction_std_seconds": 0.0025222605314132096,
+  "prediction_microseconds_per_sample": 0.7757392504572636,
+  "expression_extraction_seconds": 0.011226059999899007,
+  "evaluation_seconds": 89.38729272199998,
+  "timing_scope": "fit/predict/expression extraction inside the running container; symbolic analysis, image pull, container startup, data generation, and metric serialization excluded",
+  "model_size": 14,
+  "symbolic_model": "0.906872533986862*aspect_ratio*ultimate_load_factor*log(0.5999131*aspect_ratio/thickness_chord_ratio) + 0.906872533986862*wing_area",
+  "symbolic_model_coordinate_system": "raw",
+  "symbolic_analysis": "separate post-processing sidecar",
+  "python": "3.11.0",
+  "platform": "Linux-7.0.0-29-generic-x86_64-with-glibc2.36"
+}

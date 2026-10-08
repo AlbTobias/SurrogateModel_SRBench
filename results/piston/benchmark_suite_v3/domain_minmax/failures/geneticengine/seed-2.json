@@ -1,0 +1,8 @@
+{
+  "problem": "piston",
+  "input_scaling": "domain_minmax",
+  "algorithm": "geneticengine",
+  "seed": 2,
+  "status": "failed",
+  "exit_code": 1
+}

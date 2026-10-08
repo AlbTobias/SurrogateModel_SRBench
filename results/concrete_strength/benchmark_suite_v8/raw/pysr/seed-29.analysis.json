@@ -1,0 +1,92 @@
+{
+  "analysis_version": "expression_analysis_v2",
+  "analysis_status": "complete",
+  "problem": "concrete_strength",
+  "algorithm": "pysr",
+  "seed": 29,
+  "input_scaling": "raw",
+  "expression_timeout_seconds_per_stage": 60,
+  "analysis_seconds": 0.14474352199977147,
+  "analysis_python": "3.11.15",
+  "analysis_platform": "Linux-7.0.0-30-generic-x86_64-with-glibc2.43",
+  "raw_scale_symbolic_model": "sqrt(cement*log(age)) + 3.54186243365612",
+  "raw_scale_back_transform_error": null,
+  "complexity_valid": true,
+  "complexity_source": "simplified",
+  "training_scale_expression_parse_success": true,
+  "training_scale_expression_parse_error": null,
+  "training_scale_expression_simplify_success": true,
+  "training_scale_expression_simplify_error": null,
+  "training_scale_symbolic_comparison_error": null,
+  "training_scale_symbolic_exact_match": null,
+  "training_scale_expression_node_count": 8,
+  "training_scale_expression_depth": 4,
+  "training_scale_expression_operator_count": 4,
+  "training_scale_expression_operators": [
+    "Add",
+    "Mul",
+    "Pow",
+    "log"
+  ],
+  "training_scale_expression_constant_count": 2,
+  "training_scale_expression_variable_count": 2,
+  "training_scale_expression_variables": [
+    "age",
+    "cement"
+  ],
+  "training_scale_simplified_node_count": 8,
+  "training_scale_simplified_depth": 4,
+  "training_scale_simplified_operator_count": 4,
+  "training_scale_simplified_operators": [
+    "Add",
+    "Mul",
+    "Pow",
+    "log"
+  ],
+  "training_scale_simplified_constant_count": 2,
+  "training_scale_simplified_variable_count": 2,
+  "training_scale_simplified_variables": [
+    "age",
+    "cement"
+  ],
+  "training_scale_simplified_expression": "sqrt(cement*log(age)) + 3.54186243365612",
+  "expression_parse_success": true,
+  "expression_parse_error": null,
+  "expression_simplify_success": true,
+  "expression_simplify_error": null,
+  "symbolic_comparison_error": null,
+  "symbolic_exact_match": null,
+  "expression_node_count": 8,
+  "expression_depth": 4,
+  "expression_operator_count": 4,
+  "expression_operators": [
+    "Add",
+    "Mul",
+    "Pow",
+    "log"
+  ],
+  "expression_constant_count": 2,
+  "expression_variable_count": 2,
+  "expression_variables": [
+    "age",
+    "cement"
+  ],
+  "simplified_node_count": 8,
+  "simplified_depth": 4,
+  "simplified_operator_count": 4,
+  "simplified_operators": [
+    "Add",
+    "Mul",
+    "Pow",
+    "log"
+  ],
+  "simplified_constant_count": 2,
+  "simplified_variable_count": 2,
+  "simplified_variables": [
+    "age",
+    "cement"
+  ],
+  "simplified_expression": "sqrt(cement*log(age)) + 3.54186243365612",
+  "source_result": "seed-29.json",
+  "source_result_sha256": "4b64befea7088b5133bdc5568aafa020f618758f6d99df1db2c3198c88004bb7"
+}

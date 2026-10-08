@@ -1,0 +1,11 @@
+Complexity,Loss,Equation
+1,2108.642,"267.23663"
+3,2079.2927,"(268.87192 + ultimate_load_factor)"
+5,1662.669,"(271.85452 + (aspect_ratio / 0.039644714))"
+6,1454.8263,"(272.31604 / exp(-0.13708238 * ultimate_load_factor))"
+9,1396.8601,"(262.95084 + ((44.898445 + (3.7748249 / ultimate_load_factor)) * ultimate_load_factor))"
+13,1143.2427,"((((exp(2.4656491) + ultimate_load_factor) + aspect_ratio) * 2.4656491) / (sin(0.403611) * 0.27492362))"
+14,1079.7291,"(((((exp(2.4656491) + ultimate_load_factor) + aspect_ratio) * 2.4656491) + ultimate_load_factor) / (0.403611 * 0.27492362))"
+16,999.7851,"((((((exp(2.4656491) + ultimate_load_factor) + aspect_ratio) * 2.4656491) + aspect_ratio) + ultimate_load_factor) / (0.403611 * 0.27492362))"
+19,906.6476,"((-0.32233977 + (((((exp(2.4656491) - thickness_chord_ratio) + ultimate_load_factor) + aspect_ratio) * 2.4656491) + -0.29448086)) / (sin(0.403611) * 0.27492362))"
+20,792.7078,"((((((exp(2.4656491) + ultimate_load_factor) + wing_area) * 2.4656491) + (aspect_ratio + sin(aspect_ratio))) + ultimate_load_factor) / (sin(0.403611) * 0.27492362))"

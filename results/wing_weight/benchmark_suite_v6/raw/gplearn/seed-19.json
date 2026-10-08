@@ -1,0 +1,113 @@
+{
+  "status": "success",
+  "problem": "wing_weight",
+  "algorithm": "gplearn",
+  "seed": 19,
+  "seed_parameter": "random_state",
+  "train_samples": 400,
+  "test_samples": 4000,
+  "feature_names": [
+    "wing_area",
+    "fuel_weight",
+    "aspect_ratio",
+    "sweep_angle_degrees",
+    "dynamic_pressure",
+    "taper_ratio",
+    "thickness_chord_ratio",
+    "ultimate_load_factor",
+    "design_gross_weight",
+    "paint_weight"
+  ],
+  "dataset_policy": "fixed across algorithm trials",
+  "dataset_hash_scope": "SHA-256 of uncompressed table bytes",
+  "train_dataset_sha256": "7273670fa5a6f37cbbe8d0a26ed96e4f295b9ee2d444d735cd2cda1877152c92",
+  "test_dataset_sha256": "05567111a31d97fa7a887bda4b257e1b300a0c4fb1c3b62cd69d60cb37b634c7",
+  "requested_population_size": null,
+  "requested_iterations": null,
+  "time_limit": null,
+  "profile": "benchmark",
+  "benchmark_name": "benchmark_suite_v6",
+  "config_file": "/workspace/configs/benchmark_suite_v6.json",
+  "configuration_schema_version": 2,
+  "configuration_sha256": "ae7273b58513324e7363ac0b68f335ab4a8b6661f16f1b6774b9bfa5e4e56bda",
+  "use_dataframe": true,
+  "input_scaling": "raw",
+  "input_scaling_applied": false,
+  "input_scaling_source": "fixed documented problem domain",
+  "input_scaling_formula": "x unchanged",
+  "input_scaling_parameters": {
+    "wing_area": {
+      "lower": 150.0,
+      "upper": 200.0
+    },
+    "fuel_weight": {
+      "lower": 220.0,
+      "upper": 300.0
+    },
+    "aspect_ratio": {
+      "lower": 6.0,
+      "upper": 10.0
+    },
+    "sweep_angle_degrees": {
+      "lower": -10.0,
+      "upper": 10.0
+    },
+    "dynamic_pressure": {
+      "lower": 16.0,
+      "upper": 45.0
+    },
+    "taper_ratio": {
+      "lower": 0.5,
+      "upper": 1.0
+    },
+    "thickness_chord_ratio": {
+      "lower": 0.08,
+      "upper": 0.18
+    },
+    "ultimate_load_factor": {
+      "lower": 2.5,
+      "upper": 6.0
+    },
+    "design_gross_weight": {
+      "lower": 1700.0,
+      "upper": 2500.0
+    },
+    "paint_weight": {
+      "lower": 0.025,
+      "upper": 0.08
+    }
+  },
+  "target_scaling": "none; target remains in original units",
+  "algorithm_configuration_role": "project_budget_override",
+  "algorithm_configuration_rationale": "Reduced from the SRBench adapter's 1000 individuals and 500 generations to keep repeated trials computationally feasible; not selected using test performance.",
+  "configured_parameters": {
+    "population_size": 500,
+    "generations": 100
+  },
+  "applied_parameters": {
+    "random_state": 19,
+    "population_size": 500,
+    "generations": 100
+  },
+  "rmse": 39.57929152903695,
+  "nrmse_range": 0.1228019803428717,
+  "mae": 32.009052364878436,
+  "r2": 0.30733421883487655,
+  "max_absolute_error": 177.29879521762007,
+  "fit_seconds": 31.284968546002347,
+  "prediction_seconds": 0.0057961799975601025,
+  "prediction_repeats": 5,
+  "prediction_mean_seconds": 0.005349529199884273,
+  "prediction_median_seconds": 0.005291671001032228,
+  "prediction_std_seconds": 0.0002570756346615184,
+  "prediction_microseconds_per_sample": 1.322917750258057,
+  "expression_extraction_seconds": 0.0006096079996495973,
+  "evaluation_seconds": 31.312669227998413,
+  "timing_scope": "fit/predict/expression extraction inside the running container; symbolic analysis, image pull, container startup, data generation, and metric serialization excluded",
+  "model_size": 535,
+  "symbolic_model": "add(ultimate_load_factor, add(ultimate_load_factor, add(log(paint_weight), add(log(cos(add(add(ultimate_load_factor, fuel_weight), sweep_angle_degrees))), add(ultimate_load_factor, add(log(sin(dynamic_pressure)), add(ultimate_load_factor, add(log(paint_weight), add(log(paint_weight), add(log(paint_weight), add(log(cos(add(ultimate_load_factor, fuel_weight))), add(ultimate_load_factor, add(log(paint_weight), add(log(cos(add(add(ultimate_load_factor, fuel_weight), sweep_angle_degrees))), add(ultimate_load_factor, add(log(sin(dynamic_pressure)), add(ultimate_load_factor, add(log(paint_weight), add(log(paint_weight), add(log(paint_weight), add(log(cos(add(add(ultimate_load_factor, fuel_weight), sweep_angle_degrees))), add(ultimate_load_factor, add(log(paint_weight), add(log(cos(add(ultimate_load_factor, sweep_angle_degrees))), add(ultimate_load_factor, add(log(div(cos(sin(add(paint_weight, thickness_chord_ratio))), add(div(div(aspect_ratio, taper_ratio), log(thickness_chord_ratio)), sub(add(log(paint_weight), add(ultimate_load_factor, add(log(paint_weight), add(log(paint_weight), add(add(ultimate_load_factor, fuel_weight), sweep_angle_degrees))))), div(wing_area, thickness_chord_ratio))))), add(ultimate_load_factor, add(log(div(cos(sin(add(paint_weight, thickness_chord_ratio))), add(add(ultimate_load_factor, fuel_weight), sub(mul(paint_weight, design_gross_weight), div(wing_area, thickness_chord_ratio))))), add(log(div(cos(add(ultimate_load_factor, fuel_weight)), add(div(div(aspect_ratio, taper_ratio), log(thickness_chord_ratio)), sub(mul(paint_weight, design_gross_weight), div(wing_area, thickness_chord_ratio))))), add(log(div(cos(sin(add(paint_weight, thickness_chord_ratio))), add(div(div(aspect_ratio, taper_ratio), log(thickness_chord_ratio)), sub(mul(paint_weight, design_gross_weight), div(wing_area, thickness_chord_ratio))))), add(ultimate_load_factor, add(log(paint_weight), add(log(cos(add(add(ultimate_load_factor, fuel_weight), sweep_angle_degrees))), add(ultimate_load_factor, add(log(div(cos(sin(add(paint_weight, thickness_chord_ratio))), add(div(div(aspect_ratio, taper_ratio), log(thickness_chord_ratio)), sub(add(log(paint_weight), add(add(add(ultimate_load_factor, fuel_weight), sweep_angle_degrees), add(ultimate_load_factor, add(log(paint_weight), add(ultimate_load_factor, add(log(paint_weight), add(log(paint_weight), add(add(ultimate_load_factor, fuel_weight), sweep_angle_degrees)))))))), div(wing_area, thickness_chord_ratio))))), add(ultimate_load_factor, add(log(paint_weight), add(log(cos(add(add(ultimate_load_factor, fuel_weight), sweep_angle_degrees))), add(ultimate_load_factor, add(log(div(cos(sin(add(paint_weight, thickness_chord_ratio))), add(div(div(aspect_ratio, taper_ratio), log(thickness_chord_ratio)), sub(add(log(paint_weight), add(add(add(ultimate_load_factor, fuel_weight), sweep_angle_degrees), add(ultimate_load_factor, add(log(paint_weight), add(ultimate_load_factor, add(log(paint_weight), add(wing_area, add(add(ultimate_load_factor, fuel_weight), sweep_angle_degrees)))))))), div(wing_area, thickness_chord_ratio))))), add(ultimate_load_factor, add(log(log(paint_weight)), add(log(paint_weight), add(log(cos(add(add(ultimate_load_factor, fuel_weight), sweep_angle_degrees))), add(ultimate_load_factor, add(log(div(cos(sin(add(paint_weight, thickness_chord_ratio))), add(div(div(aspect_ratio, taper_ratio), log(thickness_chord_ratio)), sub(mul(paint_weight, design_gross_weight), div(wing_area, thickness_chord_ratio))))), add(ultimate_load_factor, add(log(log(paint_weight)), add(log(paint_weight), add(log(paint_weight), add(log(div(cos(sin(add(paint_weight, thickness_chord_ratio))), add(div(div(aspect_ratio, taper_ratio), log(thickness_chord_ratio)), sub(add(cos(add(add(ultimate_load_factor, fuel_weight), sweep_angle_degrees)), add(ultimate_load_factor, add(add(add(ultimate_load_factor, fuel_weight), sweep_angle_degrees), add(log(paint_weight), add(add(ultimate_load_factor, fuel_weight), sweep_angle_degrees))))), div(wing_area, thickness_chord_ratio))))), add(log(div(cos(add(ultimate_load_factor, fuel_weight)), add(div(div(aspect_ratio, taper_ratio), log(thickness_chord_ratio)), sub(mul(paint_weight, design_gross_weight), div(wing_area, thickness_chord_ratio))))), add(ultimate_load_factor, add(log(sin(dynamic_pressure)), add(ultimate_load_factor, add(log(paint_weight), add(log(paint_weight), add(log(paint_weight), add(log(cos(add(log(paint_weight), sweep_angle_degrees))), add(ultimate_load_factor, add(log(paint_weight), add(log(div(cos(sin(add(paint_weight, thickness_chord_ratio))), add(div(div(aspect_ratio, taper_ratio), sin(add(paint_weight, thickness_chord_ratio))), sub(mul(paint_weight, design_gross_weight), sub(mul(paint_weight, design_gross_weight), div(wing_area, thickness_chord_ratio)))))), add(ultimate_load_factor, add(log(div(cos(sin(add(paint_weight, thickness_chord_ratio))), add(div(div(aspect_ratio, taper_ratio), log(thickness_chord_ratio)), sub(add(log(paint_weight), add(ultimate_load_factor, add(log(paint_weight), add(log(paint_weight), add(add(ultimate_load_factor, fuel_weight), sweep_angle_degrees))))), div(wing_area, thickness_chord_ratio))))), add(log(paint_weight), add(ultimate_load_factor, add(log(paint_weight), add(log(paint_weight), add(add(ultimate_load_factor, fuel_weight), sweep_angle_degrees)))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))",
+  "symbolic_model_coordinate_system": "raw",
+  "symbolic_analysis": "separate post-processing sidecar",
+  "python": "3.12.5",
+  "platform": "Linux-7.0.0-29-generic-x86_64-with-glibc2.36"
+}

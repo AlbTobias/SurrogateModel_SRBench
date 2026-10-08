@@ -1,0 +1,102 @@
+{
+  "status": "success",
+  "problem": "piston",
+  "algorithm": "geneticengine",
+  "seed": 17,
+  "seed_parameter": "seed",
+  "train_samples": 400,
+  "test_samples": 4000,
+  "feature_names": [
+    "piston_mass",
+    "surface_area",
+    "initial_volume",
+    "spring_coefficient",
+    "atmospheric_pressure",
+    "ambient_temperature",
+    "gas_temperature"
+  ],
+  "dataset_policy": "fixed across algorithm trials",
+  "dataset_hash_scope": "SHA-256 of uncompressed table bytes",
+  "train_dataset_sha256": "8fefa86a0b1a968ea30a3fcbf7b6952b0f8f532ea9a0b173d0d2f8edeefb5c33",
+  "test_dataset_sha256": "bdfcd412e6626624bc2850edc9812d349f20a36d09a5f7dde53a4c1be472ddce",
+  "requested_population_size": null,
+  "requested_iterations": null,
+  "time_limit": null,
+  "profile": "benchmark",
+  "benchmark_name": "benchmark_suite_v3",
+  "config_file": "/workspace/configs/benchmark_suite_v3.json",
+  "configuration_schema_version": 2,
+  "configuration_sha256": "10f28378133c412ff7ac9373547487daca91317b9f46302410a136c8e1cd635c",
+  "use_dataframe": true,
+  "input_scaling": "domain_minmax",
+  "input_scaling_applied": true,
+  "input_scaling_source": "fixed published problem domain",
+  "input_scaling_formula": "z = 2 * (x - lower) / (upper - lower) - 1",
+  "input_scaling_parameters": {
+    "piston_mass": {
+      "lower": 30.0,
+      "upper": 60.0
+    },
+    "surface_area": {
+      "lower": 0.005,
+      "upper": 0.02
+    },
+    "initial_volume": {
+      "lower": 0.002,
+      "upper": 0.01
+    },
+    "spring_coefficient": {
+      "lower": 1000.0,
+      "upper": 5000.0
+    },
+    "atmospheric_pressure": {
+      "lower": 90000.0,
+      "upper": 110000.0
+    },
+    "ambient_temperature": {
+      "lower": 290.0,
+      "upper": 296.0
+    },
+    "gas_temperature": {
+      "lower": 340.0,
+      "upper": 360.0
+    }
+  },
+  "target_scaling": "none; target remains in original units",
+  "algorithm_configuration_role": "project_budget_override",
+  "algorithm_configuration_rationale": "Reduces the adapter's one-hour allowance to a 60-second practical budget for repeated evaluation; not selected using test performance.",
+  "configured_parameters": {
+    "population_size": 200,
+    "number_of_generations": 100,
+    "timer_stop_criteria": true,
+    "timer_limit": 60
+  },
+  "applied_parameters": {
+    "seed": 17,
+    "population_size": 200,
+    "number_of_generations": 100,
+    "timer_stop_criteria": true,
+    "timer_limit": 60
+  },
+  "rmse": 0.12212465178612114,
+  "nrmse_range": 0.14170440295262768,
+  "mae": 0.09795692323895301,
+  "r2": 0.2585239133312277,
+  "max_absolute_error": 0.5450777888219147,
+  "fit_seconds": 60.232584852999935,
+  "prediction_seconds": 0.00017257600120501593,
+  "prediction_repeats": 5,
+  "prediction_mean_seconds": 0.00012037500055157579,
+  "prediction_median_seconds": 0.00010710599963204004,
+  "prediction_std_seconds": 2.9493528632434363e-05,
+  "prediction_microseconds_per_sample": 0.02677649990801001,
+  "expression_extraction_seconds": 2.408099862805102e-05,
+  "evaluation_seconds": 60.233623678001095,
+  "timing_scope": "fit/predict/expression extraction inside the running container; symbolic analysis, image pull, container startup, data generation, and metric serialization excluded",
+  "model_size": null,
+  "symbolic_model": "log((log((sqrt((log((sqrt(((initial_volume + 1)))))))))))",
+  "symbolic_model_coordinate_system": "domain_minmax",
+  "symbolic_analysis": "separate post-processing sidecar",
+  "python": "3.9.12",
+  "platform": "Linux-7.0.0-29-generic-x86_64-with-glibc2.36"
+}

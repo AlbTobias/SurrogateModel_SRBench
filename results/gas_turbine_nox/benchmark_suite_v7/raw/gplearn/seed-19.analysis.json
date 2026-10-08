@@ -1,0 +1,100 @@
+{
+  "analysis_version": "expression_analysis_v2",
+  "analysis_status": "complete",
+  "problem": "gas_turbine_nox",
+  "algorithm": "gplearn",
+  "seed": 19,
+  "input_scaling": "raw",
+  "expression_timeout_seconds_per_stage": 60,
+  "analysis_seconds": 6.110200387000077,
+  "analysis_python": "3.11.15",
+  "analysis_platform": "Linux-7.0.0-29-generic-x86_64-with-glibc2.43",
+  "raw_scale_symbolic_model": "add(sub(sub(sub(sub(sub(sub(sub(sub(sqrt(sub(turbine_inlet_temperature, 0.934)), sub(sub(cos(sqrt(mul(sub(sqrt(turbine_inlet_temperature), sub(cos(sqrt(log(sqrt(turbine_inlet_temperature)))), sqrt(turbine_inlet_temperature))), turbine_inlet_temperature))), cos(sqrt(sub(turbine_inlet_temperature, mul(sub(sqrt(turbine_inlet_temperature), log(sqrt(turbine_inlet_temperature))), turbine_inlet_temperature))))), sqrt(log(sqrt(turbine_after_temperature))))), sub(cos(sqrt(mul(sub(sqrt(turbine_inlet_temperature), sub(cos(sqrt(log(sqrt(turbine_inlet_temperature)))), sqrt(turbine_inlet_temperature))), turbine_inlet_temperature))), cos(sqrt(sub(turbine_inlet_temperature, mul(sub(sqrt(turbine_inlet_temperature), sqrt(sub(turbine_inlet_temperature, mul(sub(sqrt(turbine_inlet_temperature), log(sqrt(turbine_inlet_temperature))), turbine_inlet_temperature)))), turbine_inlet_temperature)))))), sub(cos(sqrt(ambient_temperature)), cos(sqrt(sub(turbine_inlet_temperature, mul(sub(sqrt(turbine_inlet_temperature), sub(cos(sqrt(mul(sub(sqrt(turbine_inlet_temperature), sub(cos(sqrt(log(sqrt(turbine_inlet_temperature)))), sqrt(turbine_inlet_temperature))), turbine_inlet_temperature))), sqrt(log(sqrt(turbine_after_temperature))))), turbine_inlet_temperature)))))), sub(cos(sqrt(mul(sub(sqrt(turbine_inlet_temperature), sub(cos(sqrt(mul(sub(sqrt(turbine_inlet_temperature), sub(cos(sqrt(log(sqrt(turbine_inlet_temperature)))), sqrt(turbine_inlet_temperature))), turbine_inlet_temperature))), sqrt(log(sqrt(turbine_after_temperature))))), turbine_inlet_temperature))), cos(sub(sub(sqrt(sqrt(log(sqrt(turbine_after_temperature)))), sqrt(mul(sub(sqrt(turbine_inlet_temperature), sub(cos(sqrt(log(sqrt(turbine_inlet_temperature)))), sqrt(turbine_inlet_temperature))), turbine_inlet_temperature))), sqrt(mul(sub(sqrt(turbine_inlet_temperature), sub(cos(sqrt(log(sqrt(turbine_inlet_temperature)))), sqrt(turbine_inlet_temperature))), turbine_inlet_temperature)))))), sub(cos(sqrt(ambient_temperature)), cos(sqrt(sub(turbine_inlet_temperature, mul(sub(sqrt(turbine_inlet_temperature), sub(cos(sqrt(mul(sub(sqrt(turbine_inlet_temperature), sub(cos(sqrt(log(sqrt(turbine_inlet_temperature)))), sqrt(turbine_inlet_temperature))), turbine_inlet_temperature))), sqrt(log(sqrt(turbine_after_temperature))))), turbine_inlet_temperature)))))), sub(cos(sqrt(mul(sub(sqrt(sub(turbine_inlet_temperature, 0.934)), sub(cos(sqrt(log(sqrt(turbine_inlet_temperature)))), sqrt(turbine_inlet_temperature))), turbine_inlet_temperature))), cos(sqrt(sub(turbine_inlet_temperature, mul(sub(sqrt(turbine_inlet_temperature), sub(cos(sqrt(mul(sub(sqrt(turbine_inlet_temperature), sub(cos(sqrt(log(sqrt(turbine_inlet_temperature)))), sqrt(turbine_inlet_temperature))), turbine_inlet_temperature))), sqrt(log(sqrt(turbine_after_temperature))))), turbine_inlet_temperature)))))), sub(cos(sqrt(mul(sub(sqrt(sqrt(turbine_after_temperature)), sub(sqrt(mul(sub(sqrt(turbine_inlet_temperature), sub(sqrt(ambient_temperature), sqrt(turbine_inlet_temperature))), turbine_inlet_temperature)), sqrt(sub(turbine_inlet_temperature, sqrt(turbine_inlet_temperature))))), turbine_inlet_temperature))), cos(sub(sub(sqrt(sqrt(log(sqrt(turbine_after_temperature)))), sub(cos(sqrt(mul(sub(sqrt(turbine_inlet_temperature), sub(cos(sqrt(log(sqrt(turbine_after_temperature)))), sqrt(turbine_inlet_temperature))), turbine_inlet_temperature))), sqrt(turbine_inlet_temperature))), sqrt(mul(sub(sqrt(turbine_inlet_temperature), sub(cos(sqrt(log(sqrt(turbine_inlet_temperature)))), sqrt(turbine_inlet_temperature))), turbine_inlet_temperature)))))), sub(cos(sqrt(mul(sqrt(mul(sub(sqrt(turbine_inlet_temperature), sub(cos(sqrt(log(sqrt(turbine_inlet_temperature)))), sqrt(turbine_inlet_temperature))), turbine_inlet_temperature)), turbine_inlet_temperature))), sqrt(sub(turbine_inlet_temperature, 0.934)))), sqrt(log(sqrt(turbine_inlet_temperature))))",
+  "raw_scale_back_transform_error": null,
+  "complexity_valid": true,
+  "complexity_source": "simplified",
+  "training_scale_expression_parse_success": true,
+  "training_scale_expression_parse_error": null,
+  "training_scale_expression_simplify_success": true,
+  "training_scale_expression_simplify_error": null,
+  "training_scale_symbolic_comparison_error": null,
+  "training_scale_symbolic_exact_match": null,
+  "training_scale_expression_node_count": 351,
+  "training_scale_expression_depth": 17,
+  "training_scale_expression_operator_count": 183,
+  "training_scale_expression_operators": [
+    "Add",
+    "Mul",
+    "Pow",
+    "cos",
+    "log"
+  ],
+  "training_scale_expression_constant_count": 110,
+  "training_scale_expression_variable_count": 3,
+  "training_scale_expression_variables": [
+    "ambient_temperature",
+    "turbine_after_temperature",
+    "turbine_inlet_temperature"
+  ],
+  "training_scale_simplified_node_count": 351,
+  "training_scale_simplified_depth": 17,
+  "training_scale_simplified_operator_count": 183,
+  "training_scale_simplified_operators": [
+    "Add",
+    "Mul",
+    "Pow",
+    "cos",
+    "log"
+  ],
+  "training_scale_simplified_constant_count": 110,
+  "training_scale_simplified_variable_count": 3,
+  "training_scale_simplified_variables": [
+    "ambient_temperature",
+    "turbine_after_temperature",
+    "turbine_inlet_temperature"
+  ],
+  "training_scale_simplified_expression": "2*sqrt(turbine_inlet_temperature - 0.934) + sqrt(log(sqrt(turbine_after_temperature))) + sqrt(log(sqrt(turbine_inlet_temperature))) - 2*cos(sqrt(ambient_temperature)) - cos(sqrt(turbine_inlet_temperature*sqrt(turbine_inlet_temperature*(2*sqrt(turbine_inlet_temperature) - cos(sqrt(log(sqrt(turbine_inlet_temperature)))))))) - 2*cos(sqrt(turbine_inlet_temperature*(2*sqrt(turbine_inlet_temperature) - cos(sqrt(log(sqrt(turbine_inlet_temperature))))))) - cos(sqrt(turbine_inlet_temperature*(turbine_after_temperature**(1/4) - sqrt(turbine_inlet_temperature*(-sqrt(ambient_temperature) + 2*sqrt(turbine_inlet_temperature))) + sqrt(-sqrt(turbine_inlet_temperature) + turbine_inlet_temperature)))) - cos(sqrt(turbine_inlet_temperature*(sqrt(turbine_inlet_temperature) + sqrt(turbine_inlet_temperature - 0.934) - cos(sqrt(log(sqrt(turbine_inlet_temperature))))))) - cos(sqrt(turbine_inlet_temperature*(sqrt(turbine_inlet_temperature) + sqrt(log(sqrt(turbine_after_temperature))) - cos(sqrt(turbine_inlet_temperature*(2*sqrt(turbine_inlet_temperature) - cos(sqrt(log(sqrt(turbine_inlet_temperature)))))))))) + cos(sqrt(-turbine_inlet_temperature*(sqrt(turbine_inlet_temperature) - sqrt(-turbine_inlet_temperature*(sqrt(turbine_inlet_temperature) - log(sqrt(turbine_inlet_temperature))) + turbine_inlet_temperature)) + turbine_inlet_temperature)) + cos(sqrt(-turbine_inlet_temperature*(sqrt(turbine_inlet_temperature) - log(sqrt(turbine_inlet_temperature))) + turbine_inlet_temperature)) + cos(2*sqrt(turbine_inlet_temperature*(2*sqrt(turbine_inlet_temperature) - cos(sqrt(log(sqrt(turbine_inlet_temperature)))))) - log(sqrt(turbine_after_temperature))**(1/4)) + 3*cos(sqrt(-turbine_inlet_temperature*(sqrt(turbine_inlet_temperature) + sqrt(log(sqrt(turbine_after_temperature))) - cos(sqrt(turbine_inlet_temperature*(2*sqrt(turbine_inlet_temperature) - cos(sqrt(log(sqrt(turbine_inlet_temperature)))))))) + turbine_inlet_temperature)) + cos(sqrt(turbine_inlet_temperature) - sqrt(turbine_inlet_temperature*(2*sqrt(turbine_inlet_temperature) - cos(sqrt(log(sqrt(turbine_inlet_temperature)))))) + log(sqrt(turbine_after_temperature))**(1/4) - cos(sqrt(turbine_inlet_temperature*(2*sqrt(turbine_inlet_temperature) - cos(sqrt(log(sqrt(turbine_after_temperature))))))))",
+  "expression_parse_success": true,
+  "expression_parse_error": null,
+  "expression_simplify_success": true,
+  "expression_simplify_error": null,
+  "symbolic_comparison_error": null,
+  "symbolic_exact_match": null,
+  "expression_node_count": 351,
+  "expression_depth": 17,
+  "expression_operator_count": 183,
+  "expression_operators": [
+    "Add",
+    "Mul",
+    "Pow",
+    "cos",
+    "log"
+  ],
+  "expression_constant_count": 110,
+  "expression_variable_count": 3,
+  "expression_variables": [
+    "ambient_temperature",
+    "turbine_after_temperature",
+    "turbine_inlet_temperature"
+  ],
+  "simplified_node_count": 351,
+  "simplified_depth": 17,
+  "simplified_operator_count": 183,
+  "simplified_operators": [
+    "Add",
+    "Mul",
+    "Pow",
+    "cos",
+    "log"
+  ],
+  "simplified_constant_count": 110,
+  "simplified_variable_count": 3,
+  "simplified_variables": [
+    "ambient_temperature",
+    "turbine_after_temperature",
+    "turbine_inlet_temperature"
+  ],
+  "simplified_expression": "2*sqrt(turbine_inlet_temperature - 0.934) + sqrt(log(sqrt(turbine_after_temperature))) + sqrt(log(sqrt(turbine_inlet_temperature))) - 2*cos(sqrt(ambient_temperature)) - cos(sqrt(turbine_inlet_temperature*sqrt(turbine_inlet_temperature*(2*sqrt(turbine_inlet_temperature) - cos(sqrt(log(sqrt(turbine_inlet_temperature)))))))) - 2*cos(sqrt(turbine_inlet_temperature*(2*sqrt(turbine_inlet_temperature) - cos(sqrt(log(sqrt(turbine_inlet_temperature))))))) - cos(sqrt(turbine_inlet_temperature*(turbine_after_temperature**(1/4) - sqrt(turbine_inlet_temperature*(-sqrt(ambient_temperature) + 2*sqrt(turbine_inlet_temperature))) + sqrt(-sqrt(turbine_inlet_temperature) + turbine_inlet_temperature)))) - cos(sqrt(turbine_inlet_temperature*(sqrt(turbine_inlet_temperature) + sqrt(turbine_inlet_temperature - 0.934) - cos(sqrt(log(sqrt(turbine_inlet_temperature))))))) - cos(sqrt(turbine_inlet_temperature*(sqrt(turbine_inlet_temperature) + sqrt(log(sqrt(turbine_after_temperature))) - cos(sqrt(turbine_inlet_temperature*(2*sqrt(turbine_inlet_temperature) - cos(sqrt(log(sqrt(turbine_inlet_temperature)))))))))) + cos(sqrt(-turbine_inlet_temperature*(sqrt(turbine_inlet_temperature) - sqrt(-turbine_inlet_temperature*(sqrt(turbine_inlet_temperature) - log(sqrt(turbine_inlet_temperature))) + turbine_inlet_temperature)) + turbine_inlet_temperature)) + cos(sqrt(-turbine_inlet_temperature*(sqrt(turbine_inlet_temperature) - log(sqrt(turbine_inlet_temperature))) + turbine_inlet_temperature)) + cos(2*sqrt(turbine_inlet_temperature*(2*sqrt(turbine_inlet_temperature) - cos(sqrt(log(sqrt(turbine_inlet_temperature)))))) - log(sqrt(turbine_after_temperature))**(1/4)) + 3*cos(sqrt(-turbine_inlet_temperature*(sqrt(turbine_inlet_temperature) + sqrt(log(sqrt(turbine_after_temperature))) - cos(sqrt(turbine_inlet_temperature*(2*sqrt(turbine_inlet_temperature) - cos(sqrt(log(sqrt(turbine_inlet_temperature)))))))) + turbine_inlet_temperature)) + cos(sqrt(turbine_inlet_temperature) - sqrt(turbine_inlet_temperature*(2*sqrt(turbine_inlet_temperature) - cos(sqrt(log(sqrt(turbine_inlet_temperature)))))) + log(sqrt(turbine_after_temperature))**(1/4) - cos(sqrt(turbine_inlet_temperature*(2*sqrt(turbine_inlet_temperature) - cos(sqrt(log(sqrt(turbine_after_temperature))))))))",
+  "source_result": "seed-19.json",
+  "source_result_sha256": "b789a6ddb7c94c6a027698aae169a454b5073f20ded7d204a7baeed9647579b5"
+}

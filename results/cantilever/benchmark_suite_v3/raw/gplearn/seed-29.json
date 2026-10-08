@@ -1,0 +1,88 @@
+{
+  "status": "success",
+  "problem": "cantilever",
+  "algorithm": "gplearn",
+  "seed": 29,
+  "seed_parameter": "random_state",
+  "train_samples": 400,
+  "test_samples": 4000,
+  "feature_names": [
+    "force",
+    "length",
+    "modulus",
+    "width",
+    "height"
+  ],
+  "dataset_policy": "fixed across algorithm trials",
+  "dataset_hash_scope": "SHA-256 of uncompressed table bytes",
+  "train_dataset_sha256": "47ac0960181a6eeb569c70492065f55028aa6ea4b1606096efafbb754900e380",
+  "test_dataset_sha256": "fb1b4eac780cca9fd9696b7ce23188a1916b66b76fbf1a76ab2063389beedb67",
+  "requested_population_size": null,
+  "requested_iterations": null,
+  "time_limit": null,
+  "profile": "benchmark",
+  "benchmark_name": "benchmark_suite_v3",
+  "config_file": "/workspace/configs/benchmark_suite_v3.json",
+  "configuration_schema_version": 2,
+  "configuration_sha256": "10f28378133c412ff7ac9373547487daca91317b9f46302410a136c8e1cd635c",
+  "use_dataframe": true,
+  "input_scaling": "raw",
+  "input_scaling_applied": false,
+  "input_scaling_source": "fixed published problem domain",
+  "input_scaling_formula": "x unchanged",
+  "input_scaling_parameters": {
+    "force": {
+      "lower": 0.5,
+      "upper": 1.5
+    },
+    "length": {
+      "lower": 0.8,
+      "upper": 1.2
+    },
+    "modulus": {
+      "lower": 0.8,
+      "upper": 1.2
+    },
+    "width": {
+      "lower": 0.7,
+      "upper": 1.3
+    },
+    "height": {
+      "lower": 0.7,
+      "upper": 1.3
+    }
+  },
+  "target_scaling": "none; target remains in original units",
+  "algorithm_configuration_role": "project_budget_override",
+  "algorithm_configuration_rationale": "Reduced from the SRBench adapter's 1000 individuals and 500 generations to keep 360 repeated trials computationally feasible; not selected using test performance.",
+  "configured_parameters": {
+    "population_size": 500,
+    "generations": 100
+  },
+  "applied_parameters": {
+    "random_state": 29,
+    "population_size": 500,
+    "generations": 100
+  },
+  "rmse": 1.4415442317027756,
+  "nrmse_range": 0.04364584706450829,
+  "mae": 0.7950530642121021,
+  "r2": 0.878289943497378,
+  "max_absolute_error": 14.667235419191758,
+  "fit_seconds": 29.539278238000406,
+  "prediction_seconds": 0.0012932209997416066,
+  "prediction_repeats": 5,
+  "prediction_mean_seconds": 0.0011055933999159606,
+  "prediction_median_seconds": 0.0010632319999785977,
+  "prediction_std_seconds": 0.00010683327103405329,
+  "prediction_microseconds_per_sample": 0.26580799999464944,
+  "expression_extraction_seconds": 0.0001399060001858743,
+  "evaluation_seconds": 29.545294626000214,
+  "timing_scope": "fit/predict/expression extraction inside the running container; symbolic analysis, image pull, container startup, data generation, and metric serialization excluded",
+  "model_size": 56,
+  "symbolic_model": "div(div(add(add(add(add(sub(mul(div(length, -0.262), add(height, -0.796)), div(div(length, width), -0.262)), sin(div(sqrt(force), -0.262))), sin(div(sqrt(force), -0.262))), sin(div(sqrt(add(add(add(sub(mul(log(force), force), div(length, -0.262)), force), -0.262), sin(div(length, -0.262)))), -0.262))), sin(div(length, -0.262))), height), height)",
+  "symbolic_model_coordinate_system": "raw",
+  "symbolic_analysis": "separate post-processing sidecar",
+  "python": "3.12.5",
+  "platform": "Linux-7.0.0-29-generic-x86_64-with-glibc2.36"
+}

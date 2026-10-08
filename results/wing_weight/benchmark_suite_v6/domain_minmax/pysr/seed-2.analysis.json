@@ -1,0 +1,118 @@
+{
+  "analysis_version": "expression_analysis_v2",
+  "analysis_status": "complete",
+  "problem": "wing_weight",
+  "algorithm": "pysr",
+  "seed": 2,
+  "input_scaling": "domain_minmax",
+  "expression_timeout_seconds_per_stage": 60,
+  "analysis_seconds": 0.28923965799913276,
+  "analysis_python": "3.11.15",
+  "analysis_platform": "Linux-7.0.0-29-generic-x86_64-with-glibc2.43",
+  "raw_scale_symbolic_model": "(4*ultimate_load_factor/7 + 24.5140103288693)*(4*ultimate_load_factor/7 + wing_area/25 + exp(aspect_ratio/2 - 4) - 0.649156687525059)",
+  "raw_scale_back_transform_error": null,
+  "complexity_valid": true,
+  "complexity_source": "simplified",
+  "training_scale_expression_parse_success": true,
+  "training_scale_expression_parse_error": null,
+  "training_scale_expression_simplify_success": true,
+  "training_scale_expression_simplify_error": null,
+  "training_scale_symbolic_comparison_error": null,
+  "training_scale_symbolic_exact_match": null,
+  "training_scale_expression_node_count": 10,
+  "training_scale_expression_depth": 3,
+  "training_scale_expression_operator_count": 4,
+  "training_scale_expression_operators": [
+    "Add",
+    "Mul",
+    "exp"
+  ],
+  "training_scale_expression_constant_count": 2,
+  "training_scale_expression_variable_count": 3,
+  "training_scale_expression_variables": [
+    "aspect_ratio",
+    "ultimate_load_factor",
+    "wing_area"
+  ],
+  "training_scale_simplified_node_count": 10,
+  "training_scale_simplified_depth": 3,
+  "training_scale_simplified_operator_count": 4,
+  "training_scale_simplified_operators": [
+    "Add",
+    "Mul",
+    "exp"
+  ],
+  "training_scale_simplified_constant_count": 2,
+  "training_scale_simplified_variable_count": 3,
+  "training_scale_simplified_variables": [
+    "aspect_ratio",
+    "ultimate_load_factor",
+    "wing_area"
+  ],
+  "training_scale_simplified_expression": "(ultimate_load_factor + 26.9425817574407)*(ultimate_load_factor + wing_area + exp(aspect_ratio) + 8.77941474104637)",
+  "expression_parse_success": true,
+  "expression_parse_error": null,
+  "expression_simplify_success": true,
+  "expression_simplify_error": null,
+  "symbolic_comparison_error": null,
+  "symbolic_exact_match": false,
+  "expression_node_count": 20,
+  "expression_depth": 5,
+  "expression_operator_count": 9,
+  "expression_operators": [
+    "Add",
+    "Mul",
+    "exp"
+  ],
+  "expression_constant_count": 7,
+  "expression_variable_count": 3,
+  "expression_variables": [
+    "aspect_ratio",
+    "ultimate_load_factor",
+    "wing_area"
+  ],
+  "simplified_node_count": 20,
+  "simplified_depth": 5,
+  "simplified_operator_count": 9,
+  "simplified_operators": [
+    "Add",
+    "Mul",
+    "exp"
+  ],
+  "simplified_constant_count": 7,
+  "simplified_variable_count": 3,
+  "simplified_variables": [
+    "aspect_ratio",
+    "ultimate_load_factor",
+    "wing_area"
+  ],
+  "simplified_expression": "(4*ultimate_load_factor/7 + 24.5140103288693)*(4*ultimate_load_factor/7 + wing_area/25 + exp(aspect_ratio/2 - 4) - 0.649156687525059)",
+  "ground_truth_node_count": 45,
+  "ground_truth_depth": 7,
+  "ground_truth_operator_count": 19,
+  "ground_truth_operators": [
+    "Add",
+    "Mul",
+    "Pow",
+    "cos"
+  ],
+  "ground_truth_constant_count": 14,
+  "ground_truth_variable_count": 10,
+  "ground_truth_variables": [
+    "aspect_ratio",
+    "design_gross_weight",
+    "dynamic_pressure",
+    "fuel_weight",
+    "paint_weight",
+    "sweep_angle_degrees",
+    "taper_ratio",
+    "thickness_chord_ratio",
+    "ultimate_load_factor",
+    "wing_area"
+  ],
+  "ground_truth_expression": "0.00904279115343449*dynamic_pressure**0.006*fuel_weight**0.0035*taper_ratio**0.04*wing_area**0.758*(aspect_ratio/cos(pi*sweep_angle_degrees/180)**2)**0.6*(design_gross_weight*ultimate_load_factor)**0.49/(thickness_chord_ratio/cos(pi*sweep_angle_degrees/180))**0.3 + paint_weight*wing_area",
+  "ground_truth_variable_recall": 0.3,
+  "simplified_to_ground_truth_size_ratio": 0.4444444444444444,
+  "source_result": "seed-2.json",
+  "source_result_sha256": "275208d600d0f96b0dcea5c42627c0a1abf3324b7cac494b6e8864fef8f8fdca"
+}

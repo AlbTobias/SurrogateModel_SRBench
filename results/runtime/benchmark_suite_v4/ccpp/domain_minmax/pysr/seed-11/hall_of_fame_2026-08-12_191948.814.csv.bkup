@@ -1,0 +1,13 @@
+Complexity,Loss,Equation
+1,272.1579,"454.24518"
+3,259.309,"(454.24518 - exhaust_vacuum)"
+4,257.8861,"(454.97595 - exp(exhaust_vacuum))"
+5,34.686756,"(454.4715 - (ambient_temperature * 34.111603))"
+9,34.54482,"(454.24048 - ((ambient_temperature + (ambient_temperature / 0.029925363)) - 0.02990596))"
+12,32.64754,"(454.34662 - (((exp(ambient_temperature) * exhaust_vacuum) + (ambient_temperature / 0.02935878)) + -0.81288147))"
+14,31.334572,"(454.24048 - (((exhaust_vacuum + sin(exhaust_vacuum + ambient_temperature)) + (ambient_temperature / 0.029925363)) - 0.02990596))"
+16,30.660992,"(454.24048 - (((exhaust_vacuum + sin(ambient_pressure + (exhaust_vacuum / 0.33449468))) + (ambient_temperature / 0.029925363)) - 0.02990596))"
+17,27.65786,"(454.24518 - (((((exhaust_vacuum / 0.09282725) - ambient_temperature) + (-0.9205476 + exhaust_vacuum)) + (ambient_temperature / 0.03498551)) - exhaust_vacuum))"
+23,27.454748,"(454.24518 - (((((((ambient_temperature * 0.2006075) / -0.9313617) + (exhaust_vacuum / 0.09282725)) - exhaust_vacuum) + (-0.9205476 + relative_humidity)) + (ambient_temperature / 0.03498551)) - relative_humidity))"
+24,26.025179,"(454.24518 - (((((sin((ambient_temperature / exhaust_vacuum) / -0.9313617) + (exhaust_vacuum / 0.09282725)) - exhaust_vacuum) + (-0.9205476 + relative_humidity)) + (ambient_temperature / 0.03498551)) - 0.03498551))"
+26,25.95446,"(454.24518 - ((((((sin((ambient_temperature / exhaust_vacuum) / -0.9313617) + (exhaust_vacuum / 0.09282725)) + 0.448568) - exhaust_vacuum) + (-0.9205476 + relative_humidity)) + (ambient_temperature / 0.03498551)) - 0.03498551))"

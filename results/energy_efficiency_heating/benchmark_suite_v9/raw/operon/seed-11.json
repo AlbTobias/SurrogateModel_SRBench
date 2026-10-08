@@ -1,0 +1,106 @@
+{
+  "status": "success",
+  "problem": "energy_efficiency_heating",
+  "algorithm": "operon",
+  "seed": 11,
+  "seed_parameter": "random_state",
+  "train_samples": 400,
+  "test_samples": 368,
+  "feature_names": [
+    "relative_compactness",
+    "surface_area",
+    "wall_area",
+    "roof_area",
+    "overall_height",
+    "orientation",
+    "glazing_area",
+    "glazing_area_distribution"
+  ],
+  "dataset_policy": "fixed across algorithm trials",
+  "dataset_hash_scope": "SHA-256 of uncompressed table bytes",
+  "train_dataset_sha256": "effde405e6758d431ac4edd3a52b99deab9ae28c02a0bba0a8ca4349571339af",
+  "test_dataset_sha256": "f0669327566bfcbb5d33278c87ab79ced39b1b9cd383efa666dcf9cc2aeb0fe6",
+  "requested_population_size": null,
+  "requested_iterations": null,
+  "time_limit": null,
+  "profile": "benchmark",
+  "benchmark_name": "benchmark_suite_v9",
+  "config_file": "/workspace/configs/benchmark_suite_v9.json",
+  "configuration_schema_version": 2,
+  "configuration_sha256": "3ab7503025ae4e84f31563c21dcfac02bb187d264b064522d8474776085d526c",
+  "use_dataframe": false,
+  "input_scaling": "raw",
+  "input_scaling_applied": false,
+  "input_scaling_source": "fixed documented problem domain",
+  "input_scaling_formula": "x unchanged",
+  "input_scaling_parameters": {
+    "relative_compactness": {
+      "lower": 0.62,
+      "upper": 0.98
+    },
+    "surface_area": {
+      "lower": 514.5,
+      "upper": 808.5
+    },
+    "wall_area": {
+      "lower": 245.0,
+      "upper": 416.5
+    },
+    "roof_area": {
+      "lower": 110.25,
+      "upper": 220.5
+    },
+    "overall_height": {
+      "lower": 3.5,
+      "upper": 7.0
+    },
+    "orientation": {
+      "lower": 2.0,
+      "upper": 5.0
+    },
+    "glazing_area": {
+      "lower": 0.0,
+      "upper": 0.4
+    },
+    "glazing_area_distribution": {
+      "lower": 0.0,
+      "upper": 5.0
+    }
+  },
+  "target_scaling": "none; target remains in original units",
+  "algorithm_configuration_role": "documented_adapter_defaults",
+  "algorithm_configuration_rationale": "Restates the effective settings of the legacy Operon estimator in the pinned SRBench image for auditability.",
+  "configured_parameters": {
+    "population_size": 1000,
+    "generations": 1000,
+    "max_evaluations": 1000000
+  },
+  "applied_parameters": {
+    "random_state": 11,
+    "population_size": 1000,
+    "generations": 1000,
+    "max_evaluations": 1000000
+  },
+  "rmse": 2.7345988524977303,
+  "nrmse_range": 0.07451223031328964,
+  "mae": 1.9228015107693879,
+  "r2": 0.9238615322121921,
+  "max_absolute_error": 8.460836944580077,
+  "fit_seconds": 4.038135175000207,
+  "prediction_seconds": 0.00025114000163739547,
+  "prediction_repeats": 5,
+  "prediction_scalar_broadcast": false,
+  "prediction_mean_seconds": 0.00011007960129063576,
+  "prediction_median_seconds": 7.466200258932076e-05,
+  "prediction_std_seconds": 7.925194674546126e-05,
+  "prediction_microseconds_per_sample": 0.20288587660141513,
+  "expression_extraction_seconds": 7.001599806244485e-05,
+  "evaluation_seconds": 4.0391499680008565,
+  "timing_scope": "fit/predict/expression extraction inside the running container; symbolic analysis, image pull, container startup, data generation, and metric serialization excluded",
+  "model_size": 89,
+  "symbolic_model": "((-0.122781) + (0.112335 * ((((((-0.914629) * overall_height) + ((-3.391837) * glazing_area)) + ((-1.384009) * relative_compactness)) * (((0.508205 * overall_height) - ((-0.009294) * roof_area)) * (((0.180701 * (((-0.765353) * overall_height) + ((-0.081311) * wall_area))) + ((((3.141593 * glazing_area_distribution) + ((-0.081311) * wall_area)) * ((-0.766429) * glazing_area)) * ((-0.715159) - ((-1.365922) * glazing_area)))) + ((-2.033359) * glazing_area)))) - ((1.936042 * overall_height) - ((1.442695 * glazing_area_distribution) - (((((((-1.087397) * overall_height) + ((-0.081311) * wall_area)) * ((-4.174937) * glazing_area)) * ((-3.178239) * glazing_area)) * ((-0.715159) - ((-1.365922) * glazing_area))) + (((-4.174937) * glazing_area) - (3.141593 * glazing_area_distribution))))))))",
+  "symbolic_model_coordinate_system": "raw",
+  "symbolic_analysis": "separate post-processing sidecar",
+  "python": "3.12.5",
+  "platform": "Linux-7.0.0-30-generic-x86_64-with-glibc2.36"
+}

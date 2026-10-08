@@ -1,0 +1,96 @@
+{
+  "analysis_version": "expression_analysis_v2",
+  "analysis_status": "complete",
+  "problem": "naval_propulsion",
+  "algorithm": "gplearn",
+  "seed": 19,
+  "input_scaling": "domain_minmax",
+  "expression_timeout_seconds_per_stage": 60,
+  "analysis_seconds": 1.396010493997892,
+  "analysis_python": "3.11.15",
+  "analysis_platform": "Linux-7.0.0-29-generic-x86_64-with-glibc2.43",
+  "raw_scale_symbolic_model": "(sqrt((sin(ship_speed/12 - 5/4) + 0.806)*sin(sin(ship_speed/12 - 5/4) + 0.476))*sin(ship_speed/12 - 5/4)*Abs(ship_speed/12 - 5/4) + log(-1.59454929994035 + I*pi))*sin(ship_speed/12 - 5/4) + log(-1.59454929994035 + I*pi)",
+  "raw_scale_back_transform_error": null,
+  "complexity_valid": true,
+  "complexity_source": "simplified",
+  "training_scale_expression_parse_success": true,
+  "training_scale_expression_parse_error": null,
+  "training_scale_expression_simplify_success": true,
+  "training_scale_expression_simplify_error": null,
+  "training_scale_symbolic_comparison_error": null,
+  "training_scale_symbolic_exact_match": null,
+  "training_scale_expression_node_count": 34,
+  "training_scale_expression_depth": 9,
+  "training_scale_expression_operator_count": 20,
+  "training_scale_expression_operators": [
+    "Abs",
+    "Add",
+    "Mul",
+    "Pow",
+    "log",
+    "sin"
+  ],
+  "training_scale_expression_constant_count": 9,
+  "training_scale_expression_variable_count": 1,
+  "training_scale_expression_variables": [
+    "ship_speed"
+  ],
+  "training_scale_simplified_node_count": 34,
+  "training_scale_simplified_depth": 9,
+  "training_scale_simplified_operator_count": 20,
+  "training_scale_simplified_operators": [
+    "Abs",
+    "Add",
+    "Mul",
+    "Pow",
+    "log",
+    "sin"
+  ],
+  "training_scale_simplified_constant_count": 9,
+  "training_scale_simplified_variable_count": 1,
+  "training_scale_simplified_variables": [
+    "ship_speed"
+  ],
+  "training_scale_simplified_expression": "(sqrt((sin(ship_speed) + 0.806)*sin(sin(ship_speed) + 0.476))*sin(ship_speed)*Abs(ship_speed) + log(-1.59454929994035 + I*pi))*sin(ship_speed) + log(-1.59454929994035 + I*pi)",
+  "expression_parse_success": true,
+  "expression_parse_error": null,
+  "expression_simplify_success": true,
+  "expression_simplify_error": null,
+  "symbolic_comparison_error": null,
+  "symbolic_exact_match": null,
+  "expression_node_count": 54,
+  "expression_depth": 11,
+  "expression_operator_count": 30,
+  "expression_operators": [
+    "Abs",
+    "Add",
+    "Mul",
+    "Pow",
+    "log",
+    "sin"
+  ],
+  "expression_constant_count": 19,
+  "expression_variable_count": 1,
+  "expression_variables": [
+    "ship_speed"
+  ],
+  "simplified_node_count": 54,
+  "simplified_depth": 11,
+  "simplified_operator_count": 30,
+  "simplified_operators": [
+    "Abs",
+    "Add",
+    "Mul",
+    "Pow",
+    "log",
+    "sin"
+  ],
+  "simplified_constant_count": 19,
+  "simplified_variable_count": 1,
+  "simplified_variables": [
+    "ship_speed"
+  ],
+  "simplified_expression": "(sqrt((sin(ship_speed/12 - 5/4) + 0.806)*sin(sin(ship_speed/12 - 5/4) + 0.476))*sin(ship_speed/12 - 5/4)*Abs(ship_speed/12 - 5/4) + log(-1.59454929994035 + I*pi))*sin(ship_speed/12 - 5/4) + log(-1.59454929994035 + I*pi)",
+  "source_result": "seed-19.json",
+  "source_result_sha256": "372acf734eb4829eebfd0a836b0a949530813127303a0c660455eb65f9a99257"
+}

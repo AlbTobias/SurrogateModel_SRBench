@@ -1,0 +1,116 @@
+{
+  "status": "success",
+  "problem": "wing_weight",
+  "algorithm": "operon",
+  "seed": 23,
+  "seed_parameter": "random_state",
+  "train_samples": 400,
+  "test_samples": 4000,
+  "feature_names": [
+    "wing_area",
+    "fuel_weight",
+    "aspect_ratio",
+    "sweep_angle_degrees",
+    "dynamic_pressure",
+    "taper_ratio",
+    "thickness_chord_ratio",
+    "ultimate_load_factor",
+    "design_gross_weight",
+    "paint_weight"
+  ],
+  "dataset_policy": "fixed across algorithm trials",
+  "dataset_hash_scope": "SHA-256 of uncompressed table bytes",
+  "train_dataset_sha256": "7273670fa5a6f37cbbe8d0a26ed96e4f295b9ee2d444d735cd2cda1877152c92",
+  "test_dataset_sha256": "05567111a31d97fa7a887bda4b257e1b300a0c4fb1c3b62cd69d60cb37b634c7",
+  "requested_population_size": null,
+  "requested_iterations": null,
+  "time_limit": null,
+  "profile": "benchmark",
+  "benchmark_name": "benchmark_suite_v8",
+  "config_file": "/workspace/configs/benchmark_suite_v8.json",
+  "configuration_schema_version": 2,
+  "configuration_sha256": "674e097628af3ce351b421c973b1ebdb7bf4d2087fa24a83ea042312a03335eb",
+  "use_dataframe": false,
+  "input_scaling": "raw",
+  "input_scaling_applied": false,
+  "input_scaling_source": "fixed documented problem domain",
+  "input_scaling_formula": "x unchanged",
+  "input_scaling_parameters": {
+    "wing_area": {
+      "lower": 150.0,
+      "upper": 200.0
+    },
+    "fuel_weight": {
+      "lower": 220.0,
+      "upper": 300.0
+    },
+    "aspect_ratio": {
+      "lower": 6.0,
+      "upper": 10.0
+    },
+    "sweep_angle_degrees": {
+      "lower": -10.0,
+      "upper": 10.0
+    },
+    "dynamic_pressure": {
+      "lower": 16.0,
+      "upper": 45.0
+    },
+    "taper_ratio": {
+      "lower": 0.5,
+      "upper": 1.0
+    },
+    "thickness_chord_ratio": {
+      "lower": 0.08,
+      "upper": 0.18
+    },
+    "ultimate_load_factor": {
+      "lower": 2.5,
+      "upper": 6.0
+    },
+    "design_gross_weight": {
+      "lower": 1700.0,
+      "upper": 2500.0
+    },
+    "paint_weight": {
+      "lower": 0.025,
+      "upper": 0.08
+    }
+  },
+  "target_scaling": "none; target remains in original units",
+  "algorithm_configuration_role": "documented_adapter_defaults",
+  "algorithm_configuration_rationale": "Restates the effective settings of the legacy Operon estimator in the pinned SRBench image for auditability.",
+  "configured_parameters": {
+    "population_size": 1000,
+    "generations": 1000,
+    "max_evaluations": 1000000
+  },
+  "applied_parameters": {
+    "random_state": 23,
+    "population_size": 1000,
+    "generations": 1000,
+    "max_evaluations": 1000000
+  },
+  "rmse": 4.168776358111706,
+  "nrmse_range": 0.012934389995512849,
+  "mae": 3.059093348395379,
+  "r2": 0.99231568966773,
+  "max_absolute_error": 39.03240715644665,
+  "fit_seconds": 3.9701330090001647,
+  "prediction_seconds": 0.00020282299965401762,
+  "prediction_repeats": 5,
+  "prediction_scalar_broadcast": false,
+  "prediction_mean_seconds": 0.00012219659993206733,
+  "prediction_median_seconds": 0.00010183799986407394,
+  "prediction_std_seconds": 4.554699977333851e-05,
+  "prediction_microseconds_per_sample": 0.025459499966018484,
+  "expression_extraction_seconds": 6.221600006028893e-05,
+  "evaluation_seconds": 3.9712151819999235,
+  "timing_scope": "fit/predict/expression extraction inside the running container; symbolic analysis, image pull, container startup, data generation, and metric serialization excluded",
+  "model_size": 93,
+  "symbolic_model": "(107.578903 + ((-0.000004) * ((((-1.550028) * design_gross_weight) * (((0.439761 + (6.283185 * thickness_chord_ratio)) / ((0.631692 * thickness_chord_ratio) / ((((-0.316032) * wing_area) + (((-5.341853) * taper_ratio) - ((-2.122372) * ultimate_load_factor))) * ((((-0.755683) * ultimate_load_factor) - (3.369066 * paint_weight)) - (2.135688 * paint_weight))))) * (0.434294 * aspect_ratio))) + (((-3.431312) * ultimate_load_factor) / ((0.631692 * thickness_chord_ratio) / ((0.450942 * wing_area) * (((((0.693147 * aspect_ratio) * (0.693147 * wing_area)) - ((-0.366750) * wing_area)) - ((-3.463623) * aspect_ratio)) - ((((0.318310 * aspect_ratio) * (0.450942 * wing_area)) / ((6.283185 * thickness_chord_ratio) + (3.546311 * thickness_chord_ratio))) + (((-0.316032) * dynamic_pressure) + ((-1.105840) * aspect_ratio))))))))))",
+  "symbolic_model_coordinate_system": "raw",
+  "symbolic_analysis": "separate post-processing sidecar",
+  "python": "3.12.5",
+  "platform": "Linux-7.0.0-30-generic-x86_64-with-glibc2.36"
+}

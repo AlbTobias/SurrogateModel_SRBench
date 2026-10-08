@@ -1,0 +1,10 @@
+Complexity,Loss,Equation
+1,0.018957775,"0.46538118"
+2,0.0189452,"sqrt(0.2132285)"
+3,0.014806037,"(0.0046160864 / surface_area)"
+4,0.014549646,"sin(initial_volume / surface_area)"
+6,0.013236458,"((log(surface_area) / gas_temperature) / -0.029307907)"
+7,0.008948285,"((ambient_temperature / (surface_area * atmospheric_pressure)) + 0.216982)"
+8,0.008858601,"((ambient_temperature / (surface_area * atmospheric_pressure)) + sin(0.216982))"
+9,0.008500307,"(((ambient_temperature / (surface_area * atmospheric_pressure)) + 0.216982) / 1.1068854)"
+10,0.0034574491,"(((24.28404 * (sin(initial_volume) - surface_area)) - surface_area) - -0.6407567)"

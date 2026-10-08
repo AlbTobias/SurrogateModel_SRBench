@@ -1,0 +1,83 @@
+{
+  "analysis_version": "expression_analysis_v2",
+  "analysis_status": "complete",
+  "problem": "piston",
+  "algorithm": "operon",
+  "seed": 19,
+  "input_scaling": "domain_minmax",
+  "expression_timeout_seconds_per_stage": 60,
+  "analysis_seconds": 120.31042831300147,
+  "analysis_python": "3.11.15",
+  "analysis_platform": "Linux-7.0.0-29-generic-x86_64-with-glibc2.43",
+  "raw_scale_symbolic_model": "0.052278*(0.206008*(400*surface_area/3 - 5/3)*(235.284*initial_volume - 1.200537*(spring_coefficient/2000 - 3/2)*(-378.20175*initial_volume - 1.019786269488*(400*surface_area/3 - 5/3)**2 + 2.2692105) - 2.516472) + 0.992083)*(360.67375*initial_volume + 0.0255736666666667*piston_mass - 208.264133333333*surface_area - 0.967868342809*(250*initial_volume - 3/2)**2 + (-0.0255736666666667*piston_mass + 0.0001778945*spring_coefficient - 0.4876365)*(-290.5195*initial_volume + 190.714533333333*surface_area - 0.292031*(400*surface_area/3 - 5/3)*(0.0216958666666667*piston_mass - 0.000159155*spring_coefficient + 236.3272*surface_area - 3.452939) - 1.74558266666667) + 0.00475616666666712) + 0.355825",
+  "raw_scale_back_transform_error": null,
+  "complexity_valid": true,
+  "complexity_source": "unsimplified_fallback",
+  "training_scale_expression_parse_success": true,
+  "training_scale_expression_parse_error": null,
+  "training_scale_expression_simplify_success": false,
+  "training_scale_expression_simplify_error": "ExpressionTimeoutError: symbolic analysis exceeded 60 seconds",
+  "training_scale_symbolic_comparison_error": null,
+  "training_scale_symbolic_exact_match": null,
+  "training_scale_expression_node_count": 72,
+  "training_scale_expression_depth": 9,
+  "training_scale_expression_operator_count": 29,
+  "training_scale_expression_operators": [
+    "Add",
+    "Mul",
+    "Pow"
+  ],
+  "training_scale_expression_constant_count": 26,
+  "training_scale_expression_variable_count": 4,
+  "training_scale_expression_variables": [
+    "initial_volume",
+    "piston_mass",
+    "spring_coefficient",
+    "surface_area"
+  ],
+  "expression_parse_success": true,
+  "expression_parse_error": null,
+  "expression_simplify_success": false,
+  "expression_simplify_error": "ExpressionTimeoutError: symbolic analysis exceeded 60 seconds",
+  "symbolic_comparison_error": null,
+  "symbolic_exact_match": false,
+  "expression_node_count": 93,
+  "expression_depth": 11,
+  "expression_operator_count": 39,
+  "expression_operators": [
+    "Add",
+    "Mul",
+    "Pow"
+  ],
+  "expression_constant_count": 37,
+  "expression_variable_count": 4,
+  "expression_variables": [
+    "initial_volume",
+    "piston_mass",
+    "spring_coefficient",
+    "surface_area"
+  ],
+  "ground_truth_node_count": 66,
+  "ground_truth_depth": 14,
+  "ground_truth_operator_count": 24,
+  "ground_truth_operators": [
+    "Add",
+    "Mul",
+    "Pow"
+  ],
+  "ground_truth_constant_count": 18,
+  "ground_truth_variable_count": 7,
+  "ground_truth_variables": [
+    "ambient_temperature",
+    "atmospheric_pressure",
+    "gas_temperature",
+    "initial_volume",
+    "piston_mass",
+    "spring_coefficient",
+    "surface_area"
+  ],
+  "ground_truth_expression": "2*pi*sqrt(piston_mass/(4*ambient_temperature*atmospheric_pressure*initial_volume*spring_coefficient**2/(gas_temperature*(-atmospheric_pressure*surface_area + initial_volume*spring_coefficient/surface_area - 19.62*piston_mass + sqrt(4*ambient_temperature*atmospheric_pressure*initial_volume*spring_coefficient/gas_temperature + (atmospheric_pressure*surface_area - initial_volume*spring_coefficient/surface_area + 19.62*piston_mass)**2))**2) + spring_coefficient))",
+  "ground_truth_variable_recall": 0.5714285714285714,
+  "source_result": "seed-19.json",
+  "source_result_sha256": "1e5cb88cdce406baed5a797b044339014b280a475efc10d0954e22373806fdb4"
+}

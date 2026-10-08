@@ -1,0 +1,102 @@
+{
+  "status": "success",
+  "problem": "concrete_strength",
+  "algorithm": "eql",
+  "seed": 19,
+  "seed_parameter": "random_state",
+  "train_samples": 400,
+  "test_samples": 592,
+  "feature_names": [
+    "cement",
+    "blast_furnace_slag",
+    "fly_ash",
+    "water",
+    "superplasticizer",
+    "coarse_aggregate",
+    "fine_aggregate",
+    "age"
+  ],
+  "dataset_policy": "fixed across algorithm trials",
+  "dataset_hash_scope": "SHA-256 of uncompressed table bytes",
+  "train_dataset_sha256": "10bccfdc34cc23641ef9d20fef46a4bdcb1035380ee9344bbed9277f76ef3ffd",
+  "test_dataset_sha256": "91ad97074b5b15ec9ab59f1105b6e901837e4dcc8f4e7c62ebdedd530957b522",
+  "requested_population_size": null,
+  "requested_iterations": null,
+  "time_limit": null,
+  "profile": "benchmark",
+  "benchmark_name": "benchmark_suite_v8",
+  "config_file": "/workspace/configs/benchmark_suite_v8.json",
+  "configuration_schema_version": 2,
+  "configuration_sha256": "674e097628af3ce351b421c973b1ebdb7bf4d2087fa24a83ea042312a03335eb",
+  "use_dataframe": false,
+  "input_scaling": "domain_minmax",
+  "input_scaling_applied": true,
+  "input_scaling_source": "fixed documented problem domain",
+  "input_scaling_formula": "z = 2 * (x - lower) / (upper - lower) - 1",
+  "input_scaling_parameters": {
+    "cement": {
+      "lower": 102.0,
+      "upper": 540.0
+    },
+    "blast_furnace_slag": {
+      "lower": 0.0,
+      "upper": 359.4
+    },
+    "fly_ash": {
+      "lower": 0.0,
+      "upper": 200.1
+    },
+    "water": {
+      "lower": 121.8,
+      "upper": 247.0
+    },
+    "superplasticizer": {
+      "lower": 0.0,
+      "upper": 32.2
+    },
+    "coarse_aggregate": {
+      "lower": 801.0,
+      "upper": 1145.0
+    },
+    "fine_aggregate": {
+      "lower": 594.0,
+      "upper": 992.6
+    },
+    "age": {
+      "lower": 1.0,
+      "upper": 365.0
+    }
+  },
+  "target_scaling": "none; target remains in original units",
+  "algorithm_configuration_role": "documented_adapter_defaults",
+  "algorithm_configuration_rationale": "Restates the 10000 optimization iterations already defined by the pinned SRBench adapter; the adapter's inactive candidate grid is not used.",
+  "configured_parameters": {
+    "n_iter": 10000
+  },
+  "applied_parameters": {
+    "random_state": 19,
+    "n_iter": 10000
+  },
+  "rmse": 8.215678415042852,
+  "nrmse_range": 0.10715636383256621,
+  "mae": 6.133162648966962,
+  "r2": 0.7370480664396981,
+  "max_absolute_error": 37.08039319877821,
+  "fit_seconds": 24.700270293000358,
+  "prediction_seconds": 0.10327429300014046,
+  "prediction_repeats": 5,
+  "prediction_scalar_broadcast": false,
+  "prediction_mean_seconds": 0.02665185459991335,
+  "prediction_median_seconds": 0.007409489000565372,
+  "prediction_std_seconds": 0.04283391179756456,
+  "prediction_microseconds_per_sample": 12.516028717171237,
+  "expression_extraction_seconds": 0.1251298940005654,
+  "evaluation_seconds": 24.9590553500002,
+  "timing_scope": "fit/predict/expression extraction inside the running container; symbolic analysis, image pull, container startup, data generation, and metric serialization excluded",
+  "model_size": null,
+  "symbolic_model": "-11.5*cement + 9.7*blast_furnace_slag - 1.36*fly_ash - 23.9*water - 0.314*superplasticizer - 29.1*coarse_aggregate - 30.0*fine_aggregate + 6.8*age - 3.15*(-1.82*cement - 0.297*blast_furnace_slag - 0.362*fly_ash - 0.571*water - 0.164*superplasticizer - 1.36*coarse_aggregate - 1.5*fine_aggregate - 2.63*age - 3.51)*(-0.878*cement - 0.084*blast_furnace_slag + 0.349*fly_ash - 2.92*water - 1.45*superplasticizer + 0.31*coarse_aggregate - 0.756*fine_aggregate - 2.94*age + 2.86) + 32.3",
+  "symbolic_model_coordinate_system": "domain_minmax",
+  "symbolic_analysis": "separate post-processing sidecar",
+  "python": "3.10.14",
+  "platform": "Linux-7.0.0-30-generic-x86_64-with-glibc2.36"
+}

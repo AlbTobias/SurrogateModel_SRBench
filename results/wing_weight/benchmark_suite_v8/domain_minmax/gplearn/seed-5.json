@@ -1,0 +1,114 @@
+{
+  "status": "success",
+  "problem": "wing_weight",
+  "algorithm": "gplearn",
+  "seed": 5,
+  "seed_parameter": "random_state",
+  "train_samples": 400,
+  "test_samples": 4000,
+  "feature_names": [
+    "wing_area",
+    "fuel_weight",
+    "aspect_ratio",
+    "sweep_angle_degrees",
+    "dynamic_pressure",
+    "taper_ratio",
+    "thickness_chord_ratio",
+    "ultimate_load_factor",
+    "design_gross_weight",
+    "paint_weight"
+  ],
+  "dataset_policy": "fixed across algorithm trials",
+  "dataset_hash_scope": "SHA-256 of uncompressed table bytes",
+  "train_dataset_sha256": "7273670fa5a6f37cbbe8d0a26ed96e4f295b9ee2d444d735cd2cda1877152c92",
+  "test_dataset_sha256": "05567111a31d97fa7a887bda4b257e1b300a0c4fb1c3b62cd69d60cb37b634c7",
+  "requested_population_size": null,
+  "requested_iterations": null,
+  "time_limit": null,
+  "profile": "benchmark",
+  "benchmark_name": "benchmark_suite_v8",
+  "config_file": "/workspace/configs/benchmark_suite_v8.json",
+  "configuration_schema_version": 2,
+  "configuration_sha256": "674e097628af3ce351b421c973b1ebdb7bf4d2087fa24a83ea042312a03335eb",
+  "use_dataframe": true,
+  "input_scaling": "domain_minmax",
+  "input_scaling_applied": true,
+  "input_scaling_source": "fixed documented problem domain",
+  "input_scaling_formula": "z = 2 * (x - lower) / (upper - lower) - 1",
+  "input_scaling_parameters": {
+    "wing_area": {
+      "lower": 150.0,
+      "upper": 200.0
+    },
+    "fuel_weight": {
+      "lower": 220.0,
+      "upper": 300.0
+    },
+    "aspect_ratio": {
+      "lower": 6.0,
+      "upper": 10.0
+    },
+    "sweep_angle_degrees": {
+      "lower": -10.0,
+      "upper": 10.0
+    },
+    "dynamic_pressure": {
+      "lower": 16.0,
+      "upper": 45.0
+    },
+    "taper_ratio": {
+      "lower": 0.5,
+      "upper": 1.0
+    },
+    "thickness_chord_ratio": {
+      "lower": 0.08,
+      "upper": 0.18
+    },
+    "ultimate_load_factor": {
+      "lower": 2.5,
+      "upper": 6.0
+    },
+    "design_gross_weight": {
+      "lower": 1700.0,
+      "upper": 2500.0
+    },
+    "paint_weight": {
+      "lower": 0.025,
+      "upper": 0.08
+    }
+  },
+  "target_scaling": "none; target remains in original units",
+  "algorithm_configuration_role": "project_budget_override",
+  "algorithm_configuration_rationale": "Reduced from the SRBench adapter's 1000 individuals and 500 generations to keep repeated trials computationally feasible; not selected using test performance.",
+  "configured_parameters": {
+    "population_size": 500,
+    "generations": 100
+  },
+  "applied_parameters": {
+    "random_state": 5,
+    "population_size": 500,
+    "generations": 100
+  },
+  "rmse": 41.79298705280904,
+  "nrmse_range": 0.12967037499303682,
+  "mae": 32.90986890251904,
+  "r2": 0.22768490012722886,
+  "max_absolute_error": 215.02511736641824,
+  "fit_seconds": 49.00475830100004,
+  "prediction_seconds": 0.0033583799995540176,
+  "prediction_repeats": 5,
+  "prediction_scalar_broadcast": false,
+  "prediction_mean_seconds": 0.002917528199759545,
+  "prediction_median_seconds": 0.0028181210000184365,
+  "prediction_std_seconds": 0.0002468764401354135,
+  "prediction_microseconds_per_sample": 0.7045302500046091,
+  "expression_extraction_seconds": 0.0003386920006960281,
+  "evaluation_seconds": 49.02003009999953,
+  "timing_scope": "fit/predict/expression extraction inside the running container; symbolic analysis, image pull, container startup, data generation, and metric serialization excluded",
+  "model_size": 275,
+  "symbolic_model": "sqrt(add(div(sqrt(div(add(div(mul(mul(sweep_angle_degrees, -0.912), sub(cos(log(design_gross_weight)), ultimate_load_factor)), sin(dynamic_pressure)), sub(sqrt(-0.202), sqrt(add(div(sqrt(add(div(add(div(mul(mul(sweep_angle_degrees, cos(sqrt(ultimate_load_factor))), sub(sqrt(add(div(add(mul(mul(-0.202, -0.202), -0.202), sub(sub(sqrt(add(div(sqrt(add(div(add(mul(sub(cos(mul(log(-0.912), -0.202)), ultimate_load_factor), -0.202), sub(cos(dynamic_pressure), sqrt(add(div(sub(add(div(div(log(-0.912), mul(mul(sweep_angle_degrees, sweep_angle_degrees), log(design_gross_weight))), log(-0.912)), cos(sweep_angle_degrees)), ultimate_load_factor), mul(mul(sub(cos(cos(sweep_angle_degrees)), sin(paint_weight)), -0.202), -0.202)), sweep_angle_degrees)))), mul(mul(log(-0.912), -0.202), -0.202)), sweep_angle_degrees)), mul(log(-0.912), -0.202)), sweep_angle_degrees)), ultimate_load_factor), sqrt(add(div(sub(add(div(div(sqrt(sweep_angle_degrees), mul(mul(sweep_angle_degrees, sweep_angle_degrees), log(-0.912))), log(-0.912)), sqrt(add(div(sub(add(div(div(log(-0.912), mul(sub(cos(mul(-0.202, -0.202)), ultimate_load_factor), -0.202)), log(-0.912)), cos(sweep_angle_degrees)), ultimate_load_factor), mul(mul(log(design_gross_weight), -0.202), -0.202)), sweep_angle_degrees))), ultimate_load_factor), mul(mul(sub(cos(sqrt(paint_weight)), ultimate_load_factor), -0.202), -0.202)), cos(sweep_angle_degrees))))), mul(mul(log(-0.912), -0.202), -0.202)), sweep_angle_degrees)), sqrt(-0.202))), mul(sub(cos(sqrt(-0.202)), ultimate_load_factor), -0.202)), div(sqrt(div(sqrt(div(cos(add(mul(sub(cos(sweep_angle_degrees), ultimate_load_factor), -0.202), sub(cos(dynamic_pressure), sqrt(add(div(sub(add(div(div(log(-0.912), mul(mul(sweep_angle_degrees, sweep_angle_degrees), log(design_gross_weight))), log(-0.912)), cos(sweep_angle_degrees)), ultimate_load_factor), mul(mul(sub(cos(cos(sweep_angle_degrees)), sin(paint_weight)), -0.202), -0.202)), sweep_angle_degrees))))), sin(mul(sweep_angle_degrees, add(mul(sweep_angle_degrees, sweep_angle_degrees), cos(sweep_angle_degrees)))))), sin(mul(sweep_angle_degrees, sqrt(sin(paint_weight)))))), sin(dynamic_pressure))), mul(mul(log(-0.912), -0.202), -0.202)), sweep_angle_degrees)), mul(mul(log(-0.912), -0.202), -0.202)), sweep_angle_degrees)))), mul(mul(log(-0.912), -0.202), -0.202))), mul(mul(log(-0.912), -0.202), -0.202)), sweep_angle_degrees))",
+  "symbolic_model_coordinate_system": "domain_minmax",
+  "symbolic_analysis": "separate post-processing sidecar",
+  "python": "3.12.5",
+  "platform": "Linux-7.0.0-30-generic-x86_64-with-glibc2.36"
+}

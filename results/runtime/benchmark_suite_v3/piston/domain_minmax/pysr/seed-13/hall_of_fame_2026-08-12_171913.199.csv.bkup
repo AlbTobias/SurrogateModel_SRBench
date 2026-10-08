@@ -1,0 +1,10 @@
+Complexity,Loss,Equation
+1,0.018945226,"0.46163818"
+5,0.011094335,"exp(sin(-1.1426682 - surface_area))"
+6,0.00815141,"exp(-0.80754834 + (-0.41088074 * surface_area))"
+9,0.0038349736,"(exp(sin(-0.831957)) - (0.16817085 * (surface_area - initial_volume)))"
+10,0.0031345936,"(exp(-0.7919056) - (0.16817085 * (surface_area + (initial_volume * -0.77851117))))"
+16,0.003102343,"(exp(sin(-0.831957)) - (0.16817085 * (sin(0.10166621) + (((0.16817085 * initial_volume) + surface_area) - initial_volume))))"
+18,0.002693662,"(exp(-0.831957) - (0.42876098 * (sin(-0.39134997) * ((((piston_mass / exp(1.5321999)) - -0.17753105) - surface_area) + initial_volume))))"
+26,0.002150201,"((((((sin(piston_mass) - -1.7077067) + initial_volume) * (0.07483275 * 0.5814315)) + (sin(0.35635287) + sin(0.07483275 * initial_volume))) * 1.0878261) / exp(sin(0.35635287) * surface_area))"
+27,0.0020582022,"(((sin(((piston_mass - -1.7077067) + initial_volume) * (0.07483275 * 0.5814315)) + (sin(0.35635287) + sin(0.07483275 * initial_volume))) * 1.0878261) / exp((0.35635287 - -0.02818212) * surface_area))"

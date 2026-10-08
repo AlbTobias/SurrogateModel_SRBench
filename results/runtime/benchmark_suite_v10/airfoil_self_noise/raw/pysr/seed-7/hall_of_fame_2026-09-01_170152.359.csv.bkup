@@ -1,0 +1,8 @@
+Complexity,Loss,Equation
+1,46.667362,"125.15736"
+3,46.34658,"(125.1093 - chord_length)"
+4,44.60754,"(126.01706 / exp(suction_side_displacement_thickness))"
+5,42.288307,"(126.01706 - (frequency / 2909.957))"
+7,38.64625,"(123.809715 - ((chord_length * frequency) * suction_side_displacement_thickness))"
+8,34.679806,"(126.01706 - (frequency / (log(2909.957) / suction_side_displacement_thickness)))"
+16,32.406696,"((123.809715 + sin(1.8518231)) + ((suction_side_displacement_thickness + suction_side_displacement_thickness) + ((suction_side_displacement_thickness - (suction_side_displacement_thickness * frequency)) * chord_length)))"

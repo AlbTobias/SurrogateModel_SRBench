@@ -1,0 +1,5 @@
+Complexity,Loss,Equation
+1,2108.4521,"267.5372"
+3,1850.0632,"(wing_area / 0.6556906)"
+6,1849.4308,"((sin(0.6556906) + wing_area) / 0.6556906)"
+7,1527.8988,"((dynamic_pressure + (ultimate_load_factor / 0.085880466)) + wing_area)"

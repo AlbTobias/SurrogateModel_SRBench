@@ -1,0 +1,114 @@
+{
+  "status": "success",
+  "problem": "wing_weight",
+  "algorithm": "gplearn",
+  "seed": 7,
+  "seed_parameter": "random_state",
+  "train_samples": 400,
+  "test_samples": 4000,
+  "feature_names": [
+    "wing_area",
+    "fuel_weight",
+    "aspect_ratio",
+    "sweep_angle_degrees",
+    "dynamic_pressure",
+    "taper_ratio",
+    "thickness_chord_ratio",
+    "ultimate_load_factor",
+    "design_gross_weight",
+    "paint_weight"
+  ],
+  "dataset_policy": "fixed across algorithm trials",
+  "dataset_hash_scope": "SHA-256 of uncompressed table bytes",
+  "train_dataset_sha256": "7273670fa5a6f37cbbe8d0a26ed96e4f295b9ee2d444d735cd2cda1877152c92",
+  "test_dataset_sha256": "05567111a31d97fa7a887bda4b257e1b300a0c4fb1c3b62cd69d60cb37b634c7",
+  "requested_population_size": null,
+  "requested_iterations": null,
+  "time_limit": null,
+  "profile": "benchmark",
+  "benchmark_name": "benchmark_suite_v8",
+  "config_file": "/workspace/configs/benchmark_suite_v8.json",
+  "configuration_schema_version": 2,
+  "configuration_sha256": "674e097628af3ce351b421c973b1ebdb7bf4d2087fa24a83ea042312a03335eb",
+  "use_dataframe": true,
+  "input_scaling": "raw",
+  "input_scaling_applied": false,
+  "input_scaling_source": "fixed documented problem domain",
+  "input_scaling_formula": "x unchanged",
+  "input_scaling_parameters": {
+    "wing_area": {
+      "lower": 150.0,
+      "upper": 200.0
+    },
+    "fuel_weight": {
+      "lower": 220.0,
+      "upper": 300.0
+    },
+    "aspect_ratio": {
+      "lower": 6.0,
+      "upper": 10.0
+    },
+    "sweep_angle_degrees": {
+      "lower": -10.0,
+      "upper": 10.0
+    },
+    "dynamic_pressure": {
+      "lower": 16.0,
+      "upper": 45.0
+    },
+    "taper_ratio": {
+      "lower": 0.5,
+      "upper": 1.0
+    },
+    "thickness_chord_ratio": {
+      "lower": 0.08,
+      "upper": 0.18
+    },
+    "ultimate_load_factor": {
+      "lower": 2.5,
+      "upper": 6.0
+    },
+    "design_gross_weight": {
+      "lower": 1700.0,
+      "upper": 2500.0
+    },
+    "paint_weight": {
+      "lower": 0.025,
+      "upper": 0.08
+    }
+  },
+  "target_scaling": "none; target remains in original units",
+  "algorithm_configuration_role": "project_budget_override",
+  "algorithm_configuration_rationale": "Reduced from the SRBench adapter's 1000 individuals and 500 generations to keep repeated trials computationally feasible; not selected using test performance.",
+  "configured_parameters": {
+    "population_size": 500,
+    "generations": 100
+  },
+  "applied_parameters": {
+    "random_state": 7,
+    "population_size": 500,
+    "generations": 100
+  },
+  "rmse": 19.362789210867092,
+  "nrmse_range": 0.06007658975683351,
+  "mae": 15.193356186758827,
+  "r2": 0.8342232823440707,
+  "max_absolute_error": 94.04435525026366,
+  "fit_seconds": 43.010064175000025,
+  "prediction_seconds": 0.0027788049999344366,
+  "prediction_repeats": 5,
+  "prediction_scalar_broadcast": false,
+  "prediction_mean_seconds": 0.002322221600024932,
+  "prediction_median_seconds": 0.00220374500008802,
+  "prediction_std_seconds": 0.00025908115713341005,
+  "prediction_microseconds_per_sample": 0.550936250022005,
+  "expression_extraction_seconds": 0.0003548060000184705,
+  "evaluation_seconds": 43.02236795099998,
+  "timing_scope": "fit/predict/expression extraction inside the running container; symbolic analysis, image pull, container startup, data generation, and metric serialization excluded",
+  "model_size": 291,
+  "symbolic_model": "add(ultimate_load_factor, add(ultimate_load_factor, add(aspect_ratio, sub(aspect_ratio, sub(add(sqrt(add(ultimate_load_factor, add(aspect_ratio, sub(sub(sqrt(design_gross_weight), sqrt(0.468)), sub(sin(sqrt(ultimate_load_factor)), sqrt(add(log(ultimate_load_factor), mul(fuel_weight, wing_area)))))))), sqrt(0.468)), add(aspect_ratio, sub(aspect_ratio, sub(add(sqrt(add(ultimate_load_factor, add(aspect_ratio, sub(sub(sqrt(design_gross_weight), sqrt(0.468)), sub(add(aspect_ratio, sqrt(log(ultimate_load_factor))), sqrt(add(log(ultimate_load_factor), mul(fuel_weight, sub(sub(sqrt(design_gross_weight), sqrt(0.468)), sub(sub(sqrt(0.468), sqrt(add(log(ultimate_load_factor), mul(fuel_weight, wing_area)))), sqrt(add(log(ultimate_load_factor), mul(fuel_weight, wing_area))))))))))))), sqrt(0.468)), sub(aspect_ratio, sub(add(sqrt(add(ultimate_load_factor, sqrt(sqrt(design_gross_weight)))), sqrt(0.468)), add(ultimate_load_factor, add(aspect_ratio, sub(log(log(thickness_chord_ratio)), sub(add(sqrt(add(ultimate_load_factor, add(aspect_ratio, sub(sub(sqrt(design_gross_weight), sqrt(0.468)), sub(sqrt(0.468), sqrt(add(log(ultimate_load_factor), mul(fuel_weight, wing_area)))))))), sqrt(0.468)), sub(aspect_ratio, sub(add(sqrt(add(ultimate_load_factor, sqrt(design_gross_weight))), sqrt(0.468)), add(ultimate_load_factor, add(aspect_ratio, sub(log(ultimate_load_factor), sub(sin(sqrt(cos(sqrt(fuel_weight)))), sqrt(mul(mul(sub(aspect_ratio, sub(sqrt(0.468), sqrt(add(mul(sub(aspect_ratio, sub(add(sqrt(add(sub(sqrt(0.468), sqrt(add(log(ultimate_load_factor), mul(fuel_weight, wing_area)))), div(sub(sqrt(design_gross_weight), log(ultimate_load_factor)), mul(0.468, cos(add(log(thickness_chord_ratio), sqrt(0.468))))))), sqrt(0.468)), sub(aspect_ratio, sub(sqrt(0.468), add(ultimate_load_factor, add(aspect_ratio, sub(sqrt(design_gross_weight), mul(aspect_ratio, sub(sub(sqrt(design_gross_weight), sin(add(log(ultimate_load_factor), aspect_ratio))), sub(sin(add(sqrt(add(ultimate_load_factor, paint_weight)), sqrt(add(ultimate_load_factor, mul(aspect_ratio, sub(sub(sqrt(design_gross_weight), log(ultimate_load_factor)), sub(sin(log(ultimate_load_factor)), sqrt(add(log(ultimate_load_factor), sqrt(design_gross_weight)))))))))), sqrt(add(ultimate_load_factor, add(sqrt(0.468), sqrt(add(sub(sqrt(0.468), sqrt(add(log(ultimate_load_factor), mul(fuel_weight, wing_area)))), div(sub(sqrt(design_gross_weight), log(ultimate_load_factor)), mul(0.468, cos(add(log(thickness_chord_ratio), log(log(thickness_chord_ratio))))))))))))))))))))), wing_area), sqrt(design_gross_weight))))), wing_area), log(ultimate_load_factor)))))))))))))))))))))))",
+  "symbolic_model_coordinate_system": "raw",
+  "symbolic_analysis": "separate post-processing sidecar",
+  "python": "3.12.5",
+  "platform": "Linux-7.0.0-30-generic-x86_64-with-glibc2.36"
+}
