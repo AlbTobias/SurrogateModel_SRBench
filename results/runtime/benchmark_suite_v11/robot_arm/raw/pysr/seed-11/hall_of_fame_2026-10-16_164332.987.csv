@@ -1,0 +1,6 @@
+Complexity,Loss,Equation
+1,0.29737538,"1.0408225"
+4,0.28223997,"sqrt(length_2 - -0.5450262)"
+5,0.27577,"sqrt(sin(length_2) + length_3)"
+8,0.26651594,"(sqrt(length_3 - (-0.5450262 - length_2)) - 0.17716241)"
+9,0.26150092,"sqrt(length_2 - (-0.40884417 - sin(length_4 * length_1)))"

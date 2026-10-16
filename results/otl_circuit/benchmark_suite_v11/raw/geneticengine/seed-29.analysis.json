@@ -1,0 +1,101 @@
+{
+  "analysis_version": "expression_analysis_v2",
+  "analysis_status": "complete",
+  "problem": "otl_circuit",
+  "algorithm": "geneticengine",
+  "seed": 29,
+  "input_scaling": "raw",
+  "expression_timeout_seconds_per_stage": 60,
+  "simplification_requested": true,
+  "analysis_seconds": 0.32413532999999006,
+  "analysis_python": "3.11.15",
+  "analysis_platform": "Linux-7.0.0-30-generic-x86_64-with-glibc2.43",
+  "raw_scale_symbolic_model": "(log(((sqrt((feedback_resistance)) + (-1 * ((base_resistance_2 * 0.001) * (base_resistance_2 + base_resistance_2)))))) + ((((base_resistance_2/base_resistance_1) + sqrt((log((0.001))))) + sqrt((log(((-0.001 + -0.001)))))) + ((sqrt((sqrt((feedback_resistance))))/sqrt(((base_resistance_1 * 0.001)))) + (((-0.001 + -0.001) + (-0.001 + -0.1)) * collector_resistance_1))))",
+  "raw_scale_back_transform_error": null,
+  "complexity_valid": true,
+  "complexity_source": "simplified",
+  "training_scale_expression_parse_success": true,
+  "training_scale_expression_parse_error": null,
+  "training_scale_expression_simplify_success": true,
+  "training_scale_expression_simplify_error": null,
+  "training_scale_symbolic_comparison_error": null,
+  "training_scale_symbolic_exact_match": null,
+  "training_scale_expression_node_count": 37,
+  "training_scale_expression_depth": 5,
+  "training_scale_expression_operator_count": 16,
+  "training_scale_expression_operators": [
+    "Add",
+    "Mul",
+    "Pow",
+    "log"
+  ],
+  "training_scale_expression_constant_count": 14,
+  "training_scale_expression_variable_count": 4,
+  "training_scale_expression_variables": [
+    "base_resistance_1",
+    "base_resistance_2",
+    "collector_resistance_1",
+    "feedback_resistance"
+  ],
+  "training_scale_simplified_node_count": 37,
+  "training_scale_simplified_depth": 5,
+  "training_scale_simplified_operator_count": 16,
+  "training_scale_simplified_operators": [
+    "Add",
+    "Mul",
+    "Pow",
+    "log"
+  ],
+  "training_scale_simplified_constant_count": 14,
+  "training_scale_simplified_variable_count": 4,
+  "training_scale_simplified_variables": [
+    "base_resistance_1",
+    "base_resistance_2",
+    "collector_resistance_1",
+    "feedback_resistance"
+  ],
+  "training_scale_simplified_expression": "-0.103*collector_resistance_1 + log(-0.002*base_resistance_2**2 + sqrt(feedback_resistance)) + sqrt(-6.21460809842219 + I*pi) + 2.62826088487847*I + base_resistance_2/base_resistance_1 + 31.6227766016838*feedback_resistance**(1/4)/sqrt(base_resistance_1)",
+  "expression_parse_success": true,
+  "expression_parse_error": null,
+  "expression_simplify_success": true,
+  "expression_simplify_error": null,
+  "symbolic_comparison_error": null,
+  "symbolic_exact_match": null,
+  "expression_node_count": 37,
+  "expression_depth": 5,
+  "expression_operator_count": 16,
+  "expression_operators": [
+    "Add",
+    "Mul",
+    "Pow",
+    "log"
+  ],
+  "expression_constant_count": 14,
+  "expression_variable_count": 4,
+  "expression_variables": [
+    "base_resistance_1",
+    "base_resistance_2",
+    "collector_resistance_1",
+    "feedback_resistance"
+  ],
+  "simplified_node_count": 37,
+  "simplified_depth": 5,
+  "simplified_operator_count": 16,
+  "simplified_operators": [
+    "Add",
+    "Mul",
+    "Pow",
+    "log"
+  ],
+  "simplified_constant_count": 14,
+  "simplified_variable_count": 4,
+  "simplified_variables": [
+    "base_resistance_1",
+    "base_resistance_2",
+    "collector_resistance_1",
+    "feedback_resistance"
+  ],
+  "simplified_expression": "-0.103*collector_resistance_1 + log(-0.002*base_resistance_2**2 + sqrt(feedback_resistance)) + sqrt(-6.21460809842219 + I*pi) + 2.62826088487847*I + base_resistance_2/base_resistance_1 + 31.6227766016838*feedback_resistance**(1/4)/sqrt(base_resistance_1)",
+  "source_result": "seed-29.json",
+  "source_result_sha256": "6fbb617010c1ff41d4deddd8bbacd72b281c03a3b3a5cba9ea3752d7354c04b1"
+}

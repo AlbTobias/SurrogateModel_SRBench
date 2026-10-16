@@ -15,6 +15,12 @@ from surrogate.generate_wing_weight import LOWER as WING_LOWER
 from surrogate.generate_wing_weight import UPPER as WING_UPPER
 from surrogate.generate_wing_weight import sample_inputs as sample_wing
 from surrogate.generate_wing_weight import wing_weight
+from surrogate.generate_otl_circuit import LOWER as OTL_LOWER
+from surrogate.generate_otl_circuit import UPPER as OTL_UPPER
+from surrogate.generate_otl_circuit import otl_midpoint_voltage, sample_inputs as sample_otl
+from surrogate.generate_robot_arm import LOWER as ROBOT_LOWER
+from surrogate.generate_robot_arm import UPPER as ROBOT_UPPER
+from surrogate.generate_robot_arm import robot_arm_distance, sample_inputs as sample_robot
 from surrogate.prepare_ccpp import FEATURE_COLUMNS, split_dataset
 from surrogate.prepare_naval_propulsion import split_dataset as split_naval
 from surrogate.prepare_gas_turbine_nox import (
@@ -35,6 +41,19 @@ from surrogate.prepare_airfoil_self_noise import (
     FEATURE_COLUMNS as AIRFOIL_FEATURE_COLUMNS,
     split_dataset as split_airfoil,
 )
+from surrogate.prepare_yacht_hydrodynamics import (
+    FEATURE_COLUMNS as YACHT_FEATURE_COLUMNS,
+    HULL_COLUMNS as YACHT_HULL_COLUMNS,
+    split_dataset as split_yacht,
+)
+from surrogate.prepare_electrical_grid_stability import (
+    FEATURE_COLUMNS as GRID_FEATURE_COLUMNS,
+    split_dataset as split_grid,
+)
+from surrogate.prepare_lattice_physics_kinf import (
+    FEATURE_COLUMNS as LATTICE_FEATURE_COLUMNS,
+    split_dataset as split_lattice,
+)
 
 
 def test_borehole_reference_value() -> None:
@@ -52,11 +71,23 @@ def test_wing_weight_reference_value() -> None:
     np.testing.assert_allclose(wing_weight(midpoint), [267.6246925724748])
 
 
+def test_otl_circuit_reference_value() -> None:
+    midpoint = ((OTL_LOWER + OTL_UPPER) / 2.0).reshape(1, -1)
+    np.testing.assert_allclose(otl_midpoint_voltage(midpoint), [5.310616942188329])
+
+
+def test_robot_arm_reference_value() -> None:
+    straight_arm = np.array([[0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0, 1.0]])
+    np.testing.assert_allclose(robot_arm_distance(straight_arm), [4.0])
+
+
 def test_problem_designs_are_reproducible_bounded_and_distinct() -> None:
     for sampler, lower, upper in (
         (sample_borehole, BOREHOLE_LOWER, BOREHOLE_UPPER),
         (sample_piston, PISTON_LOWER, PISTON_UPPER),
         (sample_wing, WING_LOWER, WING_UPPER),
+        (sample_otl, OTL_LOWER, OTL_UPPER),
+        (sample_robot, ROBOT_LOWER, ROBOT_UPPER),
     ):
         first = sampler(123, 25)
         second = sampler(123, 25)
@@ -188,3 +219,61 @@ def test_airfoil_split_is_reproducible_disjoint_and_value_preserving() -> None:
     test_designs = set(map(tuple, test.loc[:, AIRFOIL_FEATURE_COLUMNS].to_numpy()))
     assert train_designs.isdisjoint(test_designs)
     assert set(train["target"]) | set(test["target"]) == set(source["target"])
+
+
+def test_yacht_split_keeps_complete_hulls_disjoint() -> None:
+    rows = []
+    for hull in range(4):
+        hull_values = {name: float(hull) for name in YACHT_HULL_COLUMNS}
+        for speed in range(3):
+            rows.append(
+                {
+                    **hull_values,
+                    "froude_number": float(speed),
+                    "target": float(10 * hull + speed),
+                }
+            )
+    source = pd.DataFrame(rows, columns=[*YACHT_FEATURE_COLUMNS, "target"])
+    train, test = split_yacht(source, seed=135, train_hulls=2)
+    repeated_train, repeated_test = split_yacht(source, seed=135, train_hulls=2)
+
+    pd.testing.assert_frame_equal(train, repeated_train)
+    pd.testing.assert_frame_equal(test, repeated_test)
+    train_hulls = set(map(tuple, train.loc[:, YACHT_HULL_COLUMNS].to_numpy()))
+    test_hulls = set(map(tuple, test.loc[:, YACHT_HULL_COLUMNS].to_numpy()))
+    assert train_hulls.isdisjoint(test_hulls)
+    assert len(train) == len(test) == 6
+
+
+def test_grid_split_is_reproducible_disjoint_and_value_preserving() -> None:
+    source = pd.DataFrame(
+        {
+            **{name: np.arange(20, dtype=float) for name in GRID_FEATURE_COLUMNS},
+            "target": np.arange(20, dtype=float),
+        }
+    )
+    train, test = split_grid(source, seed=246, train_size=8, test_size=12)
+    repeated_train, repeated_test = split_grid(
+        source, seed=246, train_size=8, test_size=12
+    )
+
+    pd.testing.assert_frame_equal(train, repeated_train)
+    pd.testing.assert_frame_equal(test, repeated_test)
+    assert set(train["target"]).isdisjoint(test["target"])
+
+
+def test_lattice_split_is_reproducible_disjoint_and_value_preserving() -> None:
+    source = pd.DataFrame(
+        {
+            **{name: np.arange(20, dtype=float) for name in LATTICE_FEATURE_COLUMNS},
+            "target": np.arange(20, dtype=float),
+        }
+    )
+    train, test = split_lattice(source, seed=357, train_size=8, test_size=12)
+    repeated_train, repeated_test = split_lattice(
+        source, seed=357, train_size=8, test_size=12
+    )
+
+    pd.testing.assert_frame_equal(train, repeated_train)
+    pd.testing.assert_frame_equal(test, repeated_test)
+    assert set(train["target"]).isdisjoint(test["target"])

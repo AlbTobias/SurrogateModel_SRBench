@@ -1,0 +1,12 @@
+Complexity,Loss,Equation
+1,0.0013286376,"0.01841618"
+3,0.0011273875,"(0.039332956 * price_elasticity_consumer_2)"
+5,0.0010733086,"((reaction_time_consumer_1 * price_elasticity_consumer_1) * 0.0068374327)"
+6,0.0010733063,"sin((reaction_time_consumer_1 * price_elasticity_consumer_1) * 0.0068374327)"
+8,0.001049209,"(sin(0.08690767 * (0.08690767 * reaction_time_consumer_1)) * price_elasticity_consumer_2)"
+9,0.0010399144,"((price_elasticity_consumer_2 * (sqrt(sin(price_elasticity_producer)) + price_elasticity_consumer_3)) * 0.043056417)"
+10,0.0010322841,"(price_elasticity_consumer_2 * (-0.13090639 * (0.23257183 * (-0.015446479 - log(reaction_time_producer)))))"
+12,0.0009810133,"((-0.015446479 - -0.21672732) * (price_elasticity_consumer_2 * (0.23257183 * (log(reaction_time_producer) * price_elasticity_consumer_3))))"
+13,0.0009772513,"((-0.015446479 - -0.21672732) * sin(price_elasticity_consumer_2 * (0.23257183 * (log(reaction_time_producer) * price_elasticity_consumer_3))))"
+16,0.0009529723,"((((((price_elasticity_consumer_1 + (sqrt(reaction_time_consumer_2) + reaction_time_producer)) * price_elasticity_consumer_1) * reaction_time_consumer_1) + price_elasticity_consumer_1) * price_elasticity_consumer_2) * 0.0014852022)"
+20,0.0009245796,"(((((((price_elasticity_consumer_1 + (sqrt(reaction_time_consumer_2) + reaction_time_producer)) + (nominal_power_consumer_2 / 1.0393355)) * price_elasticity_consumer_1) * reaction_time_consumer_1) + reaction_time_producer) * price_elasticity_consumer_2) * 0.0014852022)"

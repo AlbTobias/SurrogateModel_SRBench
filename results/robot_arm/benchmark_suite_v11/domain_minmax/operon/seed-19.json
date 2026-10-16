@@ -1,0 +1,106 @@
+{
+  "status": "success",
+  "problem": "robot_arm",
+  "algorithm": "operon",
+  "seed": 19,
+  "seed_parameter": "random_state",
+  "train_samples": 400,
+  "test_samples": 4000,
+  "feature_names": [
+    "angle_1",
+    "angle_2",
+    "angle_3",
+    "angle_4",
+    "length_1",
+    "length_2",
+    "length_3",
+    "length_4"
+  ],
+  "dataset_policy": "fixed across algorithm trials",
+  "dataset_hash_scope": "SHA-256 of uncompressed table bytes",
+  "train_dataset_sha256": "6b3638ef2ef212a5bc91ee32a91d016c4f5fea5425314ff5bdc5c74bb6491561",
+  "test_dataset_sha256": "5967ccf2f9a7b13ee8e10b9819ebef3bf41d9c8d28b7eb86f7e7ed4214f0e941",
+  "requested_population_size": null,
+  "requested_iterations": null,
+  "time_limit": null,
+  "profile": "benchmark",
+  "benchmark_name": "benchmark_suite_v11",
+  "config_file": "/workspace/configs/benchmark_suite_v11.json",
+  "configuration_schema_version": 2,
+  "configuration_sha256": "9370502721765c94ea03aafe81232e1fe1272026f60d83e4e4fa40b58a02e0b8",
+  "use_dataframe": false,
+  "input_scaling": "domain_minmax",
+  "input_scaling_applied": true,
+  "input_scaling_source": "fixed documented problem domain",
+  "input_scaling_formula": "z = 2 * (x - lower) / (upper - lower) - 1",
+  "input_scaling_parameters": {
+    "angle_1": {
+      "lower": 0.0,
+      "upper": 6.283185307179586
+    },
+    "angle_2": {
+      "lower": 0.0,
+      "upper": 6.283185307179586
+    },
+    "angle_3": {
+      "lower": 0.0,
+      "upper": 6.283185307179586
+    },
+    "angle_4": {
+      "lower": 0.0,
+      "upper": 6.283185307179586
+    },
+    "length_1": {
+      "lower": 0.0,
+      "upper": 1.0
+    },
+    "length_2": {
+      "lower": 0.0,
+      "upper": 1.0
+    },
+    "length_3": {
+      "lower": 0.0,
+      "upper": 1.0
+    },
+    "length_4": {
+      "lower": 0.0,
+      "upper": 1.0
+    }
+  },
+  "target_scaling": "none; target remains in original units",
+  "algorithm_configuration_role": "documented_adapter_defaults",
+  "algorithm_configuration_rationale": "Restates the effective settings of the legacy Operon estimator in the pinned SRBench image for auditability.",
+  "configured_parameters": {
+    "population_size": 1000,
+    "generations": 1000,
+    "max_evaluations": 1000000
+  },
+  "applied_parameters": {
+    "random_state": 19,
+    "population_size": 1000,
+    "generations": 1000,
+    "max_evaluations": 1000000
+  },
+  "rmse": 0.40181504628237186,
+  "nrmse_range": 0.12154747185611137,
+  "mae": 0.31918803704105475,
+  "r2": 0.4287722305565198,
+  "max_absolute_error": 2.083661858061216,
+  "fit_seconds": 3.974255017001269,
+  "prediction_seconds": 0.00023461400087398943,
+  "prediction_repeats": 5,
+  "prediction_scalar_broadcast": false,
+  "prediction_mean_seconds": 0.00012788299973180982,
+  "prediction_median_seconds": 9.913099893310573e-05,
+  "prediction_std_seconds": 6.0475225399875325e-05,
+  "prediction_microseconds_per_sample": 0.024782749733276432,
+  "expression_extraction_seconds": 6.4362000557594e-05,
+  "evaluation_seconds": 3.975405219000095,
+  "timing_scope": "fit/predict/expression extraction inside the running container; symbolic analysis, image pull, container startup, data generation, and metric serialization excluded",
+  "model_size": 99,
+  "symbolic_model": "(0.775337 + ((-0.253223) * (((((((-0.851656) * length_4) + ((1.973443 * angle_4) * ((-0.748454) * angle_4))) - (0.412231 * length_1)) - (0.738602 * length_3)) + (((-0.635821) * angle_2) * (((((((-0.835307) * length_2) + (2.174922 * angle_3)) * ((2.302585 * angle_4) + (2.718282 * angle_2))) * ((-0.748454) * angle_4)) + (((1.355977 * angle_3) * (((-2.209307) * angle_4) + (2.302585 * angle_2))) * (2.174922 * angle_3))) + (((0.745884 * length_1) * (((2.174922 * angle_3) * ((-1.699404) * angle_4)) * (1.355977 * angle_3))) + (((0.745884 * length_1) * (((-1.441730) * angle_3) + (1.567301 * angle_2))) + ((1.973443 * angle_4) - (0.745884 * length_3))))))) - (0.941136 * length_2))))",
+  "symbolic_model_coordinate_system": "domain_minmax",
+  "symbolic_analysis": "separate post-processing sidecar",
+  "python": "3.12.5",
+  "platform": "Linux-7.0.0-30-generic-x86_64-with-glibc2.36"
+}

@@ -1,0 +1,12 @@
+Complexity,Loss,Equation
+1,228.7577,"10.774424"
+2,228.71867,"exp(2.369885)"
+3,191.80803,"(22.583014 * froude_number)"
+4,62.095604,"exp(froude_number / 0.28720504)"
+5,11.110926,"sqrt(exp(froude_number / 0.124615274))"
+6,11.071857,"sqrt(exp(froude_number / sin(0.124615274)))"
+7,2.5508893,"sqrt(exp((froude_number / 0.17437696) + 2.1952577))"
+15,2.466651,"((((sqrt(exp((froude_number / 0.18033627) + 2.3832135)) + 0.13012506) - 0.7103407) + longitudinal_buoyancy_position) - prismatic_coefficient)"
+18,2.405086,"((((sqrt(exp((froude_number / 0.17958146) + 2.3531792)) - 0.24715763) + longitudinal_buoyancy_position) + sin(froude_number / -0.25963548)) - prismatic_coefficient)"
+27,2.3839312,"((((sqrt(exp((froude_number / 0.17437696) + 2.1952577)) - (exp(0.16430461) + prismatic_coefficient)) + 0.09273805) + exp(((0.17933767 * 0.17933767) / -0.3345074) * (0.17437696 - -0.8285978))) + longitudinal_buoyancy_position)"
+30,2.310084,"((((sqrt(exp((froude_number / 0.17437696) + 2.1952577)) - (sqrt(exp(0.17437696)) - beam_draught_ratio)) + (-0.22076678 - froude_number)) + exp(((0.53893626 * length_beam_ratio) - -0.88844794) * (froude_number - prismatic_coefficient))) + 0.17933767)"

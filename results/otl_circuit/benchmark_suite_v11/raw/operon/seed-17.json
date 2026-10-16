@@ -1,0 +1,96 @@
+{
+  "status": "success",
+  "problem": "otl_circuit",
+  "algorithm": "operon",
+  "seed": 17,
+  "seed_parameter": "random_state",
+  "train_samples": 400,
+  "test_samples": 4000,
+  "feature_names": [
+    "base_resistance_1",
+    "base_resistance_2",
+    "feedback_resistance",
+    "collector_resistance_1",
+    "collector_resistance_2",
+    "current_gain"
+  ],
+  "dataset_policy": "fixed across algorithm trials",
+  "dataset_hash_scope": "SHA-256 of uncompressed table bytes",
+  "train_dataset_sha256": "3ad32d33fa72d4a89c5ba5469c3f930e0f75458b55279029bd0dbf1020012e2c",
+  "test_dataset_sha256": "a41c1fcd39477a184b85188bc6fb4ee20654bb721b302c5919a4e56bb9838dac",
+  "requested_population_size": null,
+  "requested_iterations": null,
+  "time_limit": null,
+  "profile": "benchmark",
+  "benchmark_name": "benchmark_suite_v11",
+  "config_file": "/workspace/configs/benchmark_suite_v11.json",
+  "configuration_schema_version": 2,
+  "configuration_sha256": "9370502721765c94ea03aafe81232e1fe1272026f60d83e4e4fa40b58a02e0b8",
+  "use_dataframe": false,
+  "input_scaling": "raw",
+  "input_scaling_applied": false,
+  "input_scaling_source": "fixed documented problem domain",
+  "input_scaling_formula": "x unchanged",
+  "input_scaling_parameters": {
+    "base_resistance_1": {
+      "lower": 50.0,
+      "upper": 150.0
+    },
+    "base_resistance_2": {
+      "lower": 25.0,
+      "upper": 70.0
+    },
+    "feedback_resistance": {
+      "lower": 0.5,
+      "upper": 3.0
+    },
+    "collector_resistance_1": {
+      "lower": 1.2,
+      "upper": 2.5
+    },
+    "collector_resistance_2": {
+      "lower": 0.25,
+      "upper": 1.2
+    },
+    "current_gain": {
+      "lower": 50.0,
+      "upper": 300.0
+    }
+  },
+  "target_scaling": "none; target remains in original units",
+  "algorithm_configuration_role": "documented_adapter_defaults",
+  "algorithm_configuration_rationale": "Restates the effective settings of the legacy Operon estimator in the pinned SRBench image for auditability.",
+  "configured_parameters": {
+    "population_size": 1000,
+    "generations": 1000,
+    "max_evaluations": 1000000
+  },
+  "applied_parameters": {
+    "random_state": 17,
+    "population_size": 1000,
+    "generations": 1000,
+    "max_evaluations": 1000000
+  },
+  "rmse": 0.03486636149411542,
+  "nrmse_range": 0.005560024115721366,
+  "mae": 0.02556368973407841,
+  "r2": 0.9990770600137517,
+  "max_absolute_error": 0.1728608729741108,
+  "fit_seconds": 3.975317984999947,
+  "prediction_seconds": 0.00018932099965240923,
+  "prediction_repeats": 5,
+  "prediction_scalar_broadcast": false,
+  "prediction_mean_seconds": 0.00011837419997391407,
+  "prediction_median_seconds": 0.00010103700014951755,
+  "prediction_std_seconds": 4.192282825426939e-05,
+  "prediction_microseconds_per_sample": 0.025259250037379388,
+  "expression_extraction_seconds": 6.001599967930815e-05,
+  "evaluation_seconds": 3.976338812999984,
+  "timing_scope": "fit/predict/expression extraction inside the running container; symbolic analysis, image pull, container startup, data generation, and metric serialization excluded",
+  "model_size": 79,
+  "symbolic_model": "(10.286850 + (46.298092 * (((0.208817 * base_resistance_2) - ((((((-1.654997) * feedback_resistance) + (0.434294 * base_resistance_1)) - ((-1.469656) * collector_resistance_1)) + (((-0.411197) * base_resistance_1) / ((((-0.164033) * feedback_resistance) + (0.864022 * collector_resistance_1)) / (0.345704 * collector_resistance_1)))) + (0.345704 * base_resistance_1))) / (((3.141593 * base_resistance_2) - (((0.208817 * base_resistance_2) - ((((-1.550111) * feedback_resistance) + (1.414214 * collector_resistance_1)) - ((-1.469656) * collector_resistance_1))) - ((((-1.676339) * feedback_resistance) + (1.414214 * collector_resistance_1)) / (((-0.164033) * feedback_resistance) + (((-0.164033) * feedback_resistance) + (0.864022 * collector_resistance_1)))))) + (3.023703 * base_resistance_1)))))",
+  "symbolic_model_coordinate_system": "raw",
+  "symbolic_analysis": "separate post-processing sidecar",
+  "python": "3.12.5",
+  "platform": "Linux-7.0.0-30-generic-x86_64-with-glibc2.36"
+}

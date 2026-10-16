@@ -1,0 +1,96 @@
+{
+  "status": "success",
+  "problem": "yacht_hydrodynamics",
+  "algorithm": "operon",
+  "seed": 3,
+  "seed_parameter": "random_state",
+  "train_samples": 210,
+  "test_samples": 98,
+  "feature_names": [
+    "longitudinal_buoyancy_position",
+    "prismatic_coefficient",
+    "length_displacement_ratio",
+    "beam_draught_ratio",
+    "length_beam_ratio",
+    "froude_number"
+  ],
+  "dataset_policy": "fixed across algorithm trials",
+  "dataset_hash_scope": "SHA-256 of uncompressed table bytes",
+  "train_dataset_sha256": "155fecd851fd26b708cc3f3c0173d2bea66d2595dd5bbb4a53ce0cd39043447b",
+  "test_dataset_sha256": "4233f6d35d34da74bcce6a528bbdb68789b9f33685f491ea9ee87ec71dc4feb2",
+  "requested_population_size": null,
+  "requested_iterations": null,
+  "time_limit": null,
+  "profile": "benchmark",
+  "benchmark_name": "benchmark_suite_v11",
+  "config_file": "/workspace/configs/benchmark_suite_v11.json",
+  "configuration_schema_version": 2,
+  "configuration_sha256": "9370502721765c94ea03aafe81232e1fe1272026f60d83e4e4fa40b58a02e0b8",
+  "use_dataframe": false,
+  "input_scaling": "raw",
+  "input_scaling_applied": false,
+  "input_scaling_source": "fixed documented problem domain",
+  "input_scaling_formula": "x unchanged",
+  "input_scaling_parameters": {
+    "longitudinal_buoyancy_position": {
+      "lower": -5.0,
+      "upper": 0.0
+    },
+    "prismatic_coefficient": {
+      "lower": 0.53,
+      "upper": 0.6
+    },
+    "length_displacement_ratio": {
+      "lower": 4.34,
+      "upper": 5.14
+    },
+    "beam_draught_ratio": {
+      "lower": 2.81,
+      "upper": 5.35
+    },
+    "length_beam_ratio": {
+      "lower": 2.73,
+      "upper": 3.64
+    },
+    "froude_number": {
+      "lower": 0.125,
+      "upper": 0.45
+    }
+  },
+  "target_scaling": "none; target remains in original units",
+  "algorithm_configuration_role": "documented_adapter_defaults",
+  "algorithm_configuration_rationale": "Restates the effective settings of the legacy Operon estimator in the pinned SRBench image for auditability.",
+  "configured_parameters": {
+    "population_size": 1000,
+    "generations": 1000,
+    "max_evaluations": 1000000
+  },
+  "applied_parameters": {
+    "random_state": 3,
+    "population_size": 1000,
+    "generations": 1000,
+    "max_evaluations": 1000000
+  },
+  "rmse": 0.9283459199764904,
+  "nrmse_range": 0.01526633645743283,
+  "mae": 0.6000726661390189,
+  "r2": 0.9962528337136566,
+  "max_absolute_error": 4.7135519409179665,
+  "fit_seconds": 3.6058429930017155,
+  "prediction_seconds": 0.0001586780017532874,
+  "prediction_repeats": 5,
+  "prediction_scalar_broadcast": false,
+  "prediction_mean_seconds": 9.860700010904111e-05,
+  "prediction_median_seconds": 9.054700058186427e-05,
+  "prediction_std_seconds": 3.908774902999228e-05,
+  "prediction_microseconds_per_sample": 0.9239489855292272,
+  "expression_extraction_seconds": 6.35010001133196e-05,
+  "evaluation_seconds": 3.60675491299844,
+  "timing_scope": "fit/predict/expression extraction inside the running container; symbolic analysis, image pull, container startup, data generation, and metric serialization excluded",
+  "model_size": 87,
+  "symbolic_model": "(0.540073 + (162457.093750 * (((((-0.214262) * froude_number) + (((-1.368129) * prismatic_coefficient) / ((((6.283185 * froude_number) * (((-1.314631) * froude_number) - ((-0.673793) * prismatic_coefficient))) / (0.011528 * prismatic_coefficient)) + (((1.543951 * beam_draught_ratio) / ((-1.190752) * longitudinal_buoyancy_position)) / (((-1.314631) * froude_number) - ((-0.673793) * prismatic_coefficient)))))) * (((((-1.167093) * froude_number) / (0.011528 * prismatic_coefficient)) * ((((-0.214262) * froude_number) - ((0.832596 * froude_number) / (1.543951 * length_displacement_ratio))) * (0.307236 * froude_number))) * ((((-0.214262) * froude_number) - (((0.307236 * froude_number) * (1.442695 * froude_number)) / (1.543951 * beam_draught_ratio))) * (0.307236 * froude_number)))) * (0.307236 * froude_number))))",
+  "symbolic_model_coordinate_system": "raw",
+  "symbolic_analysis": "separate post-processing sidecar",
+  "python": "3.12.5",
+  "platform": "Linux-7.0.0-30-generic-x86_64-with-glibc2.36"
+}

@@ -71,9 +71,11 @@ explicitly separated raw and normalized input conditions. Versions 4 through 8
 successively added the UCI Combined Cycle Power Plant dataset, the naval
 propulsion simulator, Wing Weight, measured gas-turbine NOx emissions, and
 concrete compressive strength. Version 9 adds UCI Energy Efficiency heating
-load, and version 10 adds experimental Airfoil Self-Noise prediction. The
-resulting ten-problem suite is defined in `configs/benchmark_suite_v10.json`
-and is the runner default.
+load, and version 10 adds experimental Airfoil Self-Noise prediction. Version
+11 adds OTL Circuit, Robot Arm, hull-disjoint Yacht Hydrodynamics, Electrical
+Grid Stability, and MCNP6 Lattice Physics $k_{\mathrm{inf}}$. The resulting
+fifteen-problem suite is defined in `configs/benchmark_suite_v11.json` and is
+the runner default.
 Individual trials
 use `./scripts/run_benchmark_trial.sh ALGORITHM SEED [PROBLEM] [INPUT_SCALING]`,
 and aggregate metrics are written to
@@ -81,12 +83,10 @@ and aggregate metrics are written to
 also reports expected, successful, and missing trials so incomplete experiment
 matrices are visible.
 
-The full suite adds the established Borehole water-flow and Piston cycle-time
-computer-experiment problems, the measured CCPP energy problem, and the naval
-propulsion fuel-flow simulator, the analytical Wing Weight problem, and the
-measured Gas Turbine NOx Emissions problem, and the experimental Concrete
-Compressive Strength, Energy Efficiency heating-load, and Airfoil Self-Noise
-problems. Their
+The full suite spans analytical engineering functions, measured experiments,
+and simulator-derived data from structural mechanics, hydrology, thermodynamics,
+power generation, propulsion, aerodynamics, electronics, robotics,
+hydrodynamics, grid control, materials, and reactor physics. Their
 selection rationale, equations, domains,
 and sources are documented in [docs/surrogate-problems.md](docs/surrogate-problems.md).
 The generated table layout, every input column, and the exact target equations
@@ -94,9 +94,9 @@ are summarized in [data/README.md](data/README.md).
 Framework-independent expression complexity, symbolic ground-truth comparison,
 and runtime measurement are defined in
 [docs/evaluation-protocol.md](docs/evaluation-protocol.md).
-By default, `run_benchmark_group.sh` runs all ten problems in both `raw` and
+By default, `run_benchmark_group.sh` runs all fifteen problems in both `raw` and
 `domain_minmax` conditions, using the first ten prime numbers as repetition
-seeds (2, 3, 5, 7, 11, 13, 17, 19, 23, 29): 1,200 expected
+seeds (2, 3, 5, 7, 11, 13, 17, 19, 23, 29): 1,800 expected
 trials in total. Restrict a run with, for example,
 `BENCHMARK_PROBLEMS="borehole piston"` or `BENCHMARK_SCALINGS=domain_minmax`.
 Run one normalized trial with:
@@ -147,6 +147,21 @@ Run only Airfoil Self-Noise with:
 BENCHMARK_PROBLEMS=airfoil_self_noise ./scripts/run_benchmark_group.sh
 ```
 
+Run any of the five v11 additions individually with:
+
+```bash
+BENCHMARK_PROBLEMS=otl_circuit ./scripts/run_benchmark_group.sh
+BENCHMARK_PROBLEMS=robot_arm ./scripts/run_benchmark_group.sh
+BENCHMARK_PROBLEMS=yacht_hydrodynamics ./scripts/run_benchmark_group.sh
+BENCHMARK_PROBLEMS=electrical_grid_stability ./scripts/run_benchmark_group.sh
+BENCHMARK_PROBLEMS=lattice_physics_kinf ./scripts/run_benchmark_group.sh
+```
+
+Each command runs all six algorithms, both input-scaling conditions, all ten
+repetition labels, symbolic analysis, and aggregation for only that problem.
+Set `BENCHMARK_CONFIG=configs/benchmark_suite_v11.json` explicitly when running
+from an older checkout or shell script; v11 is already the current default.
+
 Normalization maps each documented physical domain to $[-1,1]$ using fixed
 bounds; it is never fitted from the sampled data, and the target is not scaled.
 Every result JSON records the condition, formula, and bounds. When expression
@@ -160,7 +175,7 @@ per-stage timeout. They write `seed-N.analysis.json` sidecars and do not affect
 algorithm runtime. Reanalyze stored results without retraining using:
 
 ```bash
-./scripts/analyze_benchmark_results.py --problem borehole --timeout 60 --jobs 2
+./scripts/analyze_benchmark_results.py --problem borehole --timeout 60 --jobs 1
 ```
 
 The generated train/test tables are fixed across repetitions and their content

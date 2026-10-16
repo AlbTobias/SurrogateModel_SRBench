@@ -1,0 +1,11 @@
+Complexity,Loss,Equation
+1,228.88794,"10.022195"
+3,160.76698,"(32.392765 * froude_number)"
+5,146.83055,"((froude_number / 0.041106667) * 2.102405)"
+6,48.65241,"exp((froude_number / 0.047405772) * froude_number)"
+7,28.41441,"exp((froude_number / 0.098705836) - sqrt(prismatic_coefficient))"
+8,8.293544,"exp(((froude_number / 0.04690464) - prismatic_coefficient) * froude_number)"
+9,4.24006,"exp(((froude_number / 0.04690464) - sqrt(prismatic_coefficient)) * froude_number)"
+11,3.2306566,"(exp(((froude_number / 0.04690464) - sin(0.927661)) * froude_number) + -0.6648697)"
+12,3.1013882,"(exp(((froude_number / 0.049167637) - (0.09896106 + 0.09896102)) * froude_number) - 2.2254605)"
+13,2.5993843,"(exp(((froude_number / 0.04690464) - sqrt(prismatic_coefficient)) * froude_number) - exp(sin(0.2855621)))"

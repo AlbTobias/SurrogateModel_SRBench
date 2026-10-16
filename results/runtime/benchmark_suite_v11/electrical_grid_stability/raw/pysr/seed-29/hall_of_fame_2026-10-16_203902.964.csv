@@ -1,0 +1,13 @@
+Complexity,Loss,Equation
+1,0.0013305151,"0.016871987"
+2,0.0013286268,"sin(0.018380057)"
+3,0.0011279609,"(0.040325806 * price_elasticity_consumer_2)"
+6,0.0010182292,"(log(price_elasticity_consumer_2 * reaction_time_consumer_1) * 0.027048692)"
+9,0.0009958479,"((0.0031561297 * ((reaction_time_producer + price_elasticity_producer) + reaction_time_consumer_2)) * price_elasticity_consumer_2)"
+10,0.0009881686,"((0.021988157 * (price_elasticity_consumer_2 * (sqrt(reaction_time_consumer_3) + 0.93173724))) * price_elasticity_consumer_3)"
+11,0.00094975776,"((0.021988157 * (price_elasticity_consumer_2 * (log(reaction_time_consumer_2) + exp(price_elasticity_producer)))) * price_elasticity_consumer_3)"
+13,0.0009469768,"(((0.021988157 * (price_elasticity_consumer_2 * (log(reaction_time_consumer_3) + exp(price_elasticity_producer)))) * price_elasticity_consumer_3) / 1.0040369)"
+14,0.0009177063,"((0.0031561297 * ((-0.096760355 + (reaction_time_producer * log(reaction_time_consumer_3))) - (0.7347836 - reaction_time_consumer_1))) * price_elasticity_consumer_3)"
+20,0.00089843175,"(((0.021988157 * sqrt((reaction_time_consumer_3 - nominal_power_consumer_1) + price_elasticity_consumer_1)) * log(((reaction_time_consumer_1 * 0.73028505) * price_elasticity_consumer_2) + sin(price_elasticity_consumer_3))) * price_elasticity_consumer_3)"
+29,0.0008730626,"((0.0031561297 * (((reaction_time_producer * ((((1.5447686 - exp(0.412614)) / 0.7347836) * price_elasticity_consumer_1) + (price_elasticity_consumer_3 * exp(price_elasticity_consumer_1)))) + (reaction_time_consumer_2 + reaction_time_consumer_1)) - (sqrt(0.36965343) - nominal_power_consumer_1))) * sin(price_elasticity_consumer_2))"
+30,0.0008545424,"((0.0031561297 * (((reaction_time_producer * (sin(((reaction_time_consumer_1 * 0.7347836) / -0.9102394) * price_elasticity_consumer_1) + (price_elasticity_consumer_3 * exp(price_elasticity_consumer_1)))) + (reaction_time_consumer_2 + reaction_time_consumer_1)) - (log(sqrt(0.36965343)) - nominal_power_consumer_1))) * sin(price_elasticity_consumer_2))"

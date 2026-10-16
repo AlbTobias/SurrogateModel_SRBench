@@ -1,0 +1,97 @@
+{
+  "analysis_version": "expression_analysis_v2",
+  "analysis_status": "complete",
+  "problem": "otl_circuit",
+  "algorithm": "operon",
+  "seed": 3,
+  "input_scaling": "raw",
+  "expression_timeout_seconds_per_stage": 60,
+  "simplification_requested": true,
+  "analysis_seconds": 4.17476987200007,
+  "analysis_python": "3.11.15",
+  "analysis_platform": "Linux-7.0.0-30-generic-x86_64-with-glibc2.43",
+  "raw_scale_symbolic_model": "(15.026145 + ((-31.278904) * (((((1.772454 * feedback_resistance) / (0.873187 * collector_resistance_1)) + (((-0.322808) * base_resistance_1) - (1.196319 * collector_resistance_1))) + (((((6.778820 * feedback_resistance) - ((-0.632743) * base_resistance_2)) - (6.283185 * collector_resistance_1)) + ((((6.778820 * feedback_resistance) - ((-0.632743) * base_resistance_2)) - (7.248694 * collector_resistance_1)) - (((-0.322808) * base_resistance_1) + (0.707107 * base_resistance_2)))) / (((-0.206346) * base_resistance_2) + ((-0.206346) * base_resistance_1)))) / (((6.764294 * feedback_resistance) / ((((-0.529779) * feedback_resistance) - ((-0.632743) * base_resistance_2)) - (2.862844 * collector_resistance_1))) - (((0.733965 * base_resistance_1) + (1.736815 * collector_resistance_1)) + ((2.857801 * feedback_resistance) - ((-0.632743) * base_resistance_2)))))))",
+  "raw_scale_back_transform_error": null,
+  "complexity_valid": true,
+  "complexity_source": "simplified",
+  "training_scale_expression_parse_success": true,
+  "training_scale_expression_parse_error": null,
+  "training_scale_expression_simplify_success": true,
+  "training_scale_expression_simplify_error": null,
+  "training_scale_symbolic_comparison_error": null,
+  "training_scale_symbolic_exact_match": null,
+  "training_scale_expression_node_count": 70,
+  "training_scale_expression_depth": 8,
+  "training_scale_expression_operator_count": 29,
+  "training_scale_expression_operators": [
+    "Add",
+    "Mul",
+    "Pow"
+  ],
+  "training_scale_expression_constant_count": 23,
+  "training_scale_expression_variable_count": 4,
+  "training_scale_expression_variables": [
+    "base_resistance_1",
+    "base_resistance_2",
+    "collector_resistance_1",
+    "feedback_resistance"
+  ],
+  "training_scale_simplified_node_count": 70,
+  "training_scale_simplified_depth": 8,
+  "training_scale_simplified_operator_count": 29,
+  "training_scale_simplified_operators": [
+    "Add",
+    "Mul",
+    "Pow"
+  ],
+  "training_scale_simplified_constant_count": 23,
+  "training_scale_simplified_variable_count": 4,
+  "training_scale_simplified_variables": [
+    "base_resistance_1",
+    "base_resistance_2",
+    "collector_resistance_1",
+    "feedback_resistance"
+  ],
+  "training_scale_simplified_expression": "-31.278904*(0.322808*base_resistance_1 + 1.196319*collector_resistance_1 + (0.322808*base_resistance_1 + 0.558379*base_resistance_2 - 13.531879*collector_resistance_1 + 13.55764*feedback_resistance)/(0.206346*base_resistance_1 + 0.206346*base_resistance_2) - 2.02986759995282*feedback_resistance/collector_resistance_1)/(0.733965*base_resistance_1 + 0.632743*base_resistance_2 + 1.736815*collector_resistance_1 + 2.857801*feedback_resistance + 6.764294*feedback_resistance/(-0.632743*base_resistance_2 + 2.862844*collector_resistance_1 + 0.529779*feedback_resistance)) + 15.026145",
+  "expression_parse_success": true,
+  "expression_parse_error": null,
+  "expression_simplify_success": true,
+  "expression_simplify_error": null,
+  "symbolic_comparison_error": null,
+  "symbolic_exact_match": null,
+  "expression_node_count": 70,
+  "expression_depth": 8,
+  "expression_operator_count": 29,
+  "expression_operators": [
+    "Add",
+    "Mul",
+    "Pow"
+  ],
+  "expression_constant_count": 23,
+  "expression_variable_count": 4,
+  "expression_variables": [
+    "base_resistance_1",
+    "base_resistance_2",
+    "collector_resistance_1",
+    "feedback_resistance"
+  ],
+  "simplified_node_count": 70,
+  "simplified_depth": 8,
+  "simplified_operator_count": 29,
+  "simplified_operators": [
+    "Add",
+    "Mul",
+    "Pow"
+  ],
+  "simplified_constant_count": 23,
+  "simplified_variable_count": 4,
+  "simplified_variables": [
+    "base_resistance_1",
+    "base_resistance_2",
+    "collector_resistance_1",
+    "feedback_resistance"
+  ],
+  "simplified_expression": "-31.278904*(0.322808*base_resistance_1 + 1.196319*collector_resistance_1 + (0.322808*base_resistance_1 + 0.558379*base_resistance_2 - 13.531879*collector_resistance_1 + 13.55764*feedback_resistance)/(0.206346*base_resistance_1 + 0.206346*base_resistance_2) - 2.02986759995282*feedback_resistance/collector_resistance_1)/(0.733965*base_resistance_1 + 0.632743*base_resistance_2 + 1.736815*collector_resistance_1 + 2.857801*feedback_resistance + 6.764294*feedback_resistance/(-0.632743*base_resistance_2 + 2.862844*collector_resistance_1 + 0.529779*feedback_resistance)) + 15.026145",
+  "source_result": "seed-3.json",
+  "source_result_sha256": "743505269436b2afeba29d61f520e7f32a6a892b2e0f0c0d4f68a8fa2d8d6368"
+}

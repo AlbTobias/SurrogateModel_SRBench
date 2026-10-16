@@ -1,0 +1,98 @@
+{
+  "status": "success",
+  "problem": "otl_circuit",
+  "algorithm": "geneticengine",
+  "seed": 7,
+  "seed_parameter": "seed",
+  "train_samples": 400,
+  "test_samples": 4000,
+  "feature_names": [
+    "base_resistance_1",
+    "base_resistance_2",
+    "feedback_resistance",
+    "collector_resistance_1",
+    "collector_resistance_2",
+    "current_gain"
+  ],
+  "dataset_policy": "fixed across algorithm trials",
+  "dataset_hash_scope": "SHA-256 of uncompressed table bytes",
+  "train_dataset_sha256": "3ad32d33fa72d4a89c5ba5469c3f930e0f75458b55279029bd0dbf1020012e2c",
+  "test_dataset_sha256": "a41c1fcd39477a184b85188bc6fb4ee20654bb721b302c5919a4e56bb9838dac",
+  "requested_population_size": null,
+  "requested_iterations": null,
+  "time_limit": null,
+  "profile": "benchmark",
+  "benchmark_name": "benchmark_suite_v11",
+  "config_file": "/workspace/configs/benchmark_suite_v11.json",
+  "configuration_schema_version": 2,
+  "configuration_sha256": "9370502721765c94ea03aafe81232e1fe1272026f60d83e4e4fa40b58a02e0b8",
+  "use_dataframe": true,
+  "input_scaling": "raw",
+  "input_scaling_applied": false,
+  "input_scaling_source": "fixed documented problem domain",
+  "input_scaling_formula": "x unchanged",
+  "input_scaling_parameters": {
+    "base_resistance_1": {
+      "lower": 50.0,
+      "upper": 150.0
+    },
+    "base_resistance_2": {
+      "lower": 25.0,
+      "upper": 70.0
+    },
+    "feedback_resistance": {
+      "lower": 0.5,
+      "upper": 3.0
+    },
+    "collector_resistance_1": {
+      "lower": 1.2,
+      "upper": 2.5
+    },
+    "collector_resistance_2": {
+      "lower": 0.25,
+      "upper": 1.2
+    },
+    "current_gain": {
+      "lower": 50.0,
+      "upper": 300.0
+    }
+  },
+  "target_scaling": "none; target remains in original units",
+  "algorithm_configuration_role": "project_budget_override",
+  "algorithm_configuration_rationale": "Reduces the adapter's one-hour allowance to a 60-second practical budget for repeated evaluation; not selected using test performance.",
+  "configured_parameters": {
+    "population_size": 200,
+    "number_of_generations": 100,
+    "timer_stop_criteria": true,
+    "timer_limit": 60
+  },
+  "applied_parameters": {
+    "seed": 7,
+    "population_size": 200,
+    "number_of_generations": 100,
+    "timer_stop_criteria": true,
+    "timer_limit": 60
+  },
+  "rmse": 0.5256313087291686,
+  "nrmse_range": 0.08382069786678514,
+  "mae": 0.41567512230924014,
+  "r2": 0.7902400087403713,
+  "max_absolute_error": 1.7367070936935765,
+  "fit_seconds": 60.23386991999996,
+  "prediction_seconds": 0.00035701800015885965,
+  "prediction_repeats": 5,
+  "prediction_scalar_broadcast": false,
+  "prediction_mean_seconds": 0.0003048418000616948,
+  "prediction_median_seconds": 0.0002976979999402829,
+  "prediction_std_seconds": 3.260396157424196e-05,
+  "prediction_microseconds_per_sample": 0.07442449998507072,
+  "expression_extraction_seconds": 2.5832000119407894e-05,
+  "evaluation_seconds": 60.2358529600001,
+  "timing_scope": "fit/predict/expression extraction inside the running container; symbolic analysis, image pull, container startup, data generation, and metric serialization excluded",
+  "model_size": null,
+  "symbolic_model": "((((((-1 + base_resistance_2)/base_resistance_1) + sqrt((sqrt((current_gain))))) + ((feedback_resistance + (-1 + base_resistance_2))/base_resistance_1)) + ((((current_gain + current_gain)/(collector_resistance_2/-0.01)) + (-1 + (-1 + base_resistance_2)))/(((current_gain + -1) + -1) + -1))) + (((((base_resistance_2 + base_resistance_2) + (base_resistance_2 + base_resistance_2))/sqrt(((current_gain + -1)))) + (((current_gain + current_gain)/(collector_resistance_2/-0.01)) + (-1 + (feedback_resistance + base_resistance_2))))/base_resistance_1))",
+  "symbolic_model_coordinate_system": "raw",
+  "symbolic_analysis": "separate post-processing sidecar",
+  "python": "3.9.12",
+  "platform": "Linux-7.0.0-30-generic-x86_64-with-glibc2.36"
+}

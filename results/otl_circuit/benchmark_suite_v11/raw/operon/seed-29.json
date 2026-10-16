@@ -1,0 +1,96 @@
+{
+  "status": "success",
+  "problem": "otl_circuit",
+  "algorithm": "operon",
+  "seed": 29,
+  "seed_parameter": "random_state",
+  "train_samples": 400,
+  "test_samples": 4000,
+  "feature_names": [
+    "base_resistance_1",
+    "base_resistance_2",
+    "feedback_resistance",
+    "collector_resistance_1",
+    "collector_resistance_2",
+    "current_gain"
+  ],
+  "dataset_policy": "fixed across algorithm trials",
+  "dataset_hash_scope": "SHA-256 of uncompressed table bytes",
+  "train_dataset_sha256": "3ad32d33fa72d4a89c5ba5469c3f930e0f75458b55279029bd0dbf1020012e2c",
+  "test_dataset_sha256": "a41c1fcd39477a184b85188bc6fb4ee20654bb721b302c5919a4e56bb9838dac",
+  "requested_population_size": null,
+  "requested_iterations": null,
+  "time_limit": null,
+  "profile": "benchmark",
+  "benchmark_name": "benchmark_suite_v11",
+  "config_file": "/workspace/configs/benchmark_suite_v11.json",
+  "configuration_schema_version": 2,
+  "configuration_sha256": "9370502721765c94ea03aafe81232e1fe1272026f60d83e4e4fa40b58a02e0b8",
+  "use_dataframe": false,
+  "input_scaling": "raw",
+  "input_scaling_applied": false,
+  "input_scaling_source": "fixed documented problem domain",
+  "input_scaling_formula": "x unchanged",
+  "input_scaling_parameters": {
+    "base_resistance_1": {
+      "lower": 50.0,
+      "upper": 150.0
+    },
+    "base_resistance_2": {
+      "lower": 25.0,
+      "upper": 70.0
+    },
+    "feedback_resistance": {
+      "lower": 0.5,
+      "upper": 3.0
+    },
+    "collector_resistance_1": {
+      "lower": 1.2,
+      "upper": 2.5
+    },
+    "collector_resistance_2": {
+      "lower": 0.25,
+      "upper": 1.2
+    },
+    "current_gain": {
+      "lower": 50.0,
+      "upper": 300.0
+    }
+  },
+  "target_scaling": "none; target remains in original units",
+  "algorithm_configuration_role": "documented_adapter_defaults",
+  "algorithm_configuration_rationale": "Restates the effective settings of the legacy Operon estimator in the pinned SRBench image for auditability.",
+  "configured_parameters": {
+    "population_size": 1000,
+    "generations": 1000,
+    "max_evaluations": 1000000
+  },
+  "applied_parameters": {
+    "random_state": 29,
+    "population_size": 1000,
+    "generations": 1000,
+    "max_evaluations": 1000000
+  },
+  "rmse": 0.004886246753460385,
+  "nrmse_range": 0.0007791937162468242,
+  "mae": 0.0035449787923795663,
+  "r2": 0.9999818736235714,
+  "max_absolute_error": 0.028834880801554164,
+  "fit_seconds": 3.6572940740006743,
+  "prediction_seconds": 0.0001808360002542031,
+  "prediction_repeats": 5,
+  "prediction_scalar_broadcast": false,
+  "prediction_mean_seconds": 0.00012629600005311658,
+  "prediction_median_seconds": 9.938299990608357e-05,
+  "prediction_std_seconds": 5.248041616839385e-05,
+  "prediction_microseconds_per_sample": 0.024845749976520892,
+  "expression_extraction_seconds": 5.8489999901212286e-05,
+  "evaluation_seconds": 3.6583668240000407,
+  "timing_scope": "fit/predict/expression extraction inside the running container; symbolic analysis, image pull, container startup, data generation, and metric serialization excluded",
+  "model_size": 41,
+  "symbolic_model": "(18.357107 + ((-3.127565) * (((0.093402 * feedback_resistance) + (((((0.318310 * feedback_resistance) / (((-2.533550) * collector_resistance_1) / (((-1.460488) * base_resistance_2) - (1.563203 * base_resistance_1)))) - (3.141593 * base_resistance_1)) + (-0.023555)) + (((-1.460488) * base_resistance_2) - (1.414214 * base_resistance_1)))) / (((-0.812396) * base_resistance_2) - (0.808056 * base_resistance_1)))))",
+  "symbolic_model_coordinate_system": "raw",
+  "symbolic_analysis": "separate post-processing sidecar",
+  "python": "3.12.5",
+  "platform": "Linux-7.0.0-30-generic-x86_64-with-glibc2.36"
+}

@@ -1,0 +1,96 @@
+{
+  "status": "success",
+  "problem": "otl_circuit",
+  "algorithm": "operon",
+  "seed": 11,
+  "seed_parameter": "random_state",
+  "train_samples": 400,
+  "test_samples": 4000,
+  "feature_names": [
+    "base_resistance_1",
+    "base_resistance_2",
+    "feedback_resistance",
+    "collector_resistance_1",
+    "collector_resistance_2",
+    "current_gain"
+  ],
+  "dataset_policy": "fixed across algorithm trials",
+  "dataset_hash_scope": "SHA-256 of uncompressed table bytes",
+  "train_dataset_sha256": "3ad32d33fa72d4a89c5ba5469c3f930e0f75458b55279029bd0dbf1020012e2c",
+  "test_dataset_sha256": "a41c1fcd39477a184b85188bc6fb4ee20654bb721b302c5919a4e56bb9838dac",
+  "requested_population_size": null,
+  "requested_iterations": null,
+  "time_limit": null,
+  "profile": "benchmark",
+  "benchmark_name": "benchmark_suite_v11",
+  "config_file": "/workspace/configs/benchmark_suite_v11.json",
+  "configuration_schema_version": 2,
+  "configuration_sha256": "9370502721765c94ea03aafe81232e1fe1272026f60d83e4e4fa40b58a02e0b8",
+  "use_dataframe": false,
+  "input_scaling": "domain_minmax",
+  "input_scaling_applied": true,
+  "input_scaling_source": "fixed documented problem domain",
+  "input_scaling_formula": "z = 2 * (x - lower) / (upper - lower) - 1",
+  "input_scaling_parameters": {
+    "base_resistance_1": {
+      "lower": 50.0,
+      "upper": 150.0
+    },
+    "base_resistance_2": {
+      "lower": 25.0,
+      "upper": 70.0
+    },
+    "feedback_resistance": {
+      "lower": 0.5,
+      "upper": 3.0
+    },
+    "collector_resistance_1": {
+      "lower": 1.2,
+      "upper": 2.5
+    },
+    "collector_resistance_2": {
+      "lower": 0.25,
+      "upper": 1.2
+    },
+    "current_gain": {
+      "lower": 50.0,
+      "upper": 300.0
+    }
+  },
+  "target_scaling": "none; target remains in original units",
+  "algorithm_configuration_role": "documented_adapter_defaults",
+  "algorithm_configuration_rationale": "Restates the effective settings of the legacy Operon estimator in the pinned SRBench image for auditability.",
+  "configured_parameters": {
+    "population_size": 1000,
+    "generations": 1000,
+    "max_evaluations": 1000000
+  },
+  "applied_parameters": {
+    "random_state": 11,
+    "population_size": 1000,
+    "generations": 1000,
+    "max_evaluations": 1000000
+  },
+  "rmse": 0.03901240855806921,
+  "nrmse_range": 0.0062211806193728705,
+  "mae": 0.029360917249220016,
+  "r2": 0.9988445112210195,
+  "max_absolute_error": 0.16543258037816688,
+  "fit_seconds": 3.664989606000745,
+  "prediction_seconds": 0.0001967489997696248,
+  "prediction_repeats": 5,
+  "prediction_scalar_broadcast": false,
+  "prediction_mean_seconds": 0.00013085740010865266,
+  "prediction_median_seconds": 0.00010675999965314986,
+  "prediction_std_seconds": 4.685115309308048e-05,
+  "prediction_microseconds_per_sample": 0.026689999913287465,
+  "expression_extraction_seconds": 6.21070003035129e-05,
+  "evaluation_seconds": 3.6660952970005383,
+  "timing_scope": "fit/predict/expression extraction inside the running container; symbolic analysis, image pull, container startup, data generation, and metric serialization excluded",
+  "model_size": 93,
+  "symbolic_model": "(5.298343 + ((-0.574838) * ((0.469822 * collector_resistance_1) + (((0.580639 - (0.072018 * base_resistance_2)) - (0.167284 * base_resistance_1)) * ((((((4.012184 * base_resistance_1) + (((-3.815298) * base_resistance_2) - (1.605289 * feedback_resistance))) + (((0.469822 * collector_resistance_1) - (0.167284 * base_resistance_1)) * ((1.164232 * feedback_resistance) - (0.532669 * collector_resistance_1)))) + (((((-1.294856) * base_resistance_2) - (1.414214 * base_resistance_2)) - (3.628601 * base_resistance_1)) * (0.072018 * feedback_resistance))) + (((((0.469822 * collector_resistance_1) - (0.386196 * base_resistance_1)) * ((-0.854327) - 0.580639)) * (((2.417006 * collector_resistance_1) + ((-2.251555) * base_resistance_2)) - (0.318310 * base_resistance_1))) * (0.072018 * feedback_resistance))) + (((-1.703356) * base_resistance_1) * (0.167284 * base_resistance_1)))))))",
+  "symbolic_model_coordinate_system": "domain_minmax",
+  "symbolic_analysis": "separate post-processing sidecar",
+  "python": "3.12.5",
+  "platform": "Linux-7.0.0-30-generic-x86_64-with-glibc2.36"
+}

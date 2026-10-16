@@ -1,0 +1,93 @@
+{
+  "analysis_version": "expression_analysis_v2",
+  "analysis_status": "complete",
+  "problem": "yacht_hydrodynamics",
+  "algorithm": "pysr",
+  "seed": 2,
+  "input_scaling": "domain_minmax",
+  "expression_timeout_seconds_per_stage": 60,
+  "simplification_requested": true,
+  "analysis_seconds": 1.5660217149998061,
+  "analysis_python": "3.11.15",
+  "analysis_platform": "Linux-7.0.0-30-generic-x86_64-with-glibc2.43",
+  "raw_scale_symbolic_model": "(-(80*froude_number/13 - 23/13)*sin(200*prismatic_coefficient/7 - 113/7) + 2.68216056646477*exp(160*froude_number/13 - 46/13))*exp(80*froude_number/13 - 23/13)",
+  "raw_scale_back_transform_error": null,
+  "complexity_valid": true,
+  "complexity_source": "simplified",
+  "training_scale_expression_parse_success": true,
+  "training_scale_expression_parse_error": null,
+  "training_scale_expression_simplify_success": true,
+  "training_scale_expression_simplify_error": null,
+  "training_scale_symbolic_comparison_error": null,
+  "training_scale_symbolic_exact_match": null,
+  "training_scale_expression_node_count": 15,
+  "training_scale_expression_depth": 5,
+  "training_scale_expression_operator_count": 8,
+  "training_scale_expression_operators": [
+    "Add",
+    "Mul",
+    "exp",
+    "sin"
+  ],
+  "training_scale_expression_constant_count": 3,
+  "training_scale_expression_variable_count": 2,
+  "training_scale_expression_variables": [
+    "froude_number",
+    "prismatic_coefficient"
+  ],
+  "training_scale_simplified_node_count": 14,
+  "training_scale_simplified_depth": 4,
+  "training_scale_simplified_operator_count": 7,
+  "training_scale_simplified_operators": [
+    "Add",
+    "Mul",
+    "exp",
+    "sin"
+  ],
+  "training_scale_simplified_constant_count": 3,
+  "training_scale_simplified_variable_count": 2,
+  "training_scale_simplified_variables": [
+    "froude_number",
+    "prismatic_coefficient"
+  ],
+  "training_scale_simplified_expression": "-1.0*froude_number*exp(froude_number)*sin(prismatic_coefficient) + 2.68216056646477*exp(3*froude_number)",
+  "expression_parse_success": true,
+  "expression_parse_error": null,
+  "expression_simplify_success": true,
+  "expression_simplify_error": null,
+  "symbolic_comparison_error": null,
+  "symbolic_exact_match": null,
+  "expression_node_count": 28,
+  "expression_depth": 6,
+  "expression_operator_count": 15,
+  "expression_operators": [
+    "Add",
+    "Mul",
+    "exp",
+    "sin"
+  ],
+  "expression_constant_count": 9,
+  "expression_variable_count": 2,
+  "expression_variables": [
+    "froude_number",
+    "prismatic_coefficient"
+  ],
+  "simplified_node_count": 28,
+  "simplified_depth": 6,
+  "simplified_operator_count": 15,
+  "simplified_operators": [
+    "Add",
+    "Mul",
+    "exp",
+    "sin"
+  ],
+  "simplified_constant_count": 9,
+  "simplified_variable_count": 2,
+  "simplified_variables": [
+    "froude_number",
+    "prismatic_coefficient"
+  ],
+  "simplified_expression": "((23/13 - 80*froude_number/13)*sin(200*prismatic_coefficient/7 - 113/7) + 2.68216056646477*exp(160*froude_number/13 - 46/13))*exp(80*froude_number/13 - 23/13)",
+  "source_result": "seed-2.json",
+  "source_result_sha256": "1c9c2520060bd4a54eca6294c34745e98c5f6dfff64202781151ff69cdb3d040"
+}

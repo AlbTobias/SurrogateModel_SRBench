@@ -1,0 +1,13 @@
+Complexity,Loss,Equation
+1,228.68425,"10.383566"
+2,228.67494,"exp(2.3529267)"
+3,199.14801,"(froude_number / 0.068818755)"
+4,11.1097765,"exp(froude_number * 4.035802)"
+6,11.07539,"exp((froude_number + froude_number) / 0.49746284)"
+8,2.6650128,"exp(((froude_number + froude_number) + froude_number) + 0.9685349)"
+9,2.6518939,"exp(((sqrt(0.9487913) + froude_number) + froude_number) + froude_number)"
+10,2.6007,"(exp((froude_number + froude_number) + (froude_number - -0.9649325)) + 0.44011387)"
+14,2.5894308,"(exp(((sqrt(0.89982325) + froude_number) + froude_number) + froude_number) + (sin(longitudinal_buoyancy_position) * longitudinal_buoyancy_position))"
+15,2.4340808,"(exp((sin(froude_number) + froude_number) + (froude_number - -1.1049933)) + (froude_number * (prismatic_coefficient * -1.1049933)))"
+18,2.1393754,"(exp((sin(froude_number) + froude_number) + (froude_number - -1.1049933)) + (froude_number * (prismatic_coefficient * (-1.1049933 - sin(froude_number)))))"
+21,2.059954,"(exp((sin(froude_number) + froude_number) + (froude_number - -1.1049933)) + (exp((froude_number + froude_number) + -0.4085486) * sin(prismatic_coefficient * -1.1049933)))"

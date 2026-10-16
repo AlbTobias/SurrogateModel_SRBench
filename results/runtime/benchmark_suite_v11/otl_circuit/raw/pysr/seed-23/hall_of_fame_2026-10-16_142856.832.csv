@@ -1,0 +1,11 @@
+Complexity,Loss,Equation
+1,1.3254409,"5.438745"
+4,0.7687905,"(0.7648842 * sqrt(base_resistance_2))"
+5,0.7033201,"(8.3267355 + (-0.027371766 * base_resistance_1))"
+8,0.4099889,"(log(base_resistance_2) * ((base_resistance_2 + base_resistance_1) / base_resistance_1))"
+10,0.17994137,"(log(base_resistance_2) + ((base_resistance_2 + (base_resistance_2 * 2.1921241)) / base_resistance_1))"
+14,0.14282203,"(log(base_resistance_2) + (((base_resistance_2 + ((base_resistance_2 * feedback_resistance) - -9.91398)) - -11.340712) / base_resistance_1))"
+16,0.10742875,"((log(0.5684452 + base_resistance_2) + ((base_resistance_2 + ((base_resistance_2 * feedback_resistance) + base_resistance_2)) / base_resistance_1)) / 1.0647732)"
+27,0.10740907,"(((log(0.8168611 + base_resistance_2) - sin(0.8168611 / (-0.62977475 + (exp(base_resistance_2) / sqrt(0.02669333))))) + ((base_resistance_2 + ((base_resistance_2 * feedback_resistance) + base_resistance_2)) / base_resistance_1)) / 1.0647732)"
+28,0.106214754,"(((log(0.8168611 + base_resistance_2) - (0.8168611 / exp(sqrt(-0.62977475 + (base_resistance_2 / 0.02669333))))) + ((base_resistance_2 + (((base_resistance_2 * feedback_resistance) + base_resistance_2) + 1.1959925)) / base_resistance_1)) / 1.0647732)"
+29,0.080833375,"(((log(0.8168611 + base_resistance_2) - (0.8168611 / sqrt(-0.62977475 + (base_resistance_2 / 0.02669333)))) + (((base_resistance_2 + base_resistance_2) + ((base_resistance_2 * (feedback_resistance / collector_resistance_1)) + base_resistance_2)) / base_resistance_1)) / 1.0647732)"

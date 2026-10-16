@@ -1,0 +1,106 @@
+{
+  "status": "success",
+  "problem": "otl_circuit",
+  "algorithm": "pysr",
+  "seed": 5,
+  "seed_parameter": "random_state",
+  "train_samples": 400,
+  "test_samples": 4000,
+  "feature_names": [
+    "base_resistance_1",
+    "base_resistance_2",
+    "feedback_resistance",
+    "collector_resistance_1",
+    "collector_resistance_2",
+    "current_gain"
+  ],
+  "dataset_policy": "fixed across algorithm trials",
+  "dataset_hash_scope": "SHA-256 of uncompressed table bytes",
+  "train_dataset_sha256": "3ad32d33fa72d4a89c5ba5469c3f930e0f75458b55279029bd0dbf1020012e2c",
+  "test_dataset_sha256": "a41c1fcd39477a184b85188bc6fb4ee20654bb721b302c5919a4e56bb9838dac",
+  "requested_population_size": null,
+  "requested_iterations": null,
+  "time_limit": null,
+  "profile": "benchmark",
+  "benchmark_name": "benchmark_suite_v11",
+  "config_file": "/workspace/configs/benchmark_suite_v11.json",
+  "configuration_schema_version": 2,
+  "configuration_sha256": "9370502721765c94ea03aafe81232e1fe1272026f60d83e4e4fa40b58a02e0b8",
+  "use_dataframe": true,
+  "input_scaling": "domain_minmax",
+  "input_scaling_applied": true,
+  "input_scaling_source": "fixed documented problem domain",
+  "input_scaling_formula": "z = 2 * (x - lower) / (upper - lower) - 1",
+  "input_scaling_parameters": {
+    "base_resistance_1": {
+      "lower": 50.0,
+      "upper": 150.0
+    },
+    "base_resistance_2": {
+      "lower": 25.0,
+      "upper": 70.0
+    },
+    "feedback_resistance": {
+      "lower": 0.5,
+      "upper": 3.0
+    },
+    "collector_resistance_1": {
+      "lower": 1.2,
+      "upper": 2.5
+    },
+    "collector_resistance_2": {
+      "lower": 0.25,
+      "upper": 1.2
+    },
+    "current_gain": {
+      "lower": 50.0,
+      "upper": 300.0
+    }
+  },
+  "target_scaling": "none; target remains in original units",
+  "algorithm_configuration_role": "project_budget_and_execution_override",
+  "algorithm_configuration_rationale": "Replaces the adapter's very long search with a 60-second practical budget and explicitly enforces deterministic single-process execution; not selected using test performance.",
+  "configured_parameters": {
+    "niterations": 20,
+    "ncyclesperiteration": 500,
+    "population_size": 100,
+    "populations": 3,
+    "timeout_in_seconds": 60,
+    "deterministic": true,
+    "procs": 0,
+    "multithreading": false
+  },
+  "applied_parameters": {
+    "random_state": 5,
+    "niterations": 20,
+    "ncyclesperiteration": 500,
+    "population_size": 100,
+    "populations": 3,
+    "timeout_in_seconds": 60,
+    "deterministic": true,
+    "procs": 0,
+    "multithreading": false
+  },
+  "rmse": 0.2779856620243029,
+  "nrmse_range": 0.04432946021456106,
+  "mae": 0.22594579282232355,
+  "r2": 0.9413314982226558,
+  "max_absolute_error": 0.9759478444825795,
+  "fit_seconds": 89.51415861700025,
+  "prediction_seconds": 0.009672289999798522,
+  "prediction_repeats": 5,
+  "prediction_scalar_broadcast": false,
+  "prediction_mean_seconds": 0.004743480000070121,
+  "prediction_median_seconds": 0.003488333999484894,
+  "prediction_std_seconds": 0.002757116566156608,
+  "prediction_microseconds_per_sample": 0.8720834998712235,
+  "expression_extraction_seconds": 0.01107558199964842,
+  "evaluation_seconds": 89.54940223199992,
+  "timing_scope": "fit/predict/expression extraction inside the running container; symbolic analysis, image pull, container startup, data generation, and metric serialization excluded",
+  "model_size": 16,
+  "symbolic_model": "base_resistance_2 + 1.48206512002678*sqrt(-0.455266219607986*collector_resistance_1 + 0.455266219607986*feedback_resistance + 1) + exp(1.35591729098791*sqrt(1 - 0.543918213846559*base_resistance_1))",
+  "symbolic_model_coordinate_system": "domain_minmax",
+  "symbolic_analysis": "separate post-processing sidecar",
+  "python": "3.11.0",
+  "platform": "Linux-7.0.0-30-generic-x86_64-with-glibc2.36"
+}

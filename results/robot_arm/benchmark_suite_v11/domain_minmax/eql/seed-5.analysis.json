@@ -1,0 +1,101 @@
+{
+  "analysis_version": "expression_analysis_v2",
+  "analysis_status": "complete",
+  "problem": "robot_arm",
+  "algorithm": "eql",
+  "seed": 5,
+  "input_scaling": "domain_minmax",
+  "expression_timeout_seconds_per_stage": 60,
+  "simplification_requested": true,
+  "analysis_seconds": 1.1611630619991047,
+  "analysis_python": "3.11.15",
+  "analysis_platform": "Linux-7.0.0-30-generic-x86_64-with-glibc2.43",
+  "raw_scale_symbolic_model": "0.37*length_1 + 0.488*length_2 + 0.434*length_3 + 0.526*length_4 - (0.13903775828508*angle_2 - 0.0351070339669826*angle_3 - 0.170352)*(-0.293800024947639*angle_2 + 0.0983577548307913*angle_3 + 0.29*length_3 + 0.506*length_4 + 0.69) + 0.052",
+  "raw_scale_back_transform_error": null,
+  "complexity_valid": true,
+  "complexity_source": "simplified",
+  "training_scale_expression_parse_success": true,
+  "training_scale_expression_parse_error": null,
+  "training_scale_expression_simplify_success": true,
+  "training_scale_expression_simplify_error": null,
+  "training_scale_symbolic_comparison_error": null,
+  "training_scale_symbolic_exact_match": null,
+  "training_scale_expression_node_count": 38,
+  "training_scale_expression_depth": 4,
+  "training_scale_expression_operator_count": 14,
+  "training_scale_expression_operators": [
+    "Add",
+    "Mul"
+  ],
+  "training_scale_expression_constant_count": 14,
+  "training_scale_expression_variable_count": 6,
+  "training_scale_expression_variables": [
+    "angle_2",
+    "angle_3",
+    "length_1",
+    "length_2",
+    "length_3",
+    "length_4"
+  ],
+  "training_scale_simplified_node_count": 38,
+  "training_scale_simplified_depth": 4,
+  "training_scale_simplified_operator_count": 14,
+  "training_scale_simplified_operators": [
+    "Add",
+    "Mul"
+  ],
+  "training_scale_simplified_constant_count": 14,
+  "training_scale_simplified_variable_count": 6,
+  "training_scale_simplified_variables": [
+    "angle_2",
+    "angle_3",
+    "length_1",
+    "length_2",
+    "length_3",
+    "length_4"
+  ],
+  "training_scale_simplified_expression": "0.185*length_1 + 0.244*length_2 + 0.217*length_3 + 0.263*length_4 - (0.4368*angle_2 - 0.110292*angle_3 + 0.156156)*(-0.923*angle_2 + 0.309*angle_3 + 0.145*length_3 + 0.253*length_4 + 0.474) + 0.961",
+  "expression_parse_success": true,
+  "expression_parse_error": null,
+  "expression_simplify_success": true,
+  "expression_simplify_error": null,
+  "symbolic_comparison_error": null,
+  "symbolic_exact_match": null,
+  "expression_node_count": 38,
+  "expression_depth": 4,
+  "expression_operator_count": 14,
+  "expression_operators": [
+    "Add",
+    "Mul"
+  ],
+  "expression_constant_count": 14,
+  "expression_variable_count": 6,
+  "expression_variables": [
+    "angle_2",
+    "angle_3",
+    "length_1",
+    "length_2",
+    "length_3",
+    "length_4"
+  ],
+  "simplified_node_count": 37,
+  "simplified_depth": 4,
+  "simplified_operator_count": 14,
+  "simplified_operators": [
+    "Add",
+    "Mul"
+  ],
+  "simplified_constant_count": 13,
+  "simplified_variable_count": 6,
+  "simplified_variables": [
+    "angle_2",
+    "angle_3",
+    "length_1",
+    "length_2",
+    "length_3",
+    "length_4"
+  ],
+  "simplified_expression": "0.37*length_1 + 0.488*length_2 + 0.434*length_3 + 0.526*length_4 + (-0.13903775828508*angle_2 + 0.0351070339669826*angle_3 + 0.170352)*(-0.293800024947639*angle_2 + 0.0983577548307913*angle_3 + 0.29*length_3 + 0.506*length_4 + 0.69) + 0.052",
+  "source_result": "seed-5.json",
+  "source_result_sha256": "f406bb2e29ebbd2d2323912eeb3c7adfbe05da585652c30d178734e2c0855512"
+}

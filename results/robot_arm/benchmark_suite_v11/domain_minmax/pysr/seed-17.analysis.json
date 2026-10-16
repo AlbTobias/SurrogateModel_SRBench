@@ -1,0 +1,89 @@
+{
+  "analysis_version": "expression_analysis_v2",
+  "analysis_status": "complete",
+  "problem": "robot_arm",
+  "algorithm": "pysr",
+  "seed": 17,
+  "input_scaling": "domain_minmax",
+  "expression_timeout_seconds_per_stage": 60,
+  "simplification_requested": true,
+  "analysis_seconds": 0.16984253600094235,
+  "analysis_python": "3.11.15",
+  "analysis_platform": "Linux-7.0.0-30-generic-x86_64-with-glibc2.43",
+  "raw_scale_symbolic_model": "0.4044325*length_2 + 0.816918250268031*exp(0.4044325*length_1) - 0.20221625",
+  "raw_scale_back_transform_error": null,
+  "complexity_valid": true,
+  "complexity_source": "simplified",
+  "training_scale_expression_parse_success": true,
+  "training_scale_expression_parse_error": null,
+  "training_scale_expression_simplify_success": true,
+  "training_scale_expression_simplify_error": null,
+  "training_scale_symbolic_comparison_error": null,
+  "training_scale_symbolic_exact_match": null,
+  "training_scale_expression_node_count": 8,
+  "training_scale_expression_depth": 3,
+  "training_scale_expression_operator_count": 4,
+  "training_scale_expression_operators": [
+    "Add",
+    "Mul",
+    "exp"
+  ],
+  "training_scale_expression_constant_count": 2,
+  "training_scale_expression_variable_count": 2,
+  "training_scale_expression_variables": [
+    "length_1",
+    "length_2"
+  ],
+  "training_scale_simplified_node_count": 8,
+  "training_scale_simplified_depth": 3,
+  "training_scale_simplified_operator_count": 4,
+  "training_scale_simplified_operators": [
+    "Add",
+    "Mul",
+    "exp"
+  ],
+  "training_scale_simplified_constant_count": 2,
+  "training_scale_simplified_variable_count": 2,
+  "training_scale_simplified_variables": [
+    "length_1",
+    "length_2"
+  ],
+  "training_scale_simplified_expression": "0.20221625*length_2 + exp(0.20221625*length_1)",
+  "expression_parse_success": true,
+  "expression_parse_error": null,
+  "expression_simplify_success": true,
+  "expression_simplify_error": null,
+  "symbolic_comparison_error": null,
+  "symbolic_exact_match": null,
+  "expression_node_count": 11,
+  "expression_depth": 4,
+  "expression_operator_count": 5,
+  "expression_operators": [
+    "Add",
+    "Mul",
+    "exp"
+  ],
+  "expression_constant_count": 4,
+  "expression_variable_count": 2,
+  "expression_variables": [
+    "length_1",
+    "length_2"
+  ],
+  "simplified_node_count": 11,
+  "simplified_depth": 4,
+  "simplified_operator_count": 5,
+  "simplified_operators": [
+    "Add",
+    "Mul",
+    "exp"
+  ],
+  "simplified_constant_count": 4,
+  "simplified_variable_count": 2,
+  "simplified_variables": [
+    "length_1",
+    "length_2"
+  ],
+  "simplified_expression": "0.4044325*length_2 + 0.816918250268031*exp(0.4044325*length_1) - 0.20221625",
+  "source_result": "seed-17.json",
+  "source_result_sha256": "c82a2c3eed173b55674a81a03aff5f16aafe86a2069b84b02470a21b20310b18"
+}

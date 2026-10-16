@@ -237,7 +237,7 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "--config", type=Path,
-        default=project_dir / "configs" / "benchmark_suite_v10.json",
+        default=project_dir / "configs" / "benchmark_suite_v11.json",
     )
     parser.add_argument("--output-dir", type=Path, default=project_dir / "results" / "latest")
     args = parser.parse_args()

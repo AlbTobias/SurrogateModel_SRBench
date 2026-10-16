@@ -1,0 +1,94 @@
+{
+  "analysis_version": "expression_analysis_v2",
+  "analysis_status": "complete",
+  "problem": "otl_circuit",
+  "algorithm": "operon",
+  "seed": 13,
+  "input_scaling": "domain_minmax",
+  "expression_timeout_seconds_per_stage": 60,
+  "simplification_requested": true,
+  "analysis_seconds": 6.14380817700021,
+  "analysis_python": "3.11.15",
+  "analysis_platform": "Linux-7.0.0-30-generic-x86_64-with-glibc2.43",
+  "raw_scale_symbolic_model": "-0.02584812737198*base_resistance_1 + 0.0556874298636444*base_resistance_2 - 0.395769779512308*collector_resistance_1 + 0.4372605066592*feedback_resistance - 0.118298072289*(base_resistance_1/50 - 2)*(-0.10165262*base_resistance_1 + 0.0856254222222222*base_resistance_2 - 0.290931*(base_resistance_1/50 - 2)*(-0.07964156*base_resistance_1 + 3.141593*(2*base_resistance_2/45 - 19/9)*(-0.139626355555556*base_resistance_2 - 0.236766156445*(2*base_resistance_2/45 - 19/9)*(4*feedback_resistance/5 - 7/5) + 6.63225188888889) - 8.857701887285*(20*collector_resistance_1/13 - 37/13)*(4*feedback_resistance/5 - 7/5) + 7.964156) + 6.09805444444445) + 5.17469202411906",
+  "raw_scale_back_transform_error": null,
+  "complexity_valid": true,
+  "complexity_source": "simplified",
+  "training_scale_expression_parse_success": true,
+  "training_scale_expression_parse_error": null,
+  "training_scale_expression_simplify_success": true,
+  "training_scale_expression_simplify_error": null,
+  "training_scale_symbolic_comparison_error": null,
+  "training_scale_symbolic_exact_match": null,
+  "training_scale_expression_node_count": 46,
+  "training_scale_expression_depth": 8,
+  "training_scale_expression_operator_count": 17,
+  "training_scale_expression_operators": [
+    "Add",
+    "Mul"
+  ],
+  "training_scale_expression_constant_count": 14,
+  "training_scale_expression_variable_count": 4,
+  "training_scale_expression_variables": [
+    "base_resistance_1",
+    "base_resistance_2",
+    "collector_resistance_1",
+    "feedback_resistance"
+  ],
+  "training_scale_simplified_node_count": 44,
+  "training_scale_simplified_depth": 8,
+  "training_scale_simplified_operator_count": 17,
+  "training_scale_simplified_operators": [
+    "Add",
+    "Mul",
+    "Pow"
+  ],
+  "training_scale_simplified_constant_count": 14,
+  "training_scale_simplified_variable_count": 4,
+  "training_scale_simplified_variables": [
+    "base_resistance_1",
+    "base_resistance_2",
+    "collector_resistance_1",
+    "feedback_resistance"
+  ],
+  "training_scale_simplified_expression": "-0.118298072289*base_resistance_1*(0.290931*base_resistance_1*(3.982078*base_resistance_1 + base_resistance_2**2*(0.743822899724517*feedback_resistance + 9.869606577649) + 8.857701887285*collector_resistance_1*feedback_resistance) - 5.082631*base_resistance_1 + 1.926572*base_resistance_2) - 1.292406368599*base_resistance_1 + 1.252967171932*base_resistance_2 - 0.257250356683*collector_resistance_1 + 0.546575633324*feedback_resistance + 5.268064",
+  "expression_parse_success": true,
+  "expression_parse_error": null,
+  "expression_simplify_success": true,
+  "expression_simplify_error": null,
+  "symbolic_comparison_error": null,
+  "symbolic_exact_match": null,
+  "expression_node_count": 76,
+  "expression_depth": 10,
+  "expression_operator_count": 31,
+  "expression_operators": [
+    "Add",
+    "Mul"
+  ],
+  "expression_constant_count": 30,
+  "expression_variable_count": 4,
+  "expression_variables": [
+    "base_resistance_1",
+    "base_resistance_2",
+    "collector_resistance_1",
+    "feedback_resistance"
+  ],
+  "simplified_node_count": 73,
+  "simplified_depth": 10,
+  "simplified_operator_count": 31,
+  "simplified_operators": [
+    "Add",
+    "Mul"
+  ],
+  "simplified_constant_count": 27,
+  "simplified_variable_count": 4,
+  "simplified_variables": [
+    "base_resistance_1",
+    "base_resistance_2",
+    "collector_resistance_1",
+    "feedback_resistance"
+  ],
+  "simplified_expression": "-0.02584812737198*base_resistance_1 + 0.0556874298636444*base_resistance_2 - 0.395769779512308*collector_resistance_1 + 0.4372605066592*feedback_resistance - (0.00236596144578*base_resistance_1 - 0.236596144578)*(-0.5082631*base_resistance_1 + 0.428127111111111*base_resistance_2 + (0.00581862*base_resistance_1 - 0.581862)*(0.3982078*base_resistance_1 + (0.139626355555556*base_resistance_2 - 6.63225188888889)*(0.69813177777778*base_resistance_2 + (0.0105229402864444*base_resistance_2 - 0.499839663606111)*(4*feedback_resistance - 7) - 33.1612594444444) + (13.6272336727462*collector_resistance_1 - 25.2103822945804)*(4*feedback_resistance - 7) - 39.82078) + 30.4902722222223)/5 + 5.17469202411906",
+  "source_result": "seed-13.json",
+  "source_result_sha256": "971ddeb90e5f87fd64e81c1afaafaf9560f10ef32ae0f1191009895c26636df5"
+}

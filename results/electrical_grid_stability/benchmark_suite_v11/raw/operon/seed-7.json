@@ -1,0 +1,121 @@
+{
+  "status": "success",
+  "problem": "electrical_grid_stability",
+  "algorithm": "operon",
+  "seed": 7,
+  "seed_parameter": "random_state",
+  "train_samples": 400,
+  "test_samples": 4000,
+  "feature_names": [
+    "reaction_time_producer",
+    "reaction_time_consumer_1",
+    "reaction_time_consumer_2",
+    "reaction_time_consumer_3",
+    "nominal_power_consumer_1",
+    "nominal_power_consumer_2",
+    "nominal_power_consumer_3",
+    "price_elasticity_producer",
+    "price_elasticity_consumer_1",
+    "price_elasticity_consumer_2",
+    "price_elasticity_consumer_3"
+  ],
+  "dataset_policy": "fixed across algorithm trials",
+  "dataset_hash_scope": "SHA-256 of uncompressed table bytes",
+  "train_dataset_sha256": "0b37b2b7cc0bfab90eee90665e80783e03f4609a712822d02dfc586a7ce043c2",
+  "test_dataset_sha256": "05bde27a5288dce76b04bcee8a248c0fb291b8862f40a7a301b32996856059d5",
+  "requested_population_size": null,
+  "requested_iterations": null,
+  "time_limit": null,
+  "profile": "benchmark",
+  "benchmark_name": "benchmark_suite_v11",
+  "config_file": "/workspace/configs/benchmark_suite_v11.json",
+  "configuration_schema_version": 2,
+  "configuration_sha256": "9370502721765c94ea03aafe81232e1fe1272026f60d83e4e4fa40b58a02e0b8",
+  "use_dataframe": false,
+  "input_scaling": "raw",
+  "input_scaling_applied": false,
+  "input_scaling_source": "fixed documented problem domain",
+  "input_scaling_formula": "x unchanged",
+  "input_scaling_parameters": {
+    "reaction_time_producer": {
+      "lower": 0.5,
+      "upper": 10.0
+    },
+    "reaction_time_consumer_1": {
+      "lower": 0.5,
+      "upper": 10.0
+    },
+    "reaction_time_consumer_2": {
+      "lower": 0.5,
+      "upper": 10.0
+    },
+    "reaction_time_consumer_3": {
+      "lower": 0.5,
+      "upper": 10.0
+    },
+    "nominal_power_consumer_1": {
+      "lower": -2.0,
+      "upper": -0.5
+    },
+    "nominal_power_consumer_2": {
+      "lower": -2.0,
+      "upper": -0.5
+    },
+    "nominal_power_consumer_3": {
+      "lower": -2.0,
+      "upper": -0.5
+    },
+    "price_elasticity_producer": {
+      "lower": 0.05,
+      "upper": 1.0
+    },
+    "price_elasticity_consumer_1": {
+      "lower": 0.05,
+      "upper": 1.0
+    },
+    "price_elasticity_consumer_2": {
+      "lower": 0.05,
+      "upper": 1.0
+    },
+    "price_elasticity_consumer_3": {
+      "lower": 0.05,
+      "upper": 1.0
+    }
+  },
+  "target_scaling": "none; target remains in original units",
+  "algorithm_configuration_role": "documented_adapter_defaults",
+  "algorithm_configuration_rationale": "Restates the effective settings of the legacy Operon estimator in the pinned SRBench image for auditability.",
+  "configured_parameters": {
+    "population_size": 1000,
+    "generations": 1000,
+    "max_evaluations": 1000000
+  },
+  "applied_parameters": {
+    "random_state": 7,
+    "population_size": 1000,
+    "generations": 1000,
+    "max_evaluations": 1000000
+  },
+  "rmse": 0.01887413127795443,
+  "nrmse_range": 0.10359267093251918,
+  "mae": 0.014624211760634885,
+  "r2": 0.7382430493670005,
+  "max_absolute_error": 0.08769013424286773,
+  "fit_seconds": 4.13638176600216,
+  "prediction_seconds": 0.00020991400015191175,
+  "prediction_repeats": 5,
+  "prediction_scalar_broadcast": false,
+  "prediction_mean_seconds": 0.00012641039938898757,
+  "prediction_median_seconds": 0.00010376099817221984,
+  "prediction_std_seconds": 4.7501282770723515e-05,
+  "prediction_microseconds_per_sample": 0.02594024954305496,
+  "expression_extraction_seconds": 6.49760004307609e-05,
+  "evaluation_seconds": 4.137497904001066,
+  "timing_scope": "fit/predict/expression extraction inside the running container; symbolic analysis, image pull, container startup, data generation, and metric serialization excluded",
+  "model_size": 85,
+  "symbolic_model": "((-0.035372) + (0.002973 * (((((-0.992864) * price_elasticity_consumer_3) * ((-1.743598) * reaction_time_consumer_3)) + (((((0.434294 * price_elasticity_consumer_3) / ((1.163589 * reaction_time_consumer_3) / ((-1.988021) * nominal_power_consumer_2))) - (2.322643 * price_elasticity_consumer_2)) * (((-0.705049) * reaction_time_consumer_2) + (1.312021 * nominal_power_consumer_1))) - (((-2.465155) * price_elasticity_consumer_3) + (((-2.186204) * price_elasticity_consumer_3) + ((-2.673860) * price_elasticity_consumer_2))))) + (((((((((-2.193364) * reaction_time_producer) * ((-1.047175) * price_elasticity_producer)) - (2.895897 / (0.318310 * reaction_time_consumer_1))) - ((1.163589 * reaction_time_consumer_3) / 2.895897)) - (0.661221 * reaction_time_consumer_1)) - ((-1.849582) * price_elasticity_consumer_3)) - (1.865901 / (0.318310 * reaction_time_consumer_3))) - ((3.197270 * reaction_time_consumer_1) * ((-0.729911) * price_elasticity_consumer_1))))))",
+  "symbolic_model_coordinate_system": "raw",
+  "symbolic_analysis": "separate post-processing sidecar",
+  "python": "3.12.5",
+  "platform": "Linux-7.0.0-30-generic-x86_64-with-glibc2.36"
+}

@@ -1,10 +1,9 @@
 # Surrogate problem selection
 
-The benchmark suite combines three deterministic engineering problems with
-known analytical ground truth and one measured energy-system problem. This
-supports both exact symbolic recovery experiments and a realistic empirical
-surrogate task. All problems use fixed, disjoint training and reference-test
-sets with 400 and 4,000 samples.
+The benchmark suite combines deterministic engineering functions, simulator
+outputs, and measured scientific data. All problems use fixed, disjoint
+training and reference-test sets. Most use 400 and 4,000 samples; smaller
+published datasets retain the maximum defensible disjoint test set.
 
 ## Problems
 
@@ -164,6 +163,65 @@ more irregular behavior than the Energy Efficiency simulator grid.
 - Reference: Brooks, Pope, and Marcolini (1989), *Airfoil Self-Noise and
   Prediction*, NASA Reference Publication 1218.
 
+### OTL Circuit
+
+This six-input analytical problem predicts midpoint voltage in an output-
+transformerless push-pull circuit. Its rational interactions and widely
+different electrical input scales complement the existing mechanical test
+functions. Independent scrambled Latin hypercubes provide 400 training and
+4,000 test points using seeds 20260903 and 20260904.
+
+- Definition and domains: <https://www.sfu.ca/~ssurjano/otlcircuit.html>
+- Reference: Ben-Ari and Steinberg (2007), “Modeling data from computer
+  experiments: an empirical comparison of kriging with MARS and projection
+  pursuit regression,” *Quality Engineering*, 19(4), 327–338.
+
+### Robot Arm
+
+The eight inputs comprise four joint angles and four segment lengths; the
+response is the planar distance from the endpoint to the origin. Cumulative
+angles create repeated sine and cosine interactions that are not represented
+strongly elsewhere in the suite. Independent scrambled Latin hypercubes use
+seeds 20260905 and 20260906 for 400 training and 4,000 test points.
+
+- Definition and domains: <https://www.sfu.ca/~ssurjano/robot.html>
+- Reference: An and Owen (2001), “Quasi-regression,” *Journal of Complexity*,
+  17(4), 588–607.
+
+### Yacht Hydrodynamics
+
+This experimental problem predicts residuary resistance per unit displacement
+from five hull-geometry coefficients and Froude number. All operating points
+for a hull remain in one partition: a fixed permutation assigns 15 complete
+hulls (210 rows) to training and seven unseen hulls (98 rows) to testing.
+
+- Dataset: <https://archive.ics.uci.edu/dataset/243/yacht+hydrodynamics>
+- DOI: <https://doi.org/10.24432/C5XG7R>
+- License: CC BY 4.0.
+
+### Electrical Grid Stability
+
+This simulator-derived problem predicts the continuous `stab` value for a
+four-node decentralized electrical grid. Eleven predictive reaction-time,
+consumer-power, and price-elasticity inputs are retained. The deterministic
+non-predictive `p1` field and categorical `stabf` target are excluded. A fixed
+permutation selects 400 training and 4,000 test simulations.
+
+- Dataset: <https://archive.ics.uci.edu/dataset/471/electrical+grid+stability+simulated+data>
+- DOI: <https://doi.org/10.24432/C5PG66>
+- License: CC BY 4.0.
+
+### Lattice Physics $k_{\mathrm{inf}}$
+
+This high-dimensional simulator problem maps 39 fuel-pin U-235 enrichments to
+the infinite multiplication factor of a NuScale fuel assembly. Values were
+computed with MCNP6. The pin-power peaking response is excluded, and a fixed
+permutation selects 400 training and 4,000 test simulations from `raw.csv`.
+
+- Dataset: <https://archive.ics.uci.edu/dataset/1091/lattice-physics%2B>
+- DOI: <https://doi.org/10.24432/C5BK64>
+- License: CC BY 4.0.
+
 ## Experimental design
 
 Borehole and Piston use seeded, scrambled Latin hypercube designs. Each
@@ -222,6 +280,14 @@ wind-tunnel observations form the training set and all remaining 1,103
 observations form the reference-test set. The UCI archive and its contained data
 file are checksum-pinned. The normalized condition uses the fixed ranges of the
 complete published dataset, while sound-pressure values remain in decibels.
+
+OTL Circuit and Robot Arm use independently seeded scrambled Latin hypercube
+designs with 400 training and 4,000 reference-test points. Yacht Hydrodynamics
+uses seed 20260907 to partition complete hull forms rather than individual
+rows. Electrical Grid Stability and Lattice Physics use seeded permutations
+with seeds 20260908 and 20260909, respectively, selecting 400 training and
+4,000 test simulations without replacement. All three external archives and
+their selected data members are pinned by SHA-256.
 
 The SFU reference-code pages carry GPL-2.0 notices. No source code from those
 implementations is copied here: the vectorized Python functions independently

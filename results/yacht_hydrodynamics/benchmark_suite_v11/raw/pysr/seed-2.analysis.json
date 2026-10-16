@@ -1,0 +1,93 @@
+{
+  "analysis_version": "expression_analysis_v2",
+  "analysis_status": "complete",
+  "problem": "yacht_hydrodynamics",
+  "algorithm": "pysr",
+  "seed": 2,
+  "input_scaling": "raw",
+  "expression_timeout_seconds_per_stage": 60,
+  "simplification_requested": true,
+  "analysis_seconds": 0.2279076080012601,
+  "analysis_python": "3.11.15",
+  "analysis_platform": "Linux-7.0.0-30-generic-x86_64-with-glibc2.43",
+  "raw_scale_symbolic_model": "-sqrt(beam_draught_ratio) + log(0.908654/(0.523863725776332 - froude_number))/(0.494993481870405 - froude_number)",
+  "raw_scale_back_transform_error": null,
+  "complexity_valid": true,
+  "complexity_source": "simplified",
+  "training_scale_expression_parse_success": true,
+  "training_scale_expression_parse_error": null,
+  "training_scale_expression_simplify_success": true,
+  "training_scale_expression_simplify_error": null,
+  "training_scale_symbolic_comparison_error": null,
+  "training_scale_symbolic_exact_match": null,
+  "training_scale_expression_node_count": 24,
+  "training_scale_expression_depth": 7,
+  "training_scale_expression_operator_count": 12,
+  "training_scale_expression_operators": [
+    "Add",
+    "Mul",
+    "Pow",
+    "log"
+  ],
+  "training_scale_expression_constant_count": 9,
+  "training_scale_expression_variable_count": 2,
+  "training_scale_expression_variables": [
+    "beam_draught_ratio",
+    "froude_number"
+  ],
+  "training_scale_simplified_node_count": 24,
+  "training_scale_simplified_depth": 7,
+  "training_scale_simplified_operator_count": 12,
+  "training_scale_simplified_operators": [
+    "Add",
+    "Mul",
+    "Pow",
+    "log"
+  ],
+  "training_scale_simplified_constant_count": 9,
+  "training_scale_simplified_variable_count": 2,
+  "training_scale_simplified_variables": [
+    "beam_draught_ratio",
+    "froude_number"
+  ],
+  "training_scale_simplified_expression": "-sqrt(beam_draught_ratio) + log(0.908654/(0.523863725776332 - froude_number))/(0.494993481870405 - froude_number)",
+  "expression_parse_success": true,
+  "expression_parse_error": null,
+  "expression_simplify_success": true,
+  "expression_simplify_error": null,
+  "symbolic_comparison_error": null,
+  "symbolic_exact_match": null,
+  "expression_node_count": 24,
+  "expression_depth": 7,
+  "expression_operator_count": 12,
+  "expression_operators": [
+    "Add",
+    "Mul",
+    "Pow",
+    "log"
+  ],
+  "expression_constant_count": 9,
+  "expression_variable_count": 2,
+  "expression_variables": [
+    "beam_draught_ratio",
+    "froude_number"
+  ],
+  "simplified_node_count": 24,
+  "simplified_depth": 7,
+  "simplified_operator_count": 12,
+  "simplified_operators": [
+    "Add",
+    "Mul",
+    "Pow",
+    "log"
+  ],
+  "simplified_constant_count": 9,
+  "simplified_variable_count": 2,
+  "simplified_variables": [
+    "beam_draught_ratio",
+    "froude_number"
+  ],
+  "simplified_expression": "-sqrt(beam_draught_ratio) + log(0.908654/(0.523863725776332 - froude_number))/(0.494993481870405 - froude_number)",
+  "source_result": "seed-2.json",
+  "source_result_sha256": "81410d1b60a1769379e402dfb46d8d31684530cdeda098dc839b9d5ba7a64ff3"
+}

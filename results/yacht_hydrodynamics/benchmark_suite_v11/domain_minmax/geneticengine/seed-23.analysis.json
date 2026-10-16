@@ -1,0 +1,97 @@
+{
+  "analysis_version": "expression_analysis_v2",
+  "analysis_status": "complete",
+  "problem": "yacht_hydrodynamics",
+  "algorithm": "geneticengine",
+  "seed": 23,
+  "input_scaling": "domain_minmax",
+  "expression_timeout_seconds_per_stage": 60,
+  "simplification_requested": true,
+  "analysis_seconds": 1.2909048420006002,
+  "analysis_python": "3.11.15",
+  "analysis_platform": "Linux-7.0.0-30-generic-x86_64-with-glibc2.43",
+  "raw_scale_symbolic_model": "2*longitudinal_buoyancy_position/5 + (80*froude_number/13 + (80*froude_number/13 - 23/13)*(160*froude_number/13 + log(80*froude_number/13 - 23/13) - 46/13) - 23/13)*(61.5384615384615*froude_number + log(61.5384615384615*froude_number - 17.6923076923077) + log((200*prismatic_coefficient/7 - 120/7)**2) - 17.6923076923077) + 2 + log(80*froude_number/13 + log(80*froude_number/13 - 23/13) - 1.66923076923077)/log(80*froude_number/13 - 23/13)",
+  "raw_scale_back_transform_error": null,
+  "complexity_valid": true,
+  "complexity_source": "simplified",
+  "training_scale_expression_parse_success": true,
+  "training_scale_expression_parse_error": null,
+  "training_scale_expression_simplify_success": true,
+  "training_scale_expression_simplify_error": null,
+  "training_scale_symbolic_comparison_error": null,
+  "training_scale_symbolic_exact_match": null,
+  "training_scale_expression_node_count": 39,
+  "training_scale_expression_depth": 6,
+  "training_scale_expression_operator_count": 20,
+  "training_scale_expression_operators": [
+    "Add",
+    "Mul",
+    "Pow",
+    "log"
+  ],
+  "training_scale_expression_constant_count": 8,
+  "training_scale_expression_variable_count": 3,
+  "training_scale_expression_variables": [
+    "froude_number",
+    "longitudinal_buoyancy_position",
+    "prismatic_coefficient"
+  ],
+  "training_scale_simplified_node_count": 39,
+  "training_scale_simplified_depth": 6,
+  "training_scale_simplified_operator_count": 20,
+  "training_scale_simplified_operators": [
+    "Add",
+    "Mul",
+    "Pow",
+    "log"
+  ],
+  "training_scale_simplified_constant_count": 8,
+  "training_scale_simplified_variable_count": 3,
+  "training_scale_simplified_variables": [
+    "froude_number",
+    "longitudinal_buoyancy_position",
+    "prismatic_coefficient"
+  ],
+  "training_scale_simplified_expression": "longitudinal_buoyancy_position + (froude_number*(2*froude_number + log(froude_number)) + froude_number)*(10.0*froude_number + log(10.0*froude_number) + log((prismatic_coefficient - 1)**2)) + 1 + log(froude_number + log(froude_number) + 0.1)/log(froude_number)",
+  "expression_parse_success": true,
+  "expression_parse_error": null,
+  "expression_simplify_success": true,
+  "expression_simplify_error": null,
+  "symbolic_comparison_error": null,
+  "symbolic_exact_match": null,
+  "expression_node_count": 68,
+  "expression_depth": 8,
+  "expression_operator_count": 33,
+  "expression_operators": [
+    "Add",
+    "Mul",
+    "Pow",
+    "log"
+  ],
+  "expression_constant_count": 24,
+  "expression_variable_count": 3,
+  "expression_variables": [
+    "froude_number",
+    "longitudinal_buoyancy_position",
+    "prismatic_coefficient"
+  ],
+  "simplified_node_count": 68,
+  "simplified_depth": 8,
+  "simplified_operator_count": 33,
+  "simplified_operators": [
+    "Add",
+    "Mul",
+    "Pow",
+    "log"
+  ],
+  "simplified_constant_count": 24,
+  "simplified_variable_count": 3,
+  "simplified_variables": [
+    "froude_number",
+    "longitudinal_buoyancy_position",
+    "prismatic_coefficient"
+  ],
+  "simplified_expression": "2*longitudinal_buoyancy_position/5 + (80*froude_number/13 + (80*froude_number/13 - 23/13)*(160*froude_number/13 + log(80*froude_number/13 - 23/13) - 46/13) - 23/13)*(61.5384615384615*froude_number + log(61.5384615384615*froude_number - 17.6923076923077) + log((200*prismatic_coefficient/7 - 120/7)**2) - 17.6923076923077) + 2 + log(80*froude_number/13 + log(80*froude_number/13 - 23/13) - 1.66923076923077)/log(80*froude_number/13 - 23/13)",
+  "source_result": "seed-23.json",
+  "source_result_sha256": "680098e735e2dd8a863c13244158b26380b36cf23245273fccf7c4263a12646a"
+}

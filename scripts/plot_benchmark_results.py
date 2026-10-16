@@ -25,6 +25,11 @@ PROBLEMS = {
     "concrete_strength": ("benchmark_suite_v8", "Concrete Strength"),
     "energy_efficiency_heating": ("benchmark_suite_v9", "Energy Efficiency"),
     "airfoil_self_noise": ("benchmark_suite_v10", "Airfoil Self-Noise"),
+    "otl_circuit": ("benchmark_suite_v11", "OTL Circuit"),
+    "robot_arm": ("benchmark_suite_v11", "Robot Arm"),
+    "yacht_hydrodynamics": ("benchmark_suite_v11", "Yacht Hydrodynamics"),
+    "electrical_grid_stability": ("benchmark_suite_v11", "Grid Stability"),
+    "lattice_physics_kinf": ("benchmark_suite_v11", "Lattice Physics"),
 }
 ALGORITHMS = ("gplearn", "operon", "pysr", "geneticengine", "itea", "eql")
 SCALINGS = ("raw", "domain_minmax")
@@ -68,7 +73,7 @@ def save_heatmap(rows: list[dict[str, object]], scaling: str, output: Path) -> N
         for problem in PROBLEMS
     ])
     shown = np.log10(np.maximum(matrix, 1e-12))
-    fig, ax = plt.subplots(figsize=(10.5, 5.5), constrained_layout=True)
+    fig, ax = plt.subplots(figsize=(10.5, 7.5), constrained_layout=True)
     image = ax.imshow(shown, aspect="auto", cmap="viridis_r")
     ax.set_xticks(range(len(ALGORITHMS)), ALGORITHMS, rotation=30, ha="right")
     ax.set_yticks(range(len(PROBLEMS)), [label for _, label in PROBLEMS.values()])
@@ -91,7 +96,7 @@ def save_r2_heatmap(rows: list[dict[str, object]], scaling: str, output: Path) -
         for problem in PROBLEMS
     ])
     shown = np.clip(matrix, -1.0, 1.0)
-    fig, ax = plt.subplots(figsize=(10.5, 5.5), constrained_layout=True)
+    fig, ax = plt.subplots(figsize=(10.5, 7.5), constrained_layout=True)
     image = ax.imshow(shown, aspect="auto", cmap="RdYlGn", vmin=-1.0, vmax=1.0)
     ax.set_xticks(range(len(ALGORITHMS)), ALGORITHMS, rotation=30, ha="right")
     ax.set_yticks(range(len(PROBLEMS)), [label for _, label in PROBLEMS.values()])
@@ -117,7 +122,7 @@ def save_positive_metric_heatmap(
         for problem in PROBLEMS
     ])
     shown = np.log10(np.where(matrix > 0, matrix, np.nan))
-    fig, ax = plt.subplots(figsize=(10.5, 5.5), constrained_layout=True)
+    fig, ax = plt.subplots(figsize=(10.5, 7.5), constrained_layout=True)
     image = ax.imshow(shown, aspect="auto", cmap="viridis")
     ax.set_xticks(range(len(ALGORITHMS)), ALGORITHMS, rotation=30, ha="right")
     ax.set_yticks(range(len(PROBLEMS)), [label for _, label in PROBLEMS.values()])
@@ -265,7 +270,7 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "--config", type=Path,
-        default=project_dir / "configs" / "benchmark_suite_v10.json",
+        default=project_dir / "configs" / "benchmark_suite_v11.json",
     )
     parser.add_argument("--output-dir", type=Path,
                         default=project_dir / "results" / "figures")

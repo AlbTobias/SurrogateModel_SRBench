@@ -1,0 +1,101 @@
+{
+  "analysis_version": "expression_analysis_v2",
+  "analysis_status": "complete",
+  "problem": "yacht_hydrodynamics",
+  "algorithm": "gplearn",
+  "seed": 17,
+  "input_scaling": "domain_minmax",
+  "expression_timeout_seconds_per_stage": 60,
+  "simplification_requested": true,
+  "analysis_seconds": 27.40260263500022,
+  "analysis_python": "3.11.15",
+  "analysis_platform": "Linux-7.0.0-30-generic-x86_64-with-glibc2.43",
+  "raw_scale_symbolic_model": "107.217346411977*froude_number + sqrt(41.3009808982963*froude_number - sin(-80*froude_number/13 + 2.77694245456638*sqrt(80*froude_number/13 - 23/13) + 23/13) - 11.8740320082602) + sqrt(-41.3009808982963*froude_number + sqrt(47.4548270521425*froude_number + cos(80*froude_number/13 - 23/13) - 13.643262777491) - cos(41.3009808982963*froude_number - 11.8740320082602) + 11.8740320082602) + sqrt(47.4548270521425*froude_number - sqrt(-100*beam_draught_ratio/127 + 53.6086732059886*froude_number - 12.1998951215249) + cos(41.3009808982963*froude_number - 11.8740320082602) - 13.643262777491) + sqrt(107.217346411977*froude_number - 6.6364912476667*sqrt(23/13 - 80*froude_number/13) + 4*cos(41.3009808982963*froude_number - 11.8740320082602) - cos(cos(80*froude_number/13 - 23/13)) - 31.8249870934435) - log(cos(80*froude_number/13 - 23/13)) - 6*log(cos(-80*froude_number/13 + log(cos(80*froude_number/13 - 23/13)) + 23/13)) - sin(sqrt(53.6086732059886*froude_number - (80*froude_number/13 - 23/13)/log(cos(41.3009808982963*froude_number - 11.8740320082602)) + cos(41.3009808982963*froude_number - 11.8740320082602) - 15.4124935467217)) - sin(sin(sqrt(88.7558079504388*froude_number + cos(41.3009808982963*froude_number - 11.8740320082602) - 25.5172947857512))) + 2*cos(41.3009808982963*froude_number - 11.8740320082602) - 30.8249870934435",
+  "raw_scale_back_transform_error": null,
+  "complexity_valid": true,
+  "complexity_source": "simplified",
+  "training_scale_expression_parse_success": true,
+  "training_scale_expression_parse_error": null,
+  "training_scale_expression_simplify_success": true,
+  "training_scale_expression_simplify_error": null,
+  "training_scale_symbolic_comparison_error": null,
+  "training_scale_symbolic_exact_match": null,
+  "training_scale_expression_node_count": 147,
+  "training_scale_expression_depth": 10,
+  "training_scale_expression_operator_count": 76,
+  "training_scale_expression_operators": [
+    "Add",
+    "Mul",
+    "Pow",
+    "cos",
+    "log",
+    "sin"
+  ],
+  "training_scale_expression_constant_count": 45,
+  "training_scale_expression_variable_count": 2,
+  "training_scale_expression_variables": [
+    "beam_draught_ratio",
+    "froude_number"
+  ],
+  "training_scale_simplified_node_count": 147,
+  "training_scale_simplified_depth": 10,
+  "training_scale_simplified_operator_count": 76,
+  "training_scale_simplified_operators": [
+    "Add",
+    "Mul",
+    "Pow",
+    "cos",
+    "log",
+    "sin"
+  ],
+  "training_scale_simplified_constant_count": 45,
+  "training_scale_simplified_variable_count": 2,
+  "training_scale_simplified_variables": [
+    "beam_draught_ratio",
+    "froude_number"
+  ],
+  "training_scale_simplified_expression": "17.4228187919463*froude_number + sqrt(6.71140939597315*froude_number - sin(2.77694245456638*sqrt(froude_number) - froude_number)) + sqrt(-6.71140939597315*froude_number + sqrt(7.71140939597315*froude_number + cos(froude_number)) - cos(6.71140939597315*froude_number)) + sqrt(7.71140939597315*froude_number - sqrt(-beam_draught_ratio + 8.71140939597315*froude_number) + cos(6.71140939597315*froude_number)) + sqrt(17.4228187919463*froude_number - 6.6364912476667*sqrt(-froude_number) + 4*cos(6.71140939597315*froude_number) - cos(cos(froude_number)) - 1) - log(cos(froude_number)) - 6*log(cos(froude_number - log(cos(froude_number)))) - sin(sqrt(8.71140939597315*froude_number - froude_number/log(cos(6.71140939597315*froude_number)) + cos(6.71140939597315*froude_number))) - sin(sin(sqrt(14.4228187919463*froude_number + cos(6.71140939597315*froude_number)))) + 2*cos(6.71140939597315*froude_number)",
+  "expression_parse_success": true,
+  "expression_parse_error": null,
+  "expression_simplify_success": true,
+  "expression_simplify_error": null,
+  "symbolic_comparison_error": null,
+  "symbolic_exact_match": null,
+  "expression_node_count": 197,
+  "expression_depth": 11,
+  "expression_operator_count": 96,
+  "expression_operators": [
+    "Add",
+    "Mul",
+    "Pow",
+    "cos",
+    "log",
+    "sin"
+  ],
+  "expression_constant_count": 75,
+  "expression_variable_count": 2,
+  "expression_variables": [
+    "beam_draught_ratio",
+    "froude_number"
+  ],
+  "simplified_node_count": 197,
+  "simplified_depth": 11,
+  "simplified_operator_count": 96,
+  "simplified_operators": [
+    "Add",
+    "Mul",
+    "Pow",
+    "cos",
+    "log",
+    "sin"
+  ],
+  "simplified_constant_count": 75,
+  "simplified_variable_count": 2,
+  "simplified_variables": [
+    "beam_draught_ratio",
+    "froude_number"
+  ],
+  "simplified_expression": "107.217346411977*froude_number + sqrt(41.3009808982963*froude_number - sin(-80*froude_number/13 + 2.77694245456638*sqrt(80*froude_number/13 - 23/13) + 23/13) - 11.8740320082602) + sqrt(-41.3009808982963*froude_number + sqrt(47.4548270521425*froude_number + cos(80*froude_number/13 - 23/13) - 13.643262777491) - cos(41.3009808982963*froude_number - 11.8740320082602) + 11.8740320082602) + sqrt(47.4548270521425*froude_number - sqrt(-100*beam_draught_ratio/127 + 53.6086732059886*froude_number - 12.1998951215249) + cos(41.3009808982963*froude_number - 11.8740320082602) - 13.643262777491) + sqrt(107.217346411977*froude_number - 6.6364912476667*sqrt(23/13 - 80*froude_number/13) + 4*cos(41.3009808982963*froude_number - 11.8740320082602) - cos(cos(80*froude_number/13 - 23/13)) - 31.8249870934435) - log(cos(80*froude_number/13 - 23/13)) - 6*log(cos(-80*froude_number/13 + log(cos(80*froude_number/13 - 23/13)) + 23/13)) - sin(sqrt(53.6086732059886*froude_number - (80*froude_number/13 - 23/13)/log(cos(41.3009808982963*froude_number - 11.8740320082602)) + cos(41.3009808982963*froude_number - 11.8740320082602) - 15.4124935467217)) - sin(sin(sqrt(88.7558079504388*froude_number + cos(41.3009808982963*froude_number - 11.8740320082602) - 25.5172947857512))) + 2*cos(41.3009808982963*froude_number - 11.8740320082602) - 30.8249870934435",
+  "source_result": "seed-17.json",
+  "source_result_sha256": "61b1f73c5338dd65f27f7add8b8d5ff67b4b796d73ed7c3bd38988c51d81380d"
+}

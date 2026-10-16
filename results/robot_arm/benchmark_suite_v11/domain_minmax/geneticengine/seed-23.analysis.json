@@ -1,0 +1,97 @@
+{
+  "analysis_version": "expression_analysis_v2",
+  "analysis_status": "complete",
+  "problem": "robot_arm",
+  "algorithm": "geneticengine",
+  "seed": 23,
+  "input_scaling": "domain_minmax",
+  "expression_timeout_seconds_per_stage": 60,
+  "simplification_requested": true,
+  "analysis_seconds": 0.31087986399870715,
+  "analysis_python": "3.11.15",
+  "analysis_platform": "Linux-7.0.0-30-generic-x86_64-with-glibc2.43",
+  "raw_scale_symbolic_model": "sqrt(log(-0.0318309886183791*angle_3 + 1000000000000000*angle_4/3141592653589793 - 0.9) + 0.316227766016838*I) + log(1.0302*(1000000000000000*angle_2/3141592653589793 - 1)*(1000000000000000*angle_3/3141592653589793 - 1.03))",
+  "raw_scale_back_transform_error": null,
+  "complexity_valid": true,
+  "complexity_source": "simplified",
+  "training_scale_expression_parse_success": true,
+  "training_scale_expression_parse_error": null,
+  "training_scale_expression_simplify_success": true,
+  "training_scale_expression_simplify_error": null,
+  "training_scale_symbolic_comparison_error": null,
+  "training_scale_symbolic_exact_match": null,
+  "training_scale_expression_node_count": 20,
+  "training_scale_expression_depth": 6,
+  "training_scale_expression_operator_count": 10,
+  "training_scale_expression_operators": [
+    "Add",
+    "Mul",
+    "Pow",
+    "log"
+  ],
+  "training_scale_expression_constant_count": 6,
+  "training_scale_expression_variable_count": 3,
+  "training_scale_expression_variables": [
+    "angle_2",
+    "angle_3",
+    "angle_4"
+  ],
+  "training_scale_simplified_node_count": 20,
+  "training_scale_simplified_depth": 6,
+  "training_scale_simplified_operator_count": 10,
+  "training_scale_simplified_operators": [
+    "Add",
+    "Mul",
+    "Pow",
+    "log"
+  ],
+  "training_scale_simplified_constant_count": 6,
+  "training_scale_simplified_variable_count": 3,
+  "training_scale_simplified_variables": [
+    "angle_2",
+    "angle_3",
+    "angle_4"
+  ],
+  "training_scale_simplified_expression": "sqrt(log(-0.1*angle_3 + angle_4) + 0.316227766016838*I) + log(1.0302*angle_2*(angle_3 - 0.03))",
+  "expression_parse_success": true,
+  "expression_parse_error": null,
+  "expression_simplify_success": true,
+  "expression_simplify_error": null,
+  "symbolic_comparison_error": null,
+  "symbolic_exact_match": null,
+  "expression_node_count": 28,
+  "expression_depth": 6,
+  "expression_operator_count": 14,
+  "expression_operators": [
+    "Add",
+    "Mul",
+    "Pow",
+    "log"
+  ],
+  "expression_constant_count": 10,
+  "expression_variable_count": 3,
+  "expression_variables": [
+    "angle_2",
+    "angle_3",
+    "angle_4"
+  ],
+  "simplified_node_count": 28,
+  "simplified_depth": 6,
+  "simplified_operator_count": 14,
+  "simplified_operators": [
+    "Add",
+    "Mul",
+    "Pow",
+    "log"
+  ],
+  "simplified_constant_count": 10,
+  "simplified_variable_count": 3,
+  "simplified_variables": [
+    "angle_2",
+    "angle_3",
+    "angle_4"
+  ],
+  "simplified_expression": "sqrt(log(-0.0318309886183791*angle_3 + 1000000000000000*angle_4/3141592653589793 - 0.9) + 0.316227766016838*I) + log((0.327922844746541*angle_2 - 1.0302)*(1000000000000000*angle_3/3141592653589793 - 1.03))",
+  "source_result": "seed-23.json",
+  "source_result_sha256": "c9a67f0822ec3cdd40d6d2398c3e901a44e2a48cb3d65fdcc782cafdfc443434"
+}

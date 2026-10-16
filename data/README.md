@@ -34,6 +34,8 @@ Concrete Strength uses all 592 designs remaining after its 400-design training
 selection. Energy Efficiency similarly uses all 368 designs remaining after
 its 400-design training selection. Airfoil Self-Noise uses all 1,103
 observations remaining after its 400-observation training selection.
+Yacht Hydrodynamics uses 210 training and 98 test observations because complete
+hull forms, rather than individual rows, are assigned to partitions.
 
 The train/test generation or selection seeds are fixed. Cantilever uses
 independent uniform random samples. Borehole and Piston use independently seeded
@@ -384,6 +386,56 @@ Source: UCI Airfoil Self-Noise, DOI
 archive and contained data member are checksum-pinned and downloaded on demand.
 
 Preparation script: `surrogate/prepare_airfoil_self_noise.py`
+
+## 11. OTL circuit midpoint voltage
+
+Directory: `data/otl_circuit/`
+
+Six resistance and current-gain inputs predict circuit midpoint voltage. The
+published domains are encoded in `surrogate/problem_metadata.py`. Independent
+scrambled Latin hypercubes contain 400 training and 4,000 test points.
+
+Generator: `surrogate/generate_otl_circuit.py`
+
+## 12. Robot-arm endpoint distance
+
+Directory: `data/robot_arm/`
+
+Four angles in $[0,2\pi]$ and four segment lengths in $[0,1]$ predict the
+distance between the arm endpoint and origin. Independent scrambled Latin
+hypercubes contain 400 training and 4,000 test points.
+
+Generator: `surrogate/generate_robot_arm.py`
+
+## 13. Yacht hydrodynamics
+
+Directory: `data/yacht_hydrodynamics/`
+
+Five hull coefficients and Froude number predict residuary resistance per unit
+displacement. Fifteen complete hull forms provide 210 training rows and seven
+different hull forms provide 98 test rows; no hull design occurs in both sets.
+
+Preparation script: `surrogate/prepare_yacht_hydrodynamics.py`
+
+## 14. Electrical-grid stability
+
+Directory: `data/electrical_grid_stability/`
+
+Eleven continuous simulator inputs predict the `stab` regression response. The
+deterministic `p1` column and categorical `stabf` response are not exposed to
+estimators. The split contains 400 training and 4,000 test simulations.
+
+Preparation script: `surrogate/prepare_electrical_grid_stability.py`
+
+## 15. Lattice-physics $k_{\mathrm{inf}}$
+
+Directory: `data/lattice_physics_kinf/`
+
+Thirty-nine fuel-pin enrichment inputs in $[0.7,5.0]$ predict the MCNP6
+infinite multiplication factor. The pin-power response is excluded. The split
+contains 400 training and 4,000 test simulations.
+
+Preparation script: `surrogate/prepare_lattice_physics_kinf.py`
 
 ## How results are judged
 

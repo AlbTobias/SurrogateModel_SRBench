@@ -1,0 +1,116 @@
+{
+  "status": "success",
+  "problem": "robot_arm",
+  "algorithm": "pysr",
+  "seed": 13,
+  "seed_parameter": "random_state",
+  "train_samples": 400,
+  "test_samples": 4000,
+  "feature_names": [
+    "angle_1",
+    "angle_2",
+    "angle_3",
+    "angle_4",
+    "length_1",
+    "length_2",
+    "length_3",
+    "length_4"
+  ],
+  "dataset_policy": "fixed across algorithm trials",
+  "dataset_hash_scope": "SHA-256 of uncompressed table bytes",
+  "train_dataset_sha256": "6b3638ef2ef212a5bc91ee32a91d016c4f5fea5425314ff5bdc5c74bb6491561",
+  "test_dataset_sha256": "5967ccf2f9a7b13ee8e10b9819ebef3bf41d9c8d28b7eb86f7e7ed4214f0e941",
+  "requested_population_size": null,
+  "requested_iterations": null,
+  "time_limit": null,
+  "profile": "benchmark",
+  "benchmark_name": "benchmark_suite_v11",
+  "config_file": "/workspace/configs/benchmark_suite_v11.json",
+  "configuration_schema_version": 2,
+  "configuration_sha256": "9370502721765c94ea03aafe81232e1fe1272026f60d83e4e4fa40b58a02e0b8",
+  "use_dataframe": true,
+  "input_scaling": "domain_minmax",
+  "input_scaling_applied": true,
+  "input_scaling_source": "fixed documented problem domain",
+  "input_scaling_formula": "z = 2 * (x - lower) / (upper - lower) - 1",
+  "input_scaling_parameters": {
+    "angle_1": {
+      "lower": 0.0,
+      "upper": 6.283185307179586
+    },
+    "angle_2": {
+      "lower": 0.0,
+      "upper": 6.283185307179586
+    },
+    "angle_3": {
+      "lower": 0.0,
+      "upper": 6.283185307179586
+    },
+    "angle_4": {
+      "lower": 0.0,
+      "upper": 6.283185307179586
+    },
+    "length_1": {
+      "lower": 0.0,
+      "upper": 1.0
+    },
+    "length_2": {
+      "lower": 0.0,
+      "upper": 1.0
+    },
+    "length_3": {
+      "lower": 0.0,
+      "upper": 1.0
+    },
+    "length_4": {
+      "lower": 0.0,
+      "upper": 1.0
+    }
+  },
+  "target_scaling": "none; target remains in original units",
+  "algorithm_configuration_role": "project_budget_and_execution_override",
+  "algorithm_configuration_rationale": "Replaces the adapter's very long search with a 60-second practical budget and explicitly enforces deterministic single-process execution; not selected using test performance.",
+  "configured_parameters": {
+    "niterations": 20,
+    "ncyclesperiteration": 500,
+    "population_size": 100,
+    "populations": 3,
+    "timeout_in_seconds": 60,
+    "deterministic": true,
+    "procs": 0,
+    "multithreading": false
+  },
+  "applied_parameters": {
+    "random_state": 13,
+    "niterations": 20,
+    "ncyclesperiteration": 500,
+    "population_size": 100,
+    "populations": 3,
+    "timeout_in_seconds": 60,
+    "deterministic": true,
+    "procs": 0,
+    "multithreading": false
+  },
+  "rmse": 0.5013867207871119,
+  "nrmse_range": 0.151667511950443,
+  "mae": 0.40846121472888636,
+  "r2": 0.11058883600296265,
+  "max_absolute_error": 1.7195089874435368,
+  "fit_seconds": 90.33864012900085,
+  "prediction_seconds": 0.008750066999709816,
+  "prediction_repeats": 5,
+  "prediction_scalar_broadcast": false,
+  "prediction_mean_seconds": 0.004254578599648085,
+  "prediction_median_seconds": 0.003119227998467977,
+  "prediction_std_seconds": 0.0025151369334596367,
+  "prediction_microseconds_per_sample": 0.7798069996169943,
+  "expression_extraction_seconds": 0.007353889999649255,
+  "evaluation_seconds": 90.3677511879996,
+  "timing_scope": "fit/predict/expression extraction inside the running container; symbolic analysis, image pull, container startup, data generation, and metric serialization excluded",
+  "model_size": 18,
+  "symbolic_model": "0.148344676379373*exp(length_1) + sqrt(exp(angle_3**2*length_2)) - 0.0877744969099999",
+  "symbolic_model_coordinate_system": "domain_minmax",
+  "symbolic_analysis": "separate post-processing sidecar",
+  "python": "3.11.0",
+  "platform": "Linux-7.0.0-30-generic-x86_64-with-glibc2.36"
+}

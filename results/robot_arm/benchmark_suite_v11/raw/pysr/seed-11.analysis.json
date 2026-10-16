@@ -1,0 +1,89 @@
+{
+  "analysis_version": "expression_analysis_v2",
+  "analysis_status": "complete",
+  "problem": "robot_arm",
+  "algorithm": "pysr",
+  "seed": 11,
+  "input_scaling": "raw",
+  "expression_timeout_seconds_per_stage": 60,
+  "simplification_requested": true,
+  "analysis_seconds": 0.14183348100050353,
+  "analysis_python": "3.11.15",
+  "analysis_platform": "Linux-7.0.0-30-generic-x86_64-with-glibc2.43",
+  "raw_scale_symbolic_model": "sqrt(length_3 + sin(length_2))",
+  "raw_scale_back_transform_error": null,
+  "complexity_valid": true,
+  "complexity_source": "simplified",
+  "training_scale_expression_parse_success": true,
+  "training_scale_expression_parse_error": null,
+  "training_scale_expression_simplify_success": true,
+  "training_scale_expression_simplify_error": null,
+  "training_scale_symbolic_comparison_error": null,
+  "training_scale_symbolic_exact_match": null,
+  "training_scale_expression_node_count": 6,
+  "training_scale_expression_depth": 3,
+  "training_scale_expression_operator_count": 3,
+  "training_scale_expression_operators": [
+    "Add",
+    "Pow",
+    "sin"
+  ],
+  "training_scale_expression_constant_count": 1,
+  "training_scale_expression_variable_count": 2,
+  "training_scale_expression_variables": [
+    "length_2",
+    "length_3"
+  ],
+  "training_scale_simplified_node_count": 6,
+  "training_scale_simplified_depth": 3,
+  "training_scale_simplified_operator_count": 3,
+  "training_scale_simplified_operators": [
+    "Add",
+    "Pow",
+    "sin"
+  ],
+  "training_scale_simplified_constant_count": 1,
+  "training_scale_simplified_variable_count": 2,
+  "training_scale_simplified_variables": [
+    "length_2",
+    "length_3"
+  ],
+  "training_scale_simplified_expression": "sqrt(length_3 + sin(length_2))",
+  "expression_parse_success": true,
+  "expression_parse_error": null,
+  "expression_simplify_success": true,
+  "expression_simplify_error": null,
+  "symbolic_comparison_error": null,
+  "symbolic_exact_match": null,
+  "expression_node_count": 6,
+  "expression_depth": 3,
+  "expression_operator_count": 3,
+  "expression_operators": [
+    "Add",
+    "Pow",
+    "sin"
+  ],
+  "expression_constant_count": 1,
+  "expression_variable_count": 2,
+  "expression_variables": [
+    "length_2",
+    "length_3"
+  ],
+  "simplified_node_count": 6,
+  "simplified_depth": 3,
+  "simplified_operator_count": 3,
+  "simplified_operators": [
+    "Add",
+    "Pow",
+    "sin"
+  ],
+  "simplified_constant_count": 1,
+  "simplified_variable_count": 2,
+  "simplified_variables": [
+    "length_2",
+    "length_3"
+  ],
+  "simplified_expression": "sqrt(length_3 + sin(length_2))",
+  "source_result": "seed-11.json",
+  "source_result_sha256": "8158153970aab568f4123ecde34d843af699708cb15ae6183141d2417cc994d7"
+}

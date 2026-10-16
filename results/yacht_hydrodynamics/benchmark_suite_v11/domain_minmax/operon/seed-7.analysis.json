@@ -1,0 +1,101 @@
+{
+  "analysis_version": "expression_analysis_v2",
+  "analysis_status": "complete",
+  "problem": "yacht_hydrodynamics",
+  "algorithm": "operon",
+  "seed": 7,
+  "input_scaling": "domain_minmax",
+  "expression_timeout_seconds_per_stage": 60,
+  "simplification_requested": true,
+  "analysis_seconds": 6.510682419000659,
+  "analysis_python": "3.11.15",
+  "analysis_platform": "Linux-7.0.0-30-generic-x86_64-with-glibc2.43",
+  "raw_scale_symbolic_model": "3.013855 + 21.421324*(10.5224984615385*froude_number + 0.0176668*longitudinal_buoyancy_position + 0.222966*(80*froude_number/13 - 23/13)*(-0.677331846498*(100*beam_draught_ratio/127 - 408/127)*(-26.8458285714286*prismatic_coefficient + 0.388385144298*(80*froude_number/13 - 23/13)**2 + 15.1678931428571) + 0.434294*(80*froude_number/13 - 23/13)*(19.2253538461538*froude_number - 1.5015725*length_displacement_ratio + 1.59016441923077)) - 2.98105130769231)/((8.31560615384615*froude_number - 3.36657142857143*prismatic_coefficient - 2.98138091208791)*(10.5224984615385*froude_number + 0.0176668*longitudinal_buoyancy_position + 0.222966*(80*froude_number/13 - 23/13)*(9.90261538461539*froude_number + 0.700468424838*(80*froude_number/13 - 23/13)**2 - 2.84700192307692)/(8.95579692307692*froude_number - 5.06754861538461) - 4.98823530769231))",
+  "raw_scale_back_transform_error": null,
+  "complexity_valid": true,
+  "complexity_source": "simplified",
+  "training_scale_expression_parse_success": true,
+  "training_scale_expression_parse_error": null,
+  "training_scale_expression_simplify_success": true,
+  "training_scale_expression_simplify_error": null,
+  "training_scale_symbolic_comparison_error": null,
+  "training_scale_symbolic_exact_match": null,
+  "training_scale_expression_node_count": 76,
+  "training_scale_expression_depth": 9,
+  "training_scale_expression_operator_count": 32,
+  "training_scale_expression_operators": [
+    "Add",
+    "Mul",
+    "Pow"
+  ],
+  "training_scale_expression_constant_count": 27,
+  "training_scale_expression_variable_count": 5,
+  "training_scale_expression_variables": [
+    "beam_draught_ratio",
+    "froude_number",
+    "length_displacement_ratio",
+    "longitudinal_buoyancy_position",
+    "prismatic_coefficient"
+  ],
+  "training_scale_simplified_node_count": 76,
+  "training_scale_simplified_depth": 9,
+  "training_scale_simplified_operator_count": 32,
+  "training_scale_simplified_operators": [
+    "Add",
+    "Mul",
+    "Pow"
+  ],
+  "training_scale_simplified_constant_count": 27,
+  "training_scale_simplified_variable_count": 5,
+  "training_scale_simplified_variables": [
+    "beam_draught_ratio",
+    "froude_number",
+    "length_displacement_ratio",
+    "longitudinal_buoyancy_position",
+    "prismatic_coefficient"
+  ],
+  "training_scale_simplified_expression": "3.013855 + 21.421324*(0.222966*froude_number*(-0.677331846498*beam_draught_ratio*(0.388385144298*froude_number**2 - 0.939604*prismatic_coefficient) + 0.434294*froude_number*(3.12412*froude_number - 0.600629*length_displacement_ratio)) + 1.709906*froude_number + 0.044167*longitudinal_buoyancy_position)/((1.351286*froude_number - 0.11783*prismatic_coefficient - 2.492757)*(1.709906*froude_number + 0.222966*froude_number*(0.700468424838*froude_number**2 + 1.609175*froude_number)/(1.455317*froude_number - 2.492757) + 0.044167*longitudinal_buoyancy_position - 2.007184))",
+  "expression_parse_success": true,
+  "expression_parse_error": null,
+  "expression_simplify_success": true,
+  "expression_simplify_error": null,
+  "symbolic_comparison_error": null,
+  "symbolic_exact_match": null,
+  "expression_node_count": 100,
+  "expression_depth": 11,
+  "expression_operator_count": 44,
+  "expression_operators": [
+    "Add",
+    "Mul",
+    "Pow"
+  ],
+  "expression_constant_count": 39,
+  "expression_variable_count": 5,
+  "expression_variables": [
+    "beam_draught_ratio",
+    "froude_number",
+    "length_displacement_ratio",
+    "longitudinal_buoyancy_position",
+    "prismatic_coefficient"
+  ],
+  "simplified_node_count": 100,
+  "simplified_depth": 11,
+  "simplified_operator_count": 44,
+  "simplified_operators": [
+    "Add",
+    "Mul",
+    "Pow"
+  ],
+  "simplified_constant_count": 39,
+  "simplified_variable_count": 5,
+  "simplified_variables": [
+    "beam_draught_ratio",
+    "froude_number",
+    "length_displacement_ratio",
+    "longitudinal_buoyancy_position",
+    "prismatic_coefficient"
+  ],
+  "simplified_expression": "3.013855 + (225.405848834118*froude_number + 0.3784462468432*longitudinal_buoyancy_position + 21.421324*(1.37209846153846*froude_number - 0.394478307692308)*((2.17599522339515 - 0.53333216259685*beam_draught_ratio)*(-26.8458285714286*prismatic_coefficient + 0.388385144298*(80*froude_number/13 - 23/13)**2 + 15.1678931428571) + (2.67257846153846*froude_number - 0.768366307692308)*(19.2253538461538*froude_number - 1.5015725*length_displacement_ratio + 1.59016441923077)) - 63.8580659227007)/((8.31560615384615*froude_number - 3.36657142857143*prismatic_coefficient - 2.98138091208791)*(10.5224984615385*froude_number + 0.0176668*longitudinal_buoyancy_position + (1.37209846153846*froude_number - 0.394478307692308)*(9.90261538461539*froude_number + 0.700468424838*(80*froude_number/13 - 23/13)**2 - 2.84700192307692)/(8.95579692307692*froude_number - 5.06754861538461) - 4.98823530769231))",
+  "source_result": "seed-7.json",
+  "source_result_sha256": "12065261be0151c6e096b24a657e1ee2b753c797b9b8b33b5dd1dae27643f5da"
+}

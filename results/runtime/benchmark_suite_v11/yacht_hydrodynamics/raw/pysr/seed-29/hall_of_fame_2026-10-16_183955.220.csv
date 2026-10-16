@@ -1,0 +1,13 @@
+Complexity,Loss,Equation
+1,228.6878,"10.602597"
+3,228.67517,"(5.2768016 + 5.1724977)"
+4,206.85826,"(sqrt(froude_number) / 0.06975145)"
+5,96.794044,"(length_beam_ratio / (prismatic_coefficient - froude_number))"
+6,83.3003,"exp((1.7449495 / 0.24547419) * froude_number)"
+7,79.37987,"exp((1.7449495 / sin(0.24547419)) * froude_number)"
+8,10.916138,"(exp((froude_number / 0.24931084) / 0.38519287) * froude_number)"
+10,2.8843825,"(exp(((froude_number / 0.13650256) + -0.84089124) / 0.51810926) * froude_number)"
+12,2.8174508,"((exp(((froude_number / 0.13650256) + -0.84089124) / 0.51810926) - 1.1811554) * froude_number)"
+14,2.8170297,"((exp(((froude_number / 0.13650256) + -0.84089124) / 0.51810926) - (1.1811554 - 0.562562)) * froude_number)"
+17,2.7403636,"(((exp(((froude_number / sin(0.13650256)) + -0.84089124) / 0.51810926) - (froude_number * 0.45345795)) * froude_number) - froude_number)"
+18,2.7002778,"((exp(((froude_number / sin(0.13650256)) + -0.84089124) / 0.51810926) - (1.1811554 + (sin(froude_number) + froude_number))) * froude_number)"

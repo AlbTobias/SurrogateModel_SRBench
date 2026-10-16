@@ -2,7 +2,7 @@
 set -uo pipefail
 
 project_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-config_file="${BENCHMARK_CONFIG:-configs/benchmark_suite_v10.json}"
+config_file="${BENCHMARK_CONFIG:-configs/benchmark_suite_v11.json}"
 config_path="$project_dir/$config_file"
 if [[ ! -f "$config_path" ]]; then
   echo "Benchmark configuration not found: $config_path" >&2
@@ -44,7 +44,7 @@ for problem in "${problems[@]}"; do
       --config "$config_path" \
       --input-scaling "$input_scaling" \
       --timeout "$analysis_timeout" \
-      --jobs 2
+      --jobs 1
 
     "$project_dir/.venv/bin/python" "$project_dir/scripts/summarize_benchmark.py" \
       --problem "$problem" \

@@ -1,0 +1,12 @@
+Complexity,Loss,Equation
+1,1.3254689,"5.4423623"
+3,1.3254547,"exp(sqrt(2.8694437))"
+4,0.7201581,"(sqrt(base_resistance_2) * 0.7962951)"
+6,0.7050152,"sqrt((base_resistance_2 + feedback_resistance) / 1.6422147)"
+9,0.61159074,"((exp(1.397654) / sqrt(base_resistance_1 / base_resistance_2)) / 0.60432214)"
+10,0.59791124,"(((base_resistance_2 / base_resistance_1) + (log(base_resistance_2) * 1.1192183)) + 0.46392944)"
+11,0.26066932,"(exp(1.397654) + ((base_resistance_2 / exp(base_resistance_1 / base_resistance_2)) * 0.17472626))"
+12,0.25821677,"(exp(1.397654) + ((base_resistance_2 / exp(base_resistance_1 / base_resistance_2)) * sin(0.17472626)))"
+13,0.15852381,"((exp(1.397654) + ((log(base_resistance_1) - -1.0616164) / (base_resistance_1 / base_resistance_2))) - 1.397654)"
+14,0.14262325,"(exp(1.397654) + (((-2.6325283 - sin(collector_resistance_1)) / exp(base_resistance_1 / base_resistance_2)) * -2.6325283))"
+17,0.08726755,"(exp(1.397654) + (((-0.3222097 - 1.397654) / exp(base_resistance_1 / base_resistance_2)) * ((-2.6325283 - 1.2432786) - feedback_resistance)))"

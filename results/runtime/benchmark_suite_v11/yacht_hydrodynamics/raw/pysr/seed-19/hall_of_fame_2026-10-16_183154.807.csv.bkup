@@ -1,0 +1,11 @@
+Complexity,Loss,Equation
+1,228.68385,"10.384727"
+3,145.05136,"(48.886177 * froude_number)"
+4,47.614414,"exp(8.127482 * froude_number)"
+10,47.061844,"(exp(((froude_number * length_displacement_ratio) / 0.6827878) + froude_number) - length_beam_ratio)"
+11,9.35731,"((froude_number - (froude_number / 0.13645157)) / (-0.71347916 + (froude_number * 1.4692565)))"
+12,8.401435,"((log(1.4692565) - (froude_number / 0.13645157)) / (-0.71347916 + (froude_number * 1.4692565)))"
+13,6.9097958,"(((froude_number - (froude_number / 0.13645157)) / (-0.71347916 + (froude_number * 1.4692565))) + -1.343351)"
+14,6.643539,"(((-0.59521705 - (froude_number / 0.12191335)) / (-0.7394648 + (sin(froude_number) * 1.5155743))) - length_displacement_ratio)"
+15,5.659652,"((((prismatic_coefficient - (froude_number / 0.12191335)) - 0.12191335) / (-0.7394648 + (froude_number * 1.5155743))) - 1.5155743)"
+17,5.6438646,"(((((prismatic_coefficient - (froude_number / 0.12191335)) - 0.12191335) / (-0.7394648 + (froude_number * 1.5155743))) - 1.5155743) + -0.8296865)"

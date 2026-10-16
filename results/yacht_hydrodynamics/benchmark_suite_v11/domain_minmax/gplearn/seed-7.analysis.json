@@ -1,0 +1,63 @@
+{
+  "analysis_version": "expression_analysis_v2",
+  "analysis_status": "complete",
+  "problem": "yacht_hydrodynamics",
+  "algorithm": "gplearn",
+  "seed": 7,
+  "input_scaling": "domain_minmax",
+  "expression_timeout_seconds_per_stage": 60,
+  "simplification_requested": true,
+  "analysis_seconds": 120.22739422500308,
+  "analysis_python": "3.11.15",
+  "analysis_platform": "Linux-7.0.0-30-generic-x86_64-with-glibc2.43",
+  "raw_scale_symbolic_model": "240*froude_number/13 + sqrt(sqrt((80*froude_number/13 - 23/13)/(2*longitudinal_buoyancy_position/5 + 1) - sqrt(-sqrt((80*froude_number/13 - 23/13)/(2*longitudinal_buoyancy_position/5 + 1)) + (80*froude_number/13 - 23/13)/(2*longitudinal_buoyancy_position/5 + 1) - sqrt(2*longitudinal_buoyancy_position/5 + sqrt((80*froude_number/13 - 23/13)/(2*longitudinal_buoyancy_position/5 + 1) - (160*froude_number/13 + (80*froude_number/13 - 23/13)/(2*longitudinal_buoyancy_position/5 + 1) + sqrt(80*froude_number/13 + 4*longitudinal_buoyancy_position/5 - sqrt((80*froude_number/13 - 23/13)/(2*longitudinal_buoyancy_position/5 + 1)) + (80*froude_number/13 - 23/13)/(2*longitudinal_buoyancy_position/5 + 1) - sqrt(200*prismatic_coefficient/7 + (80*froude_number/13 - 23/13)/(2*longitudinal_buoyancy_position/5 + 1) - 113/7) + 3/13) - 46/13)*sqrt(-80*froude_number/13 - 2*longitudinal_buoyancy_position/5 + sqrt((80*froude_number/13 - 23/13)/(2*longitudinal_buoyancy_position/5 + 1)) - (80*froude_number/13 - 23/13)/(2*longitudinal_buoyancy_position/5 + 1) - sqrt(80*froude_number/13 + (80*froude_number/13 - 23/13)/(2*longitudinal_buoyancy_position/5 + 1) - 23/13) + sqrt(200*prismatic_coefficient/7 + ((80*froude_number/13 - 23/13)/(2*longitudinal_buoyancy_position/5 + 1))**(1/4)/(2*longitudinal_buoyancy_position/5 + 1) - 113/7) + 10/13))*(160*froude_number/13 + (80*froude_number/13 - 23/13)/(2*longitudinal_buoyancy_position/5 + 1) + sqrt(4*longitudinal_buoyancy_position/5 + sqrt((80*froude_number/13 - 23/13)/(2*longitudinal_buoyancy_position/5 + 1)) + (80*froude_number/13 - 23/13)/(2*longitudinal_buoyancy_position/5 + 1) + sqrt(80*froude_number/13 + (80*froude_number/13 - 23/13)/(2*longitudinal_buoyancy_position/5 + 1) - 23/13) + 1.33441754830825) - 46/13) + 1))*(160*froude_number/13 + (80*froude_number/13 - 23/13)/(2*longitudinal_buoyancy_position/5 + 1) + sqrt(80*froude_number/13 + 2*longitudinal_buoyancy_position/5 - sqrt((80*froude_number/13 - 23/13)/(2*longitudinal_buoyancy_position/5 + 1)**2) - sqrt((80*froude_number/13 - 23/13)/(2*longitudinal_buoyancy_position/5 + 1)) + 2*(80*froude_number/13 - 23/13)/(2*longitudinal_buoyancy_position/5 + 1) - 10/13) - 46/13))*(240*froude_number/13 + 5*length_displacement_ratio/2 + 2*longitudinal_buoyancy_position/5 + (80*froude_number/13 - 23/13)/(2*longitudinal_buoyancy_position/5 + 1) + sqrt(80*froude_number/13 + 8*longitudinal_buoyancy_position/5 - 2*sqrt((80*froude_number/13 - 23/13)/(2*longitudinal_buoyancy_position/5 + 1)) + 2*(80*froude_number/13 - 23/13)/(2*longitudinal_buoyancy_position/5 + 1) + 29/13) - 4201/260)) + (80*froude_number/13 - 23/13)/(2*longitudinal_buoyancy_position/5 + 1) + sqrt(2*longitudinal_buoyancy_position/5 - 2*sqrt((80*froude_number/13 - 23/13)/(2*longitudinal_buoyancy_position/5 + 1)) + (80*froude_number/13 - 23/13)/(2*longitudinal_buoyancy_position/5 + 1) + (80*froude_number/13 + 4*longitudinal_buoyancy_position/5 - sqrt((80*froude_number/13 - 23/13)/(2*longitudinal_buoyancy_position/5 + 1)) + (80*froude_number/13 - 23/13)/(2*longitudinal_buoyancy_position/5 + 1) - sqrt(200*prismatic_coefficient/7 + (80*froude_number/13 - 23/13)/(2*longitudinal_buoyancy_position/5 + 1) - 113/7) + 3/13)**(1/4) + 1) + sqrt(-200*prismatic_coefficient/7 + (80*froude_number/13 - 23/13)/(2*longitudinal_buoyancy_position/5 + 1) - sqrt(4*longitudinal_buoyancy_position/5 + (80*froude_number/13 - 23/13)/(2*longitudinal_buoyancy_position/5 + 1) + 2) - sqrt(2*longitudinal_buoyancy_position/5 + sqrt((80*froude_number/13 - 23/13)/(2*longitudinal_buoyancy_position/5 + 1)) + (80*froude_number/13 - 23/13)/(2*longitudinal_buoyancy_position/5 + 1) + 1) + 113/7) - 69/13",
+  "raw_scale_back_transform_error": null,
+  "complexity_valid": true,
+  "complexity_source": "unsimplified_fallback",
+  "training_scale_expression_parse_success": true,
+  "training_scale_expression_parse_error": null,
+  "training_scale_expression_simplify_success": false,
+  "training_scale_expression_simplify_error": "ExpressionTimeoutError: symbolic analysis exceeded 60 seconds",
+  "training_scale_symbolic_comparison_error": null,
+  "training_scale_symbolic_exact_match": null,
+  "training_scale_expression_node_count": 345,
+  "training_scale_expression_depth": 23,
+  "training_scale_expression_operator_count": 153,
+  "training_scale_expression_operators": [
+    "Add",
+    "Mul",
+    "Pow"
+  ],
+  "training_scale_expression_constant_count": 97,
+  "training_scale_expression_variable_count": 4,
+  "training_scale_expression_variables": [
+    "froude_number",
+    "length_displacement_ratio",
+    "longitudinal_buoyancy_position",
+    "prismatic_coefficient"
+  ],
+  "expression_parse_success": true,
+  "expression_parse_error": null,
+  "expression_simplify_success": false,
+  "expression_simplify_error": "ExpressionTimeoutError: symbolic analysis exceeded 60 seconds",
+  "symbolic_comparison_error": null,
+  "symbolic_exact_match": null,
+  "expression_node_count": 661,
+  "expression_depth": 25,
+  "expression_operator_count": 302,
+  "expression_operators": [
+    "Add",
+    "Mul",
+    "Pow"
+  ],
+  "expression_constant_count": 264,
+  "expression_variable_count": 4,
+  "expression_variables": [
+    "froude_number",
+    "length_displacement_ratio",
+    "longitudinal_buoyancy_position",
+    "prismatic_coefficient"
+  ],
+  "source_result": "seed-7.json",
+  "source_result_sha256": "ed746f124f6fe55ee5ce84540164886b57e64cdfe4ccabd605fc05f5674724f1"
+}

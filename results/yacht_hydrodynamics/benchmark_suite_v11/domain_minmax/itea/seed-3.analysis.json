@@ -1,0 +1,89 @@
+{
+  "analysis_version": "expression_analysis_v2",
+  "analysis_status": "complete",
+  "problem": "yacht_hydrodynamics",
+  "algorithm": "itea",
+  "seed": 3,
+  "input_scaling": "domain_minmax",
+  "expression_timeout_seconds_per_stage": 60,
+  "simplification_requested": true,
+  "analysis_seconds": 0.34547893999842927,
+  "analysis_python": "3.11.15",
+  "analysis_platform": "Linux-7.0.0-30-generic-x86_64-with-glibc2.43",
+  "raw_scale_symbolic_model": "44.534980177964*exp(80*froude_number/13 - 23/13) - 36.56918184093574*tanh(80*froude_number/13 - 23/13) - 43.118773528347695",
+  "raw_scale_back_transform_error": null,
+  "complexity_valid": true,
+  "complexity_source": "simplified",
+  "training_scale_expression_parse_success": true,
+  "training_scale_expression_parse_error": null,
+  "training_scale_expression_simplify_success": true,
+  "training_scale_expression_simplify_error": null,
+  "training_scale_symbolic_comparison_error": null,
+  "training_scale_symbolic_exact_match": null,
+  "training_scale_expression_node_count": 10,
+  "training_scale_expression_depth": 3,
+  "training_scale_expression_operator_count": 5,
+  "training_scale_expression_operators": [
+    "Add",
+    "Mul",
+    "exp",
+    "tanh"
+  ],
+  "training_scale_expression_constant_count": 3,
+  "training_scale_expression_variable_count": 1,
+  "training_scale_expression_variables": [
+    "froude_number"
+  ],
+  "training_scale_simplified_node_count": 10,
+  "training_scale_simplified_depth": 3,
+  "training_scale_simplified_operator_count": 5,
+  "training_scale_simplified_operators": [
+    "Add",
+    "Mul",
+    "exp",
+    "tanh"
+  ],
+  "training_scale_simplified_constant_count": 3,
+  "training_scale_simplified_variable_count": 1,
+  "training_scale_simplified_variables": [
+    "froude_number"
+  ],
+  "training_scale_simplified_expression": "44.534980177964*exp(froude_number) - 36.56918184093574*tanh(froude_number) - 43.118773528347695",
+  "expression_parse_success": true,
+  "expression_parse_error": null,
+  "expression_simplify_success": true,
+  "expression_simplify_error": null,
+  "symbolic_comparison_error": null,
+  "symbolic_exact_match": null,
+  "expression_node_count": 18,
+  "expression_depth": 5,
+  "expression_operator_count": 9,
+  "expression_operators": [
+    "Add",
+    "Mul",
+    "exp",
+    "tanh"
+  ],
+  "expression_constant_count": 7,
+  "expression_variable_count": 1,
+  "expression_variables": [
+    "froude_number"
+  ],
+  "simplified_node_count": 18,
+  "simplified_depth": 5,
+  "simplified_operator_count": 9,
+  "simplified_operators": [
+    "Add",
+    "Mul",
+    "exp",
+    "tanh"
+  ],
+  "simplified_constant_count": 7,
+  "simplified_variable_count": 1,
+  "simplified_variables": [
+    "froude_number"
+  ],
+  "simplified_expression": "44.534980177964*exp(80*froude_number/13 - 23/13) - 36.56918184093574*tanh(80*froude_number/13 - 23/13) - 43.118773528347695",
+  "source_result": "seed-3.json",
+  "source_result_sha256": "5bc807e805623f482b055564747e347b3d94dbda3d285bc2976f291c6368f042"
+}

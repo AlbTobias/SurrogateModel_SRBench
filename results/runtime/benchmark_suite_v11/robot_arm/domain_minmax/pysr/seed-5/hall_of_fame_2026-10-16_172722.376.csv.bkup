@@ -1,0 +1,10 @@
+Complexity,Loss,Equation
+1,0.29737067,"1.0358516"
+4,0.28246036,"exp(0.26760077 * length_2)"
+5,0.28213894,"exp(length_2 * sin(0.20162886))"
+6,0.26947463,"exp((length_3 + length_1) * 0.20162886)"
+7,0.2670727,"exp((sin(length_2) + length_3) * 0.20162886)"
+21,0.2667466,"((exp((length_2 - length_1) * -0.11506002) * (exp((((length_2 / length_4) - -1.4162909) * 0.1579151) * length_4) * length_3)) / length_3)"
+22,0.26590848,"((exp((sin(length_3 / -1.4321035) - length_1) * -0.11506002) * (exp(((length_2 - -1.4162909) * 0.1579151) * length_4) * length_3)) / length_3)"
+23,0.2655747,"((exp((sin(length_3 / -1.4321035) - length_1) * -0.11506002) * (exp(((sin(length_2) - -1.4162909) * 0.1579151) * length_4) * length_3)) / length_3)"
+24,0.2587432,"((exp(((sin(angle_2) - sin(-1.2063549)) * length_2) * 0.1579151) * (exp(((length_1 - sin(0.20162886)) + length_3) * 0.1579151) * length_3)) / length_3)"

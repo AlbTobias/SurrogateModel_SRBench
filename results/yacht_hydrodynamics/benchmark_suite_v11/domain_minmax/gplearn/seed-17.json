@@ -1,0 +1,94 @@
+{
+  "status": "success",
+  "problem": "yacht_hydrodynamics",
+  "algorithm": "gplearn",
+  "seed": 17,
+  "seed_parameter": "random_state",
+  "train_samples": 210,
+  "test_samples": 98,
+  "feature_names": [
+    "longitudinal_buoyancy_position",
+    "prismatic_coefficient",
+    "length_displacement_ratio",
+    "beam_draught_ratio",
+    "length_beam_ratio",
+    "froude_number"
+  ],
+  "dataset_policy": "fixed across algorithm trials",
+  "dataset_hash_scope": "SHA-256 of uncompressed table bytes",
+  "train_dataset_sha256": "155fecd851fd26b708cc3f3c0173d2bea66d2595dd5bbb4a53ce0cd39043447b",
+  "test_dataset_sha256": "4233f6d35d34da74bcce6a528bbdb68789b9f33685f491ea9ee87ec71dc4feb2",
+  "requested_population_size": null,
+  "requested_iterations": null,
+  "time_limit": null,
+  "profile": "benchmark",
+  "benchmark_name": "benchmark_suite_v11",
+  "config_file": "/workspace/configs/benchmark_suite_v11.json",
+  "configuration_schema_version": 2,
+  "configuration_sha256": "9370502721765c94ea03aafe81232e1fe1272026f60d83e4e4fa40b58a02e0b8",
+  "use_dataframe": true,
+  "input_scaling": "domain_minmax",
+  "input_scaling_applied": true,
+  "input_scaling_source": "fixed documented problem domain",
+  "input_scaling_formula": "z = 2 * (x - lower) / (upper - lower) - 1",
+  "input_scaling_parameters": {
+    "longitudinal_buoyancy_position": {
+      "lower": -5.0,
+      "upper": 0.0
+    },
+    "prismatic_coefficient": {
+      "lower": 0.53,
+      "upper": 0.6
+    },
+    "length_displacement_ratio": {
+      "lower": 4.34,
+      "upper": 5.14
+    },
+    "beam_draught_ratio": {
+      "lower": 2.81,
+      "upper": 5.35
+    },
+    "length_beam_ratio": {
+      "lower": 2.73,
+      "upper": 3.64
+    },
+    "froude_number": {
+      "lower": 0.125,
+      "upper": 0.45
+    }
+  },
+  "target_scaling": "none; target remains in original units",
+  "algorithm_configuration_role": "project_budget_override",
+  "algorithm_configuration_rationale": "Reduced from the SRBench adapter's 1000 individuals and 500 generations to keep repeated trials computationally feasible; not selected using test performance.",
+  "configured_parameters": {
+    "population_size": 500,
+    "generations": 100
+  },
+  "applied_parameters": {
+    "random_state": 17,
+    "population_size": 500,
+    "generations": 100
+  },
+  "rmse": 1.7639785895011715,
+  "nrmse_range": 0.029008034690037352,
+  "mae": 0.8407674179676108,
+  "r2": 0.9864708684713849,
+  "max_absolute_error": 10.248339549339711,
+  "fit_seconds": 48.08056741499968,
+  "prediction_seconds": 0.001207495999551611,
+  "prediction_repeats": 5,
+  "prediction_scalar_broadcast": false,
+  "prediction_mean_seconds": 0.0010746906002168544,
+  "prediction_median_seconds": 0.0010376540012657642,
+  "prediction_std_seconds": 7.520123029706001e-05,
+  "prediction_microseconds_per_sample": 10.588306135364942,
+  "expression_extraction_seconds": 0.0002903380009229295,
+  "evaluation_seconds": 48.08655513400299,
+  "timing_scope": "fit/predict/expression extraction inside the running container; symbolic analysis, image pull, container startup, data generation, and metric serialization excluded",
+  "model_size": 239,
+  "symbolic_model": "sub(sqrt(sub(sin(sub(froude_number, sqrt(sub(froude_number, div(froude_number, -0.149))))), div(froude_number, -0.149))), sub(sub(sub(sin(sin(sqrt(add(sub(froude_number, div(froude_number, -0.149)), sub(cos(div(froude_number, -0.149)), div(froude_number, -0.149)))))), add(add(sub(froude_number, div(froude_number, -0.149)), sub(cos(div(froude_number, -0.149)), log(cos(sub(froude_number, log(cos(froude_number))))))), sub(sqrt(sub(froude_number, add(sub(froude_number, div(froude_number, -0.149)), sub(cos(div(froude_number, -0.149)), sqrt(add(sub(froude_number, div(froude_number, -0.149)), cos(froude_number))))))), sub(sub(sub(sin(sqrt(add(sub(froude_number, div(froude_number, -0.149)), add(sub(froude_number, div(froude_number, log(cos(div(froude_number, -0.149))))), cos(div(froude_number, -0.149)))))), add(sub(sub(sub(froude_number, log(cos(froude_number))), log(cos(sub(froude_number, log(cos(froude_number)))))), div(froude_number, -0.149)), sub(froude_number, log(cos(sub(froude_number, log(cos(froude_number)))))))), sub(sub(cos(div(froude_number, -0.149)), log(cos(sub(froude_number, log(cos(froude_number)))))), log(cos(sub(froude_number, log(cos(froude_number))))))), sqrt(add(sub(froude_number, div(froude_number, -0.149)), sub(cos(sub(froude_number, sub(froude_number, div(froude_number, -0.149)))), sqrt(add(sub(froude_number, div(froude_number, -0.149)), sub(froude_number, beam_draught_ratio)))))))))), sub(froude_number, log(cos(sub(froude_number, log(cos(froude_number))))))), sqrt(add(sub(froude_number, sub(cos(cos(froude_number)), add(sub(froude_number, div(froude_number, -0.149)), cos(div(froude_number, -0.149))))), sub(froude_number, sub(sub(sqrt(sub(froude_number, div(div(froude_number, -0.149), -0.149))), add(add(sub(froude_number, div(froude_number, -0.149)), cos(div(froude_number, -0.149))), cos(div(froude_number, -0.149)))), sub(cos(div(froude_number, -0.149)), cos(sub(froude_number, froude_number)))))))))",
+  "symbolic_model_coordinate_system": "domain_minmax",
+  "symbolic_analysis": "separate post-processing sidecar",
+  "python": "3.12.5",
+  "platform": "Linux-7.0.0-30-generic-x86_64-with-glibc2.36"
+}

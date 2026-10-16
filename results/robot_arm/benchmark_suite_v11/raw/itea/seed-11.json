@@ -1,0 +1,103 @@
+{
+  "status": "success",
+  "problem": "robot_arm",
+  "algorithm": "itea",
+  "seed": 11,
+  "seed_parameter": null,
+  "train_samples": 400,
+  "test_samples": 4000,
+  "feature_names": [
+    "angle_1",
+    "angle_2",
+    "angle_3",
+    "angle_4",
+    "length_1",
+    "length_2",
+    "length_3",
+    "length_4"
+  ],
+  "dataset_policy": "fixed across algorithm trials",
+  "dataset_hash_scope": "SHA-256 of uncompressed table bytes",
+  "train_dataset_sha256": "6b3638ef2ef212a5bc91ee32a91d016c4f5fea5425314ff5bdc5c74bb6491561",
+  "test_dataset_sha256": "5967ccf2f9a7b13ee8e10b9819ebef3bf41d9c8d28b7eb86f7e7ed4214f0e941",
+  "requested_population_size": null,
+  "requested_iterations": null,
+  "time_limit": null,
+  "profile": "benchmark",
+  "benchmark_name": "benchmark_suite_v11",
+  "config_file": "/workspace/configs/benchmark_suite_v11.json",
+  "configuration_schema_version": 2,
+  "configuration_sha256": "9370502721765c94ea03aafe81232e1fe1272026f60d83e4e4fa40b58a02e0b8",
+  "use_dataframe": true,
+  "input_scaling": "raw",
+  "input_scaling_applied": false,
+  "input_scaling_source": "fixed documented problem domain",
+  "input_scaling_formula": "x unchanged",
+  "input_scaling_parameters": {
+    "angle_1": {
+      "lower": 0.0,
+      "upper": 6.283185307179586
+    },
+    "angle_2": {
+      "lower": 0.0,
+      "upper": 6.283185307179586
+    },
+    "angle_3": {
+      "lower": 0.0,
+      "upper": 6.283185307179586
+    },
+    "angle_4": {
+      "lower": 0.0,
+      "upper": 6.283185307179586
+    },
+    "length_1": {
+      "lower": 0.0,
+      "upper": 1.0
+    },
+    "length_2": {
+      "lower": 0.0,
+      "upper": 1.0
+    },
+    "length_3": {
+      "lower": 0.0,
+      "upper": 1.0
+    },
+    "length_4": {
+      "lower": 0.0,
+      "upper": 1.0
+    }
+  },
+  "target_scaling": "none; target remains in original units",
+  "algorithm_configuration_role": "documented_adapter_defaults",
+  "algorithm_configuration_rationale": "Restates the population and generation settings already defined by the pinned SRBench adapter.",
+  "configured_parameters": {
+    "npop": 1000,
+    "ngens": 500
+  },
+  "applied_parameters": {
+    "npop": 1000,
+    "ngens": 500
+  },
+  "rmse": 0.48305780181536795,
+  "nrmse_range": 0.1461230860174594,
+  "mae": 0.39023750083548253,
+  "r2": 0.17442768081558901,
+  "max_absolute_error": 1.6748516847288426,
+  "fit_seconds": 11.942996210000274,
+  "prediction_seconds": 0.0008690309987287037,
+  "prediction_repeats": 5,
+  "prediction_scalar_broadcast": false,
+  "prediction_mean_seconds": 0.0007745881997834658,
+  "prediction_median_seconds": 0.0007816079996700864,
+  "prediction_std_seconds": 8.51234924725412e-05,
+  "prediction_microseconds_per_sample": 0.1954019999175216,
+  "expression_extraction_seconds": 3.908299913746305e-05,
+  "evaluation_seconds": 11.947365826999885,
+  "timing_scope": "fit/predict/expression extraction inside the running container; symbolic analysis, image pull, container startup, data generation, and metric serialization excluded",
+  "model_size": 21,
+  "symbolic_model": "0.925654901718189 + -0.31735056612190704*Sin(angle_2*angle_3**(-1)) + 1.3562644516458204*Sqrt(Abs(length_1*length_2*length_3*length_4))",
+  "symbolic_model_coordinate_system": "raw",
+  "symbolic_analysis": "separate post-processing sidecar",
+  "python": "3.12.5",
+  "platform": "Linux-7.0.0-30-generic-x86_64-with-glibc2.36"
+}

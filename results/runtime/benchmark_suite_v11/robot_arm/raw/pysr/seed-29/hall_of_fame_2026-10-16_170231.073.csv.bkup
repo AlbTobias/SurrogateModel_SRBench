@@ -1,0 +1,13 @@
+Complexity,Loss,Equation
+1,0.29737914,"1.0343394"
+4,0.27676517,"sqrt(length_1 + length_2)"
+6,0.27282357,"sqrt((0.050175555 + length_1) + length_2)"
+7,0.27055007,"sqrt(sin(0.16368845 + length_1) + length_2)"
+8,0.2677144,"(sqrt((length_3 + length_2) + 0.09472163) + 0.013021605)"
+10,0.26507226,"(sin(length_4 + length_3) + (sin(length_2) * sin(0.7590878)))"
+11,0.26344392,"(((sqrt(exp(0.014784218) * length_1) * length_2) * length_4) - -0.87173146)"
+12,0.26298895,"(((((length_3 + length_2) * exp(length_4)) + length_3) * 0.11705271) - -0.77223146)"
+15,0.2586913,"(sqrt(0.09198514 + (length_2 + length_3)) + (((length_1 - sin(0.3384275)) + 0.013021605) * 0.19929685))"
+20,0.25506315,"((((((length_2 * angle_3) + (sin(angle_3 + (length_1 - -0.4248997)) + length_1)) * length_3) + length_1) * 0.20569356) - -0.8014903)"
+22,0.2510201,"((((((length_1 + length_2) + (-0.8014903 + length_4)) * (length_1 + (sin(angle_3 + length_2) + length_4))) + length_1) * 0.20569356) - -0.8014903)"
+24,0.25075126,"((((((length_1 + length_2) + (-0.8014903 + length_4)) * ((-0.09870627 + length_1) + (sin(angle_3 + length_2) + length_4))) + length_1) * 0.20569356) - -0.8014903)"

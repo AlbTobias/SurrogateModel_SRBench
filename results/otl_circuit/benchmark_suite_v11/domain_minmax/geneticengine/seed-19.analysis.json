@@ -1,0 +1,79 @@
+{
+  "analysis_version": "expression_analysis_v2",
+  "analysis_status": "complete",
+  "problem": "otl_circuit",
+  "algorithm": "geneticengine",
+  "seed": 19,
+  "input_scaling": "domain_minmax",
+  "expression_timeout_seconds_per_stage": 60,
+  "simplification_requested": true,
+  "analysis_seconds": 0.1361063770000328,
+  "analysis_python": "3.11.15",
+  "analysis_platform": "Linux-7.0.0-30-generic-x86_64-with-glibc2.43",
+  "raw_scale_symbolic_model": "2*base_resistance_2/45 + 3.42267390474231",
+  "raw_scale_back_transform_error": null,
+  "complexity_valid": true,
+  "complexity_source": "simplified",
+  "training_scale_expression_parse_success": true,
+  "training_scale_expression_parse_error": null,
+  "training_scale_expression_simplify_success": true,
+  "training_scale_expression_simplify_error": null,
+  "training_scale_symbolic_comparison_error": null,
+  "training_scale_symbolic_exact_match": null,
+  "training_scale_expression_node_count": 3,
+  "training_scale_expression_depth": 1,
+  "training_scale_expression_operator_count": 1,
+  "training_scale_expression_operators": [
+    "Add"
+  ],
+  "training_scale_expression_constant_count": 1,
+  "training_scale_expression_variable_count": 1,
+  "training_scale_expression_variables": [
+    "base_resistance_2"
+  ],
+  "training_scale_simplified_node_count": 3,
+  "training_scale_simplified_depth": 1,
+  "training_scale_simplified_operator_count": 1,
+  "training_scale_simplified_operators": [
+    "Add"
+  ],
+  "training_scale_simplified_constant_count": 1,
+  "training_scale_simplified_variable_count": 1,
+  "training_scale_simplified_variables": [
+    "base_resistance_2"
+  ],
+  "training_scale_simplified_expression": "base_resistance_2 + 5.53378501585342",
+  "expression_parse_success": true,
+  "expression_parse_error": null,
+  "expression_simplify_success": true,
+  "expression_simplify_error": null,
+  "symbolic_comparison_error": null,
+  "symbolic_exact_match": null,
+  "expression_node_count": 5,
+  "expression_depth": 2,
+  "expression_operator_count": 2,
+  "expression_operators": [
+    "Add",
+    "Mul"
+  ],
+  "expression_constant_count": 2,
+  "expression_variable_count": 1,
+  "expression_variables": [
+    "base_resistance_2"
+  ],
+  "simplified_node_count": 5,
+  "simplified_depth": 2,
+  "simplified_operator_count": 2,
+  "simplified_operators": [
+    "Add",
+    "Mul"
+  ],
+  "simplified_constant_count": 2,
+  "simplified_variable_count": 1,
+  "simplified_variables": [
+    "base_resistance_2"
+  ],
+  "simplified_expression": "2*base_resistance_2/45 + 3.42267390474231",
+  "source_result": "seed-19.json",
+  "source_result_sha256": "8b71c3ce13b4086c0334e6e744749ad68d0a99171608288284fbeb191d1cfca2"
+}

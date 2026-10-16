@@ -1,0 +1,83 @@
+{
+  "analysis_version": "expression_analysis_v2",
+  "analysis_status": "complete",
+  "problem": "robot_arm",
+  "algorithm": "gplearn",
+  "seed": 11,
+  "input_scaling": "domain_minmax",
+  "expression_timeout_seconds_per_stage": 60,
+  "simplification_requested": true,
+  "analysis_seconds": 0.1378873370013025,
+  "analysis_python": "3.11.15",
+  "analysis_platform": "Linux-7.0.0-30-generic-x86_64-with-glibc2.43",
+  "raw_scale_symbolic_model": "2**(1/4)*(1000000000000000*angle_4/3141592653589793 - 1)**(1/4)",
+  "raw_scale_back_transform_error": null,
+  "complexity_valid": true,
+  "complexity_source": "simplified",
+  "training_scale_expression_parse_success": true,
+  "training_scale_expression_parse_error": null,
+  "training_scale_expression_simplify_success": true,
+  "training_scale_expression_simplify_error": null,
+  "training_scale_symbolic_comparison_error": null,
+  "training_scale_symbolic_exact_match": null,
+  "training_scale_expression_node_count": 7,
+  "training_scale_expression_depth": 2,
+  "training_scale_expression_operator_count": 3,
+  "training_scale_expression_operators": [
+    "Mul",
+    "Pow"
+  ],
+  "training_scale_expression_constant_count": 3,
+  "training_scale_expression_variable_count": 1,
+  "training_scale_expression_variables": [
+    "angle_4"
+  ],
+  "training_scale_simplified_node_count": 7,
+  "training_scale_simplified_depth": 2,
+  "training_scale_simplified_operator_count": 3,
+  "training_scale_simplified_operators": [
+    "Mul",
+    "Pow"
+  ],
+  "training_scale_simplified_constant_count": 3,
+  "training_scale_simplified_variable_count": 1,
+  "training_scale_simplified_variables": [
+    "angle_4"
+  ],
+  "training_scale_simplified_expression": "2**(1/4)*angle_4**(1/4)",
+  "expression_parse_success": true,
+  "expression_parse_error": null,
+  "expression_simplify_success": true,
+  "expression_simplify_error": null,
+  "symbolic_comparison_error": null,
+  "symbolic_exact_match": null,
+  "expression_node_count": 11,
+  "expression_depth": 4,
+  "expression_operator_count": 5,
+  "expression_operators": [
+    "Add",
+    "Mul",
+    "Pow"
+  ],
+  "expression_constant_count": 5,
+  "expression_variable_count": 1,
+  "expression_variables": [
+    "angle_4"
+  ],
+  "simplified_node_count": 11,
+  "simplified_depth": 4,
+  "simplified_operator_count": 5,
+  "simplified_operators": [
+    "Add",
+    "Mul",
+    "Pow"
+  ],
+  "simplified_constant_count": 5,
+  "simplified_variable_count": 1,
+  "simplified_variables": [
+    "angle_4"
+  ],
+  "simplified_expression": "2**(1/4)*(1000000000000000*angle_4/3141592653589793 - 1)**(1/4)",
+  "source_result": "seed-11.json",
+  "source_result_sha256": "2408c8e7210c63bdaa2b3374a2e18147886cb3acef5a90b06376af130cb5fa57"
+}

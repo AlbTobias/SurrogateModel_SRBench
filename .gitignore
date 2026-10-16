@@ -124,6 +124,11 @@ data/gas_turbine_nox/
 data/concrete_strength/
 data/energy_efficiency_heating/
 data/airfoil_self_noise/
+data/otl_circuit/
+data/robot_arm/
+data/yacht_hydrodynamics/
+data/electrical_grid_stability/
+data/lattice_physics_kinf/
 hall_of_fame_*
 
 # Preserve benchmark results, including JSON trial and analysis records.

@@ -1,0 +1,87 @@
+{
+  "analysis_version": "expression_analysis_v2",
+  "analysis_status": "complete",
+  "problem": "yacht_hydrodynamics",
+  "algorithm": "geneticengine",
+  "seed": 13,
+  "input_scaling": "raw",
+  "expression_timeout_seconds_per_stage": 60,
+  "simplification_requested": true,
+  "analysis_seconds": 0.1632722209978965,
+  "analysis_python": "3.11.15",
+  "analysis_platform": "Linux-7.0.0-30-generic-x86_64-with-glibc2.43",
+  "raw_scale_symbolic_model": "((((((froude_number + longitudinal_buoyancy_position) + (froude_number/0.01)) + ((froude_number + longitudinal_buoyancy_position) + (froude_number/0.01))) * froude_number) + ((((-1 + longitudinal_buoyancy_position) + (froude_number/0.01)) + ((-1 + froude_number) + (froude_number/0.01))) * froude_number)) * froude_number)",
+  "raw_scale_back_transform_error": null,
+  "complexity_valid": true,
+  "complexity_source": "simplified",
+  "training_scale_expression_parse_success": true,
+  "training_scale_expression_parse_error": null,
+  "training_scale_expression_simplify_success": true,
+  "training_scale_expression_simplify_error": null,
+  "training_scale_symbolic_comparison_error": null,
+  "training_scale_symbolic_exact_match": null,
+  "training_scale_expression_node_count": 20,
+  "training_scale_expression_depth": 5,
+  "training_scale_expression_operator_count": 9,
+  "training_scale_expression_operators": [
+    "Add",
+    "Mul"
+  ],
+  "training_scale_expression_constant_count": 4,
+  "training_scale_expression_variable_count": 2,
+  "training_scale_expression_variables": [
+    "froude_number",
+    "longitudinal_buoyancy_position"
+  ],
+  "training_scale_simplified_node_count": 12,
+  "training_scale_simplified_depth": 3,
+  "training_scale_simplified_operator_count": 5,
+  "training_scale_simplified_operators": [
+    "Add",
+    "Mul",
+    "Pow"
+  ],
+  "training_scale_simplified_constant_count": 4,
+  "training_scale_simplified_variable_count": 2,
+  "training_scale_simplified_variables": [
+    "froude_number",
+    "longitudinal_buoyancy_position"
+  ],
+  "training_scale_simplified_expression": "froude_number**2*(403.0*froude_number + 3*longitudinal_buoyancy_position - 2)",
+  "expression_parse_success": true,
+  "expression_parse_error": null,
+  "expression_simplify_success": true,
+  "expression_simplify_error": null,
+  "symbolic_comparison_error": null,
+  "symbolic_exact_match": null,
+  "expression_node_count": 20,
+  "expression_depth": 5,
+  "expression_operator_count": 9,
+  "expression_operators": [
+    "Add",
+    "Mul"
+  ],
+  "expression_constant_count": 4,
+  "expression_variable_count": 2,
+  "expression_variables": [
+    "froude_number",
+    "longitudinal_buoyancy_position"
+  ],
+  "simplified_node_count": 12,
+  "simplified_depth": 3,
+  "simplified_operator_count": 5,
+  "simplified_operators": [
+    "Add",
+    "Mul",
+    "Pow"
+  ],
+  "simplified_constant_count": 4,
+  "simplified_variable_count": 2,
+  "simplified_variables": [
+    "froude_number",
+    "longitudinal_buoyancy_position"
+  ],
+  "simplified_expression": "froude_number**2*(403.0*froude_number + 3*longitudinal_buoyancy_position - 2)",
+  "source_result": "seed-13.json",
+  "source_result_sha256": "e9f6573bc043b582e62a18cca81b1401a1465b90f839c156952952e72b2e94f0"
+}

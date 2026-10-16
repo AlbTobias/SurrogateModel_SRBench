@@ -1,0 +1,10 @@
+Complexity,Loss,Equation
+1,0.0013286407,"0.018078055"
+3,0.0013286166,"(0.014836585 * 1.2252476)"
+4,0.0011368345,"(exp(price_elasticity_consumer_2) * 0.015548719)"
+6,0.0010084775,"(0.014836585 * (exp(price_elasticity_consumer_2) + price_elasticity_consumer_3))"
+8,0.0009023399,"(0.014836585 * (exp(reaction_time_consumer_1) + (price_elasticity_consumer_3 + price_elasticity_consumer_2)))"
+9,0.00087470346,"(sin(0.014836585) * (reaction_time_consumer_1 + (exp(price_elasticity_consumer_2) + price_elasticity_consumer_3)))"
+10,0.00076931133,"(0.014836585 * ((exp(price_elasticity_consumer_2) + reaction_time_producer) + (reaction_time_consumer_1 + price_elasticity_consumer_3)))"
+12,0.0006850643,"(0.014836585 * (((exp(price_elasticity_consumer_2) + reaction_time_producer) + (reaction_time_consumer_1 + price_elasticity_consumer_3)) + price_elasticity_consumer_1))"
+14,0.0006764963,"(0.014836585 * ((exp(reaction_time_consumer_1) + ((reaction_time_consumer_3 + reaction_time_consumer_2) + price_elasticity_producer)) + (price_elasticity_consumer_3 + price_elasticity_consumer_2)))"

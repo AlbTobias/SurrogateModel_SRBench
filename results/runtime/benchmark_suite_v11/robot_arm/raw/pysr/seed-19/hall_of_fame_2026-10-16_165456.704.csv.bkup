@@ -1,0 +1,10 @@
+Complexity,Loss,Equation
+1,0.2974597,"1.0475159"
+2,0.29737437,"sqrt(1.0829544)"
+4,0.27304277,"sqrt(length_3 + length_2)"
+6,0.27220073,"sqrt(0.2310348 + (length_2 + length_1))"
+7,0.27076587,"sqrt(exp(-0.88769644 + (length_1 + length_4)))"
+10,0.26251534,"(sqrt(exp(length_3 * length_2) + length_4) - sqrt(0.10054232))"
+11,0.26250616,"(sqrt(exp(length_3 * length_2) + length_4) - sqrt(sin(0.10054232)))"
+12,0.26160163,"(sqrt(exp(length_3 * (length_2 - -0.038363814)) + length_4) - sqrt(0.10054232))"
+17,0.25989276,"(sqrt(exp(sin(-1.9959632 * length_4))) - sin((((-0.4000652 + 0.6169729) - length_2) - length_1) * length_4))"

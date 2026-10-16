@@ -1,0 +1,93 @@
+{
+  "analysis_version": "expression_analysis_v2",
+  "analysis_status": "complete",
+  "problem": "otl_circuit",
+  "algorithm": "gplearn",
+  "seed": 5,
+  "input_scaling": "domain_minmax",
+  "expression_timeout_seconds_per_stage": 60,
+  "simplification_requested": true,
+  "analysis_seconds": 0.7036852029996226,
+  "analysis_python": "3.11.15",
+  "analysis_platform": "Linux-7.0.0-30-generic-x86_64-with-glibc2.43",
+  "raw_scale_symbolic_model": "3.69582633075623*sqrt(-sqrt(-sqrt((-base_resistance_1/25 - 2*sqrt(log(base_resistance_1/50 + 2*base_resistance_2/45 - 37/9)) - 2.90725507052372 - sqrt(-6.90725507052372 + I*pi) + I*pi)/(base_resistance_1/50 + 2*base_resistance_2/45 - 37/9)**(1/4))*(2*base_resistance_2/45 - 19/9) + log(log(0.988433103452125*I))))",
+  "raw_scale_back_transform_error": null,
+  "complexity_valid": true,
+  "complexity_source": "simplified",
+  "training_scale_expression_parse_success": true,
+  "training_scale_expression_parse_error": null,
+  "training_scale_expression_simplify_success": true,
+  "training_scale_expression_simplify_error": null,
+  "training_scale_symbolic_comparison_error": null,
+  "training_scale_symbolic_exact_match": null,
+  "training_scale_expression_node_count": 50,
+  "training_scale_expression_depth": 13,
+  "training_scale_expression_operator_count": 24,
+  "training_scale_expression_operators": [
+    "Add",
+    "Mul",
+    "Pow",
+    "log"
+  ],
+  "training_scale_expression_constant_count": 20,
+  "training_scale_expression_variable_count": 2,
+  "training_scale_expression_variables": [
+    "base_resistance_1",
+    "base_resistance_2"
+  ],
+  "training_scale_simplified_node_count": 50,
+  "training_scale_simplified_depth": 13,
+  "training_scale_simplified_operator_count": 24,
+  "training_scale_simplified_operators": [
+    "Add",
+    "Mul",
+    "Pow",
+    "log"
+  ],
+  "training_scale_simplified_constant_count": 20,
+  "training_scale_simplified_variable_count": 2,
+  "training_scale_simplified_variables": [
+    "base_resistance_1",
+    "base_resistance_2"
+  ],
+  "training_scale_simplified_expression": "3.69582633075623*sqrt(-sqrt(-base_resistance_2*sqrt((-2*base_resistance_1 - 2*sqrt(log(base_resistance_1 + base_resistance_2)) - 6.90725507052372 - sqrt(-6.90725507052372 + I*pi) + I*pi)/(base_resistance_1 + base_resistance_2)**(1/4)) + log(log(0.988433103452125*I))))",
+  "expression_parse_success": true,
+  "expression_parse_error": null,
+  "expression_simplify_success": true,
+  "expression_simplify_error": null,
+  "symbolic_comparison_error": null,
+  "symbolic_exact_match": null,
+  "expression_node_count": 64,
+  "expression_depth": 14,
+  "expression_operator_count": 30,
+  "expression_operators": [
+    "Add",
+    "Mul",
+    "Pow",
+    "log"
+  ],
+  "expression_constant_count": 28,
+  "expression_variable_count": 2,
+  "expression_variables": [
+    "base_resistance_1",
+    "base_resistance_2"
+  ],
+  "simplified_node_count": 64,
+  "simplified_depth": 14,
+  "simplified_operator_count": 30,
+  "simplified_operators": [
+    "Add",
+    "Mul",
+    "Pow",
+    "log"
+  ],
+  "simplified_constant_count": 28,
+  "simplified_variable_count": 2,
+  "simplified_variables": [
+    "base_resistance_1",
+    "base_resistance_2"
+  ],
+  "simplified_expression": "3.69582633075623*sqrt(-sqrt(-sqrt((-base_resistance_1/25 - 2*sqrt(log(base_resistance_1/50 + 2*base_resistance_2/45 - 37/9)) - 2.90725507052372 - sqrt(-6.90725507052372 + I*pi) + I*pi)/(base_resistance_1/50 + 2*base_resistance_2/45 - 37/9)**(1/4))*(2*base_resistance_2/45 - 19/9) + log(log(0.988433103452125*I))))",
+  "source_result": "seed-5.json",
+  "source_result_sha256": "57a0d4cae746992135662e179a7515d01a20cde825884cb1d125232e7febdd85"
+}

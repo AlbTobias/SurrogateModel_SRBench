@@ -1,0 +1,9 @@
+Complexity,Loss,Equation
+1,0.29736993,"1.036047"
+2,0.29736963,"exp(0.03884956)"
+4,0.28327608,"exp(0.19471948 * length_1)"
+5,0.2820624,"sqrt(exp(length_2 * 0.40972537))"
+7,0.27608097,"sqrt(exp(length_2 * (angle_3 * angle_3)))"
+17,0.27101287,"(sqrt(exp(0.063962735)) + (((sin(angle_1 - angle_4) * length_1) - (sin(length_1) + length_3)) * -0.2321475))"
+18,0.26316753,"(sqrt(exp(length_2 * (angle_3 * angle_3))) - ((exp(length_1) - sin(sqrt(0.40088806))) * (-0.048895914 / 0.32961017)))"
+21,0.26040015,"(sqrt(exp(length_2 * (sin(angle_3) * angle_3))) - ((exp(length_1) - sin(exp(sqrt(0.40088806)))) * sin(-0.048895914 / 0.32961017)))"

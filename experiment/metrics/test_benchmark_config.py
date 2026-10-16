@@ -12,6 +12,7 @@ CONFIG_V7 = Path(__file__).resolve().parents[2] / "configs/benchmark_suite_v7.js
 CONFIG_V8 = Path(__file__).resolve().parents[2] / "configs/benchmark_suite_v8.json"
 CONFIG_V9 = Path(__file__).resolve().parents[2] / "configs/benchmark_suite_v9.json"
 CONFIG_V10 = Path(__file__).resolve().parents[2] / "configs/benchmark_suite_v10.json"
+CONFIG_V11 = Path(__file__).resolve().parents[2] / "configs/benchmark_suite_v11.json"
 
 
 def test_algorithm_parameter_provenance_is_complete() -> None:
@@ -197,4 +198,28 @@ def test_suite_v10_preserves_v9_protocol_and_adds_airfoil() -> None:
     } == {
         algorithm: entry["parameters"]
         for algorithm, entry in suite_v9["algorithms"].items()
+    }
+
+
+def test_suite_v11_preserves_v10_protocol_and_adds_five_problems() -> None:
+    suite_v10 = json.loads(CONFIG_V10.read_text(encoding="utf-8"))
+    suite_v11 = json.loads(CONFIG_V11.read_text(encoding="utf-8"))
+
+    assert suite_v11["problems"][:-5] == suite_v10["problems"]
+    assert suite_v11["problems"][-5:] == [
+        "otl_circuit",
+        "robot_arm",
+        "yacht_hydrodynamics",
+        "electrical_grid_stability",
+        "lattice_physics_kinf",
+    ]
+    assert set(suite_v11["dataset_generation"]) == set(suite_v11["problems"])
+    for key in ("seeds", "input_scalings", "execution_controls"):
+        assert suite_v11[key] == suite_v10[key]
+    assert {
+        algorithm: entry["parameters"]
+        for algorithm, entry in suite_v11["algorithms"].items()
+    } == {
+        algorithm: entry["parameters"]
+        for algorithm, entry in suite_v10["algorithms"].items()
     }

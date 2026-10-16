@@ -1,0 +1,97 @@
+{
+  "analysis_version": "expression_analysis_v2",
+  "analysis_status": "complete",
+  "problem": "electrical_grid_stability",
+  "algorithm": "geneticengine",
+  "seed": 11,
+  "input_scaling": "domain_minmax",
+  "expression_timeout_seconds_per_stage": 60,
+  "simplification_requested": true,
+  "analysis_seconds": 0.6030446080003458,
+  "analysis_python": "3.11.15",
+  "analysis_platform": "Linux-7.0.0-30-generic-x86_64-with-glibc2.43",
+  "raw_scale_symbolic_model": "sqrt(-0.00210526315789474*price_elasticity_consumer_2 - 0.001*sqrt(40*price_elasticity_consumer_2/19 - 21/19) - 0.001*(40*price_elasticity_consumer_2/19 + sqrt(40*price_elasticity_consumer_2/19 - 21/19) - 21/19)*(40*price_elasticity_consumer_3/19 + 4*reaction_time_consumer_1/19 + 4*reaction_time_producer/19 - 63/19) + 0.00110526315789474 - 0.001*(-4.60517018598809 + I*pi)/sqrt(40*price_elasticity_consumer_2/19 - 21/19))",
+  "raw_scale_back_transform_error": null,
+  "complexity_valid": true,
+  "complexity_source": "simplified",
+  "training_scale_expression_parse_success": true,
+  "training_scale_expression_parse_error": null,
+  "training_scale_expression_simplify_success": true,
+  "training_scale_expression_simplify_error": null,
+  "training_scale_symbolic_comparison_error": null,
+  "training_scale_symbolic_exact_match": null,
+  "training_scale_expression_node_count": 32,
+  "training_scale_expression_depth": 5,
+  "training_scale_expression_operator_count": 13,
+  "training_scale_expression_operators": [
+    "Add",
+    "Mul",
+    "Pow"
+  ],
+  "training_scale_expression_constant_count": 11,
+  "training_scale_expression_variable_count": 4,
+  "training_scale_expression_variables": [
+    "price_elasticity_consumer_2",
+    "price_elasticity_consumer_3",
+    "reaction_time_consumer_1",
+    "reaction_time_producer"
+  ],
+  "training_scale_simplified_node_count": 32,
+  "training_scale_simplified_depth": 5,
+  "training_scale_simplified_operator_count": 13,
+  "training_scale_simplified_operators": [
+    "Add",
+    "Mul",
+    "Pow"
+  ],
+  "training_scale_simplified_constant_count": 11,
+  "training_scale_simplified_variable_count": 4,
+  "training_scale_simplified_variables": [
+    "price_elasticity_consumer_2",
+    "price_elasticity_consumer_3",
+    "reaction_time_consumer_1",
+    "reaction_time_producer"
+  ],
+  "training_scale_simplified_expression": "sqrt(-0.001*sqrt(price_elasticity_consumer_2) - 0.001*price_elasticity_consumer_2 - 0.001*(sqrt(price_elasticity_consumer_2) + price_elasticity_consumer_2)*(price_elasticity_consumer_3 + reaction_time_consumer_1 + reaction_time_producer) - 0.001*(-4.60517018598809 + I*pi)/sqrt(price_elasticity_consumer_2))",
+  "expression_parse_success": true,
+  "expression_parse_error": null,
+  "expression_simplify_success": true,
+  "expression_simplify_error": null,
+  "symbolic_comparison_error": null,
+  "symbolic_exact_match": null,
+  "expression_node_count": 58,
+  "expression_depth": 8,
+  "expression_operator_count": 24,
+  "expression_operators": [
+    "Add",
+    "Mul",
+    "Pow"
+  ],
+  "expression_constant_count": 26,
+  "expression_variable_count": 4,
+  "expression_variables": [
+    "price_elasticity_consumer_2",
+    "price_elasticity_consumer_3",
+    "reaction_time_consumer_1",
+    "reaction_time_producer"
+  ],
+  "simplified_node_count": 58,
+  "simplified_depth": 8,
+  "simplified_operator_count": 24,
+  "simplified_operators": [
+    "Add",
+    "Mul",
+    "Pow"
+  ],
+  "simplified_constant_count": 26,
+  "simplified_variable_count": 4,
+  "simplified_variables": [
+    "price_elasticity_consumer_2",
+    "price_elasticity_consumer_3",
+    "reaction_time_consumer_1",
+    "reaction_time_producer"
+  ],
+  "simplified_expression": "sqrt(-0.00210526315789474*price_elasticity_consumer_2 - 0.001*sqrt(40*price_elasticity_consumer_2/19 - 21/19) - (0.00210526315789474*price_elasticity_consumer_2 + 0.001*sqrt(40*price_elasticity_consumer_2/19 - 21/19) - 0.00110526315789474)*(40*price_elasticity_consumer_3/19 + 4*reaction_time_consumer_1/19 + 4*reaction_time_producer/19 - 63/19) + 0.00110526315789474 - (-0.00460517018598809 + 0.001*I*pi)/sqrt(40*price_elasticity_consumer_2/19 - 21/19))",
+  "source_result": "seed-11.json",
+  "source_result_sha256": "6df7a625bc0c93a48da2e030a2cf5e3f6b68ae35df0b1292e933b284426c7432"
+}

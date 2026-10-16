@@ -91,4 +91,47 @@ PROBLEM_DOMAINS: dict[str, dict[str, tuple[float, float]]] = {
         "free_stream_velocity": (31.7, 71.3),
         "suction_side_displacement_thickness": (0.000400682, 0.0584113),
     },
+    "otl_circuit": {
+        "base_resistance_1": (50.0, 150.0),
+        "base_resistance_2": (25.0, 70.0),
+        "feedback_resistance": (0.5, 3.0),
+        "collector_resistance_1": (1.2, 2.5),
+        "collector_resistance_2": (0.25, 1.2),
+        "current_gain": (50.0, 300.0),
+    },
+    "robot_arm": {
+        "angle_1": (0.0, 2.0 * 3.141592653589793),
+        "angle_2": (0.0, 2.0 * 3.141592653589793),
+        "angle_3": (0.0, 2.0 * 3.141592653589793),
+        "angle_4": (0.0, 2.0 * 3.141592653589793),
+        "length_1": (0.0, 1.0),
+        "length_2": (0.0, 1.0),
+        "length_3": (0.0, 1.0),
+        "length_4": (0.0, 1.0),
+    },
+    "yacht_hydrodynamics": {
+        "longitudinal_buoyancy_position": (-5.0, 0.0),
+        "prismatic_coefficient": (0.53, 0.60),
+        "length_displacement_ratio": (4.34, 5.14),
+        "beam_draught_ratio": (2.81, 5.35),
+        "length_beam_ratio": (2.73, 3.64),
+        "froude_number": (0.125, 0.45),
+    },
+    "electrical_grid_stability": {
+        "reaction_time_producer": (0.5, 10.0),
+        "reaction_time_consumer_1": (0.5, 10.0),
+        "reaction_time_consumer_2": (0.5, 10.0),
+        "reaction_time_consumer_3": (0.5, 10.0),
+        "nominal_power_consumer_1": (-2.0, -0.5),
+        "nominal_power_consumer_2": (-2.0, -0.5),
+        "nominal_power_consumer_3": (-2.0, -0.5),
+        "price_elasticity_producer": (0.05, 1.0),
+        "price_elasticity_consumer_1": (0.05, 1.0),
+        "price_elasticity_consumer_2": (0.05, 1.0),
+        "price_elasticity_consumer_3": (0.05, 1.0),
+    },
+    "lattice_physics_kinf": {
+        f"fuel_pin_enrichment_{index:02d}": (0.7, 5.0)
+        for index in range(1, 40)
+    },
 }
