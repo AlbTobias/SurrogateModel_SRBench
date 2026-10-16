@@ -1,0 +1,89 @@
+{
+  "analysis_version": "expression_analysis_v2",
+  "analysis_status": "complete",
+  "problem": "electrical_grid_stability",
+  "algorithm": "pysr",
+  "seed": 17,
+  "input_scaling": "domain_minmax",
+  "expression_timeout_seconds_per_stage": 60,
+  "simplification_requested": true,
+  "analysis_seconds": 0.29037586000049487,
+  "analysis_python": "3.11.15",
+  "analysis_platform": "Linux-7.0.0-30-generic-x86_64-with-glibc2.43",
+  "raw_scale_symbolic_model": "0.0377473621052632*price_elasticity_consumer_2 + 0.017929997*exp(4*reaction_time_consumer_1/19 - 21/19) - 0.0198173651052632",
+  "raw_scale_back_transform_error": null,
+  "complexity_valid": true,
+  "complexity_source": "simplified",
+  "training_scale_expression_parse_success": true,
+  "training_scale_expression_parse_error": null,
+  "training_scale_expression_simplify_success": true,
+  "training_scale_expression_simplify_error": null,
+  "training_scale_symbolic_comparison_error": null,
+  "training_scale_symbolic_exact_match": null,
+  "training_scale_expression_node_count": 8,
+  "training_scale_expression_depth": 3,
+  "training_scale_expression_operator_count": 4,
+  "training_scale_expression_operators": [
+    "Add",
+    "Mul",
+    "exp"
+  ],
+  "training_scale_expression_constant_count": 2,
+  "training_scale_expression_variable_count": 2,
+  "training_scale_expression_variables": [
+    "price_elasticity_consumer_2",
+    "reaction_time_consumer_1"
+  ],
+  "training_scale_simplified_node_count": 6,
+  "training_scale_simplified_depth": 3,
+  "training_scale_simplified_operator_count": 3,
+  "training_scale_simplified_operators": [
+    "Add",
+    "Mul",
+    "exp"
+  ],
+  "training_scale_simplified_constant_count": 1,
+  "training_scale_simplified_variable_count": 2,
+  "training_scale_simplified_variables": [
+    "price_elasticity_consumer_2",
+    "reaction_time_consumer_1"
+  ],
+  "training_scale_simplified_expression": "0.017929997*(price_elasticity_consumer_2 + exp(reaction_time_consumer_1))",
+  "expression_parse_success": true,
+  "expression_parse_error": null,
+  "expression_simplify_success": true,
+  "expression_simplify_error": null,
+  "symbolic_comparison_error": null,
+  "symbolic_exact_match": null,
+  "expression_node_count": 13,
+  "expression_depth": 5,
+  "expression_operator_count": 6,
+  "expression_operators": [
+    "Add",
+    "Mul",
+    "exp"
+  ],
+  "expression_constant_count": 5,
+  "expression_variable_count": 2,
+  "expression_variables": [
+    "price_elasticity_consumer_2",
+    "reaction_time_consumer_1"
+  ],
+  "simplified_node_count": 13,
+  "simplified_depth": 5,
+  "simplified_operator_count": 6,
+  "simplified_operators": [
+    "Add",
+    "Mul",
+    "exp"
+  ],
+  "simplified_constant_count": 5,
+  "simplified_variable_count": 2,
+  "simplified_variables": [
+    "price_elasticity_consumer_2",
+    "reaction_time_consumer_1"
+  ],
+  "simplified_expression": "0.0377473621052632*price_elasticity_consumer_2 + 0.017929997*exp(4*reaction_time_consumer_1/19 - 21/19) - 0.0198173651052632",
+  "source_result": "seed-17.json",
+  "source_result_sha256": "0049066e42a8857d2ee91212f282bf721fcdb23f0ae62deaeb58d120d05ec832"
+}

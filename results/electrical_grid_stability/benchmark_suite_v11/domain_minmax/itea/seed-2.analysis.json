@@ -1,0 +1,93 @@
+{
+  "analysis_version": "expression_analysis_v2",
+  "analysis_status": "complete",
+  "problem": "electrical_grid_stability",
+  "algorithm": "itea",
+  "seed": 2,
+  "input_scaling": "domain_minmax",
+  "expression_timeout_seconds_per_stage": 60,
+  "simplification_requested": true,
+  "analysis_seconds": 0.3909017739970295,
+  "analysis_python": "3.11.15",
+  "analysis_platform": "Linux-7.0.0-30-generic-x86_64-with-glibc2.43",
+  "raw_scale_symbolic_model": "0.024005574606233936*sin(4*reaction_time_consumer_1/19 - 21/19) + 0.03120143257259089*tanh(40*price_elasticity_consumer_2/19 - 21/19) + 0.018800869952414763",
+  "raw_scale_back_transform_error": null,
+  "complexity_valid": true,
+  "complexity_source": "simplified",
+  "training_scale_expression_parse_success": true,
+  "training_scale_expression_parse_error": null,
+  "training_scale_expression_simplify_success": true,
+  "training_scale_expression_simplify_error": null,
+  "training_scale_symbolic_comparison_error": null,
+  "training_scale_symbolic_exact_match": null,
+  "training_scale_expression_node_count": 10,
+  "training_scale_expression_depth": 3,
+  "training_scale_expression_operator_count": 5,
+  "training_scale_expression_operators": [
+    "Add",
+    "Mul",
+    "sin",
+    "tanh"
+  ],
+  "training_scale_expression_constant_count": 3,
+  "training_scale_expression_variable_count": 2,
+  "training_scale_expression_variables": [
+    "price_elasticity_consumer_2",
+    "reaction_time_consumer_1"
+  ],
+  "training_scale_simplified_node_count": 10,
+  "training_scale_simplified_depth": 3,
+  "training_scale_simplified_operator_count": 5,
+  "training_scale_simplified_operators": [
+    "Add",
+    "Mul",
+    "sin",
+    "tanh"
+  ],
+  "training_scale_simplified_constant_count": 3,
+  "training_scale_simplified_variable_count": 2,
+  "training_scale_simplified_variables": [
+    "price_elasticity_consumer_2",
+    "reaction_time_consumer_1"
+  ],
+  "training_scale_simplified_expression": "0.024005574606233936*sin(reaction_time_consumer_1) + 0.03120143257259089*tanh(price_elasticity_consumer_2) + 0.018800869952414763",
+  "expression_parse_success": true,
+  "expression_parse_error": null,
+  "expression_simplify_success": true,
+  "expression_simplify_error": null,
+  "symbolic_comparison_error": null,
+  "symbolic_exact_match": null,
+  "expression_node_count": 18,
+  "expression_depth": 5,
+  "expression_operator_count": 9,
+  "expression_operators": [
+    "Add",
+    "Mul",
+    "sin",
+    "tanh"
+  ],
+  "expression_constant_count": 7,
+  "expression_variable_count": 2,
+  "expression_variables": [
+    "price_elasticity_consumer_2",
+    "reaction_time_consumer_1"
+  ],
+  "simplified_node_count": 18,
+  "simplified_depth": 5,
+  "simplified_operator_count": 9,
+  "simplified_operators": [
+    "Add",
+    "Mul",
+    "sin",
+    "tanh"
+  ],
+  "simplified_constant_count": 7,
+  "simplified_variable_count": 2,
+  "simplified_variables": [
+    "price_elasticity_consumer_2",
+    "reaction_time_consumer_1"
+  ],
+  "simplified_expression": "0.024005574606233936*sin(4*reaction_time_consumer_1/19 - 21/19) + 0.03120143257259089*tanh(40*price_elasticity_consumer_2/19 - 21/19) + 0.018800869952414763",
+  "source_result": "seed-2.json",
+  "source_result_sha256": "cdf67397be5107ce2da32ae505536bb0b115921110c62e4be201a9970e62d34e"
+}
