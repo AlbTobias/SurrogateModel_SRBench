@@ -1,0 +1,10 @@
+Complexity,Loss,Equation
+1,0.00032170388,"1.3245046"
+3,0.00032170306,"sqrt(exp(0.5620195))"
+9,0.00030353467,"((exp(-0.20493367 / fuel_pin_enrichment_28) * log(1.1083689)) + 1.2321364)"
+10,0.00030308834,"((exp(-0.20493367 / fuel_pin_enrichment_28) * sin(log(1.1083689))) + 1.2321364)"
+11,0.00030245984,"((exp((1.1083689 * -0.20493367) / fuel_pin_enrichment_28) * log(1.1083689)) + 1.2321364)"
+21,0.00029473627,"((exp(-0.1968 / (fuel_pin_enrichment_25 + fuel_pin_enrichment_36)) * (exp(-0.1968 / ((fuel_pin_enrichment_16 * fuel_pin_enrichment_35) * sqrt(1.1608679))) * log(1.1083689))) + 1.2321364)"
+22,0.00029070667,"(((((exp(sqrt(fuel_pin_enrichment_35 - -0.8195066) * 0.69271404) * -0.030211644) * log(fuel_pin_enrichment_19 + fuel_pin_enrichment_24)) - -0.86592144) * log(sqrt(0.69271404))) + 1.4504555)"
+25,0.0002836991,"(((((exp(sqrt(fuel_pin_enrichment_35) * 0.69271404) * -0.030211644) * log(fuel_pin_enrichment_29 - ((sqrt(fuel_pin_enrichment_14) * -0.8668064) - fuel_pin_enrichment_27))) - -0.86592144) * log(sqrt(0.69271404))) + 1.4504555)"
+27,0.00027364548,"(((((exp(sqrt(fuel_pin_enrichment_35) * sin(0.69271404)) * -0.030211644) * log(fuel_pin_enrichment_29 - ((fuel_pin_enrichment_14 * -0.8668064) - (fuel_pin_enrichment_27 - 0.26539513)))) - -0.86592144) * log(sqrt(0.69271404))) + 1.4504555)"

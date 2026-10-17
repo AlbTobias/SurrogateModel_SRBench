@@ -1,0 +1,6 @@
+Complexity,Loss,Equation
+1,0.00032170498,"1.324429"
+5,0.0003086069,"((fuel_pin_enrichment_28 * 0.005389451) - -1.3218393)"
+8,0.00030752886,"(((sin(0.14046045) + fuel_pin_enrichment_10) * 0.005389451) - -1.3218393)"
+9,0.0003043401,"(((sqrt(sin(0.14046045)) + fuel_pin_enrichment_10) * 0.005389451) - -1.3218393)"
+13,0.00028045825,"((((sin(fuel_pin_enrichment_37) + (fuel_pin_enrichment_10 + fuel_pin_enrichment_35)) + sin(fuel_pin_enrichment_23)) * 0.005389451) - -1.3218393)"

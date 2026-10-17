@@ -1,0 +1,271 @@
+{
+  "status": "success",
+  "problem": "lattice_physics_kinf",
+  "algorithm": "pysr",
+  "seed": 19,
+  "seed_parameter": "random_state",
+  "train_samples": 400,
+  "test_samples": 4000,
+  "feature_names": [
+    "fuel_pin_enrichment_01",
+    "fuel_pin_enrichment_02",
+    "fuel_pin_enrichment_03",
+    "fuel_pin_enrichment_04",
+    "fuel_pin_enrichment_05",
+    "fuel_pin_enrichment_06",
+    "fuel_pin_enrichment_07",
+    "fuel_pin_enrichment_08",
+    "fuel_pin_enrichment_09",
+    "fuel_pin_enrichment_10",
+    "fuel_pin_enrichment_11",
+    "fuel_pin_enrichment_12",
+    "fuel_pin_enrichment_13",
+    "fuel_pin_enrichment_14",
+    "fuel_pin_enrichment_15",
+    "fuel_pin_enrichment_16",
+    "fuel_pin_enrichment_17",
+    "fuel_pin_enrichment_18",
+    "fuel_pin_enrichment_19",
+    "fuel_pin_enrichment_20",
+    "fuel_pin_enrichment_21",
+    "fuel_pin_enrichment_22",
+    "fuel_pin_enrichment_23",
+    "fuel_pin_enrichment_24",
+    "fuel_pin_enrichment_25",
+    "fuel_pin_enrichment_26",
+    "fuel_pin_enrichment_27",
+    "fuel_pin_enrichment_28",
+    "fuel_pin_enrichment_29",
+    "fuel_pin_enrichment_30",
+    "fuel_pin_enrichment_31",
+    "fuel_pin_enrichment_32",
+    "fuel_pin_enrichment_33",
+    "fuel_pin_enrichment_34",
+    "fuel_pin_enrichment_35",
+    "fuel_pin_enrichment_36",
+    "fuel_pin_enrichment_37",
+    "fuel_pin_enrichment_38",
+    "fuel_pin_enrichment_39"
+  ],
+  "dataset_policy": "fixed across algorithm trials",
+  "dataset_hash_scope": "SHA-256 of uncompressed table bytes",
+  "train_dataset_sha256": "0560d735f7564aa56a6b7cef9ff8095ad1468e82ed207d5735c5bb5e8042d797",
+  "test_dataset_sha256": "6c31a39dd7abc8f119f869abd6dc81ee50ddc0e063f477b3562796385c0ac1dd",
+  "requested_population_size": null,
+  "requested_iterations": null,
+  "time_limit": null,
+  "profile": "benchmark",
+  "benchmark_name": "benchmark_suite_v11",
+  "config_file": "/workspace/configs/benchmark_suite_v11.json",
+  "configuration_schema_version": 2,
+  "configuration_sha256": "9370502721765c94ea03aafe81232e1fe1272026f60d83e4e4fa40b58a02e0b8",
+  "use_dataframe": true,
+  "input_scaling": "raw",
+  "input_scaling_applied": false,
+  "input_scaling_source": "fixed documented problem domain",
+  "input_scaling_formula": "x unchanged",
+  "input_scaling_parameters": {
+    "fuel_pin_enrichment_01": {
+      "lower": 0.7,
+      "upper": 5.0
+    },
+    "fuel_pin_enrichment_02": {
+      "lower": 0.7,
+      "upper": 5.0
+    },
+    "fuel_pin_enrichment_03": {
+      "lower": 0.7,
+      "upper": 5.0
+    },
+    "fuel_pin_enrichment_04": {
+      "lower": 0.7,
+      "upper": 5.0
+    },
+    "fuel_pin_enrichment_05": {
+      "lower": 0.7,
+      "upper": 5.0
+    },
+    "fuel_pin_enrichment_06": {
+      "lower": 0.7,
+      "upper": 5.0
+    },
+    "fuel_pin_enrichment_07": {
+      "lower": 0.7,
+      "upper": 5.0
+    },
+    "fuel_pin_enrichment_08": {
+      "lower": 0.7,
+      "upper": 5.0
+    },
+    "fuel_pin_enrichment_09": {
+      "lower": 0.7,
+      "upper": 5.0
+    },
+    "fuel_pin_enrichment_10": {
+      "lower": 0.7,
+      "upper": 5.0
+    },
+    "fuel_pin_enrichment_11": {
+      "lower": 0.7,
+      "upper": 5.0
+    },
+    "fuel_pin_enrichment_12": {
+      "lower": 0.7,
+      "upper": 5.0
+    },
+    "fuel_pin_enrichment_13": {
+      "lower": 0.7,
+      "upper": 5.0
+    },
+    "fuel_pin_enrichment_14": {
+      "lower": 0.7,
+      "upper": 5.0
+    },
+    "fuel_pin_enrichment_15": {
+      "lower": 0.7,
+      "upper": 5.0
+    },
+    "fuel_pin_enrichment_16": {
+      "lower": 0.7,
+      "upper": 5.0
+    },
+    "fuel_pin_enrichment_17": {
+      "lower": 0.7,
+      "upper": 5.0
+    },
+    "fuel_pin_enrichment_18": {
+      "lower": 0.7,
+      "upper": 5.0
+    },
+    "fuel_pin_enrichment_19": {
+      "lower": 0.7,
+      "upper": 5.0
+    },
+    "fuel_pin_enrichment_20": {
+      "lower": 0.7,
+      "upper": 5.0
+    },
+    "fuel_pin_enrichment_21": {
+      "lower": 0.7,
+      "upper": 5.0
+    },
+    "fuel_pin_enrichment_22": {
+      "lower": 0.7,
+      "upper": 5.0
+    },
+    "fuel_pin_enrichment_23": {
+      "lower": 0.7,
+      "upper": 5.0
+    },
+    "fuel_pin_enrichment_24": {
+      "lower": 0.7,
+      "upper": 5.0
+    },
+    "fuel_pin_enrichment_25": {
+      "lower": 0.7,
+      "upper": 5.0
+    },
+    "fuel_pin_enrichment_26": {
+      "lower": 0.7,
+      "upper": 5.0
+    },
+    "fuel_pin_enrichment_27": {
+      "lower": 0.7,
+      "upper": 5.0
+    },
+    "fuel_pin_enrichment_28": {
+      "lower": 0.7,
+      "upper": 5.0
+    },
+    "fuel_pin_enrichment_29": {
+      "lower": 0.7,
+      "upper": 5.0
+    },
+    "fuel_pin_enrichment_30": {
+      "lower": 0.7,
+      "upper": 5.0
+    },
+    "fuel_pin_enrichment_31": {
+      "lower": 0.7,
+      "upper": 5.0
+    },
+    "fuel_pin_enrichment_32": {
+      "lower": 0.7,
+      "upper": 5.0
+    },
+    "fuel_pin_enrichment_33": {
+      "lower": 0.7,
+      "upper": 5.0
+    },
+    "fuel_pin_enrichment_34": {
+      "lower": 0.7,
+      "upper": 5.0
+    },
+    "fuel_pin_enrichment_35": {
+      "lower": 0.7,
+      "upper": 5.0
+    },
+    "fuel_pin_enrichment_36": {
+      "lower": 0.7,
+      "upper": 5.0
+    },
+    "fuel_pin_enrichment_37": {
+      "lower": 0.7,
+      "upper": 5.0
+    },
+    "fuel_pin_enrichment_38": {
+      "lower": 0.7,
+      "upper": 5.0
+    },
+    "fuel_pin_enrichment_39": {
+      "lower": 0.7,
+      "upper": 5.0
+    }
+  },
+  "target_scaling": "none; target remains in original units",
+  "algorithm_configuration_role": "project_budget_and_execution_override",
+  "algorithm_configuration_rationale": "Replaces the adapter's very long search with a 60-second practical budget and explicitly enforces deterministic single-process execution; not selected using test performance.",
+  "configured_parameters": {
+    "niterations": 20,
+    "ncyclesperiteration": 500,
+    "population_size": 100,
+    "populations": 3,
+    "timeout_in_seconds": 60,
+    "deterministic": true,
+    "procs": 0,
+    "multithreading": false
+  },
+  "applied_parameters": {
+    "random_state": 19,
+    "niterations": 20,
+    "ncyclesperiteration": 500,
+    "population_size": 100,
+    "populations": 3,
+    "timeout_in_seconds": 60,
+    "deterministic": true,
+    "procs": 0,
+    "multithreading": false
+  },
+  "rmse": 0.01743655724721056,
+  "nrmse_range": 0.13240608434361414,
+  "mae": 0.013947453714659054,
+  "r2": 0.019314440262004462,
+  "max_absolute_error": 0.07357386474264871,
+  "fit_seconds": 92.66932550199999,
+  "prediction_seconds": 0.009377468999900884,
+  "prediction_repeats": 5,
+  "prediction_scalar_broadcast": false,
+  "prediction_mean_seconds": 0.0048513926000396165,
+  "prediction_median_seconds": 0.003730360999952609,
+  "prediction_std_seconds": 0.0025302796709283726,
+  "prediction_microseconds_per_sample": 0.9325902499881522,
+  "expression_extraction_seconds": 0.010977457000080904,
+  "evaluation_seconds": 92.70520341199995,
+  "timing_scope": "fit/predict/expression extraction inside the running container; symbolic analysis, image pull, container startup, data generation, and metric serialization excluded",
+  "model_size": 5,
+  "symbolic_model": "1.327767 - 0.009358395/fuel_pin_enrichment_35",
+  "symbolic_model_coordinate_system": "raw",
+  "symbolic_analysis": "separate post-processing sidecar",
+  "python": "3.11.0",
+  "platform": "Linux-7.0.0-30-generic-x86_64-with-glibc2.36"
+}

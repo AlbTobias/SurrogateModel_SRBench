@@ -1,0 +1,13 @@
+Complexity,Loss,Equation
+1,0.0003217037,"1.3244495"
+7,0.00031308658,"(sqrt(exp(0.5629351)) + (0.0069018286 * fuel_pin_enrichment_04))"
+13,0.00030698438,"(sqrt(exp(0.5453122)) - ((0.034514118 * -0.3089773) * (sqrt(exp(0.5453122)) + fuel_pin_enrichment_28)))"
+14,0.00029542984,"(sqrt(exp(0.5453122)) - ((0.034514118 * -0.3089773) * ((exp(0.119021796) + fuel_pin_enrichment_38) + fuel_pin_enrichment_28)))"
+15,0.00029471467,"(sqrt(exp(0.5453122)) - ((0.034514118 * -0.3089773) * ((sqrt(exp(0.119021796)) + fuel_pin_enrichment_38) + fuel_pin_enrichment_28)))"
+18,0.0002929283,"(sqrt(exp(0.5453122)) - ((0.034514118 * -0.3089773) * ((sqrt(exp(0.39218527 * -0.36046124)) + sin(fuel_pin_enrichment_38)) + fuel_pin_enrichment_28)))"
+20,0.00029156258,"(sqrt(exp(0.5453122)) - ((0.034514118 * -0.295144) * ((sqrt(exp(0.82560474 * -0.295144)) + sin(fuel_pin_enrichment_38 + fuel_pin_enrichment_29)) + 0.10987046)))"
+21,0.00027966863,"(sqrt(exp(0.5453122)) + ((0.034514118 * -0.3089773) * ((((fuel_pin_enrichment_38 * -0.3089773) - (sin(exp(fuel_pin_enrichment_17)) + fuel_pin_enrichment_28)) - fuel_pin_enrichment_32) + -0.33065838)))"
+23,0.0002784656,"(sqrt(exp(0.5453122)) + ((0.034514118 * -0.3089773) * ((((fuel_pin_enrichment_38 * -0.3089773) - (sin(exp(-0.040800653 + fuel_pin_enrichment_17)) + fuel_pin_enrichment_28)) - fuel_pin_enrichment_32) + -0.33065838)))"
+24,0.00027548306,"(sqrt(exp(0.5453122)) + ((0.034514118 * -0.3089773) * ((((fuel_pin_enrichment_38 * -0.3089773) - (sin(exp(-0.040800653 + fuel_pin_enrichment_17)) + fuel_pin_enrichment_28)) - sin(fuel_pin_enrichment_32)) + -0.33065838)))"
+26,0.00026507533,"(sqrt(exp(0.5453122)) + ((0.034514118 * -0.3089773) * ((((fuel_pin_enrichment_38 * -0.3089773) - (sin(exp(-0.040800653 + 0.0031576639)) + fuel_pin_enrichment_28)) - sin(fuel_pin_enrichment_32 + fuel_pin_enrichment_29)) + -0.33065838)))"
+28,0.000263008,"(sqrt(exp(0.5453122)) + ((0.034514118 * -0.3089773) * ((((fuel_pin_enrichment_38 * (-0.3089773 + -0.2599552)) - (sin(exp(-0.040800653 + 0.0031576639)) + fuel_pin_enrichment_28)) - sin(fuel_pin_enrichment_32 + fuel_pin_enrichment_29)) + -0.33065838)))"

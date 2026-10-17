@@ -1,0 +1,12 @@
+Complexity,Loss,Equation
+1,0.00032170312,"1.324466"
+5,0.00032118487,"((-0.00905018 / fuel_pin_enrichment_35) + 1.324466)"
+6,0.00032118466,"((sin(-0.00905018) / fuel_pin_enrichment_35) + 1.324466)"
+7,0.00030327355,"((0.66408324 + (-0.00905018 / fuel_pin_enrichment_35)) + 0.66408324)"
+9,0.0002983356,"((0.7194087 + ((-0.12324146 - -0.10291164) / fuel_pin_enrichment_35)) + 0.6156708)"
+11,0.0002975053,"((0.66408324 - ((0.036049277 / (fuel_pin_enrichment_25 * 1.6490757)) / fuel_pin_enrichment_04)) + 0.66408324)"
+13,0.00028561152,"((0.66408324 - ((0.036049277 / ((fuel_pin_enrichment_28 * fuel_pin_enrichment_10) + -0.5195281)) / fuel_pin_enrichment_11)) + 0.66408324)"
+15,0.00028551955,"((0.66408324 - ((0.036049277 / (((fuel_pin_enrichment_28 + fuel_pin_enrichment_10) + -0.5195281) - 0.9897687)) / fuel_pin_enrichment_11)) + 0.66408324)"
+20,0.00028542065,"((0.66408324 - ((0.036049277 / (((fuel_pin_enrichment_28 * fuel_pin_enrichment_13) + 0.66408324) * 0.66408324)) / ((sqrt(fuel_pin_enrichment_10) + -0.5195281) * 1.3574592))) + 0.66408324)"
+21,0.0002796408,"((0.66408324 - ((0.036049277 / (((fuel_pin_enrichment_28 * fuel_pin_enrichment_13) + 0.66408324) * sin(1.9987833))) / (sqrt(fuel_pin_enrichment_28 * fuel_pin_enrichment_10) + -0.5195281))) + 0.66408324)"
+24,0.00027937666,"((0.66408324 - ((0.036049277 / (((fuel_pin_enrichment_28 * fuel_pin_enrichment_13) + 0.66408324) * sin(log(1.9987833)))) / ((sqrt(fuel_pin_enrichment_28 * fuel_pin_enrichment_10) + -0.5195281) * fuel_pin_enrichment_04))) + 0.66408324)"

@@ -1,0 +1,11 @@
+Complexity,Loss,Equation
+1,0.00032170332,"1.3244549"
+3,0.00032170303,"(1.3133316 - -0.011149545)"
+6,0.0003214718,"(exp(fuel_pin_enrichment_08 * 9.401364e-5) + 0.32468045)"
+7,0.00031936725,"exp(sin(0.28420663 - (0.003450617 / fuel_pin_enrichment_35)))"
+8,0.0003022232,"(1.3133316 - ((log(fuel_pin_enrichment_35) * -0.011149545) * 0.856342))"
+10,0.0003008851,"sqrt(exp(0.29254615 / 0.29254615) - exp(-0.014902555 * fuel_pin_enrichment_35))"
+11,0.00029804747,"(1.3163397 - (((log(fuel_pin_enrichment_35) * -0.0019905039) / 0.116985545) / sqrt(fuel_pin_enrichment_35)))"
+12,0.00029702205,"(1.3133316 - (((log(fuel_pin_enrichment_35) * -0.011149545) * sqrt(fuel_pin_enrichment_35)) / sqrt(fuel_pin_enrichment_35)))"
+14,0.00029663922,"(1.3133316 - (((log(fuel_pin_enrichment_35) * -0.011149545) * (sqrt(fuel_pin_enrichment_07) / 0.7464479)) / sqrt(fuel_pin_enrichment_35)))"
+15,0.0002966384,"(1.3133316 - ((sin(log(fuel_pin_enrichment_35) * -0.011149545) * (sqrt(fuel_pin_enrichment_07) / 0.7464479)) / sqrt(fuel_pin_enrichment_35)))"

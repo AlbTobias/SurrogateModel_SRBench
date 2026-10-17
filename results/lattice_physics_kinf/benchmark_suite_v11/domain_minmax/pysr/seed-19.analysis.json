@@ -1,0 +1,93 @@
+{
+  "analysis_version": "expression_analysis_v2",
+  "analysis_status": "complete",
+  "problem": "lattice_physics_kinf",
+  "algorithm": "pysr",
+  "seed": 19,
+  "input_scaling": "domain_minmax",
+  "expression_timeout_seconds_per_stage": 60,
+  "simplification_requested": true,
+  "analysis_seconds": 0.5609326489993691,
+  "analysis_python": "3.11.15",
+  "analysis_platform": "Linux-7.0.0-30-generic-x86_64-with-glibc2.43",
+  "raw_scale_symbolic_model": "0.006308977*exp(sin(20*fuel_pin_enrichment_35/43 - 57/43)) + 0.006308977*sin(20*fuel_pin_enrichment_19/43 - 57/43) + 1.31733250299861",
+  "raw_scale_back_transform_error": null,
+  "complexity_valid": true,
+  "complexity_source": "simplified",
+  "training_scale_expression_parse_success": true,
+  "training_scale_expression_parse_error": null,
+  "training_scale_expression_simplify_success": true,
+  "training_scale_expression_simplify_error": null,
+  "training_scale_symbolic_comparison_error": null,
+  "training_scale_symbolic_exact_match": null,
+  "training_scale_expression_node_count": 11,
+  "training_scale_expression_depth": 4,
+  "training_scale_expression_operator_count": 6,
+  "training_scale_expression_operators": [
+    "Add",
+    "Mul",
+    "exp",
+    "sin"
+  ],
+  "training_scale_expression_constant_count": 3,
+  "training_scale_expression_variable_count": 2,
+  "training_scale_expression_variables": [
+    "fuel_pin_enrichment_19",
+    "fuel_pin_enrichment_35"
+  ],
+  "training_scale_simplified_node_count": 11,
+  "training_scale_simplified_depth": 4,
+  "training_scale_simplified_operator_count": 6,
+  "training_scale_simplified_operators": [
+    "Add",
+    "Mul",
+    "exp",
+    "sin"
+  ],
+  "training_scale_simplified_constant_count": 3,
+  "training_scale_simplified_variable_count": 2,
+  "training_scale_simplified_variables": [
+    "fuel_pin_enrichment_19",
+    "fuel_pin_enrichment_35"
+  ],
+  "training_scale_simplified_expression": "0.006308977*exp(sin(fuel_pin_enrichment_35)) + 0.006308977*sin(fuel_pin_enrichment_19) + 1.31733250299861",
+  "expression_parse_success": true,
+  "expression_parse_error": null,
+  "expression_simplify_success": true,
+  "expression_simplify_error": null,
+  "symbolic_comparison_error": null,
+  "symbolic_exact_match": null,
+  "expression_node_count": 19,
+  "expression_depth": 6,
+  "expression_operator_count": 10,
+  "expression_operators": [
+    "Add",
+    "Mul",
+    "exp",
+    "sin"
+  ],
+  "expression_constant_count": 7,
+  "expression_variable_count": 2,
+  "expression_variables": [
+    "fuel_pin_enrichment_19",
+    "fuel_pin_enrichment_35"
+  ],
+  "simplified_node_count": 19,
+  "simplified_depth": 6,
+  "simplified_operator_count": 10,
+  "simplified_operators": [
+    "Add",
+    "Mul",
+    "exp",
+    "sin"
+  ],
+  "simplified_constant_count": 7,
+  "simplified_variable_count": 2,
+  "simplified_variables": [
+    "fuel_pin_enrichment_19",
+    "fuel_pin_enrichment_35"
+  ],
+  "simplified_expression": "0.006308977*exp(sin(20*fuel_pin_enrichment_35/43 - 57/43)) + 0.006308977*sin(20*fuel_pin_enrichment_19/43 - 57/43) + 1.31733250299861",
+  "source_result": "seed-19.json",
+  "source_result_sha256": "2bdac09f90eb78866c5a5e56c09eb3210cc648c8a84d151d5670d1c9acb178fb"
+}
