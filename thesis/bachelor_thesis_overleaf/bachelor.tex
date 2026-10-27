@@ -1,6 +1,7 @@
 \documentclass[12pt,oneside,bibtotoc,liststotoc]{scrbook}
 \usepackage[utf8]{inputenc}
 \usepackage{graphicx}
+\usepackage{tikz}
 \usepackage{float}
 \usepackage[ngerman,english]{babel}
 \usepackage{a4wide}
@@ -174,9 +175,9 @@ Surrogate models are often used in scientific and engineering applications to ap
 
 This thesis provides a systematic study of Symbolic Regression methods for surrogate modeling. The main goal is to compare open-source SR frameworks that employ different algorithmic approaches, including evolutionary, genetic programming, transformation-based, and neural methods. The evaluated frameworks are gplearn, Operon, PySR, GeneticEngine, ITEA, and EQL.
 
-To evaluate these frameworks, the benchmark uses ten problems from different domains, including engineering, physics, materials, energy systems, building simulation, and aeroacoustics. The selected SR models are evaluated using identical training and test data and a common evaluation protocol with documented algorithm-specific search budgets. The evaluation considers predictive accuracy, computational efficiency, model complexity, stability across repeated trials, sensitivity to input scaling, and practical usability. The thesis also investigates the trade-offs between accuracy and interpretability, as well as current challenges in Symbolic Regression for surrogate modeling.
+To evaluate these frameworks, the benchmark uses fifteen problems from different domains, including structural mechanics, energy systems, electronics, robotics, hydrodynamics, materials, and reactor physics. The selected SR models are evaluated using identical training and test data and a common evaluation protocol with documented algorithm-specific search budgets. The evaluation considers predictive accuracy, computational efficiency, model complexity, stability across repeated trials, sensitivity to input scaling, and practical usability. The thesis also investigates the trade-offs between accuracy and interpretability, as well as current challenges in Symbolic Regression for surrogate modeling.
 
-Across 1200 planned trials, 1199 completed successfully. Operon achieved the lowest mean range-normalized RMSE in 13 of 20 problem--scaling combinations, the best median value of 0.0259, and the shortest median fitting time of 3.88 seconds. PySR produced the smallest expressions, ITEA offered a strong balance of accuracy, runtime, and compactness, and EQL benefited most consistently from input normalization. The results show that SR can provide inexpensive and inspectable surrogates, but suitability depends on the problem and objective, and predictive success does not guarantee a simple, stable, or scientifically meaningful model.
+Across 1800 planned trials, 1798 completed successfully. Operon achieved the lowest mean range-normalized RMSE in 21 of 30 problem--scaling combinations, the best median value of 0.0455, and the shortest median fitting time of 3.88 seconds. PySR produced the smallest expressions, ITEA offered a strong balance of accuracy, runtime, and compactness, and EQL benefited most consistently from input normalization. The results show that SR can provide inexpensive and inspectable surrogates, but suitability depends on the problem and objective, and predictive success does not guarantee a simple, stable, or scientifically meaningful model.
 
 \tableofcontents
 \listoffigures
@@ -222,7 +223,7 @@ The central research question of this thesis is:
 \emph{How suitable are Symbolic Regression frameworks for interpretable surrogate modeling, and how do they compare with respect to predictive performance, computational cost, equation complexity, and practical usability?}
 \end{quote}
 
-To answer this question, this thesis conducts a systematic study of six open-source SR frameworks: gplearn \cite{stephens2026gplearn}, Operon \cite{burlacu2020operon}, PySR \cite{cranmer2023interpretable}, GeneticEngine \cite{espada2022datatypes}, ITEA \cite{defranca2021itea}, and EQL \cite{sahoo2018eql}. The selected frameworks represent different approaches to symbolic model discovery, including tree-based genetic programming, efficient evolutionary search, grammar-guided genetic programming, interaction transformation based evolutionary search, and neural equation learning. The frameworks are evaluated on ten analytical, simulator-generated, experimental, and measured surrogate-modeling problems using fixed training and test datasets and documented algorithm-specific search budgets. The comparison considers predictive accuracy, computational efficiency, expression complexity, stability across repeated trials, sensitivity to input scaling, practical usability, and reproducibility.
+To answer this question, this thesis conducts a systematic study of six open-source SR frameworks: gplearn \cite{stephens2026gplearn}, Operon \cite{burlacu2020operon}, PySR \cite{cranmer2023interpretable}, GeneticEngine \cite{espada2022datatypes}, ITEA \cite{defranca2021itea}, and EQL \cite{sahoo2018eql}. The selected frameworks represent different approaches to symbolic model discovery, including tree-based genetic programming, efficient evolutionary search, grammar-guided genetic programming, interaction transformation based evolutionary search, and neural equation learning. The frameworks are evaluated on fifteen analytical, simulator-generated, experimental, and measured surrogate-modeling problems using fixed training and test datasets and documented algorithm-specific search budgets. The comparison considers predictive accuracy, computational efficiency, expression complexity, stability across repeated trials, sensitivity to input scaling, practical usability, and reproducibility.
 
 The main contributions of this thesis are:
 
@@ -299,7 +300,32 @@ Candidate expressions are commonly represented as syntax trees. In such a tree, 
 
 can be represented as a tree combining multiplication, division, addition, two constants, two variables, and a sine operator.
 
-\textcolor{red}{TODO: Add an actual tree diagram.}
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[
+        level distance=1.3cm,
+        level 1/.style={sibling distance=4.2cm},
+        level 2/.style={sibling distance=2.0cm},
+        every node/.style={draw, circle, minimum size=8mm, inner sep=1pt}
+    ]
+        \node {$+$}
+            child {
+                node {$\times$}
+                child {node {$3$}}
+                child {node {$x_1$}}
+            }
+            child {
+                node {$\sin$}
+                child {
+                    node {$/$}
+                    child {node {$x_2$}}
+                    child {node {$5$}}
+                }
+            };
+    \end{tikzpicture}
+    \caption{Syntax-tree representation of the expression $\phi(x_1,x_2)=3x_1+\sin(x_2/5)$. Internal nodes represent mathematical operators, while leaf nodes represent variables or constants.}
+    \label{fig:syntax-tree-example}
+\end{figure}
 
 This representation makes it possible to modify expressions by changing subtrees, replacing operators, or adjusting constants.
 
@@ -423,9 +449,9 @@ Based on these criteria, six frameworks were included: gplearn, Operon, PySR, Ge
 
 The benchmark problems were selected to represent scientific and engineering surrogate-modeling tasks while remaining feasible for repeated Symbolic Regression searches. Each problem is required to have numerical input variables, a continuous target, clearly documented feature meanings and domains, and a reproducible data source or generating function. The available data also had to support disjoint training and test sets without categorical encoding, missing-value imputation, or extensive feature engineering.
 
-The selection combines four analytical problems with six external datasets. Cantilever, Borehole, Piston, and Wing Weight provide controlled relationships of different structural forms. Combined Cycle Power Plant, Naval Propulsion, Gas Turbine NOx Emissions, Concrete Compressive Strength, Energy Efficiency, and Airfoil Self-Noise add simulator-generated, measured, or experimental relationships from several engineering domains. All ten problems are evaluated using the same predictive, computational, stability, and expression-structure criteria; the analytical generating equations are used to construct controlled datasets but are not used as reference expressions in the interpretability comparison.
+The selection combines six analytical problems with nine external datasets. Cantilever, Borehole, Piston, Wing Weight, OTL Circuit, and Robot Arm provide controlled relationships of different structural forms. Combined Cycle Power Plant, Naval Propulsion, Gas Turbine NOx Emissions, Concrete Compressive Strength, Energy Efficiency, Airfoil Self-Noise, Yacht Hydrodynamics, Electrical Grid Stability, and Lattice Physics add simulator-generated, measured, or experimental relationships from several scientific and engineering domains. All fifteen problems are evaluated using the same predictive, computational, stability, and expression-structure criteria; the analytical generating equations are used to construct controlled datasets but are not used as reference expressions in the interpretability comparison.
 
-The final set of ten problems covers several engineering domains, between three and ten input variables, different physical scales, and relationships of varying structural difficulty. The analytical problems include multiplication, division, integer and fractional powers, logarithms, square roots, and trigonometric terms, while the external datasets introduce measurement variation and relationships for which the benchmark does not assume a privileged symbolic form. This combination allows the frameworks to be assessed across controlled and application-oriented surrogate-modeling tasks. The exact problem definitions, sample sizes, data sources, and train--test construction procedures are presented in Chapter~5.
+The final set of fifteen problems covers several scientific and engineering domains, between three and 39 input variables, different physical scales, and relationships of varying structural difficulty. The analytical problems include multiplication, division, integer and fractional powers, logarithms, square roots, and trigonometric terms, while the external datasets introduce measurement variation, simulator responses, higher-dimensional inputs, and relationships for which the benchmark does not assume a privileged symbolic form. This combination allows the frameworks to be assessed across controlled and application-oriented surrogate-modeling tasks. The exact problem definitions, sample sizes, data sources, and train--test construction procedures are presented in Chapter~5.
 
 \section{Benchmark Protocol}
 
@@ -439,7 +465,7 @@ Every algorithm problem combination is evaluated under two input-scaling conditi
 
 The transformation uses fixed problem-domain bounds rather than statistics estimated from the training data, ensuring that it is identical across frameworks and repetitions and does not introduce test-data leakage. Target values are not scaled and remain in their original units under both conditions. Expressions learned from normalized inputs are transformed back to the original physical variables during symbolic post processing.
 
-The final repetition protocol uses the predefined labels 2, 3, 5, 7, 11, 13, 17, 19, 23, and 29. These labels are passed to each estimator that exposes a supported random-seed parameter. The ITEA implementation does not expose such a parameter, so its ten executions are reported as uncontrolled repetitions rather than seed-controlled trials. With six algorithms, ten problems, two input-scaling conditions, and ten repetitions, the complete benchmark contains 1200 expected trials.
+The final repetition protocol uses the predefined labels 2, 3, 5, 7, 11, 13, 17, 19, 23, and 29. These labels are passed to each estimator that exposes a supported random-seed parameter. The ITEA implementation does not expose such a parameter, so its ten executions are reported as uncontrolled repetitions rather than seed-controlled trials. With six algorithms, fifteen problems, two input-scaling conditions, and ten repetitions, the complete benchmark contains 1800 expected trials.
 
 Each trial fits one model using the fixed training target and evaluates it exclusively on the corresponding held-out reference-test set. A successful result, an explicit execution failure, and an absent trial are treated as three separate states. Failure records retain the algorithm, problem, scaling condition, repetition label, and process exit status, while the summary tables report successful, failed, and missing trials separately. Failed or missing runs are therefore not silently excluded from the reported experiment coverage.
 
@@ -523,13 +549,13 @@ This chapter describes the realization of the benchmark protocol introduced in t
 
 \section{Experimental Matrix and Task Roles}
 
-The experimental matrix combines ten regression problems, six symbolic regression frameworks, two input-scaling conditions, and ten repetitions. This produces
+The experimental matrix combines fifteen regression problems, six symbolic regression frameworks, two input-scaling conditions, and ten repetitions. This produces
 \begin{equation}
-    10 \times 6 \times 2 \times 10 = 1200
+    15 \times 6 \times 2 \times 10 = 1800
 \end{equation}
 distinct trial coordinates.
 
-The benchmark problems were selected to fulfill complementary experimental roles rather than to form a homogeneous dataset collection. Four analytical problems permit controlled sampling from relationships with different mathematical structures. The remaining six problems are based on measured, experimental, or simulator-generated data and represent applied surrogate-modeling tasks from energy, propulsion, materials, building simulation, and aeroacoustics.
+The benchmark problems were selected to fulfill complementary experimental roles rather than to form a homogeneous dataset collection. Six analytical problems permit controlled sampling from relationships with different mathematical structures. The remaining nine problems are based on measured, experimental, or simulator-generated data and represent applied surrogate-modeling tasks from energy, propulsion, materials, building simulation, aeroacoustics, hydrodynamics, electrical-grid control, and reactor physics.
 
 \begin{longtable}{p{2.9cm}p{2.5cm}rrp{4.4cm}}
 \caption{Problems and their roles in the experimental matrix.}
@@ -552,6 +578,11 @@ Gas Turbine NOx & Measured & 9 & 400/4000 & Industrial-emissions prediction with
 Concrete Strength & Experimental & 8 & 400/592 & Material-property prediction with replicated experimental observations \\
 Energy Efficiency & Simulator-generated & 8 & 400/368 & Building heating-load prediction over simulated designs \\
 Airfoil Self-Noise & Experimental & 5 & 400/1103 & Aeroacoustic prediction from wind-tunnel measurements \\
+OTL Circuit & Analytical & 6 & 400/4000 & Nonlinear electronic-circuit response with rational interactions \\
+Robot Arm & Analytical & 8 & 400/4000 & Trigonometric kinematic relationship with cumulative joint angles \\
+Yacht Hydrodynamics & Experimental & 6 & 210/98 & Resistance prediction for hull forms excluded from training \\
+Electrical Grid Stability & Simulator-generated & 11 & 400/4000 & Stability prediction for a decentralized electrical grid \\
+Lattice Physics & Simulator-generated & 39 & 400/4000 & Higher-dimensional reactor-physics surrogate for $k_{\mathrm{inf}}$ \\
 \hline
 \end{longtable}
 
@@ -573,6 +604,10 @@ The Piston problem contains seven inputs and represents the cycle time of a simu
 
 The Wing Weight problem contains ten inputs and is generated from an analytical aircraft-wing weight equation. Independent scrambled Latin hypercube samples produce the training and reference-test tables. The equation combines products, fractional powers, and a cosine term, thereby extending the analytical task collection beyond rational and square-root expressions.
 
+The OTL Circuit problem contains six inputs and predicts the midpoint voltage of an output-transformerless circuit. Independently seeded scrambled Latin hypercube designs provide 400 training and 4000 reference-test observations over the documented component ranges. Its analytical expression combines rational terms and interactions between resistances and current gain.
+
+The Robot Arm problem contains four joint angles and four segment lengths and predicts the planar distance between the arm endpoint and the origin. Independently seeded scrambled Latin hypercube designs provide 400 training and 4000 reference-test observations. The analytical relationship combines cumulative joint angles, trigonometric functions, sums, products, and a square root.
+
 \subsection{External Datasets}
 
 The Combined Cycle Power Plant dataset is obtained from the UCI Machine Learning Repository and contains 9568 observations with four input variables. A fixed permutation is applied to the complete dataset. The first 400 permuted observations form the training set, and the following 4000 observations form the reference-test set.
@@ -586,6 +621,12 @@ The Concrete Strength problem is obtained from the UCI Concrete Compressive Stre
 The Energy Efficiency problem is obtained from the UCI Energy Efficiency dataset and contains 768 simulated building designs with eight input variables. Heating load is used as the target, while cooling load is excluded. A fixed permutation assigns the first 400 designs to the training set and the remaining 368 designs to the reference-test set.
 
 The Airfoil Self-Noise problem is obtained from the UCI Airfoil Self-Noise dataset and contains 1503 wind-tunnel observations with five input variables. Scaled sound-pressure level is used as the target. A fixed permutation assigns 400 observations to the training set and the remaining 1103 observations to the reference-test set.
+
+The Yacht Hydrodynamics problem is obtained from the UCI Yacht Hydrodynamics dataset and contains 308 observations for 22 hull forms evaluated at 14 Froude numbers. Six inputs are used to predict residuary resistance per unit displacement weight. To prevent operating points from the same hull from appearing in both subsets, a fixed permutation assigns 15 complete hull forms, corresponding to 210 observations, to training and the remaining seven hull forms, corresponding to 98 observations, to the reference-test set.
+
+The Electrical Grid Stability problem is obtained from the UCI Electrical Grid Stability Simulated Data dataset. Eleven reaction-time, power, and price-elasticity variables are used to predict the maximum real part of the characteristic-equation root. The deterministically dependent producer-power variable and the categorical stability label are excluded. A fixed permutation assigns 400 of the 10000 simulated observations to training and the following 4000 observations to the reference-test set.
+
+The Lattice Physics problem is obtained from the UCI Lattice-physics PWR Fuel Assembly Neutronics Simulation Results dataset. The 39 fuel-pin enrichment variables are used to predict the infinite multiplication factor $k_{\mathrm{inf}}$, while the pin-power peaking-factor target is excluded. A fixed permutation assigns 400 of the 24000 MCNP6 simulation records to training and the following 4000 records to the reference-test set.
 
 \subsection{Input Normalization}
 
@@ -646,13 +687,13 @@ These labels control the framework seed where supported, they do not alter the a
 
 \subsection{Compatible Result Resolution}
 
-The benchmark suites were extended incrementally: version 7 introduced Gas Turbine NOx, version 8 added Concrete Strength, version 9 added Energy Efficiency, and version 10 added Airfoil Self-Noise. Later suites also contain selected reruns of earlier coordinates, but repeating every previously completed trial after each dataset addition would duplicate substantial computation without changing the protocol. The final reporting process therefore resolves each problem--scaling--framework--repetition coordinate independently instead of treating one suite directory as an indivisible result set. The resolved matrix consequently combines selected records from compatible versions 7 through 10.
+The benchmark suites were extended incrementally: version 7 introduced Gas Turbine NOx, version 8 added Concrete Strength, version 9 added Energy Efficiency, version 10 added Airfoil Self-Noise, and version 11 added OTL Circuit, Robot Arm, Yacht Hydrodynamics, Electrical Grid Stability, and Lattice Physics. Later suites also contain selected reruns of earlier coordinates, but repeating every previously completed trial after each dataset addition would duplicate substantial computation without changing the protocol. The final reporting process therefore resolves each problem--scaling--framework--repetition coordinate independently instead of treating one suite directory as an indivisible result set. The resolved matrix consequently combines selected records from compatible versions 7 through 11.
 
-A candidate result is eligible only when its configuration has the same schema version, repetition protocol, execution controls, repetition labels, input-scaling conditions, and effective algorithm parameters as the final version-10 configuration. The candidate must also contain the relevant problem and use exactly the same problem-specific dataset-construction specification. Among eligible candidates, the record from the highest suite version is selected; if both a success and a failure record exist for the same coordinate within that suite, the most recently written record is used. The resolver writes the selected status, suite, and source path to an auditable manifest. A successful result's symbolic-analysis sidecar is accepted only when its stored SHA-256 source hash matches the selected trial file, preventing stale post-processing data from being combined with a newer trial.
+A candidate result is eligible only when its configuration has the same schema version, repetition protocol, execution controls, repetition labels, input-scaling conditions, and effective algorithm parameters as the final version-11 configuration. The candidate must also contain the relevant problem and use exactly the same problem-specific dataset-construction specification. Among eligible candidates, the record from the highest suite version is selected; if both a success and a failure record exist for the same coordinate within that suite, the most recently written record is used. The resolver writes the selected status, suite, and source path to an auditable manifest. A successful result's symbolic-analysis sidecar is accepted only when its stored SHA-256 source hash matches the selected trial file, preventing stale post-processing data from being combined with a newer trial.
 
 \subsection{Completed Trial Matrix}
 
-All 1200 coordinates of the planned matrix are represented by either a successful trial record or an explicit failure record. Table~\ref{tab:trial-coverage} reports the resulting coverage by problem; no planned coordinate is missing.
+All 1800 coordinates of the planned matrix are represented by either a successful trial record or an explicit failure record. Table~\ref{tab:trial-coverage} reports the resulting coverage by problem; no planned coordinate is missing.
 
 \begin{longtable}{p{3.8cm}p{3.2cm}rrr}
 \caption{Coverage of the completed experimental matrix.}
@@ -675,8 +716,13 @@ Gas Turbine NOx & \texttt{v7}, \texttt{v8}, \texttt{v10} & 120 & 120 & 0 \\
 Concrete Strength & \texttt{v8} & 120 & 120 & 0 \\
 Energy Efficiency & \texttt{v9} & 120 & 120 & 0 \\
 Airfoil Self-Noise & \texttt{v10} & 120 & 120 & 0 \\
+OTL Circuit & \texttt{v11} & 120 & 119 & 1 \\
+Robot Arm & \texttt{v11} & 120 & 120 & 0 \\
+Yacht Hydrodynamics & \texttt{v11} & 120 & 120 & 0 \\
+Electrical Grid Stability & \texttt{v11} & 120 & 120 & 0 \\
+Lattice Physics & \texttt{v11} & 120 & 120 & 0 \\
 \hline
-Total & -- & 1200 & 1199 & 1 \\
+Total & -- & 1800 & 1798 & 2 \\
 \hline
 \end{longtable}
 
@@ -705,7 +751,7 @@ Before comparing the frameworks, it is necessary to establish which trials compl
 
 \subsection{Trial Completion and Failures}
 
-The complete experimental matrix comprised ten problems, six symbolic regression frameworks, two input-scaling conditions, and ten repetition labels, resulting in 1200 planned trials. Because the problem collection was expanded incrementally, the reported matrix resolves each problem--scaling--framework--repetition coordinate to its newest result from a suite compatible with the final protocol. This procedure incorporates later reruns without replacing coordinates that were not rerun in the newer suite. Of the resolved trials, 1199 completed successfully and one failed, corresponding to an overall completion rate of 99.9\%. Table~\ref{tab:results-trial-coverage} shows that nine problems completed all 120 trials, while the remaining failure occurred for Combined Cycle Power Plant (CCPP).
+The complete experimental matrix comprised fifteen problems, six symbolic regression frameworks, two input-scaling conditions, and ten repetition labels, resulting in 1800 planned trials. Because the problem collection was expanded incrementally, the reported matrix resolves each problem--scaling--framework--repetition coordinate to its newest result from a suite compatible with the final protocol. This procedure incorporates later reruns without replacing coordinates that were not rerun in the newer suite. Of the resolved trials, 1798 completed successfully and two failed, corresponding to an overall completion rate of 99.9\%. Table~\ref{tab:results-trial-coverage} shows that 13 problems completed all 120 trials, while one failure occurred for Combined Cycle Power Plant (CCPP) and one for OTL Circuit.
 
 \begin{table}[H]
     \centering
@@ -725,17 +771,22 @@ The complete experimental matrix comprised ten problems, six symbolic regression
         Concrete Strength & 120 & 120 & 0 \\
         Energy Efficiency & 120 & 120 & 0 \\
         Airfoil Self-Noise & 120 & 120 & 0 \\
+        OTL Circuit & 120 & 119 & 1 \\
+        Robot Arm & 120 & 120 & 0 \\
+        Yacht Hydrodynamics & 120 & 120 & 0 \\
+        Electrical Grid Stability & 120 & 120 & 0 \\
+        Lattice Physics & 120 & 120 & 0 \\
         \midrule
-        Total & 1200 & 1199 & 1 \\
+        Total & 1800 & 1798 & 2 \\
         \bottomrule
     \end{tabular}
 \end{table}
 
-The only unresolved failure occurred for Operon on domain-normalized CCPP at repetition 7. All six frameworks completed their remaining assigned trials, including all 200 GeneticEngine trials after later compatible reruns replaced 12 earlier output-shape failures. The remaining failed trial was retained as a failure and excluded from numerical means rather than replaced or imputed.
+The two unresolved failures were Operon on domain-normalized CCPP at repetition 7 and PySR on domain-normalized OTL Circuit at repetition 11. Inspection of the saved PySR candidate showed that a square-root argument became negative for three reference-test observations, producing non-finite predictions that were correctly rejected by metric calculation. All six frameworks completed their remaining assigned trials, including all 300 GeneticEngine trials after later compatible reruns replaced earlier output-shape failures. Both failed trials were retained as failures and excluded from numerical means rather than replaced or imputed.
 
 \subsection{Symbolic-Analysis Coverage}
 
-Symbolic post-processing was attempted for every successful trial. As shown in Table~\ref{tab:results-symbolic-coverage}, analysis sidecars were produced for all 1199 successful runs, and 1198 expressions could be parsed and assigned framework-independent complexity measures. The single parsing failure occurred for a gplearn expression. SymPy simplification completed within the configured limit for 1018 expressions; for the remaining 180 parsed expressions, the analysis retained the unsimplified expression and its structural measures as an explicit fallback.
+Symbolic post-processing was attempted for every successful trial. As shown in Table~\ref{tab:results-symbolic-coverage}, analysis sidecars were produced for all 1798 successful runs, and 1797 expressions could be parsed and assigned framework-independent complexity measures. The single parsing failure occurred for a gplearn expression. SymPy simplification completed within the configured limit for 1591 expressions; for the remaining 206 parsed expressions, the analysis retained the unsimplified expression and its structural measures as an explicit fallback.
 
 \begin{table}[H]
     \centering
@@ -745,14 +796,14 @@ Symbolic post-processing was attempted for every successful trial. As shown in T
         \toprule
         Framework & Successful & Analysed & Parsed & Simplified & Fallback \\
         \midrule
-        gplearn & 200 & 200 & 199 & 125 & 74 \\
-        Operon & 199 & 199 & 199 & 165 & 34 \\
-        PySR & 200 & 200 & 200 & 195 & 5 \\
-        GeneticEngine & 200 & 200 & 200 & 200 & 0 \\
-        ITEA & 200 & 200 & 200 & 176 & 24 \\
-        EQL & 200 & 200 & 200 & 157 & 43 \\
+        gplearn & 300 & 300 & 299 & 214 & 85 \\
+        Operon & 299 & 299 & 299 & 255 & 44 \\
+        PySR & 299 & 299 & 299 & 291 & 8 \\
+        GeneticEngine & 300 & 300 & 300 & 300 & 0 \\
+        ITEA & 300 & 300 & 300 & 274 & 26 \\
+        EQL & 300 & 300 & 300 & 257 & 43 \\
         \midrule
-        Total & 1199 & 1199 & 1198 & 1018 & 180 \\
+        Total & 1798 & 1798 & 1797 & 1591 & 206 \\
         \bottomrule
     \end{tabular}
 \end{table}
@@ -793,29 +844,29 @@ Figures~\ref{fig:results-nrmse-raw} and~\ref{fig:results-nrmse-domain} compare t
     \label{fig:results-r2-domain}
 \end{figure}
 
-Across the 20 problem--scaling combinations, Operon achieved the lowest mean NRMSE in 13 cases. ITEA was best in three cases, while PySR and EQL were each best in two. Neither gplearn nor GeneticEngine obtained the lowest mean NRMSE in any combination. When the 20 problem-level means are summarized by their median, Operon obtained the lowest NRMSE at 0.0259 and the highest median $R^2$ at 0.9849. ITEA and PySR formed the next group, with median NRMSE values of 0.0722 and 0.0773, respectively.
+Across the 30 problem--scaling combinations, Operon achieved the lowest mean NRMSE in 21 cases. ITEA was best in five cases, while PySR and EQL were each best in two. Neither gplearn nor GeneticEngine obtained the lowest mean NRMSE in any combination. When the 30 problem-level means are summarized by their median, Operon obtained the lowest NRMSE at 0.0455 and the highest median $R^2$ at 0.9660. ITEA and PySR formed the next group, with median NRMSE values of 0.0722 and 0.0804, respectively.
 
 \begin{table}[H]
     \centering
-    \caption{Overall predictive summary across the 20 problem--scaling combinations. Medians are calculated from problem-level means, and wins count the lowest mean NRMSE in each combination.}
+    \caption{Overall predictive summary across the 30 problem--scaling combinations. Medians are calculated from problem-level means, and wins count the lowest mean NRMSE in each combination.}
     \label{tab:results-overall-predictive}
     \begin{tabular}{lrrr}
         \toprule
         Framework & Median NRMSE & Median $R^2$ & NRMSE wins \\
         \midrule
-        gplearn & 0.1267 & 0.5064 & 0 \\
-        Operon & 0.0259 & 0.9849 & 13 \\
-        PySR & 0.0773 & 0.8396 & 2 \\
-        GeneticEngine & 0.1187 & 0.6101 & 0 \\
-        ITEA & 0.0722 & 0.8564 & 3 \\
-        EQL & 0.1791 & -0.5483 & 2 \\
+        gplearn & 0.1296 & 0.4231 & 0 \\
+        Operon & 0.0455 & 0.9660 & 21 \\
+        PySR & 0.0804 & 0.7979 & 2 \\
+        GeneticEngine & 0.1313 & 0.3896 & 0 \\
+        ITEA & 0.0722 & 0.8564 & 5 \\
+        EQL & 0.1622 & -0.0058 & 2 \\
         \bottomrule
     \end{tabular}
 \end{table}
 
 \subsection{Performance by Problem}
 
-Table~\ref{tab:results-problem-winners} reports the strongest framework for each problem and scaling condition. Operon led both conditions on Cantilever, Piston, Naval Propulsion, and Concrete Strength. It also led raw Borehole and both the normalized Energy Efficiency and Airfoil Self-Noise configurations. EQL produced the lowest mean NRMSE for normalized Borehole and Wing Weight, whereas ITEA led both CCPP conditions and raw Airfoil Self-Noise. PySR obtained the best result on Gas Turbine NOx under both scaling conditions.
+Table~\ref{tab:results-problem-winners} reports the strongest framework for each problem and scaling condition. Operon led 21 configurations, including both conditions on OTL Circuit, Yacht Hydrodynamics, and Electrical Grid Stability and the normalized Robot Arm and Lattice Physics conditions. ITEA led raw Robot Arm and raw Lattice Physics in addition to its previous wins on CCPP and Airfoil Self-Noise. EQL remained strongest on normalized Borehole and Wing Weight, while PySR obtained the best result on Gas Turbine NOx under both scaling conditions.
 
 \begin{longtable}{llrr}
 \caption{Lowest mean NRMSE for each problem and input-scaling condition.}\label{tab:results-problem-winners}\\
@@ -847,14 +898,24 @@ Energy Efficiency & Raw & Operon & 0.0591 \\
 Energy Efficiency & Domain-normalized & Operon & 0.0319 \\
 Airfoil Self-Noise & Raw & ITEA & 0.1142 \\
 Airfoil Self-Noise & Domain-normalized & Operon & 0.1120 \\
+OTL Circuit & Raw & Operon & 0.0054 \\
+OTL Circuit & Domain-normalized & Operon & 0.0077 \\
+Robot Arm & Raw & ITEA & 0.1450 \\
+Robot Arm & Domain-normalized & Operon & 0.1185 \\
+Yacht Hydrodynamics & Raw & Operon & 0.0193 \\
+Yacht Hydrodynamics & Domain-normalized & Operon & 0.0253 \\
+Electrical Grid Stability & Raw & Operon & 0.1039 \\
+Electrical Grid Stability & Domain-normalized & Operon & 0.1028 \\
+Lattice Physics & Raw & ITEA & 0.0286 \\
+Lattice Physics & Domain-normalized & Operon & 0.0645 \\
 \bottomrule
 \end{longtable}
 
-The analytical problems generally admitted substantially lower errors than the external datasets, although performance differed between methods. Operon nearly recovered the Cantilever mapping numerically under raw inputs and reached mean NRMSE below 0.02 on several analytical configurations. The Gas Turbine NOx problem was the most consistently difficult empirical task, even its best framework produced negative mean $R^2$ in both conditions ($-0.4349$ for raw inputs and $-0.4763$ for normalized inputs). Airfoil Self-Noise and Concrete Strength were also more difficult than the strongest analytical results, but their best mean $R^2$ values remained positive at approximately 0.65 and 0.81, respectively.
+The new problems broadened the observed difficulty range. OTL Circuit was predicted accurately by both Operon and ITEA, and Yacht Hydrodynamics achieved a best mean $R^2$ of 0.9938 despite its hull-disjoint split. Electrical Grid Stability was moderately difficult, with Operon reaching $R^2=0.7410$, while Robot Arm remained difficult for every framework and reached only $R^2=0.4559$ in its strongest condition. Lattice Physics was strongly method- and scaling-dependent: raw-input ITEA reached $R^2=0.9536$, whereas most other framework configurations remained close to mean prediction. Gas Turbine NOx remained the most consistently difficult problem, as even its best framework produced negative mean $R^2$ in both conditions ($-0.4349$ for raw inputs and $-0.4763$ for normalized inputs).
 
 \subsection{Analytical and Empirical Problems}
 
-The four analytical problems and six external datasets serve different evaluation roles. Table~\ref{tab:results-problem-types} summarizes their mean-NRMSE distributions across frameworks. The median result on analytical problems was lower under raw inputs than under normalized inputs, whereas the median over external problems was almost unchanged. The analytical median nevertheless conceals several poor individual results, particularly the extreme raw-input EQL errors on Piston and Wing Weight. Conversely, the external group contains both the comparatively well-predicted Energy Efficiency task and the substantially harder Gas Turbine NOx task.
+The six analytical problems and nine external datasets serve different evaluation roles. Table~\ref{tab:results-problem-types} summarizes their mean-NRMSE distributions across frameworks. The median result on analytical problems was similar under both scaling conditions, whereas the external-problem median increased under domain normalization. These aggregate values conceal large differences between individual tasks: the analytical collection includes both the accurately approximated Cantilever and OTL Circuit problems and the difficult Robot Arm relationship, while the external collection ranges from Yacht Hydrodynamics and Energy Efficiency to the substantially harder Gas Turbine NOx problem.
 
 \begin{table}[H]
     \centering
@@ -864,8 +925,8 @@ The four analytical problems and six external datasets serve different evaluatio
         \toprule
         Problem type & Raw inputs & Domain-normalized inputs \\
         \midrule
-        Analytical problems & 0.0546 & 0.0655 \\
-        External datasets & 0.1247 & 0.1240 \\
+        Analytical problems & 0.0777 & 0.0763 \\
+        External datasets & 0.1189 & 0.1318 \\
         \bottomrule
     \end{tabular}
 \end{table}
@@ -876,7 +937,7 @@ In addition to average predictive performance, the benchmark evaluates whether t
 
 \subsection{Effect of Domain Normalization}
 
-The effect of domain normalization was framework-dependent rather than uniformly beneficial. Table~\ref{tab:results-scaling-effect} compares each framework's normalized-input mean NRMSE with its raw-input result on the same problem. EQL improved on all ten problems and showed the largest median reduction, with a normalized-to-raw NRMSE ratio of 0.114. PySR improved on six problems and Operon on five, while Operon's median ratio remained close to one. gplearn, GeneticEngine, and ITEA each improved on two problems, and their median ratios were above one.
+The effect of domain normalization was framework-dependent rather than uniformly beneficial. Table~\ref{tab:results-scaling-effect} compares each framework's normalized-input mean NRMSE with its raw-input result on the same problem. EQL improved on all fifteen problems and showed the largest median reduction, with a normalized-to-raw NRMSE ratio of 0.289. PySR improved on ten problems and Operon on eight, while Operon's median ratio remained close to one. gplearn improved on five problems, whereas GeneticEngine and ITEA improved on four each. The strongest newly observed interaction occurred for Lattice Physics, where ITEA's mean $R^2$ decreased from 0.9536 with raw inputs to 0.0070 after normalization.
 
 \begin{table}[H]
     \centering
@@ -884,14 +945,14 @@ The effect of domain normalization was framework-dependent rather than uniformly
     \label{tab:results-scaling-effect}
     \begin{tabular}{lrr}
         \toprule
-        Framework & Problems improved (of 10) & Median NRMSE ratio \\
+        Framework & Problems improved (of 15) & Median NRMSE ratio \\
         \midrule
-        gplearn & 2 & 1.336 \\
-        Operon & 5 & 0.998 \\
-        PySR & 6 & 0.914 \\
-        GeneticEngine & 2 & 1.344 \\
-        ITEA & 2 & 1.406 \\
-        EQL & 10 & 0.114 \\
+        gplearn & 5 & 1.047 \\
+        Operon & 8 & 0.991 \\
+        PySR & 10 & 0.871 \\
+        GeneticEngine & 4 & 1.160 \\
+        ITEA & 4 & 1.408 \\
+        EQL & 15 & 0.289 \\
         \bottomrule
     \end{tabular}
 \end{table}
@@ -917,12 +978,12 @@ Repetition variability was evaluated using the sample standard deviation of NRMS
         \toprule
         Framework & Raw inputs & Domain-normalized inputs \\
         \midrule
-        gplearn & 0.0306 & 0.0469 \\
-        Operon & 0.0038 & 0.0034 \\
-        PySR & 0.0121 & 0.0084 \\
-        GeneticEngine & 0.0185 & 0.0372 \\
-        ITEA & 0.0002 & $<0.0001$ \\
-        EQL & 1.2407 & 0.0192 \\
+        gplearn & 0.0297 & 0.0314 \\
+        Operon & 0.0036 & 0.0040 \\
+        PySR & 0.0088 & 0.0073 \\
+        GeneticEngine & 0.0133 & 0.0236 \\
+        ITEA & 0.0003 & $<0.0001$ \\
+        EQL & 0.4188 & 0.0045 \\
         \bottomrule
     \end{tabular}
 \end{table}
@@ -949,7 +1010,7 @@ The returned equations are compared not only through their predictions but also 
 
 \subsection{Expression Complexity}
 
-Expression complexity varied substantially between frameworks. Table~\ref{tab:results-complexity-summary} reports the median, across the 20 problem--scaling combinations, of each combination's mean simplified node count. On this measure, PySR returned the smallest parsed expressions, followed by ITEA and GeneticEngine. Operon, despite leading predictive performance, returned larger expressions than these three frameworks. gplearn had the largest median node count. These comparisons describe syntactic expression size and do not by themselves measure semantic clarity or scientific usefulness.
+Expression complexity varied substantially between frameworks. Table~\ref{tab:results-complexity-summary} reports the median, across the 30 problem--scaling combinations, of each combination's mean simplified node count. On this measure, PySR returned the smallest parsed expressions, followed by ITEA and GeneticEngine. EQL occupied the middle of the aggregate ordering, while gplearn and Operon returned the largest median expressions. These comparisons describe syntactic expression size and do not by themselves measure semantic clarity or scientific usefulness.
 
 \begin{table}[H]
     \centering
@@ -959,12 +1020,12 @@ Expression complexity varied substantially between frameworks. Table~\ref{tab:re
         \toprule
         Framework & Median simplified node count \\
         \midrule
-        gplearn & 108.39 \\
-        Operon & 66.00 \\
-        PySR & 11.21 \\
-        GeneticEngine & 26.10 \\
-        ITEA & 21.60 \\
-        EQL & 51.65 \\
+        gplearn & 64.70 \\
+        Operon & 66.35 \\
+        PySR & 12.11 \\
+        GeneticEngine & 25.65 \\
+        ITEA & 18.63 \\
+        EQL & 49.60 \\
         \bottomrule
     \end{tabular}
 \end{table}
@@ -987,7 +1048,7 @@ Figures~\ref{fig:results-complexity-raw} and~\ref{fig:results-complexity-domain}
 
 \subsection{Symbolic Simplification and Fallbacks}
 
-The simplification completion rate differed markedly between frameworks. GeneticEngine completed simplification for all 200 parsed expressions, and PySR did so for 195 of 200. gplearn required the unsimplified fallback for 74 of its 199 parsed expressions, the largest number among the frameworks. EQL required 43 fallbacks, Operon 34, and ITEA 24. Because fallback expressions can be structurally larger than their simplified counterparts, the primary simplified-complexity comparison excludes them rather than treating the two forms as directly equivalent.
+The simplification completion rate differed markedly between frameworks. GeneticEngine completed simplification for all 300 parsed expressions, and PySR did so for 291 of 299. gplearn required the unsimplified fallback for 85 of its 299 parsed expressions, the largest number among the frameworks. Operon required 44 fallbacks, EQL 43, and ITEA 26. Because fallback expressions can be structurally larger than their simplified counterparts, the primary simplified-complexity comparison excludes them rather than treating the two forms as directly equivalent.
 
 \begin{table}[H]
     \centering
@@ -997,12 +1058,12 @@ The simplification completion rate differed markedly between frameworks. Genetic
         \toprule
         Framework & Parsed & Simplified & Fallback rate \\
         \midrule
-        gplearn & 199 & 125 & 37.2\% \\
-        Operon & 199 & 165 & 17.1\% \\
-        PySR & 200 & 195 & 2.5\% \\
-        GeneticEngine & 200 & 200 & 0.0\% \\
-        ITEA & 200 & 176 & 12.0\% \\
-        EQL & 200 & 157 & 21.5\% \\
+        gplearn & 299 & 214 & 28.4\% \\
+        Operon & 299 & 255 & 14.7\% \\
+        PySR & 299 & 291 & 2.7\% \\
+        GeneticEngine & 300 & 300 & 0.0\% \\
+        ITEA & 300 & 274 & 8.7\% \\
+        EQL & 300 & 257 & 14.3\% \\
         \bottomrule
     \end{tabular}
 \end{table}
@@ -1015,7 +1076,7 @@ Computational efficiency is reported separately for model fitting and for the su
 
 \subsection{Model-Fitting Time}
 
-Model-fitting times describe the evaluated configurations under the common one-thread execution controls; they are not the result of equal wall-clock search budgets. Operon had the lowest median problem-level mean fit time at 3.88 seconds, followed by ITEA at 5.67 seconds. EQL required 24.50 seconds, gplearn 37.62 seconds, GeneticEngine 60.24 seconds, and PySR 89.66 seconds. PySR's fit times were comparatively consistent with the configured fixed search duration, while the other methods showed stronger problem-dependent variation.
+Model-fitting times describe the evaluated configurations under the common one-thread execution controls; they are not the result of equal wall-clock search budgets. Operon had the lowest median problem-level mean fit time at 3.88 seconds, followed by ITEA at 5.83 seconds. EQL required 24.49 seconds, gplearn 33.59 seconds, GeneticEngine 60.25 seconds, and PySR 89.77 seconds. PySR's fit times were comparatively consistent with the configured fixed search duration, while the other methods showed stronger problem-dependent variation.
 
 \begin{table}[H]
     \centering
@@ -1026,11 +1087,11 @@ Model-fitting times describe the evaluated configurations under the common one-t
         Framework & Fit time (s) \\
         \midrule
         Operon & 3.88 \\
-        ITEA & 5.67 \\
-        EQL & 24.50 \\
-        gplearn & 37.62 \\
-        GeneticEngine & 60.24 \\
-        PySR & 89.66 \\
+        ITEA & 5.83 \\
+        EQL & 24.49 \\
+        gplearn & 33.59 \\
+        GeneticEngine & 60.25 \\
+        PySR & 89.77 \\
         \bottomrule
     \end{tabular}
 \end{table}
@@ -1063,18 +1124,18 @@ Prediction was fast for all fitted symbolic models relative to model fitting. Ta
         \toprule
         Framework & Scaling & Prediction ($\mu$s/sample) & Extraction (s) \\
         \midrule
-        gplearn & Raw & 0.952 & 0.000294 \\
-        gplearn & Domain-normalized & 0.886 & 0.000272 \\
-        Operon & Raw & 0.025 & 0.000066 \\
+        gplearn & Raw & 0.437 & 0.000232 \\
+        gplearn & Domain-normalized & 0.613 & 0.000232 \\
+        Operon & Raw & 0.026 & 0.000065 \\
         Operon & Domain-normalized & 0.028 & 0.000064 \\
-        PySR & Raw & 0.713 & 0.008723 \\
-        PySR & Domain-normalized & 0.852 & 0.010874 \\
+        PySR & Raw & 0.717 & 0.008851 \\
+        PySR & Domain-normalized & 0.880 & 0.010697 \\
         GeneticEngine & Raw & 0.039 & 0.000025 \\
-        GeneticEngine & Domain-normalized & 0.040 & 0.000025 \\
-        ITEA & Raw & 0.219 & 0.000054 \\
-        ITEA & Domain-normalized & 0.231 & 0.000048 \\
-        EQL & Raw & 1.915 & 0.096072 \\
-        EQL & Domain-normalized & 1.901 & 0.104759 \\
+        GeneticEngine & Domain-normalized & 0.045 & 0.000025 \\
+        ITEA & Raw & 0.220 & 0.000055 \\
+        ITEA & Domain-normalized & 0.234 & 0.000052 \\
+        EQL & Raw & 1.918 & 0.086836 \\
+        EQL & Domain-normalized & 1.901 & 0.085235 \\
         \bottomrule
     \end{tabular}
 \end{table}
@@ -1083,7 +1144,7 @@ Even the largest median prediction time remained below two microseconds per refe
 
 \section{Consolidated Framework Comparison}
 
-Table~\ref{tab:results-consolidated} combines the main framework-level outcomes. Operon provided the strongest overall predictive performance and the shortest model-fitting time, but its expressions were larger than those returned by PySR, ITEA, and GeneticEngine. PySR produced the smallest expressions and completed every trial, at the cost of the longest fitting time. ITEA combined the second-lowest median NRMSE with short fitting times and relatively compact expressions. gplearn completed every trial but was less accurate and produced the largest expressions in the aggregate. GeneticEngine returned compact expressions and completed all trials after its later compatible reruns were incorporated. EQL benefited most consistently from domain normalization and won two normalized analytical configurations, but its aggregate raw-input performance and variability were poor.
+Table~\ref{tab:results-consolidated} combines the main framework-level outcomes. Operon provided the strongest overall predictive performance and the shortest model-fitting time, but its expressions were larger than those returned by PySR, ITEA, and GeneticEngine. PySR produced the smallest expressions at the cost of the longest fitting time and one failed trial. ITEA combined the second-lowest median NRMSE with short fitting times and relatively compact expressions. gplearn completed every trial but was less accurate and returned expressions almost as large as Operon's in the aggregate. GeneticEngine returned compact expressions and completed all trials after its later compatible reruns were incorporated. EQL benefited most consistently from domain normalization and won two normalized analytical configurations, but its aggregate raw-input performance and variability were poor.
 
 \begin{table}[H]
     \centering
@@ -1093,17 +1154,17 @@ Table~\ref{tab:results-consolidated} combines the main framework-level outcomes.
         \toprule
         Framework & NRMSE & $R^2$ & Fit time (s) & Nodes & Failed \\
         \midrule
-        gplearn & 0.1267 & 0.5064 & 37.62 & 108.39 & 0 \\
-        Operon & 0.0259 & 0.9849 & 3.88 & 66.00 & 1 \\
-        PySR & 0.0773 & 0.8396 & 89.66 & 11.21 & 0 \\
-        GeneticEngine & 0.1187 & 0.6101 & 60.24 & 26.10 & 0 \\
-        ITEA & 0.0722 & 0.8564 & 5.67 & 21.60 & 0 \\
-        EQL & 0.1791 & -0.5483 & 24.50 & 51.65 & 0 \\
+        gplearn & 0.1296 & 0.4231 & 33.59 & 64.70 & 0 \\
+        Operon & 0.0455 & 0.9660 & 3.88 & 66.35 & 1 \\
+        PySR & 0.0804 & 0.7979 & 89.77 & 12.11 & 1 \\
+        GeneticEngine & 0.1313 & 0.3896 & 60.25 & 25.65 & 0 \\
+        ITEA & 0.0722 & 0.8564 & 5.83 & 18.63 & 0 \\
+        EQL & 0.1622 & -0.0058 & 24.49 & 49.60 & 0 \\
         \bottomrule
     \end{tabular}
 \end{table}
 
-The results do not identify one framework as best under every evaluation dimension. Operon dominated the predictive and fitting-time summaries, PySR minimized syntactic expression size, ITEA offered a strong balance of accuracy, speed, and compactness, and EQL demonstrated the clearest dependence on input scaling. These observed trade-offs, together with the variation in symbolic-analysis coverage and the single unresolved execution failure, form the basis of the interpretation in the following chapter.
+The results do not identify one framework as best under every evaluation dimension. Operon dominated the predictive and fitting-time summaries, PySR minimized syntactic expression size, ITEA offered a strong balance of accuracy, speed, and compactness, and EQL demonstrated the clearest dependence on input scaling. These observed trade-offs, together with the variation in symbolic-analysis coverage and the two unresolved execution failures, form the basis of the interpretation in the following chapter.
 
 
 \chapter{Discussion}
@@ -1112,17 +1173,17 @@ This chapter interprets the benchmark results in relation to the research questi
 
 \section{Interpretation of Framework Trade-Offs}
 
-The clearest overall result is the strong performance of Operon under the evaluated configuration. It achieved the lowest mean NRMSE in 13 of the 20 problem--scaling combinations, the best median predictive performance, and the shortest median fitting time. This combination shows that evolutionary symbolic regression does not necessarily require a choice between good prediction and practical execution time. However, Operon's median simplified expression size of 66 nodes was substantially larger than those of PySR, ITEA, and GeneticEngine. Its advantage therefore concerns prediction and computational efficiency more clearly than equation compactness. The remaining failed trial also belonged to Operon, although one failure among 200 assigned trials does not change its otherwise high execution coverage.
+The clearest overall result is the strong performance of Operon under the evaluated configuration. It achieved the lowest mean NRMSE in 21 of the 30 problem--scaling combinations, the best median predictive performance, and the shortest median fitting time. This combination shows that evolutionary symbolic regression does not necessarily require a choice between good prediction and practical execution time. However, Operon's median simplified expression size of 66.35 nodes was substantially larger than those of PySR, ITEA, and GeneticEngine. Its advantage therefore concerns prediction and computational efficiency more clearly than equation compactness. Operon produced one of the two failed trials, although one failure among 300 assigned trials does not change its otherwise high execution coverage.
 
-PySR displayed a different profile. Its median predictive performance was weaker than that of Operon and ITEA, and its configured fitting time was the longest among the six frameworks. At the same time, it returned the smallest expressions by a considerable margin and completed all assigned trials. This makes PySR relevant when compact symbolic output is valued more strongly than fitting time or the lowest aggregate error. The result also illustrates why accuracy and complexity should be reported separately: selecting a framework only from the predictive ranking would overlook PySR's main advantage, while selecting only from expression size would conceal its computational cost and weaker performance on several problems.
+PySR displayed a different profile. Its median predictive performance was weaker than that of Operon and ITEA, and its configured fitting time was the longest among the six frameworks. At the same time, it returned the smallest expressions by a considerable margin and completed 299 of 300 assigned trials. Its normalized OTL Circuit failure further shows that an explicit expression may be defined on the training observations yet become invalid at held-out points. PySR remains relevant when compact symbolic output is valued more strongly than fitting time or the lowest aggregate error. The result also illustrates why accuracy and complexity should be reported separately: selecting a framework only from the predictive ranking would overlook PySR's main advantage, while selecting only from expression size would conceal its computational cost and weaker performance on several problems.
 
-ITEA provided the most balanced aggregate profile after Operon. It achieved the second-lowest median NRMSE, short fitting times, and comparatively compact expressions. It was also the strongest method on both CCPP conditions and on raw Airfoil Self-Noise. Its extremely small variation across repetitions must nevertheless be interpreted cautiously because the employed adapter does not expose a controllable estimator seed. The repeated results demonstrate stable behavior when the same implementation is invoked repeatedly, but they do not establish seed-controlled reproducibility in the same sense as for frameworks that accept the configured repetition labels.
+ITEA provided the most balanced aggregate profile after Operon. It achieved the second-lowest median NRMSE, short fitting times, and comparatively compact expressions. It was also the strongest method on both CCPP conditions, raw Airfoil Self-Noise, raw Robot Arm, and raw Lattice Physics. The Lattice Physics result was accompanied by comparatively large expressions and collapsed after input normalization, showing that its aggregate balance does not hold uniformly. Its extremely small variation across several repetitions must also be interpreted cautiously because the employed adapter does not expose a controllable estimator seed. The repeated results demonstrate stable behavior when the same implementation is invoked repeatedly, but they do not establish seed-controlled reproducibility in the same sense as for frameworks that accept the configured repetition labels.
 
-The remaining frameworks showed more pronounced limitations. gplearn provided a dependable conventional genetic-programming reference and completed every trial, but it produced the largest expressions and did not lead any problem--scaling combination. GeneticEngine also completed all trials after the scalar-prediction compatibility issue was handled, and its equations were relatively compact, but its aggregate predictive performance was below that of Operon, ITEA, and PySR. EQL achieved the best normalized-input result on Borehole and Wing Weight, demonstrating that its differentiable representation can be effective on suitable analytical structures. Its raw-input results, however, contained severe errors and high repetition variability. EQL therefore provided the clearest example of a framework whose usefulness depends on preprocessing rather than being an invariant property of the method.
+The remaining frameworks showed more pronounced limitations. gplearn provided a dependable conventional genetic-programming reference and completed every trial, but it did not lead any problem--scaling combination and returned relatively large expressions. GeneticEngine also completed all trials after the scalar-prediction compatibility issue was handled, and its equations were relatively compact, but its aggregate predictive performance was below that of Operon, ITEA, and PySR. EQL achieved the best normalized-input result on Borehole and Wing Weight and performed well on normalized OTL Circuit and Yacht Hydrodynamics, demonstrating that its differentiable representation can be effective on suitable structures. Its raw-input results, however, contained severe errors and high repetition variability. EQL therefore provided the clearest example of a framework whose usefulness depends on preprocessing rather than being an invariant property of the method.
 
-The normalization experiment confirms that input scaling cannot be treated as a universally beneficial preprocessing step. Domain normalization improved EQL on every problem and improved PySR on six, but it improved gplearn, GeneticEngine, and ITEA on only two problems each. Operon's median error was almost unchanged. For EQL, normalization largely prevented extreme raw-input behavior, whereas for several evolutionary methods it sometimes increased error. The practical implication is that scaling should be treated as part of a framework configuration and reported explicitly. A comparison based on only one input representation could favor or disadvantage particular method families without making that dependence visible.
+The normalization experiment confirms that input scaling cannot be treated as a universally beneficial preprocessing step. Domain normalization improved EQL on every problem and improved PySR on ten, but it improved gplearn on five and GeneticEngine and ITEA on only four problems each. Operon's median error was almost unchanged. For EQL, normalization largely prevented extreme raw-input behavior, whereas for ITEA it removed the strong raw-input Lattice Physics result. The practical implication is that scaling should be treated as part of a framework configuration and reported explicitly. A comparison based on only one input representation could favor or disadvantage particular method families without making that dependence visible.
 
-Problem characteristics were at least as important as the framework choice. The analytical problems generally permitted lower errors than the empirical datasets, but no method was consistently strongest on every analytical expression. Among the external problems, Energy Efficiency was approximated comparatively well, while Gas Turbine NOx remained difficult for all frameworks and produced negative mean $R^2$ even for the best method. This variation supports the observation from broader SR benchmarks that no single approach is uniformly optimal across problem classes \cite{lacava2021contemporary,dong2025recent}. It also cautions against drawing general conclusions from a small number of favorable analytical examples.
+Problem characteristics were at least as important as the framework choice. OTL Circuit was modeled accurately by several frameworks, whereas the analytical Robot Arm problem remained difficult despite having noise-free generated targets. Among the external problems, Yacht Hydrodynamics and Energy Efficiency were approximated comparatively well, Electrical Grid Stability was moderately difficult, and Gas Turbine NOx remained difficult for all frameworks and produced negative mean $R^2$ even for the best method. Lattice Physics added a high-dimensional case in which one framework performed strongly under raw inputs while most alternatives remained close to mean prediction. This variation supports the observation from broader SR benchmarks that no single approach is uniformly optimal across problem classes \cite{lacava2021contemporary,dong2025recent}. It also cautions against drawing general conclusions from a small number of favorable analytical examples.
 
 Runtime results require a similarly bounded interpretation. Operon and ITEA were fastest under the selected configurations, but the benchmark did not impose equal wall-clock or function-evaluation budgets. PySR and GeneticEngine were explicitly constrained by practical time budgets, while the other frameworks used their adapter-specific iteration or evaluation controls. The measured times therefore describe the cost and outcome of the configurations actually evaluated, not the maximum attainable performance of each framework or an equal-compute competition. Nevertheless, the very low prediction times of all returned expressions demonstrate a shared advantage after fitting: every successful symbolic surrogate could be evaluated in microseconds per sample, making repeated deployment inexpensive compared with the search process.
 
@@ -1130,19 +1191,19 @@ Runtime results require a similarly bounded interpretation. Operon and ITEA were
 
 The benchmark supports Symbolic Regression as a useful but conditional approach to interpretable surrogate modeling. The evaluated frameworks produced explicit expressions for almost every successful trial, and these expressions could usually be parsed, transformed into physical input coordinates, and assigned common structural measures. Once fitted, the models were inexpensive to evaluate. These properties make SR suitable when an application requires a reusable analytical surrogate whose variables and operations can be inspected directly rather than a prediction interface alone.
 
-Explicitness, however, should not be equated automatically with interpretability. The median simplified expressions ranged from approximately 11 nodes for PySR to more than 108 nodes for gplearn, and individual problem-level means were considerably larger. An equation with many nested operations can be technically visible while remaining difficult to understand. Node count is also only a syntactic proxy: it does not measure whether the variables have physically plausible roles, whether constants correspond to meaningful quantities, or whether the expression communicates a useful scientific relationship. The simplification fallbacks reinforce this distinction because 180 parsed expressions could not be reduced within the bounded procedure and were therefore excluded from the primary simplified-complexity means.
+Explicitness, however, should not be equated automatically with interpretability. The median simplified expressions ranged from approximately 12 nodes for PySR to approximately 66 nodes for Operon, and individual problem-level means were considerably larger. An equation with many nested operations can be technically visible while remaining difficult to understand. Node count is also only a syntactic proxy: it does not measure whether the variables have physically plausible roles, whether constants correspond to meaningful quantities, or whether the expression communicates a useful scientific relationship. The simplification fallbacks reinforce this distinction because 206 parsed expressions could not be reduced within the bounded procedure and were therefore excluded from the primary simplified-complexity means.
 
-The structural statistics must also be considered together with predictive adequacy. The negative $R^2$ results on Gas Turbine NOx show that an inspectable equation is not useful as a surrogate merely because it is symbolic. Conversely, the stronger Energy Efficiency, CCPP, Naval Propulsion, Concrete Strength, and Airfoil Self-Noise results show that SR can provide workable approximations for several engineering datasets under modest training sizes. Whether those expressions are scientifically informative would require domain-specific review beyond the structural measures used here.
+The structural statistics must also be considered together with predictive adequacy. The negative $R^2$ results on Gas Turbine NOx and the near-constant EQL results on Electrical Grid Stability and Lattice Physics show that an inspectable or very small equation is not useful as a surrogate merely because it is symbolic. Conversely, the stronger Yacht Hydrodynamics, Energy Efficiency, CCPP, Naval Propulsion, Concrete Strength, and Airfoil Self-Noise results show that SR can provide workable approximations for several engineering datasets under modest training sizes. Whether those expressions are scientifically informative would require domain-specific review beyond the structural measures used here.
 
 The framework choice should consequently follow the intended use. Operon is the strongest candidate from this benchmark when predictive accuracy and fitting speed are primary, provided that moderately larger expressions are acceptable. PySR is preferable when compact output is a central requirement and longer fitting time is tolerable. ITEA offers a favorable compromise between accuracy, speed, and expression size, although its uncontrolled repetition behavior should be considered when strict seed reproducibility is required. EQL may be useful for compatible analytical structures but should be used with normalized inputs and careful stability checks. gplearn remains useful as a transparent conventional baseline, while GeneticEngine offers compact grammar-guided models but did not match the leading predictive results in this configuration.
 
-Practical suitability also depends on the surrounding software rather than the search algorithm alone. The benchmark required pinned containers, adapter-specific compatibility handling, explicit failure records, and separate symbolic post-processing. The GeneticEngine scalar-output issue demonstrated that a valid constant phenotype can appear to be a failed trial when framework output conventions are not harmonized. The final resolved matrix achieved 1199 successful trials out of 1200, indicating that the selected tools can be integrated reliably, but only after such interface differences are made explicit. Reproducible surrogate modeling therefore requires preservation of configurations, environments, data hashes, expressions, and post-processing decisions in addition to the equation returned by the framework.
+Practical suitability also depends on the surrounding software rather than the search algorithm alone. The benchmark required pinned containers, adapter-specific compatibility handling, explicit failure records, and separate symbolic post-processing. The GeneticEngine scalar-output issue demonstrated that a valid constant phenotype can appear to be a failed trial when framework output conventions are not harmonized, while the PySR OTL failure showed the need to validate equation domains on the complete reference-test set. The final resolved matrix achieved 1798 successful trials out of 1800, indicating that the selected tools can be integrated reliably, but only after such interface differences and numerical validity checks are made explicit. Reproducible surrogate modeling therefore requires preservation of configurations, environments, data hashes, expressions, and post-processing decisions in addition to the equation returned by the framework.
 
 Taken together, the answer to the research question is qualified. Current SR frameworks are suitable for constructing inexpensive and inspectable surrogate models on a range of scientific and engineering regression tasks, but suitability is problem- and objective-dependent. The benchmark does not support treating SR as an automatic route to simple or scientifically correct equations. Its main value is the ability to expose the predictive model in mathematical form while allowing accuracy, complexity, and domain plausibility to be evaluated together.
 
 \section{Research Gaps and Future Benchmarking Needs}
 
-Several limitations define the scope of these conclusions. The benchmark contains ten problems and uses one fixed training and reference-test design for each. Although the collection includes analytical, simulator-generated, experimental, and measured data, it is not large enough to represent the full diversity of surrogate-modeling applications. The conclusions are therefore evidence about the evaluated tasks and configurations rather than population-wide rankings of SR frameworks. Future work should extend the collection with additional dimensionalities, sample sizes, noise levels, discontinuities, and domain structures while retaining transparent dataset provenance.
+Several limitations define the scope of these conclusions. The benchmark contains fifteen problems and uses one fixed training and reference-test design for each. Although the collection includes analytical, simulator-generated, experimental, and measured data with between three and 39 inputs, it is not large enough to represent the full diversity of surrogate-modeling applications. The conclusions are therefore evidence about the evaluated tasks and configurations rather than population-wide rankings of SR frameworks. Future work should extend the collection with additional sample sizes, noise levels, discontinuities, and domain structures while retaining transparent dataset provenance.
 
 The experimental protocol evaluates interpolation on held-out observations but does not directly test extrapolation beyond the documented training region, sensitivity to corrupted measurements, or stability during recursive simulation. These properties are important when a surrogate replaces a scientific simulator or is used in optimization and control. Future benchmark tracks should distinguish interpolation from controlled extrapolation, add repeated noise conditions, and include dynamical rollout tasks where prediction errors can accumulate. Physical constraints such as dimensional consistency, monotonicity, conservation relationships, and admissible output ranges should also be tested when the problem supplies them.
 
@@ -1161,13 +1222,13 @@ This chapter summarizes the principal findings, answers the research question, a
 
 \section{Summary of Findings}
 
-The benchmark compared gplearn, Operon, PySR, GeneticEngine, ITEA, and EQL on ten analytical, simulator-generated, experimental, and measured surrogate-modeling problems. Each framework was evaluated with raw and domain-normalized inputs over ten repetitions, producing 1200 planned trial coordinates. Of these, 1199 completed successfully, and all successful trials received a current symbolic-analysis record. A common protocol, fixed train--test tables, pinned container images, configuration hashes, and coordinate-level result resolution were used to preserve comparability and traceability as the problem collection was expanded.
+The benchmark compared gplearn, Operon, PySR, GeneticEngine, ITEA, and EQL on fifteen analytical, simulator-generated, experimental, and measured surrogate-modeling problems. Each framework was evaluated with raw and domain-normalized inputs over ten repetitions, producing 1800 planned trial coordinates. Of these, 1798 completed successfully, and all successful trials received a current symbolic-analysis record. A common protocol, fixed train--test tables, pinned container images, configuration hashes, and coordinate-level result resolution were used to preserve comparability and traceability as the problem collection was expanded.
 
-Operon achieved the strongest overall predictive result under the evaluated configurations. It obtained the lowest mean range-normalized RMSE in 13 of the 20 problem--scaling combinations, the lowest median value of 0.0259, and the shortest median fitting time of 3.88 seconds. ITEA provided a strong compromise, combining the second-lowest median error with short fitting times and relatively compact expressions, although its adapter did not expose a controllable repetition seed. PySR produced the smallest expressions, with a median problem-level mean of approximately 11 simplified nodes, but also had the longest median fitting time. gplearn was reliable but produced the largest expressions, GeneticEngine returned comparatively compact models but weaker predictive results, and EQL showed the greatest dependence on input normalization.
+Operon achieved the strongest overall predictive result under the evaluated configurations. It obtained the lowest mean range-normalized RMSE in 21 of the 30 problem--scaling combinations, the lowest median value of 0.0455, and the shortest median fitting time of 3.88 seconds. ITEA provided a strong compromise, combining the second-lowest median error with short fitting times and relatively compact expressions, although its adapter did not expose a controllable repetition seed. PySR produced the smallest expressions, with a median problem-level mean of approximately 12 simplified nodes, but also had the longest median fitting time. gplearn was reliable but less accurate, GeneticEngine returned comparatively compact models but weaker predictive results, and EQL showed the greatest dependence on input normalization.
 
-The experiments also showed that preprocessing and problem characteristics can substantially affect the apparent quality of a framework. Domain normalization improved EQL on every problem but was not consistently beneficial for the evolutionary methods. Gas Turbine NOx remained difficult for all frameworks, whereas several analytical problems and the Energy Efficiency dataset admitted substantially lower prediction errors. Repetition variability likewise differed between frameworks and scaling conditions. Once fitted, however, the symbolic surrogates were inexpensive to evaluate: at the framework-summary level, median prediction costs remained below two microseconds per test observation.
+The experiments also showed that preprocessing and problem characteristics can substantially affect the apparent quality of a framework. Domain normalization improved EQL on every problem but was not consistently beneficial for the evolutionary methods; most notably, ITEA performed strongly on raw Lattice Physics but poorly after normalization. OTL Circuit and Yacht Hydrodynamics admitted low prediction errors, Electrical Grid Stability was moderately difficult, Robot Arm remained difficult for every framework, and Gas Turbine NOx remained the hardest problem overall. Repetition variability likewise differed between frameworks and scaling conditions. Once fitted, however, the symbolic surrogates were inexpensive to evaluate: at the framework-summary level, median prediction costs remained below two microseconds per test observation.
 
-Expression structure introduced a separate trade-off from predictive accuracy. Smaller expressions were not always the most accurate, and the framework with the strongest predictive performance did not produce the smallest models. Most returned expressions could be parsed and measured through the common SymPy representation, but simplification required an unsimplified fallback for 180 expressions. These results support reporting structural coverage and complexity alongside accuracy rather than treating the availability of an explicit equation as sufficient evidence of interpretability.
+Expression structure introduced a separate trade-off from predictive accuracy. Smaller expressions were not always the most accurate, and the framework with the strongest predictive performance did not produce the smallest models. Most returned expressions could be parsed and measured through the common SymPy representation, but simplification required an unsimplified fallback for 206 expressions. These results support reporting structural coverage and complexity alongside accuracy rather than treating the availability of an explicit equation as sufficient evidence of interpretability.
 
 \section{Answer to the Research Question}
 
