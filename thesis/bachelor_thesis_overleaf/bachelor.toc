@@ -71,8 +71,5 @@
 \contentsline {section}{\numberline {7.2}Suitability for Interpretable Surrogate Modeling}{58}{section.7.2}%
 \contentsline {section}{\numberline {7.3}Research Gaps and Future Benchmarking Needs}{59}{section.7.3}%
 \contentsline {chapter}{\numberline {8}Conclusion}{62}{chapter.8}%
-\contentsline {section}{\numberline {8.1}Summary of Findings}{62}{section.8.1}%
-\contentsline {section}{\numberline {8.2}Answer to the Research Question}{63}{section.8.2}%
-\contentsline {section}{\numberline {8.3}Outlook and Future Work}{64}{section.8.3}%
-\contentsline {chapter}{\nonumberline Bibliography}{65}{chapter*.11}%
+\contentsline {chapter}{\nonumberline Bibliography}{63}{chapter*.11}%
 \providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 
